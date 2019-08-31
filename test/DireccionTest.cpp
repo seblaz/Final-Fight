@@ -6,10 +6,6 @@
 #include<cmath>
 #include "../model/Direccion.h"
 
-TEST(SuiteDeEjemplo, TestDeEjemplo) {
-    EXPECT_EQ(1, 1);
-}
-
 TEST(Direccion, DireccionTieneModulo1) {
     Direccion direccion(1, 1, 1);
 
