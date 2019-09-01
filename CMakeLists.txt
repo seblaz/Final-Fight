@@ -59,3 +59,9 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 # Link to executable:
 target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES})
+
+#[[
+  Compilar el juego.
+]]
+add_executable(${CMAKE_PROJECT_NAME} GameLoop.cpp ${ModelSources})
+target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
