@@ -3,44 +3,54 @@
 //
 
 #include "Logger.h"
-static Logger getLogger();
-void log(string level, string message);
-void setLoggerLevel(string level);
 
-Logger* Logger::logger = NULL;
-int Logger::level = 3;
+Logger* Logger::instance = NULL;
+FileManager* Logger:manager = new FileManager();
+int Logger::level = 2;
 string Logger::path = "";
-
-bool existsFile()
-{
-    std::ifstream infile(this.path);
-    return infile.good();
-}
+string levels [3] = { "ERROR", "INFO","DEBUG"};
 
 Logger::Logger() {
+    string time = this.getDateTime();
+    string fullPath = this.path + "/" + time + ".log";
 
+    if (!this.fileManager.existsFile(fullPath)){
+        this.fileManager.createFile(fullPath);
+    }
 }
 
-Logger* Logger::getInstance()
-{
-    if (logger == NULL)
-    {
-        logger = new Logger();
+Logger* Logger::getInstance() {
+    if (instance == NULL) {
+        instance = new Logger();
     }
 
     return logger;
-}
-
-void Logger::setLevel(int level) {
-    if(level > 1 && level <= 3){
-        this.level = level;
-    }
 }
 
 void Logger::logMessage(string level, string message) {
     int messageLevel = this.getLevel(level);
 
     if (this.level >= messageLevel){
-
+        string newLine = this.getDateTime() + " " + this.levels[this.level] + " " + message;
+        this.fileManager.addLine(this.path, newLine);
     }
+}
+
+int Logger:getLevel(string level){
+    int i = 0;
+    bool found = false;
+
+    while(i < 3 && !found){
+        if(levels[i] == level){
+            found = true;;
+        }
+    }
+
+    return i;
+};
+
+void Logger::setLevel(string level) {
+    int newLevel = this.getLevel(level);
+
+    this.level = newLevel;
 }

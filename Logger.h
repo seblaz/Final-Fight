@@ -5,16 +5,15 @@
 class Logger {
     private:
         static Logger* instance;
+        FileManager* manager;
         int level;
         string path;
-        bool existsFile(string *fileName)
+        string levels [3];
         int getLevel(string *level);
         Logger();
 
     public:
         static Logger* getInstance();
         void logMessage(string level, string message);
-        void setLevel(int level);
+        void setLevel(string level);
 };
-
-/* Null, because instance will be initialized on demand. */
