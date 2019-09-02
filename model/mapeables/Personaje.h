@@ -17,7 +17,7 @@ private:
     std::string nombre;
 
 public:
-    Personaje(int x, int y, int z, Graphics graphics, string nombre);
+    Personaje(int x, int y, int z, Graphics *graphics, string nombre);
 
 };
 

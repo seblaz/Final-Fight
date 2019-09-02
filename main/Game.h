@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_GAME_H
 #define FINAL_FIGHT_GAME_H
 
-#include "../model/Mapeable.h"
+#include "../model/mapeables/Mapeable.h"
 #include "../model/Mapa.h"
 #include <SDL2/SDL.h>
 

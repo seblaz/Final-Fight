@@ -13,12 +13,9 @@ class Mapeable;
 
 class Graphics {
 
-private:
-    SDL_Surface *gHelloWorld = nullptr;
-
 public:
-    void actualizar(SDL_Surface *surface, Mapeable &mapeable);
-    ~Graphics();
+    virtual void actualizar(SDL_Surface *surface, Mapeable &mapeable) = 0;
+    virtual ~Graphics() = default;
 };
 
 

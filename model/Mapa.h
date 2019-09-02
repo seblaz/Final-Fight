@@ -7,7 +7,7 @@
 
 
 #include "Dimension.h"
-#include "Mapeable.h"
+#include "mapeables/Mapeable.h"
 #include "Iterator.cpp"
 #include <vector>
 

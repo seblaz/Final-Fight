@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_PHYSICSCOMPONENT_H
 
 
-#include "../model/Mapeable.h"
+#include "../model/mapeables/Mapeable.h"
 
 class PhysicsComponent {
 
