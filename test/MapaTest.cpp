@@ -11,15 +11,17 @@ TEST(Mapa, CrearUnMapaVacioNoPierdeMemoria) {
 
 TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
     Mapa mapa(2, 3, 4);
-    Mapeable mapeable = Mapeable(6, 9, 5);
+    Graphics graphics;
+    Mapeable mapeable = Mapeable(6, 9, 5, graphics);
 
     mapa.agregar(&mapeable);
 }
 
-TEST(Mapa, LuegoDeAgregarVariosMapeablesLosPuedoObtener) {
+TEST(Mapa, DevolverMapeablesDevuelveLosMismosObjetos) {
     Mapa mapa(100, 1000, 300);
-    Mapeable mapeable1 = Mapeable(2, 3, 4);
-    Mapeable mapeable2 = Mapeable(6, 9, 5);
+    Graphics graphics;
+    Mapeable mapeable1 = Mapeable(2, 3, 4, graphics);
+    Mapeable mapeable2 = Mapeable(6, 9, 5, graphics);
 
     mapa.agregar(&mapeable1);
     mapa.agregar(&mapeable2);
@@ -34,6 +36,7 @@ TEST(Mapa, LuegoDeAgregarVariosMapeablesLosPuedoObtener) {
             encontrado2 = true;
         }
     }
+
     EXPECT_TRUE(encontrado1);
     EXPECT_TRUE(encontrado2);
 }

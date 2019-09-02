@@ -6,7 +6,7 @@
 
 Posicion::Posicion(int x, int y, int z): x(x), y(y), z(z) {}
 
-void Posicion::mover(Direccion& direccion) {
+void Posicion::mover(Velocidad& direccion) {
     x += direccion.x;
     y += direccion.y;
     z += direccion.z;

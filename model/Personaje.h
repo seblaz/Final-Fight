@@ -9,13 +9,15 @@
 #include <string>
 #include "Mapeable.h"
 
+using namespace std;
+
 class Personaje : Mapeable {
 
 private:
     std::string nombre;
 
 public:
-    Personaje(int x, int y, int z, std::string nombre);
+    Personaje(int x, int y, int z, Graphics graphics, string nombre);
 
 };
 

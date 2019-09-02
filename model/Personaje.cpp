@@ -6,4 +6,4 @@
 
 #include <utility>
 
-Personaje::Personaje(int x, int y, int z, std::string nombre): Mapeable(x, y, z), nombre(std::move(nombre)) {}
+Personaje::Personaje(int x, int y, int z, Graphics graphics, string nombre): Mapeable(x, y, z, graphics), nombre(move(nombre)) {}

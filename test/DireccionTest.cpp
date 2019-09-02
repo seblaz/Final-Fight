@@ -3,21 +3,12 @@
 //
 
 #include "gtest/gtest.h"
-#include<cmath>
-#include "../model/Direccion.h"
+#include "../model/Velocidad.h"
 
-TEST(Direccion, DireccionTieneModulo1) {
-    Direccion direccion(1, 1, 1);
+TEST(Velocidad, VelocidadTieneMantieneElModulo) {
+    Velocidad velocidad(1, 1, 1);
 
-    EXPECT_FLOAT_EQ(direccion.x, 1 / pow(3, 0.5));
-    EXPECT_FLOAT_EQ(direccion.y, 1 / pow(3, 0.5));
-    EXPECT_FLOAT_EQ(direccion.z, 1 / pow(3, 0.5));
-}
-
-TEST(Direccion, DireccionNoCambiaSiTieneModulo1) {
-    Direccion direccion(1, 0, 0);
-
-    EXPECT_EQ(direccion.x, 1);
-    EXPECT_EQ(direccion.y, 0);
-    EXPECT_EQ(direccion.z, 0);
+    EXPECT_FLOAT_EQ(velocidad.x, 1);
+    EXPECT_FLOAT_EQ(velocidad.y, 1);
+    EXPECT_FLOAT_EQ(velocidad.z, 1);
 }

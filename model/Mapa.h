@@ -21,8 +21,9 @@ private:
 
 public:
     Mapa(int ancho, int largo, int altura);
-    void agregar(Mapeable* mapeable);
+    void agregar(Mapeable *mapeable);
     auto devolverMapeables() -> decltype(make_iterable(mapeables.begin(), mapeables.end()));
+
 };
 
 

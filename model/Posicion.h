@@ -6,14 +6,14 @@
 #define FINAL_FIGHT_POSICION_H
 
 
-#include "Direccion.h"
+#include "Velocidad.h"
 
 class Posicion {
     private:
         int x, y, z;
     public:
         Posicion(int x, int y, int z);
-        void mover(Direccion& direccion);
+        void mover(Velocidad& direccion);
 };
 
 

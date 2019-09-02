@@ -7,6 +7,7 @@
 
 
 #include "Posicion.h"
+#include "../graphics/Graphics.h"
 
 using namespace std;
 
@@ -14,9 +15,11 @@ class Mapeable {
 
 private:
     Posicion posicion;
+    Graphics graphics;
 
 public:
-    Mapeable(int x, int y, int z);
+    Mapeable(int x, int y, int z, Graphics &graphics);
+    void actualizar(SDL_Surface* surface);
 };
 
 

@@ -41,27 +41,36 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 #[[
-  Compilar los tests.
+  Definición de variables.
 ]]
 FILE(GLOB ModelTestSources test/*.cpp)
 FILE(GLOB ModelSources model/*.cpp)
-add_executable(tests ${ModelTestSources} ${ModelSources})
-target_link_libraries(tests gtest_main)
-add_test(NAME model_tests COMMAND model_tests)
+FILE(GLOB MainSources main/*.cpp)
+FILE(GLOB PhysicsSources physics/*.cpp)
+FILE(GLOB GraphicsSources graphics/*.cpp)
+find_package(SDL2 REQUIRED) # Find SDL2 libraries.
+include_directories(${SDL2_INCLUDE_DIRS})
 
 #[[
   Compilar hello world de SDL.
 ]]
-# Create executables:
-add_executable(hello_world_sdl 01_hello_SDL.cpp)
-# Find SDL2 libraries:
-find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS})
-# Link to executable:
-target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES})
+add_executable(hello_world_sdl 01_hello_SDL.cpp) # Create executables.
+target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES}) # Link to executable.
+
+#[[
+  Compilar los tests.
+]]
+add_executable(tests ${ModelTestSources} ${ModelSources} ${GraphicsSources})
+target_link_libraries(tests gtest_main ${SDL2_LIBRARIES})
+add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} GameLoop.cpp ${ModelSources})
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
+
+#[[
+  Copiar los assets
+]]
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
