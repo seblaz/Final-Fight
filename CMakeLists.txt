@@ -61,7 +61,7 @@ target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES}) # Link to e
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources})
 target_link_libraries(tests gtest_main ${SDL2_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
