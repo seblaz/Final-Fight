@@ -7,11 +7,12 @@
 
 
 #include "Dimension.h"
-#include "mapeables/Mapeable.h"
 #include "Iterator.cpp"
 #include <vector>
 
 using namespace std;
+
+class Mapeable;
 
 class Mapa {
 
@@ -26,5 +27,6 @@ public:
 
 };
 
+#include "mapeables/Mapeable.h"
 
 #endif //FINAL_FIGHT_MAPA_H

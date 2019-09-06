@@ -12,6 +12,7 @@
 class Velocidad {
 public:
     float x, y, z;
+    Velocidad();
     Velocidad(float x, float y, float z);
 };
 

@@ -9,11 +9,16 @@
 #include "Velocidad.h"
 
 class Posicion {
-    private:
-        int x, y, z;
-    public:
-        Posicion(int x, int y, int z);
-        void mover(Velocidad& direccion);
+
+private:
+    int x, y, z;
+
+public:
+    Posicion(int x, int y, int z);
+    void mover(Velocidad& velocidad);
+    int getX();
+    int getY();
+    int getZ();
 };
 
 

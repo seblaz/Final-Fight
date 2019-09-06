@@ -13,7 +13,7 @@ TEST(Mapa, CrearUnMapaVacioNoPierdeMemoria) {
 TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
     Mapa mapa(2, 3, 4);
     BoxGraphics graphics;
-    Mapeable mapeable = Mapeable(6, 9, 5, &graphics);
+    Mapeable mapeable = Mapeable(6, 9, 5, nullptr, nullptr, &graphics);
 
     mapa.agregar(&mapeable);
 }
@@ -21,8 +21,8 @@ TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
 TEST(Mapa, DevolverMapeablesDevuelveLosMismosObjetos) {
     Mapa mapa(100, 1000, 300);
     BoxGraphics graphics;
-    Mapeable mapeable1 = Mapeable(2, 3, 4, &graphics);
-    Mapeable mapeable2 = Mapeable(6, 9, 5, &graphics);
+    Mapeable mapeable1 = Mapeable(2, 3, 4, nullptr, nullptr, &graphics);
+    Mapeable mapeable2 = Mapeable(6, 9, 5, nullptr, nullptr, &graphics);
 
     mapa.agregar(&mapeable1);
     mapa.agregar(&mapeable2);
