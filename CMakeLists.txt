@@ -40,6 +40,10 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
+# Se agrega los cmake de sdl2-image
+# https://github.com/trenki2/SDL2Test
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/")
+
 #[[
   Definición de variables.
 ]]
@@ -52,7 +56,8 @@ FILE(GLOB GraphicsSources graficos/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
 FILE(GLOB StatesSources States/*.cpp)
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
-include_directories(${SDL2_INCLUDE_DIRS})
+find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
 #[[
   Compilar hello world de SDL.
@@ -70,8 +75,8 @@ add_test(NAME model_tests COMMAND model_tests)
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources})
-target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources}${StatesSources})
+target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES}${SDL2_IMAGE_LIBRARIES})
 
 #[[
   Copiar los assets

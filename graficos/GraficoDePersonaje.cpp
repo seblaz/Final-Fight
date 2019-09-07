@@ -6,15 +6,35 @@
 #include "../modelo/mapeables/Personaje.h"
 
 void GraficosDePersonaje::actualizar(SDL_Renderer *renderer, Mapeable &mapeable) {
-    Personaje & personaje = dynamic_cast<Personaje &>(mapeable);
-    const int SCREEN_WIDTH = 1280;
-    const int SCREEN_HEIGHT = 960;
+    Personaje &personaje = dynamic_cast<Personaje &>(mapeable);
 
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    //Se Construye el escenario
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer);
 
+    //Se obtiene la posicion del juegador y en base a eso se construye el hitbox del jugador
     Posicion posicion = personaje.posicion();
-    SDL_Rect fillRect = { posicion.getX(), posicion.getY(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0x00, 0x00, 0xFF );
-    SDL_RenderFillRect( renderer, &fillRect );
+    SDL_Rect posicionJugador = {posicion.getX(), posicion.getY(), 200, 400};
+
+    //Se carga la plantilla de sprites si no esta cargada
+
+    if (obtenerSprite() == nullptr){
+        printf("Entra solo 1 vez");
+        SDL_Surface* spriteOriginal = IMG_Load(personaje.obtenerRutaSprite());
+        setearSprite(spriteOriginal);
+        SDL_SetColorKey( spriteOriginal, SDL_TRUE, SDL_MapRGB( spriteOriginal->format, 0X58, 0xB8, 0xF8 ) );
+        SDL_Texture* spriteTransparente = SDL_CreateTextureFromSurface( renderer, spriteOriginal );
+        setearTextura(spriteTransparente);
+    }
+
+    //Se setea la posicion de la plantilla de sprites (La posicion y dimension que se va a renderizar LA PLANTILLA DE SPRITES, no el hitbox)
+    SDL_Rect posicionSprite = { 5, 0, 40, 100 };
+
+    //Se renderiza en la ventana la imagen
+    // , la posicion del sprite, y la posicion del jugador
+    SDL_RenderCopy(renderer, obtenerTextura(), &posicionSprite, &posicionJugador);
+    SDL_RenderPresent(renderer);
+
+
 }
+
