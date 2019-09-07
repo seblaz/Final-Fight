@@ -9,3 +9,7 @@
  - Valgrind:
  
     $ apt-get install valgrind
+
+ - SLD2-Image (Carga archivos PNG)
+
+    $ apt-get install libsdl2-image-dev

@@ -7,10 +7,11 @@
 
 #include <utility>
 
-Personaje::Personaje(int x, int y, int z, string nombre, Mapa *mapa, Comportamiento *comportamiento, Fisica *fisica, Grafico *grafico):
+Personaje::Personaje(int x, int y, int z, string nombre, char* rutaSprite, Mapa *mapa, Comportamiento *comportamiento, Fisica *fisica, Grafico *grafico):
         Mapeable(x, y, z, mapa, fisica, grafico),
         _velocidad(0, 0, 0),
         comportamiento(comportamiento),
+        rutaSprite(rutaSprite),
         nombre(move(nombre)) {}
 
 Velocidad &Personaje::velocidad() {
