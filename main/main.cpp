@@ -14,7 +14,7 @@ int main(int argc, char *args[]) {
     GraficosDePersonaje graficoDePersonaje;
     ComportamientoDeJugador comportamientoDeJugador;
     FisicaDePersonaje fisicaDePersonaje;
-    Personaje personaje(1, 1, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+    Personaje personaje(1, 1, 0, "sebas","assets/personajes/coddy.png", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
     mapa.agregar(&personaje);
 
     Juego game(mapa);

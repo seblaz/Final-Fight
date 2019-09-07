@@ -20,7 +20,7 @@ void GraficosDePersonaje::actualizar(SDL_Renderer *renderer, Mapeable &mapeable)
 
     if (obtenerSprite() == nullptr){
         printf("Entra solo 1 vez");
-        SDL_Surface* spriteOriginal = IMG_Load("assets/personajes/coddy.png");
+        SDL_Surface* spriteOriginal = IMG_Load(personaje.obtenerRutaSprite());
         setearSprite(spriteOriginal);
         SDL_SetColorKey( spriteOriginal, SDL_TRUE, SDL_MapRGB( spriteOriginal->format, 0X58, 0xB8, 0xF8 ) );
         SDL_Texture* spriteTransparente = SDL_CreateTextureFromSurface( renderer, spriteOriginal );
