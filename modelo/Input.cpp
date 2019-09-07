@@ -3,7 +3,7 @@
 //
 
 #include "Input.h"
+Input::Input(char tecla) {
 
-char Input::value() {
-
+    this -> tecla_ = tecla;
 }

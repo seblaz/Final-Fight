@@ -3,8 +3,8 @@
 //
 
 #include "gtest/gtest.h"
-#include "../model/Mapa.h"
-#include "../graphics/BoxGraphics.h"
+#include "../modelo/Mapa.h"
+#include "../graficos/GraficoDeCaja.h"
 
 TEST(Mapa, CrearUnMapaVacioNoPierdeMemoria) {
     Mapa mapa(100, 1000, 300);
@@ -12,7 +12,7 @@ TEST(Mapa, CrearUnMapaVacioNoPierdeMemoria) {
 
 TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
     Mapa mapa(2, 3, 4);
-    BoxGraphics graphics;
+    GraficoDeCaja graphics;
     Mapeable mapeable = Mapeable(6, 9, 5, nullptr, nullptr, &graphics);
 
     mapa.agregar(&mapeable);
@@ -20,7 +20,7 @@ TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
 
 TEST(Mapa, DevolverMapeablesDevuelveLosMismosObjetos) {
     Mapa mapa(100, 1000, 300);
-    BoxGraphics graphics;
+    GraficoDeCaja graphics;
     Mapeable mapeable1 = Mapeable(2, 3, 4, nullptr, nullptr, &graphics);
     Mapeable mapeable2 = Mapeable(6, 9, 5, nullptr, nullptr, &graphics);
 

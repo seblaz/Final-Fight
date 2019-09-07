@@ -12,9 +12,7 @@ class PersonajeState{
 
 private:
 
-
 public:
-    virtual ~PersonajeState() = default;
     virtual void handleInput(Personaje& personaje, Input input);
     virtual void update(Personaje& personaje);
 

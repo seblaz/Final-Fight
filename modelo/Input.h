@@ -8,7 +8,8 @@
 class Input{
 
 private:
-    char tecla;
+
+    char tecla_;
 
 public:
     Input(char tecla);

@@ -50,6 +50,7 @@ FILE(GLOB MainSources main/*.cpp)
 FILE(GLOB PhysicsSources fisica/*.cpp)
 FILE(GLOB GraphicsSources graficos/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
+FILE(GLOB StatesSources States/*.cpp)
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 include_directories(${SDL2_INCLUDE_DIRS})
 
@@ -62,14 +63,14 @@ target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES}) # Link to e
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} modelo/Input.h modelo/Input.cpp)
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources})
 target_link_libraries(tests gtest_main ${SDL2_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} modelo/States/PersonajeState.h modelo/States/PersonajeState.cpp modelo/States/Standing.h modelo/States/Standing.cpp)
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES})
 
 #[[

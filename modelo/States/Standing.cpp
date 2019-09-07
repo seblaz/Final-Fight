@@ -6,7 +6,11 @@
 
 void Standing::handleInput(Personaje &personaje, Input input) {
 
-    if (input.value() == "A"){
+    //if (input.value() == "A"){
         //punch
-    }else if(input.value() == "S")
+//    }else if(input.value() == "S")
+}
+
+void Standing::update(Personaje &personaje) {
+
 }

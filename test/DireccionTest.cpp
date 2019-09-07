@@ -3,7 +3,7 @@
 //
 
 #include "gtest/gtest.h"
-#include "../model/Velocidad.h"
+#include "../modelo/Velocidad.h"
 
 TEST(Velocidad, VelocidadTieneMantieneElModulo) {
     Velocidad velocidad(1, 1, 1);
