@@ -20,7 +20,7 @@ void GraficosDePersonaje::actualizar(SDL_Renderer *renderer, Mapeable &mapeable)
     SDL_Texture* newTexture = NULL;
 
     //Load image at specified path
-    SDL_Texture* image = IMG_LoadTexture( renderer, "/home/felipe/Documentos/Final-Fight/assets/personajes/coddy.png" );
+    SDL_Texture* image = IMG_LoadTexture( renderer, "assets/personajes/coddy.png" );
 
     SDL_RenderCopy(renderer, image, nullptr, &fillRect);
     SDL_RenderPresent(renderer);
