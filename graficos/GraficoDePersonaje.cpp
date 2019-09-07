@@ -14,7 +14,7 @@ void GraficosDePersonaje::actualizar(SDL_Renderer *renderer, Mapeable &mapeable)
     SDL_RenderClear(renderer);
 
     Posicion posicion = personaje.posicion();
-    SDL_Rect fillRect = { posicion.getX(), posicion.getY(), 100, 400 };
+    SDL_Rect posicionJugador = {posicion.getX(), posicion.getY(), 200, 400 };
 
     //The final texture
     SDL_Texture* newTexture = NULL;
@@ -22,7 +22,8 @@ void GraficosDePersonaje::actualizar(SDL_Renderer *renderer, Mapeable &mapeable)
     //Load image at specified path
     SDL_Texture* image = IMG_LoadTexture( renderer, "assets/personajes/coddy.png" );
 
-    SDL_RenderCopy(renderer, image, nullptr, &fillRect);
-    SDL_RenderPresent(renderer);
+    SDL_Rect posicionTextura = { 5, 0, 40, 100 };
 
+    SDL_RenderCopy(renderer, image, &posicionTextura, &posicionJugador);
+    SDL_RenderPresent(renderer);
 }
