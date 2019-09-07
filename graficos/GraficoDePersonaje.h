@@ -10,9 +10,11 @@
 
 class GraficosDePersonaje : public Grafico {
 
+private:
+    SDL_Texture *texture = nullptr;
+
 public:
     void actualizar(SDL_Renderer *renderer, Mapeable &mapeable) override;
-
     ~GraficosDePersonaje() override = default;;
 };
 

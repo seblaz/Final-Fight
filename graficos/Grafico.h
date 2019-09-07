@@ -8,6 +8,7 @@
 
 #include <SDL_surface.h>
 #include <SDL_system.h>
+#include <SDL_image.h>
 
 //#include "../modelo/Mapeable.h"
 class Mapeable;

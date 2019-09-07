@@ -14,7 +14,15 @@ void GraficosDePersonaje::actualizar(SDL_Renderer *renderer, Mapeable &mapeable)
     SDL_RenderClear(renderer);
 
     Posicion posicion = personaje.posicion();
-    SDL_Rect fillRect = { posicion.getX(), posicion.getY(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0x00, 0x00, 0xFF );
-    SDL_RenderFillRect( renderer, &fillRect );
+    SDL_Rect fillRect = { posicion.getX(), posicion.getY(), 100, 400 };
+
+    //The final texture
+    SDL_Texture* newTexture = NULL;
+
+    //Load image at specified path
+    SDL_Texture* image = IMG_LoadTexture( renderer, "/home/felipe/Documentos/Final-Fight/assets/personajes/coddy.png" );
+
+    SDL_RenderCopy(renderer, image, nullptr, &fillRect);
+    SDL_RenderPresent(renderer);
+
 }
