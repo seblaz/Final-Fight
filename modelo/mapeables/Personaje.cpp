@@ -1,4 +1,3 @@
-//peinfo for PersonajeState' sin def
 // Created by sebas on 30/8/19.
 //
 

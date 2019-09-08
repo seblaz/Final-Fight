@@ -7,10 +7,15 @@
 
 
 #include "Comportamiento.h"
+#include "../modelo/estados/EstadosDePersonaje.h"
 
 class ComportamientoDeJugador : public Comportamiento {
 
+private:
+    EstadosDePersonaje* estado_;
+
 public:
+    ComportamientoDeJugador();
     void actualizar(Mapeable &mapeable) override;
     ~ComportamientoDeJugador() override = default;
 };

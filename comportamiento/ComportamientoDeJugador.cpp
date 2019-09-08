@@ -4,7 +4,11 @@
 
 #include <SDL_system.h>
 #include "ComportamientoDeJugador.h"
-#include "../modelo/mapeables/Personaje.h"
+#include "../modelo/estados/DePie.h"
+#include "../modelo/estados/Saltando.h"
+#include "iostream"
+
+using namespace std;
 
 void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
     Personaje& personaje = (Personaje&)(mapeable);
@@ -32,5 +36,20 @@ void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
         velocidad.x = 0;
         velocidad.y = 0;
         velocidad.z = 0;
+
     }
+
+    EstadosDePersonaje* estado = estado_-> manejarEntrada(personaje, currentKeyStates);
+
+    if (nullptr != estado){
+        delete estado;
+        this -> estado_ = estado;
+
+        cout << velocidad.z  << endl;
+    }
+
+}
+
+ComportamientoDeJugador::ComportamientoDeJugador() {
+    estado_ = new DePie();
 }
