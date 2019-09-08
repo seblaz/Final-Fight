@@ -3,11 +3,26 @@
 //
 
 #include "Saltando.h"
+#include "DePie.h"
 
 EstadosDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* entrada){
-    Velocidad &velocidad = personaje.velocidad();
 
-    velocidad.z = 1;
+    Velocidad &velocidad = personaje.velocidad();
+    if ( subiendo_ ) {
+        if (alturaMaxima_ > 0) {
+            velocidad.z -= 7;
+            alturaMaxima_--;
+        } else {
+            subiendo_ = false;
+            alturaMaxima_ = LIMITE;
+        }
+    } else if ( ! subiendo_ && alturaMaxima_ > 0){
+        velocidad.z += 7;
+        alturaMaxima_--;
+    }else{
+        return new DePie();
+    }
+    return nullptr;
 
 }
 

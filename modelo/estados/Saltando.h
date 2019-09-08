@@ -7,10 +7,13 @@
 
 #include "EstadosDePersonaje.h"
 
+#define LIMITE 30 // Limite del salto en altura
+
 class Saltando : public EstadosDePersonaje{
 
 private:
-    int alturaMaxima = 10; // Numero de prueba SUPER HARDCODE
+    int alturaMaxima_ = LIMITE; // Numero de prueba SUPER HARDCODE
+    bool subiendo_ = true;
 
 public:
     virtual EstadosDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
