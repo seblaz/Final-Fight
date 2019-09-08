@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 # Create executables:
 add_executable(myapp 01_hello_SDL.cpp)
 add_executable(myapp_calc calc.cpp)
+add_executable(FilesManager/FileManager.cpp)
+add_executable(FilesManager/Logger.cpp)
 
 # Create a library:
 # add_library (test_library STATIC calc.cpp)
