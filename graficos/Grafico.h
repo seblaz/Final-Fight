@@ -10,13 +10,12 @@
 #include <SDL_system.h>
 #include <SDL_image.h>
 
-//#include "../modelo/Mapeable.h"
 class Mapeable;
 
 class Grafico {
 
 public:
-    virtual void actualizar(SDL_Renderer *renderer, Mapeable &mapeable) = 0;
+    virtual void actualizar(Mapeable &mapeable) = 0;
     virtual ~Grafico() = default;
 };
 

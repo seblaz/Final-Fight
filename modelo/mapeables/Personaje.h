@@ -19,15 +19,12 @@ private:
     std::string nombre;
     Velocidad _velocidad;
     Comportamiento *comportamiento;
-    char* rutaSprite;
 
 public:
-    Personaje(int x, int y, int z, string nombre, char* rutaSprite ,Mapa *mapa, Comportamiento *comportamiento, Fisica *fisica, Grafico *grafico);
+    Personaje(int x, int y, int z, string nombre, Mapa *mapa, Comportamiento *comportamiento, Fisica *fisica, Grafico *grafico);
     ~Personaje() = default;
     Velocidad &velocidad();
     void actualizar(SDL_Renderer *renderer) override;
-
-    char* obtenerRutaSprite() const {return rutaSprite;}
 };
 
 

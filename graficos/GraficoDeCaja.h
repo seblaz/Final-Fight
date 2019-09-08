@@ -10,11 +10,14 @@
 
 class GraficoDeCaja : public Grafico{
 private:
+    SDL_Renderer* renderer;
     SDL_Texture *texture = nullptr;
 
 public:
-    void actualizar(SDL_Renderer *renderer, Mapeable &mapeable) override;
+    explicit GraficoDeCaja(SDL_Renderer* renderer) : renderer(renderer) {};
     ~GraficoDeCaja() override;
+
+    void actualizar(Mapeable &mapeable) override;
 };
 
 

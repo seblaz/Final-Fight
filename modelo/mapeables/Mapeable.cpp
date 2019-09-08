@@ -13,7 +13,7 @@ Mapeable::Mapeable(int x, int y, int z, Mapa *mapa, Fisica *fisica, Grafico *gra
 
 void Mapeable::actualizar(SDL_Renderer *renderer) {
     physics->actualizar(*mapa, *this);
-    grafico->actualizar(renderer, *this);
+    grafico->actualizar(*this);
 }
 
 Posicion &Mapeable::posicion() {

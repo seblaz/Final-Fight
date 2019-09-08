@@ -11,14 +11,15 @@ int main(int argc, char *args[]) {
 //    Mapeable mapeable(1, 1, 0, &boxGraphics);
 //    mapa.agregar(&mapeable);
 //
-    GraficosDePersonaje graficoDePersonaje;
+    Juego juego(&mapa);
+    SDL_Renderer* renderer = juego.renderer();
+
+    GraficosDePersonaje graficoDePersonaje(renderer, "assets/personajes/coddy.png");
     ComportamientoDeJugador comportamientoDeJugador;
     FisicaDePersonaje fisicaDePersonaje;
-    Personaje personaje(1, 1, 0, "sebas","assets/personajes/coddy.png", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+    Personaje personaje(1, 1, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+
     mapa.agregar(&personaje);
 
-    Juego game(mapa);
-    game.initialize();
-    game.loop();
-    game.finish();
+    juego.loop();
 }

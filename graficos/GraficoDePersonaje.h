@@ -7,21 +7,22 @@
 
 
 #include "Grafico.h"
+#include <string>
+
+using namespace std;
 
 class GraficosDePersonaje : public Grafico {
 
 private:
-    SDL_Texture *texture = nullptr;
-    SDL_Surface *sprite = nullptr;
+    SDL_Renderer* renderer;
+    SDL_Texture *texture;
+    string rutaSprite;
 
 public:
-    void actualizar(SDL_Renderer *renderer, Mapeable &mapeable) override;
+    explicit GraficosDePersonaje(SDL_Renderer* renderer, string rutaSprite);
     ~GraficosDePersonaje() override = default;
 
-    void setearSprite(SDL_Surface* spriteNuevo) { sprite = spriteNuevo; }
-    SDL_Surface* obtenerSprite() const {return sprite;}
-    void setearTextura(SDL_Texture* textureNueva) { texture = textureNueva; }
-    SDL_Texture* obtenerTextura() const {return texture;}
+    void actualizar(Mapeable &mapeable) override;
 };
 
 

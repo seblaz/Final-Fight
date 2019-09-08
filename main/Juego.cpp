@@ -10,9 +10,6 @@ void Juego::initialize() {
     const int SCREEN_WIDTH = 1280;
     const int SCREEN_HEIGHT = 960;
 
-    //The surface contained by the window
-
-
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -24,8 +21,8 @@ void Juego::initialize() {
             printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         } else {
             //Get window surface
-            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-            if(!renderer) {
+            _renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+            if(!_renderer) {
                 printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
                 exit = true;
             }
@@ -40,6 +37,7 @@ void Juego::loop() {
         auto start = chrono::system_clock::now();
 
         processInput();
+        clearScene();
         update();
         render();
 
@@ -62,21 +60,31 @@ void Juego::processInput() {
 }
 
 void Juego::update() {
-    for (auto mapeable : mapa.devolverMapeables()) {
-        mapeable->actualizar(renderer);
+    for (auto mapeable : mapa->devolverMapeables()) {
+        mapeable->actualizar(_renderer);
     }
 }
 
 void Juego::render() {
-    SDL_RenderPresent(renderer); // Update screen
+    SDL_RenderPresent(_renderer); // Update screen
 }
 
 void Juego::finish() {
-    SDL_DestroyRenderer(renderer); // Destroy renderer
+    SDL_DestroyRenderer(_renderer); // Destroy _renderer
     SDL_DestroyWindow(window); // Destroy window
-    renderer = nullptr;
+    _renderer = nullptr;
     window = nullptr;
 
     SDL_Quit(); // Quit SDL subsystems
+}
+
+void Juego::clearScene() {
+    //Se Construye el escenario
+    SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(_renderer);
+}
+
+SDL_Renderer *Juego::renderer() {
+    return _renderer;
 }
 

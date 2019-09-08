@@ -4,7 +4,7 @@
 
 #include "GraficoDeCaja.h"
 
-void GraficoDeCaja::actualizar(SDL_Renderer *renderer, Mapeable &mapeable) {
+void GraficoDeCaja::actualizar(Mapeable &mapeable) {
     //Load image at specified path
     SDL_Surface *loadedSurface = SDL_LoadBMP("assets/img/box.bmp");
 
