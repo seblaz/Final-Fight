@@ -62,21 +62,21 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar hello world de SDL.
 ]]
-add_executable(hello_world_sdl 01_hello_SDL.cpp) # Create executables.
-target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES}) # Link to executable.
+#add_executable(hello_world_sdl 01_hello_SDL.cpp) # Create executables.
+#target_link_libraries(hello_world_sdl LINK_PUBLIC ${SDL2_LIBRARIES}) # Link to executable.
 
 #[[
   Compilar los tests.
 ]]
 add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources})
-target_link_libraries(tests gtest_main ${SDL2_LIBRARIES})
+target_link_libraries(tests gtest_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
 ]]
 add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources}${StatesSources})
-target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES}${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 
 #[[
   Copiar los assets
