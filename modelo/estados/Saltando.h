@@ -5,18 +5,18 @@
 #ifndef FINAL_FIGHT_SALTANDO_H
 #define FINAL_FIGHT_SALTANDO_H
 
-#include "EstadosDePersonaje.h"
+#include "EstadoDePersonaje.h"
 
 #define LIMITE 30 // Limite del salto en altura
 
-class Saltando : public EstadosDePersonaje{
+class Saltando : public EstadoDePersonaje{
 
 private:
     int alturaMaxima_ = LIMITE; // Numero de prueba SUPER HARDCODE
     bool subiendo_ = true;
 
 public:
-    virtual EstadosDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
+    virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
     virtual void actualizar(Personaje& personaje);
 
 };

@@ -8,7 +8,7 @@
 
 #include "../modelo/mapeables/Mapeable.h"
 //#include "../modelo/mapeables/Personaje.h"
-//#include "../modelo/estados/EstadosDePersonaje.h"
+//#include "../modelo/estados/EstadoDePersonaje.h"
 
 
 class Comportamiento {
