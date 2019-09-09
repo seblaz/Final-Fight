@@ -2,13 +2,21 @@
 // Created by sebas on 25/8/19.
 //
 #include <stdio.h>
-#include "FilesManager/Logger.h"
+
+#include "services/Locator.h"
+
 using namespace std;
 
 int main() {
-    FileManager* manager = new FileManager();
+    auto* logger = new Logger(INFO);
+    Locator::provide(logger);
 
-    Logger::Instance()->logMessage("ERROR", "Hola buen dia");
+    Locator::logger()->log(INFO, "Hola info");
+    Locator::logger()->log(DEBUG, "Mensaje que no se ve.");
+
+//    FileManager* manager = new FileManager();
+
+//    Logger::Instance()->logMessage("ERROR", "Hola buen dia");
     /*Logger::Instance()->logMessage("ERROR", "Alto error");
     Logger::Instance()->logMessage("DEBUG", "Esto es debug");
     Logger::Instance()->logMessage("jajaj", "Alto error");
