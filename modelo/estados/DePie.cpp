@@ -8,7 +8,7 @@ EstadosDePersonaje* DePie::manejarEntrada(Personaje &personaje, const Uint8* ent
 
     Velocidad &velocidad = personaje.velocidad();
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
-        Saltando* saltando = new Saltando();
+        auto* saltando = new Saltando();
         saltando->manejarEntrada(personaje, entrada);
 
         return saltando;

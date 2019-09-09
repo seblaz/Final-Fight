@@ -16,8 +16,8 @@ private:
     bool subiendo_ = true;
 
 public:
-    virtual EstadosDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void actualizar(Personaje& personaje);
+    EstadosDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada) override;
+    void actualizar(Personaje& personaje) override;
 
 };
 

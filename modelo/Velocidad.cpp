@@ -3,7 +3,6 @@
 //
 
 #include "Velocidad.h"
-#include<cmath>
 
 Velocidad::Velocidad(float x, float y, float z) {
     this->x = x;

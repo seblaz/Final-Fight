@@ -3,7 +3,6 @@
 //
 
 #include "Mapa.h"
-#include "mapeables/Mapeable.h"
 
 using namespace std;
 

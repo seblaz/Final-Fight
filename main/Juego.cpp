@@ -44,7 +44,7 @@ void Juego::loop() {
         auto end = chrono::system_clock::now();
         chrono::duration<double> elapsed_seconds = end - start;
 
-        const int sleep_time = MS_PER_FRAME - elapsed_seconds.count() * 1000 * 1000;
+        const int sleep_time = MS_PER_FRAME - int(elapsed_seconds.count()) * 1000 * 1000;
 
         if(sleep_time > 0){ // No quitar el if. La primera vuelta suele tardar más que MS_PER_FRAME.
             usleep(sleep_time); // Microseconds.

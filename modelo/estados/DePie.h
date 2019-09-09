@@ -13,8 +13,8 @@ class DePie : public EstadosDePersonaje{
 private:
 
 public:
-    virtual EstadosDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void actualizar(Personaje& personaje);
+    EstadosDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada) override;
+    void actualizar(Personaje& personaje) override;
 };
 
 #endif //FINAL_FIGHT_DEPIE_H
