@@ -49,12 +49,12 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2
 ]]
 FILE(GLOB TestSources test/*.cpp)
 FILE(GLOB ModelSources modelo/*.cpp)
-FILE(GLOB StatesSources modelo/estados/*.cpp)
 FILE(GLOB ModelMapSources modelo/mapeables/*.cpp)
 FILE(GLOB MainSources main/*.cpp)
 FILE(GLOB PhysicsSources fisica/*.cpp)
 FILE(GLOB GraphicsSources graficos/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
+FILE(GLOB StatesSources modelo/estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries

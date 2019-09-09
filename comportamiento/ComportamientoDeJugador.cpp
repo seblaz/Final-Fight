@@ -33,9 +33,10 @@ void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
     if (currentKeyStates[SDL_SCANCODE_DOWN]){
         velocidad.y = RAPIDEZ;
     }
-    EstadosDePersonaje* estado = estado_-> manejarEntrada(personaje, currentKeyStates);
+    EstadoDePersonaje* estado = estado_-> manejarEntrada(personaje, currentKeyStates);
 
     if (nullptr != estado){
+        delete estado_;
         this -> estado_ = estado;
     }
 }

@@ -5,7 +5,7 @@
 #include "Saltando.h"
 #include "DePie.h"
 
-EstadosDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* entrada){
+EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* entrada){
 
     Velocidad &velocidad = personaje.velocidad();
     if ( subiendo_ ) {
@@ -27,5 +27,5 @@ EstadosDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* 
 }
 
 void Saltando::actualizar(Personaje &personaje) {
-    //EstadosDePersonaje::actualizar(personaje);
+    //EstadoDePersonaje::actualizar(personaje);
 }

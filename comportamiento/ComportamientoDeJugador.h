@@ -7,12 +7,12 @@
 
 
 #include "Comportamiento.h"
-#include "../modelo/estados/EstadosDePersonaje.h"
+#include "../modelo/estados/EstadoDePersonaje.h"
 
 class ComportamientoDeJugador : public Comportamiento {
 
 private:
-    EstadosDePersonaje* estado_;
+    EstadoDePersonaje* estado_;
 
 public:
     ComportamientoDeJugador();
