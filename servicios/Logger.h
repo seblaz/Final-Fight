@@ -2,8 +2,8 @@
 // Created by sebas on 8/9/19.
 //
 
-#ifndef MYAPP_LOGGER_H
-#define MYAPP_LOGGER_H
+#ifndef FINAL_FIGHT_LOGGER_H
+#define FINAL_FIGHT_LOGGER_H
 
 #include <string>
 
@@ -27,4 +27,4 @@ public:
 };
 
 
-#endif //MYAPP_LOGGER_H
+#endif //FINAL_FIGHT_LOGGER_H

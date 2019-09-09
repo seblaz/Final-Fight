@@ -3,8 +3,8 @@
 // Simple implementacion de https://gameprogrammingpatterns.com/service-locator.html.
 //
 
-#ifndef MYAPP_LOCATOR_H
-#define MYAPP_LOCATOR_H
+#ifndef FINAL_FIGHT_LOCATOR_H
+#define FINAL_FIGHT_LOCATOR_H
 
 #include "./Logger.h"
 
@@ -21,4 +21,4 @@ private:
 };
 
 
-#endif //MYAPP_LOCATOR_H
+#endif //FINAL_FIGHT_LOCATOR_H
