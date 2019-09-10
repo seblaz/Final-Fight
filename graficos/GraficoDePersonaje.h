@@ -14,9 +14,8 @@ using namespace std;
 class GraficosDePersonaje : public Grafico {
 
 private:
-    SDL_Renderer* renderer;
+    SDL_Renderer *renderer;
     SDL_Texture *texture;
-    string rutaSprite;
 
 public:
     explicit GraficosDePersonaje(SDL_Renderer* renderer, string rutaSprite);

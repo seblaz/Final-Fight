@@ -17,7 +17,7 @@ private:
 public:
     ComportamientoDeJugador();
     void actualizar(Mapeable &mapeable) override;
-    ~ComportamientoDeJugador() override = default;
+    ~ComportamientoDeJugador() override;
 };
 
 

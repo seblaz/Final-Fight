@@ -12,6 +12,14 @@ using namespace std;
 
 #define RAPIDEZ 3
 
+ComportamientoDeJugador::ComportamientoDeJugador() {
+    estado_ = new DePie();
+}
+
+ComportamientoDeJugador::~ComportamientoDeJugador() {
+    delete estado_;
+}
+
 void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
     Personaje& personaje = (Personaje&)(mapeable);
     const Uint8 *currentKeyStates = SDL_GetKeyboardState(nullptr);
@@ -39,8 +47,4 @@ void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
         delete estado_;
         this -> estado_ = estado;
     }
-}
-
-ComportamientoDeJugador::ComportamientoDeJugador() {
-    estado_ = new DePie();
 }

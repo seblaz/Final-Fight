@@ -6,7 +6,6 @@
 #include "../modelo/mapeables/Personaje.h"
 
 GraficosDePersonaje::GraficosDePersonaje(SDL_Renderer* renderer, string rutaSprite) :
-        rutaSprite(rutaSprite),
         renderer(renderer) {
             SDL_Surface *sprite = IMG_Load(rutaSprite.c_str());
             SDL_SetColorKey(sprite, SDL_TRUE, SDL_MapRGB(sprite->format, 0X58, 0xB8, 0xF8));
@@ -26,5 +25,4 @@ void GraficosDePersonaje::actualizar(Mapeable &mapeable) {
 
     //Se renderiza en la ventana la imagen, la posicion del sprite, y la posicion del jugador
     SDL_RenderCopy(renderer, texture, &posicionSprite, &posicionJugador);
-    SDL_RenderPresent(renderer);
 }
