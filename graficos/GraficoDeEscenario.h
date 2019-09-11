@@ -19,7 +19,7 @@ private:
     SDL_Texture *texture;
 
 public:
-    explicit GraficoDeEscenario(SDL_Renderer* renderer, string rutaSprite);
+    explicit GraficoDeEscenario(SDL_Renderer* renderer, SDL_Texture *texturaSprite);
     ~GraficoDeEscenario() override = default;
 
     void actualizar(Mapeable &mapeable) override;

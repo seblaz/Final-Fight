@@ -18,7 +18,7 @@ private:
     SDL_Texture *texture;
 
 public:
-    explicit GraficosDePersonaje(SDL_Renderer* renderer, string rutaSprite);
+    explicit GraficosDePersonaje(SDL_Renderer* renderer, SDL_Texture * texturaSprite);
     ~GraficosDePersonaje() override = default;
 
     void actualizar(Mapeable &mapeable) override;

@@ -5,12 +5,9 @@
 #include "GraficoDeEscenario.h"
 #include "../modelo/mapeables/Escenario.h"
 
-GraficoDeEscenario::GraficoDeEscenario(SDL_Renderer *renderer, string rutaSprite) :
+GraficoDeEscenario::GraficoDeEscenario(SDL_Renderer *renderer, SDL_Texture *texturaSprite) :
         renderer(renderer) {
-    SDL_Surface *sprite = IMG_Load(rutaSprite.c_str());
-    SDL_SetColorKey(sprite, SDL_TRUE, SDL_MapRGB(sprite->format, 0X58, 0xB8, 0xF8));
-    texture = SDL_CreateTextureFromSurface(renderer, sprite);
-    SDL_FreeSurface(sprite);
+    texture = texturaSprite;
 }
 
 void GraficoDeEscenario::actualizar(Mapeable &mapeable) {
