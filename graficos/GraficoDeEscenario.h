@@ -17,9 +17,10 @@ class GraficoDeEscenario : public Grafico {
 private:
     SDL_Renderer *renderer;
     SDL_Texture *texture;
+    int posicionY;
 
 public:
-    explicit GraficoDeEscenario(SDL_Renderer* renderer, string rutaSprite);
+    explicit GraficoDeEscenario(SDL_Renderer* renderer, SDL_Texture *texturaSprite, int posicionY);
     ~GraficoDeEscenario() override = default;
 
     void actualizar(Mapeable &mapeable) override;

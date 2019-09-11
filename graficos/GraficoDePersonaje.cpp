@@ -5,17 +5,15 @@
 #include "GraficoDePersonaje.h"
 #include "../modelo/mapeables/Personaje.h"
 
-GraficosDePersonaje::GraficosDePersonaje(SDL_Renderer* renderer, string rutaSprite) :
+GraficosDePersonaje::GraficosDePersonaje(SDL_Renderer* renderer, SDL_Texture *texturaSprite) :
         renderer(renderer) {
-            SDL_Surface *sprite = IMG_Load(rutaSprite.c_str());
-            SDL_SetColorKey(sprite, SDL_TRUE, SDL_MapRGB(sprite->format, 0X58, 0xB8, 0xF8));
-            texture = SDL_CreateTextureFromSurface(renderer, sprite);
-            SDL_FreeSurface( sprite );
+    texture = texturaSprite;
 }
 
 
 void GraficosDePersonaje::actualizar(Mapeable &mapeable) {
     auto &personaje = dynamic_cast<Personaje &>(mapeable);
+
 
     Posicion &posicion = personaje.posicion(); // Se obtiene la posicion del jugador y en base a eso se construye el hitbox del jugador.
     SDL_Rect posicionJugador = {posicion.getX(), posicion.getY(), 200, 400};

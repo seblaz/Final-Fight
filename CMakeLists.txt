@@ -53,9 +53,11 @@ FILE(GLOB ModelMapSources modelo/mapeables/*.cpp)
 FILE(GLOB MainSources main/*.cpp)
 FILE(GLOB PhysicsSources fisica/*.cpp)
 FILE(GLOB GraphicsSources graficos/*.cpp)
+FILE(GLOB SpriteSources graficos/sprite/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
 FILE(GLOB StatesSources modelo/estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
+
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
@@ -64,14 +66,14 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources})
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} )
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${XercesC_LIBRARIES})
 
 #[[
