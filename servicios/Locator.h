@@ -7,16 +7,20 @@
 #define FINAL_FIGHT_LOCATOR_H
 
 #include "./Logger.h"
+#include "Configuracion.h"
 
 class Locator {
 
 public:
     static Logger *logger();
-
     static void provide(Logger *logger);
+
+    static Configuracion *configuracion();
+    static void provide(Configuracion *configuracion);
 
 private:
     static Logger *logger_;
+    static Configuracion *configuracion_;
 
 };
 

@@ -4,6 +4,9 @@
 
 #include "Locator.h"
 
+/**
+ * Logger.
+ */
 Logger *Locator::logger_;
 
 Logger *Locator::logger() {
@@ -13,3 +16,17 @@ Logger *Locator::logger() {
 void Locator::provide(Logger *logger) {
     logger_ = logger;
 }
+
+/**
+ * Configuracion.
+ */
+Configuracion *Locator::configuracion_;
+
+Configuracion *Locator::configuracion() {
+    return configuracion_;
+}
+
+void Locator::provide(Configuracion *configuracion) {
+    configuracion_ = configuracion;
+}
+
