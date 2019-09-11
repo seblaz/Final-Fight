@@ -57,6 +57,7 @@ FILE(GLOB SpriteSources graficos/sprite/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
 FILE(GLOB StatesSources modelo/estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
+
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries

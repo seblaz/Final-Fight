@@ -18,22 +18,23 @@ int main(int argc, char *args[]) {
     Juego juego(&mapa);
     SDL_Renderer* renderer = juego.renderer();
 
-    Sprite spriteEscenario(renderer,"assets/escenarios/slums.png");
+//    Sprite spriteEscenario(renderer,"assets/escenarios/slums.png");
+    Sprite spriteEscenario(renderer,"assets/escenarios/slums-mejorado.png");
     Sprite spritePersonaje(renderer,"assets/personajes/coddy.png");
 
 
     // Agregar escenario
 
-    GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture());
+    GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture(),200);
     FisicaDeEscenario fisicaDeEscenarioFondo;
     Escenario escenarioFondo(0, 200, 0, &mapa, &fisicaDeEscenarioFondo, &graficoDeEscenarioFondo);
     mapa.agregar(&escenarioFondo);
 
 
- //   GraficoDeEscenario graficoDeEscenarioMedio(renderer, spriteEscenario.getTexture());
- //   FisicaDeEscenario fisicaDeEscenario;
- //   Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
- //   mapa.agregar(&escenarioMedio);
+    GraficoDeEscenario graficoDeEscenarioMedio(renderer, spriteEscenario.getTexture(),0);
+    FisicaDeEscenario fisicaDeEscenario;
+    Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
+    mapa.agregar(&escenarioMedio);
 
 
     // Agregar personaje
