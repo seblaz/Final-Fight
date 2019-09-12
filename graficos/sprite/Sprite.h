@@ -23,7 +23,7 @@ private:
     SDL_Texture *texture;
 
 public:
-    explicit Sprite(SDL_Renderer* renderer, string rutaSprite);
+    explicit Sprite(SDL_Renderer* renderer, const string& rutaSprite);
 
     SDL_Texture * getTexture(){
         return this->texture;

@@ -1,5 +1,5 @@
 #include "Juego.h"
-#include "../graficos/GraficoDePersonaje.h"
+#include "../graficos/GraficoDePersonajeParado.h"
 #include "../modelo/mapeables/Personaje.h"
 #include "../comportamiento/ComportamientoDeJugador.h"
 #include "../fisica/FisicaDePersonaje.h"
@@ -9,10 +9,15 @@
 #include "../fisica/FisicaDeEscenario.h"
 #include "../modelo/mapeables/Escenario.h"
 #include "../graficos/sprite/Sprite.h"
+#include "../graficos/GraficoDePersonajeCaminando.h"
+#include <cmath>
 
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
+
+    auto *config = new Configuracion(1280, 960, 1, 4.5, M_PI*0.25);
+    Locator::provide(config);
 
     Mapa mapa(300, 1000, 500);
     Juego juego(&mapa);
@@ -23,14 +28,14 @@ int main(int argc, char *args[]) {
     Sprite spritePersonaje(renderer,"assets/personajes/coddy.png");
 
 
-    // Agregar escenario
-
+    // Agregar escenario (primera capa)
     GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture(),200);
     FisicaDeEscenario fisicaDeEscenarioFondo;
     Escenario escenarioFondo(0, 200, 0, &mapa, &fisicaDeEscenarioFondo, &graficoDeEscenarioFondo);
     mapa.agregar(&escenarioFondo);
 
 
+    // Agregar escenario (segunda capa)
     GraficoDeEscenario graficoDeEscenarioMedio(renderer, spriteEscenario.getTexture(),0);
     FisicaDeEscenario fisicaDeEscenario;
     Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
@@ -38,14 +43,15 @@ int main(int argc, char *args[]) {
 
 
     // Agregar personaje
-    GraficosDePersonaje graficoDePersonaje(renderer, spritePersonaje.getTexture());
+    GraficoDePersonajeCaminando graficoDePersonaje(renderer, spritePersonaje.getTexture());
     ComportamientoDeJugador comportamientoDeJugador;
     FisicaDePersonaje fisicaDePersonaje;
-    Personaje personaje(1, 500, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+    Personaje personaje(0, 0, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
     mapa.agregar(&personaje);
 
 
     juego.loop();
 
-    delete(logger);
+    delete logger;
+    delete config;
 }
