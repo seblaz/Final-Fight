@@ -46,7 +46,7 @@ int main(int argc, char *args[]) {
     GraficoDePersonajeCaminando graficoDePersonaje(renderer, spritePersonaje.getTexture());
     ComportamientoDeJugador comportamientoDeJugador;
     FisicaDePersonaje fisicaDePersonaje;
-    Personaje personaje(0, 0, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+    Personaje personaje(50, 0, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
     mapa.agregar(&personaje);
 
 
