@@ -4,6 +4,9 @@
 
 #include "Configuracion.h"
 
-Configuracion::Configuracion(int anchoDePantalla, int alturaDePantalla) :
+Configuracion::Configuracion(int anchoDePantalla, int alturaDePantalla, int velocidadDeJuego, float escalaDeGraficos, float inclinacionDeEscenario) :
         alturaDePantalla(alturaDePantalla),
-        anchoDePantalla(anchoDePantalla) {}
+        anchoDePantalla(anchoDePantalla),
+        velocidadDeJuego(velocidadDeJuego),
+        escalaDeGraficos(escalaDeGraficos),
+        inclinacionDeEscenario(inclinacionDeEscenario) {}

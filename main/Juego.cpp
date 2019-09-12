@@ -4,11 +4,12 @@
 
 #include <unistd.h>
 #include "Juego.h"
+#include "../servicios/Locator.h"
 #include <chrono>
 
 void Juego::initialize() {
-    const int SCREEN_WIDTH = 1280;
-    const int SCREEN_HEIGHT = 960;
+    const int SCREEN_WIDTH = Locator::configuracion()->anchoDePantalla;
+    const int SCREEN_HEIGHT = Locator::configuracion()->alturaDePantalla;
 
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
