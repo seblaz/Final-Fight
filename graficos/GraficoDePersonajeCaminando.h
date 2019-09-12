@@ -17,6 +17,7 @@ private:
     int spriteActual;
     const int cantidadDeSprites;
     const SDL_Rect coordenadasSprites[6];
+    int framesFaltantes;
 
 public:
     explicit GraficoDePersonajeCaminando(SDL_Renderer* renderer, SDL_Texture * texturaSprite);
