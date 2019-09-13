@@ -10,6 +10,7 @@
 #include "../modelo/mapeables/Escenario.h"
 #include "../graficos/sprite/Sprite.h"
 #include "../graficos/GraficoDePersonajeCaminando.h"
+#include "../graficos/GraficoDePersonajeSaltando.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
