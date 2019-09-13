@@ -9,11 +9,11 @@
 class Configuracion {
 
 public:
-    Configuracion(int anchoDePantalla, int alturaDePantalla, int velocidadDeJuego, float escalaDeGraficos, float inclinacionDeEscenario);
+    Configuracion(int anchoDePantalla, int alturaDePantalla, float velocidadDeJuego, float escalaDeGraficos, float inclinacionDeEscenario);
 
     const int alturaDePantalla;
     const int anchoDePantalla;
-    const int velocidadDeJuego;
+    const float velocidadDeJuego;
     const float escalaDeGraficos;
     const float inclinacionDeEscenario;
 };

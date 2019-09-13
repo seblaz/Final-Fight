@@ -7,6 +7,7 @@
 #include "../modelo/estados/DePie.h"
 #include "../modelo/estados/Saltando.h"
 #include "iostream"
+#include "../servicios/Locator.h"
 
 using namespace std;
 
@@ -29,17 +30,20 @@ void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
     velocidad.x = 0;
     velocidad.y = 0;
     velocidad.z = 0;
+
+    float velocidadRelativa = Locator::configuracion()->velocidadDeJuego;
+
     if (currentKeyStates[SDL_SCANCODE_RIGHT]){
-        velocidad.x = RAPIDEZ;
+        velocidad.x = RAPIDEZ*velocidadRelativa;
     }
     if (currentKeyStates[SDL_SCANCODE_LEFT]){
-        velocidad.x = -RAPIDEZ;
+        velocidad.x = -RAPIDEZ*velocidadRelativa;
     }
     if (currentKeyStates[SDL_SCANCODE_UP]){
-        velocidad.y = RAPIDEZ;
+        velocidad.y = RAPIDEZ*velocidadRelativa;
     }
     if (currentKeyStates[SDL_SCANCODE_DOWN]){
-        velocidad.y = -RAPIDEZ;
+        velocidad.y = -RAPIDEZ*velocidadRelativa;
     }
     EstadoDePersonaje* estado = estado_-> manejarEntrada(personaje, currentKeyStates);
 
