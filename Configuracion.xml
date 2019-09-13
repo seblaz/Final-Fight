@@ -1,5 +1,16 @@
 <configuracion>
     <debug>
-    <level>ERROR</level>
+        <level>DEBUG</level>
     </debug>
+    <escenario>
+        <objetos>
+            <cuchillo>
+                <cantidad>5</cantidad>
+            </cuchillo>
+        </objetos>
+        <barril>
+            <cantidad>7</cantidad>
+        </barril>
+    </escenario>
+    <lala>5</lala>
 </configuracion>

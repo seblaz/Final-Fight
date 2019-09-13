@@ -13,10 +13,12 @@ using namespace std;
 using namespace xercesc_3_2;
 
 class XmlReader {
-    public:
-        map<string, string> ReadXml(map<string, vector<string>> attributes);
 
-    private:
-        DOMNode *getNode(DOMNode *pNode, string basicString);
-        string getValue(vector<string> route, DOMNode *rootElement);
+public:
+    explicit XmlReader(const string& path = "Configuracion.xml");
+    string getValue(const string& xPath);
+
+private:
+    DOMDocument *doc;
+
 };
