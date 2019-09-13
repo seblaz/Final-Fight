@@ -6,7 +6,7 @@
 #include "../servicios/Configuracion.h"
 
 TEST(Configuraciones, PuedoObtenerConfiguracionesLuegoDeSetearlas) {
-    Configuracion config(200, 100);
+    Configuracion config(200, 100, 0, 0, 0);
 
     EXPECT_EQ(config.anchoDePantalla, 200);
     EXPECT_EQ(config.alturaDePantalla, 100);

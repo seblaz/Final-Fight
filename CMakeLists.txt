@@ -80,3 +80,4 @@ target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2
   Copiar los assets
 ]]
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY Configuracion.xml DESTINATION ${CMAKE_BINARY_DIR})
