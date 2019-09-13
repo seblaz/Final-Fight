@@ -11,7 +11,7 @@
 
 using namespace std;
 
-TEST(XmlReader, GetAttributes) {
+TEST(XmlReader, AlPedirConfiguracionesQueExistenLasDevuelveComoString) {
     XmlReader reader = XmlReader();
 
     string level = reader.getValue("/debug/level");
