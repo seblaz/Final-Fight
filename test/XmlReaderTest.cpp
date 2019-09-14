@@ -12,7 +12,7 @@
 using namespace std;
 
 TEST(XmlReader, AlPedirConfiguracionesQueExistenLasDevuelveComoString) {
-    XmlReader reader = XmlReader();
+    XmlReader reader = XmlReader("s");
 
     string level = reader.getValue("/debug/level");
     string cuchillos = reader.getValue("/escenario/objetos/cuchillo/cantidad");

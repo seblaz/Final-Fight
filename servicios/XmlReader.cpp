@@ -10,14 +10,19 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <map>
+#include <fstream>
 
+#include "Logger.h"
 #include "XmlReader.h"
 
 using namespace std;
 using namespace xercesc;
 
-XmlReader::XmlReader(const string &path) {
+XmlReader::XmlReader() {
+    XmlReader(this->defaultPath);
+}
+
+XmlReader::XmlReader(string path) {
     try {
         XMLPlatformUtils::Initialize();
     }
@@ -34,7 +39,13 @@ XmlReader::XmlReader(const string &path) {
     parser->setErrorHandler(errHandler);
 
     try {
-        parser->parse(path.c_str());
+        ifstream infile(path);
+
+        if(infile.good()){
+            parser->parse(path.c_str());
+        }else{
+            parser->parse(defaultPath.c_str());
+        }
     }
     catch (const XMLException &toCatch) {
         char *message = XMLString::transcode(toCatch.getMessage());
