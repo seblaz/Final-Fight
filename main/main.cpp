@@ -9,6 +9,9 @@
 #include "../modelo/mapeables/Escenario.h"
 #include "../graficos/GraficoDePersonaje.h"
 #include "../graficos/FabricaDeGraficosDeCody.h"
+#include "../graficos/GraficoDeObjeto.h"
+#include "../modelo/mapeables/Objeto.h"
+#include "../fisica/FisicaDeObjeto.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
@@ -23,12 +26,13 @@ int main(int argc, char *args[]) {
     SDL_Renderer *renderer = juego.renderer();
 
     Sprite spriteEscenario(renderer, "assets/escenarios/slums-mejorado.png");
+    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
 
     // Agregar escenario (primera capa)
     GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture(), 200);
     FisicaDeEscenario fisicaDeEscenarioFondo;
     Escenario escenarioFondo(0, 200, 0, &mapa, &fisicaDeEscenarioFondo, &graficoDeEscenarioFondo);
-    mapa.agregar(&escenarioFondo);
+   mapa.agregar(&escenarioFondo);
 
 
     // Agregar escenario (segunda capa)
@@ -36,6 +40,12 @@ int main(int argc, char *args[]) {
     FisicaDeEscenario fisicaDeEscenario;
     Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
     mapa.agregar(&escenarioMedio);
+
+    // Objetos (segunda capa)
+     GraficoDeObjeto graficoDeObjeto(renderer, spriteCaja.getTexture());
+     FisicaDeObjeto fisicaDeObjeto;
+     Objeto objeto(300, 0, 0, &mapa, &fisicaDeObjeto, &graficoDeObjeto);
+     mapa.agregar(&objeto);
 
 
     // Agregar personaje
