@@ -20,3 +20,4 @@ void Personaje::actualizar(SDL_Renderer *renderer) {
     comportamiento->actualizar(*this);
     Mapeable::actualizar(renderer);
 }
+

@@ -13,6 +13,7 @@ class EstadoDePersonaje{
 public:
     virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada){};
     virtual void actualizar(Personaje& personaje){};
+    virtual void enter(){};
 
 };
 

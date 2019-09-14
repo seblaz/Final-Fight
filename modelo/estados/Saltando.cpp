@@ -3,7 +3,7 @@
 //
 
 #include "Saltando.h"
-#include "DePie.h"
+#include "Parado.h"
 
 EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* entrada){
 
@@ -20,7 +20,7 @@ EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* e
         velocidad.z += 7;
         alturaMaxima_--;
     }else{
-        return new DePie();
+        return new Parado();
     }
     return nullptr;
 

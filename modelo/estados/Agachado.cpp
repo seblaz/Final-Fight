@@ -3,7 +3,7 @@
 //
 
 #include "Agachado.h"
-#include "DePie.h"
+#include "Parado.h"
 
 EstadoDePersonaje *Agachado::manejarEntrada(Personaje &personaje, const Uint8 *entrada) {
     if ( entrada[SDL_SCANCODE_D] ){
@@ -13,7 +13,7 @@ EstadoDePersonaje *Agachado::manejarEntrada(Personaje &personaje, const Uint8 *e
         saltando->manejarEntrada(personaje, entrada);
         return saltando;
     }else{
-        return new DePie();
+        return new Parado();
     }
 }
 

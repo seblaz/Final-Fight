@@ -4,7 +4,7 @@
 
 #include <SDL_system.h>
 #include "ComportamientoDeJugador.h"
-#include "../modelo/estados/DePie.h"
+#include "../modelo/estados/Parado.h"
 #include "../modelo/estados/Saltando.h"
 #include "iostream"
 #include "../servicios/Locator.h"
@@ -14,7 +14,7 @@ using namespace std;
 #define RAPIDEZ 3
 
 ComportamientoDeJugador::ComportamientoDeJugador() {
-    estado_ = new DePie();
+    estado_ = new Parado();
 }
 
 ComportamientoDeJugador::~ComportamientoDeJugador() {
@@ -50,5 +50,6 @@ void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
     if (nullptr != estado){
         delete estado_;
         this -> estado_ = estado;
+
     }
 }
