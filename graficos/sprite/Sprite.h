@@ -6,7 +6,6 @@
 #ifndef FINAL_FIGHT_SPRITE_H
 #define FINAL_FIGHT_SPRITE_H
 
-#endif //FINAL_FIGHT_SPRITE_H
 
 
 #include <SDL_render.h>
@@ -30,3 +29,6 @@ public:
     }
 
 };
+
+#endif //FINAL_FIGHT_SPRITE_H
+

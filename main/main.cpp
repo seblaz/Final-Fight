@@ -1,6 +1,7 @@
 #include "Juego.h"
 #include "../modelo/mapeables/Personaje.h"
 #include "../comportamiento/ComportamientoDeJugador.h"
+#include "../comportamiento/ComportamientoDeEnemigo.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../servicios/Logger.h"
 #include "../servicios/Locator.h"
@@ -9,6 +10,7 @@
 #include "../modelo/mapeables/Escenario.h"
 #include "../graficos/GraficoDePersonaje.h"
 #include "../graficos/FabricaDeGraficosDeCody.h"
+#include "../graficos/FabricaDeGraficosDePoison.h"
 #include "../graficos/GraficoDeObjetoDestruible.h"
 #include "../graficos/GraficoDeObjetoInteractuable.h"
 #include "../modelo/mapeables/Objeto.h"
@@ -69,13 +71,24 @@ int main(int argc, char *args[]) {
     mapa.agregar(&objetoCuchillo);
 
 
+    FisicaDePersonaje fisicaDePersonaje;
+
     // Agregar personaje
     FabricaDeGraficosDeCody fabrica(renderer);
     GraficoDePersonaje graficoDePersonaje = fabrica.caminado();
     ComportamientoDeJugador comportamientoDeJugador;
-    FisicaDePersonaje fisicaDePersonaje;
+
     Personaje personaje(50, 0, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
     mapa.agregar(&personaje);
+
+    // Agregar Enemigo
+    FabricaDeGraficosDePoison fabricaDePoison(renderer);
+    GraficoDePersonaje graficoDeEnemigo = fabricaDePoison.caminado();
+    ComportamientoDeEnemigo comportamientoDeEnemigo;
+
+    Personaje personaje2(500, 0, 0, "sebas", &mapa, &comportamientoDeEnemigo, &fisicaDePersonaje, &graficoDeEnemigo);
+    mapa.agregar(&personaje2);
+
 
 
     juego.loop();
