@@ -10,7 +10,10 @@
 class Caminando : public EstadoDePersonaje{
 
 public:
+    Caminando();
+    ~Caminando();
     virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
+    virtual void enter(){};
 };
 
 #endif //FINAL_FIGHT_CAMINANDO_H

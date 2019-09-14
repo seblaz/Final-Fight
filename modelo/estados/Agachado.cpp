@@ -17,3 +17,13 @@ EstadoDePersonaje *Agachado::manejarEntrada(Personaje &personaje, const Uint8 *e
     }
 }
 
+Agachado::Agachado() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se instancio un objeto de clase Agachado");
+}
+
+Agachado::~Agachado() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se elimino un objeto de clase Agachado");
+}
+

@@ -13,9 +13,11 @@ class Parado : public EstadoDePersonaje{
 private:
 
 public:
+    Parado();
+    ~Parado();
     virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void actualizar(Personaje& personaje);
-    virtual void enter();
+    virtual void actualizar(Personaje& personaje){};
+    virtual void enter(){};
 };
 
 #endif //FINAL_FIGHT_PARADO_H

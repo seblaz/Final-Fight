@@ -26,6 +26,12 @@ EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* e
 
 }
 
-void Saltando::actualizar(Personaje &personaje) {
-    //EstadoDePersonaje::actualizar(personaje);
+Saltando::Saltando() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se instancio un objeto de clase Saltando");
+}
+
+Saltando::~Saltando() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se elimino un objeto de clase Saltando");
 }

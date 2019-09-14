@@ -26,8 +26,12 @@ EstadoDePersonaje* Parado::manejarEntrada(Personaje &personaje, const Uint8* ent
     }else {return nullptr; }
 }
 
-void Parado::actualizar(Personaje &personaje) {
+Parado::Parado() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se instancio un objeto de clase Parado");
 }
 
-void Parado::enter(){
+Parado::~Parado() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se elimino un objeto de clase Parado");
 }

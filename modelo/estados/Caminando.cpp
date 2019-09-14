@@ -24,3 +24,13 @@ EstadoDePersonaje *Caminando::manejarEntrada(Personaje &personaje, const Uint8 *
     }
 }
 
+Caminando::Caminando() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se instancio un objeto de clase Caminando");
+}
+
+Caminando::~Caminando() {
+    Logger logger(DEBUG);
+    logger.log(DEBUG, "Se elimino un objeto de clase Caminando");
+}
+

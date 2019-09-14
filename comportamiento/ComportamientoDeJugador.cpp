@@ -50,6 +50,5 @@ void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
     if (nullptr != estado){
         delete estado_;
         this -> estado_ = estado;
-
     }
 }

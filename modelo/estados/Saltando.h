@@ -16,8 +16,11 @@ private:
     bool subiendo_ = true;
 
 public:
+    Saltando();
+    ~Saltando();
     virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void actualizar(Personaje& personaje);
+    virtual void actualizar(Personaje& personaje){};
+    virtual void enter(){};
 
 };
 
