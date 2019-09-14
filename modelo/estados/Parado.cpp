@@ -8,8 +8,6 @@
 
 EstadoDePersonaje* Parado::manejarEntrada(Personaje &personaje, const Uint8* entrada) {
 
-    Velocidad &velocidad = personaje.velocidad();
-
     // TODO: Refactorizar
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         Saltando* saltando = new Saltando();

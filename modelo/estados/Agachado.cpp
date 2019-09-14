@@ -7,6 +7,11 @@
 
 EstadoDePersonaje *Agachado::manejarEntrada(Personaje &personaje, const Uint8 *entrada) {
     if ( entrada[SDL_SCANCODE_D] ){
+        Velocidad &velocidad = personaje.velocidad();
+        velocidad.x = 0;
+        velocidad.y = 0;
+        velocidad.z = 0;
+
         return nullptr;
     }else if ( entrada[SDL_SCANCODE_S] ){
         Saltando* saltando = new Saltando();
