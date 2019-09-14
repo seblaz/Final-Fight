@@ -3,17 +3,17 @@
 //
 
 
-#include "GraficoDeObjeto.h"
+#include "GraficoDeObjetoDestruible.h"
 #include "../modelo/mapeables/Objeto.h"
 
-GraficoDeObjeto::GraficoDeObjeto(SDL_Renderer *renderer, SDL_Texture *texturaSprite, int x, int y) :
+GraficoDeObjetoDestruible::GraficoDeObjetoDestruible(SDL_Renderer *renderer, SDL_Texture *texturaSprite, int x, int y) :
         renderer(renderer) {
         texture = texturaSprite;
         posicionX = x;
         posicionY = y;
 }
 
-void GraficoDeObjeto::actualizar(Mapeable &mapeable) {
+void GraficoDeObjetoDestruible::actualizar(Mapeable &mapeable) {
     auto &objeto = dynamic_cast<Objeto &>(mapeable);
 
 //    Posicion &posicion = escenario.posicion(); // Se obtiene la posicion del jugador y en base a eso se construye el hitbox del jugador.

@@ -9,7 +9,7 @@
 
 #endif //FINAL_FIGHT_FISICADEOBJETO_H
 
-class FisicaDeObjeto : public Fisica {
+class FisicaDeObjetoInteractuable : public Fisica {
 
 public:
     void actualizar(Mapa& mapa, Mapeable& mapeable) override;

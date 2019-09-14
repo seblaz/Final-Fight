@@ -9,9 +9,10 @@
 #include "../modelo/mapeables/Escenario.h"
 #include "../graficos/GraficoDePersonaje.h"
 #include "../graficos/FabricaDeGraficosDeCody.h"
-#include "../graficos/GraficoDeObjeto.h"
+#include "../graficos/GraficoDeObjetoDestruible.h"
+#include "../graficos/GraficoDeObjetoInteractuable.h"
 #include "../modelo/mapeables/Objeto.h"
-#include "../fisica/FisicaDeObjeto.h"
+#include "../fisica/FisicaDeObjetoDestruible.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
@@ -28,6 +29,7 @@ int main(int argc, char *args[]) {
     Sprite spriteEscenario(renderer, "assets/escenarios/slums-mejorado.png");
     Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
     Sprite spriteNeumatico(renderer, "assets/escenarios/neumaticos.png");
+    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
 
     // Agregar escenario (primera capa)
     GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture(), 200);
@@ -42,22 +44,29 @@ int main(int argc, char *args[]) {
     Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
     mapa.agregar(&escenarioMedio);
 
-    FisicaDeObjeto fisicaDeObjetoDestruible;
+    FisicaDeObjetoDestruible fisicaDeObjetoDestruible;
+    FisicaDeObjetoDestruible fisicaDeObjetoInteractuable;
     // Objetos (objeto caja)
-     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
+     GraficoDeObjetoDestruible graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800, 400);
 
      Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
      mapa.agregar(&objetoCaja);
 
 
     // Objetos (objeto neumatico)
-    GraficoDeObjeto graficoDeObjetoNeumatico(renderer, spriteNeumatico.getTexture(), 600,400);
+    GraficoDeObjetoDestruible graficoDeObjetoNeumatico(renderer, spriteNeumatico.getTexture(), 600, 400);
     Objeto objetoNeumatico(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico);
     mapa.agregar(&objetoNeumatico);
 
-    GraficoDeObjeto graficoDeObjetoNeumatico2(renderer, spriteNeumatico.getTexture(), 500,400);
+    GraficoDeObjetoDestruible graficoDeObjetoNeumatico2(renderer, spriteNeumatico.getTexture(), 500, 400);
     Objeto objetoNeumatico2(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico2);
     mapa.agregar(&objetoNeumatico2);
+
+    // Objetos (objeto cuchillo)
+    GraficoDeObjetoInteractuable graficoDeObjetoCuchillo(renderer, spriteCuchillo.getTexture(), 600, 800);
+
+    Objeto objetoCuchillo(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCuchillo);
+    mapa.agregar(&objetoCuchillo);
 
 
     // Agregar personaje
