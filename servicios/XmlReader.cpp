@@ -25,15 +25,16 @@ XmlReader::XmlReader(const string &path) {
         // Do your failure processing here
     }
 
-    auto parser = XercesDOMParser();
-    auto errHandler = HandlerBase();
-    parser.setValidationScheme(XercesDOMParser::Val_Auto);
-    parser.setIncludeIgnorableWhitespace(false);
-    parser.setDoNamespaces(true);    // optional
-    parser.setErrorHandler(&errHandler);
+    auto *parser = new XercesDOMParser();
+    auto *errHandler = (ErrorHandler *) new HandlerBase();
+    parser->setValidationScheme(XercesDOMParser::Val_Always);
+    parser->setIncludeIgnorableWhitespace(false);
+    parser->setDoNamespaces(true);    // optional
+
+    parser->setErrorHandler(errHandler);
 
     try {
-        parser.parse(path.c_str());
+        parser->parse(path.c_str());
     }
     catch (const XMLException &toCatch) {
         char *message = XMLString::transcode(toCatch.getMessage());
@@ -50,10 +51,12 @@ XmlReader::XmlReader(const string &path) {
     catch (...) {
         cout << "Unexpected Exception \n";
     }
-    doc = parser.getDocument();
+    doc = parser->getDocument();
 }
 
 string XmlReader::getValue(const string &xPath) {
+    string finalValue = "";
+
     DOMXPathResult *result = doc->evaluate(
             XMLString::transcode(("/configuracion" + xPath).c_str()),
             doc->getDocumentElement(),
@@ -61,5 +64,9 @@ string XmlReader::getValue(const string &xPath) {
             DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
             nullptr);
 
-    return XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
+    if (result->getNodeValue()){
+        finalValue = XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
+    }
+
+    return finalValue;
 }
