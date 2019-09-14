@@ -19,9 +19,11 @@ class GraficoDeObjeto : public Grafico {
 private:
     SDL_Renderer* renderer;
     SDL_Texture *texture;
+    int posicionX;
+    int posicionY;
 
 public:
-    GraficoDeObjeto(SDL_Renderer* renderer, SDL_Texture * texture);
+    GraficoDeObjeto(SDL_Renderer* renderer, SDL_Texture * texture, int posicionX, int posicionY);
     ~GraficoDeObjeto() override = default;
 
     void actualizar(Mapeable &mapeable) override;

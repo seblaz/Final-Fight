@@ -27,6 +27,7 @@ int main(int argc, char *args[]) {
 
     Sprite spriteEscenario(renderer, "assets/escenarios/slums-mejorado.png");
     Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
+    Sprite spriteNeumatico(renderer, "assets/escenarios/neumaticos.png");
 
     // Agregar escenario (primera capa)
     GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture(), 200);
@@ -41,11 +42,22 @@ int main(int argc, char *args[]) {
     Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
     mapa.agregar(&escenarioMedio);
 
-    // Objetos (segunda capa)
-     GraficoDeObjeto graficoDeObjeto(renderer, spriteCaja.getTexture());
-     FisicaDeObjeto fisicaDeObjeto;
-     Objeto objeto(300, 0, 0, &mapa, &fisicaDeObjeto, &graficoDeObjeto);
-     mapa.agregar(&objeto);
+    FisicaDeObjeto fisicaDeObjetoDestruible;
+    // Objetos (objeto caja)
+     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
+
+     Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
+     mapa.agregar(&objetoCaja);
+
+
+    // Objetos (objeto neumatico)
+    GraficoDeObjeto graficoDeObjetoNeumatico(renderer, spriteNeumatico.getTexture(), 600,400);
+    Objeto objetoNeumatico(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico);
+    mapa.agregar(&objetoNeumatico);
+
+    GraficoDeObjeto graficoDeObjetoNeumatico2(renderer, spriteNeumatico.getTexture(), 500,400);
+    Objeto objetoNeumatico2(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico2);
+    mapa.agregar(&objetoNeumatico2);
 
 
     // Agregar personaje
