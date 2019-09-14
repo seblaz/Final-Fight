@@ -19,13 +19,15 @@ private:
     std::string nombre;
     Velocidad _velocidad;
     Comportamiento *comportamiento;
+    int posX, posY, posZ;
+    bool saltando;
+    //bool agachado; //Solo Dug golpea agachado
 
 public:
-    Personaje(int x, int y, int z, string nombre, Mapa *mapa, Comportamiento *comportamiento, Fisica *fisica, Grafico *grafico);
+    Personaje(int x, int y, int z, string nombre, bool saltando ,Mapa *mapa, Comportamiento *comportamiento, Fisica *fisica, Grafico *grafico);
     ~Personaje() = default;
     Velocidad &velocidad();
     void actualizar(SDL_Renderer *renderer) override;
 };
-
 
 #endif //FINAL_FIGHT_PERSONAJE_H

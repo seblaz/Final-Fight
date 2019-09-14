@@ -2,24 +2,25 @@
 // Created by franco on 13/9/19.
 //
 
-#include "Parado.h"
+#include "MoverAbajo.h"
 
-void Parado::manejarEntrada(Personaje &personaje){
+void MoverAbajo::manejarEntrada(Personaje &personaje){
 
     //Actualizar posicion de jugador
 
-    //Llamar a graficar.parado()
+    //Llamar a graficar.abajo()
 
     //Refrescar
 
 }
 
-Parado::Parado() {
+MoverAbajo::MoverAbajo() {
     Logger logger(DEBUG);
     logger.log(DEBUG, "Se instancio un objeto de clase moverAbajo");
 }
 
-Parado::~Parado() {
+MoverAbajo::~MoverAbajo() {
     Logger logger(DEBUG);
     logger.log(DEBUG, "Se elimino un objeto de clase moverAbajo");
 }
+

@@ -2,10 +2,9 @@
 // Created by franco on 8/9/19.
 //
 
-#include "Saltando.h"
-#include "Parado.h"
+#include "Saltar.h"
 
-EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* entrada){
+void Saltar::manejarEntrada(Personaje& personaje){
 
     Velocidad &velocidad = personaje.velocidad();
     if ( subiendo_ ) {
@@ -19,19 +18,21 @@ EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* e
     } else if ( ! subiendo_ && alturaMaxima_ > 0){
         velocidad.z += 7;
         alturaMaxima_--;
-    }else{
+    }/*else{
         return new Parado();
-    }
-    return nullptr;
+    }*/
 
+    //Llamar a graficador.personaje.saltar(personaje);
+
+    //Refrescar
 }
 
-Saltando::Saltando() {
+Saltar::Saltar() {
     Logger logger(DEBUG);
-    logger.log(DEBUG, "Se instancio un objeto de clase Saltando");
+    logger.log(DEBUG, "Se instancio un objeto de clase Saltar");
 }
 
-Saltando::~Saltando() {
+Saltar::~Saltar() {
     Logger logger(DEBUG);
-    logger.log(DEBUG, "Se elimino un objeto de clase Saltando");
+    logger.log(DEBUG, "Se elimino un objeto de clase Saltar");
 }
