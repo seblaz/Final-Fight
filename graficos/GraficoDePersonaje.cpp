@@ -8,17 +8,16 @@
 
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(SDL_Renderer *renderer, SDL_Texture *sprite, Animacion animacion, FisicaDePersonaje *fisica) :
-        renderer(renderer),
+GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion animacion) :
         sprite(sprite),
         haciaAdelante(true),
         animacion(std::move(animacion)),
         fisica(fisica) {}
 
-void GraficoDePersonaje::actualizar() {
+void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
     Configuracion *config = Locator::configuracion();
-    Posicion &posicion = fisica->posicion();
-    Velocidad &velocidad = fisica->velocidad();
+    Posicion posicion = fisica->posicion();
+    Velocidad velocidad = fisica->velocidad();
 
     SDL_Rect dimensiones = animacion.actualizarYDevolverPosicion();
 
@@ -46,4 +45,8 @@ void GraficoDePersonaje::actualizar() {
     } else {
         SDL_RenderCopyEx(renderer, sprite, &dimensiones, &posicionJugador, 180, nullptr, SDL_FLIP_VERTICAL);
     }
+}
+
+void GraficoDePersonaje::cambiarAnimacion(Animacion nuevaAnimacion) {
+    this->animacion = std::move(nuevaAnimacion);
 }

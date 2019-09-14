@@ -20,7 +20,7 @@ private:
 
     int framesFaltantes;
     int spriteActual;
-    const float sumaDeDuracionesRelativas;
+    float sumaDeDuracionesRelativas;
 
     int calcularFramesFaltantes();
 

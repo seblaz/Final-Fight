@@ -3,15 +3,12 @@
 //
 
 #include "GraficoDeEscenario.h"
-#include "../modelo/mapeables/Escenario.h"
 
-GraficoDeEscenario::GraficoDeEscenario(SDL_Renderer *renderer, SDL_Texture *texturaSprite, int ejeY) :
-        renderer(renderer) {
-    texture = texturaSprite;
-    posicionY = ejeY;
-}
+GraficoDeEscenario::GraficoDeEscenario(SDL_Texture *sprite, int ejeY) :
+        sprite(sprite),
+        posicionY(ejeY) {}
 
-void GraficoDeEscenario::actualizar() {
+void GraficoDeEscenario::actualizar(SDL_Renderer *renderer) {
 //    auto &escenario = dynamic_cast<Escenario &>(mapeable);
 
 //    Posicion &posicion = escenario.posicion(); // Se obtiene la posicion del jugador y en base a eso se construye el hitbox del jugador.
@@ -22,5 +19,5 @@ void GraficoDeEscenario::actualizar() {
     SDL_Rect posicionEscenario = {0, 0, 1280, 960};
 
     //Se renderiza en la ventana la imagen, la posicion del sprite, y la posicion del jugador
-    SDL_RenderCopy(renderer, texture, &posicionSprite, &posicionEscenario);
+    SDL_RenderCopy(renderer, sprite, &posicionSprite, &posicionEscenario);
 }

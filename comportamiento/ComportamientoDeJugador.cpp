@@ -23,27 +23,28 @@ ComportamientoDeJugador::~ComportamientoDeJugador() {
 
 void ComportamientoDeJugador::actualizar() {
     const Uint8 *currentKeyStates = SDL_GetKeyboardState(nullptr);
-    Velocidad &velocidad = fisica->velocidad();
 
     // TODO: implementar el patron Command para eliminar los ifs.
-    velocidad.x = 0;
-    velocidad.y = 0;
-    velocidad.z = 0;
+    float velocidad_x = 0;
+    float velocidad_y = 0;
 
     float velocidadRelativa = Locator::configuracion()->velocidadDeJuego;
 
     if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
-        velocidad.x = RAPIDEZ * velocidadRelativa;
+        velocidad_x = RAPIDEZ * velocidadRelativa;
     }
     if (currentKeyStates[SDL_SCANCODE_LEFT]) {
-        velocidad.x = -RAPIDEZ * velocidadRelativa;
+        velocidad_x = -RAPIDEZ * velocidadRelativa;
     }
     if (currentKeyStates[SDL_SCANCODE_UP]) {
-        velocidad.y = RAPIDEZ * velocidadRelativa;
+        velocidad_y = RAPIDEZ * velocidadRelativa;
     }
     if (currentKeyStates[SDL_SCANCODE_DOWN]) {
-        velocidad.y = -RAPIDEZ * velocidadRelativa;
+        velocidad_y = -RAPIDEZ * velocidadRelativa;
     }
+    fisica->cambiarVelocidadX(velocidad_x);
+    fisica->cambiarVelocidadY(velocidad_y);
+
     EstadoDePersonaje *estado = estado_->manejarEntrada(fisica, currentKeyStates);
 
     if (nullptr != estado) {

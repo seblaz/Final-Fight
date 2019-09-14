@@ -6,12 +6,6 @@
 #include "../../comportamiento/Comportamiento.h"
 
 Mapeable::Mapeable(Fisica *fisica, Grafico *grafico, Comportamiento *comportamiento) :
-        grafico(grafico),
-        fisica(fisica),
-        comportamiento(comportamiento) {}
-
-void Mapeable::actualizar() {
-    comportamiento->actualizar();
-    fisica->actualizar();
-    grafico->actualizar();
-}
+        grafico_(grafico),
+        fisica_(fisica),
+        comportamiento_(comportamiento) {}

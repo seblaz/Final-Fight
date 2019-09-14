@@ -14,8 +14,8 @@ private:
 
 public:
     Parado();
-    ~Parado();
-    virtual EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada);
+    ~Parado() override;
+    EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
     void actualizar() override {};
     void enter() override {};
 };

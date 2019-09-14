@@ -4,9 +4,7 @@
 
 
 
-#include "../modelo/Mapa.h"
 #include "FisicaDeObjeto.h"
-//#include "../modelo/mapeables/Objeto.h"
 
 void FisicaDeObjeto::actualizar() {
 //    auto &objeto = dynamic_cast<Objeto &>(mapeable);

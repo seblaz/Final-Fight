@@ -8,21 +8,21 @@
 
 #include "../../graficos/Grafico.h"
 
-using namespace std;
-
 class Comportamiento;
 class Fisica;
 
 class Mapeable {
 
 private:
-    Fisica *fisica;
-    Grafico *grafico;
-    Comportamiento *comportamiento;
+    Fisica *fisica_;
+    Grafico *grafico_;
+    Comportamiento *comportamiento_;
 
 public:
     Mapeable(Fisica *fisica, Grafico *grafico, Comportamiento *comportamiento);
-    virtual void actualizar();
+    Fisica *fisica(){ return fisica_; };
+    Grafico *grafico(){ return grafico_; };
+    Comportamiento *comportamiento(){ return comportamiento_; };
 };
 
 #include "../../fisica/Fisica.h"

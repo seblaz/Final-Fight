@@ -6,10 +6,12 @@
 #define FINAL_FIGHT_GRAFICO_H
 
 
+#include <SDL_system.h>
+
 class Grafico {
 
 public:
-    virtual void actualizar() = 0;
+    virtual void actualizar(SDL_Renderer *renderer) = 0;
 };
 
 

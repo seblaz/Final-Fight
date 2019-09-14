@@ -17,16 +17,16 @@ using namespace std;
 class GraficoDePersonaje : public Grafico {
 
 private:
-    SDL_Renderer* renderer;
     SDL_Texture * sprite;
     Animacion animacion;
     FisicaDePersonaje *fisica;
     bool haciaAdelante;
 
 public:
-    GraficoDePersonaje(SDL_Renderer* renderer, SDL_Texture * sprite, Animacion animacion, FisicaDePersonaje *fisica);
+    GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion animacion);
 
-    void actualizar() override;
+    void actualizar(SDL_Renderer *renderer) override;
+    void cambiarAnimacion(Animacion nuevaAnimacion);
 };
 
 

@@ -11,7 +11,7 @@ class Agachado : public EstadoDePersonaje{
 
 public:
     Agachado();
-    ~Agachado();
+    ~Agachado() override;
     EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *currentKeyStates) override;
     void enter() override {};
     void actualizar() override {};

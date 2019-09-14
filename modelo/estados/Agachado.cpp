@@ -9,14 +9,17 @@
 
 EstadoDePersonaje *Agachado::manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *entrada) {
     if ( entrada[SDL_SCANCODE_D] ){
-        Velocidad &velocidad = fisica->velocidad();
-        velocidad.x = 0;
-        velocidad.y = 0;
-        velocidad.z = 0;
+//        Velocidad &velocidad = fisica->velocidad();
+//        velocidad.x = 0;
+//        velocidad.y = 0;
+//        velocidad.z = 0;
+    fisica->cambiarVelocidadX(0);
+    fisica->cambiarVelocidadY(0);
+    fisica->cambiarVelocidadZ(0);
 
         return nullptr;
     }else if ( entrada[SDL_SCANCODE_S] ){
-        Saltando* saltando = new Saltando();
+        auto* saltando = new Saltando();
         saltando->manejarEntrada(fisica, entrada);
         return saltando;
     }else{

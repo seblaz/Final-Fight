@@ -20,7 +20,7 @@ private:
     void update();
     void render();
 
-    SDL_Renderer *_renderer = nullptr;
+    SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
     bool exit = false;
     Mapa *mapa;

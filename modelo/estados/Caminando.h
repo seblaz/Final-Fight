@@ -11,8 +11,8 @@ class Caminando : public EstadoDePersonaje{
 
 public:
     Caminando();
-    ~Caminando();
-    virtual EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada);
+    ~Caminando() override;
+    EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
     void enter() override {};
     void actualizar() override {};
 };

@@ -22,8 +22,8 @@ void Juego::initialize() {
             printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         } else {
             //Get window surface
-            _renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-            if(!_renderer) {
+            renderer_ = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+            if(!renderer_) {
                 printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
                 exit = true;
             }
@@ -62,18 +62,26 @@ void Juego::processInput() {
 
 void Juego::update() {
     for (auto mapeable : mapa->devolverMapeables()) {
-        mapeable->actualizar();
+        mapeable->comportamiento()->actualizar();
+    }
+
+    for (auto mapeable : mapa->devolverMapeables()) {
+        mapeable->fisica()->actualizar();
+    }
+
+    for (auto mapeable : mapa->devolverMapeables()) {
+        mapeable->grafico()->actualizar(renderer_);
     }
 }
 
 void Juego::render() {
-    SDL_RenderPresent(_renderer); // Update screen
+    SDL_RenderPresent(renderer_); // Update screen
 }
 
 void Juego::finish() {
-    SDL_DestroyRenderer(_renderer); // Destroy _renderer
+    SDL_DestroyRenderer(renderer_); // Destroy renderer_
     SDL_DestroyWindow(window); // Destroy window
-    _renderer = nullptr;
+    renderer_ = nullptr;
     window = nullptr;
 
     SDL_Quit(); // Quit SDL subsystems
@@ -81,11 +89,11 @@ void Juego::finish() {
 
 void Juego::clearScene() {
     //Se Construye el escenario
-    SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(_renderer);
+    SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer_);
 }
 
 SDL_Renderer *Juego::renderer() {
-    return _renderer;
+    return renderer_;
 }
 
