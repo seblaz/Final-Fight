@@ -65,7 +65,7 @@ int main(int argc, char *args[]) {
     GraficoDePersonaje graficoDePersonaje = fabrica.caminado();
     ComportamientoDeJugador comportamientoDeJugador;
     FisicaDePersonaje fisicaDePersonaje;
-    Personaje personaje(50, 0, 0, "sebas", false, &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+    Personaje personaje(50, 0, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
     mapa.agregar(&personaje);
 
 

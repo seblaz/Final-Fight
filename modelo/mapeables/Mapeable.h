@@ -8,8 +8,6 @@
 
 #include "../Posicion.h"
 #include "../../graficos/Grafico.h"
-#include "../../fisica/Fisica.h"
-#include "../Mapa.h"
 
 using namespace std;
 
@@ -28,9 +26,11 @@ protected:
 
 public:
     Mapeable(int x, int y, int z, Mapa *mapa, Fisica *fisica, Grafico *grafico);
-    ~Mapeable() = default;
     virtual void actualizar(SDL_Renderer *renderer);
     Posicion &posicion();
 };
+
+#include "../../fisica/Fisica.h"
+#include "../Mapa.h"
 
 #endif //FINAL_FIGHT_MAPEABLE_H

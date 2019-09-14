@@ -9,13 +9,10 @@
 #include "../../servicios/Logger.h"
 #include <SDL_system.h>
 
-//-Se considerara S como tecla de salto
-//-Las teclas de movimiento seran las del teclado
-
 class EstadoDePersonaje{
 
 public:
-    virtual void manejarEntrada(Personaje& personaje){};
+    virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada){};
     virtual void actualizar(Personaje& personaje){};
     virtual void enter(){};
     virtual ~EstadoDePersonaje(){};
