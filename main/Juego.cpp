@@ -62,7 +62,7 @@ void Juego::processInput() {
 
 void Juego::update() {
     for (auto mapeable : mapa->devolverMapeables()) {
-        mapeable->actualizar(_renderer);
+        mapeable->actualizar();
     }
 }
 

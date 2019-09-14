@@ -10,6 +10,7 @@
 #include <vector>
 #include "Grafico.h"
 #include "Animacion.h"
+#include "../fisica/FisicaDePersonaje.h"
 
 using namespace std;
 
@@ -18,13 +19,14 @@ class GraficoDePersonaje : public Grafico {
 private:
     SDL_Renderer* renderer;
     SDL_Texture * sprite;
-    bool haciaAdelante;
     Animacion animacion;
+    FisicaDePersonaje *fisica;
+    bool haciaAdelante;
 
 public:
-    GraficoDePersonaje(SDL_Renderer* renderer, SDL_Texture * sprite, Animacion animacion);
+    GraficoDePersonaje(SDL_Renderer* renderer, SDL_Texture * sprite, Animacion animacion, FisicaDePersonaje *fisica);
 
-    void actualizar(Mapeable &mapeable) override;
+    void actualizar() override;
 };
 
 

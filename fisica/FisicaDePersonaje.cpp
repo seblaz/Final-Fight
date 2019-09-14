@@ -3,11 +3,20 @@
 //
 
 #include "FisicaDePersonaje.h"
-#include "../modelo/mapeables/Personaje.h"
 
-void FisicaDePersonaje::actualizar(Mapa &mapa, Mapeable &mapeable) {
-    auto &personaje = dynamic_cast<Personaje &>(mapeable);
-    Posicion &posicion = personaje.posicion();
-    Velocidad &velocidad = personaje.velocidad();
-    posicion.mover(velocidad);
+FisicaDePersonaje::FisicaDePersonaje(int x, int y, int z) :
+        posicion_(x, y, z) {}
+
+Posicion &FisicaDePersonaje::posicion() {
+    return posicion_;
 }
+
+void FisicaDePersonaje::actualizar() {
+    posicion_.mover(velocidad_);
+}
+
+Velocidad &FisicaDePersonaje::velocidad() {
+    return velocidad_;
+}
+
+

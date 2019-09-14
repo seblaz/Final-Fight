@@ -3,23 +3,23 @@
 //
 
 #include "GraficoDePersonaje.h"
-#include "../modelo/mapeables/Personaje.h"
 #include "../servicios/Configuracion.h"
 #include "../servicios/Locator.h"
 
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(SDL_Renderer *renderer, SDL_Texture *sprite, Animacion animacion) :
+GraficoDePersonaje::GraficoDePersonaje(SDL_Renderer *renderer, SDL_Texture *sprite, Animacion animacion, FisicaDePersonaje *fisica) :
         renderer(renderer),
         sprite(sprite),
         haciaAdelante(true),
-        animacion(std::move(animacion)){}
+        animacion(std::move(animacion)),
+        fisica(fisica) {}
 
-void GraficoDePersonaje::actualizar(Mapeable &mapeable) {
-    auto &personaje = dynamic_cast<Personaje &>(mapeable);
-
+void GraficoDePersonaje::actualizar() {
     Configuracion *config = Locator::configuracion();
-    Posicion &posicion = personaje.posicion();
+    Posicion &posicion = fisica->posicion();
+    Velocidad &velocidad = fisica->velocidad();
+
     SDL_Rect dimensiones = animacion.actualizarYDevolverPosicion();
 
     const int screenX = posicion.getX()
@@ -36,8 +36,8 @@ void GraficoDePersonaje::actualizar(Mapeable &mapeable) {
                                 int(dimensiones.w * config->escalaDeGraficos),
                                 int(dimensiones.h * config->escalaDeGraficos)};
 
-    if(personaje.velocidad().x != 0){
-       haciaAdelante = personaje.velocidad().x > 0;
+    if(velocidad.x != 0){
+       haciaAdelante = velocidad.x > 0;
     }
 
     //Se renderiza en la ventana la imagen, la posicion del sprite, y la posicion del jugador

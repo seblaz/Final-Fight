@@ -14,8 +14,7 @@
 class Comportamiento {
 
 public:
-    virtual void actualizar(Mapeable &mapeable) = 0;
-    virtual ~Comportamiento() = default;
+    virtual void actualizar() = 0;
 };
 
 

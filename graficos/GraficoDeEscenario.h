@@ -21,9 +21,9 @@ private:
 
 public:
     explicit GraficoDeEscenario(SDL_Renderer* renderer, SDL_Texture *texturaSprite, int posicionY);
-    ~GraficoDeEscenario() override = default;
+    ~GraficoDeEscenario() = default;
 
-    void actualizar(Mapeable &mapeable) override;
+    void actualizar() override;
 
 };
 

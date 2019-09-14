@@ -5,8 +5,9 @@
 #include "FabricaDeGraficosDeCody.h"
 #include "Animacion.h"
 
-FabricaDeGraficosDeCody::FabricaDeGraficosDeCody(SDL_Renderer *renderer) :
-        renderer(renderer) {
+FabricaDeGraficosDeCody::FabricaDeGraficosDeCody(SDL_Renderer *renderer, FisicaDePersonaje *fisica) :
+        renderer(renderer),
+        fisica(fisica) {
     sprite = Sprite(renderer, "assets/personajes/cody.png").getTexture();
 }
 
@@ -23,7 +24,7 @@ GraficoDePersonaje FabricaDeGraficosDeCody::caminado() {
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
 
     Animacion animacion(posiciones, duraciones, 60);
-    GraficoDePersonaje graficoDePersonaje(renderer, sprite, animacion);
+    GraficoDePersonaje graficoDePersonaje(renderer, sprite, animacion, fisica);
     return graficoDePersonaje;
 }
 
@@ -38,7 +39,7 @@ GraficoDePersonaje FabricaDeGraficosDeCody::saltando() {
     vector<float> duraciones = {1, 1, 1, 1};
 
     Animacion animacion(posiciones, duraciones, 60);
-    GraficoDePersonaje graficoDePersonaje(renderer, sprite, animacion);
+    GraficoDePersonaje graficoDePersonaje(renderer, sprite, animacion, fisica);
     return graficoDePersonaje;
 }
 
@@ -47,6 +48,6 @@ GraficoDePersonaje FabricaDeGraficosDeCody::parado() {
     vector<float> duraciones = {1};
 
     Animacion animacion(posiciones, duraciones, 60);
-    GraficoDePersonaje graficoDePersonaje(renderer, sprite, animacion);
+    GraficoDePersonaje graficoDePersonaje(renderer, sprite, animacion, fisica);
     return graficoDePersonaje;
 }

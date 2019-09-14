@@ -2,20 +2,16 @@
 // Created by sebas on 30/8/19.
 //
 
-#include <SDL_system.h>
 #include "Mapeable.h"
+#include "../../comportamiento/Comportamiento.h"
 
-Mapeable::Mapeable(int x, int y, int z, Mapa *mapa, Fisica *fisica, Grafico *grafico) :
-        _posicion(x, y, z),
+Mapeable::Mapeable(Fisica *fisica, Grafico *grafico, Comportamiento *comportamiento) :
         grafico(grafico),
-        physics(fisica),
-        mapa(mapa) {}
+        fisica(fisica),
+        comportamiento(comportamiento) {}
 
-void Mapeable::actualizar(SDL_Renderer *renderer) {
-    physics->actualizar(*mapa, *this);
-    grafico->actualizar(*this);
-}
-
-Posicion &Mapeable::posicion() {
-    return _posicion;
+void Mapeable::actualizar() {
+    comportamiento->actualizar();
+    fisica->actualizar();
+    grafico->actualizar();
 }

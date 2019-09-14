@@ -4,10 +4,11 @@
 
 #include "Saltando.h"
 #include "Parado.h"
+#include "../../servicios/Logger.h"
 
-EstadoDePersonaje* Saltando::manejarEntrada(Personaje& personaje, const Uint8* entrada){
+EstadoDePersonaje* Saltando::manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada){
 
-    Velocidad &velocidad = personaje.velocidad();
+    Velocidad &velocidad = fisica->velocidad();
     if ( subiendo_ ) {
         if (alturaMaxima_ > 0) {
             velocidad.z -= 7;

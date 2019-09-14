@@ -16,7 +16,7 @@ public:
     Escenario(int x, int y, int z, Mapa *mapa, Fisica *fisica, Grafico *grafico);
     ~Escenario() = default;
 
-    void actualizar(SDL_Renderer *renderer) override;
+    void actualizar() override;
 };
 
 

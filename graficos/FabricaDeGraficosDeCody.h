@@ -18,9 +18,10 @@ class FabricaDeGraficosDeCody {
 private:
     SDL_Texture *sprite;
     SDL_Renderer *renderer;
+    FisicaDePersonaje *fisica;
 
 public:
-    explicit FabricaDeGraficosDeCody(SDL_Renderer *renderer);
+    explicit FabricaDeGraficosDeCody(SDL_Renderer *renderer, FisicaDePersonaje *fisica);
 
     GraficoDePersonaje caminado();
     GraficoDePersonaje saltando();

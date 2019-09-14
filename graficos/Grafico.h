@@ -6,17 +6,10 @@
 #define FINAL_FIGHT_GRAFICO_H
 
 
-#include <SDL_surface.h>
-#include <SDL_system.h>
-#include <SDL_image.h>
-
-class Mapeable;
-
 class Grafico {
 
 public:
-    virtual void actualizar(Mapeable &mapeable) = 0;
-    virtual ~Grafico() = default;
+    virtual void actualizar() = 0;
 };
 
 

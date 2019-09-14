@@ -11,8 +11,8 @@ GraficoDeEscenario::GraficoDeEscenario(SDL_Renderer *renderer, SDL_Texture *text
     posicionY = ejeY;
 }
 
-void GraficoDeEscenario::actualizar(Mapeable &mapeable) {
-    auto &escenario = dynamic_cast<Escenario &>(mapeable);
+void GraficoDeEscenario::actualizar() {
+//    auto &escenario = dynamic_cast<Escenario &>(mapeable);
 
 //    Posicion &posicion = escenario.posicion(); // Se obtiene la posicion del jugador y en base a eso se construye el hitbox del jugador.
 //    SDL_Rect posicionJugador = {posicion.getX(), posicion.getY(), 200, 400};

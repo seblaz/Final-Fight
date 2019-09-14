@@ -6,31 +6,27 @@
 #define FINAL_FIGHT_MAPEABLE_H
 
 
-#include "../Posicion.h"
 #include "../../graficos/Grafico.h"
 
 using namespace std;
 
+class Comportamiento;
 class Fisica;
-class Mapa;
 
 class Mapeable {
 
 private:
-    Posicion _posicion;
+    Fisica *fisica;
     Grafico *grafico;
-    Fisica *physics;
-
-protected:
-    Mapa *mapa;
+    Comportamiento *comportamiento;
 
 public:
-    Mapeable(int x, int y, int z, Mapa *mapa, Fisica *fisica, Grafico *grafico);
-    virtual void actualizar(SDL_Renderer *renderer);
-    Posicion &posicion();
+    Mapeable(Fisica *fisica, Grafico *grafico, Comportamiento *comportamiento);
+    virtual void actualizar();
 };
 
 #include "../../fisica/Fisica.h"
-#include "../Mapa.h"
+#include "../../comportamiento/Comportamiento.h"
+
 
 #endif //FINAL_FIGHT_MAPEABLE_H

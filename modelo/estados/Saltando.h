@@ -18,9 +18,9 @@ private:
 public:
     Saltando();
     ~Saltando();
-    virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void actualizar(Personaje& personaje){};
-    virtual void enter(){};
+    EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
+    void actualizar() override {};
+    void enter() override {};
 
 };
 

@@ -5,8 +5,8 @@
 #include "Escenario.h"
 
 Escenario::Escenario(int x, int y, int z, Mapa *mapa, Fisica *fisica, Grafico *grafico) :
-        Mapeable(x, y, z, mapa, fisica, grafico) {}
+        Mapeable(fisica, grafico, nullptr) {}
 
-void Escenario::actualizar(SDL_Renderer *renderer) {
-    Mapeable::actualizar(renderer);
+void Escenario::actualizar() {
+    Mapeable::actualizar();
 }
