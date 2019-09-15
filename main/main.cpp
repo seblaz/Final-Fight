@@ -75,8 +75,7 @@ int main(int argc, char *args[]) {
 //
 //
     // Agregar personaje
-    FabricaDeAnimacionesDeCody fabrica;
-    Animacion animacion = fabrica.caminado();
+    Animacion animacion = FabricaDeAnimacionesDeCody::caminado();
     FisicaDePersonaje fisicaDePersonaje;
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
@@ -87,7 +86,7 @@ int main(int argc, char *args[]) {
 
     // Agregar enemigo
     FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
-    Animacion animacionInicialPoison = fabricaDeAnimacionesDePoison.caminando();
+    Animacion animacionInicialPoison = FabricaDeAnimacionesDePoison::caminando();
     FisicaDePersonaje fisicaDePersonajePoison(500,40,0);
 
     Sprite spritePoison(renderer, "assets/personajes/poison.png");
