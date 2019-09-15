@@ -15,6 +15,8 @@ using namespace std;
 
 ComportamientoDeEnemigo::ComportamientoDeEnemigo() {
     estado_ = new Caminando();
+    contadorDePasos = 0;
+    movimientoAnterior = 0;
 }
 
 ComportamientoDeEnemigo::~ComportamientoDeEnemigo() {
@@ -23,8 +25,7 @@ ComportamientoDeEnemigo::~ComportamientoDeEnemigo() {
 
 void ComportamientoDeEnemigo::actualizar(Mapeable &mapeable) {
 
-    Personaje& personaje = (Personaje&)(mapeable);
-    const Uint8 *currentKeyStates = SDL_GetKeyboardState(nullptr);
+    Personaje &personaje = (Personaje &) (mapeable);
 
     Velocidad &velocidad = personaje.velocidad();
 
@@ -35,19 +36,25 @@ void ComportamientoDeEnemigo::actualizar(Mapeable &mapeable) {
 
     float velocidadRelativa = Locator::configuracion()->velocidadDeJuego;
 
+    //ALGORITMO PATRULLA LOL!
+    if (movimientoAnterior == 0) {
+        if ((rand() % 100) > 50) {
+            velocidad.x = RAPIDEZ * velocidadRelativa;
+            movimientoAnterior = 1;
+        } else {
+            velocidad.x = -RAPIDEZ * velocidadRelativa;
+            movimientoAnterior = -1;
+        }
+    }
 
-    int v1 = rand() % 100;
-    if (v1 > 50) {
-        velocidad.x = -RAPIDEZ*velocidadRelativa;
+    if (movimientoAnterior == -1 && contadorDePasos != 100) {
+        velocidad.x = -RAPIDEZ * velocidadRelativa;
+        contadorDePasos++;
+    } else if (movimientoAnterior == 1 && contadorDePasos != 100) {
+        velocidad.x = RAPIDEZ * velocidadRelativa;
+        contadorDePasos++;
     } else {
-        velocidad.x = RAPIDEZ*velocidadRelativa;
+        movimientoAnterior = -movimientoAnterior;
+        contadorDePasos = 0;
     }
-
-    EstadoDePersonaje* estado = estado_-> manejarEntrada(personaje, currentKeyStates);
-
-    if (nullptr != estado){
-        delete estado_;
-        this -> estado_ = estado;
-    }
-
 }

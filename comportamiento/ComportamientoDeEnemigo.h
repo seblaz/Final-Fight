@@ -13,6 +13,8 @@ class ComportamientoDeEnemigo : public Comportamiento {
 
 private:
     EstadoDePersonaje* estado_;
+    int movimientoAnterior;
+    int contadorDePasos;
 
 public:
     ComportamientoDeEnemigo();
@@ -21,4 +23,4 @@ public:
 };
 
 
-#endif //FINAL_FIGHT_COMPORTAMIENTODEJUGADOR_H
+#endif //FINAL_FIGHT_COMPORTAMIENTODEENEMIGO_H
