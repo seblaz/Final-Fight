@@ -18,7 +18,7 @@ int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
 
-    auto *config = new Configuracion(1280, 960, 1.5, 4.5, M_PI * 0.18);
+    auto *config = new Configuracion(1280, 960, 1, 1, M_PI * 0.18);
     Locator::provide(config);
 
     Mapa mapa(300, 1000, 500);
@@ -46,7 +46,7 @@ int main(int argc, char *args[]) {
     // Caja
     vector<SDL_Rect> posiciones = {{8, 5, 49, 80}};
     vector<float> duraciones = {1};
-    Animacion animacionDeCaja(posiciones, duraciones, 1, 1);
+    Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
 
     FisicaDeMapeable fisicaDeObjeto(500, 400, 0);
     SDL_Texture * spcaja = spriteCaja.getTexture();
