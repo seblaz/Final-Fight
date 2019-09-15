@@ -17,16 +17,18 @@ private:
     vector<SDL_Rect> posiciones;
     vector<float> duracionesPorSprite;
     int duracionTotal;
+    float escala_;
 
     int framesFaltantes;
     int spriteActual;
-    const float sumaDeDuracionesRelativas;
+    float sumaDeDuracionesRelativas;
 
     int calcularFramesFaltantes();
 
 public:
-    Animacion(vector<SDL_Rect> posiciones, vector<float> duracionesPorSprite, int duracionTotal);
+    Animacion(vector<SDL_Rect> posiciones, vector<float> duracionesPorSprite, int duracionTotal, float escala = 1);
     SDL_Rect actualizarYDevolverPosicion();
+    float escala();
 };
 
 

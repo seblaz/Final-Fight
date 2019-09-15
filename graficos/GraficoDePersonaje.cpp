@@ -3,47 +3,30 @@
 //
 
 #include "GraficoDePersonaje.h"
-#include "../modelo/mapeables/Personaje.h"
-#include "../servicios/Configuracion.h"
-#include "../servicios/Locator.h"
-
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(SDL_Renderer *renderer, SDL_Texture *sprite, Animacion animacion) :
-        renderer(renderer),
+GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion animacion) :
         sprite(sprite),
         haciaAdelante(true),
-        animacion(std::move(animacion)){}
+        animacion(std::move(animacion)),
+        fisica(fisica) {}
 
-void GraficoDePersonaje::actualizar(Mapeable &mapeable) {
-    auto &personaje = dynamic_cast<Personaje &>(mapeable);
 
-    Configuracion *config = Locator::configuracion();
-    Posicion &posicion = personaje.posicion();
-    SDL_Rect dimensiones = animacion.actualizarYDevolverPosicion();
+void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
+    SDL_Rect posicionEnSprite = animacion.actualizarYDevolverPosicion();
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion.escala());
 
-    const int screenX = posicion.getX()
-                        + posicion.getY() * cos(config->inclinacionDeEscenario)
-                        - dimensiones.w / 2 * config->escalaDeGraficos;
-
-    const int screenY = config->alturaDePantalla
-                        + posicion.getZ()
-                        - posicion.getY() * cos(M_PI / 2 - config->inclinacionDeEscenario)
-                        - dimensiones.h * config->escalaDeGraficos;
-
-    SDL_Rect posicionJugador = {screenX,
-                                screenY,
-                                int(dimensiones.w * config->escalaDeGraficos),
-                                int(dimensiones.h * config->escalaDeGraficos)};
-
-    if(personaje.velocidad().x != 0){
-       haciaAdelante = personaje.velocidad().x > 0;
+    Velocidad velocidad = fisica->velocidad();
+    if(velocidad.x != 0){
+       haciaAdelante = velocidad.x > 0;
     }
-
-    //Se renderiza en la ventana la imagen, la posicion del sprite, y la posicion del jugador
     if(haciaAdelante){
-        SDL_RenderCopy(renderer, sprite, &dimensiones, &posicionJugador);
+        SDL_RenderCopy(renderer, sprite, &posicionEnSprite, &posicionEnPantalla);
     } else {
-        SDL_RenderCopyEx(renderer, sprite, &dimensiones, &posicionJugador, 180, nullptr, SDL_FLIP_VERTICAL);
+        SDL_RenderCopyEx(renderer, sprite, &posicionEnSprite, &posicionEnPantalla, 180, nullptr, SDL_FLIP_VERTICAL);
     }
+}
+
+void GraficoDePersonaje::cambiarAnimacion(Animacion nuevaAnimacion) {
+    this->animacion = std::move(nuevaAnimacion);
 }

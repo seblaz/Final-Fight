@@ -5,17 +5,17 @@
 #ifndef FINAL_FIGHT_ESTADODEPERSONAJE_H
 #define FINAL_FIGHT_ESTADODEPERSONAJE_H
 
-#include "../mapeables/Personaje.h"
-#include "../../servicios/Logger.h"
-#include <SDL_system.h>
+#include <SDL_quit.h>
+#include "../../fisica/FisicaDePersonaje.h"
 
 class EstadoDePersonaje{
 
 public:
-    virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada){};
-    virtual void actualizar(Personaje& personaje){};
-    virtual void enter(){};
-    virtual ~EstadoDePersonaje(){};
+    virtual ~EstadoDePersonaje() = default;
+    virtual EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *currentKeyStates) = 0;
+    virtual void actualizar() = 0;
+    virtual void enter() = 0;
+
 };
 
 #endif //FINAL_FIGHT_ESTADODEPERSONAJE_H
