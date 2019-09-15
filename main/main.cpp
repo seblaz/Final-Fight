@@ -1,17 +1,15 @@
 #include "Juego.h"
-#include "../modelo/mapeables/Personaje.h"
 #include "../comportamiento/ComportamientoDeJugador.h"
-#include "../fisica/FisicaDePersonaje.h"
 #include "../servicios/Logger.h"
 #include "../servicios/Locator.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "../fisica/FisicaDeEscenario.h"
-#include "../modelo/mapeables/Escenario.h"
 #include "../graficos/GraficoDePersonaje.h"
-#include "../graficos/FabricaDeGraficosDeCody.h"
-#include "../graficos/GraficoDeObjeto.h"
-#include "../modelo/mapeables/Objeto.h"
-#include "../fisica/FisicaDeObjeto.h"
+#include "../fisica/FisicaDeMapeable.h"
+#include "../comportamiento/ComportamientoNulo.h"
+#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/sprite/Sprite.h"
+#include "../graficos/GraficoDeMapeable.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
@@ -30,42 +28,58 @@ int main(int argc, char *args[]) {
     Sprite spriteNeumatico(renderer, "assets/escenarios/neumaticos.png");
 
     // Agregar escenario (primera capa)
-    GraficoDeEscenario graficoDeEscenarioFondo(renderer, spriteEscenario.getTexture(), 200);
+    GraficoDeEscenario graficoDeEscenarioFondo(spriteEscenario.getTexture(), 200);
     FisicaDeEscenario fisicaDeEscenarioFondo;
-    Escenario escenarioFondo(0, 200, 0, &mapa, &fisicaDeEscenarioFondo, &graficoDeEscenarioFondo);
-   mapa.agregar(&escenarioFondo);
+    ComportamientoNulo comportamientoDeEscenario;
+    Mapeable escenarioFondo(&fisicaDeEscenarioFondo, &graficoDeEscenarioFondo, &comportamientoDeEscenario);
+    mapa.agregar(&escenarioFondo);
 
 
     // Agregar escenario (segunda capa)
-    GraficoDeEscenario graficoDeEscenarioMedio(renderer, spriteEscenario.getTexture(), 0);
+    GraficoDeEscenario graficoDeEscenarioMedio(spriteEscenario.getTexture(), 0);
     FisicaDeEscenario fisicaDeEscenario;
-    Escenario escenarioMedio(0, 0, 0, &mapa, &fisicaDeEscenario, &graficoDeEscenarioMedio);
+    Mapeable escenarioMedio(&fisicaDeEscenario, &graficoDeEscenarioMedio, &comportamientoDeEscenario);
     mapa.agregar(&escenarioMedio);
 
-    FisicaDeObjeto fisicaDeObjetoDestruible;
-    // Objetos (objeto caja)
-     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
+    // Caja
+    vector<SDL_Rect> posiciones = {{8, 5, 49, 80}};
+    vector<float> duraciones = {1};
+    Animacion animacionDeCaja(posiciones, duraciones, 1, 1);
 
-     Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
-     mapa.agregar(&objetoCaja);
+    FisicaDeMapeable fisicaDeObjeto(500, 400, 0);
+    SDL_Texture * spcaja = spriteCaja.getTexture();
+    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, spcaja, animacionDeCaja);
 
-
-    // Objetos (objeto neumatico)
-    GraficoDeObjeto graficoDeObjetoNeumatico(renderer, spriteNeumatico.getTexture(), 600,400);
-    Objeto objetoNeumatico(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico);
-    mapa.agregar(&objetoNeumatico);
-
-    GraficoDeObjeto graficoDeObjetoNeumatico2(renderer, spriteNeumatico.getTexture(), 500,400);
-    Objeto objetoNeumatico2(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico2);
-    mapa.agregar(&objetoNeumatico2);
+    Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
+    mapa.agregar(&caja);
 
 
+//    FisicaDeMapeable fisicaDeObjetoDestruible;
+//    // Objetos (objeto caja)
+//     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
+//
+//     Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
+//     mapa.agregar(&objetoCaja);
+//
+//
+//    // Objetos (objeto neumatico)
+//    GraficoDeObjeto graficoDeObjetoNeumatico(renderer, spriteNeumatico.getTexture(), 600,400);
+//    Objeto objetoNeumatico(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico);
+//    mapa.agregar(&objetoNeumatico);
+//
+//    GraficoDeObjeto graficoDeObjetoNeumatico2(renderer, spriteNeumatico.getTexture(), 500,400);
+//    Objeto objetoNeumatico2(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico2);
+//    mapa.agregar(&objetoNeumatico2);
+//
+//
     // Agregar personaje
-    FabricaDeGraficosDeCody fabrica(renderer);
-    GraficoDePersonaje graficoDePersonaje = fabrica.caminado();
-    ComportamientoDeJugador comportamientoDeJugador;
+    FabricaDeAnimacionesDeCody fabrica;
+    Animacion animacion = fabrica.caminado();
     FisicaDePersonaje fisicaDePersonaje;
-    Personaje personaje(50, 0, 0, "sebas", &mapa, &comportamientoDeJugador, &fisicaDePersonaje, &graficoDePersonaje);
+    Sprite sprite(renderer, "assets/personajes/cody.png");
+    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, sprite.getTexture(), animacion);
+    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
+    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
     mapa.agregar(&personaje);
 
 

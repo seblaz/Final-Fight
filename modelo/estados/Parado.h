@@ -14,10 +14,10 @@ private:
 
 public:
     Parado();
-    ~Parado();
-    virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void actualizar(Personaje& personaje){};
-    virtual void enter(){};
+    ~Parado() override;
+    EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
+    void actualizar() override {};
+    void enter() override {};
 };
 
 #endif //FINAL_FIGHT_PARADO_H

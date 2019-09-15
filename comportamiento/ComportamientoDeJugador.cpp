@@ -13,42 +13,42 @@ using namespace std;
 
 #define RAPIDEZ 3
 
-ComportamientoDeJugador::ComportamientoDeJugador() {
-    estado_ = new Parado();
-}
+ComportamientoDeJugador::ComportamientoDeJugador(FisicaDePersonaje *fisica) :
+        fisica(fisica),
+        estado_(new Parado()){}
 
 ComportamientoDeJugador::~ComportamientoDeJugador() {
     delete estado_;
 }
 
-void ComportamientoDeJugador::actualizar(Mapeable &mapeable) {
-    Personaje& personaje = (Personaje&)(mapeable);
+void ComportamientoDeJugador::actualizar() {
     const Uint8 *currentKeyStates = SDL_GetKeyboardState(nullptr);
-    Velocidad &velocidad = personaje.velocidad();
 
     // TODO: implementar el patron Command para eliminar los ifs.
-    velocidad.x = 0;
-    velocidad.y = 0;
-    velocidad.z = 0;
+    float velocidad_x = 0;
+    float velocidad_y = 0;
 
     float velocidadRelativa = Locator::configuracion()->velocidadDeJuego;
 
-    if (currentKeyStates[SDL_SCANCODE_RIGHT]){
-        velocidad.x = RAPIDEZ*velocidadRelativa;
+    if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
+        velocidad_x = RAPIDEZ * velocidadRelativa;
     }
-    if (currentKeyStates[SDL_SCANCODE_LEFT]){
-        velocidad.x = -RAPIDEZ*velocidadRelativa;
+    if (currentKeyStates[SDL_SCANCODE_LEFT]) {
+        velocidad_x = -RAPIDEZ * velocidadRelativa;
     }
-    if (currentKeyStates[SDL_SCANCODE_UP]){
-        velocidad.y = RAPIDEZ*velocidadRelativa;
+    if (currentKeyStates[SDL_SCANCODE_UP]) {
+        velocidad_y = RAPIDEZ * velocidadRelativa;
     }
-    if (currentKeyStates[SDL_SCANCODE_DOWN]){
-        velocidad.y = -RAPIDEZ*velocidadRelativa;
+    if (currentKeyStates[SDL_SCANCODE_DOWN]) {
+        velocidad_y = -RAPIDEZ * velocidadRelativa;
     }
-    EstadoDePersonaje* estado = estado_-> manejarEntrada(personaje, currentKeyStates);
+    fisica->cambiarVelocidadX(velocidad_x);
+    fisica->cambiarVelocidadY(velocidad_y);
 
-    if (nullptr != estado){
+    EstadoDePersonaje *estado = estado_->manejarEntrada(fisica, currentKeyStates);
+
+    if (nullptr != estado) {
         delete estado_;
-        this -> estado_ = estado;
+        this->estado_ = estado;
     }
 }

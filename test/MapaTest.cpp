@@ -11,15 +11,15 @@ TEST(Mapa, CrearUnMapaVacioNoPierdeMemoria) {
 
 TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
     Mapa mapa(2, 3, 4);
-    Mapeable mapeable = Mapeable(6, 9, 5, nullptr, nullptr, nullptr);
+    Mapeable mapeable = Mapeable(nullptr, nullptr, nullptr);
 
     mapa.agregar(&mapeable);
 }
 
 TEST(Mapa, DevolverMapeablesDevuelveLosMismosObjetos) {
     Mapa mapa(100, 1000, 300);
-    Mapeable mapeable1 = Mapeable(2, 3, 4, nullptr, nullptr, nullptr);
-    Mapeable mapeable2 = Mapeable(6, 9, 5, nullptr, nullptr, nullptr);
+    Mapeable mapeable1 = Mapeable(nullptr, nullptr, nullptr);
+    Mapeable mapeable2 = Mapeable(nullptr, nullptr, nullptr);
 
     mapa.agregar(&mapeable1);
     mapa.agregar(&mapeable2);
