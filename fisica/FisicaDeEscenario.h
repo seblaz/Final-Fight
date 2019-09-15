@@ -11,7 +11,7 @@
 class FisicaDeEscenario : public Fisica {
 
 public:
-    void actualizar(Mapa& mapa, Mapeable& mapeable) override;
+    void actualizar() override;
 
 };
 

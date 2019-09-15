@@ -8,16 +8,18 @@
 
 #include "Comportamiento.h"
 #include "../modelo/estados/EstadoDePersonaje.h"
+#include "../fisica/FisicaDePersonaje.h"
 
 class ComportamientoDeJugador : public Comportamiento {
 
 private:
     EstadoDePersonaje* estado_;
+    FisicaDePersonaje *fisica;
 
 public:
-    ComportamientoDeJugador();
-    void actualizar(Mapeable &mapeable) override;
-    ~ComportamientoDeJugador() override;
+    explicit ComportamientoDeJugador(FisicaDePersonaje *fisica);
+    void actualizar() override;
+    ~ComportamientoDeJugador();
 };
 
 

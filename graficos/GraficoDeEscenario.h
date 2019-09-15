@@ -15,15 +15,14 @@ using namespace std;
 class GraficoDeEscenario : public Grafico {
 
 private:
-    SDL_Renderer *renderer;
-    SDL_Texture *texture;
+    SDL_Texture *sprite;
     int posicionY;
 
 public:
-    explicit GraficoDeEscenario(SDL_Renderer* renderer, SDL_Texture *texturaSprite, int posicionY);
-    ~GraficoDeEscenario() override = default;
+    explicit GraficoDeEscenario(SDL_Texture *sprite, int posicionY);
+    ~GraficoDeEscenario() = default;
 
-    void actualizar(Mapeable &mapeable) override;
+    void actualizar(SDL_Renderer *renderer) override;
 
 };
 

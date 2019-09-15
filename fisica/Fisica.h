@@ -11,8 +11,7 @@ class Mapeable;
 class Fisica {
 
 public:
-    virtual ~Fisica() = default;
-    virtual void actualizar(Mapa& mapa, Mapeable& mapeable) = 0;
+    virtual void actualizar() = 0;
 };
 
 #include "../modelo/mapeables/Mapeable.h"

@@ -11,9 +11,10 @@ class Agachado : public EstadoDePersonaje{
 
 public:
     Agachado();
-    ~Agachado();
-    EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada) override;
-    virtual void enter(){};
+    ~Agachado() override;
+    EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *currentKeyStates) override;
+    void enter() override {};
+    void actualizar() override {};
 
 };
 

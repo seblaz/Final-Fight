@@ -66,14 +66,14 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} modelo/estados/Caminando.h modelo/estados/Caminando.cpp)
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} )
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} )
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${XercesC_LIBRARIES})
 
 #[[

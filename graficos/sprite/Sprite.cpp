@@ -6,7 +6,7 @@
 Sprite::Sprite(SDL_Renderer* renderer, const string& rutaSprite) :
         renderer(renderer) {
 
-    Locator::logger()->log(DEBUG, rutaSprite);
+    Locator::logger()->log(DEBUG, "Se va a instanciar el sprite: " + rutaSprite);
 
     SDL_Surface *sprite = IMG_Load(rutaSprite.c_str());
     SDL_SetColorKey(sprite, SDL_TRUE, SDL_MapRGB(sprite->format, 0X58, 0xB8, 0xF8));

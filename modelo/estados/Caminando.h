@@ -11,9 +11,10 @@ class Caminando : public EstadoDePersonaje{
 
 public:
     Caminando();
-    ~Caminando();
-    virtual EstadoDePersonaje *manejarEntrada(Personaje& personaje, const Uint8* entrada);
-    virtual void enter(){};
+    ~Caminando() override;
+    EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
+    void enter() override {};
+    void actualizar() override {};
 };
 
 #endif //FINAL_FIGHT_CAMINANDO_H

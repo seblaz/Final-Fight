@@ -6,18 +6,18 @@
 #define FINAL_FIGHT_GRAFICO_H
 
 
-#include <SDL_surface.h>
 #include <SDL_system.h>
-#include <SDL_image.h>
-
-class Mapeable;
+#include "../modelo/Posicion.h"
+#include "../servicios/Configuracion.h"
+#include "../servicios/Locator.h"
 
 class Grafico {
 
 public:
-    virtual void actualizar(Mapeable &mapeable) = 0;
-    virtual ~Grafico() = default;
+    virtual void actualizar(SDL_Renderer *renderer) = 0;
 };
+
+SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);
 
 
 #endif //FINAL_FIGHT_GRAFICO_H
