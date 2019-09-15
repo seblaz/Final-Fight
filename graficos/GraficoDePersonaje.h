@@ -11,6 +11,7 @@
 #include "Grafico.h"
 #include "Animacion.h"
 #include "../fisica/FisicaDePersonaje.h"
+#include "GraficoDeMapeable.h"
 
 using namespace std;
 

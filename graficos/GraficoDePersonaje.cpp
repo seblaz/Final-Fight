@@ -3,9 +3,6 @@
 //
 
 #include "GraficoDePersonaje.h"
-#include "../servicios/Configuracion.h"
-#include "../servicios/Locator.h"
-
 #include <utility>
 
 GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion animacion) :
@@ -14,36 +11,19 @@ GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *s
         animacion(std::move(animacion)),
         fisica(fisica) {}
 
+
 void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
-    Configuracion *config = Locator::configuracion();
-    Posicion posicion = fisica->posicion();
+    SDL_Rect posicionEnSprite = animacion.actualizarYDevolverPosicion();
+    SDL_Rect posicionEnPantalla = calcularPosicionEnMapa(fisica->posicion(), posicionEnSprite, animacion.escala());
+
     Velocidad velocidad = fisica->velocidad();
-
-    SDL_Rect dimensiones = animacion.actualizarYDevolverPosicion();
-
-    const int screenX = posicion.getX()
-                        + posicion.getY() * cos(config->inclinacionDeEscenario)
-                        - dimensiones.w / 2 * config->escalaDeGraficos;
-
-    const int screenY = config->alturaDePantalla
-                        + posicion.getZ()
-                        - posicion.getY() * cos(M_PI / 2 - config->inclinacionDeEscenario)
-                        - dimensiones.h * config->escalaDeGraficos;
-
-    SDL_Rect posicionJugador = {screenX,
-                                screenY,
-                                int(dimensiones.w * config->escalaDeGraficos),
-                                int(dimensiones.h * config->escalaDeGraficos)};
-
     if(velocidad.x != 0){
        haciaAdelante = velocidad.x > 0;
     }
-
-    //Se renderiza en la ventana la imagen, la posicion del sprite, y la posicion del jugador
     if(haciaAdelante){
-        SDL_RenderCopy(renderer, sprite, &dimensiones, &posicionJugador);
+        SDL_RenderCopy(renderer, sprite, &posicionEnSprite, &posicionEnPantalla);
     } else {
-        SDL_RenderCopyEx(renderer, sprite, &dimensiones, &posicionJugador, 180, nullptr, SDL_FLIP_VERTICAL);
+        SDL_RenderCopyEx(renderer, sprite, &posicionEnSprite, &posicionEnPantalla, 180, nullptr, SDL_FLIP_VERTICAL);
     }
 }
 

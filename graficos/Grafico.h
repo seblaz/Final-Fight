@@ -7,12 +7,17 @@
 
 
 #include <SDL_system.h>
+#include "../modelo/Posicion.h"
+#include "../servicios/Configuracion.h"
+#include "../servicios/Locator.h"
 
 class Grafico {
 
 public:
     virtual void actualizar(SDL_Renderer *renderer) = 0;
 };
+
+SDL_Rect calcularPosicionEnMapa(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);
 
 
 #endif //FINAL_FIGHT_GRAFICO_H

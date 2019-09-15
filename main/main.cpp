@@ -5,10 +5,11 @@
 #include "../graficos/GraficoDeEscenario.h"
 #include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDePersonaje.h"
-#include "../fisica/FisicaDeObjeto.h"
+#include "../fisica/FisicaDeMapeable.h"
 #include "../comportamiento/ComportamientoNulo.h"
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/sprite/Sprite.h"
+#include "../graficos/GraficoDeMapeable.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
@@ -40,12 +41,25 @@ int main(int argc, char *args[]) {
     Mapeable escenarioMedio(&fisicaDeEscenario, &graficoDeEscenarioMedio, &comportamientoDeEscenario);
     mapa.agregar(&escenarioMedio);
 
-    FisicaDeObjeto fisicaDeObjetoDestruible;
-    // Objetos (objeto caja)
-     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
+    // Caja
+    vector<SDL_Rect> posiciones = {{8, 5, 49, 80}};
+    vector<float> duraciones = {1};
+    Animacion animacionDeCaja(posiciones, duraciones, 1, 1);
 
-     Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
-     mapa.agregar(&objetoCaja);
+    FisicaDeMapeable fisicaDeObjeto(500, 400, 0);
+    SDL_Texture * spcaja = spriteCaja.getTexture();
+    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, spcaja, animacionDeCaja);
+
+    Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
+    mapa.agregar(&caja);
+
+
+//    FisicaDeMapeable fisicaDeObjetoDestruible;
+//    // Objetos (objeto caja)
+//     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
+//
+//     Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
+//     mapa.agregar(&objetoCaja);
 //
 //
 //    // Objetos (objeto neumatico)
