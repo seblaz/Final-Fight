@@ -2,7 +2,7 @@
 #include "../modelo/Posicion.h"
 #include "../servicios/Locator.h"
 
-SDL_Rect calcularPosicionEnMapa(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion){
+SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion){
     Configuracion *config = Locator::configuracion();
 
     float escala = config->escalaDeGraficos * esacalaDeAnimacion;

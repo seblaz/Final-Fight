@@ -16,6 +16,6 @@ GraficoDeMapeable::GraficoDeMapeable(FisicaDeMapeable *fisica, SDL_Texture *spri
 
 void GraficoDeMapeable::actualizar(SDL_Renderer *renderer) {
     SDL_Rect posicionEnSprite = animacion.actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnMapa(fisica->posicion(), posicionEnSprite, animacion.escala());
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion.escala());
     SDL_RenderCopy(renderer, sprite, &posicionEnSprite, &posicionEnPantalla);
 }

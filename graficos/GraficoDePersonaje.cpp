@@ -14,7 +14,7 @@ GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *s
 
 void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
     SDL_Rect posicionEnSprite = animacion.actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnMapa(fisica->posicion(), posicionEnSprite, animacion.escala());
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion.escala());
 
     Velocidad velocidad = fisica->velocidad();
     if(velocidad.x != 0){

@@ -17,7 +17,7 @@ public:
     virtual void actualizar(SDL_Renderer *renderer) = 0;
 };
 
-SDL_Rect calcularPosicionEnMapa(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);
+SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);
 
 
 #endif //FINAL_FIGHT_GRAFICO_H
