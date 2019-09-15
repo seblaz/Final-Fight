@@ -15,8 +15,7 @@ using namespace xercesc_3_2;
 class XmlReader {
 
 public:
-    XmlReader();
-    explicit XmlReader(string path);
+    explicit XmlReader(const string &path = "Configuracion.xml");
     string getValue(const string& xPath);
 
 private:

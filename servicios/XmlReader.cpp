@@ -18,11 +18,7 @@
 using namespace std;
 using namespace xercesc;
 
-XmlReader::XmlReader() {
-    XmlReader(this->defaultPath);
-}
-
-XmlReader::XmlReader(string path) {
+XmlReader::XmlReader(const string &path) {
     try {
         XMLPlatformUtils::Initialize();
     }
