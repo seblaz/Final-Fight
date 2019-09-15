@@ -29,6 +29,8 @@ public:
     Animacion(vector<SDL_Rect> posiciones, vector<float> duracionesPorSprite, int duracionTotal, float escala = 1);
     SDL_Rect actualizarYDevolverPosicion();
     float escala();
+
+    void setPosicionesInicial( vector<SDL_Rect> posicionesInicial) { posiciones = posicionesInicial; }
 };
 
 

@@ -13,14 +13,14 @@ class ComportamientoDeEnemigo : public Comportamiento {
 
 private:
     EstadoDePersonaje* estado_;
-    int movimientoAnterior;
-    int contadorDePasos;
+    FisicaDePersonaje *fisica;
+    int contadorDePasos = 0;
+    int movimientoAnterior = 0;
 
 public:
-    ComportamientoDeEnemigo();
-    void actualizar(Mapeable &mapeable) override;
-    ~ComportamientoDeEnemigo() override;
+    explicit ComportamientoDeEnemigo(FisicaDePersonaje *fisica);
+    void actualizar() override;
+    ~ComportamientoDeEnemigo();
 };
-
 
 #endif //FINAL_FIGHT_COMPORTAMIENTODEENEMIGO_H

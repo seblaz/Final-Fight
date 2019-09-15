@@ -8,8 +8,10 @@
 #include "../fisica/FisicaDeMapeable.h"
 #include "../comportamiento/ComportamientoNulo.h"
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/FabricaDeAnimacionesDePoison.h"
 #include "../graficos/sprite/Sprite.h"
 #include "../graficos/GraficoDeMapeable.h"
+#include "../comportamiento/ComportamientoDeEnemigo.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
@@ -76,11 +78,23 @@ int main(int argc, char *args[]) {
     FabricaDeAnimacionesDeCody fabrica;
     Animacion animacion = fabrica.caminado();
     FisicaDePersonaje fisicaDePersonaje;
+
     Sprite sprite(renderer, "assets/personajes/cody.png");
     GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, sprite.getTexture(), animacion);
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
     Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
     mapa.agregar(&personaje);
+
+    // Agregar enemigo
+    FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
+    Animacion animacionInicialPoison = fabricaDeAnimacionesDePoison.caminando();
+    FisicaDePersonaje fisicaDePersonajePoison(500,40,0);
+
+    Sprite spritePoison(renderer, "assets/personajes/poison.png");
+    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison, spritePoison.getTexture(), animacionInicialPoison);
+    ComportamientoDeEnemigo comportamientoDeEnemigo(&fisicaDePersonajePoison);
+    Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
+    mapa.agregar(&enemigo);
 
 
     juego.loop();
