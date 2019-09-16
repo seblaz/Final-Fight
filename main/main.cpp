@@ -18,7 +18,7 @@ int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
 
-    auto *config = new Configuracion(1280, 960, 1, 1, M_PI * 0.18);
+    auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18);
     Locator::provide(config);
 
     Mapa mapa(300, 1000, 500);
@@ -46,8 +46,8 @@ int main(int argc, char *args[]) {
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
 
     vector<SDL_Rect> posicionesSprite;
-    posicionesSprite.push_back({0, 200, 250, 195});
-    posicionesSprite.push_back({0, 0, 250, 195});
+    posicionesSprite.push_back({0, 200, 280, 195});
+    posicionesSprite.push_back({0, 0, 280, 195});
 
     vector<float> distanciasAlFondo = {0.5, 1};
 
