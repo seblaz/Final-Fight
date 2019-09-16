@@ -27,12 +27,16 @@ EstadoDePersonaje *Caminando::manejarEntrada(FisicaDePersonaje *fisica, const Ui
 }
 
 Caminando::Caminando() {
-    Logger logger(DEBUG);
-    logger.log(DEBUG, "Se instancio un objeto de clase Caminando");
+    Logger* logger = Locator::logger();
+    logger -> log(DEBUG, "Se instancio un objeto de clase Caminando");
 }
 
 Caminando::~Caminando() {
-    Logger logger(DEBUG);
-    logger.log(DEBUG, "Se elimino un objeto de clase Caminando");
+    Logger* logger = Locator::logger();
+    logger -> log(DEBUG, "Se instancio un objeto de clase Caminando");
+}
+
+Animacion * Caminando::devolverAnimacion() {
+        return FabricaDeAnimacionesDeCody::caminado();
 }
 

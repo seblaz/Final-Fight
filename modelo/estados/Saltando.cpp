@@ -29,11 +29,15 @@ EstadoDePersonaje* Saltando::manejarEntrada(FisicaDePersonaje *fisica, const Uin
 }
 
 Saltando::Saltando() {
-    Logger logger(DEBUG);
-    logger.log(DEBUG, "Se instancio un objeto de clase Saltando");
+    Logger* logger = Locator::logger();
+    logger -> log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
 
 Saltando::~Saltando() {
-    Logger logger(DEBUG);
-    logger.log(DEBUG, "Se elimino un objeto de clase Saltando");
+    Logger* logger = Locator::logger();
+    logger->log(DEBUG, "Se elimino un objeto de clase Saltando");
+}
+
+Animacion * Saltando::devolverAnimacion() {
+        return FabricaDeAnimacionesDeCody::saltando();
 }

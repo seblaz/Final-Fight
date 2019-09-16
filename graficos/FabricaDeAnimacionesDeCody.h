@@ -11,9 +11,9 @@
 class FabricaDeAnimacionesDeCody {
 
 public:
-    static Animacion caminado();
-    static Animacion saltando();
-    static Animacion parado();
+    static Animacion* caminado();
+    static Animacion* saltando();
+    static Animacion* parado();
 
 };
 

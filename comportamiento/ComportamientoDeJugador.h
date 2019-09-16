@@ -15,10 +15,12 @@ class ComportamientoDeJugador : public Comportamiento {
 private:
     EstadoDePersonaje* estado_;
     FisicaDePersonaje *fisica;
+    Animacion *animacionActual;
 
 public:
     explicit ComportamientoDeJugador(FisicaDePersonaje *fisica);
     void actualizar() override;
+    Animacion* devolverAnimacion();
     ~ComportamientoDeJugador();
 };
 

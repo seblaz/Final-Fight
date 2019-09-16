@@ -12,7 +12,7 @@
 class FabricaDeAnimacionesDePoison {
 
 public:
-    static Animacion caminando();
+    static Animacion* caminando();
 };
 
 

@@ -30,14 +30,14 @@ int main(int argc, char *args[]) {
     Sprite spriteNeumatico(renderer, "assets/escenarios/neumaticos.png");
 
     // Agregar personaje
-    Animacion animacion = FabricaDeAnimacionesDeCody::caminado();
+    Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
     FisicaDePersonaje fisicaDePersonaje(500);
 
     FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje);
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
-    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion);
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
+    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion, &comportamientoDeJugador);
     Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
 
     // Agregar escenario (primera capa)
@@ -92,13 +92,13 @@ int main(int argc, char *args[]) {
 
     // Agregar enemigo
     FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
-    Animacion animacionInicialPoison = FabricaDeAnimacionesDePoison::caminando();
+    Animacion *animacionInicialPoison = FabricaDeAnimacionesDePoison::caminando();
     FisicaDePersonaje fisicaDePersonajePoison(500,40,0);
 
     Sprite spritePoison(renderer, "assets/personajes/poison.png");
-    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison,
-                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison);
     ComportamientoDeEnemigo comportamientoDeEnemigo(&fisicaDePersonajePoison);
+    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison,
+                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison, &comportamientoDeEnemigo);
     Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
     mapa.agregar(&enemigo);
 
