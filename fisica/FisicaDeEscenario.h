@@ -13,7 +13,8 @@ class FisicaDeEscenario : public Fisica {
 
 private:
     int posicion_ = 0;
-    const int scroll = 400;
+    const int scrollDerecho = 400;
+    const int scrollIzquierdo = 150;
     FisicaDePersonaje &fisicaDePersonaje;
 
 public:
