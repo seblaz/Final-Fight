@@ -19,7 +19,7 @@ public:
     EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
     void actualizar() override {};
     void enter() override {};
-    Animacion* devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica);
+    Animacion *devolverAnimacion();
 };
 
 #endif //FINAL_FIGHT_PARADO_H

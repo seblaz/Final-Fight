@@ -9,7 +9,6 @@ class Mapa;
 class Mapeable;
 
 class Fisica {
-
 public:
     virtual void actualizar() = 0;
 };

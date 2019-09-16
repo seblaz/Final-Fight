@@ -35,6 +35,6 @@ Parado::~Parado() {
     logger -> log(DEBUG, "Se instancio un objeto de clase Parado");
 }
 
-Animacion* Parado::devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica) {
-    return fabrica ->parado();
+Animacion * Parado::devolverAnimacion() {
+    return FabricaDeAnimacionesDeCody::parado();
 }

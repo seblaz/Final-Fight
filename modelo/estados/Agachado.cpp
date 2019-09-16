@@ -37,7 +37,7 @@ Agachado::~Agachado() {
     logger -> log(DEBUG, "Se instancio un objeto de clase Agachado");
 }
 
-Animacion* Agachado::devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica) {
-        return fabrica -> saltando();
+Animacion * Agachado::devolverAnimacion() {
+        return FabricaDeAnimacionesDeCody::saltando();
 }
 

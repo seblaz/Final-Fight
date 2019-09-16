@@ -5,12 +5,15 @@
 #include "GraficoDePersonaje.h"
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion *animacion, Comportamiento *comportamiento) :
+GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, FisicaDeEscenario &fisicaDeEscenario,
+                                       SDL_Texture *sprite,
+                                       Animacion *animacion, Comportamiento *comportamiento) :
         sprite(sprite),
         haciaAdelante(true),
-        animacion(animacion),
+        animacion(std::move(animacion)),
         fisica(fisica),
-        comportamiento(comportamiento){}
+        comportamiento(comportamiento),
+        fisicaDeEscenario(fisicaDeEscenario) {}
 
 
 void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
@@ -18,8 +21,10 @@ void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
     if (nuevaAnimacion != animacion){
         cambiarAnimacion(nuevaAnimacion);
     }
+    Posicion nuevaPosicion(fisica->posicion().getX() - fisicaDeEscenario.posicion(), fisica->posicion().getY(),
+                           fisica->posicion().getZ());
     SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion->escala());
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
 
     Velocidad velocidad = fisica->velocidad();
     if(velocidad.x != 0){

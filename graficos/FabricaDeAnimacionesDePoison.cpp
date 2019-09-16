@@ -13,7 +13,7 @@ Animacion* FabricaDeAnimacionesDePoison::caminando() {
 
     vector<float> duraciones = {1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 1);
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
 

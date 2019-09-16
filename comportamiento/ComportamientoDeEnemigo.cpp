@@ -11,12 +11,10 @@ using namespace std;
 
 #define RAPIDEZ 3
 
-ComportamientoDeEnemigo::ComportamientoDeEnemigo(FisicaDePersonaje *fisica, FabricaDeAnimacionesDePoison *fabrica) :
+ComportamientoDeEnemigo::ComportamientoDeEnemigo(FisicaDePersonaje *fisica) :
         fisica(fisica),
         estado_(new Caminando()),
-        fabricaDeAnimaciones(fabrica){
-    FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
-    animacionActual = fabricaDeAnimacionesDePoison.caminando();
+        animacionActual(FabricaDeAnimacionesDePoison::caminando()){
 }
 
 ComportamientoDeEnemigo::~ComportamientoDeEnemigo() {

@@ -16,7 +16,7 @@ Animacion* FabricaDeAnimacionesDeCody::caminado() {
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 1);
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
 Animacion* FabricaDeAnimacionesDeCody::saltando() {
@@ -29,12 +29,12 @@ Animacion* FabricaDeAnimacionesDeCody::saltando() {
 
     vector<float> duraciones = {1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 1);
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
 Animacion* FabricaDeAnimacionesDeCody::parado() {
-    vector<SDL_Rect> posiciones = {{5, 0, 40, 100}};
+    vector<SDL_Rect> posiciones = {{5, 6, 39, 90}};
     vector<float> duraciones = {1};
 
-    return new Animacion(posiciones, duraciones, 60, 1);
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }

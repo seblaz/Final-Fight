@@ -3,3 +3,5 @@
 //
 
 #include "Fisica.h"
+
+void Fisica::actualizar() {}

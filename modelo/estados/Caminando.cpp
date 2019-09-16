@@ -36,7 +36,7 @@ Caminando::~Caminando() {
     logger -> log(DEBUG, "Se instancio un objeto de clase Caminando");
 }
 
-Animacion* Caminando::devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica) {
-        return fabrica -> caminado();
+Animacion * Caminando::devolverAnimacion() {
+        return FabricaDeAnimacionesDeCody::caminado();
 }
 

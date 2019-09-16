@@ -38,6 +38,6 @@ Saltando::~Saltando() {
     logger->log(DEBUG, "Se elimino un objeto de clase Saltando");
 }
 
-Animacion* Saltando::devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica) {
-        return fabrica -> saltando();
+Animacion * Saltando::devolverAnimacion() {
+        return FabricaDeAnimacionesDeCody::saltando();
 }

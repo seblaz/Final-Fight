@@ -15,10 +15,10 @@ using namespace xercesc_3_2;
 class XmlReader {
 
 public:
-    explicit XmlReader(const string& path = "Configuracion.xml");
+    explicit XmlReader(const string &path = "Configuracion.xml");
     string getValue(const string& xPath);
 
 private:
     DOMDocument *doc;
-
+    string defaultPath = "Configuracion.xml";
 };
