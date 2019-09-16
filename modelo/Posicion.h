@@ -15,6 +15,7 @@ private:
 
 public:
     Posicion(int x, int y, int z);
+    Posicion operator-(Posicion otraPosicion);
     void mover(Velocidad& velocidad);
     int getX();
     int getY();

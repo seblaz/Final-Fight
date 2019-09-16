@@ -13,10 +13,13 @@ using namespace std;
 
 ComportamientoDeEnemigo::ComportamientoDeEnemigo(FisicaDePersonaje *fisica) :
         fisica(fisica),
-        estado_(new Caminando()){}
+        estado_(new Caminando()),
+        animacionActual(FabricaDeAnimacionesDePoison::caminando()){
+}
 
 ComportamientoDeEnemigo::~ComportamientoDeEnemigo() {
     delete estado_;
+    delete animacionActual;
 }
 
 void ComportamientoDeEnemigo::actualizar() {
@@ -53,4 +56,8 @@ void ComportamientoDeEnemigo::actualizar() {
     fisica->cambiarVelocidadY(velocidad_y);
 
 
+}
+
+Animacion *ComportamientoDeEnemigo::devolverAnimacion() {
+    return animacionActual;
 }

@@ -11,14 +11,17 @@
 
 using namespace std;
 
-#define RAPIDEZ 3
+#define RAPIDEZ 7
 
 ComportamientoDeJugador::ComportamientoDeJugador(FisicaDePersonaje *fisica) :
         fisica(fisica),
-        estado_(new Parado()){}
+        estado_(new Parado()) {
+        animacionActual = estado_->devolverAnimacion();
+}
 
 ComportamientoDeJugador::~ComportamientoDeJugador() {
     delete estado_;
+    delete animacionActual;
 }
 
 void ComportamientoDeJugador::actualizar() {
@@ -50,5 +53,11 @@ void ComportamientoDeJugador::actualizar() {
     if (nullptr != estado) {
         delete estado_;
         this->estado_ = estado;
+        //delete animacionActual;
+        animacionActual = estado_->devolverAnimacion();
     }
+}
+
+Animacion* ComportamientoDeJugador::devolverAnimacion(){
+    return animacionActual;
 }

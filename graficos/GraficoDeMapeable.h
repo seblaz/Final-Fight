@@ -11,6 +11,7 @@
 #include "Grafico.h"
 #include "Animacion.h"
 #include "../fisica/FisicaDeMapeable.h"
+#include "../fisica/FisicaDeEscenario.h"
 
 using namespace std;
 
@@ -21,10 +22,12 @@ private:
     FisicaDeMapeable *fisica;
     SDL_Texture *sprite;
     Animacion animacion;
+    FisicaDeEscenario &fisicaDeEscenario;
 
 public:
-    GraficoDeMapeable(FisicaDeMapeable *fisica, SDL_Texture *sprite, Animacion animacion);
-    void actualizar(SDL_Renderer * renderer) override;
+    GraficoDeMapeable(FisicaDeMapeable *fisica, FisicaDeEscenario &fisicaDeEscenario,
+                      SDL_Texture *sprite, Animacion animacion);
+    void actualizar(SDL_Renderer *renderer) override;
 };
 
 

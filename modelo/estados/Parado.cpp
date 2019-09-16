@@ -26,11 +26,15 @@ EstadoDePersonaje* Parado::manejarEntrada(FisicaDePersonaje *fisica, const Uint8
 }
 
 Parado::Parado() {
-    Logger logger(DEBUG);
-    logger.log(DEBUG, "Se instancio un objeto de clase Parado");
+    Logger* logger = Locator::logger();
+    logger -> log(DEBUG, "Se instancio un objeto de clase Parado");
 }
 
 Parado::~Parado() {
-    Logger logger(DEBUG);
-    logger.log(DEBUG, "Se elimino un objeto de clase Parado");
+    Logger* logger = Locator::logger();
+    logger -> log(DEBUG, "Se instancio un objeto de clase Parado");
+}
+
+Animacion * Parado::devolverAnimacion() {
+    return FabricaDeAnimacionesDeCody::parado();
 }

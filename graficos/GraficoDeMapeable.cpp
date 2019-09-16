@@ -6,16 +6,19 @@
 #include "GraficoDeMapeable.h"
 
 #include <utility>
-#include "../servicios/Configuracion.h"
-#include "../servicios/Locator.h"
+#include "../fisica/FisicaDeEscenario.h"
 
-GraficoDeMapeable::GraficoDeMapeable(FisicaDeMapeable *fisica, SDL_Texture *sprite, Animacion animacion) :
+GraficoDeMapeable::GraficoDeMapeable(FisicaDeMapeable *fisica, FisicaDeEscenario &fisicaDeEscenario,
+                                     SDL_Texture *sprite, Animacion animacion) :
         fisica(fisica),
         sprite(sprite),
-        animacion(std::move(animacion)) {}
+        animacion(std::move(animacion)),
+        fisicaDeEscenario(fisicaDeEscenario) {}
 
 void GraficoDeMapeable::actualizar(SDL_Renderer *renderer) {
+    Posicion nuevaPosicion(fisica->posicion().getX() - fisicaDeEscenario.posicion(), fisica->posicion().getY(),
+                           fisica->posicion().getZ());
     SDL_Rect posicionEnSprite = animacion.actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion.escala());
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion.escala());
     SDL_RenderCopy(renderer, sprite, &posicionEnSprite, &posicionEnPantalla);
 }
