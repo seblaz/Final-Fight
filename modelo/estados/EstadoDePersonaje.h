@@ -18,6 +18,8 @@ public:
     virtual void actualizar() = 0;
     virtual void enter() = 0;
     virtual Animacion* devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica){};
+    //virtual void saltar(){};
+    //virtual void mover(){};
 
 };
 

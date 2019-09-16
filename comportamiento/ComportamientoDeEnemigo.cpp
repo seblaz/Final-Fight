@@ -21,7 +21,6 @@ ComportamientoDeEnemigo::ComportamientoDeEnemigo(FisicaDePersonaje *fisica, Fabr
 
 ComportamientoDeEnemigo::~ComportamientoDeEnemigo() {
     delete estado_;
-    delete fabricaDeAnimaciones;
     delete animacionActual;
 }
 

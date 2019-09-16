@@ -11,7 +11,7 @@
 
 using namespace std;
 
-#define RAPIDEZ 3
+#define RAPIDEZ 4
 
 ComportamientoDeJugador::ComportamientoDeJugador(FisicaDePersonaje *fisica, FabricaDeAnimacionesDeCody *fabrica) :
         fisica(fisica),
@@ -22,7 +22,6 @@ ComportamientoDeJugador::ComportamientoDeJugador(FisicaDePersonaje *fisica, Fabr
 
 ComportamientoDeJugador::~ComportamientoDeJugador() {
     delete estado_;
-    delete fabricaDeAnimaciones;
     delete animacionActual;
 }
 
@@ -55,7 +54,6 @@ void ComportamientoDeJugador::actualizar() {
     if (nullptr != estado) {
         delete estado_;
         this->estado_ = estado;
-        //delete animacionActual;
         animacionActual = estado_ -> devolverAnimacion(fabricaDeAnimaciones);
     }
 }
