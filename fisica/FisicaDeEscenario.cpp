@@ -5,6 +5,14 @@
 #include "FisicaDeEscenario.h"
 
 void FisicaDeEscenario::actualizar() {
-//    auto &escenario = dynamic_cast<Escenario &>(mapeable);
-    // TODO: actuaizar la posicion del escenario cuando avance el personaje (puede que no sea necesario).
+    int ancho = Locator::configuracion()->anchoDePantalla;
+    if(fisicaDePersonaje.posicion().getX() - posicion_ > ancho - scroll)
+        posicion_ = fisicaDePersonaje.posicion().getX() + scroll - ancho;
 }
+
+int FisicaDeEscenario::posicion() {
+    return posicion_;
+}
+
+FisicaDeEscenario::FisicaDeEscenario(FisicaDePersonaje &fisicaDePersonaje) :
+        fisicaDePersonaje(fisicaDePersonaje) {}

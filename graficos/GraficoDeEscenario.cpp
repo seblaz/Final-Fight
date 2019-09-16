@@ -4,20 +4,27 @@
 
 #include "GraficoDeEscenario.h"
 
-GraficoDeEscenario::GraficoDeEscenario(SDL_Texture *sprite, int ejeY) :
-        sprite(sprite),
-        posicionY(ejeY) {}
+#include <utility>
+
+GraficoDeEscenario::GraficoDeEscenario(FisicaDeEscenario &fisica, vector<SDL_Texture *> sprites,
+                                       vector<SDL_Rect> posicionesSprite,
+                                       vector<float> distanciasAlFondo) :
+        fisica(fisica),
+        sprites(std::move(sprites)),
+        posicionesSprite(std::move(posicionesSprite)),
+        distanciasAlFondo(std::move(distanciasAlFondo)) {}
 
 void GraficoDeEscenario::actualizar(SDL_Renderer *renderer) {
-//    auto &escenario = dynamic_cast<Escenario &>(mapeable);
+    int alto = Locator::configuracion()->alturaDePantalla;
+    int ancho = Locator::configuracion()->anchoDePantalla;
 
-//    Posicion &posicion = escenario.posicion(); // Se obtiene la posicion del jugador y en base a eso se construye el hitbox del jugador.
-//    SDL_Rect posicionJugador = {posicion.getX(), posicion.getY(), 200, 400};
-    //Se setea la posicion de la plantilla de sprites (La posicion y dimension que se va a renderizar LA PLANTILLA DE SPRITES, no el hitbox)
-//    TODO: poner estas coordenadas para cada sprite aca es turbio, hace falta sacarlo de aca (idea: tener una clase sprite).
-    SDL_Rect posicionSprite = {0, posicionY, 250, 195};
-    SDL_Rect posicionEscenario = {0, 0, 1280, 960};
+    for (int i = 0; i < sprites.size(); ++i) {
+        SDL_Texture *sprite = sprites[i];
+        SDL_Rect posicionSprite = posicionesSprite[i];
+        posicionSprite.x += fisica.posicion() * posicionSprite.w / ancho * distanciasAlFondo[i];
+        SDL_Rect posicionEscenario = {0, 0, ancho, alto};
 
-    //Se renderiza en la ventana la imagen, la posicion del sprite, y la posicion del jugador
-    SDL_RenderCopy(renderer, sprite, &posicionSprite, &posicionEscenario);
+        SDL_RenderCopy(renderer, sprite, &posicionSprite, &posicionEscenario);
+    }
 }
+

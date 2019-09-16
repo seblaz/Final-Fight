@@ -29,19 +29,32 @@ int main(int argc, char *args[]) {
     Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
     Sprite spriteNeumatico(renderer, "assets/escenarios/neumaticos.png");
 
+    // Agregar personaje
+    Animacion animacion = FabricaDeAnimacionesDeCody::caminado();
+    FisicaDePersonaje fisicaDePersonaje;
+
+    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje);
+
+    Sprite sprite(renderer, "assets/personajes/cody.png");
+    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion);
+    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
+    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
+
     // Agregar escenario (primera capa)
-    GraficoDeEscenario graficoDeEscenarioFondo(spriteEscenario.getTexture(), 200);
-    FisicaDeEscenario fisicaDeEscenarioFondo;
+    vector<SDL_Texture*> spritesDeEscenario;
+    spritesDeEscenario.push_back(spriteEscenario.getTexture());
+    spritesDeEscenario.push_back(spriteEscenario.getTexture());
+
+    vector<SDL_Rect> posicionesSprite;
+    posicionesSprite.push_back({0, 200, 250, 195});
+    posicionesSprite.push_back({0, 0, 250, 195});
+
+    vector<float> distanciasAlFondo = {0.5, 1};
+
+    GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo);
     ComportamientoNulo comportamientoDeEscenario;
-    Mapeable escenarioFondo(&fisicaDeEscenarioFondo, &graficoDeEscenarioFondo, &comportamientoDeEscenario);
+    Mapeable escenarioFondo(&fisicaDeEscenario, &graficoDeEscenario, &comportamientoDeEscenario);
     mapa.agregar(&escenarioFondo);
-
-
-    // Agregar escenario (segunda capa)
-    GraficoDeEscenario graficoDeEscenarioMedio(spriteEscenario.getTexture(), 0);
-    FisicaDeEscenario fisicaDeEscenario;
-    Mapeable escenarioMedio(&fisicaDeEscenario, &graficoDeEscenarioMedio, &comportamientoDeEscenario);
-    mapa.agregar(&escenarioMedio);
 
     // Caja
     vector<SDL_Rect> posiciones = {{8, 5, 49, 80}};
@@ -50,7 +63,7 @@ int main(int argc, char *args[]) {
 
     FisicaDeMapeable fisicaDeObjeto(500, 400, 0);
     SDL_Texture * spcaja = spriteCaja.getTexture();
-    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, spcaja, animacionDeCaja);
+    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
 
     Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
     mapa.agregar(&caja);
@@ -74,14 +87,7 @@ int main(int argc, char *args[]) {
 //    mapa.agregar(&objetoNeumatico2);
 //
 //
-    // Agregar personaje
-    Animacion animacion = FabricaDeAnimacionesDeCody::caminado();
-    FisicaDePersonaje fisicaDePersonaje;
 
-    Sprite sprite(renderer, "assets/personajes/cody.png");
-    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, sprite.getTexture(), animacion);
-    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
-    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
     mapa.agregar(&personaje);
 
     // Agregar enemigo
@@ -90,7 +96,8 @@ int main(int argc, char *args[]) {
     FisicaDePersonaje fisicaDePersonajePoison(500,40,0);
 
     Sprite spritePoison(renderer, "assets/personajes/poison.png");
-    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison, spritePoison.getTexture(), animacionInicialPoison);
+    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison,
+                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison);
     ComportamientoDeEnemigo comportamientoDeEnemigo(&fisicaDePersonajePoison);
     Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
     mapa.agregar(&enemigo);

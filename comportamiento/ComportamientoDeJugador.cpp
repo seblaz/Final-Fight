@@ -11,7 +11,7 @@
 
 using namespace std;
 
-#define RAPIDEZ 3
+#define RAPIDEZ 7
 
 ComportamientoDeJugador::ComportamientoDeJugador(FisicaDePersonaje *fisica) :
         fisica(fisica),

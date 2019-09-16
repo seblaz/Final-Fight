@@ -24,4 +24,8 @@ int Posicion::getZ() {
     return z;
 }
 
+Posicion Posicion::operator-(Posicion otraPosicion) {
+    return Posicion(x - otraPosicion.x, y - otraPosicion.y, z - otraPosicion.z);
+}
+
 
