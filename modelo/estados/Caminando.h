@@ -15,6 +15,7 @@ public:
     EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
     void enter() override {};
     void actualizar() override {};
+    Animacion* devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica);
 };
 
 #endif //FINAL_FIGHT_CAMINANDO_H

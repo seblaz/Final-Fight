@@ -11,12 +11,18 @@ using namespace std;
 
 #define RAPIDEZ 3
 
-ComportamientoDeEnemigo::ComportamientoDeEnemigo(FisicaDePersonaje *fisica) :
+ComportamientoDeEnemigo::ComportamientoDeEnemigo(FisicaDePersonaje *fisica, FabricaDeAnimacionesDePoison *fabrica) :
         fisica(fisica),
-        estado_(new Caminando()){}
+        estado_(new Caminando()),
+        fabricaDeAnimaciones(fabrica){
+    FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
+    animacionActual = fabricaDeAnimacionesDePoison.caminando();
+}
 
 ComportamientoDeEnemigo::~ComportamientoDeEnemigo() {
     delete estado_;
+    delete fabricaDeAnimaciones;
+    delete animacionActual;
 }
 
 void ComportamientoDeEnemigo::actualizar() {
@@ -53,4 +59,8 @@ void ComportamientoDeEnemigo::actualizar() {
     fisica->cambiarVelocidadY(velocidad_y);
 
 
+}
+
+Animacion *ComportamientoDeEnemigo::devolverAnimacion() {
+    return animacionActual;
 }

@@ -10,6 +10,7 @@
 
 class ComportamientoNulo : public Comportamiento {
     void actualizar() override {};
+    Animacion* devolverAnimacion(){};
 };
 
 

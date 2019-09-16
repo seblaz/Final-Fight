@@ -15,6 +15,7 @@ public:
     EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *currentKeyStates) override;
     void enter() override {};
     void actualizar() override {};
+    Animacion* devolverAnimacion(FabricaDeAnimacionesDeCody *fabrica);
 
 };
 

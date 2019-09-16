@@ -16,10 +16,13 @@ private:
     FisicaDePersonaje *fisica;
     int contadorDePasos = 0;
     int movimientoAnterior = 0;
+    FabricaDeAnimacionesDePoison *fabricaDeAnimaciones;
+    Animacion *animacionActual;
 
 public:
-    explicit ComportamientoDeEnemigo(FisicaDePersonaje *fisica);
+    explicit ComportamientoDeEnemigo(FisicaDePersonaje *fisica, FabricaDeAnimacionesDePoison *fabrica);
     void actualizar() override;
+    Animacion* devolverAnimacion();
     ~ComportamientoDeEnemigo();
 };
 

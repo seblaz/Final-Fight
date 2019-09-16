@@ -7,12 +7,16 @@
 
 
 #include "../modelo/mapeables/Mapeable.h"
+#include "../graficos/Animacion.h"
+#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/FabricaDeAnimacionesDePoison.h"
 
 
 class Comportamiento {
 
 public:
     virtual void actualizar() = 0;
+    virtual Animacion* devolverAnimacion(){};
 };
 
 

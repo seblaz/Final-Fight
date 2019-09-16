@@ -31,6 +31,7 @@ public:
     float escala();
 
     void setPosicionesInicial( vector<SDL_Rect> posicionesInicial) { posiciones = posicionesInicial; }
+    bool compareTo(Animacion *animacionAcomparar);
 };
 
 

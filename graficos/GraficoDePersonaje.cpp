@@ -5,16 +5,21 @@
 #include "GraficoDePersonaje.h"
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion animacion) :
+GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion *animacion, Comportamiento *comportamiento) :
         sprite(sprite),
         haciaAdelante(true),
-        animacion(std::move(animacion)),
-        fisica(fisica) {}
+        animacion(animacion),
+        fisica(fisica),
+        comportamiento(comportamiento){}
 
 
 void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
-    SDL_Rect posicionEnSprite = animacion.actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion.escala());
+    Animacion* nuevaAnimacion = comportamiento->devolverAnimacion();
+    if (nuevaAnimacion != animacion){
+        cambiarAnimacion(nuevaAnimacion);
+    }
+    SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(fisica->posicion(), posicionEnSprite, animacion->escala());
 
     Velocidad velocidad = fisica->velocidad();
     if(velocidad.x != 0){
@@ -27,6 +32,7 @@ void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
     }
 }
 
-void GraficoDePersonaje::cambiarAnimacion(Animacion nuevaAnimacion) {
-    this->animacion = std::move(nuevaAnimacion);
+void GraficoDePersonaje::cambiarAnimacion(Animacion *nuevaAnimacion) {
+    delete animacion;
+    this->animacion = nuevaAnimacion;
 }

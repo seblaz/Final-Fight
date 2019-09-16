@@ -19,15 +19,16 @@ class GraficoDePersonaje : public Grafico {
 
 private:
     SDL_Texture * sprite;
-    Animacion animacion;
+    Animacion *animacion;
     FisicaDePersonaje *fisica;
     bool haciaAdelante;
+    Comportamiento *comportamiento;
 
 public:
-    GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion animacion);
+    GraficoDePersonaje(FisicaDePersonaje *fisica, SDL_Texture *sprite, Animacion *animacion, Comportamiento *comportamiento);
 
     void actualizar(SDL_Renderer *renderer) override;
-    void cambiarAnimacion(Animacion nuevaAnimacion);
+    void cambiarAnimacion(Animacion* nuevaAnimacion);
 };
 
 

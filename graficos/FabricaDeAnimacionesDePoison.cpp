@@ -4,7 +4,7 @@
 
 #include "FabricaDeAnimacionesDePoison.h"
 
-Animacion FabricaDeAnimacionesDePoison::caminando() {
+Animacion* FabricaDeAnimacionesDePoison::caminando() {
     vector<SDL_Rect> posiciones = {
             {0,  3, 47, 100},
             {40,  3, 40, 100},
@@ -13,7 +13,7 @@ Animacion FabricaDeAnimacionesDePoison::caminando() {
 
     vector<float> duraciones = {1, 1, 1, 1};
 
-    return Animacion(posiciones, duraciones, 60, 1);
+    return new Animacion(posiciones, duraciones, 60, 1);
 }
 
 
