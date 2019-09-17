@@ -27,7 +27,7 @@ int main(int argc, char *args[]) {
 
     Sprite spriteEscenario(renderer, "assets/escenarios/slums-mejorado.png");
     Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
-    Sprite spriteNeumatico(renderer, "assets/escenarios/neumaticos.png");
+    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
 
     // Agregar personaje
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
@@ -64,29 +64,21 @@ int main(int argc, char *args[]) {
     FisicaDeMapeable fisicaDeObjeto(500, 400, 0);
     SDL_Texture * spcaja = spriteCaja.getTexture();
     GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
-
     Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
     mapa.agregar(&caja);
 
+    //CUchillo
 
-//    FisicaDeMapeable fisicaDeObjetoDestruible;
-//    // Objetos (objeto caja)
-//     GraficoDeObjeto graficoDeObjetoCaja(renderer, spriteCaja.getTexture(), 800,400);
-//
-//     Objeto objetoCaja(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoCaja);
-//     mapa.agregar(&objetoCaja);
-//
-//
-//    // Objetos (objeto neumatico)
-//    GraficoDeObjeto graficoDeObjetoNeumatico(renderer, spriteNeumatico.getTexture(), 600,400);
-//    Objeto objetoNeumatico(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico);
-//    mapa.agregar(&objetoNeumatico);
-//
-//    GraficoDeObjeto graficoDeObjetoNeumatico2(renderer, spriteNeumatico.getTexture(), 500,400);
-//    Objeto objetoNeumatico2(0, 0, 0, &mapa, &fisicaDeObjetoDestruible, &graficoDeObjetoNeumatico2);
-//    mapa.agregar(&objetoNeumatico2);
-//
-//
+    vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
+    vector<float> duracionesCuchillo = {1};
+    Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
+
+    FisicaDeMapeable fisicaDeCuchillo(500, 200, 0);
+    SDL_Texture * spCuchillo = spriteCuchillo.getTexture();
+    GraficoDeMapeable graficoDeCuchillo(&fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionDeCuchillo);
+
+    Mapeable cuchillo(&fisicaDeCuchillo, &graficoDeCuchillo, &comportamientoDeEscenario);
+    mapa.agregar(&cuchillo);
 
     mapa.agregar(&personaje);
 
