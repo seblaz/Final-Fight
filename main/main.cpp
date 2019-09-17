@@ -21,11 +21,12 @@ int main(int argc, char *args[]) {
     auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18);
     Locator::provide(config);
 
-    Mapa mapa(300, 1000, 500);
+    Mapa mapa(300, 100, 500);
     Juego juego(&mapa);
     SDL_Renderer *renderer = juego.renderer();
 
-    Sprite spriteEscenario(renderer, "assets/escenarios/slums-mejorado.png");
+    Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
+
     Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
     Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
 
@@ -44,12 +45,14 @@ int main(int argc, char *args[]) {
     vector<SDL_Texture*> spritesDeEscenario;
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
+    spritesDeEscenario.push_back(spriteEscenario.getTexture());
 
     vector<SDL_Rect> posicionesSprite;
+    posicionesSprite.push_back({0, 400, 280, 400});
     posicionesSprite.push_back({0, 200, 280, 195});
     posicionesSprite.push_back({0, 0, 280, 195});
 
-    vector<float> distanciasAlFondo = {0.5, 1};
+    vector<float> distanciasAlFondo = {0.1, 0.5, 1 };
 
     GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo);
     ComportamientoNulo comportamientoDeEscenario;
@@ -57,7 +60,7 @@ int main(int argc, char *args[]) {
     mapa.agregar(&escenarioFondo);
 
     // Caja
-    vector<SDL_Rect> posiciones = {{8, 5, 49, 80}};
+    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
     vector<float> duraciones = {1};
     Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
 
