@@ -38,6 +38,6 @@ Agachado::~Agachado() {
 }
 
 Animacion * Agachado::devolverAnimacion() {
-        return FabricaDeAnimacionesDeCody::saltando();
+        return FabricaDeAnimacionesDeCody::agachado();
 }
 
