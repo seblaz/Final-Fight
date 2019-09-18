@@ -18,7 +18,7 @@ private:
 public:
     explicit FisicaDePersonaje(int x = 0, int y = 0, int z = 0);
     void actualizar() override;
-    Posicion posicion();
+    Posicion &posicion();
     Velocidad velocidad();
     void cambiarVelocidadX(float x);
     void cambiarVelocidadY(float y);

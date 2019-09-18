@@ -32,9 +32,9 @@ int main(int argc, char *args[]) {
 
     // Agregar personaje
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
-    FisicaDePersonaje fisicaDePersonaje(500);
+    FisicaDePersonaje fisicaDePersonaje(4500);
 
-    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje);
+    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, 5650);
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
