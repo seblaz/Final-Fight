@@ -4,8 +4,8 @@
 
 #include <unistd.h>
 #include "Juego.h"
-#include "../servicios/Locator.h"
 #include <chrono>
+#include <algorithm>
 
 void Juego::initialize() {
     const int SCREEN_WIDTH = Locator::configuracion()->anchoDePantalla;
@@ -61,16 +61,21 @@ void Juego::processInput() {
 }
 
 void Juego::update() {
-    for (auto mapeable : mapa->devolverMapeables()) {
-        mapeable->comportamiento()->actualizar();
+    auto mapeables = mapa->devolverMapeables();
 
+    sort(mapeables.begin(), mapeables.end(), [](Mapeable *a, Mapeable  *b) {
+        return a->grafico()->profundidad() > b->grafico()->profundidad();
+    });
+
+    for (auto mapeable : mapeables) {
+        mapeable->comportamiento()->actualizar();
     }
 
-    for (auto mapeable : mapa->devolverMapeables()) {
+    for (auto mapeable : mapeables) {
         mapeable->fisica()->actualizar();
     }
 
-    for (auto mapeable : mapa->devolverMapeables()) {
+    for (auto mapeable : mapeables) {
         mapeable->grafico()->actualizar(renderer_);
     }
 }

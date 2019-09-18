@@ -28,6 +28,7 @@ public:
     GraficoDeMapeable(FisicaDeMapeable *fisica, FisicaDeEscenario &fisicaDeEscenario,
                       SDL_Texture *sprite, Animacion animacion);
     void actualizar(SDL_Renderer *renderer) override;
+    int profundidad() override;
 };
 
 

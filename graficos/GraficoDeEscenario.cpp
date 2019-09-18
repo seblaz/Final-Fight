@@ -29,3 +29,7 @@ void GraficoDeEscenario::actualizar(SDL_Renderer *renderer) {
     }
 }
 
+int GraficoDeEscenario::profundidad() {
+    return 1000;
+}
+

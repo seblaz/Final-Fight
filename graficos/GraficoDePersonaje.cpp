@@ -43,3 +43,7 @@ void GraficoDePersonaje::cambiarAnimacion(Animacion *nuevaAnimacion) {
     delete animacion;
     this->animacion = nuevaAnimacion;
 }
+
+int GraficoDePersonaje::profundidad() {
+    return fisica->posicion().getY();
+}
