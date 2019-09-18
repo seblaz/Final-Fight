@@ -20,6 +20,7 @@ public:
     int getX();
     int getY();
     int getZ();
+    void setX(int x);
 };
 
 

@@ -11,7 +11,7 @@ void FisicaDePersonaje::actualizar() {
     posicion_.mover(velocidad_);
 }
 
-Posicion FisicaDePersonaje::posicion() {
+Posicion &FisicaDePersonaje::posicion() {
     return posicion_;
 }
 

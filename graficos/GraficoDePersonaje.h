@@ -31,6 +31,7 @@ public:
 
     void actualizar(SDL_Renderer *renderer) override;
     void cambiarAnimacion(Animacion* nuevaAnimacion);
+    int profundidad() override;
 };
 
 

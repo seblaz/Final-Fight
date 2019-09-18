@@ -15,6 +15,7 @@ class Grafico {
 
 public:
     virtual void actualizar(SDL_Renderer *renderer) = 0;
+    virtual int profundidad() = 0;
 };
 
 SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);

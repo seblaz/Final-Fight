@@ -38,7 +38,7 @@ public:
     ~GraficoDeEscenario() = default;
 
     void actualizar(SDL_Renderer *renderer) override;
-
+    int profundidad() override;
 };
 
 
