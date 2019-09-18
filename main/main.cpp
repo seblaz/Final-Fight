@@ -32,7 +32,7 @@ int main(int argc, char *args[]) {
 
     // Agregar personaje
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
-    FisicaDePersonaje fisicaDePersonaje(4500);
+    FisicaDePersonaje fisicaDePersonaje(400);
 
     FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, 5650);
 
