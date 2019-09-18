@@ -23,5 +23,17 @@
         </escenario>
         <mapeables>1</mapeables>
     </escala>
-    <velocidadDeJuego>1</velocidadDeJuego>
+    <velocidad>
+        <juego>1</juego>
+        <personaje>
+            <x>1</x>
+            <y>1</y>
+        </personaje>
+    </velocidad>
+    <fps>40</fps>
+    <niveles>
+        <nivel1>
+            <fondo>assets/escenarios/nivel1.png</fondo>
+        </nivel1>
+    </niveles>
 </configuracion>

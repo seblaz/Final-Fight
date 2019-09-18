@@ -16,10 +16,10 @@ private:
     int largo_;
     const int scrollDerecho = 400;
     const int scrollIzquierdo = 150;
-    FisicaDePersonaje &fisicaDePersonaje;
+    FisicaDePersonaje *fisicaDePersonaje;
 
 public:
-    explicit FisicaDeEscenario(FisicaDePersonaje &fisicaDePersonaje, int largo);
+    explicit FisicaDeEscenario(FisicaDePersonaje *fisicaDePersonaje, int largo);
     void actualizar() override;
     int posicion();
 

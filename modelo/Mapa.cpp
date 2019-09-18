@@ -6,12 +6,25 @@
 
 using namespace std;
 
-Mapa::Mapa(int ancho, int largo, int altura): dimension(ancho, largo, altura){};
-
-void Mapa::agregar(Mapeable* mapeable) {
+void Mapa::agregar(Mapeable *mapeable) {
     mapeables.push_back(mapeable);
 }
 
-auto Mapa::devolverMapeables() -> decltype(make_iterable(mapeables.begin(), mapeables.end())){
+void Mapa::agregarJugador(Mapeable *nuevoJugador) {
+    jugador_ = nuevoJugador;
+    agregar(nuevoJugador);
+}
+
+auto Mapa::devolverMapeables() -> decltype(make_iterable(mapeables.begin(), mapeables.end())) {
     return make_iterable(mapeables.begin(), mapeables.end());
 }
+
+Mapeable *Mapa::jugador() {
+    return jugador_;
+}
+
+void Mapa::vaciarMapa() {
+    bool resultado = mapeables.empty();
+    Locator::logger()->log(DEBUG, &"Se vacio el vector de mapeables con resultado: "[resultado]);
+}
+

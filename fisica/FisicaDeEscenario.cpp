@@ -6,7 +6,7 @@
 
 void FisicaDeEscenario::actualizar() {
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
-    int xPersonaje = fisicaDePersonaje.posicion().getX();
+    int xPersonaje = fisicaDePersonaje->posicion().getX();
     // Mover el escenario.
     if((xPersonaje - posicion_ < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
         posicion_ = xPersonaje - scrollIzquierdo;
@@ -18,5 +18,5 @@ int FisicaDeEscenario::posicion() {
     return posicion_;
 }
 
-FisicaDeEscenario::FisicaDeEscenario(FisicaDePersonaje &fisicaDePersonaje, int largo) :
+FisicaDeEscenario::FisicaDeEscenario(FisicaDePersonaje *fisicaDePersonaje, int largo) :
         fisicaDePersonaje(fisicaDePersonaje), largo_(largo) {}

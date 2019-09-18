@@ -1,36 +1,43 @@
 #include "Juego.h"
 #include "../comportamiento/ComportamientoDeJugador.h"
-#include "../servicios/Logger.h"
-#include "../servicios/Locator.h"
 #include "../graficos/GraficoDeEscenario.h"
-#include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDePersonaje.h"
 #include "../fisica/FisicaDeMapeable.h"
 #include "../comportamiento/ComportamientoNulo.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
-#include "../graficos/FabricaDeAnimacionesDePoison.h"
 #include "../graficos/sprite/Sprite.h"
-#include "../graficos/GraficoDeMapeable.h"
 #include "../comportamiento/ComportamientoDeEnemigo.h"
-#include "../fisica/FisicaDeFrontera.h"
 #include "../graficos/GraficoDeFrontera.h"
-#include <cmath>
+#include "../niveles/Nivel1.h"
+#include "../fisica/FisicaDeFrontera.h"
 
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
 
     auto *config = new Configuracion();
-//        auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18, 5.7);
-    cout << config->getFloatValue("/escenario/inclinacion") << endl;
     Locator::provide(config);
 
-    Mapa mapa(300, 100, 500);
-    Juego juego(&mapa);
+    Juego juego;
+    Mapa &mapa = juego.mapa();
     SDL_Renderer *renderer = juego.renderer();
 
-    Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
+    // Agregar personaje
+//    Animacion *animacionDeJugador = FabricaDeAnimacionesDeCody::caminado();
+//    FisicaDePersonaje fisicaDePersonaje(400);
+//
+//    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * 990);//spriteEscenario.ancho());
+//
+//    Sprite sprite(renderer, "assets/personajes/cody.png");
+//    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
+//    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacionDeJugador,
+//                                          &comportamientoDeJugador);
+//    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
+//
+//    mapa.agregarJugador(&personaje);
 
+//    Nivel1::generarNivel(mapa, renderer);
+    // Sprites
+    Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
     Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
     Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
 
@@ -38,7 +45,7 @@ int main(int argc, char *args[]) {
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
     FisicaDePersonaje fisicaDePersonaje(400);
 
-    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
+    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);

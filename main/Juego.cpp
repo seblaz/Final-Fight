@@ -7,13 +7,18 @@
 #include <chrono>
 #include <algorithm>
 
-void Juego::initialize() {
+Juego::Juego() {
+    inicializarGraficos();
+    inicializarElementos();
+}
+
+void Juego::inicializarGraficos() {
     const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
     const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
 
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        printf("SDL could not inicializarGraficos! SDL_Error: %s\n", SDL_GetError());
     } else {
         //Create window
         window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH,
@@ -23,7 +28,7 @@ void Juego::initialize() {
         } else {
             //Get window surface
             renderer_ = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-            if(!renderer_) {
+            if (!renderer_) {
                 printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
                 exit = true;
             }
@@ -32,26 +37,31 @@ void Juego::initialize() {
 }
 
 void Juego::loop() {
-    const int MS_PER_FRAME = 25000; // Microseconds. 40 FPS. TODO: leer los FPS del archivo de configuracion.
+    const int MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
 
     while (!exit) {
         auto start = chrono::system_clock::now();
 
         processInput();
         clearScene();
-        update();
-        render();
+        actualizar();
+        graficar();
 
         auto end = chrono::system_clock::now();
         chrono::duration<double> elapsed_seconds = end - start;
 
         const int sleep_time = MS_PER_FRAME - int(elapsed_seconds.count()) * 1000 * 1000;
 
-        if(sleep_time > 0){ // No quitar el if. La primera vuelta suele tardar más que MS_PER_FRAME.
+        if (sleep_time > 0) { // No quitar el if. La primera vuelta suele tardar más que MS_PER_FRAME.
             usleep(sleep_time); // Microseconds.
         }
     }
 }
+
+void Juego::inicializarElementos() {
+    mapa_ = Mapa();
+}
+
 
 void Juego::processInput() {
     SDL_Event e;
@@ -60,10 +70,10 @@ void Juego::processInput() {
     }
 }
 
-void Juego::update() {
-    auto mapeables = mapa->devolverMapeables();
+void Juego::actualizar() {
+    auto mapeables = mapa().devolverMapeables();
 
-    sort(mapeables.begin(), mapeables.end(), [](Mapeable *a, Mapeable  *b) {
+    sort(mapeables.begin(), mapeables.end(), [](Mapeable *a, Mapeable *b) {
         return a->grafico()->profundidad() > b->grafico()->profundidad();
     });
 
@@ -80,11 +90,11 @@ void Juego::update() {
     }
 }
 
-void Juego::render() {
+void Juego::graficar() {
     SDL_RenderPresent(renderer_); // Update screen
 }
 
-void Juego::finish() {
+void Juego::terminar() {
     SDL_DestroyRenderer(renderer_); // Destroy renderer_
     SDL_DestroyWindow(window); // Destroy window
     renderer_ = nullptr;
@@ -101,5 +111,9 @@ void Juego::clearScene() {
 
 SDL_Renderer *Juego::renderer() {
     return renderer_;
+}
+
+Mapa &Juego::mapa() {
+    return mapa_;
 }
 

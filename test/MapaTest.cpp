@@ -6,18 +6,18 @@
 #include "../modelo/Mapa.h"
 
 TEST(Mapa, CrearUnMapaVacioNoPierdeMemoria) {
-    Mapa mapa(100, 1000, 300);
+    Mapa mapa();
 }
 
 TEST(Mapa, AgregarMapeablesAUnMapaNoPierdeMemoria) {
-    Mapa mapa(2, 3, 4);
+    Mapa mapa();
     Mapeable mapeable = Mapeable(nullptr, nullptr, nullptr);
 
     mapa.agregar(&mapeable);
 }
 
 TEST(Mapa, DevolverMapeablesDevuelveLosMismosObjetos) {
-    Mapa mapa(100, 1000, 300);
+    Mapa mapa();
     Mapeable mapeable1 = Mapeable(nullptr, nullptr, nullptr);
     Mapeable mapeable2 = Mapeable(nullptr, nullptr, nullptr);
 

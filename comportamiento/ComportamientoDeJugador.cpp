@@ -31,7 +31,7 @@ void ComportamientoDeJugador::actualizar() {
     float velocidad_x = 0;
     float velocidad_y = 0;
 
-    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidadDeJuego");
+    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego");
 
     if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
         velocidad_x = RAPIDEZ * velocidadRelativa;
