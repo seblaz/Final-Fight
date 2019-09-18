@@ -38,3 +38,22 @@ Animacion* FabricaDeAnimacionesDeCody::parado() {
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }
+
+Animacion* FabricaDeAnimacionesDeCody::golpear() {
+    vector<SDL_Rect> posiciones = {
+            {10, 420, 48, 104}, //104 , 67 ancho
+            {63, 420, 65, 104},
+            {130, 420, 65, 104},
+            {195, 420, 78, 104},
+            {274, 420, 73, 104},
+            {340, 420, 70, 104},
+            {408, 420, 65, 104},
+            {475, 420, 60, 104},
+            //{475, 420, 60, 104},
+    };
+
+    vector<float> duraciones = {1, 1, 1, 1, 1, 1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
+}
+

@@ -45,4 +45,3 @@ float Animacion::escala() {
 bool Animacion::compareTo(Animacion *animacionAcomparar) {
 
 }
-

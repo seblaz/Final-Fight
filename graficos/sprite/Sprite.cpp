@@ -12,5 +12,4 @@ Sprite::Sprite(SDL_Renderer* renderer, const string& rutaSprite) :
     SDL_SetColorKey(sprite, SDL_TRUE, SDL_MapRGB(sprite->format, 0X58, 0xB8, 0xF8));
     texture = SDL_CreateTextureFromSurface(renderer, sprite);
     SDL_FreeSurface(sprite);
-
 }

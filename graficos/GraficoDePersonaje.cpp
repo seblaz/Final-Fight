@@ -5,9 +5,11 @@
 #include "GraficoDePersonaje.h"
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, FisicaDeEscenario &fisicaDeEscenario,
-                                       SDL_Texture *sprite,
-                                       Animacion *animacion, Comportamiento *comportamiento) :
+GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica,
+                                        FisicaDeEscenario &fisicaDeEscenario,
+                                        SDL_Texture *sprite,
+                                        Animacion *animacion,
+                                        Comportamiento *comportamiento) :
         sprite(sprite),
         haciaAdelante(true),
         animacion(std::move(animacion)),

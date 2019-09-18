@@ -1,31 +1,28 @@
 //
-// Created by franco on 6/9/19.
+// Created by franco on 13/9/19.
 //
 
-#ifndef FINAL_FIGHT_PARADO_H
-#define FINAL_FIGHT_PARADO_H
-
+#ifndef FINAL_FIGHT_GOLPEANDO_H
+#define FINAL_FIGHT_GOLPEANDO_H
 
 #include "EstadoDePersonaje.h"
 #include "Saltando.h"
-#include "Golpeando.h"
 #include "Agachado.h"
+#include "Parado.h"
 #include "Caminando.h"
-#include <SDL_system.h>
 #include "../../servicios/Logger.h"
+#include <SDL_scancode.h>
 
 
-class Parado : public EstadoDePersonaje{
-
-private:
+class Golpeando : public EstadoDePersonaje{
 
 public:
-    Parado();
-    ~Parado() override;
+    Golpeando();
+    ~Golpeando() override;
     EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) override;
-    void actualizar() override {};
     void enter() override {};
+    void actualizar() override {};
     Animacion *devolverAnimacion();
 };
 
-#endif //FINAL_FIGHT_PARADO_H
+#endif //FINAL_FIGHT_GOLPEANDO_H
