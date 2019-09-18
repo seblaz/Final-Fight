@@ -5,6 +5,7 @@
 #include "GraficoDeEscenario.h"
 
 #include <utility>
+#include <cmath>
 
 GraficoDeEscenario::GraficoDeEscenario(FisicaDeEscenario &fisica, vector<SDL_Texture *> sprites,
                                        vector<SDL_Rect> posicionesSprite,
@@ -21,7 +22,7 @@ void GraficoDeEscenario::actualizar(SDL_Renderer *renderer) {
     for (int i = 0; i < sprites.size(); ++i) {
         SDL_Texture *sprite = sprites[i];
         SDL_Rect posicionSprite = posicionesSprite[i];
-        posicionSprite.x += fisica.posicion() * posicionSprite.w / ancho * distanciasAlFondo[i];
+        posicionSprite.x += round(fisica.posicion() * posicionSprite.w / ancho * distanciasAlFondo[i]);
         SDL_Rect posicionEscenario = {0, 0, ancho, alto};
 
         SDL_RenderCopy(renderer, sprite, &posicionSprite, &posicionEscenario);
