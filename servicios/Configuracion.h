@@ -1,23 +1,26 @@
-//
-// Created by sebas on 9/9/19.
-//
+#include <xercesc/parsers/XercesDOMParser.hpp>
+#include <xercesc/dom/DOM.hpp>
+#include <xercesc/sax/HandlerBase.hpp>
+#include <xercesc/util/XMLString.hpp>
+#include <xercesc/util/PlatformUtils.hpp>
+#include <xercesc/framework/MemBufInputSource.hpp>
+#include <string>
+#include <iostream>
+#include <vector>
+#include <map>
 
-#ifndef FINAL_FIGHT_CONFIGURACION_H
-#define FINAL_FIGHT_CONFIGURACION_H
-
+using namespace std;
+//using namespace xercesc_3_2;
 
 class Configuracion {
 
 public:
-    Configuracion(int anchoDePantalla, int alturaDePantalla, float velocidadDeJuego, float escalaDeGraficos, float inclinacionDeEscenario, float escalaEnAnchoDeEscenario);
+    explicit Configuracion(const string &path = "Configuracion.xml");
+    string getValue(const string& xPath);
+    int getIntValue(const string& xPath);
+    float getFloatValue(const string& xPath);
 
-    const int alturaDePantalla;
-    const int anchoDePantalla;
-    const float velocidadDeJuego;
-    const float escalaDeGraficos;
-    const float inclinacionDeEscenario;
-    const float escalaEnAnchoDeEscenario;
+private:
+    xercesc::DOMDocument *doc;
+    string defaultPath = "ConfiguracionOld.xml";
 };
-
-
-#endif //FINAL_FIGHT_CONFIGURACION_H

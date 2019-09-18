@@ -5,7 +5,7 @@
 #include "FisicaDeEscenario.h"
 
 void FisicaDeEscenario::actualizar() {
-    int ancho = Locator::configuracion()->anchoDePantalla;
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int xPersonaje = fisicaDePersonaje.posicion().getX();
     // Mover el escenario.
     if((xPersonaje - posicion_ < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)

@@ -3,10 +3,10 @@
 //
 
 #include "gtest/gtest.h"
-#include "../servicios/Configuracion.h"
+#include "../servicios/ConfiguracionOld.h"
 
 TEST(Configuraciones, PuedoObtenerConfiguracionesLuegoDeSetearlas) {
-    Configuracion config(200, 100, 0, 0, 0);
+    ConfiguracionOld config(200, 100, 0, 0, 0);
 
     EXPECT_EQ(config.anchoDePantalla, 200);
     EXPECT_EQ(config.alturaDePantalla, 100);

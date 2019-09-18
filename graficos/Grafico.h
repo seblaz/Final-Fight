@@ -8,7 +8,6 @@
 
 #include <SDL_system.h>
 #include "../modelo/Posicion.h"
-#include "../servicios/Configuracion.h"
 #include "../servicios/Locator.h"
 
 class Grafico {

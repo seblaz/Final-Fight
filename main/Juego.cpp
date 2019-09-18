@@ -8,8 +8,8 @@
 #include <algorithm>
 
 void Juego::initialize() {
-    const int SCREEN_WIDTH = Locator::configuracion()->anchoDePantalla;
-    const int SCREEN_HEIGHT = Locator::configuracion()->alturaDePantalla;
+    const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
 
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {

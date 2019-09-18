@@ -17,9 +17,9 @@ GraficoDeEscenario::GraficoDeEscenario(FisicaDeEscenario &fisica, vector<SDL_Tex
         distanciasAlFondo(std::move(distanciasAlFondo)) {}
 
 void GraficoDeEscenario::actualizar(SDL_Renderer *renderer) {
-    int alto = Locator::configuracion()->alturaDePantalla;
-    int ancho = Locator::configuracion()->anchoDePantalla;
-    float escalaEnAncho = Locator::configuracion()->escalaEnAnchoDeEscenario;
+    int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    float escalaEnAncho = Locator::configuracion()->getFloatValue("/escala/escenario/ancho");
 
     for (int i = 0; i < sprites.size(); ++i) {
         SDL_Texture *sprite = sprites[i];
@@ -33,6 +33,6 @@ void GraficoDeEscenario::actualizar(SDL_Renderer *renderer) {
 }
 
 int GraficoDeEscenario::profundidad() {
-    return 450;
+    return 230 / sin(Locator::configuracion()->getFloatValue("/escenario/inclinacion"));
 }
 

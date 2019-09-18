@@ -9,8 +9,8 @@ int GraficoDeFrontera::profundidad() {
 }
 
 void GraficoDeFrontera::actualizar(SDL_Renderer *renderer) {
-    int ancho = Locator::configuracion()->anchoDePantalla;
-    int alto = Locator::configuracion()->alturaDePantalla;
+    int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
 
     SDL_Rect fillRect = {0, 0, ancho, alto};
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);

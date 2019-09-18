@@ -20,7 +20,9 @@ int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
 
-    auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18, 5.7);
+    auto *config = new Configuracion();
+//        auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18, 5.7);
+    cout << config->getFloatValue("/escenario/inclinacion") << endl;
     Locator::provide(config);
 
     Mapa mapa(300, 100, 500);
@@ -36,15 +38,16 @@ int main(int argc, char *args[]) {
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
     FisicaDePersonaje fisicaDePersonaje(400);
 
-    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, config->escalaEnAnchoDeEscenario * spriteEscenario.ancho());
+    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
-    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion, &comportamientoDeJugador);
+    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion,
+                                          &comportamientoDeJugador);
     Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
 
     // Agregar escenario (primera capa)
-    vector<SDL_Texture*> spritesDeEscenario;
+    vector<SDL_Texture *> spritesDeEscenario;
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
@@ -54,7 +57,7 @@ int main(int argc, char *args[]) {
     posicionesSprite.push_back({0, 200, 0, 195});
     posicionesSprite.push_back({0, 0, 0, 195});
 
-    vector<float> distanciasAlFondo = {0.1, 0.5, 1 };
+    vector<float> distanciasAlFondo = {0.1, 0.5, 1};
 
     GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo,
                                           spriteEscenario.ancho());
@@ -74,7 +77,7 @@ int main(int argc, char *args[]) {
     Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
 
     FisicaDeMapeable fisicaDeObjeto(500, 200, 0);
-    SDL_Texture * spcaja = spriteCaja.getTexture();
+    SDL_Texture *spcaja = spriteCaja.getTexture();
     GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
     Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
     mapa.agregar(&caja);
@@ -86,7 +89,7 @@ int main(int argc, char *args[]) {
     Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
 
     FisicaDeMapeable fisicaDeCuchillo(500, 200, 0);
-    SDL_Texture * spCuchillo = spriteCuchillo.getTexture();
+    SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
     GraficoDeMapeable graficoDeCuchillo(&fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionDeCuchillo);
 
     Mapeable cuchillo(&fisicaDeCuchillo, &graficoDeCuchillo, &comportamientoDeEscenario);
@@ -97,12 +100,13 @@ int main(int argc, char *args[]) {
     // Agregar enemigo
     FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
     Animacion *animacionInicialPoison = FabricaDeAnimacionesDePoison::caminando();
-    FisicaDePersonaje fisicaDePersonajePoison(500,40,0);
+    FisicaDePersonaje fisicaDePersonajePoison(500, 40, 0);
 
     Sprite spritePoison(renderer, "assets/personajes/poison.png");
     ComportamientoDeEnemigo comportamientoDeEnemigo(&fisicaDePersonajePoison);
     GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison,
-                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison, &comportamientoDeEnemigo);
+                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison,
+                                        &comportamientoDeEnemigo);
     Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
     mapa.agregar(&enemigo);
 

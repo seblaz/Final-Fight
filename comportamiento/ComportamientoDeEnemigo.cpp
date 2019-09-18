@@ -28,7 +28,7 @@ void ComportamientoDeEnemigo::actualizar() {
     float velocidad_x = 0;
     float velocidad_y = 0;
 
-    float velocidadRelativa = Locator::configuracion()->velocidadDeJuego;
+    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidadDeJuego");
 
     //ALGORITMO PATRULLA LOL!
     if (movimientoAnterior == 0) {

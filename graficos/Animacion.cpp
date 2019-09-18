@@ -34,7 +34,7 @@ SDL_Rect Animacion::actualizarYDevolverPosicion() {
 }
 
 int Animacion::calcularFramesFaltantes() {
-    float velocidad = Locator::configuracion()->velocidadDeJuego;
+    float velocidad = Locator::configuracion()->getFloatValue("/velocidadDeJuego");
     return duracionTotal * duracionesPorSprite[spriteActual] / sumaDeDuracionesRelativas * (1 / velocidad);;
 }
 

@@ -3,6 +3,7 @@
         <level>DEBUG</level>
     </debug>
     <escenario>
+        <inclinacion>0.79</inclinacion>
         <objetos>
             <cuchillo>
                 <cantidad>5</cantidad>
@@ -12,5 +13,15 @@
             <cantidad>7</cantidad>
         </barril>
     </escenario>
-    <lala>5</lala>
+    <resolucion>
+        <ancho>1600</ancho>
+        <alto>900</alto>
+    </resolucion>
+    <escala>
+        <escenario>
+            <ancho>5.7</ancho>
+        </escenario>
+        <mapeables>1</mapeables>
+    </escala>
+    <velocidadDeJuego>1</velocidadDeJuego>
 </configuracion>
