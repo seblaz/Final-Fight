@@ -41,7 +41,7 @@ Animacion* FabricaDeAnimacionesDeCody::parado() {
 
 Animacion* FabricaDeAnimacionesDeCody::golpear() {
     vector<SDL_Rect> posiciones = {
-            {10, 420, 48, 104}, //104 , 67 ancho
+            {10, 420, 48, 104}, //104 , 67 ancho_
             {63, 420, 65, 104},
             {130, 420, 65, 104},
             {195, 420, 78, 104},

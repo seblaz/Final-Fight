@@ -8,16 +8,10 @@ void FisicaDeEscenario::actualizar() {
     int ancho = Locator::configuracion()->anchoDePantalla;
     int xPersonaje = fisicaDePersonaje.posicion().getX();
     // Mover el escenario.
-    if((xPersonaje - posicion_ > ancho - scrollDerecho) && (xPersonaje + scrollDerecho - ancho) > 0)
-        posicion_ = xPersonaje + scrollDerecho - ancho;
-    if((xPersonaje - posicion_ < scrollIzquierdo) && (xPersonaje + scrollDerecho - ancho) > 0)
+    if((xPersonaje - posicion_ < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
         posicion_ = xPersonaje - scrollIzquierdo;
-
-    // Mover al personaje (turbio). TODO: mejorarlo.
-    if(xPersonaje < scrollIzquierdo)
-        fisicaDePersonaje.posicion().setX(scrollIzquierdo);
-    if(xPersonaje > largo_ - scrollDerecho)
-        fisicaDePersonaje.posicion().setX(largo_ - scrollDerecho);
+    if((xPersonaje - posicion_ > ancho - scrollDerecho) && (largo_ - xPersonaje) > scrollDerecho)
+        posicion_ = xPersonaje + scrollDerecho - ancho;
 }
 
 int FisicaDeEscenario::posicion() {

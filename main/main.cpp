@@ -12,13 +12,15 @@
 #include "../graficos/sprite/Sprite.h"
 #include "../graficos/GraficoDeMapeable.h"
 #include "../comportamiento/ComportamientoDeEnemigo.h"
+#include "../fisica/FisicaDeFrontera.h"
+#include "../graficos/GraficoDeFrontera.h"
 #include <cmath>
 
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
 
-    auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18);
+    auto *config = new Configuracion(1600, 900, 1, 1, M_PI * 0.18, 5.7);
     Locator::provide(config);
 
     Mapa mapa(300, 100, 500);
@@ -34,7 +36,7 @@ int main(int argc, char *args[]) {
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
     FisicaDePersonaje fisicaDePersonaje(400);
 
-    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, 5650);
+    FisicaDeEscenario fisicaDeEscenario(fisicaDePersonaje, config->escalaEnAnchoDeEscenario * spriteEscenario.ancho());
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
@@ -48,23 +50,30 @@ int main(int argc, char *args[]) {
     spritesDeEscenario.push_back(spriteEscenario.getTexture());
 
     vector<SDL_Rect> posicionesSprite;
-    posicionesSprite.push_back({0, 400, 280, 400});
-    posicionesSprite.push_back({0, 200, 280, 195});
-    posicionesSprite.push_back({0, 0, 280, 195});
+    posicionesSprite.push_back({0, 400, 0, 400});
+    posicionesSprite.push_back({0, 200, 0, 195});
+    posicionesSprite.push_back({0, 0, 0, 195});
 
     vector<float> distanciasAlFondo = {0.1, 0.5, 1 };
 
-    GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo);
+    GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo,
+                                          spriteEscenario.ancho());
     ComportamientoNulo comportamientoDeEscenario;
     Mapeable escenarioFondo(&fisicaDeEscenario, &graficoDeEscenario, &comportamientoDeEscenario);
     mapa.agregar(&escenarioFondo);
+
+    // Agregar frontera.
+    FisicaDeFrontera fisicaDeFrontera(5650, &fisicaDePersonaje);
+    GraficoDeFrontera graficoDeFrontera;
+    Mapeable frontera(&fisicaDeFrontera, &graficoDeFrontera, &comportamientoDeEscenario);
+    mapa.agregar(&frontera);
 
     // Caja
     vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
     vector<float> duraciones = {1};
     Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
 
-    FisicaDeMapeable fisicaDeObjeto(500, 400, 0);
+    FisicaDeMapeable fisicaDeObjeto(500, 200, 0);
     SDL_Texture * spcaja = spriteCaja.getTexture();
     GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
     Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
