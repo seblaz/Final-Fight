@@ -4,7 +4,7 @@
 
 #include "FabricaDeAnimacionesDeCody.h"
 
-Animacion* FabricaDeAnimacionesDeCody::caminado() {
+Animacion* FabricaDeAnimacionesDeCody::caminando() {
     vector<SDL_Rect> posiciones = {
             {10,  100, 29, 90},
             {51,  100, 47, 90},
@@ -55,5 +55,9 @@ Animacion* FabricaDeAnimacionesDeCody::golpear() {
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
+}
+
+Animacion *FabricaDeAnimacionesDeCody::agachado() {
+    return FabricaDeAnimacionesDeCody::saltando();
 }
 

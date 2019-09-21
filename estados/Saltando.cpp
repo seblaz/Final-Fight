@@ -5,6 +5,7 @@
 #include "Saltando.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
+#include "../graficos/FabricaDeAnimacionesDeCody.h"
 
 Saltando::Saltando() {
     Logger* logger = Locator::logger();
@@ -30,8 +31,16 @@ void Saltando::actualizar(Entidad *entidad) {
         velocidad->z = 7;
         alturaMaxima_--;
     }else{
+        velocidad->x = 0;
+        velocidad->y = 0;
         velocidad->z = 0;
         EstadoDePersonaje* parado = new Parado();
         entidad->agregarComportamiento(parado);
+        parado->enter(entidad);
     }
+}
+
+void Saltando::enter(Entidad *entidad) {
+    auto* animacion = FabricaDeAnimacionesDeCody::saltando();
+    entidad->agregarEstado(animacion);
 }

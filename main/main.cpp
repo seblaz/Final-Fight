@@ -39,7 +39,7 @@ int main(int argc, char *args[]) {
     auto * spriteJugador = new Sprite(renderer, "assets/personajes/cody.png");
     jugador->agregarEstado(spriteJugador);
 
-    auto *animacionDeJugador = FabricaDeAnimacionesDeCody::caminado();
+    auto *animacionDeJugador = FabricaDeAnimacionesDeCody::parado();
     jugador->agregarEstado(animacionDeJugador);
 
     EstadoDePersonaje * estadoDeJugador = new Parado();

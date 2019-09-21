@@ -9,7 +9,10 @@
 #include "../modelo/mapeables/Entidad.h"
 
 class EstadoDePersonaje : public Comportamiento {
+
+public:
     virtual void enter(Entidad* entidad) = 0;
+
 };
 
 

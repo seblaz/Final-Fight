@@ -6,6 +6,7 @@
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
 #include "Saltando.h"
+#include "../graficos/FabricaDeAnimacionesDeCody.h"
 
 Agachado::Agachado() {
     Logger* logger = Locator::logger();
@@ -31,8 +32,15 @@ void Agachado::actualizar(Entidad *entidad) {
     }else if ( entrada[SDL_SCANCODE_S] ){
         EstadoDePersonaje* saltando = new Saltando();
         entidad->agregarComportamiento(saltando);
+        saltando->enter(entidad);
     }else{
         EstadoDePersonaje* parado = new Parado();
         entidad->agregarComportamiento(parado);
+        parado->enter(entidad);
     }
+}
+
+void Agachado::enter(Entidad *entidad) {
+    auto* animacion = FabricaDeAnimacionesDeCody::agachado();
+    entidad->agregarEstado(animacion);
 }

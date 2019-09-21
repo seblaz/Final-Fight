@@ -7,6 +7,7 @@
 #include "Saltando.h"
 #include "Agachado.h"
 #include "../modelo/Velocidad.h"
+#include "../graficos/FabricaDeAnimacionesDeCody.h"
 
 Caminando::Caminando() {
     Logger* logger = Locator::logger();
@@ -44,9 +45,11 @@ void Caminando::actualizar(Entidad *entidad) {
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         EstadoDePersonaje* saltando = new Saltando();
         entidad->agregarComportamiento(saltando);
+        saltando->enter(entidad);
     }else if (entrada[SDL_SCANCODE_D]){
         EstadoDePersonaje* agachado = new Agachado();
         entidad->agregarComportamiento(agachado);
+        agachado->enter(entidad);
     }else if (entrada[SDL_SCANCODE_A]){
 //        EstadoDePersonaje* golpeando = new Golpeando();
 //        entidad->agregarComportamiento(golpeando);
@@ -55,6 +58,12 @@ void Caminando::actualizar(Entidad *entidad) {
     }else {
         EstadoDePersonaje* parado = new Parado();
         entidad->agregarComportamiento(parado);
+        parado->enter(entidad);
     }
+}
+
+void Caminando::enter(Entidad *entidad) {
+    auto* animacion = FabricaDeAnimacionesDeCody::caminando();
+    entidad->agregarEstado(animacion);
 }
 

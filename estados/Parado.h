@@ -16,6 +16,7 @@ public:
     Parado();
     ~Parado();
     void actualizar(Entidad *) override;
+    void enter(Entidad *) override;
 };
 
 #endif //FINAL_FIGHT_PARADO_H

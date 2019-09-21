@@ -15,6 +15,7 @@ public:
     Caminando();
     ~Caminando();
     void actualizar(Entidad *) override;
+    void enter(Entidad *) override;
 };
 
 #endif //FINAL_FIGHT_CAMINANDO_H

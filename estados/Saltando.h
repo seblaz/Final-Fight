@@ -20,6 +20,7 @@ public:
     Saltando();
     ~Saltando();
     void actualizar(Entidad *) override;
+    void enter(Entidad *) override;
 };
 
 #endif //FINAL_FIGHT_SALTANDO_H
