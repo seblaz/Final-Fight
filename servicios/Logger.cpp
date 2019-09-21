@@ -9,6 +9,15 @@
 #include <sys/stat.h>
 #include <cstring>
 
+std::map<std::string, LEVEL>::iterator searchByValue(std::map<std::string, LEVEL> & map, LEVEL val) {
+    std::map<std::string, LEVEL>::iterator it = map.begin();
+    while (it != map.end()) {
+        if (it->second == val)
+            return it;
+        it++;
+    }
+}
+
 /**
  * File Manager helper funcitions.
  */
@@ -45,8 +54,10 @@ public:
 /**
  * Actual Logger implementation.
  */
-Logger::Logger(LEVEL level) :
-        level(level),
+
+Logger::Logger(string stringLevel) :
+        levelMap(constructMap()),
+        level(stringToLevel(stringLevel)),
         logFile(getLogFileName()),
         folder("logs"){
     FileManager::createFolderIfItDoesNotExist(folder);
@@ -61,16 +72,21 @@ void Logger::log(LEVEL level_, const string &message) {
 }
 
 string Logger::levelToString(LEVEL level) {
-    // TODO: posible mejora.
-    switch (level) {
-        case ERROR:
-            return "ERROR";
-        case INFO:
-            return "INFO";
-        case DEBUG:
-            return "DEBUG";
-    }
+
+    auto iterator = searchByValue(levelMap, level);
+    if(iterator != levelMap.end())
+        return iterator->first;
+
     return "Error in levelToString!";
+}
+
+LEVEL Logger::stringToLevel(string stringLevel) {
+
+    if(levelMap.find(stringLevel) != levelMap.end()){
+        return levelMap[stringLevel];
+    }
+
+    return DEBUG;
 }
 
 string Logger::getLogDateTime() {
@@ -101,4 +117,13 @@ string Logger::getLogFileName() {
     fileName << setfill('0') << setw(2) << localTime->tm_sec << ".log";
 
     return fileName.str();
+}
+
+map<string, LEVEL> Logger::constructMap(){
+    std::map<std::string, LEVEL> map;
+    map["DEBUG"] = DEBUG;
+    map["INFO"] = INFO;
+    map["ERROR"] = ERROR;
+
+    return map;
 }

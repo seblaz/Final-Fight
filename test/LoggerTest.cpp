@@ -9,8 +9,8 @@
 TEST(Logger, LoggerFuncionaBienParaNivelesMenores) {
     testing::internal::CaptureStdout();
 
-    Logger logger(INFO);
-    logger.log(ERROR, "Un errror ocurrió");
+    auto *logger = new Logger("INFO");
+    logger->log(ERROR, "Un errror ocurrió");
 
     std::string output = testing::internal::GetCapturedStdout();
     ASSERT_THAT(output, testing:: HasSubstr("Un errror ocurrió"));
@@ -19,7 +19,7 @@ TEST(Logger, LoggerFuncionaBienParaNivelesMenores) {
 TEST(Logger, LoggerFuncionaBienParaNivelesIguales) {
     testing::internal::CaptureStdout();
 
-    Logger logger(INFO);
+    Logger logger("INFO");
     logger.log(INFO, "Log de info");
 
     std::string output = testing::internal::GetCapturedStdout();
@@ -29,7 +29,7 @@ TEST(Logger, LoggerFuncionaBienParaNivelesIguales) {
 TEST(Logger, LoggerNoMuestraNadaParaNivelesMayores) {
     testing::internal::CaptureStdout();
 
-    Logger logger(INFO);
+    Logger logger("INFO");
     logger.log(DEBUG, "Log de bug");
 
     std::string output = testing::internal::GetCapturedStdout();

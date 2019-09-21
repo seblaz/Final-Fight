@@ -6,6 +6,7 @@
 #define FINAL_FIGHT_LOGGER_H
 
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -17,12 +18,16 @@ private:
     LEVEL level;
     string logFile;
     string folder;
+    map<string, LEVEL> levelMap;
+
     static string getLogDateTime();
     static string getLogFileName();
-    static string levelToString(LEVEL);
+    static map<string, LEVEL> constructMap();
+    string levelToString(LEVEL);
+    LEVEL stringToLevel(string);
 
 public:
-    explicit Logger(LEVEL level);
+    explicit Logger(string stringLevel);
     void log(LEVEL level_, const string& message);
 };
 
