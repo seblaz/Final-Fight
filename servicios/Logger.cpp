@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <cstring>
 
-std::map<std::string, LEVEL>::iterator searchByValue(std::map<std::string, LEVEL> & map, LEVEL val) {
+std::map<std::string, LEVEL>::iterator searchByValue(std::map<std::string, LEVEL> &map, LEVEL val) {
     std::map<std::string, LEVEL>::iterator it = map.begin();
     while (it != map.end()) {
         if (it->second == val)
@@ -59,7 +59,7 @@ Logger::Logger(string stringLevel) :
         levelMap(constructMap()),
         level(stringToLevel(stringLevel)),
         logFile(getLogFileName()),
-        folder("logs"){
+        folder("logs") {
     FileManager::createFolderIfItDoesNotExist(folder);
 }
 
@@ -73,19 +73,25 @@ void Logger::log(LEVEL level_, const string &message) {
 
 string Logger::levelToString(LEVEL level) {
 
-    auto iterator = searchByValue(levelMap, level);
-    if(iterator != levelMap.end())
-        return iterator->first;
-
+    switch (level) {
+        case ERROR:
+            return "ERROR";
+        case INFO:
+            return "INFO";
+        case DEBUG:
+            return "DEBUG";
+    }
     return "Error in levelToString!";
 }
 
-LEVEL Logger::stringToLevel(string stringLevel) {
-
-    if(levelMap.find(stringLevel) != levelMap.end()){
-        return levelMap[stringLevel];
+LEVEL Logger::stringToLevel(const string& stringLevel) {
+    if(stringLevel == "ERROR") {
+        return ERROR;
+    }else if(stringLevel == "INFO") {
+        return INFO;
+    }else if(stringLevel == "DEBUG"){
+        return DEBUG;
     }
-
     return DEBUG;
 }
 
@@ -119,7 +125,7 @@ string Logger::getLogFileName() {
     return fileName.str();
 }
 
-map<string, LEVEL> Logger::constructMap(){
+map<string, LEVEL> Logger::constructMap() {
     std::map<std::string, LEVEL> map;
     map["DEBUG"] = DEBUG;
     map["INFO"] = INFO;

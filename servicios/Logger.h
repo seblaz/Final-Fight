@@ -23,8 +23,8 @@ private:
     static string getLogDateTime();
     static string getLogFileName();
     static map<string, LEVEL> constructMap();
-    string levelToString(LEVEL);
-    LEVEL stringToLevel(string);
+    static string levelToString(LEVEL);
+    static LEVEL stringToLevel(const string&);
 
 public:
     explicit Logger(string stringLevel);
