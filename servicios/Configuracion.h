@@ -14,7 +14,7 @@ using namespace std;
 class Configuracion {
 
 private:
-    string defaultPath = "ConfiguracionOld.xml";
+    string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;
     xercesc::ErrorHandler *errHandler;
 

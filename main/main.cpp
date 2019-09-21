@@ -14,7 +14,11 @@ int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
 
-    auto *config = new Configuracion();
+    string configurationPath;
+    cout << "Ingrese la ruta de archivo de configuracion.\n";
+    cin >> configurationPath;
+
+    auto *config = new Configuracion(configurationPath);
     Locator::provide(config);
 
     Juego juego;
