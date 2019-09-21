@@ -40,7 +40,7 @@ Animacion* FabricaDeAnimacionesDeCody::parado() {
 }
 
 Animacion *FabricaDeAnimacionesDeCody::agachado() {
-    vector<SDL_Rect> posiciones = {{350, 720, 39, 90}};
+    vector<SDL_Rect> posiciones = {{350, 715, 39, 90}};
     vector<float> duraciones = {1};
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
