@@ -10,17 +10,19 @@
 #include <map>
 
 using namespace std;
-//using namespace xercesc_3_2;
 
 class Configuracion {
 
+private:
+    string defaultPath = "ConfiguracionOld.xml";
+    xercesc::XercesDOMParser *parser;
+    xercesc::ErrorHandler *errHandler;
+
 public:
     explicit Configuracion(const string &path = "Configuracion.xml");
+    ~Configuracion();
     string getValue(const string& xPath);
     int getIntValue(const string& xPath);
     float getFloatValue(const string& xPath);
 
-private:
-    xercesc::DOMDocument *doc;
-    string defaultPath = "ConfiguracionOld.xml";
 };

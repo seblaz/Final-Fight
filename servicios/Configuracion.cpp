@@ -24,14 +24,15 @@ Configuracion::Configuracion(const string &path) {
     }
     catch (const xercesc::XMLException &toCatch) {
         // Do your failure processing here
+        char *message = xercesc::XMLString::transcode(toCatch.getMessage());
+        cout << "Exception message is: \n"
+             << message << "\n";
+        xercesc::XMLString::release(&message);
     }
 
-    auto *parser = new xercesc::XercesDOMParser();
-    auto *errHandler = (xercesc::ErrorHandler *) new xercesc::HandlerBase();
-    parser->setValidationScheme(xercesc::XercesDOMParser::Val_Always);
+    parser = new xercesc::XercesDOMParser();
+    errHandler = (xercesc::ErrorHandler *) new xercesc::HandlerBase();
     parser->setIncludeIgnorableWhitespace(false);
-    parser->setDoNamespaces(true);    // optional
-
     parser->setErrorHandler(errHandler);
 
     try {
@@ -58,24 +59,35 @@ Configuracion::Configuracion(const string &path) {
     catch (...) {
         cout << "Unexpected Exception \n";
     }
-    doc = parser->getDocument();
+}
+
+Configuracion::~Configuracion() {
+    delete parser;
+    delete errHandler;
 }
 
 string Configuracion::getValue(const string &xPath) {
-    string finalValue = "";
+    XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
 
-    xercesc::DOMXPathResult *result = doc->evaluate(
-            xercesc::XMLString::transcode(("/configuracion" + xPath).c_str()),
-            doc->getDocumentElement(),
+    xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
+            tag,
+            parser->getDocument()->getDocumentElement(),
             nullptr,
             xercesc::DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
             nullptr);
 
-    if (result->getNodeValue()){
-        finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
+    xercesc::XMLString::release(&tag);
+
+    if (!result->getNodeValue()){
+        return "";
     }
 
-    return finalValue;
+    char* finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
+    result->release();
+
+    std::string returnValue(finalValue);
+    xercesc::XMLString::release(&finalValue);
+    return returnValue;
 }
 
 int Configuracion::getIntValue(const string &xPath) {
