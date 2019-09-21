@@ -5,13 +5,17 @@
 #include "gtest/gtest.h"
 #include "../modelo/mapeables/Entidad.h"
 
+class UnComponente : public Estado {};
+
+class OtroComponente : public Estado {};
+
 TEST(Entidad, UnaEntidadDevuelveElComponenteCorrecto) {
     Entidad entidad;
 
-    Componente i;
-    entidad.agregarComponente(&i);
+    UnComponente i;
+    entidad.agregarEstado(&i);
 
-    auto *j = entidad.getComponente<Componente>();
+    auto *j = entidad.getEstado<UnComponente>();
 
     EXPECT_EQ(&i, j);
 }
@@ -19,34 +23,34 @@ TEST(Entidad, UnaEntidadDevuelveElComponenteCorrecto) {
 TEST(Entidad, SiElComponenteNoExisteDevuelveNull) {
     Entidad entidad;
 
-    auto *j = entidad.getComponente<Componente>();
+    auto *j = entidad.getEstado<UnComponente>();
 
     EXPECT_EQ(j, nullptr);
 }
 
-class OtroComponente : public Componente {};
 
-TEST(Entidad, PuedoAgregarTipoDeComponentes) {
+
+TEST(Entidad, PuedoAgregarDistintosTiposDeComponentes) {
     Entidad entidad;
     OtroComponente i;
 
-    entidad.agregarComponente(&i);
+    entidad.agregarEstado(&i);
 
-    auto *j = entidad.getComponente<OtroComponente>();
+    auto *j = entidad.getEstado<OtroComponente>();
 
     EXPECT_EQ(&i, j);
 }
 
 TEST(Entidad, PuedoAgregarVariosComponentesYDevelvenElCorrecto) {
     Entidad entidad;
-    Componente i;
+    UnComponente i;
     OtroComponente j;
 
-    entidad.agregarComponente(&i);
-    entidad.agregarComponente(&j);
+    entidad.agregarEstado(&i);
+    entidad.agregarEstado(&j);
 
-    auto *iDevuelto = entidad.getComponente<Componente>();
-    auto *jDevuelto = entidad.getComponente<OtroComponente>();
+    auto *iDevuelto = entidad.getEstado<UnComponente>();
+    auto *jDevuelto = entidad.getEstado<OtroComponente>();
 
     EXPECT_EQ(&i, iDevuelto);
     EXPECT_EQ(&j, jDevuelto);

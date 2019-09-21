@@ -3,28 +3,22 @@
 //
 
 #include "Mapa.h"
+#include "../servicios/Locator.h"
 
 using namespace std;
 
-void Mapa::agregar(Mapeable *mapeable) {
-    mapeables.push_back(mapeable);
+Entidad *Mapa::crearEntidad() {
+    auto* e = new Entidad();
+    entidades.push_back(e);
+    return e;
 }
 
-void Mapa::agregarJugador(Mapeable *nuevoJugador) {
-    jugador_ = nuevoJugador;
-    agregar(nuevoJugador);
-}
-
-auto Mapa::devolverMapeables() -> decltype(make_iterable(mapeables.begin(), mapeables.end())) {
-    return make_iterable(mapeables.begin(), mapeables.end());
-}
-
-Mapeable *Mapa::jugador() {
-    return jugador_;
+auto Mapa::devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end())) {
+    return make_iterable(entidades.begin(), entidades.end());
 }
 
 void Mapa::vaciarMapa() {
-    bool resultado = mapeables.empty();
-    Locator::logger()->log(DEBUG, &"Se vacio el vector de mapeables con resultado: "[resultado]);
+    entidades.clear();
+    Locator::logger()->log(DEBUG, "Se vacio el vector de entidades");
 }
 

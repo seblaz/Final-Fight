@@ -29,3 +29,16 @@ Configuracion *Locator::configuracion() {
 void Locator::provide(Configuracion *configuracion) {
     configuracion_ = configuracion;
 }
+
+/**
+ * Renderer.
+ */
+SDL_Renderer *Locator::renderer_;
+
+SDL_Renderer *Locator::renderer() {
+    return renderer_;
+}
+
+void Locator::provide(SDL_Renderer *renderer) {
+    renderer_ = renderer;
+}

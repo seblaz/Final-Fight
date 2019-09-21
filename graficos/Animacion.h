@@ -8,10 +8,11 @@
 
 #include <SDL_rect.h>
 #include <vector>
+#include "../modelo/mapeables/Entidad.h"
 
 using namespace std;
 
-class Animacion {
+class Animacion : public Estado {
 
 private:
     vector<SDL_Rect> posiciones;

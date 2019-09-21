@@ -5,24 +5,19 @@
 #ifndef FINAL_FIGHT_FISICADEESCENARIO_H
 #define FINAL_FIGHT_FISICADEESCENARIO_H
 
+#include "../modelo/mapeables/Entidad.h"
 
-#include "../modelo/Mapa.h"
-#include "FisicaDePersonaje.h"
-
-class FisicaDeEscenario : public Fisica {
+class FisicaDeEscenario : public Comportamiento {
 
 private:
     int posicion_ = 0;
     int largo_;
     const int scrollDerecho = 400;
     const int scrollIzquierdo = 150;
-    FisicaDePersonaje *fisicaDePersonaje;
 
 public:
-    explicit FisicaDeEscenario(FisicaDePersonaje *fisicaDePersonaje, int largo);
-    void actualizar() override;
-    int posicion();
-
+    explicit FisicaDeEscenario(int largo);
+    void actualizar(Entidad *) override;
 };
 
 

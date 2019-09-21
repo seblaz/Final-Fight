@@ -4,6 +4,8 @@
 
 #include <unistd.h>
 #include "Juego.h"
+#include "../servicios/Locator.h"
+#include "../modelo/Posicion.h"
 #include <chrono>
 #include <algorithm>
 
@@ -71,22 +73,17 @@ void Juego::processInput() {
 }
 
 void Juego::actualizar() {
-    auto mapeables = mapa().devolverMapeables();
+    auto entidades = mapa().devolverEntidades();
 
-    sort(mapeables.begin(), mapeables.end(), [](Mapeable *a, Mapeable *b) {
-        return a->grafico()->profundidad() > b->grafico()->profundidad();
+    sort(entidades.begin(), entidades.end(), [](Entidad *a, Entidad *b) {
+        return a->getEstado<Posicion>()->getZ() > b->getEstado<Posicion>()->getZ();
     });
 
-    for (auto mapeable : mapeables) {
-        mapeable->comportamiento()->actualizar();
-    }
-
-    for (auto mapeable : mapeables) {
-        mapeable->fisica()->actualizar();
-    }
-
-    for (auto mapeable : mapeables) {
-        mapeable->grafico()->actualizar(renderer_);
+    for (auto entidad : entidades) {
+        auto comportamientos = entidad->getComportamientos();
+        for(auto * comportamiento : comportamientos){
+            comportamiento->actualizar(entidad);
+        }
     }
 }
 

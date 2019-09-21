@@ -7,8 +7,9 @@
 
 
 #include "Velocidad.h"
+#include "mapeables/Entidad.h"
 
-class Posicion {
+class Posicion : public Estado{
 
 private:
     int x, y, z;
