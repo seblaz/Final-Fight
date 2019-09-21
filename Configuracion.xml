@@ -3,6 +3,7 @@
         <level>DEBUG</level>
     </debug>
     <escenario>
+        <inclinacion>0.79</inclinacion>
         <objetos>
             <cuchillo>
                 <cantidad>5</cantidad>
@@ -12,5 +13,27 @@
             <cantidad>7</cantidad>
         </barril>
     </escenario>
-    <lala>5</lala>
+    <resolucion>
+        <ancho>1600</ancho>
+        <alto>900</alto>
+    </resolucion>
+    <escala>
+        <escenario>
+            <ancho>5.7</ancho>
+        </escenario>
+        <mapeables>1</mapeables>
+    </escala>
+    <velocidad>
+        <juego>1</juego>
+        <personaje>
+            <x>1</x>
+            <y>1</y>
+        </personaje>
+    </velocidad>
+    <fps>40</fps>
+    <niveles>
+        <nivel1>
+            <fondo>assets/escenarios/nivel1.png</fondo>
+        </nivel1>
+    </niveles>
 </configuracion>

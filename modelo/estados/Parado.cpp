@@ -1,11 +1,8 @@
 //
 // Created by franco on 6/9/19.
 //
-#include <SDL_system.h>
+
 #include "Parado.h"
-#include "Agachado.h"
-#include "Caminando.h"
-#include "../../servicios/Logger.h"
 
 EstadoDePersonaje* Parado::manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada) {
 
@@ -18,7 +15,11 @@ EstadoDePersonaje* Parado::manejarEntrada(FisicaDePersonaje *fisica, const Uint8
         Agachado* agachado = new Agachado();
         agachado -> manejarEntrada(fisica, entrada);
         return agachado;
-    }else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] || entrada[SDL_SCANCODE_UP]){
+    } else if (entrada[SDL_SCANCODE_A]) {
+        Golpeando* golpeando = new Golpeando();
+        golpeando->manejarEntrada(fisica, entrada);
+        return golpeando;
+    } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] || entrada[SDL_SCANCODE_UP]){
         Caminando* caminando = new Caminando();
         caminando -> manejarEntrada(fisica, entrada);
         return caminando;

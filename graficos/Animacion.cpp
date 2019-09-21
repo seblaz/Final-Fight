@@ -34,7 +34,7 @@ SDL_Rect Animacion::actualizarYDevolverPosicion() {
 }
 
 int Animacion::calcularFramesFaltantes() {
-    float velocidad = Locator::configuracion()->velocidadDeJuego;
+    float velocidad = Locator::configuracion()->getFloatValue("/velocidad/juego");
     return duracionTotal * duracionesPorSprite[spriteActual] / sumaDeDuracionesRelativas * (1 / velocidad);;
 }
 
@@ -45,4 +45,3 @@ float Animacion::escala() {
 bool Animacion::compareTo(Animacion *animacionAcomparar) {
 
 }
-

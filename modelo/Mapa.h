@@ -17,14 +17,15 @@ class Mapeable;
 class Mapa {
 
 private:
-    Dimension dimension;
     vector<Mapeable*> mapeables;
+    Mapeable *jugador_;
 
 public:
-    Mapa(int ancho, int largo, int altura);
     void agregar(Mapeable *mapeable);
+    void agregarJugador(Mapeable *mapeable);
     auto devolverMapeables() -> decltype(make_iterable(mapeables.begin(), mapeables.end()));
-
+    Mapeable *jugador();
+    void vaciarMapa();
 };
 
 #include "mapeables/Mapeable.h"

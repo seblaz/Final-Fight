@@ -22,3 +22,7 @@ void GraficoDeMapeable::actualizar(SDL_Renderer *renderer) {
     SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion.escala());
     SDL_RenderCopy(renderer, sprite, &posicionEnSprite, &posicionEnPantalla);
 }
+
+int GraficoDeMapeable::profundidad() {
+    return fisica->posicion().getY();
+}

@@ -1,0 +1,4203 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   fun:glXCreateContext
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:memmove
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:memmove
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:memset
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN5Juego10clearSceneEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN5Juego10clearSceneEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:bcmp
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr1
+   fun:bcmp
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr2
+   fun:memmove
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr2
+   fun:memmove
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDeEscenario10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr1
+   fun:memmove
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN18GraficoDePersonaje10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN17GraficoDeFrontera10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:bcmp
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/x86_64-linux-gnu/dri/i965_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN5Juego8graficarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   fun:_ZN6Logger3logE5LEVELRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9CaminandoD1Ev
+   fun:_ZN9CaminandoD0Ev
+   fun:_ZN23ComportamientoDeEnemigoD1Ev
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEv
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1ERKS4_
+   fun:_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_
+   fun:_ZN6Logger3logE5LEVELRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9CaminandoD1Ev
+   fun:_ZN9CaminandoD0Ev
+   fun:_ZN23ComportamientoDeEnemigoD1Ev
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr8
+   fun:_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6lengthEv
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1ERKS4_
+   fun:_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_
+   fun:_ZN6Logger3logE5LEVELRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9CaminandoD1Ev
+   fun:_ZN9CaminandoD0Ev
+   fun:_ZN23ComportamientoDeEnemigoD1Ev
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr2
+   fun:memmove
+   fun:_ZNSt11char_traitsIcE4copyEPcPKcm
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_S_copyEPcPKcm
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_S_copy_charsEPcS5_S5_
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_construct_auxIPcEEvT_S7_St12__false_type
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPcEEvT_S7_
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1ERKS4_
+   fun:_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_
+   fun:_ZN6Logger3logE5LEVELRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9CaminandoD1Ev
+   fun:_ZN9CaminandoD0Ev
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   fun:_ZN6Logger3logE5LEVELRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN6ParadoD1Ev
+   fun:_ZN6ParadoD0Ev
+   fun:_ZN23ComportamientoDeJugadorD1Ev
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_213XMLEntityDeclC1EPKDsDsPNS_13MemoryManagerE
+   fun:DTDEntityDecl
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeDTDGrammarEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:setValue
+   fun:set
+   fun:_ZN11xercesc_3_212KVStringPairC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKDsPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion11getIntValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN17GraficoDeFrontera10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:ENameMap
+   fun:ENameMapFor
+   fun:_ZN11xercesc_3_215XMLTransService16initTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKDsPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9Animacion23calcularFramesFaltantesEv
+   fun:_ZN9AnimacionC1ESt6vectorI8SDL_RectSaIS1_EES0_IfSaIfEEif
+   fun:_ZN26FabricaDeAnimacionesDeCody8caminadoEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   obj:*
+   fun:find_module
+   fun:__gconv_lookup_cache
+   fun:__gconv_find_transform
+   fun:__gconv_open
+   fun:iconv_open
+   fun:_ZN11xercesc_3_220IconvGNUTransServiceC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils16makeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_213XMLStringPool11addNewEntryEPKDs
+   fun:addOrFind
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_213XMLBigDecimalC1EPKDsPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator15setMaxInclusiveEPKDs
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_217DatatypeValidator11setTypeNameEPKDs
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_213XMLBigDecimalC1EPKDsPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator15setMinInclusiveEPKDs
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:ENameMap
+   fun:EEndianNameMapFor
+   fun:_ZN11xercesc_3_215XMLTransService16initTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory19initCanRepRegistoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKDsPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9Animacion23calcularFramesFaltantesEv
+   fun:_ZN9AnimacionC1ESt6vectorI8SDL_RectSaIS1_EES0_IfSaIfEEif
+   fun:_ZN26FabricaDeAnimacionesDeCody6paradoEv
+   fun:_ZN6Parado17devolverAnimacionEv
+   fun:_ZN23ComportamientoDeJugadorC1EP17FisicaDePersonaje
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils12makeMutexMgrEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11makeFileMgrEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils15makeNetAccessorEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_213XMLStringPool11addNewEntryEPKDs
+   fun:addOrFind
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:setKey
+   fun:set
+   fun:_ZN11xercesc_3_212KVStringPairC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_12KVStringPairENS_12StringHasherEE10initializeEm
+   fun:RefHashTableOf
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_27UnionOpC1ENS_2Op6opTypeEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createUnionOpEm
+   fun:compileUnion
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_216SchemaAttDefListC1EPNS_19RefHash2KeysTableOfINS_12SchemaAttDefENS_12StringHasherEEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215ComplexTypeInfoC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:_XlcDefaultMapModifiers
+   fun:XSetLocaleModifiers
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   fun:_ZN5Juego19inicializarGraficosEv
+   fun:_ZN5JuegoC1Ev
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_25QName10setNPrefixEPKDsm
+   fun:setPrefix
+   fun:_ZN11xercesc_3_25QName7setNameEPKDsS2_j
+   fun:_ZN11xercesc_3_25QNameC1EPKDsS2_jPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_25QName10setNPrefixEPKDsm
+   fun:setPrefix
+   fun:_ZN11xercesc_3_25QName7setNameEPKDsS2_j
+   fun:_ZN11xercesc_3_25QNameC1EPKDsS2_jPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212SchemaAttDefC1EPKDsS2_iNS_9XMLAttDef8AttTypesENS3_11DefAttTypesEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:setTypeName
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_215XMLTransService16initTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_8ENameMapENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_215XMLTransService16initTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_8ENameMapENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeXMLScannerEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer22initializeXMLValidatorEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:put
+   fun:_ZN11xercesc_3_213XMLStringPool11addNewEntryEPKDs
+   fun:addOrFind
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_12RangeFactoryENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:put
+   fun:_ZN11xercesc_3_213RangeTokenMap13addKeywordMapEPKDsS2_
+   fun:_ZN11xercesc_3_215XMLRangeFactory20initializeKeywordMapEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:put
+   fun:_ZN11xercesc_3_213RangeTokenMap13addKeywordMapEPKDsS2_
+   fun:_ZN11xercesc_3_217ASCIIRangeFactory20initializeKeywordMapEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:put
+   fun:_ZN11xercesc_3_213RangeTokenMap13addKeywordMapEPKDsS2_
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory20initializeKeywordMapEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_13DTDEntityDeclENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_210NameIdPoolINS_13DTDEntityDeclEE3putEPS1_
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeDTDGrammarEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_13DTDEntityDeclENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_210NameIdPoolINS_13DTDEntityDeclEE3putEPS1_
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_17DatatypeValidatorENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_12KVStringPairENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_17DatatypeValidatorENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_14XMLCanRepGroupENS_9PtrHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory19initCanRepRegistoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_14XMLCanRepGroupENS_9PtrHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_216ValueHashTableOfItNS_12StringHasherEE3putEPvRKt
+   fun:_ZN11xercesc_3_221GeneralAttributeCheck10initializeEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_216ValueHashTableOfINS_7XSValue8DataTypeENS_12StringHasherEE3putEPvRKS2_
+   fun:_ZN11xercesc_3_27XSValue18initializeRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer35initializeDOMImplementationRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_214XMLInitializer35initializeDOMImplementationRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer31initializeDOMImplementationImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer31initializeDOMImplementationImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeDOMNormalizerEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer18initializeXIncludeEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_215XMLRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken11doCreateMapEv
+   fun:createMap
+   fun:_ZN11xercesc_3_215XMLRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken11doCreateMapEv
+   fun:createMap
+   fun:_ZN11xercesc_3_217ASCIIRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken11doCreateMapEv
+   fun:createMap
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createTokenENS_5Token7tokTypeE
+   fun:_ZN11xercesc_3_218ParserForXMLSchema15processQuestionEPNS_5TokenE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_25QName13setNLocalPartEPKDsm
+   fun:setLocalPart
+   fun:_ZN11xercesc_3_25QName7setNameEPKDsS2_j
+   fun:_ZN11xercesc_3_25QNameC1EPKDsS2_jPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createUnionEb
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createUnionEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema15processQuestionEPNS_5TokenE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createUnionEb
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_12KVStringPairENS_12StringHasherEE6rehashEv
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_12KVStringPairENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createUnionEb
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_211StdMutexMgr6createEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_28XMLMutexC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215IconvGNUWrapperC1EPvS1_mjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoderC1EPvS1_mjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_220IconvGNUTransService20makeNewLCPTranscoderEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory13createClosureEPNS_5TokenEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema11processPlusEPNS_5TokenE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory12createConcatEPNS_5TokenES2_
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory13createClosureEPNS_5TokenEb
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory13createClosureEPNS_5TokenEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema11processPlusEPNS_5TokenE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory12createConcatEPNS_5TokenES2_
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createUnionOpEm
+   fun:compileUnion
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory13createClosureEPNS_5TokenEb
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createRangeOpEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_211StdMutexMgr6createEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_28XMLMutexC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer35initializeDOMImplementationRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_211StdMutexMgr6createEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_28XMLMutexC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer22initializeXMLExceptionEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer26initializeXSDErrorReporterEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer22initializeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_217EncodingValidator18initializeRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer27initializeEncodingValidatorEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_218ParserForXMLSchema15processQuestionEPNS_5TokenE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory15createClosureOpEi
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_27UnionOpC1ENS_2Op6opTypeEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createUnionOpEm
+   fun:compileUnion
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_221GeneralAttributeCheck10initializeEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory15createClosureOpEi
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_27XSValue18initializeRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215ComplexTypeInfoC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_214XMLInitializer22initializeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213XMLStringPoolC1EjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215XMLRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_217ASCIIRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217ASCIIRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217BlockRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RegxParser19parseCharacterClassEb
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_218ParserForXMLSchema15processQuestionEPNS_5TokenE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator15setMaxInclusiveEPKDs
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator15setMinInclusiveEPKDs
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216SchemaAttDefListC1EPNS_19RefHash2KeysTableOfINS_12SchemaAttDefENS_12StringHasherEEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215ComplexTypeInfoC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213XMLStringPoolC1EjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215DOMDocumentImplC1EPNS_17DOMImplementationEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_221DOMImplementationImpl14createDocumentEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKcPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion11getIntValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN17GraficoDeFrontera10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken11doCreateMapEv
+   fun:createMap
+   fun:_ZN11xercesc_3_210RangeToken5matchEi
+   fun:_ZNK11xercesc_3_217RegularExpression10matchRangeEPNS0_7ContextEPKNS_2OpERmb
+   fun:_ZNK11xercesc_3_217RegularExpression5matchEPNS0_7ContextEPKNS_2OpEm
+   fun:_ZNK11xercesc_3_217RegularExpression10matchUnionEPNS0_7ContextEPKNS_2OpEm
+   fun:_ZNK11xercesc_3_217RegularExpression5matchEPNS0_7ContextEPKNS_2OpEm
+   fun:_ZNK11xercesc_3_217RegularExpression7matchesEPKDsmmPNS_5MatchEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator12checkContentEPKDsPNS_17ValidationContextEbPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator16inspectFacetBaseEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_220IconvGNUTransService20makeNewLCPTranscoderEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_217DatatypeValidator11setTypeNameEPKDsS2_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_216XMLPlatformUtils16makeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_215XMLRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215XMLRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_217ASCIIRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217ASCIIRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_210RegxParser19parseCharacterClassEb
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212SchemaAttDefC1EPKDsS2_iNS_9XMLAttDef8AttTypesENS3_11DefAttTypesEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory10createCharEjb
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createUnionEb
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:setTypeName
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_214InMemMsgLoaderC1EPKDs
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer31initializeDOMImplementationImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken6expandEj
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:initialize
+   fun:RefHashTableOf
+   fun:NameIdPool
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeDTDGrammarEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN26FabricaDeAnimacionesDeCody6paradoEv
+   fun:_ZN6Parado17devolverAnimacionEv
+   fun:_ZN23ComportamientoDeJugadorC1EP17FisicaDePersonaje
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeDTDGrammarEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:NameIdPool
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeDTDGrammarEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_211StdMutexMgr6createEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_28XMLMutexC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeXMLScannerEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createRangeOpEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory17createParenthesisEPNS_5TokenEi
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory12createCharOpEi
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   fun:__gconv_open
+   fun:iconv_open
+   fun:_ZN11xercesc_3_220IconvGNUTransServiceC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils16makeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory15createClosureOpEi
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_29OpFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_29OpFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:init
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_212TokenFactoryC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RegxParser19parseCharacterClassEb
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_218ParserForXMLSchema12processParenEv
+   fun:_ZN11xercesc_3_210RegxParser9parseAtomEv
+   fun:_ZN11xercesc_3_210RegxParser11parseFactorEv
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken11mergeRangesEPKNS_5TokenE
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_13XMLStringPool8PoolElemENS_12StringHasherEE10initializeEm
+   fun:RefHashTableOf
+   fun:_ZN11xercesc_3_213XMLStringPoolC1EjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215DOMDocumentImplC1EPNS_17DOMImplementationEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_221DOMImplementationImpl14createDocumentEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken6expandEj
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215XMLRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_211StdMutexMgr6createEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_28XMLMutexC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createRangeOpEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_229AbstractNumericFacetValidator11assignFacetEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_210RangeToken16complementRangesEPS0_PNS_12TokenFactoryEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_214InMemMsgLoaderC1EPKDs
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeDOMNormalizerEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_214InMemMsgLoaderC1EPKDs
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer26initializeXSDErrorReporterEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DecimalDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:BaseRefVectorOf
+   fun:RefVectorOf
+   fun:_ZN11xercesc_3_210UnionToken8addChildEPNS_5TokenEPNS_12TokenFactoryE
+   fun:_ZN11xercesc_3_210RegxParser9parseTermEb
+   fun:_ZN11xercesc_3_210RegxParser9parseRegxEb
+   fun:_ZN11xercesc_3_210RegxParser5parseEPKDsi
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidatorC1EPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223StringDatatypeValidator11newInstanceEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEiPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   fun:__gconv_lookup_cache
+   fun:__gconv_find_transform
+   fun:__gconv_open
+   fun:iconv_open
+   fun:_ZN11xercesc_3_220IconvGNUTransServiceC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_216XMLPlatformUtils16makeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_216ValueHashTableOfItNS_12StringHasherEE6rehashEv
+   fun:_ZN11xercesc_3_216ValueHashTableOfItNS_12StringHasherEE3putEPvRKt
+   fun:_ZN11xercesc_3_221GeneralAttributeCheck10initializeEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:initialize
+   fun:RefHashTableOf
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:initialize
+   fun:RefHashTableOf
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory19initCanRepRegistoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:initialize
+   fun:RefHash2KeysTableOf
+   fun:_ZN11xercesc_3_215ComplexTypeInfoC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer25initializeComplexTypeInfoEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:replicate
+   fun:_ZN11xercesc_3_214InMemMsgLoaderC1EPKDs
+   fun:_ZN11xercesc_3_216XMLPlatformUtils11loadAMsgSetEPKDs
+   fun:_ZN11xercesc_3_214XMLInitializer22initializeXMLExceptionEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_215BaseRefVectorOfINS_2OpEE19ensureExtraCapacityEm
+   fun:addElement
+   fun:_ZN11xercesc_3_29OpFactory13createRangeOpEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_215BaseRefVectorOfINS_2OpEE19ensureExtraCapacityEm
+   fun:addElement
+   fun:_ZN11xercesc_3_29OpFactory13createRangeOpEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory16createQuestionOpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:setPattern
+   fun:_ZN11xercesc_3_223AbstractStringValidator11assignFacetEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_223AbstractStringValidator4initEPNS_16RefArrayVectorOfIDsEEPNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory16createQuestionOpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer17initializeXSValueEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_221DOMImplementationImpl14createDocumentEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZNK11xercesc_3_222DOMXPathExpressionImpl8evaluateEPKNS_7DOMNodeENS_14DOMXPathResult10ResultTypeEPS4_
+   fun:_ZN11xercesc_3_215DOMDocumentImpl8evaluateEPKDsPKNS_7DOMNodeEPKNS_18DOMXPathNSResolverENS_14DOMXPathResult10ResultTypeEPS9_
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9Animacion23calcularFramesFaltantesEv
+   fun:_ZN9AnimacionC1ESt6vectorI8SDL_RectSaIS1_EES0_IfSaIfEEif
+   fun:_ZN26FabricaDeAnimacionesDeCody8caminadoEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_213XMLStringPoolC1EjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_213XMLStringPoolC1EjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_215DOMDocumentImplC1EPNS_17DOMImplementationEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_221DOMImplementationImpl14createDocumentEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory16createQuestionOpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   fun:_ZN11xercesc_3_217RegularExpressionC1EPKDsS2_PNS_13MemoryManagerE
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_216ValueHashTableOfINS_7XSValue8DataTypeENS_12StringHasherEE6rehashEv
+   fun:_ZN11xercesc_3_216ValueHashTableOfINS_7XSValue8DataTypeENS_12StringHasherEE3putEPvRKS2_
+   fun:_ZN11xercesc_3_27XSValue18initializeRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:initialize
+   fun:RefHashTableOf
+   fun:_ZN11xercesc_3_214XMLInitializer22initializeTransServiceEv
+   fun:_ZN11xercesc_3_216XMLPlatformUtils10InitializeEPKcS2_PNS_12PanicHandlerEPNS_13MemoryManagerE
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_13XMLStringPool8PoolElemENS_12StringHasherEE10initializeEm
+   fun:RefHashTableOf
+   fun:_ZN11xercesc_3_213XMLStringPoolC1EjPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_17DatatypeValidatorENS_12StringHasherEE6rehashEv
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_17DatatypeValidatorENS_12StringHasherEE3putEPvPS1_
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory23createDatatypeValidatorEPKDsPNS_17DatatypeValidatorEPNS_14RefHashTableOfINS_12KVStringPairENS_12StringHasherEEEPNS_16RefArrayVectorOfIDsEEbibPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_224DatatypeValidatorFactory29expandRegistryToFullSchemaSetEv
+   fun:_ZN11xercesc_3_214XMLInitializer34initializeDatatypeValidatorFactoryEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_29OpFactory13createRangeOpEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileClosure
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:compileConcat
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenEPNS_2OpEb
+   fun:_ZN11xercesc_3_217RegularExpression7compileEPKNS_5TokenE
+   fun:_ZN11xercesc_3_217RegularExpression7prepareEv
+   fun:_ZN11xercesc_3_217RegularExpression10setPatternEPKDsS2_
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZNK11xercesc_3_222DOMXPathExpressionImpl8evaluateEPKNS_7DOMNodeENS_14DOMXPathResult10ResultTypeEPS4_
+   fun:_ZN11xercesc_3_215DOMDocumentImpl8evaluateEPKDsPKNS_7DOMNodeEPKNS_18DOMXPathNSResolverENS_14DOMXPathResult10ResultTypeEPS9_
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN9Animacion23calcularFramesFaltantesEv
+   fun:_ZN9AnimacionC1ESt6vectorI8SDL_RectSaIS1_EES0_IfSaIfEEif
+   fun:_ZN26FabricaDeAnimacionesDeCody6paradoEv
+   fun:_ZN6Parado17devolverAnimacionEv
+   fun:_ZN23ComportamientoDeJugadorC1EP17FisicaDePersonaje
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKcPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN18GraficoDeEscenario11profundidadEv
+   fun:_ZZN5Juego10actualizarEvENKUlP8MapeableS1_E_clES1_S1_
+   fun:_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN5Juego10actualizarEvEUlP8MapeableS4_E_EclIS4_NS_17__normal_iteratorIPS4_St6vectorIS4_SaIS4_EEEEEEbRT_T0_
+   fun:_ZSt25__unguarded_linear_insertIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops14_Val_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_T0_
+   fun:_ZSt16__insertion_sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt22__final_insertion_sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt6__sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_214RefHashTableOfINS_17RangeTokenElemMapENS_12StringHasherEE6rehashEv
+   fun:put
+   fun:_ZN11xercesc_3_213RangeTokenMap13addKeywordMapEPKDsS2_
+   fun:_ZN11xercesc_3_217BlockRangeFactory20initializeKeywordMapEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XlcCurrentLC
+   fun:XSetLocaleModifiers
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_215DOMDocumentImpl8allocateEm
+   fun:_ZN11xercesc_3_215DOMDocumentImplC1EPNS_17DOMImplementationEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_221DOMImplementationImpl14createDocumentEPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer29initializeDOMDocumentTypeImplEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:put
+   fun:_ZN11xercesc_3_213RangeTokenMap13addKeywordMapEPKDsS2_
+   fun:_ZN11xercesc_3_217BlockRangeFactory20initializeKeywordMapEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken11doCreateMapEv
+   fun:createMap
+   fun:_ZN11xercesc_3_217BlockRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_215BaseRefVectorOfINS_5TokenEE19ensureExtraCapacityEm
+   fun:addElement
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_217BlockRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:realpath@@GLIBC_2.3
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   obj:/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.8.0
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN11xercesc_3_213RangeTokenMap13addKeywordMapEPKDsS2_
+   fun:_ZN11xercesc_3_215XMLRangeFactory20initializeKeywordMapEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_213RangeTokenMap18initializeRegistryEv
+   fun:_ZN11xercesc_3_213RangeTokenMapC1EPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_214XMLInitializer23initializeRangeTokenMapEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_217BlockRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKcPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN23ComportamientoDeJugador10actualizarEv
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKcPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion11getIntValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN17GraficoDeFrontera10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKDsPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN18GraficoDeEscenario11profundidadEv
+   fun:_ZZN5Juego10actualizarEvENKUlP8MapeableS1_E_clES1_S1_
+   fun:_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlP8MapeableS4_E_EclINS_17__normal_iteratorIPS4_St6vectorIS4_SaIS4_EEEESD_EEbT_T0_
+   fun:_ZSt16__insertion_sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt22__final_insertion_sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt6__sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt4sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEEZN5Juego10actualizarEvEUlS3_S3_E_EvT_SB_T0_
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_216ValueHashTableOfIbNS_12StringHasherEE6rehashEv
+   fun:put
+   fun:_ZN11xercesc_3_217EncodingValidator18initializeRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer27initializeEncodingValidatorEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZN11xercesc_3_212TokenFactory11createRangeEb
+   fun:_ZN11xercesc_3_217BlockRangeFactory11buildRangesEPNS_13RangeTokenMapE
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:put
+   fun:_ZN11xercesc_3_217EncodingValidator18initializeRegistryEv
+   fun:_ZN11xercesc_3_214XMLInitializer27initializeEncodingValidatorEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_210RangeToken6expandEj
+   fun:_ZN11xercesc_3_210RangeToken8addRangeEii
+   fun:_ZN11xercesc_3_219UnicodeRangeFactory11buildRangesEPNS_13RangeTokenMapE.part.4
+   fun:_ZN11xercesc_3_213RangeTokenMap16buildTokenRangesEv
+   fun:_ZN11xercesc_3_214XMLInitializer20initializeStaticDataEv
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKDsPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_Z26calcularPosicionEnPantalla8Posicion8SDL_Rectf
+   fun:_ZN17GraficoDeMapeable10actualizarEP12SDL_Renderer
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEm
+   fun:_ZN13ConfiguracionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:main
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_221IconvGNULCPTranscoder9transcodeEPKcPNS_13MemoryManagerE
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN18GraficoDeEscenario11profundidadEv
+   fun:_ZZN5Juego10actualizarEvENKUlP8MapeableS1_E_clES1_S1_
+   fun:_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlP8MapeableS4_E_EclINS_17__normal_iteratorIPS4_St6vectorIS4_SaIS4_EEEESD_EEbT_T0_
+   fun:_ZSt16__insertion_sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt22__final_insertion_sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt6__sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEENS0_5__ops15_Iter_comp_iterIZN5Juego10actualizarEvEUlS3_S3_E_EEEvT_SE_T0_
+   fun:_ZSt4sortIN9__gnu_cxx17__normal_iteratorIPP8MapeableSt6vectorIS3_SaIS3_EEEEZN5Juego10actualizarEvEUlS3_S3_E_EvT_SB_T0_
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZNK11xercesc_3_222DOMXPathExpressionImpl8evaluateEPKNS_7DOMNodeENS_14DOMXPathResult10ResultTypeEPS4_
+   fun:_ZN11xercesc_3_215DOMDocumentImpl8evaluateEPKDsPKNS_7DOMNodeEPKNS_18DOMXPathNSResolverENS_14DOMXPathResult10ResultTypeEPS9_
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion13getFloatValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN23ComportamientoDeEnemigo10actualizarEv
+   fun:_ZN5Juego10actualizarEv
+   fun:_ZN5Juego4loopEv
+   fun:main
+   ...
+}
+
+{
+   xercesc_3_2::MemoryManagerImpl::allocate(unsigned long)
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11xercesc_3_217MemoryManagerImpl8allocateEm
+   fun:_ZN11xercesc_3_27XMemorynwEmPNS_13MemoryManagerE
+   fun:_ZNK11xercesc_3_222DOMXPathExpressionImpl8evaluateEPKNS_7DOMNodeENS_14DOMXPathResult10ResultTypeEPS4_
+   fun:_ZN11xercesc_3_215DOMDocumentImpl8evaluateEPKDsPKNS_7DOMNodeEPKNS_18DOMXPathNSResolverENS_14DOMXPathResult10ResultTypeEPS9_
+   fun:_ZN13Configuracion8getValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN13Configuracion11getIntValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+   fun:_ZN5Juego19inicializarGraficosEv
+   fun:_ZN5JuegoC1Ev
+   fun:main
+   ...
+}

@@ -1,12 +1,12 @@
 #include "gtest/gtest.h"
-#include "../servicios/XmlReader.h"
+#include "../servicios/Configuracion.h"
 #include <string>
 #include <vector>
 
 using namespace std;
 
 TEST(XmlReader, AlPedirConfiguracionesQueExistenLasDevuelveComoString) {
-    XmlReader reader = XmlReader();
+    Configuracion reader = Configuracion();
 
     string level = reader.getValue("/debug/level");
     string cuchillos = reader.getValue("/escenario/objetos/cuchillo/cantidad");
@@ -20,7 +20,7 @@ TEST(XmlReader, AlPedirConfiguracionesQueExistenLasDevuelveComoString) {
 }
 
 TEST(XmlReader, PediConfiguracionesPathNoValido) {
-    XmlReader reader = XmlReader("/Novalido/");
+    Configuracion reader = Configuracion("/Novalido/");
 
     string level = reader.getValue("/debug/level");
     string cuchillos = reader.getValue("/escenario/objetos/cuchillo/cantidad");
@@ -30,7 +30,7 @@ TEST(XmlReader, PediConfiguracionesPathNoValido) {
 }
 
 TEST(XmlReader, AlPedirConfiguracionesQueNoExistenDevuelveUnaCadenaVacia) {
-    XmlReader reader = XmlReader("s");
+    Configuracion reader = Configuracion("s");
 
     string noValido = reader.getValue("/noValido/level");
     string cuchillosNoValido = reader.getValue("/escenario/objetos/cuchillo/cantidad2");

@@ -3,8 +3,6 @@
 //
 
 #include "Saltando.h"
-#include "Parado.h"
-#include "../../servicios/Logger.h"
 
 EstadoDePersonaje* Saltando::manejarEntrada(FisicaDePersonaje *fisica, const Uint8* entrada){
 
@@ -25,7 +23,6 @@ EstadoDePersonaje* Saltando::manejarEntrada(FisicaDePersonaje *fisica, const Uin
         return new Parado();
     }
     return nullptr;
-
 }
 
 Saltando::Saltando() {

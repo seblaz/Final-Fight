@@ -20,13 +20,14 @@ class Sprite {
 private:
     SDL_Renderer *renderer;
     SDL_Texture *texture;
+    int ancho_;
 
 public:
     explicit Sprite(SDL_Renderer* renderer, const string& rutaSprite);
 
-    SDL_Texture * getTexture(){
-        return this->texture;
-    }
+    SDL_Texture * getTexture();
+
+    int ancho();
 
 };
 

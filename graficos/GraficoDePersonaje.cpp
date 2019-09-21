@@ -5,9 +5,11 @@
 #include "GraficoDePersonaje.h"
 #include <utility>
 
-GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica, FisicaDeEscenario &fisicaDeEscenario,
-                                       SDL_Texture *sprite,
-                                       Animacion *animacion, Comportamiento *comportamiento) :
+GraficoDePersonaje::GraficoDePersonaje(FisicaDePersonaje *fisica,
+                                        FisicaDeEscenario &fisicaDeEscenario,
+                                        SDL_Texture *sprite,
+                                        Animacion *animacion,
+                                        Comportamiento *comportamiento) :
         sprite(sprite),
         haciaAdelante(true),
         animacion(std::move(animacion)),
@@ -40,4 +42,8 @@ void GraficoDePersonaje::actualizar(SDL_Renderer *renderer) {
 void GraficoDePersonaje::cambiarAnimacion(Animacion *nuevaAnimacion) {
     delete animacion;
     this->animacion = nuevaAnimacion;
+}
+
+int GraficoDePersonaje::profundidad() {
+    return fisica->posicion().getY();
 }

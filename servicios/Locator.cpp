@@ -29,4 +29,3 @@ Configuracion *Locator::configuracion() {
 void Locator::provide(Configuracion *configuracion) {
     configuracion_ = configuracion;
 }
-

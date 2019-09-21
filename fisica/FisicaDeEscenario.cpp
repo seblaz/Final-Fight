@@ -5,16 +5,18 @@
 #include "FisicaDeEscenario.h"
 
 void FisicaDeEscenario::actualizar() {
-    int ancho = Locator::configuracion()->anchoDePantalla;
-    if((fisicaDePersonaje.posicion().getX() - posicion_ > ancho - scrollDerecho))
-        posicion_ = fisicaDePersonaje.posicion().getX() + scrollDerecho - ancho;
-    if(fisicaDePersonaje.posicion().getX() - posicion_ < scrollIzquierdo)
-        posicion_ = fisicaDePersonaje.posicion().getX() - scrollIzquierdo;
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    int xPersonaje = fisicaDePersonaje->posicion().getX();
+    // Mover el escenario.
+    if((xPersonaje - posicion_ < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
+        posicion_ = xPersonaje - scrollIzquierdo;
+    if((xPersonaje - posicion_ > ancho - scrollDerecho) && (largo_ - xPersonaje) > scrollDerecho)
+        posicion_ = xPersonaje + scrollDerecho - ancho;
 }
 
 int FisicaDeEscenario::posicion() {
     return posicion_;
 }
 
-FisicaDeEscenario::FisicaDeEscenario(FisicaDePersonaje &fisicaDePersonaje) :
-        fisicaDePersonaje(fisicaDePersonaje) {}
+FisicaDeEscenario::FisicaDeEscenario(FisicaDePersonaje *fisicaDePersonaje, int largo) :
+        fisicaDePersonaje(fisicaDePersonaje), largo_(largo) {}

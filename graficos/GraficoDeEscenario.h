@@ -17,6 +17,7 @@ class GraficoDeEscenario : public Grafico {
 
 private:
     FisicaDeEscenario &fisica;
+    int longitudDeSprite;
     vector<SDL_Texture *> sprites;
     vector<SDL_Rect> posicionesSprite;
     vector<float> distanciasAlFondo;
@@ -30,15 +31,14 @@ public:
      * @param distanciasAlFondo: float entre 0 y 1 que indica la distancia desde
      * la capa i hasta el fondo (capa que no se mueve). 0 = primera capa, 1 = fondo inamovible.
      */
-    explicit GraficoDeEscenario(FisicaDeEscenario &fisica,
-                                vector<SDL_Texture *> sprites,
+    explicit GraficoDeEscenario(FisicaDeEscenario &fisica, vector<SDL_Texture *> sprites,
                                 vector<SDL_Rect> posicionesSprite,
-                                vector<float> distanciasAlFondo);
+                                vector<float> distanciasAlFondo, int longitudDeSprite);
 
     ~GraficoDeEscenario() = default;
 
     void actualizar(SDL_Renderer *renderer) override;
-
+    int profundidad() override;
 };
 
 

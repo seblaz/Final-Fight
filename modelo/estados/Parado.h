@@ -5,8 +5,14 @@
 #ifndef FINAL_FIGHT_PARADO_H
 #define FINAL_FIGHT_PARADO_H
 
+
 #include "EstadoDePersonaje.h"
 #include "Saltando.h"
+#include "Golpeando.h"
+#include "Agachado.h"
+#include "Caminando.h"
+#include <SDL_system.h>
+#include "../../servicios/Logger.h"
 
 
 class Parado : public EstadoDePersonaje{

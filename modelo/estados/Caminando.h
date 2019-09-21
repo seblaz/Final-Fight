@@ -6,6 +6,13 @@
 #define FINAL_FIGHT_CAMINANDO_H
 
 #include "EstadoDePersonaje.h"
+#include <SDL_scancode.h>
+#include "Saltando.h"
+#include "Agachado.h"
+#include "Parado.h"
+#include "Golpeando.h"
+#include "../../servicios/Logger.h"
+
 
 class Caminando : public EstadoDePersonaje{
 

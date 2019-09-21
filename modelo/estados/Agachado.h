@@ -6,6 +6,10 @@
 #define FINAL_FIGHT_AGACHADO_H
 
 #include "EstadoDePersonaje.h"
+#include <SDL_scancode.h>
+#include "Parado.h"
+#include "Golpeando.h"
+#include "../../servicios/Logger.h"
 
 class Agachado : public EstadoDePersonaje{
 

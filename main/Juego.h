@@ -13,26 +13,28 @@ class Juego {
 
 private:
 
-    void initialize();
-    void finish();
+    void inicializarGraficos();
+    void inicializarElementos();
+    void terminar();
 
     void processInput();
-    void update();
-    void render();
+    void actualizar();
+    void graficar();
+    void clearScene();
 
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
     bool exit = false;
-    Mapa *mapa;
+    Mapa mapa_;
 
 public:
-    explicit Juego(Mapa *mapa) : mapa(mapa) { initialize(); }
-    ~Juego() { finish(); }
+    Juego();
+    ~Juego() { terminar(); }
 
     void loop();
+    Mapa &mapa();
     SDL_Renderer* renderer();
 
-    void clearScene();
 };
 
 
