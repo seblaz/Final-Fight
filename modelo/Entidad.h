@@ -5,9 +5,11 @@
 #ifndef FINAL_FIGHT_ENTIDAD_H
 #define FINAL_FIGHT_ENTIDAD_H
 
-#include <cstddef>
-#include <map>
 #include <unordered_map>
+#include "Iterator.cpp"
+#include <cstddef>
+#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -43,8 +45,8 @@ class Entidad {
 private:
     static IdEntidad ultimoId;
     IdEntidad idEntidad;
-    unordered_map<size_t, Estado *> estados;
-    unordered_map<size_t, Comportamiento *> comportamientos;
+    unordered_map<string, Estado *> estados;
+    unordered_map<string, Comportamiento *> comportamientos;
 
 public:
     Entidad();
@@ -52,29 +54,36 @@ public:
     IdEntidad getId();
 
     template<typename T>
-    void agregarEstado(T *t) {
-        int hash = typeid(T).hash_code();
-        estados[hash] = t;
+    void agregarEstado(const string &s, T *t) {
+//        int hash = typeid(T).hash_code();
+//        estados[hash] = t;
+        estados[s] = t;
     };
 
     template<typename T>
-    T *getEstado() {
-        int hash = typeid(T).hash_code();
-        return (T *) estados[hash];
+    T *getEstado(const string &s) {
+//        int hash = typeid(T).hash_code();
+//        return (T *) estados[hash];
+        return (T *) estados[s];
     };
 
     template<typename T>
-    void agregarComportamiento(T *t) {
-        int hash = typeid(T).hash_code();
-        comportamientos[hash] = t;
+    void agregarComportamiento(const string& s, T *t) {
+//        int hash = typeid(T).hash_code();
+//        comportamientos[hash] = t;
+        comportamientos[s] = t;
     };
 
     template<typename T>
-    T *getComportamiento() {
-        int hash = typeid(T).hash_code();
-        return (T *) comportamientos[hash];
+    T *getComportamiento(const string& s) {
+//        int hash = typeid(T).hash_code();
+//        return (T *) comportamientos[hash];
+        return (T *) comportamientos[s];
     };
 
+    vector<Comportamiento *> getComportamientos();
+
+    vector<Estado *> getEstados();
 };
 
 

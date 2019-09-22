@@ -11,11 +11,12 @@
 #include <SDL_render.h>
 #include <SDL_system.h>
 #include <string>
+#include "../modelo/Entidad.h"
 
 
 using namespace std;
 
-class Sprite {
+class Sprite : public Estado {
 
 private:
     SDL_Renderer *renderer;

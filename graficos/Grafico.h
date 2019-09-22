@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_GRAFICO_H
 
 
-#include "../modelo/mapeables/Entidad.h"
+#include "../modelo/Entidad.h"
 
 class Grafico : public Comportamiento {
 

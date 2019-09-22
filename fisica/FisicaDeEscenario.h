@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_FISICADEESCENARIO_H
 #define FINAL_FIGHT_FISICADEESCENARIO_H
 
-#include "../modelo/mapeables/Entidad.h"
+#include "../modelo/Entidad.h"
 
 class FisicaDeEscenario : public Comportamiento {
 

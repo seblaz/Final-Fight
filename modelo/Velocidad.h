@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_VELOCIDAD_H
 
 
-#include "mapeables/Entidad.h"
+#include "Entidad.h"
 
 /**
  * Modela una direccion. A nivel de implementación es un vector unitario.

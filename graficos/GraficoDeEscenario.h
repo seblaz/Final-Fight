@@ -8,7 +8,7 @@
 
 #include <SDL_system.h>
 #include <string>
-#include "../modelo/mapeables/Entidad.h"
+#include "../modelo/Entidad.h"
 
 using namespace std;
 

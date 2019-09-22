@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_ORIENTACION_H
 
 
-#include "mapeables/Entidad.h"
+#include "Entidad.h"
 
 class Orientacion : public Estado {
 

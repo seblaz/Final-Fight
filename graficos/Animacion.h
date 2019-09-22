@@ -8,7 +8,7 @@
 
 #include <SDL_rect.h>
 #include <vector>
-#include "../modelo/mapeables/Entidad.h"
+#include "../modelo/Entidad.h"
 
 using namespace std;
 

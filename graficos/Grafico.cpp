@@ -7,7 +7,7 @@
 #include "../servicios/Locator.h"
 #include "../modelo/Posicion.h"
 #include "Animacion.h"
-#include "sprite/Sprite.h"
+#include "Sprite.h"
 #include "../modelo/Orientacion.h"
 
 SDL_Rect calcularPosicionEnPantalla2(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {

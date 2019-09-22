@@ -6,9 +6,8 @@
 #define FINAL_FIGHT_MAPA_H
 
 
-#include "Dimension.h"
 #include "Iterator.cpp"
-#include "mapeables/Entidad.h"
+#include "Entidad.h"
 #include <vector>
 
 using namespace std;

@@ -1,6 +1,6 @@
 #include "Juego.h"
 #include "../servicios/Locator.h"
-#include "../graficos/sprite/Sprite.h"
+#include "../graficos/Sprite.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
@@ -111,53 +111,27 @@ int main(int argc, char *args[]) {
     caja->agregarComportamiento("grafico", graficoDeCaja);
     caja->agregarEstado("posicion de escenario", posicionDeEscenario);
 
+    /**
+     * Cuchillo.
+     */
+    Entidad * cuchillo = mapa.crearEntidad();
 
-//    // Agregar frontera.
-//    FisicaDeFrontera fisicaDeFrontera(5650, &fisicaDePersonaje);
-//    GraficoDeFrontera graficoDeFrontera;
-//    Mapeable frontera(&fisicaDeFrontera, &graficoDeFrontera, &comportamientoDeEscenario);
-//    mapa.agregar(&frontera);
-//
-//    // Caja
-//    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
-//    vector<float> duraciones = {1};
-//    Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
-//
-//    FisicaDeMapeable fisicaDeObjeto(500, 200, 0);
-//    SDL_Texture *spcaja = spriteCaja.getTexture();
-//    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
-//    Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
-//    mapa.agregar(&caja);
-//
-//    //CUchillo
-//
-//    vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
-//    vector<float> duracionesCuchillo = {1};
-//    Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
-//
-//    FisicaDeMapeable fisicaDeCuchillo(500, 200, 0);
-//    SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
-//    GraficoDeMapeable graficoDeCuchillo(&fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionDeCuchillo);
-//
-//    Mapeable cuchillo(&fisicaDeCuchillo, &graficoDeCuchillo, &comportamientoDeEscenario);
-//    mapa.agregar(&cuchillo);
-//
-//    mapa.agregar(&personaje);
-//
-//    // Agregar enemigo
-//    FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
-//    Animacion *animacionInicialPoison = FabricaDeAnimacionesDePoison::caminando();
-//    FisicaDePersonaje fisicaDePersonajePoison(500, 40, 0);
-//
-//    Sprite spritePoison(renderer, "assets/personajes/poison.png");
-//    ComportamientoDeEnemigo comportamientoDeEnemigo(&fisicaDePersonajePoison);
-//    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison,
-//                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison,
-//                                        &comportamientoDeEnemigo);
-//    Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
-//    mapa.agregar(&enemigo);
-//
+    auto * spriteCuchillo = new Sprite(renderer, "assets/objetos/cuchillo.png");
+    cuchillo->agregarEstado("sprite", spriteCuchillo);
 
+    vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
+    vector<float> duracionesCuchillo = {1};
+    auto* animacionCuchillo = new  Animacion(posicionesCuchillo, duracionesCuchillo, 1, 3);
+    cuchillo->agregarEstado("animacion", animacionCuchillo);
+
+    auto* posicionCuchillo = new Posicion(100, 50, 0);
+    cuchillo->agregarEstado("posicion", posicionCuchillo);
+
+    auto * graficoDeCuchillo = new Grafico();
+    cuchillo->agregarComportamiento("grafico", graficoDeCuchillo);
+
+    cuchillo->agregarEstado("posicion de escenario", posicionDeEscenario);
+    
     juego.loop();
 
     delete logger;

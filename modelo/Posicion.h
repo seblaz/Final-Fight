@@ -7,7 +7,7 @@
 
 
 #include "Velocidad.h"
-#include "mapeables/Entidad.h"
+#include "Entidad.h"
 
 class Posicion : public Estado{
 

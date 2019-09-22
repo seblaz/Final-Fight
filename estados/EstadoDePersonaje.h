@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_ESTADODEPERSONAJE_H
 
 
-#include "../modelo/mapeables/Entidad.h"
+#include "../modelo/Entidad.h"
 
 class EstadoDePersonaje : public Comportamiento {
 

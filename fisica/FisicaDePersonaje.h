@@ -5,8 +5,6 @@
 #ifndef FINAL_FIGHT_FISICADEPERSONAJE_H
 #define FINAL_FIGHT_FISICADEPERSONAJE_H
 
-
-#include "../Ifisica/Fisica.h"
 #include "../modelo/Posicion.h"
 
 class FisicaDePersonaje : public Comportamiento {
