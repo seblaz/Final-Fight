@@ -9,6 +9,7 @@
 #include "../graficos/Sprite.h"
 #include "../modelo/Orientacion.h"
 #include "../estados/Parado.h"
+#include "../estados/ia/Patrullar.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../graficos/Grafico.h"
 #include "../fisica/FisicaDeEscenario.h"
@@ -16,6 +17,7 @@
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
+#include "../graficos/FabricaDeAnimacionesDePoison.h"
 #include "../servicios/Locator.h"
 
 Nivel::Nivel() {
@@ -133,6 +135,27 @@ void Nivel::generarNivel(SDL_Renderer *sdlRenderer, Mapa *mapa, int cantidadDeCa
         cuchilloRandom->agregarComportamiento("grafico", graficoDeCuchillo);
     }
 
+ //
+    Entidad * enemigo = mapa->crearEntidad();
 
+    auto *posicionDeEnemigo = new Posicion(600, 100, 0);
+
+    auto *spriteEnemigo = new Sprite(sdlRenderer, "assets/personajes/poison.png");
+    auto *velocidadDeEnemigo = new Velocidad();
+    auto *animacionDeEnemigo = FabricaDeAnimacionesDePoison::caminando();
+    auto *orientacionDeEnemigo = new Orientacion;
+    auto *estadoDeEnemigo = new Patrullar();
+    auto *fisicaDeEnemigo = new FisicaDePersonaje();
+    auto *graficoDeEnemigo = new Grafico();
+
+    enemigo->agregarEstado("posicion", posicionDeEnemigo);
+    enemigo->agregarEstado("sprite", spriteEnemigo);
+    enemigo->agregarEstado("velocidad", velocidadDeEnemigo);
+    enemigo->agregarEstado("animacion", animacionDeEnemigo);
+    enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
+    enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
+    enemigo->agregarComportamiento("estado", estadoDeEnemigo);
+    enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
+    enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
 
 }
