@@ -8,15 +8,13 @@
 
 #include <SDL_system.h>
 #include <string>
-#include "../modelo/mapeables/Mapeable.h"
-#include "../fisica/FisicaDeEscenario.h"
+#include "../modelo/Entidad.h"
 
 using namespace std;
 
-class GraficoDeEscenario : public Grafico {
+class GraficoDeEscenario : public Comportamiento {
 
 private:
-    FisicaDeEscenario &fisica;
     int longitudDeSprite;
     vector<SDL_Texture *> sprites;
     vector<SDL_Rect> posicionesSprite;
@@ -25,20 +23,18 @@ private:
 public:
     /**
      *
-     * @param fisica
      * @param sprites
      * @param posicionesSprite
      * @param distanciasAlFondo: float entre 0 y 1 que indica la distancia desde
      * la capa i hasta el fondo (capa que no se mueve). 0 = primera capa, 1 = fondo inamovible.
      */
-    explicit GraficoDeEscenario(FisicaDeEscenario &fisica, vector<SDL_Texture *> sprites,
+    explicit GraficoDeEscenario(vector<SDL_Texture *> sprites,
                                 vector<SDL_Rect> posicionesSprite,
                                 vector<float> distanciasAlFondo, int longitudDeSprite);
 
     ~GraficoDeEscenario() = default;
 
-    void actualizar(SDL_Renderer *renderer) override;
-    int profundidad() override;
+    void actualizar(Entidad *) override;
 };
 
 

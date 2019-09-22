@@ -4,6 +4,9 @@
 // TODO: consultar si se puede usar.
 //
 
+#ifndef FINAL_FIGHT_ITERATOR_H
+#define FINAL_FIGHT_ITERATOR_H
+
 template<class T, class U>
 struct Iterable
 {
@@ -30,3 +33,5 @@ Iterable<T,U> make_iterable(T t, U u)
 {
     return Iterable<T,U>(t, u);
 }
+
+#endif //FINAL_FIGHT_ITERATOR_H

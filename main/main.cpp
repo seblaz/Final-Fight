@@ -1,17 +1,14 @@
 #include "Juego.h"
-#include "../comportamiento/ComportamientoDeJugador.h"
+#include "../servicios/Locator.h"
+#include "../graficos/Sprite.h"
+#include "../modelo/Posicion.h"
+#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/Grafico.h"
+#include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDeEscenario.h"
-#include "../graficos/GraficoDePersonaje.h"
-#include "../fisica/FisicaDeMapeable.h"
-#include "../comportamiento/ComportamientoNulo.h"
-#include "../graficos/sprite/Sprite.h"
-#include "../comportamiento/ComportamientoDeEnemigo.h"
-#include "../graficos/GraficoDeFrontera.h"
-#include "../niveles/Nivel1.h"
-#include "../fisica/FisicaDeFrontera.h"
-#include "../graficos/FabricaDeAnimacionesDeCaja.h"
-#include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
-
+#include "../estados/Parado.h"
+#include "../fisica/FisicaDePersonaje.h"
+#include "../modelo/Orientacion.h"
 
 //DECLARACION CONSTANTES
 static const char *const PATH_SPRITE_CAJA = "assets/escenarios/caja.png";
@@ -30,7 +27,7 @@ int generarPosicionY(){
     return rand() % 400;
 }
 
-void configApplication(int argc, char *args[]){
+void configApplication(int argc, char*args[]){
     bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
 
@@ -62,56 +59,72 @@ void configApplication(int argc, char *args[]){
              new Logger(loggerLevel));
     Locator::provide(logger);
 
-    config = NULL;
     logger = NULL;
+    config = NULL;
+
     delete logger;
     delete config;
 }
 
 int main(int argc, char *args[]) {
-
+    /**
+     * Iniciar.
+     */
     configApplication(argc, args);
 
     Juego juego;
-    Mapa &mapa = juego.mapa();
     SDL_Renderer *renderer = juego.renderer();
+    Locator::provide(renderer);
 
-//    Animacion *animacionDeJugador = FabricaDeAnimacionesDeCody::caminado();
-//    FisicaDePersonaje fisicaDePersonaje(400);
-//
-//    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * 990);//spriteEscenario.ancho());
-//
-//    Sprite sprite(renderer, "assets/personajes/cody.png");
-//    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
-//    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacionDeJugador,
-//                                          &comportamientoDeJugador);
-//    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
-//
-//    mapa.agregarJugador(&personaje);
+    Mapa &mapa = juego.mapa();
 
-//    Nivel1::generarNivel(mapa, renderer);
+    /**
+     * Crear jugador.
+     */
+    Entidad * jugador = mapa.crearEntidad();
 
-    Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
+    auto * posicionDeJugador = new Posicion(200, 100, 0);
+    jugador->agregarEstado("posicion", posicionDeJugador);
 
+    auto * velocidadDeJugador = new Velocidad();
+    jugador->agregarEstado("velocidad", velocidadDeJugador);
 
+    auto * spriteJugador = new Sprite(renderer, "assets/personajes/cody.png");
+    jugador->agregarEstado("sprite", spriteJugador);
 
-    // Agregar personaje
-    Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
-    FisicaDePersonaje fisicaDePersonaje(400);
+    auto *orientacionDeJugador = new Orientacion;
+    jugador->agregarEstado("orientacion", orientacionDeJugador);
 
-    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, Locator::configuracion()->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
+    auto *animacionDeJugador = FabricaDeAnimacionesDeCody::parado();
+    jugador->agregarEstado("animacion", animacionDeJugador);
 
-    Sprite sprite(renderer, "assets/personajes/cody.png");
-    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
-    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion,
-                                          &comportamientoDeJugador);
-    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
+    EstadoDePersonaje * estadoDeJugador = new Parado();
+    jugador->agregarComportamiento("estado", estadoDeJugador);
 
-    // Agregar escenario (primera capa)
+    auto * fisicaDeJugador = new FisicaDePersonaje();
+    jugador->agregarComportamiento("fisica", fisicaDeJugador);
+
+    auto * graficoDeJugador = new Grafico();
+    jugador->agregarComportamiento("grafico", graficoDeJugador);
+
+    /**
+     * Crear escenario.
+     */
+    Entidad * escenario = mapa.crearEntidad();
+
+    auto * posicionDeEscenario = new Posicion(0, 300, 0);
+    escenario->agregarEstado("posicion", posicionDeEscenario);
+
+    auto * spriteEscenario = new Sprite(renderer, "assets/escenarios/nivel1.png");
+    escenario->agregarEstado("sprite", spriteEscenario);
+
+    auto * fisicaEscenario = new FisicaDeEscenario();
+    escenario->agregarComportamiento("fisica", fisicaEscenario);
+
     vector<SDL_Texture *> spritesDeEscenario;
-    spritesDeEscenario.push_back(spriteEscenario.getTexture());
-    spritesDeEscenario.push_back(spriteEscenario.getTexture());
-    spritesDeEscenario.push_back(spriteEscenario.getTexture());
+    spritesDeEscenario.push_back(spriteEscenario->getTexture());
+    spritesDeEscenario.push_back(spriteEscenario->getTexture());
+    spritesDeEscenario.push_back(spriteEscenario->getTexture());
 
     vector<SDL_Rect> posicionesSprite;
     posicionesSprite.push_back({0, 400, 0, 400});
@@ -120,19 +133,61 @@ int main(int argc, char *args[]) {
 
     vector<float> distanciasAlFondo = {0.1, 0.5, 1};
 
-    GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo,
-                                          spriteEscenario.ancho());
-    ComportamientoNulo comportamientoDeEscenario;
-    Mapeable escenarioFondo(&fisicaDeEscenario, &graficoDeEscenario, &comportamientoDeEscenario);
-    mapa.agregar(&escenarioFondo);
+    auto* graficoDeEscenario = new GraficoDeEscenario(spritesDeEscenario, posicionesSprite, distanciasAlFondo,
+                                                      spriteEscenario->ancho());
+    escenario->agregarComportamiento("grafico", graficoDeEscenario);
 
-    // Agregar frontera.
+    /**
+     * Dependencias.
+     */
+    escenario->agregarEstado("posicion de jugador", posicionDeJugador);
+    jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
+
+    /**
+     * Caja.
+     */
+    Entidad * caja = mapa.crearEntidad();
+
+    auto * posicionDeCaja = new Posicion(500, 150, 0);
+    caja->agregarEstado("posicion", posicionDeCaja);
+
+    auto * spriteCaja = new Sprite(renderer, "assets/escenarios/caja.png");
+    caja->agregarEstado("sprite", spriteCaja);
+
+    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
+    vector<float> duraciones = {1};
+    auto* animacionDeCaja = new Animacion(posiciones, duraciones, 1, 3);
+    caja->agregarEstado("animacion", animacionDeCaja);
+
+    auto * graficoDeCaja = new Grafico();
+    caja->agregarComportamiento("grafico", graficoDeCaja);
+    caja->agregarEstado("posicion de escenario", posicionDeEscenario);
+
+    /**
+     * Cuchillo.
+     */
+    Entidad * cuchillo = mapa.crearEntidad();
+
+    auto * spriteCuchillo = new Sprite(renderer, "assets/objetos/cuchillo.png");
+    cuchillo->agregarEstado("sprite", spriteCuchillo);
+
+    vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
+    vector<float> duracionesCuchillo = {1};
+    auto* animacionCuchillo = new  Animacion(posicionesCuchillo, duracionesCuchillo, 1, 3);
+    cuchillo->agregarEstado("animacion", animacionCuchillo);
+
+    auto* posicionCuchillo = new Posicion(100, 50, 0);
+    cuchillo->agregarEstado("posicion", posicionCuchillo);
+
+    auto * graficoDeCuchillo = new Grafico();
+    cuchillo->agregarComportamiento("grafico", graficoDeCuchillo);
+
+    cuchillo->agregarEstado("posicion de escenario", posicionDeEscenario);
+
+    /**
+     * Generacion random.
+     */
     int largoDeFrontera = 5650;
-    FisicaDeFrontera fisicaDeFrontera(largoDeFrontera, &fisicaDePersonaje);
-    GraficoDeFrontera graficoDeFrontera;
-    Mapeable frontera(&fisicaDeFrontera, &graficoDeFrontera, &comportamientoDeEscenario);
-    mapa.agregar(&frontera);
-
 
     //Generador de cajas
     int cantidadDeBarril;
@@ -140,69 +195,27 @@ int main(int argc, char *args[]) {
         cantidadDeBarril = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
         Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cajas");
         Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeBarril) + " cajas");
-        
+
     } catch(std::invalid_argument){
         Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cajas a generar");
         Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
         cantidadDeBarril = 1;
     }
 
-    Sprite spriteCaja(renderer, PATH_SPRITE_CAJA);
-    SDL_Texture *spcaja = spriteCaja.getTexture();
-    Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+    /**
+     * Caja.
+     */
     for (int i = 1; i <= cantidadDeBarril; i++) {
-        Locator::logger()->log(INFO,"Se inicia la construccion de la caja:" + to_string(i));
+        Locator::logger()->log(INFO,"Se inicia la construccion de la cajaRandom:" + to_string(i));
+        Entidad* cajaRandom = mapa.crearEntidad();
 
-        FisicaDeMapeable* fisicaDeCaja = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
-        GraficoDeMapeable* graficoDeCaja = new GraficoDeMapeable(fisicaDeCaja, fisicaDeEscenario, spcaja, animacionCaja);
-        Mapeable* mapeable = new Mapeable(fisicaDeCaja, graficoDeCaja, &comportamientoDeEscenario);
-
-        mapa.agregar(mapeable);
+        auto* posicionCajaRandom = new Posicion(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
+        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
+        cajaRandom->agregarEstado("sprite", spriteCaja);
+        cajaRandom->agregarEstado("animacion", animacionDeCaja);
+        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        cajaRandom->agregarComportamiento("grafico", graficoDeCaja);
     }
-
-
-    //Generador de cuchillos
-    int cantidadDeCuchillos;
-    try {
-        cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
-        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cuchillos");
-        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCuchillos) + " cuchillos");
-
-    } catch(std::invalid_argument){
-        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cuchillos a generar");
-        Locator::logger()->log(DEBUG,"Se generara por defecto 1 cuchillo");
-        cantidadDeCuchillos = 1;
-    }
-
-    Sprite spriteCuchillo(renderer, PATH_SPRITE_CUCHILLO);
-    SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
-    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
-
-    for (int i = 1; i <= cantidadDeCuchillos; i++) {
-        Locator::logger()->log(INFO,"Se inicia la construccion del cuchillo:" + to_string(i));
-
-        FisicaDeMapeable* fisicaDeCuchillo = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
-        GraficoDeMapeable* graficoDeCuchillo = new GraficoDeMapeable(fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionCuchillo);
-        Mapeable* mapeable = new Mapeable(fisicaDeCuchillo, graficoDeCuchillo, &comportamientoDeEscenario);
-
-        mapa.agregar(mapeable);
-    }
-
-    mapa.agregar(&personaje);
-
-
-    // Agregar enemigo
-    FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
-    Animacion *animacionInicialPoison = FabricaDeAnimacionesDePoison::caminando();
-    FisicaDePersonaje fisicaDePersonajePoison(500, 40, 0);
-
-    Sprite spritePoison(renderer, "assets/personajes/poison.png");
-    ComportamientoDeEnemigo comportamientoDeEnemigo(&fisicaDePersonajePoison);
-    GraficoDePersonaje graficoDeEnemigo(&fisicaDePersonajePoison,
-                                        fisicaDeEscenario, spritePoison.getTexture(), animacionInicialPoison,
-                                        &comportamientoDeEnemigo);
-    Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
-    mapa.agregar(&enemigo);
 
     juego.loop();
 

@@ -55,7 +55,7 @@ FILE(GLOB PhysicsSources fisica/*.cpp)
 FILE(GLOB GraphicsSources graficos/*.cpp)
 FILE(GLOB SpriteSources graficos/sprite/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
-FILE(GLOB StatesSources modelo/estados/*.cpp)
+FILE(GLOB StatesSources estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
 

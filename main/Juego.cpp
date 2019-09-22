@@ -4,6 +4,8 @@
 
 #include <unistd.h>
 #include "Juego.h"
+#include "../servicios/Locator.h"
+#include "../modelo/Posicion.h"
 #include <chrono>
 #include <algorithm>
 
@@ -37,23 +39,21 @@ void Juego::inicializarGraficos() {
 }
 
 void Juego::loop() {
-    const int MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
+    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
 
     while (!exit) {
-        auto start = chrono::system_clock::now();
+        size_t start = SDL_GetTicks();
 
         processInput();
         clearScene();
         actualizar();
         graficar();
 
-        auto end = chrono::system_clock::now();
-        chrono::duration<double> elapsed_seconds = end - start;
+        size_t end = SDL_GetTicks();
+        int sleepTime = MS_PER_FRAME + start - end;
 
-        const int sleep_time = MS_PER_FRAME - int(elapsed_seconds.count()) * 1000 * 1000;
-
-        if (sleep_time > 0) { // No quitar el if. La primera vuelta suele tardar más que MS_PER_FRAME.
-            usleep(sleep_time); // Microseconds.
+        if(sleepTime > 0){
+            SDL_Delay( sleepTime );
         }
     }
 }
@@ -71,22 +71,17 @@ void Juego::processInput() {
 }
 
 void Juego::actualizar() {
-    auto mapeables = mapa().devolverMapeables();
+    auto entidades = mapa().devolverEntidades();
 
-    sort(mapeables.begin(), mapeables.end(), [](Mapeable *a, Mapeable *b) {
-        return a->grafico()->profundidad() > b->grafico()->profundidad();
+    sort(entidades.begin(), entidades.end(), [](Entidad *a, Entidad *b) {
+        return a->getEstado<Posicion>("posicion")->getY() > b->getEstado<Posicion>("posicion")->getY();
     });
 
-    for (auto mapeable : mapeables) {
-        mapeable->comportamiento()->actualizar();
-    }
-
-    for (auto mapeable : mapeables) {
-        mapeable->fisica()->actualizar();
-    }
-
-    for (auto mapeable : mapeables) {
-        mapeable->grafico()->actualizar(renderer_);
+    for (auto entidad : entidades) {
+        auto comportamientos = entidad->getComportamientos();
+        for(auto * comportamiento : comportamientos){
+            comportamiento->actualizar(entidad);
+        }
     }
 }
 

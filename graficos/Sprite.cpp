@@ -1,7 +1,7 @@
 
 #include <SDL_image.h>
 #include "Sprite.h"
-#include "../../servicios/Locator.h"
+#include "../servicios/Locator.h"
 
 Sprite::Sprite(SDL_Renderer *renderer, const string &rutaSprite) :
         renderer(renderer) {
