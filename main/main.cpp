@@ -12,10 +12,35 @@
 
 int main(int argc, char *args[]) {
 
-    auto *logger = new Logger(args[1]);
-    Locator::provide(logger);
+    Logger* logger;
+    Configuracion *config;
 
-    auto *config = new Configuracion(args[2]);
+    if (argc == 1){
+        logger = new Logger();
+        Locator::provide(logger);
+        config = new Configuracion();
+    } else{
+        if (argc == 2){
+            string param = args[1];
+            size_t found = param.find(".xml");
+
+            if (found!=std::string::npos){
+                logger = new Logger();
+                Locator::provide(logger);
+                config = new Configuracion(args[1]);
+            } else{
+                logger = new Logger(args[1]);
+                Locator::provide(logger);
+                config = new Configuracion();
+            }
+
+        }else{
+            logger = new Logger(args[1]);
+            Locator::provide(logger);
+            config = new Configuracion(args[2]);
+        }
+    }
+
     Locator::provide(config);
 
     Juego juego;

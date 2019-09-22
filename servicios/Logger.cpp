@@ -56,7 +56,7 @@ public:
  * Actual Logger implementation.
  */
 
-Logger::Logger(const string& stringLevel) :
+Logger::Logger(const string &stringLevel) :
         level(stringToLevel(stringLevel)),
         logFile(getLogFileName()),
         folder("logs") {
