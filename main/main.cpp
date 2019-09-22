@@ -30,7 +30,6 @@ int generarPosicionY(){
     return rand() % 400;
 }
 
-
 int main(int argc, char *args[]) {
 
     bool defaultLogger = argc == 1;
@@ -44,12 +43,6 @@ int main(int argc, char *args[]) {
         defaultLogger = found!=std::string::npos;
     }
 
-    Logger* logger =
-            defaultLogger ?
-            new Logger() :
-            new Logger(args[1]);
-    Locator::provide(logger);
-
     Configuracion *config =
             defaultConfiguration ?
             new Configuracion() :
@@ -58,6 +51,17 @@ int main(int argc, char *args[]) {
                     new Configuracion(args[2]));
 
     Locator::provide(config);
+
+    string loggerLevel = config->getValue("/debug/level");
+    defaultLogger = defaultLogger && loggerLevel.compare("") == 0;
+
+    Logger* logger =
+            defaultLogger ?
+            new Logger() :
+            (argc == 2 ?
+                new Logger(args[1]) :
+                new Logger(loggerLevel));
+    Locator::provide(logger);
 
     Juego juego;
     Mapa &mapa = juego.mapa();
