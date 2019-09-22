@@ -10,13 +10,10 @@
 class FisicaDeEscenario : public Comportamiento {
 
 private:
-    int posicion_ = 0;
-    int largo_;
     const int scrollDerecho = 400;
     const int scrollIzquierdo = 150;
 
 public:
-    explicit FisicaDeEscenario(int largo);
     void actualizar(Entidad *) override;
 };
 

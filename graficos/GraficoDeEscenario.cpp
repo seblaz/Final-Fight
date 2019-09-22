@@ -22,7 +22,7 @@ void GraficoDeEscenario::actualizar(Entidad *entidad) {
     int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     float escalaEnAncho = Locator::configuracion()->getFloatValue("/escala/escenario/ancho");
-    int posicion = entidad->getEstado<Posicion>()->getX();
+    int posicion = entidad->getEstado<Posicion>("posicion")->getX();
 
     for (int i = 0; i < sprites.size(); ++i) {
         SDL_Texture *sprite = sprites[i];

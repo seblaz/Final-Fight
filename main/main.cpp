@@ -32,28 +32,28 @@ int main(int argc, char *args[]) {
     Entidad * jugador = mapa.crearEntidad();
 
     auto * posicionDeJugador = new Posicion(200, 100, 0);
-    jugador->agregarEstado(posicionDeJugador);
+    jugador->agregarEstado("posicion", posicionDeJugador);
 
     auto * velocidadDeJugador = new Velocidad();
-    jugador->agregarEstado(velocidadDeJugador);
+    jugador->agregarEstado("velocidad", velocidadDeJugador);
 
     auto * spriteJugador = new Sprite(renderer, "assets/personajes/cody.png");
-    jugador->agregarEstado(spriteJugador);
+    jugador->agregarEstado("sprite", spriteJugador);
 
     auto *orientacionDeJugador = new Orientacion;
-    jugador->agregarEstado(orientacionDeJugador);
+    jugador->agregarEstado("orientacion", orientacionDeJugador);
 
     auto *animacionDeJugador = FabricaDeAnimacionesDeCody::parado();
-    jugador->agregarEstado(animacionDeJugador);
+    jugador->agregarEstado("animacion", animacionDeJugador);
 
     EstadoDePersonaje * estadoDeJugador = new Parado();
-    jugador->agregarComportamiento(estadoDeJugador);
+    jugador->agregarComportamiento("estado", estadoDeJugador);
 
     auto * fisicaDeJugador = new FisicaDePersonaje();
-    jugador->agregarComportamiento(fisicaDeJugador);
+    jugador->agregarComportamiento("fisica", fisicaDeJugador);
 
     auto * graficoDeJugador = new Grafico();
-    jugador->agregarComportamiento(graficoDeJugador);
+    jugador->agregarComportamiento("grafico", graficoDeJugador);
 
     /**
      * Crear escenario.
@@ -61,13 +61,13 @@ int main(int argc, char *args[]) {
     Entidad * escenario = mapa.crearEntidad();
 
     auto * posicionDeEscenario = new Posicion(0, 0, 300);
-    escenario->agregarEstado(posicionDeEscenario);
+    escenario->agregarEstado("posicion", posicionDeEscenario);
 
     auto * spriteEscenario = new Sprite(renderer, "assets/escenarios/nivel1.png");
-    escenario->agregarEstado(spriteEscenario);
+    escenario->agregarEstado("sprite", spriteEscenario);
 
-    auto * fisicaEscenario = new FisicaDeEscenario(5600);
-    escenario->agregarComportamiento(fisicaEscenario);
+    auto * fisicaEscenario = new FisicaDeEscenario();
+    escenario->agregarComportamiento("fisica", fisicaEscenario);
 
     vector<SDL_Texture *> spritesDeEscenario;
     spritesDeEscenario.push_back(spriteEscenario->getTexture());
@@ -84,7 +84,14 @@ int main(int argc, char *args[]) {
     auto* graficoDeEscenario = new GraficoDeEscenario(spritesDeEscenario, posicionesSprite, distanciasAlFondo,
                                           spriteEscenario->ancho());
 
-    escenario->agregarComportamiento(graficoDeEscenario);
+    escenario->agregarComportamiento("grafico", graficoDeEscenario);
+
+    /**
+     * Dependencias.
+     */
+    escenario->agregarEstado("posicion de jugador", posicionDeJugador);
+    jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
+
 
 //    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
 //    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");

@@ -6,9 +6,9 @@
 #include "../modelo/Orientacion.h"
 
 void FisicaDePersonaje::actualizar(Entidad *entidad) {
-    auto* velocidad = entidad->getEstado<Velocidad>();
-    auto* posicion = entidad->getEstado<Posicion>();
-    auto* orientacion = entidad->getEstado<Orientacion>();
+    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+    auto* posicion = entidad->getEstado<Posicion>("posicion");
+    auto* orientacion = entidad->getEstado<Orientacion>("orientacion");
     posicion->mover(*velocidad);
     orientacion->adelante = velocidad->x != 0 ? velocidad->x > 0 : orientacion->adelante;
 }

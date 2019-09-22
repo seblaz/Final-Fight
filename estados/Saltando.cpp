@@ -18,7 +18,7 @@ Saltando::~Saltando() {
 }
 
 void Saltando::actualizar(Entidad *entidad) {
-    auto* velocidad = entidad->getEstado<Velocidad>();
+    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     if ( subiendo_ ) {
         if (alturaMaxima_ > 0) {
             velocidad->z = -7;
@@ -35,12 +35,12 @@ void Saltando::actualizar(Entidad *entidad) {
         velocidad->y = 0;
         velocidad->z = 0;
         EstadoDePersonaje* parado = new Parado();
-        entidad->agregarComportamiento(parado);
+        entidad->agregarComportamiento("estado", parado);
         parado->enter(entidad);
     }
 }
 
 void Saltando::enter(Entidad *entidad) {
     auto* animacion = FabricaDeAnimacionesDeCody::saltando();
-    entidad->agregarEstado(animacion);
+    entidad->agregarEstado("animacion", animacion);
 }

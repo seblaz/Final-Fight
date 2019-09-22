@@ -4,15 +4,19 @@
 
 #include "FisicaDeEscenario.h"
 #include "../servicios/Locator.h"
+#include "../modelo/Posicion.h"
 
 void FisicaDeEscenario::actualizar(Entidad * entidad) {
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
+    int xPersonaje = entidad->getEstado<Posicion>("posicion de jugador")->getX();
 //    int xPersonaje = fisicaDePersonaje->posicion().getX();
 //    // Mover el escenario.
-//    if((xPersonaje - posicion_ < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
-//        posicion_ = xPersonaje - scrollIzquierdo;
-//    if((xPersonaje - posicion_ > ancho - scrollDerecho) && (largo_ - xPersonaje) > scrollDerecho)
-//        posicion_ = xPersonaje + scrollDerecho - ancho;
+    int xEscenario = posicionEscenario->getX();
+    if((xPersonaje - xEscenario < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
+        posicionEscenario->setX(xPersonaje - scrollIzquierdo);
+    if((xPersonaje - xEscenario > ancho - scrollDerecho) && (5600 - xPersonaje) > scrollDerecho)
+        posicionEscenario->setX(xPersonaje + scrollDerecho - ancho);
 }
 
-FisicaDeEscenario::FisicaDeEscenario(int largo) : largo_(largo){}
+

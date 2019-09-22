@@ -26,23 +26,23 @@ void Parado::actualizar(Entidad * entidad) {
     // TODO: Refactorizar
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         EstadoDePersonaje* saltando = new Saltando();
-        entidad->agregarComportamiento(saltando);
+        entidad->agregarComportamiento("estado", saltando);
         saltando->enter(entidad);
     }else if (entrada[SDL_SCANCODE_D]){
         EstadoDePersonaje* agachado = new Agachado();
-        entidad->agregarComportamiento(agachado);
+        entidad->agregarComportamiento("estado", agachado);
         agachado->enter(entidad);
     } else if (entrada[SDL_SCANCODE_A]) {
 //        EstadoDePersonaje* golpeando = new Golpeando();
 //        entidad->agregarComportamiento(golpeando);
     } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] || entrada[SDL_SCANCODE_UP]){
         EstadoDePersonaje* caminando = new Caminando();
-        entidad->agregarComportamiento(caminando);
+        entidad->agregarComportamiento("estado", caminando);
         caminando->enter(entidad);
     }
 }
 
 void Parado::enter(Entidad *entidad) {
     auto* animacion = FabricaDeAnimacionesDeCody::parado();
-    entidad->agregarEstado(animacion);
+    entidad->agregarEstado("animacion", animacion);
 }

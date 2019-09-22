@@ -23,7 +23,7 @@ Caminando::~Caminando() {
 
 void Caminando::actualizar(Entidad *entidad) {
     float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego");
-    auto* velocidad = entidad->getEstado<Velocidad>();
+    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
     velocidad->x = 0;
@@ -44,11 +44,11 @@ void Caminando::actualizar(Entidad *entidad) {
 
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         EstadoDePersonaje* saltando = new Saltando();
-        entidad->agregarComportamiento(saltando);
+        entidad->agregarComportamiento("estado", saltando);
         saltando->enter(entidad);
     }else if (entrada[SDL_SCANCODE_D]){
         EstadoDePersonaje* agachado = new Agachado();
-        entidad->agregarComportamiento(agachado);
+        entidad->agregarComportamiento("estado", agachado);
         agachado->enter(entidad);
     }else if (entrada[SDL_SCANCODE_A]){
 //        EstadoDePersonaje* golpeando = new Golpeando();
@@ -57,13 +57,13 @@ void Caminando::actualizar(Entidad *entidad) {
 
     }else {
         EstadoDePersonaje* parado = new Parado();
-        entidad->agregarComportamiento(parado);
+        entidad->agregarComportamiento("estado", parado);
         parado->enter(entidad);
     }
 }
 
 void Caminando::enter(Entidad *entidad) {
     auto* animacion = FabricaDeAnimacionesDeCody::caminando();
-    entidad->agregarEstado(animacion);
+    entidad->agregarEstado("animacion", animacion);
 }
 
