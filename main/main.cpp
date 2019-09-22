@@ -21,6 +21,16 @@ static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/objetos/caja/canti
 static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchillo/cantidad";
 
 
+
+int generarPosicionX(int limiteDeFrontera){
+    return rand() % limiteDeFrontera;
+}
+
+int generarPosicionY(){
+    return rand() % 400;
+}
+
+
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
@@ -73,12 +83,12 @@ int main(int argc, char *args[]) {
     mapa.agregar(&escenarioFondo);
 
     // Agregar frontera.
-    FisicaDeFrontera fisicaDeFrontera(5650, &fisicaDePersonaje);
+    int largoDeFrontera = 5650;
+    FisicaDeFrontera fisicaDeFrontera(largoDeFrontera, &fisicaDePersonaje);
     GraficoDeFrontera graficoDeFrontera;
     Mapeable frontera(&fisicaDeFrontera, &graficoDeFrontera, &comportamientoDeEscenario);
     mapa.agregar(&frontera);
 
-;
 
     //Generador de cajas
     int cantidadDeBarril;
@@ -99,13 +109,12 @@ int main(int argc, char *args[]) {
     for (int i = 1; i <= cantidadDeBarril; i++) {
         Locator::logger()->log(INFO,"Se inicia la construccion de la caja:" + to_string(i));
 
-        FisicaDeMapeable* fisicaDeCaja = new FisicaDeMapeable(500 + i*200, 200, 0);
+        FisicaDeMapeable* fisicaDeCaja = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
         GraficoDeMapeable* graficoDeCaja = new GraficoDeMapeable(fisicaDeCaja, fisicaDeEscenario, spcaja, animacionCaja);
         Mapeable* mapeable = new Mapeable(fisicaDeCaja, graficoDeCaja, &comportamientoDeEscenario);
 
         mapa.agregar(mapeable);
     }
-
 
 
     //Generador de cuchillos
