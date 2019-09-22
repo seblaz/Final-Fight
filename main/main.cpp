@@ -8,6 +8,7 @@
 #include "../graficos/GraficoDeEscenario.h"
 #include "../estados/Parado.h"
 #include "../fisica/FisicaDePersonaje.h"
+#include "../modelo/Orientacion.h"
 
 int main(int argc, char *args[]) {
     /**
@@ -38,6 +39,9 @@ int main(int argc, char *args[]) {
 
     auto * spriteJugador = new Sprite(renderer, "assets/personajes/cody.png");
     jugador->agregarEstado(spriteJugador);
+
+    auto *orientacionDeJugador = new Orientacion;
+    jugador->agregarEstado(orientacionDeJugador);
 
     auto *animacionDeJugador = FabricaDeAnimacionesDeCody::parado();
     jugador->agregarEstado(animacionDeJugador);

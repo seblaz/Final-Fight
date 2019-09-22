@@ -3,7 +3,6 @@
         <level>DEBUG</level>
     </debug>
     <escenario>
-        <inclinacion>0.79</inclinacion>
         <objetos>
             <cuchillo>
                 <cantidad>5</cantidad>
