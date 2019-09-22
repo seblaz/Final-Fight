@@ -18,16 +18,14 @@ private:
     LEVEL level;
     string logFile;
     string folder;
-    map<string, LEVEL> levelMap;
 
     static string getLogDateTime();
     static string getLogFileName();
-    static map<string, LEVEL> constructMap();
     static string levelToString(LEVEL);
     static LEVEL stringToLevel(const string&);
 
 public:
-    explicit Logger(string stringLevel);
+    explicit Logger(const string& stringLevel);
     void log(LEVEL level_, const string& message);
 };
 

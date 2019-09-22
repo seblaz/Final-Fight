@@ -15,8 +15,6 @@ int main(int argc, char *args[]) {
     auto *logger = new Logger(args[1]);
     Locator::provide(logger);
 
-    logger->log(DEBUG, args[1]);
-
     auto *config = new Configuracion(args[2]);
     Locator::provide(config);
 

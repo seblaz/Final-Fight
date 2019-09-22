@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <sys/stat.h>
 #include <cstring>
+#include <algorithm>
 
 std::map<std::string, LEVEL>::iterator searchByValue(std::map<std::string, LEVEL> &map, LEVEL val) {
     std::map<std::string, LEVEL>::iterator it = map.begin();
@@ -55,8 +56,7 @@ public:
  * Actual Logger implementation.
  */
 
-Logger::Logger(string stringLevel) :
-        levelMap(constructMap()),
+Logger::Logger(const string& stringLevel) :
         level(stringToLevel(stringLevel)),
         logFile(getLogFileName()),
         folder("logs") {
@@ -85,13 +85,13 @@ string Logger::levelToString(LEVEL level) {
 }
 
 LEVEL Logger::stringToLevel(const string& stringLevel) {
+
     if(stringLevel == "ERROR") {
         return ERROR;
     }else if(stringLevel == "INFO") {
         return INFO;
-    }else if(stringLevel == "DEBUG"){
-        return DEBUG;
     }
+
     return DEBUG;
 }
 
@@ -123,13 +123,4 @@ string Logger::getLogFileName() {
     fileName << setfill('0') << setw(2) << localTime->tm_sec << ".log";
 
     return fileName.str();
-}
-
-map<string, LEVEL> Logger::constructMap() {
-    std::map<std::string, LEVEL> map;
-    map["DEBUG"] = DEBUG;
-    map["INFO"] = INFO;
-    map["ERROR"] = ERROR;
-
-    return map;
 }
