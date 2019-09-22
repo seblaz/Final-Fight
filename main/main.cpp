@@ -12,6 +12,9 @@
 #include "../graficos/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
 
+static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/barril/cantidad";
+static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchillo/cantidad";
+
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
     Locator::provide(logger);
@@ -27,25 +30,10 @@ int main(int argc, char *args[]) {
     Mapa &mapa = juego.mapa();
     SDL_Renderer *renderer = juego.renderer();
 
-    // Agregar personaje
-//    Animacion *animacionDeJugador = FabricaDeAnimacionesDeCody::caminado();
-//    FisicaDePersonaje fisicaDePersonaje(400);
-//
-//    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * 990);//spriteEscenario.ancho());
-//
-//    Sprite sprite(renderer, "assets/personajes/cody.png");
-//    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
-//    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacionDeJugador,
-//                                          &comportamientoDeJugador);
-//    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
-//
-//    mapa.agregarJugador(&personaje);
 
-//    Nivel1::generarNivel(mapa, renderer);
-    // Sprites
     Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
-    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
-    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
+
+
 
     // Agregar personaje
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
@@ -84,26 +72,24 @@ int main(int argc, char *args[]) {
     Mapeable frontera(&fisicaDeFrontera, &graficoDeFrontera, &comportamientoDeEscenario);
     mapa.agregar(&frontera);
 
-    // Caja
-    //vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
-    //vector<float> duraciones = {1};
-    //Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
+;
 
+    //Generador de cajas
+    int cantidadDeBarril;
+    try {
+        cantidadDeBarril = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
+        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cajas");
+        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeBarril) + " cajas");
+        
+    } catch(std::invalid_argument){
+        Locator::logger()->log(ERROR,"No se encontro el path para obtener el path");
+        Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
+        cantidadDeBarril = 1;
+    }
 
-    //CUchillo
-
-  //  vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
-  //  vector<float> duracionesCuchillo = {1};
-  //  Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
-    SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
+    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
     SDL_Texture *spcaja = spriteCaja.getTexture();
-
     Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
-    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
-
-    int cantidadDeBarril = Locator::configuracion()->getIntValue("/escenario/barril/cantidad");
-    Locator::logger()->log(DEBUG,"Cantidad de cajas a construir:" + to_string(cantidadDeBarril));
-
     for (int i = 1; i <= cantidadDeBarril; i++) {
         Locator::logger()->log(INFO,"Se inicia la construccion de la caja:" + to_string(i));
 
@@ -114,7 +100,16 @@ int main(int argc, char *args[]) {
         mapa.agregar(mapeable);
     }
 
-    int cantidadDeCuchillos = Locator::configuracion()->getIntValue("/escenario/objetos/cuchillo/cantidad");
+
+
+    //Generador de cuchillos
+
+
+    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
+    SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
+    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
+
+    int cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
     Locator::logger()->log(DEBUG,"Cantidad de chucillos a construir:" + to_string(cantidadDeBarril));
 
     for (int i = 1; i <= cantidadDeBarril; i++) {
@@ -126,7 +121,6 @@ int main(int argc, char *args[]) {
 
         mapa.agregar(mapeable);
     }
-
 
     mapa.agregar(&personaje);
 
