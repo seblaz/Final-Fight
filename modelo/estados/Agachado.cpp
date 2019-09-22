@@ -2,7 +2,10 @@
 // Created by franco on 8/9/19.
 //
 
+#include <SDL_scancode.h>
 #include "Agachado.h"
+#include "Parado.h"
+#include "../../servicios/Logger.h"
 
 EstadoDePersonaje *Agachado::manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *entrada) {
     if ( entrada[SDL_SCANCODE_D] ){
@@ -35,5 +38,6 @@ Agachado::~Agachado() {
 }
 
 Animacion * Agachado::devolverAnimacion() {
-        return FabricaDeAnimacionesDeCody::saltando();
+        return FabricaDeAnimacionesDeCody::agachado();
 }
+

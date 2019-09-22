@@ -17,7 +17,9 @@ public:
     virtual EstadoDePersonaje *manejarEntrada(FisicaDePersonaje *fisica, const Uint8 *currentKeyStates) = 0;
     virtual void actualizar() = 0;
     virtual void enter() = 0;
-    virtual Animacion *devolverAnimacion() {};
+    virtual Animacion* devolverAnimacion(){};
+    //virtual void saltar(){};
+    //virtual void mover(){};
 
 };
 
