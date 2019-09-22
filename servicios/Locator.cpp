@@ -29,3 +29,8 @@ Configuracion *Locator::configuracion() {
 void Locator::provide(Configuracion *configuracion) {
     configuracion_ = configuracion;
 }
+
+void Locator::clean() {
+    delete configuracion_;
+    delete logger_;
+}

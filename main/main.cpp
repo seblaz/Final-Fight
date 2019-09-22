@@ -30,8 +30,7 @@ int generarPosicionY(){
     return rand() % 400;
 }
 
-int main(int argc, char *args[]) {
-
+void configApplication(int argc, char *args[]){
     bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
 
@@ -46,9 +45,9 @@ int main(int argc, char *args[]) {
     Configuracion *config =
             defaultConfiguration ?
             new Configuracion() :
-                (argc == 2 ?
-                    new Configuracion(args[1]) :
-                    new Configuracion(args[2]));
+            (argc == 2 ?
+             new Configuracion(args[1]) :
+             new Configuracion(args[2]));
 
     Locator::provide(config);
 
@@ -59,9 +58,19 @@ int main(int argc, char *args[]) {
             defaultLogger ?
             new Logger() :
             (argc == 2 ?
-                new Logger(args[1]) :
-                new Logger(loggerLevel));
+             new Logger(args[1]) :
+             new Logger(loggerLevel));
     Locator::provide(logger);
+
+    config = NULL;
+    logger = NULL;
+    delete logger;
+    delete config;
+}
+
+int main(int argc, char *args[]) {
+
+    configApplication(argc, args);
 
     Juego juego;
     Mapa &mapa = juego.mapa();
@@ -90,7 +99,7 @@ int main(int argc, char *args[]) {
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
     FisicaDePersonaje fisicaDePersonaje(400);
 
-    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
+    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, Locator::configuracion()->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
 
     Sprite sprite(renderer, "assets/personajes/cody.png");
     ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
@@ -195,9 +204,7 @@ int main(int argc, char *args[]) {
     Mapeable enemigo(&fisicaDePersonajePoison, &graficoDeEnemigo, &comportamientoDeEnemigo);
     mapa.agregar(&enemigo);
 
-
     juego.loop();
 
-    delete logger;
-    delete config;
+    Locator::clean();
 }

@@ -18,6 +18,8 @@ public:
     static Configuracion *configuracion();
     static void provide(Configuracion *configuracion);
 
+    static void clean();
+
 private:
     static Logger *logger_;
     static Configuracion *configuracion_;
