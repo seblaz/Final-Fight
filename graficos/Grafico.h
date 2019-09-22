@@ -1,23 +1,18 @@
 //
-// Created by sebas on 1/9/19.
+// Created by sebas on 21/9/19.
 //
 
 #ifndef FINAL_FIGHT_GRAFICO_H
 #define FINAL_FIGHT_GRAFICO_H
 
 
-#include <SDL_system.h>
-#include "../modelo/Posicion.h"
-#include "../servicios/Locator.h"
+#include "../modelo/Entidad.h"
 
-class Grafico {
+class Grafico : public Comportamiento {
 
 public:
-    virtual void actualizar(SDL_Renderer *renderer) = 0;
-    virtual int profundidad() = 0;
+    void actualizar(Entidad*) override;
 };
-
-SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);
 
 
 #endif //FINAL_FIGHT_GRAFICO_H

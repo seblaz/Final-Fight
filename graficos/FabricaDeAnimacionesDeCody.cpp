@@ -1,6 +1,6 @@
 #include "FabricaDeAnimacionesDeCody.h"
 
-Animacion* FabricaDeAnimacionesDeCody::caminado() {
+Animacion* FabricaDeAnimacionesDeCody::caminando() {
     vector<SDL_Rect> posiciones = {
             {10,  100, 29, 90},
             {51,  100, 47, 90},

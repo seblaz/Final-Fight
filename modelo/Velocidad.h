@@ -6,10 +6,12 @@
 #define FINAL_FIGHT_VELOCIDAD_H
 
 
+#include "Entidad.h"
+
 /**
  * Modela una direccion. A nivel de implementación es un vector unitario.
  */
-class Velocidad {
+class Velocidad : public Estado {
 public:
     float x, y, z;
     Velocidad();

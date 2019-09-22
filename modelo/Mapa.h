@@ -6,8 +6,8 @@
 #define FINAL_FIGHT_MAPA_H
 
 
-#include "Dimension.h"
 #include "Iterator.cpp"
+#include "Entidad.h"
 #include <vector>
 
 using namespace std;
@@ -17,17 +17,13 @@ class Mapeable;
 class Mapa {
 
 private:
-    vector<Mapeable*> mapeables;
-    Mapeable *jugador_;
+    vector<Entidad*> entidades;
 
 public:
-    void agregar(Mapeable *mapeable);
-    void agregarJugador(Mapeable *mapeable);
-    auto devolverMapeables() -> decltype(make_iterable(mapeables.begin(), mapeables.end()));
-    Mapeable *jugador();
+    Entidad *crearEntidad();
+    auto devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end()));
     void vaciarMapa();
-};
 
-#include "mapeables/Mapeable.h"
+};
 
 #endif //FINAL_FIGHT_MAPA_H

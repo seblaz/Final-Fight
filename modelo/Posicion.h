@@ -7,8 +7,9 @@
 
 
 #include "Velocidad.h"
+#include "Entidad.h"
 
-class Posicion {
+class Posicion : public Estado{
 
 private:
     int x, y, z;
