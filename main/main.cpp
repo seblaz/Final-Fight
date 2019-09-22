@@ -3,12 +3,6 @@
 #include "../graficos/Sprite.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
-#include "../graficos/Grafico.h"
-#include "../fisica/FisicaDeEscenario.h"
-#include "../graficos/GraficoDeEscenario.h"
-#include "../estados/Parado.h"
-#include "../fisica/FisicaDePersonaje.h"
-#include "../modelo/Orientacion.h"
 #include "../niveles/Nivel.h"
 
 //DECLARACION CONSTANTES
