@@ -14,7 +14,7 @@ class Nivel{
 
 public:
     Nivel();
-    static void generarNivel(SDL_Renderer *sdlRenderer, Mapa* mapa);
+    static void generarNivel(SDL_Renderer *sdlRenderer, Mapa* mapa, int cantidadDeCajas, int cantidadDeCuchillos);
 };
 #endif //FINAL_FIGHT_NIVEL_H
 

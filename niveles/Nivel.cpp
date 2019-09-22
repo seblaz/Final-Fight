@@ -14,13 +14,23 @@
 #include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/FabricaDeAnimacionesDeCaja.h"
+#include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
+#include "../servicios/Locator.h"
 
 Nivel::Nivel() {
 
-
 }
 
-void Nivel::generarNivel(SDL_Renderer *sdlRenderer, Mapa *mapa) {
+int generarPosicionX(int limiteDeFrontera){
+    return rand() % limiteDeFrontera;
+}
+
+int generarPosicionY(){
+    return rand() % 400;
+}
+
+void Nivel::generarNivel(SDL_Renderer *sdlRenderer, Mapa *mapa, int cantidadDeCajas, int cantidadCuchillos) {
 
     /**
         * Crear jugador.
@@ -86,6 +96,43 @@ void Nivel::generarNivel(SDL_Renderer *sdlRenderer, Mapa *mapa) {
      */
     escenario->agregarEstado("posicion de jugador", posicionDeJugador);
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
+
+    //Agregamos cajas random
+    auto * spriteCaja = new Sprite(sdlRenderer, "assets/escenarios/caja.png");
+    Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+
+    for (int i = 1; i <= cantidadDeCajas; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion de la cajaRandom:" + to_string(i));
+
+        Entidad* cajaRandom = mapa->crearEntidad();
+
+        auto* posicionCajaRandom = new Posicion(generarPosicionX(spriteEscenario->ancho()), generarPosicionY(), 0);
+        auto * graficoDeCaja = new Grafico();
+        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
+        cajaRandom->agregarEstado("sprite", spriteCaja);
+        cajaRandom->agregarEstado("animacion", animacionCaja);
+        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        cajaRandom->agregarComportamiento("grafico", graficoDeCaja);
+    }
+
+    auto * spriteCuchillo = new Sprite(sdlRenderer, "assets/objetos/cuchillo.png");
+    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
+
+    for (int i = 1; i <= cantidadCuchillos; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion de la cuchilloRandom:" + to_string(i));
+
+        Entidad* cuchilloRandom = mapa->crearEntidad();
+
+        auto* posicionCuchilloRandom = new Posicion(generarPosicionX(spriteEscenario->ancho()), generarPosicionY(), 0);
+
+        auto * graficoDeCuchillo = new Grafico();
+        cuchilloRandom->agregarEstado("posicion", posicionCuchilloRandom);
+        cuchilloRandom->agregarEstado("sprite", spriteCuchillo);
+        cuchilloRandom->agregarEstado("animacion", animacionCuchillo);
+        cuchilloRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        cuchilloRandom->agregarComportamiento("grafico", graficoDeCuchillo);
+    }
+
 
 
 }
