@@ -9,6 +9,8 @@
 #include "../graficos/GraficoDeFrontera.h"
 #include "../niveles/Nivel1.h"
 #include "../fisica/FisicaDeFrontera.h"
+#include "../graficos/FabricaDeAnimacionesDeCaja.h"
+#include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
 
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
@@ -83,28 +85,48 @@ int main(int argc, char *args[]) {
     mapa.agregar(&frontera);
 
     // Caja
-    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
-    vector<float> duraciones = {1};
-    Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
+    //vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
+    //vector<float> duraciones = {1};
+    //Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
 
-    FisicaDeMapeable fisicaDeObjeto(500, 200, 0);
-    SDL_Texture *spcaja = spriteCaja.getTexture();
-    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
-    Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
-    mapa.agregar(&caja);
 
     //CUchillo
 
-    vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
-    vector<float> duracionesCuchillo = {1};
-    Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
-
-    FisicaDeMapeable fisicaDeCuchillo(500, 200, 0);
+  //  vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
+  //  vector<float> duracionesCuchillo = {1};
+  //  Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
     SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
-    GraficoDeMapeable graficoDeCuchillo(&fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionDeCuchillo);
+    SDL_Texture *spcaja = spriteCaja.getTexture();
 
-    Mapeable cuchillo(&fisicaDeCuchillo, &graficoDeCuchillo, &comportamientoDeEscenario);
-    mapa.agregar(&cuchillo);
+    Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
+
+    int cantidadDeBarril = Locator::configuracion()->getIntValue("/escenario/barril/cantidad");
+    Locator::logger()->log(DEBUG,"Cantidad de cajas a construir:" + to_string(cantidadDeBarril));
+
+    for (int i = 1; i <= cantidadDeBarril; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion de la caja:" + to_string(i));
+
+        FisicaDeMapeable* fisicaDeCaja = new FisicaDeMapeable(500 + i*200, 200, 0);
+        GraficoDeMapeable* graficoDeCaja = new GraficoDeMapeable(fisicaDeCaja, fisicaDeEscenario, spcaja, animacionCaja);
+        Mapeable* mapeable = new Mapeable(fisicaDeCaja, graficoDeCaja, &comportamientoDeEscenario);
+
+        mapa.agregar(mapeable);
+    }
+
+    int cantidadDeCuchillos = Locator::configuracion()->getIntValue("/escenario/objetos/cuchillo/cantidad");
+    Locator::logger()->log(DEBUG,"Cantidad de chucillos a construir:" + to_string(cantidadDeBarril));
+
+    for (int i = 1; i <= cantidadDeBarril; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion del cuchillo:" + to_string(i));
+
+        FisicaDeMapeable* fisicaDeCuchillo = new FisicaDeMapeable(200 + i*200, 0, 0);
+        GraficoDeMapeable* graficoDeCuchillo = new GraficoDeMapeable(fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionCuchillo);
+        Mapeable* mapeable = new Mapeable(fisicaDeCuchillo, graficoDeCuchillo, &comportamientoDeEscenario);
+
+        mapa.agregar(mapeable);
+    }
+
 
     mapa.agregar(&personaje);
 

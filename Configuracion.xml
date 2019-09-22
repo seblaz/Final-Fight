@@ -6,11 +6,11 @@
         <inclinacion>0.79</inclinacion>
         <objetos>
             <cuchillo>
-                <cantidad>5</cantidad>
+                <cantidad>2</cantidad>
             </cuchillo>
         </objetos>
         <barril>
-            <cantidad>7</cantidad>
+            <cantidad>5</cantidad>
         </barril>
     </escenario>
     <resolucion>
@@ -30,7 +30,7 @@
             <y>1</y>
         </personaje>
     </velocidad>
-    <fps>40</fps>
+    <fps>60</fps>
     <niveles>
         <nivel1>
             <fondo>assets/escenarios/nivel1.png</fondo>

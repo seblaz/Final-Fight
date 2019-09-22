@@ -21,12 +21,12 @@ class GraficoDeMapeable : public Grafico {
 private:
     FisicaDeMapeable *fisica;
     SDL_Texture *sprite;
-    Animacion animacion;
+    Animacion *animacion;
     FisicaDeEscenario &fisicaDeEscenario;
 
 public:
     GraficoDeMapeable(FisicaDeMapeable *fisica, FisicaDeEscenario &fisicaDeEscenario,
-                      SDL_Texture *sprite, Animacion animacion);
+                      SDL_Texture *sprite, Animacion *animacion);
     void actualizar(SDL_Renderer *renderer) override;
     int profundidad() override;
 };
