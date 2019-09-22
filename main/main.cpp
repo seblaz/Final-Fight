@@ -46,6 +46,20 @@ int main(int argc, char *args[]) {
     Mapa &mapa = juego.mapa();
     SDL_Renderer *renderer = juego.renderer();
 
+//    Animacion *animacionDeJugador = FabricaDeAnimacionesDeCody::caminado();
+//    FisicaDePersonaje fisicaDePersonaje(400);
+//
+//    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * 990);//spriteEscenario.ancho());
+//
+//    Sprite sprite(renderer, "assets/personajes/cody.png");
+//    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
+//    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacionDeJugador,
+//                                          &comportamientoDeJugador);
+//    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
+//
+//    mapa.agregarJugador(&personaje);
+
+//    Nivel1::generarNivel(mapa, renderer);
 
     Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
 
@@ -137,7 +151,7 @@ int main(int argc, char *args[]) {
     for (int i = 1; i <= cantidadDeCuchillos; i++) {
         Locator::logger()->log(INFO,"Se inicia la construccion del cuchillo:" + to_string(i));
 
-        FisicaDeMapeable* fisicaDeCuchillo = new FisicaDeMapeable(200 + i*200, 0, 0);
+        FisicaDeMapeable* fisicaDeCuchillo = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
         GraficoDeMapeable* graficoDeCuchillo = new GraficoDeMapeable(fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionCuchillo);
         Mapeable* mapeable = new Mapeable(fisicaDeCuchillo, graficoDeCuchillo, &comportamientoDeEscenario);
 
