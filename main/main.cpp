@@ -33,34 +33,29 @@ int generarPosicionY(){
 
 int main(int argc, char *args[]) {
 
-    Logger* logger;
-    Configuracion *config;
+    bool defaultLogger = argc == 1;
+    bool defaultConfiguration = argc == 1;
 
-    if (argc == 1){
-        logger = new Logger();
-        Locator::provide(logger);
-        config = new Configuracion();
-    } else{
-        if (argc == 2){
-            string param = args[1];
-            size_t found = param.find(".xml");
+    if (argc == 2){
+        string param = args[1];
+        size_t found = param.find(".xml");
 
-            if (found!=std::string::npos){
-                logger = new Logger();
-                Locator::provide(logger);
-                config = new Configuracion(args[1]);
-            } else{
-                logger = new Logger(args[1]);
-                Locator::provide(logger);
-                config = new Configuracion();
-            }
-
-        }else{
-            logger = new Logger(args[1]);
-            Locator::provide(logger);
-            config = new Configuracion(args[2]);
-        }
+        defaultConfiguration = found==std::string::npos;
+        defaultLogger = found!=std::string::npos;
     }
+
+    Logger* logger =
+            defaultLogger ?
+            new Logger() :
+            new Logger(args[1]);
+    Locator::provide(logger);
+
+    Configuracion *config =
+            defaultConfiguration ?
+            new Configuracion() :
+                (argc == 2 ?
+                    new Configuracion(args[1]) :
+                    new Configuracion(args[2]));
 
     Locator::provide(config);
 
