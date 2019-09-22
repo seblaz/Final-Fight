@@ -32,6 +32,9 @@ Mapeable *Nivel1::generarEscenario(SDL_Renderer *renderer, FisicaDePersonaje *fi
     int ancho = Locator::configuracion()->getIntValue("/escala/escenario/ancho");
     auto *fisicaDeEscenario = new FisicaDeEscenario(fisicaDeJugador, ancho * spriteEscenario->ancho());
 
+    //
+
+
     // Grafico.
     vector<float> distanciasAlFondo = {0.1, 0.5, 1};
     auto *graficoDeEscenario = new GraficoDeEscenario(*fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo,
