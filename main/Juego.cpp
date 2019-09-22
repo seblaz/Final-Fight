@@ -74,7 +74,7 @@ void Juego::actualizar() {
     auto entidades = mapa().devolverEntidades();
 
     sort(entidades.begin(), entidades.end(), [](Entidad *a, Entidad *b) {
-        return a->getEstado<Posicion>("posicion")->getZ() > b->getEstado<Posicion>("posicion")->getZ();
+        return a->getEstado<Posicion>("posicion")->getY() > b->getEstado<Posicion>("posicion")->getY();
     });
 
     for (auto entidad : entidades) {

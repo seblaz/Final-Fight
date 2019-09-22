@@ -60,7 +60,7 @@ int main(int argc, char *args[]) {
      */
     Entidad * escenario = mapa.crearEntidad();
 
-    auto * posicionDeEscenario = new Posicion(0, 0, 300);
+    auto * posicionDeEscenario = new Posicion(0, 300, 0);
     escenario->agregarEstado("posicion", posicionDeEscenario);
 
     auto * spriteEscenario = new Sprite(renderer, "assets/escenarios/nivel1.png");
@@ -83,7 +83,6 @@ int main(int argc, char *args[]) {
 
     auto* graficoDeEscenario = new GraficoDeEscenario(spritesDeEscenario, posicionesSprite, distanciasAlFondo,
                                           spriteEscenario->ancho());
-
     escenario->agregarComportamiento("grafico", graficoDeEscenario);
 
     /**
@@ -92,41 +91,27 @@ int main(int argc, char *args[]) {
     escenario->agregarEstado("posicion de jugador", posicionDeJugador);
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
 
+    /**
+     * Caja.
+     */
+    Entidad * caja = mapa.crearEntidad();
 
-//    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
-//    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
-//
-//    // Agregar personaje
-//    Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
-//    FisicaDePersonaje fisicaDePersonaje(400);
-//
-//    FisicaDeEscenario fisicaDeEscenario(&fisicaDePersonaje, config->getFloatValue("/escala/escenario/ancho") * spriteEscenario.ancho());
-//
-//    Sprite sprite(renderer, "assets/personajes/cody.png");
-//    ComportamientoDeJugador comportamientoDeJugador(&fisicaDePersonaje);
-//    GraficoDePersonaje graficoDePersonaje(&fisicaDePersonaje, fisicaDeEscenario, sprite.getTexture(), animacion,
-//                                          &comportamientoDeJugador);
-//    Mapeable personaje(&fisicaDePersonaje, &graficoDePersonaje, &comportamientoDeJugador);
-//
-//    // Agregar escenario (primera capa)
-//    vector<SDL_Texture *> spritesDeEscenario;
-//    spritesDeEscenario.push_back(spriteEscenario.getTexture());
-//    spritesDeEscenario.push_back(spriteEscenario.getTexture());
-//    spritesDeEscenario.push_back(spriteEscenario.getTexture());
-//
-//    vector<SDL_Rect> posicionesSprite;
-//    posicionesSprite.push_back({0, 400, 0, 400});
-//    posicionesSprite.push_back({0, 200, 0, 195});
-//    posicionesSprite.push_back({0, 0, 0, 195});
-//
-//    vector<float> distanciasAlFondo = {0.1, 0.5, 1};
-//
-//    GraficoDeEscenario graficoDeEscenario(fisicaDeEscenario, spritesDeEscenario, posicionesSprite, distanciasAlFondo,
-//                                          spriteEscenario.ancho());
-//    ComportamientoNulo comportamientoDeEscenario;
-//    Mapeable escenarioFondo(&fisicaDeEscenario, &graficoDeEscenario, &comportamientoDeEscenario);
-//    mapa.agregar(&escenarioFondo);
-//
+    auto * posicionDeCaja = new Posicion(500, 150, 0);
+    caja->agregarEstado("posicion", posicionDeCaja);
+
+    auto * spriteCaja = new Sprite(renderer, "assets/escenarios/caja.png");
+    caja->agregarEstado("sprite", spriteCaja);
+
+    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
+    vector<float> duraciones = {1};
+    auto* animacionDeCaja = new Animacion(posiciones, duraciones, 1, 3);
+    caja->agregarEstado("animacion", animacionDeCaja);
+
+    auto * graficoDeCaja = new Grafico();
+    caja->agregarComportamiento("grafico", graficoDeCaja);
+    caja->agregarEstado("posicion de escenario", posicionDeEscenario);
+
+
 //    // Agregar frontera.
 //    FisicaDeFrontera fisicaDeFrontera(5650, &fisicaDePersonaje);
 //    GraficoDeFrontera graficoDeFrontera;

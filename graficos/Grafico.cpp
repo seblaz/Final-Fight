@@ -43,10 +43,10 @@ void Grafico::actualizar(Entidad *entidad) {
     SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
     SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla2(nuevaPosicion, posicionEnSprite, animacion->escala());
 
-    if ((orientacion != nullptr) && (orientacion->adelante)) {
-        SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla);
+    if ((orientacion != nullptr) && (!orientacion->adelante)) {
+        SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla,
+                         180, nullptr, SDL_FLIP_VERTICAL);
     } else {
-        SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla, 180, nullptr,
-                         SDL_FLIP_VERTICAL);
+        SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla);
     }
 }
