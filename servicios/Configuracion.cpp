@@ -12,8 +12,7 @@
 #include <vector>
 #include <fstream>
 
-#include "Logger.h"
-#include "Configuracion.h"
+#include "Locator.h"
 
 using namespace std;
 //using namespace xercesc;
@@ -35,13 +34,17 @@ Configuracion::Configuracion(const string &path) {
     parser->setIncludeIgnorableWhitespace(false);
     parser->setErrorHandler(errHandler);
 
+    Logger* logger = Locator::logger();
+
     try {
         ifstream infile(path);
 
         if(infile.good()){
             parser->parse(path.c_str());
+            logger -> log(DEBUG, "Se lee archivo de configuracion con ruta de usuario.");
         }else{
             parser->parse(defaultPath.c_str());
+            logger -> log(DEBUG, "Se lee archivo de configuracion con ruta por defecto.");
         }
     }
     catch (const xercesc::XMLException &toCatch) {

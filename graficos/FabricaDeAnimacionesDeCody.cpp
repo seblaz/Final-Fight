@@ -39,6 +39,13 @@ Animacion* FabricaDeAnimacionesDeCody::parado() {
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
+Animacion *FabricaDeAnimacionesDeCody::agachado() {
+    vector<SDL_Rect> posiciones = {{350, 715, 39, 90}};
+    vector<float> duraciones = {1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
+}
+
 Animacion* FabricaDeAnimacionesDeCody::golpear() {
     vector<SDL_Rect> posiciones = {
             {10, 420, 48, 104}, //104 , 67 ancho_
@@ -55,9 +62,5 @@ Animacion* FabricaDeAnimacionesDeCody::golpear() {
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
-}
-
-Animacion *FabricaDeAnimacionesDeCody::agachado() {
-    return FabricaDeAnimacionesDeCody::saltando();
 }
 

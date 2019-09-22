@@ -10,15 +10,57 @@
 #include "../fisica/FisicaDePersonaje.h"
 #include "../modelo/Orientacion.h"
 
+//DECLARACION CONSTANTES
+static const char *const PATH_SPRITE_CAJA = "assets/escenarios/caja.png";
+static const char *const PATH_SPRITE_CUCHILLO = "assets/objetos/cuchillo.png";
+
+static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/objetos/caja/cantidad";
+static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchillo/cantidad";
+
+
+
+int generarPosicionX(int limiteDeFrontera){
+    return rand() % limiteDeFrontera;
+}
+
+int generarPosicionY(){
+    return rand() % 400;
+}
+
 int main(int argc, char *args[]) {
     /**
      * Iniciar.
      */
-    auto *logger = new Logger(DEBUG);
-    Locator::provide(logger);
+    Logger* logger;
+    Configuracion *config;
 
-    auto *config = new Configuracion();
+    if (argc == 1){
+        logger = new Logger();
+        Locator::provide(logger);
+        config = new Configuracion();
+    } else{
+        if (argc == 2){
+            string param = args[1];
+            size_t found = param.find(".xml");
+
+            if (found!=std::string::npos){
+                logger = new Logger();
+                Locator::provide(logger);
+                config = new Configuracion(args[1]);
+            } else{
+                logger = new Logger(args[1]);
+                Locator::provide(logger);
+                config = new Configuracion();
+            }
+
+        }else{
+            logger = new Logger(args[1]);
+            Locator::provide(logger);
+            config = new Configuracion(args[2]);
+        }
+    }
     Locator::provide(config);
+
 
     Juego juego;
     SDL_Renderer *renderer = juego.renderer();
@@ -131,7 +173,67 @@ int main(int argc, char *args[]) {
     cuchillo->agregarComportamiento("grafico", graficoDeCuchillo);
 
     cuchillo->agregarEstado("posicion de escenario", posicionDeEscenario);
-    
+
+    /**
+     * Generacion random.
+     */
+    int largoDeFrontera = 5650;
+
+     //Generador de cajas
+    int cantidadDeBarril;
+    try {
+        cantidadDeBarril = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
+        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cajas");
+        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeBarril) + " cajas");
+
+    } catch(std::invalid_argument){
+        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cajas a generar");
+        Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
+        cantidadDeBarril = 1;
+    }
+
+    /**
+     * Caja.
+     */
+//    Entidad * cajaRandom = mapa.crearEntidad();
+//
+//    auto * posicionDeCajaRandom = new Posicion(500, 150, 0);
+//    cajaRandom->agregarEstado("posicion", posicionDeCaja);
+//
+//    auto * spriteCaja = new Sprite(renderer, "assets/escenarios/cajaRandom.png");
+//    cajaRandom->agregarEstado("sprite", spriteCaja);
+//
+//    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
+//    vector<float> duraciones = {1};
+//    auto* animacionDeCaja = new Animacion(posiciones, duraciones, 1, 3);
+//    cajaRandom->agregarEstado("animacion", animacionDeCaja);
+//
+//    auto * graficoDeCaja = new Grafico();
+//    cajaRandom->agregarComportamiento("grafico", graficoDeCaja);
+//    cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+//
+//    Sprite spriteCaja(renderer, PATH_SPRITE_CAJA);
+//    SDL_Texture *spcaja = spriteCaja.getTexture();
+//    Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+
+    for (int i = 1; i <= cantidadDeBarril; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion de la cajaRandom:" + to_string(i));
+
+//        FisicaDeMapeable* fisicaDeCaja = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
+//        GraficoDeMapeable* graficoDeCaja = new GraficoDeMapeable(fisicaDeCaja, fisicaDeEscenario, spcaja, animacionCaja);
+//        Mapeable* mapeable = new Mapeable(fisicaDeCaja, graficoDeCaja, &comportamientoDeEscenario);
+
+        Entidad* cajaRandom = mapa.crearEntidad();
+
+        auto* posicionCajaRandom = new Posicion(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
+        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
+        cajaRandom->agregarEstado("sprite", spriteCaja);
+        cajaRandom->agregarEstado("animacion", animacionDeCaja);
+        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        cajaRandom->agregarComportamiento("grafico", graficoDeCaja);
+}
+
+
     juego.loop();
 
     delete logger;

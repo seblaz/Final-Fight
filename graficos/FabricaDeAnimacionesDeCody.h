@@ -14,8 +14,8 @@ public:
     static Animacion* caminando();
     static Animacion* saltando();
     static Animacion* parado();
-    static Animacion* golpear();
     static Animacion* agachado();
+    static Animacion* golpear();
 
 };
 
