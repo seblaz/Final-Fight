@@ -19,6 +19,7 @@ public:
     static Configuracion *configuracion();
     static void provide(Configuracion *configuracion);
 
+    static void clean();
     static SDL_Renderer *renderer();
     static void provide(SDL_Renderer *);
 

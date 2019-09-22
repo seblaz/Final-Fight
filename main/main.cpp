@@ -3,6 +3,12 @@
 #include "../graficos/Sprite.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/Grafico.h"
+#include "../fisica/FisicaDeEscenario.h"
+#include "../graficos/GraficoDeEscenario.h"
+#include "../estados/Parado.h"
+#include "../fisica/FisicaDePersonaje.h"
+#include "../modelo/Orientacion.h"
 #include "../niveles/Nivel.h"
 
 //DECLARACION CONSTANTES
@@ -12,12 +18,8 @@ static const char *const PATH_SPRITE_CUCHILLO = "assets/objetos/cuchillo.png";
 static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/objetos/caja/cantidad";
 static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchillo/cantidad";
 
-
-int main(int argc, char *args[]) {
-    /**
-     * Iniciar.
-     */
- bool defaultLogger = argc == 1;
+void configApplication(int argc, char*args[]){
+    bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
 
     if (argc == 2){
@@ -31,9 +33,9 @@ int main(int argc, char *args[]) {
     Configuracion *config =
             defaultConfiguration ?
             new Configuracion() :
-                (argc == 2 ?
-                    new Configuracion(args[1]) :
-                    new Configuracion(args[2]));
+            (argc == 2 ?
+             new Configuracion(args[1]) :
+             new Configuracion(args[2]));
 
     Locator::provide(config);
 
@@ -44,17 +46,30 @@ int main(int argc, char *args[]) {
             defaultLogger ?
             new Logger() :
             (argc == 2 ?
-                new Logger(args[1]) :
-                new Logger(loggerLevel));
+             new Logger(args[1]) :
+             new Logger(loggerLevel));
     Locator::provide(logger);
 
+    logger = NULL;
+    config = NULL;
+
+    delete logger;
+    delete config;
+}
+
+int main(int argc, char *args[]) {
+    /**
+     * Iniciar.
+     */
+    configApplication(argc, args);
 
     Juego juego;
     SDL_Renderer *renderer = juego.renderer();
     Locator::provide(renderer);
+
     Mapa &mapa = juego.mapa();
 
-    //Leemos los valores de objetos
+    //Generador de cajas
     int cantidadDeCajas;
     try {
         cantidadDeCajas = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
@@ -67,7 +82,6 @@ int main(int argc, char *args[]) {
         cantidadDeCajas = 1;
     }
 
-    //Generador de cuchillos
     int cantidadDeCuchillos;
     try {
         cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
@@ -80,12 +94,9 @@ int main(int argc, char *args[]) {
         cantidadDeCuchillos = 1;
     }
 
-
     Nivel::generarNivel(renderer,&mapa, cantidadDeCajas, cantidadDeCuchillos);
-
 
     juego.loop();
 
-    delete logger;
-    delete config;
+    Locator::clean();
 }

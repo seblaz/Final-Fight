@@ -42,3 +42,8 @@ SDL_Renderer *Locator::renderer() {
 void Locator::provide(SDL_Renderer *renderer) {
     renderer_ = renderer;
 }
+
+void Locator::clean() {
+    delete configuracion_;
+    delete logger_;
+}

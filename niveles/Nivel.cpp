@@ -2,8 +2,6 @@
 // Created by felipe on 22/9/19.
 //
 
-
-
 #include "Nivel.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/Sprite.h"
