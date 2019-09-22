@@ -9,6 +9,27 @@
 #include "../graficos/GraficoDeFrontera.h"
 #include "../niveles/Nivel1.h"
 #include "../fisica/FisicaDeFrontera.h"
+#include "../graficos/FabricaDeAnimacionesDeCaja.h"
+#include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
+
+
+//DECLARACION CONSTANTES
+static const char *const PATH_SPRITE_CAJA = "assets/escenarios/caja.png";
+static const char *const PATH_SPRITE_CUCHILLO = "assets/objetos/cuchillo.png";
+
+static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/objetos/caja/cantidad";
+static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchillo/cantidad";
+
+
+
+int generarPosicionX(int limiteDeFrontera){
+    return rand() % limiteDeFrontera;
+}
+
+int generarPosicionY(){
+    return rand() % 400;
+}
+
 
 int main(int argc, char *args[]) {
 
@@ -22,7 +43,6 @@ int main(int argc, char *args[]) {
     Mapa &mapa = juego.mapa();
     SDL_Renderer *renderer = juego.renderer();
 
-    // Agregar personaje
 //    Animacion *animacionDeJugador = FabricaDeAnimacionesDeCody::caminado();
 //    FisicaDePersonaje fisicaDePersonaje(400);
 //
@@ -37,10 +57,10 @@ int main(int argc, char *args[]) {
 //    mapa.agregarJugador(&personaje);
 
 //    Nivel1::generarNivel(mapa, renderer);
-    // Sprites
+
     Sprite spriteEscenario(renderer, "assets/escenarios/nivel1.png");
-    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
-    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
+
+
 
     // Agregar personaje
     Animacion *animacion = FabricaDeAnimacionesDeCody::caminado();
@@ -74,36 +94,69 @@ int main(int argc, char *args[]) {
     mapa.agregar(&escenarioFondo);
 
     // Agregar frontera.
-    FisicaDeFrontera fisicaDeFrontera(5650, &fisicaDePersonaje);
+    int largoDeFrontera = 5650;
+    FisicaDeFrontera fisicaDeFrontera(largoDeFrontera, &fisicaDePersonaje);
     GraficoDeFrontera graficoDeFrontera;
     Mapeable frontera(&fisicaDeFrontera, &graficoDeFrontera, &comportamientoDeEscenario);
     mapa.agregar(&frontera);
 
-    // Caja
-    vector<SDL_Rect> posiciones = {{8, 5, 70, 120}};
-    vector<float> duraciones = {1};
-    Animacion animacionDeCaja(posiciones, duraciones, 1, 3);
 
-    FisicaDeMapeable fisicaDeObjeto(500, 200, 0);
+    //Generador de cajas
+    int cantidadDeBarril;
+    try {
+        cantidadDeBarril = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
+        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cajas");
+        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeBarril) + " cajas");
+        
+    } catch(std::invalid_argument){
+        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cajas a generar");
+        Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
+        cantidadDeBarril = 1;
+    }
+
+    Sprite spriteCaja(renderer, PATH_SPRITE_CAJA);
     SDL_Texture *spcaja = spriteCaja.getTexture();
-    GraficoDeMapeable graficoDeObjeto(&fisicaDeObjeto, fisicaDeEscenario, spcaja, animacionDeCaja);
-    Mapeable caja(&fisicaDeObjeto, &graficoDeObjeto, &comportamientoDeEscenario);
-    mapa.agregar(&caja);
+    Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+    for (int i = 1; i <= cantidadDeBarril; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion de la caja:" + to_string(i));
 
-    //CUchillo
+        FisicaDeMapeable* fisicaDeCaja = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
+        GraficoDeMapeable* graficoDeCaja = new GraficoDeMapeable(fisicaDeCaja, fisicaDeEscenario, spcaja, animacionCaja);
+        Mapeable* mapeable = new Mapeable(fisicaDeCaja, graficoDeCaja, &comportamientoDeEscenario);
 
-    vector<SDL_Rect> posicionesCuchillo = {{8, 5, 30, 20}};
-    vector<float> duracionesCuchillo = {1};
-    Animacion animacionDeCuchillo(posicionesCuchillo, duracionesCuchillo, 1, 3);
+        mapa.agregar(mapeable);
+    }
 
-    FisicaDeMapeable fisicaDeCuchillo(500, 200, 0);
+
+    //Generador de cuchillos
+    int cantidadDeCuchillos;
+    try {
+        cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
+        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cuchillos");
+        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCuchillos) + " cuchillos");
+
+    } catch(std::invalid_argument){
+        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cuchillos a generar");
+        Locator::logger()->log(DEBUG,"Se generara por defecto 1 cuchillo");
+        cantidadDeCuchillos = 1;
+    }
+
+    Sprite spriteCuchillo(renderer, PATH_SPRITE_CUCHILLO);
     SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
-    GraficoDeMapeable graficoDeCuchillo(&fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionDeCuchillo);
+    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
 
-    Mapeable cuchillo(&fisicaDeCuchillo, &graficoDeCuchillo, &comportamientoDeEscenario);
-    mapa.agregar(&cuchillo);
+    for (int i = 1; i <= cantidadDeCuchillos; i++) {
+        Locator::logger()->log(INFO,"Se inicia la construccion del cuchillo:" + to_string(i));
+
+        FisicaDeMapeable* fisicaDeCuchillo = new FisicaDeMapeable(generarPosicionX(largoDeFrontera), generarPosicionY(), 0);
+        GraficoDeMapeable* graficoDeCuchillo = new GraficoDeMapeable(fisicaDeCuchillo, fisicaDeEscenario, spCuchillo, animacionCuchillo);
+        Mapeable* mapeable = new Mapeable(fisicaDeCuchillo, graficoDeCuchillo, &comportamientoDeEscenario);
+
+        mapa.agregar(mapeable);
+    }
 
     mapa.agregar(&personaje);
+
 
     // Agregar enemigo
     FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;

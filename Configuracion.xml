@@ -8,10 +8,10 @@
             <cuchillo>
                 <cantidad>5</cantidad>
             </cuchillo>
+            <caja>
+                <cantidad>5</cantidad>
+            </caja>
         </objetos>
-        <barril>
-            <cantidad>7</cantidad>
-        </barril>
     </escenario>
     <resolucion>
         <ancho>1600</ancho>
@@ -30,7 +30,7 @@
             <y>1</y>
         </personaje>
     </velocidad>
-    <fps>40</fps>
+    <fps>60</fps>
     <niveles>
         <nivel1>
             <fondo>assets/escenarios/nivel1.png</fondo>
