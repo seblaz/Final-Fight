@@ -6,12 +6,12 @@
         <inclinacion>0.79</inclinacion>
         <objetos>
             <cuchillo>
-                <cantidad>2</cantidad>
+                <cantidad>5</cantidad>
             </cuchillo>
+            <caja>
+                <cantidad>5</cantidad>
+            </caja>
         </objetos>
-        <barril>
-            <cantidad>5</cantidad>
-        </barril>
     </escenario>
     <resolucion>
         <ancho>1600</ancho>

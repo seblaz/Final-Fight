@@ -12,8 +12,14 @@
 #include "../graficos/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
 
-static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/barril/cantidad";
+
+//DECLARACION CONSTANTES
+static const char *const PATH_SPRITE_CAJA = "assets/escenarios/caja.png";
+static const char *const PATH_SPRITE_CUCHILLO = "assets/objetos/cuchillo.png";
+
+static const char *const PATH_XML_CANTIDAD_CAJA = "/escenario/objetos/caja/cantidad";
 static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchillo/cantidad";
+
 
 int main(int argc, char *args[]) {
     auto *logger = new Logger(DEBUG);
@@ -82,12 +88,12 @@ int main(int argc, char *args[]) {
         Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeBarril) + " cajas");
         
     } catch(std::invalid_argument){
-        Locator::logger()->log(ERROR,"No se encontro el path para obtener el path");
+        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cajas a generar");
         Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
         cantidadDeBarril = 1;
     }
 
-    Sprite spriteCaja(renderer, "assets/escenarios/caja.png");
+    Sprite spriteCaja(renderer, PATH_SPRITE_CAJA);
     SDL_Texture *spcaja = spriteCaja.getTexture();
     Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
     for (int i = 1; i <= cantidadDeBarril; i++) {
@@ -103,16 +109,23 @@ int main(int argc, char *args[]) {
 
 
     //Generador de cuchillos
+    int cantidadDeCuchillos;
+    try {
+        cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
+        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cuchillos");
+        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCuchillos) + " cuchillos");
 
+    } catch(std::invalid_argument){
+        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cuchillos a generar");
+        Locator::logger()->log(DEBUG,"Se generara por defecto 1 cuchillo");
+        cantidadDeCuchillos = 1;
+    }
 
-    Sprite spriteCuchillo(renderer, "assets/objetos/cuchillo.png");
+    Sprite spriteCuchillo(renderer, PATH_SPRITE_CUCHILLO);
     SDL_Texture *spCuchillo = spriteCuchillo.getTexture();
     Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
 
-    int cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
-    Locator::logger()->log(DEBUG,"Cantidad de chucillos a construir:" + to_string(cantidadDeBarril));
-
-    for (int i = 1; i <= cantidadDeBarril; i++) {
+    for (int i = 1; i <= cantidadDeCuchillos; i++) {
         Locator::logger()->log(INFO,"Se inicia la construccion del cuchillo:" + to_string(i));
 
         FisicaDeMapeable* fisicaDeCuchillo = new FisicaDeMapeable(200 + i*200, 0, 0);
@@ -123,6 +136,7 @@ int main(int argc, char *args[]) {
     }
 
     mapa.agregar(&personaje);
+
 
     // Agregar enemigo
     FabricaDeAnimacionesDePoison fabricaDeAnimacionesDePoison;
