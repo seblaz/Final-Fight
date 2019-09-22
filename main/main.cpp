@@ -32,14 +32,11 @@ int generarPosicionY(){
 
 
 int main(int argc, char *args[]) {
-    auto *logger = new Logger(DEBUG);
+
+    auto *logger = new Logger(args[1]);
     Locator::provide(logger);
 
-    string configurationPath;
-    cout << "Ingrese la ruta de archivo de configuracion.\n";
-    cin >> configurationPath;
-
-    auto *config = new Configuracion(configurationPath);
+    auto *config = new Configuracion(args[2]);
     Locator::provide(config);
 
     Juego juego;

@@ -8,6 +8,16 @@
 #include <iomanip>
 #include <sys/stat.h>
 #include <cstring>
+#include <algorithm>
+
+std::map<std::string, LEVEL>::iterator searchByValue(std::map<std::string, LEVEL> &map, LEVEL val) {
+    std::map<std::string, LEVEL>::iterator it = map.begin();
+    while (it != map.end()) {
+        if (it->second == val)
+            return it;
+        it++;
+    }
+}
 
 /**
  * File Manager helper funcitions.
@@ -45,10 +55,11 @@ public:
 /**
  * Actual Logger implementation.
  */
-Logger::Logger(LEVEL level) :
-        level(level),
+
+Logger::Logger(const string& stringLevel) :
+        level(stringToLevel(stringLevel)),
         logFile(getLogFileName()),
-        folder("logs"){
+        folder("logs") {
     FileManager::createFolderIfItDoesNotExist(folder);
 }
 
@@ -61,7 +72,7 @@ void Logger::log(LEVEL level_, const string &message) {
 }
 
 string Logger::levelToString(LEVEL level) {
-    // TODO: posible mejora.
+
     switch (level) {
         case ERROR:
             return "ERROR";
@@ -71,6 +82,17 @@ string Logger::levelToString(LEVEL level) {
             return "DEBUG";
     }
     return "Error in levelToString!";
+}
+
+LEVEL Logger::stringToLevel(const string& stringLevel) {
+
+    if(stringLevel == "ERROR") {
+        return ERROR;
+    }else if(stringLevel == "INFO") {
+        return INFO;
+    }
+
+    return DEBUG;
 }
 
 string Logger::getLogDateTime() {
