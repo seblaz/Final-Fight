@@ -55,6 +55,7 @@ FILE(GLOB PhysicsSources fisica/*.cpp)
 FILE(GLOB GraphicsSources graficos/*.cpp)
 FILE(GLOB SpriteSources graficos/sprite/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
+FILE(GLOB IASources estados/ia/*.cpp)
 FILE(GLOB StatesSources estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
@@ -74,7 +75,7 @@ add_test(NAME model_tests COMMAND model_tests)
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources})
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources} ${IASources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${XercesC_LIBRARIES})
 
 #[[
