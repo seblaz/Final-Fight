@@ -1,7 +1,3 @@
-//
-// Created by sebas on 14/9/19.
-//
-
 #include "FabricaDeAnimacionesDeCody.h"
 
 Animacion* FabricaDeAnimacionesDeCody::caminado() {
@@ -63,4 +59,3 @@ Animacion* FabricaDeAnimacionesDeCody::golpear() {
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }
-
