@@ -29,18 +29,10 @@ void Caminando::actualizar(Entidad *entidad) {
     velocidad->x = 0;
     velocidad->y = 0;
 
-    if (entrada[SDL_SCANCODE_RIGHT]) {
-        velocidad->x = RAPIDEZ * velocidadRelativa;
-    }
-    if (entrada[SDL_SCANCODE_LEFT]) {
-        velocidad->x = -RAPIDEZ * velocidadRelativa;
-    }
-    if (entrada[SDL_SCANCODE_UP]) {
-        velocidad->y = RAPIDEZ * velocidadRelativa;
-    }
-    if (entrada[SDL_SCANCODE_DOWN]) {
-        velocidad->y = -RAPIDEZ * velocidadRelativa;
-    }
+    velocidad->x = RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_RIGHT];
+    velocidad->x -= RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_LEFT];
+    velocidad->y = RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_UP];
+    velocidad->y -= RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_DOWN];
 
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         EstadoDePersonaje* saltando = new Saltando();
@@ -62,8 +54,9 @@ void Caminando::actualizar(Entidad *entidad) {
     }
 }
 
-void Caminando::enter(Entidad *entidad) {
+void Caminando::enter(Entidad * entidad) {
     auto* animacion = FabricaDeAnimacionesDeCody::caminando();
     entidad->agregarEstado("animacion", animacion);
 }
+
 

@@ -12,6 +12,10 @@ class EstadoDePersonaje : public Comportamiento {
 
 public:
     virtual void enter(Entidad* entidad) = 0;
+    virtual void saltar(Entidad *);
+    virtual void caminar(Entidad *);
+    virtual void reposar(Entidad *);
+    virtual void agachar(Entidad *);
 
 };
 

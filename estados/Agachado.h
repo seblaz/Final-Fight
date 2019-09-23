@@ -17,6 +17,7 @@ public:
     ~Agachado();
     void actualizar(Entidad *) override;
     void enter(Entidad* entidad) override;
+    void agachar(Entidad *) override  {};
 };
 
 #endif //FINAL_FIGHT_AGACHADO_H
