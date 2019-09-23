@@ -39,7 +39,7 @@ void configApplication(int argc, char*args[]){
 
     Locator::provide(config);
 
-    string loggerLevel = config->getValue("/debug/level", "");
+    string loggerLevel = config->getValue("/debug/level");
     defaultLogger = defaultLogger && loggerLevel.compare("") == 0;
 
     Logger* logger =

@@ -19,8 +19,8 @@ GraficoDeEscenario::GraficoDeEscenario(vector<SDL_Texture *> sprites,
 
 void GraficoDeEscenario::actualizar(Entidad *entidad) {
     SDL_Renderer* renderer = Locator::renderer();
-    int alto = Locator::configuracion()->getIntValue("/resolucion/alto", 0);
-    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho", 0);
+    int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int posicion = entidad->getEstado<Posicion>("posicion")->getX();
 
     for (size_t i = 0; i < sprites.size(); ++i) {

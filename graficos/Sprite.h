@@ -6,8 +6,6 @@
 #ifndef FINAL_FIGHT_SPRITE_H
 #define FINAL_FIGHT_SPRITE_H
 
-
-
 #include <SDL_render.h>
 #include <SDL_system.h>
 #include <string>
