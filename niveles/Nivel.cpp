@@ -109,10 +109,10 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
      * Leer configuracion de escenario.
      */
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/sprite/src");
-    int profundidad = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
-    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
-    int cantidadDeCapas = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/cantidad");
+    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/sprite/src", "");
+    int profundidad = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad", 230);
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho", 5000);
+    int cantidadDeCapas = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/cantidad", 0);
 
     Entidad *escenario = mapa->crearEntidad();
     auto *posicion = new Posicion(0, profundidad, 0);
@@ -124,10 +124,12 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
     vector<float> distanciasAlFondo(cantidadDeCapas);
 
     for(int i = 0; i < cantidadDeCapas; i++){
-        int x = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/x");
-        int y = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/y");
-        int alto = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/alto");
-        float distanciaAlFondo = config->getFloatValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/distanciaAlFondo");
+        int x = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/x", 0);
+        int y = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/y", 0);
+        int alto = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/alto",
+                                       0);
+        float distanciaAlFondo = config->getFloatValue(
+                "/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/distanciaAlFondo", 0);
 
         sprites[i] = sprite->getTexture();
         posicionesSprite[i] = {x, y, 0, alto};
@@ -147,10 +149,10 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
 
 void Nivel::generarCajas(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/caja/sprite/src");
-    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
-    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
-    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/caja/sprite/src", "");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad", 0);
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho", 0);
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad", 0);
 
     auto *spriteCaja = new Sprite(sdlRenderer, srcSprite);
     auto *graficoDeCaja = new Grafico();
@@ -171,10 +173,10 @@ void Nivel::generarCajas(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *m
 
 void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/sprite/src");
-    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/cantidad");
-    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
-    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/sprite/src", "");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/cantidad", 0);
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho", 0);
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad", 0);
 
     auto *spriteCuchillo = new Sprite(sdlRenderer, srcSprite);
     auto *animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
@@ -219,7 +221,7 @@ void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa 
 
 void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador) {
     Entidad *transicion = mapa->crearEntidad();
-    int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho", 0);
     auto *posicion = new Posicion(0, 1, 0);
     auto *grafico = new GraficoDeTransicion(anchoDeNivel);
 

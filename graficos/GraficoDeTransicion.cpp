@@ -16,7 +16,7 @@ void GraficoDeTransicion::actualizar(Entidad *entidad) {
 
     int posicionDeJugadorX = entidad->getEstado<Posicion>("posicion de jugador")->getX();
 
-    SDL_Rect rect = {0, 0, config->getIntValue("/resolucion/ancho"), config->getIntValue("/resolucion/alto")};
+    SDL_Rect rect = {0, 0, config->getIntValue("/resolucion/ancho", 0), config->getIntValue("/resolucion/alto", 0)};
     const int trans = 200;
     if ((anchoDeEscenario - posicionDeJugadorX) <= 0) {
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xff);

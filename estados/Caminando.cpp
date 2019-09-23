@@ -22,7 +22,7 @@ Caminando::~Caminando() {
 #define RAPIDEZ 4
 
 void Caminando::actualizar(Entidad *entidad) {
-    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego");
+    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego", 0);
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 

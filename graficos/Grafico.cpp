@@ -13,12 +13,12 @@
 SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {
     Configuracion *config = Locator::configuracion();
 
-    float escala = config->getFloatValue("/escala/entidades") * esacalaDeAnimacion;
+    float escala = config->getFloatValue("/escala/entidades", 0) * esacalaDeAnimacion;
 
     const int screenX = int(round((float)posicionEnMapa.getX()
                         - (float)posicionEnSprite.w / 2 * escala));
 
-    const int screenY = int(round((float)config->getIntValue("/resolucion/alto")
+    const int screenY = int(round((float) config->getIntValue("/resolucion/alto", 0)
                         + (float)posicionEnMapa.getZ()
                         - (float)posicionEnMapa.getY()
                         - (float)posicionEnSprite.h * escala));

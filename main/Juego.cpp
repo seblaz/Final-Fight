@@ -15,8 +15,8 @@ Juego::Juego() {
 }
 
 void Juego::inicializarGraficos() {
-    const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
-    const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
+    const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho", 0);
+    const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto", 0);
 
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -40,7 +40,7 @@ void Juego::inicializarGraficos() {
 }
 
 void Juego::loop() {
-    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
+    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps", 0) * 1000; // Microsegundos.
 
     while (!exit) {
         size_t start = SDL_GetTicks();

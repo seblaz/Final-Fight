@@ -22,7 +22,7 @@ Patrullar::~Patrullar() {
 void Patrullar::actualizar(Entidad *entidad) {
 
 
-    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego");
+    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego", 0);
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
 
     velocidad->x = 0;

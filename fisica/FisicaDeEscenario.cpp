@@ -10,7 +10,7 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
         largo(largo) {}
 
 void FisicaDeEscenario::actualizar(Entidad *entidad) {
-    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho", 0);
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
     int xPersonaje = entidad->getEstado<Posicion>("posicion de jugador")->getX();
 
