@@ -10,23 +10,23 @@
 #include "Sprite.h"
 #include "../modelo/Orientacion.h"
 
-SDL_Rect calcularPosicionEnPantalla2(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {
+SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {
     Configuracion *config = Locator::configuracion();
 
-    float escala = config->getFloatValue("/escala/mapeables") * esacalaDeAnimacion;
+    float escala = config->getFloatValue("/escala/entidades", 0) * esacalaDeAnimacion;
 
-    const int screenX = posicionEnMapa.getX()
-                        - posicionEnSprite.w / 2 * escala;
+    const int screenX = int(round((float)posicionEnMapa.getX()
+                        - (float)posicionEnSprite.w / 2 * escala));
 
-    const int screenY = config->getIntValue("/resolucion/alto")
-                        + posicionEnMapa.getZ()
-                        - posicionEnMapa.getY()
-                        - posicionEnSprite.h * escala;
+    const int screenY = int(round((float) config->getIntValue("/resolucion/alto", 0)
+                        + (float)posicionEnMapa.getZ()
+                        - (float)posicionEnMapa.getY()
+                        - (float)posicionEnSprite.h * escala));
 
     SDL_Rect posicionEnPantalla = {screenX,
                                    screenY,
-                                   int(posicionEnSprite.w * escala),
-                                   int(posicionEnSprite.h * escala)};
+                                   int((float)posicionEnSprite.w * escala),
+                                   int((float)posicionEnSprite.h * escala)};
 
     return posicionEnPantalla;
 }
@@ -41,7 +41,7 @@ void Grafico::actualizar(Entidad *entidad) {
 
     Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
     SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla2(nuevaPosicion, posicionEnSprite, animacion->escala());
+    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
 
     if ((orientacion != nullptr) && (!orientacion->adelante)) {
         SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla,

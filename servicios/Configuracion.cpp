@@ -65,7 +65,7 @@ Configuracion::~Configuracion() {
     delete errHandler;
 }
 
-string Configuracion::getValue(const string &xPath) {
+string Configuracion::getValue(const string &xPath, const string &defaultValue) {
     XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
 
     xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
@@ -78,7 +78,7 @@ string Configuracion::getValue(const string &xPath) {
     xercesc::XMLString::release(&tag);
 
     if (!result->getNodeValue()){
-        return "";
+        return defaultValue;
     }
 
     char* finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
@@ -89,10 +89,18 @@ string Configuracion::getValue(const string &xPath) {
     return returnValue;
 }
 
-int Configuracion::getIntValue(const string &xPath) {
-    return stoi(getValue(xPath));
+int Configuracion::getIntValue(const string &xPath, int defaultValue) {
+    string result = getValue(xPath, "");
+    if(result.empty()){
+        return defaultValue;
+    }
+    return stoi(result);
 }
 
-float Configuracion::getFloatValue(const string &xPath) {
-    return stof(getValue(xPath));
+float Configuracion::getFloatValue(const string &xPath, float defaultValue) {
+    string result = getValue(xPath, "");
+    if(result.empty()){
+        return defaultValue;
+    }
+    return stof(result);
 }

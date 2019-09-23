@@ -39,7 +39,7 @@ void configApplication(int argc, char*args[]){
 
     Locator::provide(config);
 
-    string loggerLevel = config->getValue("/debug/level");
+    string loggerLevel = config->getValue("/debug/level", "");
     defaultLogger = defaultLogger && loggerLevel.compare("") == 0;
 
     Logger* logger =
@@ -69,32 +69,9 @@ int main(int argc, char *args[]) {
 
     Mapa &mapa = juego.mapa();
 
-    //Generador de cajas
-    int cantidadDeCajas;
-    try {
-        cantidadDeCajas = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
-        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cajas");
-        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCajas) + " cajas");
+    Entidad *jugador = Nivel::generarJugador(&mapa);
 
-    } catch(std::invalid_argument){
-        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cajas a generar");
-        Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
-        cantidadDeCajas = 1;
-    }
-
-    int cantidadDeCuchillos;
-    try {
-        cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
-        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cuchillos");
-        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCuchillos) + " cuchillos");
-
-    } catch(std::invalid_argument){
-        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cuchillos a generar");
-        Locator::logger()->log(DEBUG,"Se generara por defecto 1 cuchillo");
-        cantidadDeCuchillos = 1;
-    }
-
-    Nivel::generarNivel(renderer,&mapa, cantidadDeCajas, cantidadDeCuchillos);
+    Nivel::generarNivel("nivel2", &mapa, jugador);
 
     juego.loop();
 

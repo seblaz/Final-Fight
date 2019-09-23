@@ -8,10 +8,10 @@ using namespace std;
 TEST(XmlReader, AlPedirConfiguracionesQueExistenLasDevuelveComoString) {
     Configuracion reader = Configuracion();
 
-    string level = reader.getValue("/debug/level");
-    string cuchillos = reader.getValue("/escenario/objetos/cuchillo/cantidad");
-    string noValido = reader.getValue("/noValido/level");
-    string cuchillosNoValido = reader.getValue("/escenario/objetos/cuchillo/cantidad2");
+    string level = reader.getValue("/debug/level", <#initializer#>);
+    string cuchillos = reader.getValue("/escenario/objetos/cuchillo/cantidad", <#initializer#>);
+    string noValido = reader.getValue("/noValido/level", <#initializer#>);
+    string cuchillosNoValido = reader.getValue("/escenario/objetos/cuchillo/cantidad2", <#initializer#>);
 
     EXPECT_EQ(level, "DEBUG");
     EXPECT_EQ(cuchillos, "5");
