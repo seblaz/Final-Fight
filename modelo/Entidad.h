@@ -55,29 +55,25 @@ public:
 
     template<typename T>
     void agregarEstado(const string &s, T *t) {
-//        int hash = typeid(T).hash_code();
-//        estados[hash] = t;
+        if (estados.find(s) != estados.end())
+            delete estados[s];
         estados[s] = t;
     };
 
     template<typename T>
     T *getEstado(const string &s) {
-//        int hash = typeid(T).hash_code();
-//        return (T *) estados[hash];
         return (T *) estados[s];
     };
 
     template<typename T>
-    void agregarComportamiento(const string& s, T *t) {
-//        int hash = typeid(T).hash_code();
-//        comportamientos[hash] = t;
+    void agregarComportamiento(const string &s, T *t) {
+        if (comportamientos.find(s) != comportamientos.end())
+            delete comportamientos[s];
         comportamientos[s] = t;
     };
 
     template<typename T>
-    T *getComportamiento(const string& s) {
-//        int hash = typeid(T).hash_code();
-//        return (T *) comportamientos[hash];
+    T *getComportamiento(const string &s) {
         return (T *) comportamientos[s];
     };
 

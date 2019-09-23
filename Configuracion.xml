@@ -2,24 +2,55 @@
     <debug>
         <level>DEBUG</level>
     </debug>
-    <escenario>
-        <objetos>
-            <cuchillo>
-                <cantidad>5</cantidad>
-            </cuchillo>
-            <caja>
-                <cantidad>5</cantidad>
-            </caja>
-        </objetos>
-    </escenario>
+    <nivel1>
+        <escenario>
+            <ancho>5000</ancho>
+            <profundidad>230</profundidad>
+            <sprite>
+                <src>assets/escenarios/nivel1.png</src>
+                <capas>
+                    <cantidad>3</cantidad>
+                    <capa0>
+                        <x>0</x>
+                        <y>400</y>
+                        <alto>400</alto>
+                        <distanciaAlFondo>0.1</distanciaAlFondo>
+                    </capa0>
+                    <capa1>
+                        <x>0</x>
+                        <y>200</y>
+                        <alto>195</alto>
+                        <distanciaAlFondo>0.5</distanciaAlFondo>
+                    </capa1>
+                    <capa2>
+                        <x>0</x>
+                        <y>0</y>
+                        <alto>195</alto>
+                        <distanciaAlFondo>1</distanciaAlFondo>
+                    </capa2>
+                </capas>
+            </sprite>
+            <objetos>
+                <cuchillo>
+                    <cantidad>5</cantidad>
+                    <sprite>
+                        <src>assets/objetos/cuchillo.png</src>
+                    </sprite>
+                </cuchillo>
+                <caja>
+                    <cantidad>5</cantidad>
+                    <sprite>
+                        <src>assets/escenarios/caja.png</src>
+                    </sprite>
+                </caja>
+            </objetos>
+        </escenario>
+    </nivel1>
     <resolucion>
         <ancho>1600</ancho>
         <alto>900</alto>
     </resolucion>
     <escala>
-        <escenario>
-            <ancho>5.7</ancho>
-        </escenario>
         <mapeables>1</mapeables>
     </escala>
     <velocidad>

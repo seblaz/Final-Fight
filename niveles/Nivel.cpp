@@ -18,48 +18,174 @@
 #include "../graficos/FabricaDeAnimacionesDePoison.h"
 #include "../servicios/Locator.h"
 
-Nivel::Nivel() {
+// TODO: usar esto.
+//    //Generador de cajas
+//    int cantidadDeCajas;
+//    try {
+//        cantidadDeCajas = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CAJA);
+//        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cajas");
+//        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCajas) + " cajas");
+//
+//    } catch(std::invalid_argument){
+//        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cajas a generar");
+//        Locator::logger()->log(DEBUG,"Se generara por defecto 1 caja");
+//        cantidadDeCajas = 1;
+//    }
+//
+//    int cantidadDeCuchillos;
+//    try {
+//        cantidadDeCuchillos = Locator::configuracion()->getIntValue(PATH_XML_CANTIDAD_CUCHILLO);
+//        Locator::logger()->log(DEBUG,"Se encontro el path para leer la cantidad de cuchillos");
+//        Locator::logger()->log(INFO,"Se van a generar:" + to_string(cantidadDeCuchillos) + " cuchillos");
+//
+//    } catch(std::invalid_argument){
+//        Locator::logger()->log(ERROR,"No se encontro el path para obtener la cantidad de cuchillos a generar");
+//        Locator::logger()->log(DEBUG,"Se generara por defecto 1 cuchillo");
+//        cantidadDeCuchillos = 1;
+//    }
+//
 
+Entidad *Nivel::generarJugador(Mapa *mapa) {
+    SDL_Renderer *sdlRenderer = Locator::renderer();
+
+    auto* jugador = mapa->crearEntidad();
+    auto* posicion = new Posicion(200, 100, 0);
+    auto *velocidad = new Velocidad();
+    auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+    auto *orientacion = new Orientacion;
+    auto *animacion = FabricaDeAnimacionesDeCody::parado();
+    EstadoDePersonaje *estado = new Parado();
+    auto *fisica = new FisicaDePersonaje();
+    auto *grafico = new Grafico();
+
+    jugador->agregarEstado("posicion", posicion);
+    jugador->agregarEstado("velocidad", velocidad);
+    jugador->agregarEstado("sprite", spriteJugador);
+    jugador->agregarEstado("orientacion", orientacion);
+    jugador->agregarEstado("animacion", animacion);
+    jugador->agregarComportamiento("estado", estado);
+    jugador->agregarComportamiento("fisica", fisica);
+    jugador->agregarComportamiento("grafico", grafico);
+
+    return jugador;
 }
 
-int generarPosicionX(int limiteDeFrontera){
+int generarPosicion(int limiteDeFrontera) {
     return rand() % limiteDeFrontera;
 }
 
-int generarPosicionY(){
-    return rand() % 400;
-}
-
-void Nivel::generarNivel(SDL_Renderer *sdlRenderer, Mapa *mapa, int cantidadDeCajas, int cantidadCuchillos) {
-
-    Entidad *jugador;
-    Posicion *posicionDeJugador;
-    crearJugador(sdlRenderer, mapa, jugador, posicionDeJugador);
-
-    Entidad *escenario;
-    Posicion *posicionDeEscenario;
-    Sprite *spriteEscenario;
-    crearEscenario(sdlRenderer, mapa, escenario, posicionDeEscenario, spriteEscenario);
+void Nivel::generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador) {
+    srand(time(0));
+    SDL_Renderer *sdlRenderer = Locator::renderer();
+    Entidad *escenario = generarEscenario(nivel, sdlRenderer, mapa);
 
     /**
      * Dependencias.
      */
+    auto *posicionDeJugador = jugador->getEstado<Posicion>("posicion");
+    auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
     escenario->agregarEstado("posicion de jugador", posicionDeJugador);
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
 
-
-    generarCajas(sdlRenderer, mapa, cantidadDeCajas, posicionDeEscenario, spriteEscenario);
-    generarCuchillos(sdlRenderer, mapa, cantidadCuchillos, posicionDeEscenario, spriteEscenario);
-
-    generarEnemigo(sdlRenderer, mapa, posicionDeEscenario);
-
+    generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarEnemigo(nivel, sdlRenderer, mapa, posicionDeEscenario);
 }
 
-void Nivel::generarEnemigo(SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
-    Entidad * enemigo = mapa->crearEntidad();
+Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa) {
+    /**
+     * Leer configuracion de escenario.
+     */
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/" + nivel + "/escenario/sprite/src");
+    int profundidad = config->getIntValue("/" + nivel + "/escenario/profundidad");
+    int anchoNivel = config->getIntValue("/" + nivel + "/escenario/ancho");
+    int cantidadDeCapas = config->getIntValue("/" + nivel + "/escenario/sprite/capas/cantidad");
+
+    Entidad *escenario = mapa->crearEntidad();
+    auto *posicion = new Posicion(0, profundidad, 0);
+    auto *sprite = new Sprite(sdlRenderer, srcSprite);
+    auto *fisica = new FisicaDeEscenario();
+
+    vector<SDL_Texture *> sprites(cantidadDeCapas);
+    vector<SDL_Rect> posicionesSprite(cantidadDeCapas);
+    vector<float> distanciasAlFondo(cantidadDeCapas);
+
+    for(int i = 0; i < cantidadDeCapas; i++){
+        int x = config->getIntValue("/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/x");
+        int y = config->getIntValue("/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/y");
+        int alto = config->getIntValue("/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/alto");
+        float distanciaAlFondo = config->getFloatValue("/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/distanciaAlFondo");
+
+        sprites.push_back(sprite->getTexture());
+        posicionesSprite.push_back({x, y, 0, alto});
+        distanciasAlFondo.push_back(distanciaAlFondo);
+    }
+
+    float escalaHorizontal = (float)anchoNivel / (float)sprite->ancho();
+    auto *grafico = new GraficoDeEscenario(sprites, posicionesSprite, distanciasAlFondo, escalaHorizontal);
+
+    escenario->agregarEstado("posicion", posicion);
+    escenario->agregarEstado("sprite", sprite);
+    escenario->agregarComportamiento("fisica", fisica);
+    escenario->agregarComportamiento("grafico", grafico);
+
+    return escenario;
+}
+
+void Nivel::generarCajas(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/" + nivel + "/escenario/objetos/caja/sprite/src");
+    int cantidad = config->getIntValue("/" + nivel + "/escenario/objetos/caja/cantidad");
+    int anchoNivel = config->getIntValue("/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/" + nivel + "/escenario/profundidad");
+
+    auto *spriteCaja = new Sprite(sdlRenderer, srcSprite);
+    auto *graficoDeCaja = new Grafico();
+    auto *animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+
+    for (int i = 1; i <= cantidad; i++) {
+        Locator::logger()->log(INFO, "Se inicia la construccion de la cajaRandom:" + to_string(i));
+        Entidad *cajaRandom = mapa->crearEntidad();
+
+        auto *posicionCajaRandom = new Posicion(generarPosicion(anchoNivel), generarPosicion(profundidadNivel), 0);
+        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
+        cajaRandom->agregarEstado("sprite", spriteCaja);
+        cajaRandom->agregarEstado("animacion", animacionCaja);
+        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        cajaRandom->agregarComportamiento("grafico", graficoDeCaja);
+    }
+}
+
+void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/" + nivel + "/escenario/objetos/cuchillo/sprite/src");
+    int cantidad = config->getIntValue("/" + nivel + "/escenario/objetos/cuchillo/cantidad");
+    int anchoNivel = config->getIntValue("/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/" + nivel + "/escenario/profundidad");
+
+    auto *spriteCuchillo = new Sprite(sdlRenderer, srcSprite);
+    auto *animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
+    auto *graficoDeCuchillo = new Grafico();
+
+    for (int i = 1; i <= cantidad; i++) {
+        Locator::logger()->log(INFO, "Se inicia la construccion de la cuchilloRandom:" + to_string(i));
+
+        Entidad *cuchilloRandom = mapa->crearEntidad();
+
+        auto *posicionCuchilloRandom = new Posicion(generarPosicion(anchoNivel), generarPosicion(profundidadNivel), 0);
+        cuchilloRandom->agregarEstado("posicion", posicionCuchilloRandom);
+        cuchilloRandom->agregarEstado("sprite", spriteCuchillo);
+        cuchilloRandom->agregarEstado("animacion", animacionCuchillo);
+        cuchilloRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        cuchilloRandom->agregarComportamiento("grafico", graficoDeCuchillo);
+    }
+}
+
+void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Entidad *enemigo = mapa->crearEntidad();
 
     auto *posicionDeEnemigo = new Posicion(600, 100, 0);
-
     auto *spriteEnemigo = new Sprite(sdlRenderer, "assets/personajes/poison.png");
     auto *velocidadDeEnemigo = new Velocidad();
     auto *animacionDeEnemigo = FabricaDeAnimacionesDePoison::caminando();
@@ -78,95 +204,3 @@ void Nivel::generarEnemigo(SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posi
     enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
 }
-
-void Nivel::generarCuchillos(SDL_Renderer *sdlRenderer, Mapa *mapa, int cantidadCuchillos,
-                             Posicion *posicionDeEscenario, Sprite *spriteEscenario) {
-    auto * spriteCuchillo = new Sprite(sdlRenderer, "assets/objetos/cuchillo.png");
-    Animacion* animacionCuchillo = FabricaDeAnimacionesDeCuchillo::standby();
-
-    for (int i = 1; i <= cantidadCuchillos; i++) {
-        Locator::logger()->log(INFO,"Se inicia la construccion de la cuchilloRandom:" + to_string(i));
-
-        Entidad* cuchilloRandom = mapa->crearEntidad();
-
-        auto* posicionCuchilloRandom = new Posicion(generarPosicionX(spriteEscenario->ancho()), generarPosicionY(), 0);
-
-        auto * graficoDeCuchillo = new Grafico();
-        cuchilloRandom->agregarEstado("posicion", posicionCuchilloRandom);
-        cuchilloRandom->agregarEstado("sprite", spriteCuchillo);
-        cuchilloRandom->agregarEstado("animacion", animacionCuchillo);
-        cuchilloRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
-        cuchilloRandom->agregarComportamiento("grafico", graficoDeCuchillo);
-    }
-}
-
-void
-Nivel::generarCajas(SDL_Renderer *sdlRenderer, Mapa *mapa, int cantidadDeCajas, Posicion *posicionDeEscenario,
-                    Sprite *spriteEscenario) {
-    auto * spriteCaja = new Sprite(sdlRenderer, "assets/escenarios/caja.png");
-    Animacion* animacionCaja = FabricaDeAnimacionesDeCaja::standby();
-
-    for (int i = 1; i <= cantidadDeCajas; i++) {
-        Locator::logger()->log(INFO,"Se inicia la construccion de la cajaRandom:" + to_string(i));
-
-        Entidad* cajaRandom = mapa->crearEntidad();
-
-        auto* posicionCajaRandom = new Posicion(generarPosicionX(spriteEscenario->ancho()), generarPosicionY(), 0);
-        auto * graficoDeCaja = new Grafico();
-        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
-        cajaRandom->agregarEstado("sprite", spriteCaja);
-        cajaRandom->agregarEstado("animacion", animacionCaja);
-        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
-        cajaRandom->agregarComportamiento("grafico", graficoDeCaja);
-    }
-}
-
-void Nivel::crearEscenario(SDL_Renderer *sdlRenderer, Mapa *mapa, Entidad *&escenario, Posicion *&posicionDeEscenario,
-                           Sprite *&spriteEscenario) {
-    escenario= mapa->crearEntidad();
-    posicionDeEscenario= new Posicion(0, 300, 0);
-    spriteEscenario= new Sprite(sdlRenderer, "assets/escenarios/nivel1.png");
-    auto * fisicaEscenario = new FisicaDeEscenario();
-
-    escenario->agregarEstado("posicion", posicionDeEscenario);
-    escenario->agregarEstado("sprite", spriteEscenario);
-    escenario->agregarComportamiento("fisica", fisicaEscenario);
-
-    vector<SDL_Texture *> spritesDeEscenario;
-    spritesDeEscenario.push_back(spriteEscenario->getTexture());
-    spritesDeEscenario.push_back(spriteEscenario->getTexture());
-    spritesDeEscenario.push_back(spriteEscenario->getTexture());
-
-    vector<SDL_Rect> posicionesSprite;
-    posicionesSprite.push_back({0, 400, 0, 400});
-    posicionesSprite.push_back({0, 200, 0, 195});
-    posicionesSprite.push_back({0, 0, 0, 195});
-
-    vector<float> distanciasAlFondo = {0.1, 0.5, 1};
-
-    auto* graficoDeEscenario = new GraficoDeEscenario(spritesDeEscenario, posicionesSprite, distanciasAlFondo,
-                                                      spriteEscenario->ancho());
-    escenario->agregarComportamiento("grafico", graficoDeEscenario);
-}
-
-void Nivel::crearJugador(SDL_Renderer *sdlRenderer, Mapa *mapa, Entidad *&jugador, Posicion *&posicionDeJugador) {
-    jugador= mapa->crearEntidad();
-    posicionDeJugador= new Posicion(200, 100, 0);
-    auto * velocidadDeJugador = new Velocidad();
-    auto * spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
-    auto *orientacionDeJugador = new Orientacion;
-    auto *animacionDeJugador = FabricaDeAnimacionesDeCody::parado();
-    EstadoDePersonaje * estadoDeJugador = new Parado();
-    auto * fisicaDeJugador = new FisicaDePersonaje();
-    auto * graficoDeJugador = new Grafico();
-
-    jugador->agregarEstado("posicion", posicionDeJugador);
-    jugador->agregarEstado("velocidad", velocidadDeJugador);
-    jugador->agregarEstado("sprite", spriteJugador);
-    jugador->agregarEstado("orientacion", orientacionDeJugador);
-    jugador->agregarEstado("animacion", animacionDeJugador);
-    jugador->agregarComportamiento("estado", estadoDeJugador);
-    jugador->agregarComportamiento("fisica", fisicaDeJugador);
-    jugador->agregarComportamiento("grafico", graficoDeJugador);
-}
-

@@ -15,7 +15,7 @@ using namespace std;
 class GraficoDeEscenario : public Comportamiento {
 
 private:
-    int longitudDeSprite;
+    float escalaHorizontal;
     vector<SDL_Texture *> sprites;
     vector<SDL_Rect> posicionesSprite;
     vector<float> distanciasAlFondo;
@@ -30,7 +30,8 @@ public:
      */
     explicit GraficoDeEscenario(vector<SDL_Texture *> sprites,
                                 vector<SDL_Rect> posicionesSprite,
-                                vector<float> distanciasAlFondo, int longitudDeSprite);
+                                vector<float> distanciasAlFondo,
+                                float escalaHorizontal);
 
     ~GraficoDeEscenario() = default;
 
