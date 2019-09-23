@@ -71,7 +71,7 @@ int main(int argc, char *args[]) {
 
     Entidad *jugador = Nivel::generarJugador(&mapa);
 
-    Nivel::generarNivel("nivel1", &mapa, jugador);
+    Nivel::generarNivel("nivel2", &mapa, jugador);
 
     juego.loop();
 

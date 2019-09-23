@@ -23,11 +23,11 @@ void GraficoDeEscenario::actualizar(Entidad *entidad) {
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int posicion = entidad->getEstado<Posicion>("posicion")->getX();
 
-    for (int i = 0; i < sprites.size(); ++i) {
+    for (size_t i = 0; i < sprites.size(); ++i) {
         SDL_Texture *sprite = sprites[i];
         SDL_Rect posicionSprite = posicionesSprite[i];
-        posicionSprite.w = ancho / escalaHorizontal;
-        posicionSprite.x += round(posicion / escalaHorizontal * distanciasAlFondo[i]);
+        posicionSprite.w = int(round((float)ancho / escalaHorizontal));
+        posicionSprite.x = int(round((float)posicion / escalaHorizontal * distanciasAlFondo[i]));
         SDL_Rect posicionEscenario = {0, 0, ancho, alto};
 
         SDL_RenderCopy(renderer, sprite, &posicionSprite, &posicionEscenario);
