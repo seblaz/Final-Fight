@@ -65,7 +65,7 @@
         </nivel1>
         <nivel2>
             <escenario>
-                <ancho>5000</ancho>
+                <ancho>4000</ancho>
                 <profundidad>230</profundidad>
                 <sprite>
                     <src>assets/escenarios/nivel2.png</src>

@@ -18,6 +18,7 @@
 #include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
 #include "../graficos/FabricaDeAnimacionesDePoison.h"
 #include "../servicios/Locator.h"
+#include "../graficos/GraficoDeTransicion.h"
 
 // TODO: usar esto.
 //    //Generador de cajas
@@ -74,7 +75,7 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
 int generarPosicionX(int frontera) {
     random_device rd;
     mt19937 mt(rd());
-    uniform_real_distribution<double> dist(200, frontera - 200);
+    uniform_real_distribution<double> dist(400, frontera - 400);
     return dist(mt);
 }
 
@@ -100,6 +101,7 @@ void Nivel::generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador) {
     generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarEnemigo(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarTransicion(nivel, sdlRenderer, mapa, posicionDeJugador);
 }
 
 Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa) {
@@ -213,4 +215,15 @@ void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa 
     enemigo->agregarComportamiento("estado", estadoDeEnemigo);
     enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
+}
+
+void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador) {
+    Entidad *transicion = mapa->crearEntidad();
+    int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    auto *posicion = new Posicion(0, 1, 0);
+    auto *grafico = new GraficoDeTransicion(anchoDeNivel);
+
+    transicion->agregarEstado("posicion", posicion);
+    transicion->agregarEstado("posicion de jugador", posicionDeJugador);
+    transicion->agregarComportamiento("grafico", grafico);
 }

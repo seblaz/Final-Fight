@@ -34,6 +34,7 @@ void Juego::inicializarGraficos() {
                 printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
                 exit = true;
             }
+            SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
         }
     }
 }
