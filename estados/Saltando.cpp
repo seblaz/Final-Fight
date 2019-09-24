@@ -21,18 +21,9 @@ Saltando::~Saltando() {
 void Saltando::actualizar(Entidad *entidad) {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
-    if ( subiendo_ ) {
-        if (alturaMaxima_ > 1) {
-            velocidad->z = -7;
-            alturaMaxima_--;
-        } else {
-            subiendo_ = false;
-            alturaMaxima_ = LIMITE;
-        }
-    } else if (alturaMaxima_ > 0){
-        velocidad->z = 7;
-        alturaMaxima_--;
-    }else{
+    velocidad->z = velocidadInicial + aceleracion * frames;
+    frames ++;
+    if (velocidad->z == -velocidadInicial){
         termine = true;
         velocidad->x = 0;
         velocidad->y = 0;

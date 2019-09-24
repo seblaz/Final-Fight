@@ -13,9 +13,10 @@
 class Saltando : public EstadoDePersonaje {
 
 private:
-    int alturaMaxima_ = LIMITE; // Numero de prueba SUPER HARDCODE
-    bool subiendo_ = true;
     bool termine = false;
+    float frames = 0;
+    const float velocidadInicial = 22;
+    const float aceleracion = -1;
 
 public:
     Saltando();
