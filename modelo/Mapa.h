@@ -14,15 +14,18 @@ using namespace std;
 
 class Mapeable;
 
-class Mapa {
+class Mapa : public Estado {
 
 private:
     vector<Entidad*> entidades;
+    Entidad *jugador;
 
 public:
     Entidad *crearEntidad();
+    Entidad *crearJugador();
     auto devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end()));
     void vaciarMapa();
+    Entidad *getJugador();
 
 };
 

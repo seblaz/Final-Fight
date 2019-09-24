@@ -23,7 +23,7 @@
 Entidad *Nivel::generarJugador(Mapa *mapa) {
     SDL_Renderer *sdlRenderer = Locator::renderer();
 
-    auto* jugador = mapa->crearEntidad();
+    auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
     auto *velocidad = new Velocidad();
     auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
@@ -70,6 +70,9 @@ void Nivel::generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador) {
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
     escenario->agregarEstado("posicion de jugador", posicionDeJugador);
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
+    posicionDeJugador->x = 300;
+    posicionDeJugador->y = 100;
+    posicionDeJugador->z = 0;
 
     generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
@@ -113,6 +116,7 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
 
     escenario->agregarEstado("posicion", posicion);
     escenario->agregarEstado("sprite", sprite);
+    escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("fisica", fisica);
     escenario->agregarComportamiento("grafico", grafico);
 

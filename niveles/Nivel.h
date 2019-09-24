@@ -13,14 +13,16 @@
 
 class Nivel{
 
-public:
-    static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
-    static Entidad *generarJugador(Mapa *mapa);
+private:
     static Entidad *generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa);
     static void generarCajas(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario);
     static void generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario);
     static void generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario);
     static void generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador);
+
+public:
+    static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
+    static Entidad *generarJugador(Mapa *mapa);
 };
 #endif //FINAL_FIGHT_NIVEL_H
 
