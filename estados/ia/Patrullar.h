@@ -9,7 +9,7 @@
 
 
 
-class Patrullar : public EstadoDePersonaje {
+class Patrullar : public Comportamiento {
 
 private:
     int contadorDePasos = 0;
@@ -19,7 +19,7 @@ public:
     Patrullar();
     ~Patrullar();
     void actualizar(Entidad *) override;
-    void enter(Entidad *) override;
+    void enter(Entidad *);
 };
 
 

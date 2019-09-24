@@ -15,7 +15,6 @@ private:
 public:
     Parado();
     ~Parado();
-    void actualizar(Entidad *) override;
     void enter(Entidad *) override;
     void reposar(Entidad *) override  {};
 };

@@ -59,15 +59,17 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
     EstadoDePersonaje *estado = new Parado();
     auto *fisica = new FisicaDePersonaje();
     auto *grafico = new Grafico();
+    auto *entradaJugador = new EntradaJugador();
 
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("sprite", spriteJugador);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("animacion", animacion);
-    jugador->agregarComportamiento("estado", estado);
+    jugador->agregarEstado("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("grafico", grafico);
+    jugador->agregarComportamiento("entrada jugador", entradaJugador);
 
     return jugador;
 }

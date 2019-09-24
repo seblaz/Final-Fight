@@ -7,10 +7,13 @@
 
 #include "../modelo/Entidad.h"
 
+//enum DIRECCION { NEGATIVO = -1, POSITIVO = 1, NEUTRO = 0 };
+//enum DIRECCION { X_POS =, POSITIVO = 1, NEUTRO = 0 };
+
 class EntradaJugador : public Comportamiento{
 
 public:
-    void actualizar(Entidad *);
+    void actualizar(Entidad *) override ;
 };
 
 #endif //FINAL_FIGHT_ENTRADAJUGADOR_H

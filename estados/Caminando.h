@@ -14,8 +14,8 @@ class Caminando : public EstadoDePersonaje {
 public:
     Caminando();
     ~Caminando();
-    void actualizar(Entidad *) override;
     void enter(Entidad *) override;
+    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
 };
 
 #endif //FINAL_FIGHT_CAMINANDO_H

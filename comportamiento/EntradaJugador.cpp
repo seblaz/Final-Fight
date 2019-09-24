@@ -10,31 +10,35 @@
 
 #define RAPIDEZ 4
 
-enum DIRECCION { IZQUIERDA = -1, DERECHA = 1, REPOSO = 0 };
-
 void EntradaJugador::actualizar(Entidad * entidad) {
-    //float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego");
-    //auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-/*
-    velocidad->x = 0;
-    velocidad->y = 0;
 
-    velocidad->x = RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_RIGHT];
-    velocidad->x -= RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_LEFT];
-    velocidad->y = RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_UP];
-    velocidad->y -= RAPIDEZ * velocidadRelativa * entrada[SDL_SCANCODE_DOWN];*/
-    auto* estado = entidad -> getComportamiento<EstadoDePersonaje>("estado");
+    auto* estado = entidad -> getEstado<EstadoDePersonaje>("estado");
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         estado->saltar(entidad);
-    }else if (entrada[SDL_SCANCODE_D]){
-        //estado -> golpear(entidad);
+        estado->actualizar(entidad);
+    }else if ( entrada[SDL_SCANCODE_D]){
+        estado -> agachar(entidad);
+    }else if ( entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] || entrada[SDL_SCANCODE_UP]  ){
+        if ( entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT] ){
+            estado -> reposar(entidad);
+        }else if ( entrada[SDL_SCANCODE_DOWN] && entrada[SDL_SCANCODE_UP] ) {
+            estado->reposar(entidad);
+        }else{
+            estado->caminar(entidad, entrada[SDL_SCANCODE_RIGHT], entrada[SDL_SCANCODE_LEFT], entrada[SDL_SCANCODE_UP],
+                            entrada[SDL_SCANCODE_DOWN]);
+        }
+    }else{
+        estado -> reposar(entidad);
     }
-    else if (entrada[SDL_SCANCODE_RIGHT] ) {
-      //  estado ->caminar(entidad, DERECHA, REPOSO); // caminar(entidad, direccion_X)
-    }
-    else if (entrada[SDL_SCANCODE_LEFT] ) {
-       // estado ->caminar(entidad, IZQUIERDA, REPOSO); // caminar(entidad, direccion_X)
-    }
+
 }
 
+
+/* if (entrada[SDL_SCANCODE_DOWN]){
+     estado ->caminar(entidad, DERECHA, IZQUIERDA);
+ }else if (entrada[SDL_SCANCODE_UP]){
+     estado ->caminar(entidad, DERECHA, DERECHA); // caminar(entidad, direccion_X)
+ }else if ( entrada[SDL_SCANCODE_LEFT]) {
+     estado->reposar(entidad);
+ }else {*/

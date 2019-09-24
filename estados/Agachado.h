@@ -15,7 +15,7 @@ class Agachado : public EstadoDePersonaje {
 public:
     Agachado();
     ~Agachado();
-    void actualizar(Entidad *) override;
+    //void actualizar(Entidad *) override {};
     void enter(Entidad* entidad) override;
     void agachar(Entidad *) override  {};
 };

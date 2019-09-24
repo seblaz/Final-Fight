@@ -20,10 +20,10 @@ private:
 public:
     Saltando();
     ~Saltando();
-    void actualizar(Entidad *) override;
+    void actualizar(Entidad *);
     void enter(Entidad *) override;
-    void saltar(Entidad *) override {};
-    void caminar(Entidad *) override;
+    void saltar(Entidad * entidad) override;
+    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
     void agachar(Entidad *) override;
     void reposar(Entidad *) override;
 };
