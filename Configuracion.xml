@@ -16,6 +16,18 @@
             <y>1</y>
         </personaje>
     </velocidad>
+    <transicion>
+        <inicial>
+            <frames>150</frames>
+        </inicial>
+        <final>
+            <margen>200</margen>
+        </final>
+    </transicion>
+    <scroll>
+        <izquierdo>200</izquierdo>
+        <derecho>400</derecho>
+    </scroll>
     <fps>60</fps>
     <niveles>
         <cantidad>2</cantidad>

@@ -5,12 +5,18 @@
 #include "FisicaDeEscenario.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Posicion.h"
+#include "../modelo/Mapa.h"
+#include "../niveles/Nivel.h"
 
 FisicaDeEscenario::FisicaDeEscenario(int largo) :
-        largo(largo) {}
+        largo(largo) {
+    Configuracion *config = Locator::configuracion();
+    scrollIzquierdo = config->getIntValue("/scroll/izquierdo");
+    scrollDerecho = config->getIntValue("/scroll/derecho");
+}
 
 void FisicaDeEscenario::actualizar(Entidad *entidad) {
-    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho", 0);
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
     int xPersonaje = entidad->getEstado<Posicion>("posicion de jugador")->getX();
 
@@ -19,4 +25,12 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
         posicionEscenario->setX(xPersonaje - scrollIzquierdo);
     if ((xPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xPersonaje) > scrollDerecho)
         posicionEscenario->setX(xPersonaje + scrollDerecho - ancho);
+
+    if (xPersonaje > largo) {
+        Locator::logger()->log(INFO, "Se llego al final del nivel.");
+        auto *mapa = entidad->getEstado<Mapa>("mapa");
+        mapa->vaciarMapa();
+        Entidad *jugador = mapa->getJugador();
+        Nivel::generarNivel("nivel2", mapa, jugador);
+    }
 }
