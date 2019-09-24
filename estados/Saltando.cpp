@@ -21,23 +21,14 @@ Saltando::~Saltando() {
 void Saltando::actualizar(Entidad *entidad) {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
-    if ( subiendo_ ) {
-        if (alturaMaxima_ > 1) {
-            velocidad->z = -7;
-            alturaMaxima_--;
-        } else {
-            subiendo_ = false;
-            alturaMaxima_ = LIMITE;
-        }
-    } else if (alturaMaxima_ > 0){
-        velocidad->z = 7;
-        alturaMaxima_--;
-    }else{
+    velocidad->z = velocidadInicial + aceleracion * frames;
+    if (velocidad->z == -velocidadInicial){
         termine = true;
         velocidad->x = 0;
         velocidad->y = 0;
         velocidad->z = 0;
     }
+    frames ++;
 }
 
 void Saltando::enter(Entidad *entidad) {
@@ -64,4 +55,9 @@ void Saltando::agachar(Entidad * entidad) {
 void Saltando::reposar(Entidad * entidad) {
     if ( Saltando::termine )
         EstadoDePersonaje::reposar(entidad);
+}
+
+void Saltando::saltar(Entidad *entidad) {
+    if ( Saltando::termine )
+        EstadoDePersonaje::saltar(entidad);
 }

@@ -19,7 +19,7 @@ SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEn
                         - (float)posicionEnSprite.w / 2 * escala));
 
     const int screenY = int(round((float) config->getIntValue("/resolucion/alto")
-                        + (float)posicionEnMapa.getZ()
+                        - (float)posicionEnMapa.getZ()
                         - (float)posicionEnMapa.getY()
                         - (float)posicionEnSprite.h * escala));
 

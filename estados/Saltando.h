@@ -13,16 +13,17 @@
 class Saltando : public EstadoDePersonaje {
 
 private:
-    int alturaMaxima_ = LIMITE; // Numero de prueba SUPER HARDCODE
-    bool subiendo_ = true;
     bool termine = false;
+    float frames = 1;
+    const float velocidadInicial = 22;
+    const float aceleracion = -1;
 
 public:
     Saltando();
     ~Saltando();
     void actualizar(Entidad *) override;
     void enter(Entidad *) override;
-    void saltar(Entidad * entidad) override {};
+    void saltar(Entidad * entidad) override;
     void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
     void agachar(Entidad *) override;
     void reposar(Entidad *) override;
