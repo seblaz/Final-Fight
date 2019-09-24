@@ -57,3 +57,8 @@ void Saltando::reposar(Entidad * entidad) {
     if ( Saltando::termine )
         EstadoDePersonaje::reposar(entidad);
 }
+
+void Saltando::saltar(Entidad *entidad) {
+    if ( Saltando::termine )
+        EstadoDePersonaje::saltar(entidad);
+}
