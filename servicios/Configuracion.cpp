@@ -13,6 +13,8 @@
 #include <fstream>
 
 #include "Locator.h"
+#include "Configuracion.h"
+
 
 using namespace std;
 //using namespace xercesc;
@@ -50,7 +52,7 @@ Configuracion::~Configuracion() {
     delete errHandler;
 }
 
-string Configuracion::getValue(const string &xPath, const string &defaultValue) {
+string Configuracion::getValue(const string &xPath) {
     XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
 
     xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
@@ -63,7 +65,7 @@ string Configuracion::getValue(const string &xPath, const string &defaultValue) 
     xercesc::XMLString::release(&tag);
 
     if (!result->getNodeValue()){
-        return defaultValue;
+        return "";
     }
 
     char* finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
@@ -74,18 +76,27 @@ string Configuracion::getValue(const string &xPath, const string &defaultValue) 
     return returnValue;
 }
 
-int Configuracion::getIntValue(const string &xPath, int defaultValue) {
-    string result = getValue(xPath, "");
-    if(result.empty()){
-        return defaultValue;
-    }
+int Configuracion::getIntValue(const string &xPath) {
+    string result = getValue(xPath);
     return stoi(result);
 }
 
-float Configuracion::getFloatValue(const string &xPath, float defaultValue) {
-    string result = getValue(xPath, "");
-    if(result.empty()){
-        return defaultValue;
-    }
+float Configuracion::getFloatValue(const string &xPath) {
+    string result = getValue(xPath);
     return stof(result);
+}
+
+string Configuracion::getValue(const string &xPath, const string &defaultValue) {
+    string result = getValue(xPath);
+    return result.empty() ? defaultValue : result;
+}
+
+int Configuracion::getIntValue(const string &xPath, int defaultValue) {
+    string result = getValue(xPath);
+    return result.empty() ? defaultValue : stoi(result);
+}
+
+float Configuracion::getFloatValue(const string &xPath, float defaultValue) {
+    string result = getValue(xPath);
+    return result.empty() ? defaultValue : stof(result);
 }

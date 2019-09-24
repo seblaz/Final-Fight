@@ -12,12 +12,12 @@
 class Posicion : public Estado{
 
 private:
-    int x, y, z;
 
 public:
     Posicion(int x, int y, int z);
     Posicion operator-(Posicion otraPosicion);
     void mover(Velocidad& velocidad);
+    int x, y, z;
     int getX();
     int getY();
     int getZ();

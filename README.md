@@ -13,6 +13,10 @@
  - SLD2-Image (Carga archivos PNG)
 
     $ apt-get install libsdl2-image-dev
+ 
+ - SDL True Type Font
+    
+    $ apt-get install libsdl2-ttf-dev
     
  - Xerces:
     

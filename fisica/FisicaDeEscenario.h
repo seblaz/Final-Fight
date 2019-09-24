@@ -11,8 +11,8 @@ class FisicaDeEscenario : public Comportamiento {
 
 private:
     int largo;
-    const int scrollDerecho = 400;
-    const int scrollIzquierdo = 150;
+    int scrollDerecho;
+    int scrollIzquierdo;
 
 public:
     explicit FisicaDeEscenario(int largo);
