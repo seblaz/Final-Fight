@@ -21,6 +21,7 @@ static const char *const PATH_XML_CANTIDAD_CUCHILLO = "/escenario/objetos/cuchil
 void configApplication(int argc, char*args[]){
     bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
+    bool paramIsLoggerLevel;
 
     if (argc == 2){
         string param = args[1];
@@ -28,6 +29,7 @@ void configApplication(int argc, char*args[]){
 
         defaultConfiguration = found==std::string::npos;
         defaultLogger = found!=std::string::npos;
+        paramIsLoggerLevel = !defaultLogger;
     }
 
     Configuracion *config =
@@ -45,10 +47,22 @@ void configApplication(int argc, char*args[]){
     Logger* logger =
             defaultLogger ?
             new Logger() :
-            (argc == 2 ?
+            (argc > 2 || paramIsLoggerLevel ?
              new Logger(args[1]) :
              new Logger(loggerLevel));
     Locator::provide(logger);
+
+    string loggerMsj =
+            defaultLogger ?
+            "Se inicio logger configurado por default." :
+            "Se inicio logger configurado por usuario.";
+    Locator::logger()->log(DEBUG, loggerMsj);
+
+    string configMsj =
+            defaultConfiguration ?
+            "Se intenta cargar archivo de configuracion por default." :
+            "Se intenta cargar archivo de configuracion por usuario.";
+    Locator::logger()->log(DEBUG, configMsj);
 
     logger = NULL;
     config = NULL;

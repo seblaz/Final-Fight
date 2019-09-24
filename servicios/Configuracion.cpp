@@ -20,21 +20,12 @@ using namespace std;
 Configuracion::Configuracion(const string &path) {
     try {
         xercesc::XMLPlatformUtils::Initialize();
-    }
-    catch (const xercesc::XMLException &toCatch) {
-        // Do your failure processing here
-        char *message = xercesc::XMLString::transcode(toCatch.getMessage());
-        cout << "Exception message is: \n"
-             << message << "\n";
-        xercesc::XMLString::release(&message);
-    }
 
-    parser = new xercesc::XercesDOMParser();
-    errHandler = (xercesc::ErrorHandler *) new xercesc::HandlerBase();
-    parser->setIncludeIgnorableWhitespace(false);
-    parser->setErrorHandler(errHandler);
+        parser = new xercesc::XercesDOMParser();
+        errHandler = (xercesc::ErrorHandler *) new xercesc::HandlerBase();
+        parser->setIncludeIgnorableWhitespace(false);
+        parser->setErrorHandler(errHandler);
 
-    try {
         ifstream infile(path);
 
         if(infile.good()){
@@ -43,20 +34,14 @@ Configuracion::Configuracion(const string &path) {
             parser->parse(defaultPath.c_str());
         }
     }
-    catch (const xercesc::XMLException &toCatch) {
+    catch (const xercesc::SAXException &toCatch) {
         char *message = xercesc::XMLString::transcode(toCatch.getMessage());
-        cout << "Exception message is: \n"
-             << message << "\n";
-        xercesc::XMLString::release(&message);
-    }
-    catch (const xercesc::DOMException &toCatch) {
-        char *message = xercesc::XMLString::transcode(toCatch.msg);
-        cout << "Exception message is: \n"
+        cout << "No se pudo abrir archivo de configuracion. Mensaje: \n"
              << message << "\n";
         xercesc::XMLString::release(&message);
     }
     catch (...) {
-        cout << "Unexpected Exception \n";
+        cout << "No se pudo abrir archivo de configuracion.\n";
     }
 }
 
