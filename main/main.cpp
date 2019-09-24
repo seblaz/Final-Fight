@@ -5,10 +5,10 @@
 #include "../graficos/FabricaDeAnimacionesDeCody.h"
 #include "../niveles/Nivel.h"
 
-void configApplication(int argc, char*args[]){
+void configApplication(int argc, const char*args[]){
     bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
-    bool paramIsLoggerLevel;
+    bool paramIsLoggerLevel = false;
 
     if (argc == 2){
         string param = args[1];
@@ -29,7 +29,7 @@ void configApplication(int argc, char*args[]){
     Locator::provide(config);
 
     string loggerLevel = config->getValue("/debug/level");
-    defaultLogger = defaultLogger && loggerLevel.compare("") == 0;
+    defaultLogger = defaultLogger && loggerLevel.empty();
 
     Logger* logger =
             defaultLogger ?
@@ -58,13 +58,13 @@ void configApplication(int argc, char*args[]){
     delete config;
 }
 
-int main(int argc, char *args[]) {
+int main(int argc, const char **args) {
     /**
      * Iniciar.
      */
 
     if (argc == 1){
-        char *args2[] = {"", "DEBUG", "Configuracion.xml"};
+        const char *args2[] = {"", "DEBUG", "Configuracion.xml"};
         configApplication(3, args2);
     }else{
         configApplication(argc, args);
