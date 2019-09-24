@@ -64,8 +64,8 @@ int main(int argc, char *args[]) {
      */
 
     if (argc == 1){
-        char *args2[] = {"DEBUG", "Configuracion.xml"};
-        configApplication(argc, args2);
+        char *args2[] = {"", "DEBUG", "Configuracion.xml"};
+        configApplication(3, args2);
     }else{
         configApplication(argc, args);
     }
