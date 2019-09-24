@@ -67,7 +67,7 @@ void Logger::log(LEVEL level_, const string &message) {
     if (this->level >= level_) {
         string log = getLogDateTime() + " " + levelToString(level_) + " " + message;
         printf("%s\n", log.c_str());
-        FileManager::addLine(folder + "/" + getLogFileName(), log);
+        FileManager::addLine(folder + "/" + logFile, log);
     }
 }
 
