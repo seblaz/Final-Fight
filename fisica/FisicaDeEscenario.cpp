@@ -27,7 +27,7 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
         posicionEscenario->setX(xPersonaje + scrollDerecho - ancho);
 
     if (xPersonaje > largo) {
-        printf("llego al final\n");
+        Locator::logger()->log(INFO, "Se llego al final del nivel.");
         auto *mapa = entidad->getEstado<Mapa>("mapa");
         mapa->vaciarMapa();
         Entidad *jugador = mapa->getJugador();

@@ -1,4 +1,4 @@
-//
+//DEBUG
 // Created by felipe on 22/9/19.
 //
 
@@ -21,6 +21,8 @@
 #include "../graficos/GraficoDeTransicion.h"
 
 Entidad *Nivel::generarJugador(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se genera jugador principal.");
+
     SDL_Renderer *sdlRenderer = Locator::renderer();
 
     auto* jugador = mapa->crearJugador();
@@ -60,6 +62,8 @@ int generarPosicionY(int frontera) {
 }
 
 void Nivel::generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador) {
+    Locator::logger()->log(DEBUG, "Se genera " + nivel);
+
     SDL_Renderer *sdlRenderer = Locator::renderer();
     Entidad *escenario = generarEscenario(nivel, sdlRenderer, mapa);
 
@@ -84,11 +88,18 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
     /**
      * Leer configuracion de escenario.
      */
+
+    Locator::logger()->log(DEBUG, "Se genera escenario para " + nivel);
+
     Configuracion *config = Locator::configuracion();
     string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/sprite/src");
     int profundidad = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int cantidadDeCapas = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/cantidad");
+
+    Locator::logger()->log(DEBUG, "Se cargo profundidad para escenario: " + to_string(profundidad));
+    Locator::logger()->log(DEBUG, "Se cargo ancho para escenario: " + to_string(anchoNivel));
+    Locator::logger()->log(DEBUG, "Se cargo cantidad de capas para escenario: " + to_string(cantidadDeCapas));
 
     Entidad *escenario = mapa->crearEntidad();
     auto *posicion = new Posicion(0, profundidad, 0);
@@ -105,6 +116,11 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
         int alto = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/alto");
         float distanciaAlFondo = config->getFloatValue(
                 "/niveles/" + nivel + "/escenario/sprite/capas/capa" + to_string(i) + "/distanciaAlFondo");
+
+        Locator::logger()->log(DEBUG, "Se obtiene eje x para capa " + to_string(i+1) + ": " + to_string(x));
+        Locator::logger()->log(DEBUG, "Se obtiene eje y para capa " + to_string(i+1) + ": " + to_string(y));
+        Locator::logger()->log(DEBUG, "Se obtiene alto para capa " + to_string(i+1) + ": " + to_string(alto));
+        Locator::logger()->log(DEBUG, "Se obtiene distancia al fondo para capa " + to_string(i+1) + ": " + to_string(distanciaAlFondo));
 
         sprites[i] = sprite->getTexture();
         posicionesSprite[i] = {x, y, 0, alto};
@@ -173,6 +189,8 @@ void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Map
 }
 
 void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Locator::logger()->log(INFO, "Se genera enemigo");
+
     Entidad *enemigo = mapa->crearEntidad();
 
     auto *posicionDeEnemigo = new Posicion(600, 100, 0);
@@ -196,6 +214,8 @@ void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa 
 }
 
 void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador) {
+    Locator::logger()->log(DEBUG, "Se genera transicion");
+
     Entidad *transicion = mapa->crearEntidad();
     int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     auto *posicion = new Posicion(0, 1, 0);

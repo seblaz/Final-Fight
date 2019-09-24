@@ -20,6 +20,7 @@ void Juego::inicializarGraficos() {
     const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
 
     Logger* logger = Locator::logger();
+    logger->log(DEBUG, "Se inicializan los graficos.");
 
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -74,6 +75,7 @@ void Juego::loop() {
 }
 
 void Juego::inicializarElementos() {
+    Locator::logger()->log(DEBUG, "Se inicializa el mapa");
     mapa_ = Mapa();
 }
 
@@ -105,6 +107,8 @@ void Juego::graficar() {
 }
 
 void Juego::terminar() {
+    Locator::logger()->log(DEBUG, "Se destruye renderer y window.");
+
     SDL_DestroyRenderer(renderer_); // Destroy renderer_
     SDL_DestroyWindow(window); // Destroy window
     renderer_ = nullptr;
