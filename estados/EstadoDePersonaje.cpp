@@ -6,6 +6,7 @@
 #include "Saltando.h"
 #include "Caminando.h"
 #include "Agachado.h"
+#include "Golpeando.h"
 
 #define RAPIDEZ 4
 
@@ -31,4 +32,10 @@ void EstadoDePersonaje::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool 
     EstadoDePersonaje* caminando = new Caminando();
     entidad->agregarEstado("estado", caminando);
     caminando->enter(entidad);
+}
+
+void EstadoDePersonaje::golpear(Entidad * entidad) {
+    EstadoDePersonaje* golpeando = new Golpeando();
+    entidad->agregarEstado("estado", golpeando);
+    golpeando->enter(entidad);
 }

@@ -18,6 +18,8 @@ void EntradaJugador::actualizar(Entidad *entidad) {
 
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         estado->saltar(entidad);
+    } else if (entrada[SDL_SCANCODE_A]) {
+        estado->golpear(entidad);
     } else if (entrada[SDL_SCANCODE_D]) {
         estado->agachar(entidad);
     } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
@@ -33,5 +35,4 @@ void EntradaJugador::actualizar(Entidad *entidad) {
     } else {
         estado->reposar(entidad);
     }
-
 }

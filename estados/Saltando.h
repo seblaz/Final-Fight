@@ -26,6 +26,7 @@ public:
     void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
     void agachar(Entidad *) override;
     void reposar(Entidad *) override;
+    virtual void golpear(Entidad *) {};
 };
 
 

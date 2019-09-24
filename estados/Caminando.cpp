@@ -4,7 +4,6 @@
 
 #include "Caminando.h"
 #include "../servicios/Locator.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
 
 Caminando::Caminando(){
     Logger *logger = Locator::logger();
@@ -13,7 +12,7 @@ Caminando::Caminando(){
 
 Caminando::~Caminando() {
     Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se instancio un objeto de clase Caminando");
+    logger->log(DEBUG, "Se elimino un objeto de clase Caminando");
 }
 
 

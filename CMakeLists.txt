@@ -69,7 +69,7 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} estados/Golpeando.h estados/Golpeando.cpp)
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 

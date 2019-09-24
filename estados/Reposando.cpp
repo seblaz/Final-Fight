@@ -8,12 +8,12 @@
 
 Reposando::Reposando() {
     Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se instancio un objeto de clase Parado");
+    logger -> log(DEBUG, "Se instancio un objeto de clase Reposando");
 }
 
 Reposando::~Reposando() {
     Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se instancio un objeto de clase Parado");
+    logger -> log(DEBUG, "Se elimino un objeto de clase Reposando");
 }
 
 

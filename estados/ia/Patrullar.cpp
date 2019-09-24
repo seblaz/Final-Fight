@@ -14,7 +14,7 @@ Patrullar::Patrullar() {
 
 Patrullar::~Patrullar() {
     Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se instancio un objeto de clase Patrullar");
+    logger -> log(DEBUG, "Se elimino un objeto de clase Patrullar");
 }
 
 #define RAPIDEZ 4
