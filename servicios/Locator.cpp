@@ -44,6 +44,8 @@ void Locator::provide(SDL_Renderer *renderer) {
 }
 
 void Locator::clean() {
+    logger_->log(DEBUG, "Se limpian configuracion y logger");
+
     delete configuracion_;
     delete logger_;
 }
