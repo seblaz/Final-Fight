@@ -10,25 +10,28 @@
 
 #define RAPIDEZ 4
 
-void EntradaJugador::actualizar(Entidad * entidad) {
+void EntradaJugador::actualizar(Entidad *entidad) {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
-    auto* estado = entidad -> getEstado<EstadoDePersonaje>("estado");
+    auto *estado = entidad->getEstado<EstadoDePersonaje>("estado");
+    estado->actualizar(entidad);
+
     if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
         estado->saltar(entidad);
-    }else if ( entrada[SDL_SCANCODE_D]){
-        estado -> agachar(entidad);
-    }else if ( entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] || entrada[SDL_SCANCODE_UP]  ){
-        if ( entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT] ){
-            estado -> reposar(entidad);
-        }else if ( entrada[SDL_SCANCODE_DOWN] && entrada[SDL_SCANCODE_UP] ) {
+    } else if (entrada[SDL_SCANCODE_D]) {
+        estado->agachar(entidad);
+    } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
+               entrada[SDL_SCANCODE_UP]) {
+        if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT]) {
             estado->reposar(entidad);
-        }else{
+        } else if (entrada[SDL_SCANCODE_DOWN] && entrada[SDL_SCANCODE_UP]) {
+            estado->reposar(entidad);
+        } else {
             estado->caminar(entidad, entrada[SDL_SCANCODE_RIGHT], entrada[SDL_SCANCODE_LEFT], entrada[SDL_SCANCODE_UP],
                             entrada[SDL_SCANCODE_DOWN]);
         }
-    }else{
-        estado -> reposar(entidad);
+    } else {
+        estado->reposar(entidad);
     }
-    estado->actualizar(entidad);
+
 }

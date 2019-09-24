@@ -14,7 +14,7 @@
 class EstadoDePersonaje : public Estado {
 
 public:
-    void actualizar(Entidad * entidad) {};
+    virtual void actualizar(Entidad * entidad) {};
     virtual void enter(Entidad* entidad) = 0;
     virtual void saltar(Entidad *);
     virtual void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);

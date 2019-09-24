@@ -7,7 +7,7 @@
 #include "../modelo/Posicion.h"
 #include "../graficos/Sprite.h"
 #include "../modelo/Orientacion.h"
-#include "../estados/Parado.h"
+#include "../estados/Reposando.h"
 #include "../estados/ia/Patrullar.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../graficos/Grafico.h"
@@ -31,7 +31,7 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
     auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
     auto *orientacion = new Orientacion;
     auto *animacion = FabricaDeAnimacionesDeCody::parado();
-    EstadoDePersonaje *estado = new Parado();
+    EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
     auto *grafico = new Grafico();
     auto *entradaJugador = new EntradaJugador();
@@ -90,7 +90,6 @@ Entidad * Nivel::generarEscenario(const string &nivel, SDL_Renderer *sdlRenderer
     /**
      * Leer configuracion de escenario.
      */
-
     Locator::logger()->log(DEBUG, "Se genera escenario para " + nivel);
 
     Configuracion *config = Locator::configuracion();

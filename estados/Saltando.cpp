@@ -36,7 +36,6 @@ void Saltando::actualizar(Entidad *entidad) {
         velocidad->x = 0;
         velocidad->y = 0;
         velocidad->z = 0;
-        reposar(entidad);
     }
 }
 
@@ -45,30 +44,17 @@ void Saltando::enter(Entidad *entidad) {
     entidad->agregarEstado("animacion", animacion);
 }
 
+void Saltando::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
+    if ( Saltando::termine )
+        EstadoDePersonaje::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
+}
+
 void Saltando::agachar(Entidad * entidad) {
-    if ( Saltando::termine ) {
+    if ( Saltando::termine )
         EstadoDePersonaje::agachar(entidad);
-    }else{ actualizar(entidad); }
 }
 
 void Saltando::reposar(Entidad * entidad) {
-    if ( Saltando::termine ){
+    if ( Saltando::termine )
         EstadoDePersonaje::reposar(entidad);
-    }else{ actualizar(entidad); }
 }
-
-void Saltando::saltar(Entidad *entidad) {
-    if ( ! Saltando::termine ) {
-        actualizar(entidad);
-    }
-}
-
-void Saltando::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
-    if ( Saltando::termine ){
-        EstadoDePersonaje::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
-    }else{ actualizar(entidad); }
-}
-
-
-
-
