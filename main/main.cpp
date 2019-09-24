@@ -62,7 +62,13 @@ int main(int argc, char *args[]) {
     /**
      * Iniciar.
      */
-    configApplication(argc, args);
+
+    if (argc == 1){
+        char *args2[] = {"DEBUG", "Configuracion.xml"};
+        configApplication(argc, args2);
+    }else{
+        configApplication(argc, args);
+    }
 
     Juego juego;
     SDL_Renderer *renderer = juego.renderer();
