@@ -22,13 +22,13 @@ void Saltando::actualizar(Entidad *entidad) {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
     velocidad->z = velocidadInicial + aceleracion * frames;
-    frames ++;
     if (velocidad->z == -velocidadInicial){
         termine = true;
         velocidad->x = 0;
         velocidad->y = 0;
         velocidad->z = 0;
     }
+    frames ++;
 }
 
 void Saltando::enter(Entidad *entidad) {

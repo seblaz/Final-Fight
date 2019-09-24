@@ -14,7 +14,7 @@ class Saltando : public EstadoDePersonaje {
 
 private:
     bool termine = false;
-    float frames = 0;
+    float frames = 1;
     const float velocidadInicial = 22;
     const float aceleracion = -1;
 
