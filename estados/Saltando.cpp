@@ -20,6 +20,7 @@ Saltando::~Saltando() {
 
 void Saltando::actualizar(Entidad *entidad) {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+    velocidad->y = 0;
     if ( subiendo_ ) {
         if (alturaMaxima_ > 1) {
             velocidad->z = -7;
