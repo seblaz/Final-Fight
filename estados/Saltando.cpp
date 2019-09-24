@@ -41,8 +41,15 @@ void Saltando::actualizar(Entidad *entidad) {
 }
 
 void Saltando::enter(Entidad *entidad) {
-    auto* animacion = FabricaDeAnimacionesDeCody::saltando();
-    entidad->agregarEstado("animacion", animacion);
+    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+    if (velocidad->x == 0){
+        auto* animacion = FabricaDeAnimacionesDeCody::saltando();
+        entidad->agregarEstado("animacion", animacion);
+    }else if ( velocidad->x != 0 ){
+        auto *animacion = FabricaDeAnimacionesDeCody::saltandoAdelante();
+        entidad->agregarEstado("animacion", animacion);
+    }
+    //entidad->agregarEstado("animacion", animacion);
 }
 
 void Saltando::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {

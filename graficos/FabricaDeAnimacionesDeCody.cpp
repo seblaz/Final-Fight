@@ -59,3 +59,19 @@ Animacion* FabricaDeAnimacionesDeCody::golpear() {
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }
+
+Animacion *FabricaDeAnimacionesDeCody::saltandoAdelante() {
+    vector<SDL_Rect> posiciones = {
+            {16,  238, 39, 81},
+            {115, 218, 47, 74},
+            {245,  240, 60, 60},
+            {305,  220, 60, 106},
+            {367, 240, 60, 83},
+            {433, 225, 50, 78},
+            {115, 218, 47, 74},
+    };
+
+    vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
+}
