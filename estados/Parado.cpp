@@ -21,3 +21,11 @@ void Parado::enter(Entidad *entidad) {
     auto* animacion = FabricaDeAnimacionesDeCody::parado();
     entidad->agregarEstado("animacion", animacion);
 }
+
+void Parado::reposar(Entidad * entidad) {
+    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego", 0);
+    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+
+    velocidad->x = 0;
+    velocidad->y = 0;
+}
