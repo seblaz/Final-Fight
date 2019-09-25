@@ -6,7 +6,7 @@
 
 Animacion* FabricaDeAnimacionesDeTubo::standby() {
     vector<SDL_Rect> posiciones = {
-            {0, 0, 68, 15}
+            {0, 5, 68, 8}
     };
 
     vector<float> duraciones = {1};
