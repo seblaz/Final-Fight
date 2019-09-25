@@ -9,11 +9,12 @@ Animacion* FabricaDeAnimacionesDePoison::caminando() {
             {6,  4, 37, 91},
             {48,  5, 30, 90},
             {78,  5, 35, 91},
+            {48,  5, 30, 90},
     };
 
-    vector<float> duraciones = {1, 1, 1};
+    vector<float> duraciones = {4, 3, 4, 3};
 
-    return new Animacion(posiciones, duraciones, 30, 4.5);
+    return new Animacion(posiciones, duraciones, 55, 4.5);
 }
 
 

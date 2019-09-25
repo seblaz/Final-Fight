@@ -12,7 +12,7 @@ class Golpeando : public EstadoDePersonaje{
 private:
     bool termine = false;
     int frame = 0;
-    int frames_totales = 6;
+    int frames_totales = 8;
 public:
     Golpeando();
     ~Golpeando();
