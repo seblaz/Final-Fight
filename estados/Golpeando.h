@@ -9,6 +9,10 @@
 
 class Golpeando : public EstadoDePersonaje{
 
+private:
+    bool termine = false;
+    int frame = 0;
+    int frames_totales = 20;
 public:
     Golpeando();
     ~Golpeando();
@@ -16,5 +20,9 @@ public:
     void actualizar(Entidad *) override;
     void enter(Entidad *entidad) override;
     void golpear(Entidad *) override {};
+    void saltar(Entidad *) override ;
+    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override ;
+    void reposar(Entidad *) override ;
+    void agachar(Entidad *) override ;
 };
 #endif //FINAL_FIGHT_GOLPEANDO_H
