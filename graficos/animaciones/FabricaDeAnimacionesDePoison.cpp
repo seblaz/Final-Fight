@@ -48,13 +48,16 @@ Animacion *FabricaDeAnimacionesDePoison::golpear() {
 
 Animacion *FabricaDeAnimacionesDePoison::saltandoAdelante() {
     vector<SDL_Rect> posiciones = {
-            {8,  6, 32, 89},
-            {79,  8, 35, 89},
+            {6,  257, 40, 67},
+            {49,  232, 77, 68},
+            {129,  215, 36, 70},
+            {169,  216, 60, 45},
+            {236,  199, 36, 69},
     };
 
-    vector<float> duraciones = {1, 1};
+    vector<float> duraciones = {1, 1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 55, 4.5);
+    return new Animacion(posiciones, duraciones, 45, 4.5);
 }
 
 Animacion *FabricaDeAnimacionesDePoison::patadaBasica() {
