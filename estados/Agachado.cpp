@@ -20,7 +20,8 @@ Agachado::~Agachado() {
 
 
 void Agachado::enter(Entidad *entidad) {
-    auto *animacion = FabricaDeAnimacionesDeCody::agachado();
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    auto *animacion = fabricaDeAnimaciones->agachado();
     entidad->agregarEstado("animacion", animacion);
 }
 

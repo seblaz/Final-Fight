@@ -28,7 +28,7 @@ Animacion* FabricaDeAnimacionesDeCody::saltando() {
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeCody::parado() {
+Animacion* FabricaDeAnimacionesDeCody::reposando() {
     vector<SDL_Rect> posiciones = {{5, 6, 39, 90}};
     vector<float> duraciones = {1};
 

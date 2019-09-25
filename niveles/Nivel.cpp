@@ -30,7 +30,8 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
     auto *velocidad = new Velocidad();
     auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
     auto *orientacion = new Orientacion;
-    auto *animacion = FabricaDeAnimacionesDeCody::parado();
+    auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+    auto *animacion = fabricaDeAnimaciones->reposando();
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
     auto *grafico = new Grafico();
@@ -42,6 +43,7 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("animacion", animacion);
     jugador->agregarEstado("estado", estado);
+    jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("grafico", grafico);
     jugador->agregarComportamiento("entrada jugador", entradaJugador);

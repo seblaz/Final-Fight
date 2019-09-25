@@ -18,7 +18,8 @@ Reposando::~Reposando() {
 
 
 void Reposando::enter(Entidad *entidad) {
-    auto* animacion = FabricaDeAnimacionesDeCody::parado();
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    auto* animacion = fabricaDeAnimaciones->reposando();
     entidad->agregarEstado("animacion", animacion);
 }
 

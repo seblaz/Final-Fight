@@ -17,7 +17,8 @@ Caminando::~Caminando() {
 
 
 void Caminando::enter(Entidad *entidad) {
-    auto *animacion = FabricaDeAnimacionesDeCody::caminando();
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    auto *animacion = fabricaDeAnimaciones->caminando();
     entidad->agregarEstado("animacion", animacion);
 }
 

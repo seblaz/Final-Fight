@@ -15,7 +15,8 @@ Golpeando::~Golpeando() {
 }
 
 void Golpeando::enter(Entidad *entidad) {
-    auto* animacion = FabricaDeAnimacionesDeCody::golpear();
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    auto* animacion = fabricaDeAnimaciones->golpear();
     entidad->agregarEstado("animacion", animacion);
 }
 

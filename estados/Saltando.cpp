@@ -33,11 +33,12 @@ void Saltando::actualizar(Entidad *entidad) {
 
 void Saltando::enter(Entidad *entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
     if (velocidad->x == 0) {
-        auto *animacion = FabricaDeAnimacionesDeCody::saltando();
+        auto *animacion = fabricaDeAnimaciones->saltando();
         entidad->agregarEstado("animacion", animacion);
     } else if (velocidad->x != 0) {
-        auto *animacion = FabricaDeAnimacionesDeCody::saltandoAdelante();
+        auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
         entidad->agregarEstado("animacion", animacion);
     }
 }
@@ -68,7 +69,8 @@ void Saltando::golpear(Entidad *entidad) {
     if (!Saltando::termine) {
         if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
             if (!pateando) {
-                auto *animacion = FabricaDeAnimacionesDeCody::patadaBasica();
+                auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+                auto *animacion = fabricaDeAnimaciones->patadaBasica();
                 entidad->agregarEstado("animacion", animacion);
                 pateando = true;
             }
