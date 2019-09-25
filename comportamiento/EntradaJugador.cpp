@@ -16,10 +16,10 @@ void EntradaJugador::actualizar(Entidad *entidad) {
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado");
     estado->actualizar(entidad);
 
-    if (entrada[SDL_SCANCODE_S]) { // Tecla S -> El personaje Salta
-        estado->saltar(entidad);
-    } else if (entrada[SDL_SCANCODE_A]) {
+    if (entrada[SDL_SCANCODE_A])  { // Tecla S -> El personaje Salta
         estado->golpear(entidad);
+    } else if (entrada[SDL_SCANCODE_S]) {
+        estado->saltar(entidad);
     } else if (entrada[SDL_SCANCODE_D]) {
         estado->agachar(entidad);
     } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
