@@ -16,6 +16,8 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../servicios/Locator.h"
 #include "../graficos/GraficoDeTransicion.h"
@@ -83,7 +85,9 @@ void Nivel::generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador) {
     posicionDeJugador->y = 100;
 
     generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarEnemigo(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarTransicion(nivel, sdlRenderer, mapa, posicionDeJugador);
 }
@@ -166,6 +170,32 @@ void Nivel::generarCajas(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *m
     }
 }
 
+void Nivel::generarNeumaticos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/neumatico/sprite/src");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/neumatico/cantidad");
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+
+    auto *spriteNeumatico = new Sprite(sdlRenderer, srcSprite);
+    auto *graficoDeNeumatico = new Grafico();
+    auto *animacionNeumatico = FabricaDeAnimacionesDeNeumatico::standby();
+
+    for (int i = 1; i <= cantidad; i++) {
+        Locator::logger()->log(INFO, "Se inicia la construccion de la cajaRandom:" + to_string(i));
+        Entidad *neumaticoRandom = mapa->crearEntidad();
+
+        auto *posicionNeumaticoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
+        neumaticoRandom->agregarEstado("posicion", posicionNeumaticoRandom);
+        neumaticoRandom->agregarEstado("sprite", spriteNeumatico);
+        neumaticoRandom->agregarEstado("animacion", animacionNeumatico);
+        neumaticoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        neumaticoRandom->agregarComportamiento("grafico", graficoDeNeumatico);
+    }
+}
+
+
+
 void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
     Configuracion *config = Locator::configuracion();
     string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/sprite/src");
@@ -188,6 +218,31 @@ void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Map
         cuchilloRandom->agregarEstado("animacion", animacionCuchillo);
         cuchilloRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
         cuchilloRandom->agregarComportamiento("grafico", graficoDeCuchillo);
+    }
+}
+
+void Nivel::generarTubos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/tubo/sprite/src");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/tubo/cantidad");
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+
+    auto *spriteTubo = new Sprite(sdlRenderer, srcSprite);
+    auto *animacionTubo = FabricaDeAnimacionesDeTubo::standby();
+    auto *graficoDetubo = new Grafico();
+
+    for (int i = 1; i <= cantidad; i++) {
+        Locator::logger()->log(INFO, "Se inicia la construccion de la cuchilloRandom:" + to_string(i));
+
+        Entidad *tuboRandom = mapa->crearEntidad();
+
+        auto *posicionTuboRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
+        tuboRandom->agregarEstado("posicion", posicionTuboRandom);
+        tuboRandom->agregarEstado("sprite", spriteTubo);
+        tuboRandom->agregarEstado("animacion", animacionTubo);
+        tuboRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        tuboRandom->agregarComportamiento("grafico", graficoDetubo);
     }
 }
 

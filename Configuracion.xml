@@ -66,12 +66,24 @@
                             <src>assets/objetos/cuchillo.png</src>
                         </sprite>
                     </cuchillo>
-                    <caja>
+                    <tubo>
                         <cantidad>5</cantidad>
                         <sprite>
-                            <src>assets/escenarios/caja.png</src>
+                            <src>assets/objetos/tubo.png</src>
+                        </sprite>
+                    </tubo>
+                    <caja>
+                        <cantidad>3</cantidad>
+                        <sprite>
+                            <src>assets/objetos/caja.png</src>
                         </sprite>
                     </caja>
+                    <neumatico>
+                        <cantidad>3</cantidad>
+                        <sprite>
+                            <src>assets/objetos/neumaticos.png</src>
+                        </sprite>
+                    </neumatico>
                 </objetos>
             </escenario>
         </nivel1>
@@ -105,17 +117,29 @@
                 </sprite>
                 <objetos>
                     <cuchillo>
-                        <cantidad>5</cantidad>
+                        <cantidad>4</cantidad>
                         <sprite>
                             <src>assets/objetos/cuchillo.png</src>
                         </sprite>
                     </cuchillo>
-                    <caja>
-                        <cantidad>5</cantidad>
+                    <tubo>
+                        <cantidad>6</cantidad>
                         <sprite>
-                            <src>assets/escenarios/caja.png</src>
+                            <src>assets/objetos/tubo.png</src>
+                        </sprite>
+                    </tubo>
+                    <caja>
+                        <cantidad>2</cantidad>
+                        <sprite>
+                            <src>assets/objetos/caja.png</src>
                         </sprite>
                     </caja>
+                    <neumatico>
+                        <cantidad>1</cantidad>
+                        <sprite>
+                            <src>assets/objetos/neumaticos.png</src>
+                        </sprite>
+                    </neumatico>
                 </objetos>
             </escenario>
         </nivel2>
