@@ -32,8 +32,10 @@ Configuracion::Configuracion(const string &path) {
 
         if(infile.good()){
             parser->parse(path.c_str());
+            actualPath = path;
         }else{
             parser->parse(defaultPath.c_str());
+            actualPath = defaultPath;
         }
     }
     catch (const xercesc::SAXException &toCatch) {
@@ -99,4 +101,8 @@ int Configuracion::getIntValue(const string &xPath, int defaultValue) {
 float Configuracion::getFloatValue(const string &xPath, float defaultValue) {
     string result = getValue(xPath);
     return result.empty() ? defaultValue : stof(result);
+}
+
+string Configuracion::getActualPath(){
+    return actualPath;
 }
