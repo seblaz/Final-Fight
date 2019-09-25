@@ -31,8 +31,14 @@ Configuracion::Configuracion(const string &path) {
         ifstream infile(path);
 
         if(infile.good()){
-            parser->parse(path.c_str());
-            actualPath = path;
+            bool empty = ( infile.get(), infile.eof() );
+            if(!empty){
+                parser->parse(path.c_str());
+                actualPath = path;
+            }else{
+                parser->parse(defaultPath.c_str());
+                actualPath = defaultPath;
+            }
         }else{
             parser->parse(defaultPath.c_str());
             actualPath = defaultPath;
@@ -43,6 +49,9 @@ Configuracion::Configuracion(const string &path) {
         cout << "No se pudo abrir archivo de configuracion. Mensaje: \n"
              << message << "\n";
         xercesc::XMLString::release(&message);
+
+        parser->parse(defaultPath.c_str());
+        actualPath = defaultPath;
     }
     catch (...) {
         cout << "No se pudo abrir archivo de configuracion.\n";

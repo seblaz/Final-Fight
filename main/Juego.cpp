@@ -107,6 +107,7 @@ void Juego::graficar() {
 }
 
 void Juego::terminar() {
+    Locator::logger()->log(INFO, "Se termina el juego.");
     Locator::logger()->log(DEBUG, "Se destruye renderer y window.");
 
     SDL_DestroyRenderer(renderer_); // Destroy renderer_
