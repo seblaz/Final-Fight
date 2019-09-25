@@ -73,6 +73,12 @@
                         </sprite>
                     </caja>
                 </objetos>
+                <enemigos>
+                    <cantidad>5</cantidad>
+                    <sprite>
+                        <src>assets/personajes/poison.png</src>
+                    </sprite>
+                </enemigos>
             </escenario>
         </nivel1>
         <nivel2>
@@ -117,6 +123,12 @@
                         </sprite>
                     </caja>
                 </objetos>
+                <enemigos>
+                    <cantidad>3</cantidad>
+                    <sprite>
+                        <src>assets/personajes/poison.png</src>
+                    </sprite>
+                </enemigos>
             </escenario>
         </nivel2>
     </niveles>
