@@ -2,7 +2,7 @@
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
 #include "../modelo/Posicion.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../niveles/Nivel.h"
 
 void configApplication(int argc, const char*args[]){

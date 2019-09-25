@@ -6,7 +6,7 @@
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
 #include "Saltando.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 Agachado::Agachado() {
     Logger *logger = Locator::logger();

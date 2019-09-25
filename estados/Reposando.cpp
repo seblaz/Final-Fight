@@ -4,7 +4,7 @@
 
 #include "Reposando.h"
 #include "../servicios/Locator.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 Reposando::Reposando() {
     Logger* logger = Locator::logger();

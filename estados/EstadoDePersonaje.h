@@ -10,7 +10,7 @@
 #include "../comportamiento/EntradaJugador.h"
 #include "../modelo/Velocidad.h"
 #include "../servicios/Locator.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 class EstadoDePersonaje : public Estado {
 

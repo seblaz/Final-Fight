@@ -53,12 +53,12 @@ FILE(GLOB ModelMapSources modelo/mapeables/*.cpp)
 FILE(GLOB MainSources main/*.cpp)
 FILE(GLOB PhysicsSources fisica/*.cpp)
 FILE(GLOB GraphicsSources graficos/*.cpp)
-FILE(GLOB SpriteSources graficos/sprite/*.cpp)
 FILE(GLOB InputSources comportamiento/*.cpp)
 FILE(GLOB IASources estados/ia/*.cpp)
 FILE(GLOB StatesSources estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
+FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
@@ -69,14 +69,14 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} estados/Golpeando.h estados/Golpeando.cpp)
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
 ]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources} ${IASources})
+add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 
 #[[

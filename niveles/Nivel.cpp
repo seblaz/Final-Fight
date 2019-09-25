@@ -13,10 +13,10 @@
 #include "../graficos/Grafico.h"
 #include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDeEscenario.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
-#include "../graficos/FabricaDeAnimacionesDeCaja.h"
-#include "../graficos/FabricaDeAnimacionesDeCuchillo.h"
-#include "../graficos/FabricaDeAnimacionesDePoison.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../servicios/Locator.h"
 #include "../graficos/GraficoDeTransicion.h"
 
@@ -80,7 +80,6 @@ void Nivel::generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador) {
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
     posicionDeJugador->x = 300;
     posicionDeJugador->y = 100;
-    posicionDeJugador->z = 0;
 
     generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
     generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);

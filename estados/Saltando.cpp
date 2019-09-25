@@ -5,7 +5,7 @@
 #include "Saltando.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
-#include "../graficos/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "Caminando.h"
 
 Saltando::Saltando() {

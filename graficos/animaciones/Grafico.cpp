@@ -3,12 +3,12 @@
 //
 
 #include <SDL_rect.h>
-#include "Grafico.h"
-#include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
+#include "../Grafico.h"
+#include "../../servicios/Locator.h"
+#include "../../modelo/Posicion.h"
 #include "Animacion.h"
-#include "Sprite.h"
-#include "../modelo/Orientacion.h"
+#include "../Sprite.h"
+#include "../../modelo/Orientacion.h"
 
 SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {
     Configuracion *config = Locator::configuracion();
