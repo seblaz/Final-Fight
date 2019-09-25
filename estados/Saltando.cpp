@@ -9,71 +9,71 @@
 #include "Caminando.h"
 
 Saltando::Saltando() {
-    Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se instancio un objeto de clase Saltando");
+    Logger *logger = Locator::logger();
+    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
 
 Saltando::~Saltando() {
-    Logger* logger = Locator::logger();
+    Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se elimino un objeto de clase Saltando");
 }
 
 void Saltando::actualizar(Entidad *entidad) {
-    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
     velocidad->z = velocidadInicial + aceleracion * frames;
-    if (velocidad->z == -velocidadInicial){
+    if (velocidad->z == -velocidadInicial) {
         termine = true;
         velocidad->x = 0;
         velocidad->y = 0;
         velocidad->z = 0;
     }
-    frames ++;
+    frames++;
 }
 
 void Saltando::enter(Entidad *entidad) {
-    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
-    if (velocidad->x == 0){
-        auto* animacion = FabricaDeAnimacionesDeCody::saltando();
+    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
+    if (velocidad->x == 0) {
+        auto *animacion = FabricaDeAnimacionesDeCody::saltando();
         entidad->agregarEstado("animacion", animacion);
-    }else if ( velocidad->x != 0 ){
+    } else if (velocidad->x != 0) {
         auto *animacion = FabricaDeAnimacionesDeCody::saltandoAdelante();
         entidad->agregarEstado("animacion", animacion);
     }
 }
 
-void Saltando::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
-    if ( Saltando::termine )
+void Saltando::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
+    if (Saltando::termine)
         EstadoDePersonaje::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
 }
 
-void Saltando::agachar(Entidad * entidad) {
-    if ( Saltando::termine )
+void Saltando::agachar(Entidad *entidad) {
+    if (Saltando::termine)
         EstadoDePersonaje::agachar(entidad);
 }
 
-void Saltando::reposar(Entidad * entidad) {
-    if ( Saltando::termine )
+void Saltando::reposar(Entidad *entidad) {
+    if (Saltando::termine)
         EstadoDePersonaje::reposar(entidad);
 }
 
 void Saltando::saltar(Entidad *entidad) {
-    if ( Saltando::termine )
+    if (Saltando::termine)
         EstadoDePersonaje::saltar(entidad);
 }
 
-void Saltando::golpear(Entidad * entidad) {
-    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+void Saltando::golpear(Entidad *entidad) {
+    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
 
-    if ( ! Saltando::termine ) {
-        if ( velocidad->z >= 0) {
-            if ( ! pateando ) {
+    if (!Saltando::termine) {
+        if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
+            if (!pateando) {
                 auto *animacion = FabricaDeAnimacionesDeCody::patadaBasica();
                 entidad->agregarEstado("animacion", animacion);
                 pateando = true;
             }
         }
-    }else{
+    } else {
         EstadoDePersonaje::golpear(entidad);
     }
 }

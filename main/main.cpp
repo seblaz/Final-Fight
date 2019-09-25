@@ -39,17 +39,11 @@ void configApplication(int argc, const char*args[]){
              new Logger(loggerLevel));
     Locator::provide(logger);
 
-    string loggerMsj =
-            defaultLogger ?
-            "Se inicio logger configurado por default." :
-            "Se inicio logger configurado por usuario.";
-    Locator::logger()->log(DEBUG, loggerMsj);
+    Locator::logger()->log(DEBUG, "Se inicio logger modo DEBUG");
 
-    string configMsj =
-            defaultConfiguration ?
-            "Se intenta cargar archivo de configuracion por default." :
-            "Se intenta cargar archivo de configuracion por usuario.";
-    Locator::logger()->log(DEBUG, configMsj);
+    string configPath = config->getActualPath();
+
+    Locator::logger()->log(DEBUG, "Archivo de configuracion abierto: " + configPath);
 
     logger = nullptr;
     config = nullptr;

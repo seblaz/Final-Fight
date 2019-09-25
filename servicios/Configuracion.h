@@ -17,6 +17,7 @@ using namespace std;
 class Configuracion {
 
 private:
+    string actualPath = "";
     string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;
     xercesc::ErrorHandler *errHandler;
@@ -31,6 +32,7 @@ public:
     string getValue(const string &xPath, const string &defaultValue);
     int getIntValue(const string &xPath, int defaultValue);
     float getFloatValue(const string &xPath, float defaultValue);
+    string getActualPath();
 
 };
 
