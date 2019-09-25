@@ -28,14 +28,14 @@ void Juego::inicializarGraficos() {
         exit = true;
     } else {
         //Create window
-        window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH,
-                                  SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
+        window = SDL_CreateWindow("Final Fight!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH,
+                                  SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
         if (window == nullptr) {
             logger->log(ERROR, string("SDL no pudo crear la ventana! SDL_Error: ").append(SDL_GetError()));
             exit = true;
         } else {
             //Get window surface
-            renderer_ = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+            renderer_ = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
             if (!renderer_) {
                 logger->log(ERROR, string("SDL no pudo crear el render! SDL_Error: ").append(SDL_GetError()));
                 exit = true;
