@@ -61,3 +61,19 @@ void Saltando::saltar(Entidad *entidad) {
     if ( Saltando::termine )
         EstadoDePersonaje::saltar(entidad);
 }
+
+void Saltando::golpear(Entidad * entidad) {
+    auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
+
+    if ( ! Saltando::termine ) {
+        if ( velocidad->z >= 0) {
+            if ( ! pateando ) {
+                auto *animacion = FabricaDeAnimacionesDeCody::patadaBasica();
+                entidad->agregarEstado("animacion", animacion);
+                pateando = true;
+            }
+        }
+    }else{
+        EstadoDePersonaje::golpear(entidad);
+    }
+}
