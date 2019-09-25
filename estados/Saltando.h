@@ -13,6 +13,7 @@
 class Saltando : public EstadoDePersonaje {
 
 private:
+    bool pateando = false;
     bool termine = false;
     float frames = 1;
     const float velocidadInicial = 22;
@@ -27,7 +28,7 @@ public:
     void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
     void agachar(Entidad *) override;
     void reposar(Entidad *) override;
-    virtual void golpear(Entidad *) override {};
+    void golpear(Entidad *) override;
 };
 
 

@@ -17,6 +17,7 @@ public:
     static Animacion* agachado();
     static Animacion* golpear();
     static Animacion* saltandoAdelante();
+    static Animacion* patadaBasica();
 
 };
 
