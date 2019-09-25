@@ -192,32 +192,41 @@ void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Map
 }
 
 void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
-    Locator::logger()->log(INFO, "Se genera enemigo");
 
-    Entidad *enemigo = mapa->crearEntidad();
+    Configuracion *config = Locator::configuracion();
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/enemigos/cantidad");
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+    string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
 
-    auto *posicionDeEnemigo = new Posicion(600, 100, 0);
-    auto *spriteEnemigo = new Sprite(sdlRenderer, "assets/personajes/poison.png");
-    auto *velocidadDeEnemigo = new Velocidad();
-    auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
-    auto *animacion = fabricaDeEnemigo->caminando();
-    auto *orientacionDeEnemigo = new Orientacion;
-    auto *comportadmiento = new Patrullar();
-    auto *fisicaDeEnemigo = new FisicaDePersonaje();
-    auto *graficoDeEnemigo = new Grafico();
-    EstadoDePersonaje *estado = new Caminando();
+    for (int i = 0; i < cantidad; i++) {
+        Locator::logger()->log(INFO, "Se genera enemigo");
 
-    enemigo->agregarEstado("estado", estado);
-    enemigo->agregarEstado("posicion", posicionDeEnemigo);
-    enemigo->agregarEstado("sprite", spriteEnemigo);
-    enemigo->agregarEstado("velocidad", velocidadDeEnemigo);
-    enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
-    enemigo->agregarEstado("animacion", animacion);
-    enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
-    enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
-    enemigo->agregarComportamiento("comportamiento", comportadmiento);
-    enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
-    enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
+        Entidad *enemigo = mapa->crearEntidad();
+
+        auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
+        auto *spriteEnemigo = new Sprite(sdlRenderer, spritePath);
+        auto *velocidadDeEnemigo = new Velocidad();
+        auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
+        auto *animacion = fabricaDeEnemigo->caminando();
+        auto *orientacionDeEnemigo = new Orientacion;
+        auto *comportadmiento = new Patrullar();
+        auto *fisicaDeEnemigo = new FisicaDePersonaje();
+        auto *graficoDeEnemigo = new Grafico();
+        EstadoDePersonaje *estado = new Caminando();
+
+        enemigo->agregarEstado("estado", estado);
+        enemigo->agregarEstado("posicion", posicionEnemigoRandom);
+        enemigo->agregarEstado("sprite", spriteEnemigo);
+        enemigo->agregarEstado("velocidad", velocidadDeEnemigo);
+        enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
+        enemigo->agregarEstado("animacion", animacion);
+        enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
+        enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
+        enemigo->agregarComportamiento("comportamiento", comportadmiento);
+        enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
+        enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
+    }
 }
 
 void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador) {

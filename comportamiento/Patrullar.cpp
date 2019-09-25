@@ -25,9 +25,11 @@ void Patrullar::actualizar(Entidad *entidad) {
     auto* estado = entidad->getEstado<EstadoDePersonaje>("estado");
     estado->actualizar(entidad);
 
+    int num = 1+rand()%(101-1);
+
     estado->caminar(entidad, adelante, !adelante, 0, 0);
 
-    if ( pasosTotales < contadorDePasos ) {
+    if ( pasosTotales < contadorDePasos && num > 95 ) {
         adelante = !adelante;
         contadorDePasos = 0;
         estado->saltar(entidad);
