@@ -6,11 +6,11 @@
 
 Animacion* FabricaDeAnimacionesDePoison::caminando() {
     vector<SDL_Rect> posiciones = {
-            {6,  4, 37, 91},
-            {48,  5, 30, 90},
-            {78,  5, 35, 91},
-            {48,  5, 30, 90},
-    };
+            {8,  6, 32, 89},
+            {46,  6, 32, 89},
+            {79,  8, 35, 89},
+            {46,  6, 32, 89},
+     };
 
     vector<float> duraciones = {4, 3, 4, 3};
 
