@@ -10,6 +10,8 @@
 #include "../modelo/Mapa.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/Sprite.h"
+#include<stdlib.h>
+#include<time.h>
 
 class Nivel{
 

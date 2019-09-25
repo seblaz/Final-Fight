@@ -4,7 +4,7 @@
     </debug>
     <resolucion>
         <ancho>1600</ancho>
-        <alto>920</alto>
+        <alto>900</alto>
     </resolucion>
     <escala>
         <entidades>1</entidades>
@@ -85,6 +85,12 @@
                         </sprite>
                     </neumatico>
                 </objetos>
+                <enemigos>
+                    <cantidad>5</cantidad>
+                    <sprite>
+                        <src>assets/personajes/poison.png</src>
+                    </sprite>
+                </enemigos>
             </escenario>
         </nivel1>
         <nivel2>
@@ -141,6 +147,12 @@
                         </sprite>
                     </neumatico>
                 </objetos>
+                <enemigos>
+                    <cantidad>3</cantidad>
+                    <sprite>
+                        <src>assets/personajes/poison.png</src>
+                    </sprite>
+                </enemigos>
             </escenario>
         </nivel2>
     </niveles>

@@ -58,6 +58,7 @@ FILE(GLOB IASources estados/ia/*.cpp)
 FILE(GLOB StatesSources estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
+FILE(GLOB Configurations *.xml)
 FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
@@ -83,4 +84,4 @@ target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2
   Copiar los assets
 ]]
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY Configuracion.xml DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
