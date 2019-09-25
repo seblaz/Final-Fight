@@ -46,11 +46,16 @@ Configuracion::Configuracion(const string &path) {
     }
     catch (const xercesc::SAXException &toCatch) {
         char *message = xercesc::XMLString::transcode(toCatch.getMessage());
-        cout << "No se pudo abrir archivo de configuracion. Mensaje: \n"
+        cout << "No se pudo abrir el archivo de configuracion. Mensaje: \n"
              << message << "\n";
         xercesc::XMLString::release(&message);
-
-        parser->parse(defaultPath.c_str());
+        try {
+            parser->parse(defaultPath.c_str());
+        } catch (const xercesc::SAXException &toCatch) {
+        cout << "No se pudo abrir el archivo de configuracion por defecto. Mensaje: \n"
+             << message << ". Terminando programa.\n";
+            throw std::invalid_argument( "Xml por defecto invalido" );
+        }
         actualPath = defaultPath;
     }
     catch (...) {
