@@ -45,7 +45,7 @@ Animacion *FabricaDeAnimacionesDeCody::agachado() {
 Animacion* FabricaDeAnimacionesDeCody::golpear() {
     vector<SDL_Rect> posiciones = {
             {6, 439, 51, 87}, //104 , 67 ancho_
-            {63, 439, 92, 87},
+            {64, 439, 44, 87},
             /*{130, 420, 65, 104},
             {195, 420, 78, 104},
             {274, 420, 73, 104},
