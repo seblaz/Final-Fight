@@ -25,8 +25,9 @@ private:
     static LEVEL stringToLevel(const string&);
 
 public:
-    explicit Logger(const string &stringLevel = "DEBUG");
+    explicit Logger();
     void log(LEVEL level_, const string& message);
+    void setLevel(string level);
 };
 
 

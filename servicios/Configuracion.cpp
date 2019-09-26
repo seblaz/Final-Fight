@@ -36,30 +36,34 @@ Configuracion::Configuracion(const string &path) {
                 parser->parse(path.c_str());
                 actualPath = path;
             }else{
+                Locator::logger()->log(ERROR, "Archivo de configuracion vacio. Se abre archivo por default");
                 parser->parse(defaultPath.c_str());
                 actualPath = defaultPath;
             }
         }else{
+            Locator::logger()->log(ERROR, "Archivo de configuracion no encontrado. Se abre archivo por default");
             parser->parse(defaultPath.c_str());
             actualPath = defaultPath;
         }
     }
     catch (const xercesc::SAXException &toCatch) {
         char *message = xercesc::XMLString::transcode(toCatch.getMessage());
-        cout << "No se pudo abrir el archivo de configuracion. Mensaje: \n"
-             << message << "\n";
-        xercesc::XMLString::release(&message);
+
+        string errorMsg(message);
+
+        Locator::logger()->log(ERROR, "Error en archivo de configuracion. Mensaje: " + errorMsg + ". Se abre archivo por default");
         try {
             parser->parse(defaultPath.c_str());
         } catch (const xercesc::SAXException &toCatch) {
-        cout << "No se pudo abrir el archivo de configuracion por defecto. Mensaje: \n"
-             << message << ". Terminando programa.\n";
+
+            Locator::logger()->log(ERROR, "Error en archivo de configuracion por default. Mensaje: " + errorMsg + ". Se termina el programa.");
             throw std::invalid_argument( "Xml por defecto invalido" );
         }
         actualPath = defaultPath;
     }
     catch (...) {
-        cout << "No se pudo abrir archivo de configuracion.\n";
+        Locator::logger()->log(ERROR, "Error en archivo de configuracion por default. Se termina el programa.");
+        throw std::invalid_argument( "Xml por defecto invalido" );
     }
 }
 

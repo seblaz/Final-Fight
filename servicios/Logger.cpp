@@ -56,11 +56,12 @@ public:
  * Actual Logger implementation.
  */
 
-Logger::Logger(const string &stringLevel) :
-        level(stringToLevel(stringLevel)),
+Logger::Logger() :
+        level(stringToLevel("DEBUG")),
         logFile(getLogFileName()),
         folder("logs") {
     FileManager::createFolderIfItDoesNotExist(folder);
+    log(DEBUG, "Se inicia logger en nivel DEBUG");
 }
 
 void Logger::log(LEVEL level_, const string &message) {
@@ -123,4 +124,15 @@ string Logger::getLogFileName() {
     fileName << setfill('0') << setw(2) << localTime->tm_sec << ".log";
 
     return fileName.str();
+}
+
+void Logger::setLevel(string newLevel) {
+    if (newLevel != "DEBUG" && newLevel != "INFO" && newLevel != "ERROR"){
+        log(ERROR, "Nivel de logger invalido.");
+    }else{
+        if(levelToString(level) != newLevel){
+            level = stringToLevel(newLevel);
+            log(DEBUG, "Se cambia nivel de logger a " + newLevel); // No tiene sentido esta linea
+        }
+    }
 }
