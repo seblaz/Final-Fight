@@ -14,7 +14,6 @@ private:
 
     void inicializarGraficos();
     void inicializarElementos();
-    void terminar();
 
     void processInput();
     void actualizar();
@@ -28,11 +27,11 @@ private:
 
 public:
     Juego();
-    ~Juego() { terminar(); }
 
     void loop();
     Mapa &mapa();
     SDL_Renderer* renderer();
+    void terminar();
 
 };
 
