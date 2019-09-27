@@ -14,7 +14,7 @@ TEST(Logger, LoggerFuncionaBienParaNivelesMenores) {
     logger->log(ERROR, "Un errror ocurrió");
 
     std::string output = testing::internal::GetCapturedStdout();
-    ASSERT_THAT(output, testing:: HasSubstr("Un errror ocurrió"));
+    ASSERT_THAT(output, testing::HasSubstr("Un errror ocurrió"));
 }
 
 TEST(Logger, LoggerFuncionaBienParaNivelesIguales) {
@@ -25,7 +25,7 @@ TEST(Logger, LoggerFuncionaBienParaNivelesIguales) {
     logger->log(ERROR, "Log de info");
 
     std::string output = testing::internal::GetCapturedStdout();
-    ASSERT_THAT(output, testing:: HasSubstr("Log de info"));
+    ASSERT_THAT(output, testing::HasSubstr("Log de info"));
 }
 
 TEST(Logger, LoggerNoMuestraNadaParaNivelesMayores) {
@@ -36,5 +36,5 @@ TEST(Logger, LoggerNoMuestraNadaParaNivelesMayores) {
     logger->log(DEBUG, "Log de bug");
 
     std::string output = testing::internal::GetCapturedStdout();
-    ASSERT_THAT(output, "");
+    ASSERT_THAT(output, testing::Not(testing::HasSubstr("Log de bug")));
 }
