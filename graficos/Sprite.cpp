@@ -10,7 +10,7 @@ Sprite::Sprite(SDL_Renderer *renderer, const string &rutaSprite) :
     Logger *logger = Locator::logger();
     ifstream infile(rutaSprite);
     if (!infile.good()) {
-        logger->log(DEBUG, "No existe el sprite:" + rutaSprite + ". Se va a cargar una textura por defecto.");
+        logger->log(ERROR, "No existe el sprite:" + rutaSprite + ". Se va a cargar una textura por defecto.");
 
         TTF_Font *Sans = TTF_OpenFont("assets/fuentes/open-sans/OpenSans-Regular.ttf", 24);
         if (Sans == nullptr) {

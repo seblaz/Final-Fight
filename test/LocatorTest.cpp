@@ -7,7 +7,8 @@
 #include "../servicios/Locator.h"
 
 TEST(Locator, DespuesDeAgregarElServicioPuedoUsarloEnLocator){
-    auto *logger = new Logger("INFO");
+    auto *logger = new Logger();
+    logger->setLevel("INFO");
     Locator::provide(logger);
 
     Locator::logger()->log(DEBUG, "Soy un mensaje de debug que no se va a ver");
