@@ -116,8 +116,8 @@ void Logger::setLevel(const string& newLevel) {
         log(ERROR, "Nivel de logger invalido: " + newLevel + ". Se mantiene el nivel de log en DEBUG.");
     }else{
         if(levelToString(level) != newLevel){
-            level = stringToLevel(newLevel);
             log(INFO, "Se cambia nivel de logger a " + newLevel); // No tiene sentido esta linea
+            level = stringToLevel(newLevel);
         }
     }
 }
