@@ -7,6 +7,7 @@
 
 #include "../modelo/Mapa.h"
 #include <SDL2/SDL.h>
+#include "../tipos/tipos.h"
 
 class Juego {
 
@@ -32,6 +33,7 @@ public:
 
     void loop();
     Mapa &mapa();
+    nombreJugador menuPrincipal();
     SDL_Renderer* renderer();
 
 };

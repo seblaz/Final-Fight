@@ -1,10 +1,6 @@
-//
-// Created by sebas on 14/9/19.
-//
-
 #include "FabricaDeAnimacionesDeHaggar.h"
 
-Animacion* FabricaDeAnimacionesDeHaggar::caminado() {
+Animacion* FabricaDeAnimacionesDeHaggar::caminando() {
     vector<SDL_Rect> posiciones = {
             {0,  103, 60, 104},
             {65,  103, 60, 104},
@@ -26,14 +22,14 @@ Animacion* FabricaDeAnimacionesDeHaggar::saltando() {
             {115, 205, 60, 104},
             {65,  212, 60, 104},
             {5,  212, 60, 104},
-    };
+            };
 
     vector<float> duraciones = {1, 1, 1, 1};
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeHaggar::parado() {
+Animacion* FabricaDeAnimacionesDeHaggar::reposando() {
     vector<SDL_Rect> posiciones = {{0, 0, 64, 104}};
     vector<float> duraciones = {1};
 
@@ -55,10 +51,29 @@ Animacion* FabricaDeAnimacionesDeHaggar::golpear() {
             {203, 437, 60, 95},
             {260, 440, 60, 95},
             {320, 440, 85, 90},
-            //{408, 420, 65, 104},
     };
 
-    vector<float> duraciones = {1, 1, 1, 1, 1, 1};
+    vector<float> duraciones = {1, 2, 1};
+
+    return new Animacion(posiciones, duraciones, 16, 4.5);
+}
+
+Animacion *FabricaDeAnimacionesDeHaggar::saltandoAdelante() {
+    vector<SDL_Rect> posiciones = {
+            {16,  238, 39, 81},
+    };
+
+    vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
+}
+
+Animacion *FabricaDeAnimacionesDeHaggar::patadaBasica() {
+    vector<SDL_Rect> posiciones = {
+            {245,  540, 60, 80},
+    };
+
+    vector<float> duraciones = {1, 1, 3, 2};
+
+    return new Animacion(posiciones, duraciones, 35, 4.5);
 }

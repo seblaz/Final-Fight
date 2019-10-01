@@ -8,7 +8,7 @@
 #include "../modelo/Posicion.h"
 #include <algorithm>
 #include <SDL_image.h>
-#include <SDL_ttf.h>
+#include <SDL_ttf.h>4
 
 Juego::Juego() {
     inicializarGraficos();
@@ -132,3 +132,9 @@ Mapa &Juego::mapa() {
     return mapa_;
 }
 
+nombreJugador Juego::menuPrincipal(){
+    Locator::logger()->log(INFO, "Se carga menu Principal");
+
+
+    return (nombreJugador) CODY;
+}

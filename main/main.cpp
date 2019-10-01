@@ -4,6 +4,7 @@
 #include "../modelo/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../niveles/Nivel.h"
+#include "../tipos/tipos.h"
 
 void configApplication(int argc, const char*args[]){
     bool defaultLogger = argc == 1;
@@ -70,7 +71,9 @@ int main(int argc, const char **args) {
 
     Mapa &mapa = juego.mapa();
 
-    Entidad *jugador = Nivel::generarJugador(&mapa);
+    nombreJugador nombreJugador = juego.menuPrincipal();
+
+    Entidad *jugador = Nivel::generarJugador(&mapa, nombreJugador); //Es propio de nivel?
 
     Nivel::generarNivel("nivel1", &mapa, jugador);
 

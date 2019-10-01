@@ -10,8 +10,10 @@
 #include "../modelo/Mapa.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/Sprite.h"
+#include "../tipos/tipos.h"
 #include<stdlib.h>
 #include<time.h>
+
 
 class Nivel{
 
@@ -26,7 +28,7 @@ private:
 
 public:
     static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
-    static Entidad *generarJugador(Mapa *mapa);
+    static Entidad *generarJugador(Mapa *mapa, nombreJugador &jugadorElegido);
 };
 #endif //FINAL_FIGHT_NIVEL_H
 

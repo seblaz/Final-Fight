@@ -14,6 +14,7 @@
 #include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
@@ -23,7 +24,7 @@
 #include "../graficos/GraficoDeTransicion.h"
 #include "../estados/Caminando.h"
 
-Entidad *Nivel::generarJugador(Mapa *mapa) {
+Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador &jugadorElegido) {
     Locator::logger()->log(INFO, "Se genera jugador principal.");
 
     SDL_Renderer *sdlRenderer = Locator::renderer();
@@ -31,9 +32,28 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
     auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
     auto *velocidad = new Velocidad();
-    auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+    FabricaDeAnimacionesDePersonaje *fabricaDeAnimaciones;
+    Sprite *spriteJugador;
+
+    // Develop
+    switch(jugadorElegido){
+        case HAGGAR:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/haggar.png");
+            break;
+
+        case CODY:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+            break;
+
+        default:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+    }
+
     auto *orientacion = new Orientacion;
-    auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+    //auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
     auto *animacion = fabricaDeAnimaciones->reposando();
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
