@@ -21,7 +21,6 @@ public:
     Patrullar();
     ~Patrullar();
     void actualizar(Entidad *) override;
-    void enter(Entidad *);
 };
 
 

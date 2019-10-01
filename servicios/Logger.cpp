@@ -3,21 +3,6 @@
 //
 
 #include "Logger.h"
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-#include <sys/stat.h>
-#include <cstring>
-#include <algorithm>
-
-std::map<std::string, LEVEL>::iterator searchByValue(std::map<std::string, LEVEL> &map, LEVEL val) {
-    std::map<std::string, LEVEL>::iterator it = map.begin();
-    while (it != map.end()) {
-        if (it->second == val)
-            return it;
-        it++;
-    }
-}
 
 /**
  * File Manager helper funcitions.
@@ -56,11 +41,12 @@ public:
  * Actual Logger implementation.
  */
 
-Logger::Logger(const string &stringLevel) :
-        level(stringToLevel(stringLevel)),
+Logger::Logger() :
+        level(stringToLevel("DEBUG")),
         logFile(getLogFileName()),
         folder("logs") {
     FileManager::createFolderIfItDoesNotExist(folder);
+    log(DEBUG, "Se inicia logger en nivel DEBUG.");
 }
 
 void Logger::log(LEVEL level_, const string &message) {
@@ -123,4 +109,15 @@ string Logger::getLogFileName() {
     fileName << setfill('0') << setw(2) << localTime->tm_sec << ".log";
 
     return fileName.str();
+}
+
+void Logger::setLevel(const string& newLevel) {
+    if (newLevel != "DEBUG" && newLevel != "INFO" && newLevel != "ERROR"){
+        log(ERROR, "Nivel de logger invalido: " + newLevel + ". Se mantiene el nivel de log en DEBUG.");
+    }else{
+        if(levelToString(level) != newLevel){
+            log(INFO, "Se cambia nivel de logger a " + newLevel); // No tiene sentido esta linea
+            level = stringToLevel(newLevel);
+        }
+    }
 }
