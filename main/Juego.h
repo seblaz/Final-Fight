@@ -9,6 +9,8 @@
 #include <SDL2/SDL.h>
 #include "../tipos/tipos.h"
 
+#define CANTIDAD_JUGADORES 4
+
 class Juego {
 
 private:
@@ -36,6 +38,5 @@ public:
     void terminar();
 
 };
-
 
 #endif //FINAL_FIGHT_JUEGO_H

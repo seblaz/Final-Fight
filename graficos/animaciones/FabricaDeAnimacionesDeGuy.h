@@ -2,14 +2,14 @@
 // Created by sebas on 14/9/19.
 //
 
-#ifndef FINAL_FIGHT_FABRICADEANIMACIONESDEDAMND_H
-#define FINAL_FIGHT_FABRICADEANIMACIONESDEDAMND_H
+#ifndef FINAL_FIGHT_FABRICADEANIMACIONESDEGUY_H
+#define FINAL_FIGHT_FABRICADEANIMACIONESDEGUY_H
 
 
 #include "Animacion.h"
 #include "FabricaDeAnimacionesDePersonaje.h"
 
-class FabricaDeAnimacionesDeDamnd: public FabricaDeAnimacionesDePersonaje {
+class FabricaDeAnimacionesDeGuy : public FabricaDeAnimacionesDePersonaje {
 
 public:
     Animacion* caminando() override;
@@ -23,4 +23,4 @@ public:
 };
 
 
-#endif //FINAL_FIGHT_FABRICADEANIMACIONESDEDAMND_H
+#endif //FINAL_FIGHT_FABRICADEANIMACIONESDEGUY_H

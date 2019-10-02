@@ -3,13 +3,17 @@
 
 
 //Develop
-#define CODY_SELECTED 0
-#define HAGGAR_SELECTED 1
+#define GUY_SELECTED 0
+#define CODY_SELECTED 1
+#define HAGGAR_SELECTED 2
+#define MAKI_SELECTED 3
 
 //Develop
 typedef enum nombreJugador {
     CODY = CODY_SELECTED,
-    HAGGAR = HAGGAR_SELECTED
+    HAGGAR = HAGGAR_SELECTED,
+    GUY = GUY_SELECTED,
+    Maki = MAKI_SELECTED
 };
 
 #endif //TIPOS_H

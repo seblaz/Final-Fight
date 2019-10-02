@@ -7,16 +7,18 @@
 
 
 #include "Animacion.h"
+#include "FabricaDeAnimacionesDePersonaje.h"
 
-class FabricaDeAnimacionesDeAndore {
+class FabricaDeAnimacionesDeAndore: public FabricaDeAnimacionesDePersonaje {
 
 public:
-    static Animacion* caminado();
-    static Animacion* saltando();
-    static Animacion* parado();
-    static Animacion* agachado();
-    static Animacion* golpear();
-
+    Animacion* caminando() override;
+    Animacion* saltando() override;
+    Animacion* reposando() override;
+    Animacion* agachado() override;
+    Animacion* golpear() override;
+    Animacion* saltandoAdelante() override;
+    Animacion* patadaBasica() override;
 };
 
 

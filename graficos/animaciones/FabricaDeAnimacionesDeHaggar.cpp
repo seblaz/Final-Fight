@@ -46,9 +46,9 @@ Animacion *FabricaDeAnimacionesDeHaggar::agachado() {
 Animacion* FabricaDeAnimacionesDeHaggar::golpear() {
     vector<SDL_Rect> posiciones = {
             {10, 440, 48, 90},
-            {58, 440, 65, 90},
+            //{58, 440, 65, 90},
             {113, 440, 97, 90},
-            {203, 437, 60, 95},
+            //{203, 437, 60, 95},
             {260, 440, 60, 95},
             {320, 440, 85, 90},
     };
@@ -60,7 +60,7 @@ Animacion* FabricaDeAnimacionesDeHaggar::golpear() {
 
 Animacion *FabricaDeAnimacionesDeHaggar::saltandoAdelante() {
     vector<SDL_Rect> posiciones = {
-            {16,  238, 39, 81},
+            {5,  212, 60, 104},
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
@@ -70,7 +70,7 @@ Animacion *FabricaDeAnimacionesDeHaggar::saltandoAdelante() {
 
 Animacion *FabricaDeAnimacionesDeHaggar::patadaBasica() {
     vector<SDL_Rect> posiciones = {
-            {245,  540, 60, 80},
+            {195, 540, 90, 65},
     };
 
     vector<float> duraciones = {1, 1, 3, 2};

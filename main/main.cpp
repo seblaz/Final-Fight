@@ -65,7 +65,7 @@ int main(int argc, const char **args) {
 
     nombreJugador nombreJugador = juego.menuPrincipal();
 
-    Entidad *jugador = Nivel::generarJugador(&mapa, nombreJugador); //Es propio de nivel?
+    Entidad *jugador = Nivel::generarJugador(&mapa, nombreJugador);
 
     Nivel::generarNivel("nivel1", &mapa, jugador);
 

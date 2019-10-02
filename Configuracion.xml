@@ -29,6 +29,11 @@
         <derecho>400</derecho>
     </scroll>
     <fps>60</fps>
+    <pantallaPrincipal>
+	<sprite>
+		<src>assets/varios/pantallaPrincipal.png</src>
+        </sprite>            
+    </pantallaPrincipal>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>

@@ -15,6 +15,8 @@
 #include "../graficos/GraficoDeEscenario.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
@@ -45,6 +47,16 @@ Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador &jugadorElegido) {
         case CODY:
             fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
             spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+            break;
+
+        case GUY:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
+            break;
+
+        case Maki:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/maki.png");
             break;
 
         default:
@@ -213,8 +225,6 @@ void Nivel::generarNeumaticos(const string &nivel, SDL_Renderer *sdlRenderer, Ma
         neumaticoRandom->agregarComportamiento("grafico", graficoDeNeumatico);
     }
 }
-
-
 
 void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
     Configuracion *config = Locator::configuracion();
