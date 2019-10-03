@@ -27,8 +27,10 @@ private:
     static void generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador);
 
 public:
+    static void generarPantallaDeEspera(Mapa *mapa);
+    static void generarMenuSeleccion(Mapa *mapa);
+    static Entidad *generarJugador(Mapa *mapa, nombreJugador jugadorElegido);
     static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
-    static Entidad *generarJugador(Mapa *mapa, nombreJugador &jugadorElegido);
 };
 #endif //FINAL_FIGHT_NIVEL_H
 

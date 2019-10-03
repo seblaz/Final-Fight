@@ -63,12 +63,12 @@ int main(int argc, const char **args) {
 
     Mapa &mapa = juego.mapa();
 
-    nombreJugador nombreJugador = juego.menuPrincipal();
+//    nombreJugador nombreJugador = juego.generarMenuPrincipal();
+//    nombreJugador nombre = CODY;
+//    Entidad *jugador = Nivel::generarJugador(&mapa, nombre);
 
-    Entidad *jugador = Nivel::generarJugador(&mapa, nombreJugador);
-
-    Nivel::generarNivel("nivel1", &mapa, jugador);
-
+//    Nivel::generarNivel("nivel1", &mapa, jugador);
+    Nivel::generarPantallaDeEspera(&mapa);
     juego.loop();
     juego.terminar();
 

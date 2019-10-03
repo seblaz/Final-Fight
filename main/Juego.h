@@ -33,7 +33,7 @@ public:
 
     void loop();
     Mapa &mapa();
-    nombreJugador menuPrincipal();
+//    nombreJugador generarMenuPrincipal();
     SDL_Renderer* renderer();
     void terminar();
 

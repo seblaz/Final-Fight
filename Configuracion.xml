@@ -29,11 +29,37 @@
         <derecho>400</derecho>
     </scroll>
     <fps>60</fps>
-    <pantallaPrincipal>
-	<sprite>
-		<src>assets/varios/pantallaPrincipal.png</src>
+    <pantallaDeEspera>
+    	<sprite>
+	    	<src>assets/varios/pantallaDeEspera.png</src>
         </sprite>            
-    </pantallaPrincipal>
+    </pantallaDeEspera>
+    <pantallaDeSeleccion>
+        <jugador1>
+            <nombre>Cody</nombre>
+            <seleccion>
+                <src>assets/varios/selectorCody.png</src>
+            </seleccion>
+        </jugador1>
+        <jugador2>
+            <nombre>Guy</nombre>
+            <seleccion>
+                <src>assets/varios/selectorGuy.png</src>
+            </seleccion>
+        </jugador2>
+        <jugador3>
+            <nombre>Haggar</nombre>
+            <seleccion>
+                <src>assets/varios/selectorHaggar.png</src>
+            </seleccion>
+        </jugador3>
+        <jugador4>
+            <nombre>Maki</nombre>
+            <seleccion>
+                <src>assets/varios/selectorMaki.png</src>
+            </seleccion>
+        </jugador4>
+    </pantallaDeSeleccion>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>

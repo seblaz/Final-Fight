@@ -25,9 +25,12 @@
 #include "../servicios/Locator.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../estados/Caminando.h"
+#include "../graficos/GraficoDePantallaCompleta.h"
+#include "../comportamiento/EntradaPantallaDeEspera.h"
+#include "../comportamiento/EntradaPantallaDeSeleccion.h"
 
-Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador &jugadorElegido) {
-    Locator::logger()->log(INFO, "Se genera jugador principal.");
+Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador jugadorElegido) {
+    Locator::logger()->log(INFO, "Se genera jugador.");
 
     SDL_Renderer *sdlRenderer = Locator::renderer();
 
@@ -54,7 +57,7 @@ Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador &jugadorElegido) {
             spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
             break;
 
-        case Maki:
+        case MAKI:
             fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
             spriteJugador = new Sprite(sdlRenderer, "assets/personajes/maki.png");
             break;
@@ -65,7 +68,6 @@ Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador &jugadorElegido) {
     }
 
     auto *orientacion = new Orientacion;
-    //auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
     auto *animacion = fabricaDeAnimaciones->reposando();
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
@@ -325,4 +327,45 @@ void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Ma
     transicion->agregarEstado("posicion", posicion);
     transicion->agregarEstado("posicion de jugador", posicionDeJugador);
     transicion->agregarComportamiento("grafico", grafico);
+}
+
+void Nivel::generarPantallaDeEspera(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/pantallaDeEspera/sprite/src");
+    SDL_Renderer *sdlRenderer = Locator::renderer();
+
+    Entidad *pantalla = mapa->crearEntidad();
+
+    auto *sprite = new Sprite(sdlRenderer, srcSprite);
+    auto *posicion = new Posicion(0, 0, 0);
+    auto *grafico = new GraficoDePantallaCompleta();
+    auto *entrada = new EntradaPantallaDeEspera();
+
+    pantalla->agregarEstado("posicion", posicion);
+    pantalla->agregarEstado("sprite", sprite);
+    pantalla->agregarEstado("mapa", mapa);
+    pantalla->agregarComportamiento("grafico", grafico);
+    pantalla->agregarComportamiento("entrada", entrada);
+
+}
+
+void Nivel::generarMenuSeleccion(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/pantallaDeSeleccion/jugador1/seleccion/src");
+    auto *renderer = Locator::renderer();
+
+    Entidad *pantalla = mapa->crearEntidad();
+
+    auto *sprite = new Sprite(renderer, srcSprite);
+    auto *posicion = new Posicion(0, 0, 0);
+    auto *grafico = new GraficoDePantallaCompleta();
+    auto *entrada = new EntradaPantallaDeSeleccion();
+
+    pantalla->agregarEstado("posicion", posicion);
+    pantalla->agregarEstado("sprite", sprite);
+    pantalla->agregarEstado("mapa", mapa);
+    pantalla->agregarComportamiento("grafico", grafico);
+    pantalla->agregarComportamiento("entrada", entrada);
 }

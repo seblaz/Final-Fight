@@ -9,11 +9,11 @@
 #define MAKI_SELECTED 3
 
 //Develop
-typedef enum nombreJugador {
+enum nombreJugador {
     CODY = CODY_SELECTED,
     HAGGAR = HAGGAR_SELECTED,
     GUY = GUY_SELECTED,
-    Maki = MAKI_SELECTED
+    MAKI = MAKI_SELECTED
 };
 
 #endif //TIPOS_H

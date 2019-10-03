@@ -131,69 +131,69 @@ Mapa &Juego::mapa() {
     return mapa_;
 }
 
-nombreJugador Juego::menuPrincipal(){
-    Locator::logger()->log(INFO, "Se carga menu Principal");
-    Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/pantallaPrincipal/sprite/src");
-    SDL_Renderer *renderer = Locator::renderer();
-    const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
-    const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
-    SDL_Event e;
-    bool quit = false;
-    char *srcSpritesJugadores[] = {
-        "assets/varios/selectorJugadorGuy.png",
-        "assets/varios/selectorJugadorCody.png",
-        "assets/varios/selectorJugadorHaggar.png",
-        "assets/varios/selectorJugadorMaki.png"
-    };
-    string srcSpriteSelector;
-    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-
-    while (!quit){
-        while(SDL_PollEvent(&e))
-        if (e.key.keysym.sym == SDLK_DOWN)
-            quit = true;
-
-        SDL_Surface * window_surface = SDL_GetWindowSurface(window);
-        int flags = IMG_INIT_JPG | IMG_INIT_PNG;
-        int initted = IMG_Init(flags);
-        SDL_Surface * image_surface = IMG_Load(srcSprite.c_str());
-
-        SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image_surface);
-        SDL_RenderCopy(renderer, texture, NULL, NULL);
-        SDL_RenderPresent(renderer);
-        SDL_DestroyTexture(texture);
-        SDL_FreeSurface(image_surface);
-
-        clearScene();
-    }
-    quit = false;
-    int pos = 3;
-    while (!quit){
-        while(SDL_PollEvent(&e)) {
-            if(e.key.keysym.sym == SDLK_LEFT && pos > 0)
-                pos--;
-            if(e.key.keysym.sym == SDLK_RIGHT && pos < CANTIDAD_JUGADORES)
-                pos++;
-
-            if(e.key.keysym.sym == SDLK_UP)
-                quit = true;
-            //printf("%s\n", srcSprite.c_str());
-            SDL_Surface * window_surface = SDL_GetWindowSurface(window);
-            int flags = IMG_INIT_JPG | IMG_INIT_PNG;
-            int initted = IMG_Init(flags);
-            srcSpriteSelector = srcSpritesJugadores[pos];
-
-            SDL_Surface * image_surface = IMG_Load(srcSpriteSelector.c_str());
-
-            SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image_surface);
-            SDL_RenderCopy(renderer, texture, NULL, NULL);
-            SDL_RenderPresent(renderer);
-            SDL_DestroyTexture(texture);
-            SDL_FreeSurface(image_surface);
-        }
-        clearScene();
-    }
-
-    return (nombreJugador) pos;
-}
+//nombreJugador Juego::menuPrincipal(){
+//    Locator::logger()->log(INFO, "Se carga menu Principal");
+//    Configuracion *config = Locator::configuracion();
+//    string srcSprite = config->getValue("/pantallaPrincipal/sprite/src");
+//    SDL_Renderer *renderer = Locator::renderer();
+//    const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
+//    const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
+//    SDL_Event e;
+//    bool quit = false;
+//    char *srcSpritesJugadores[] = {
+//        "assets/varios/selectorJugadorGuy.png",
+//        "assets/varios/selectorJugadorCody.png",
+//        "assets/varios/selectorJugadorHaggar.png",
+//        "assets/varios/selectorJugadorMaki.png"
+//    };
+//    string srcSpriteSelector;
+//    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+//
+//    while (!quit){
+//        while(SDL_PollEvent(&e))
+//        if (e.key.keysym.sym == SDLK_DOWN)
+//            quit = true;
+//
+//        SDL_Surface * window_surface = SDL_GetWindowSurface(window);
+//        int flags = IMG_INIT_JPG | IMG_INIT_PNG;
+//        int initted = IMG_Init(flags);
+//        SDL_Surface * image_surface = IMG_Load(srcSprite.c_str());
+//
+//        SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image_surface);
+//        SDL_RenderCopy(renderer, texture, NULL, NULL);
+//        SDL_RenderPresent(renderer);
+//        SDL_DestroyTexture(texture);
+//        SDL_FreeSurface(image_surface);
+//
+//        clearScene();
+//    }
+//    quit = false;
+//    int pos = 3;
+//    while (!quit){
+//        while(SDL_PollEvent(&e)) {
+//            if(e.key.keysym.sym == SDLK_LEFT && pos > 0)
+//                pos--;
+//            if(e.key.keysym.sym == SDLK_RIGHT && pos < CANTIDAD_JUGADORES)
+//                pos++;
+//
+//            if(e.key.keysym.sym == SDLK_UP)
+//                quit = true;
+//            //printf("%s\n", srcSprite.c_str());
+//            SDL_Surface * window_surface = SDL_GetWindowSurface(window);
+//            int flags = IMG_INIT_JPG | IMG_INIT_PNG;
+//            int initted = IMG_Init(flags);
+//            srcSpriteSelector = srcSpritesJugadores[pos];
+//
+//            SDL_Surface * image_surface = IMG_Load(srcSpriteSelector.c_str());
+//
+//            SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image_surface);
+//            SDL_RenderCopy(renderer, texture, NULL, NULL);
+//            SDL_RenderPresent(renderer);
+//            SDL_DestroyTexture(texture);
+//            SDL_FreeSurface(image_surface);
+//        }
+//        clearScene();
+//    }
+//
+//    return (nombreJugador) pos;
+//}
