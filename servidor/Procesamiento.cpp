@@ -5,16 +5,16 @@
 #include "Procesamiento.h"
 #include "../servicios/Locator.h"
 
-Eventos *Procesamiento::devolverCola() {
-    return &eventos;
+EventosAProcesar *Procesamiento::devolverCola() {
+    return &eventosAProcesar;
 }
 
 void Procesamiento::procesar() {
     while (true) {
-        auto *evento = eventos.pop();
-        Locator::logger()->log(DEBUG, "Se procesa msg: " + evento->msg + ".");
-        evento->resolver();
-        if(evento->msg == "fin")
+        auto *evento = eventosAProcesar.pop();
+        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
+        evento->resolver(mapa);
+        if (evento->msj() == "fin")
             break;
     }
 }
@@ -30,4 +30,6 @@ pthread_t Procesamiento::procesarEnHilo() {
     Locator::logger()->log(DEBUG, "Se creó el hilo de procesamiento.");
     return hilo;
 }
+
+Procesamiento::Procesamiento() : mapa(Mapa()) {}
 

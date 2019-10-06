@@ -346,7 +346,7 @@ void Nivel::generarPantallaDeEspera(Mapa *mapa) {
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
     pantalla->agregarComportamiento("grafico", grafico);
-    pantalla->agregarComportamiento("entrada", entrada);
+//    pantalla->agregarComportamiento("entrada", entrada);
 
 }
 

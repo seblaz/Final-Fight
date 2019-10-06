@@ -7,6 +7,8 @@
 #include "ConexionesClientes.h"
 #include "ContenedorHilos.h"
 #include "Procesamiento.h"
+#include "../eventos/Eventos.h"
+#include "Transmision.h"
 
 using namespace std;
 
@@ -29,24 +31,38 @@ int main(int argc, char *argv[]) {
     pthread_t hiloRechazo = conexiones.rechazarConexionesEnHilo();
 
     /**
+     * Iniciar juego.
+     */
+
+    /**
      * Procesamiento.
      */
     Procesamiento procesamiento;
-    auto *eventos = procesamiento.devolverCola();
+    auto *eventosAProcesar = procesamiento.devolverCola();
     pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
+
+    /**
+     * Transmision.
+     */
+    Transmision transmision(socketsClientes);
+    auto *eventosATransmitir = transmision.devolverCola();
+    pthread_t hiloTransmision = transmision.transmitirEnHilo();
+
+    auto *comenzar = new EventoAProcesar("comenzar");
+    eventosAProcesar->push(comenzar);
 
     /**
      * Contenedor de hilos.
      */
     ContenedorHilos contenedor;
-    contenedor.crearHilos(socketsClientes, eventos);
+    contenedor.crearHilos(socketsClientes, eventosAProcesar);
     contenedor.esperarFinDeHilos();
 
     /**
      * Termino el procesamiento.
      */
-    auto *fin = new Evento("fin");
-    eventos->push(fin);
+    auto *fin = new EventoAProcesar("fin");
+    eventosAProcesar->push(fin);
     pthread_join(hiloProcesamiento, nullptr);
 
     return 0;

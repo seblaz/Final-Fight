@@ -9,18 +9,18 @@
 void ContenedorHilos::esperarFinDeHilos() {
     for(pthread_t hilo : hilos)
         pthread_join(hilo, nullptr);
-    Locator::logger()->log(DEBUG, "Todos los hilos terminaron.");
+    Locator::logger()->log(DEBUG, "Todos los eventos terminaron.");
 }
 
-void ContenedorHilos::crearHilos(const vector<int> &sockets, Eventos *eventos) {
+void ContenedorHilos::crearHilos(const vector<int> &sockets, EventosAProcesar *eventos) {
     for(int socket : sockets){
         pthread_t hilo;
         auto *argsEscuchar = new escucharClienteArgs({socket, eventos});
         pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
         hilos.push_back(hilo);
 
-        auto *argsEnviar = new enviarAClienteArgs({socket, eventos});
-        pthread_create(&hilo, nullptr, enviarACliente, (void *) argsEnviar);
+//        auto *argsEnviar = new enviarAClienteArgs({socket, eventos});
+//        pthread_create(&hilo, nullptr, enviarACliente, (void *) argsEnviar);
 
     }
 }

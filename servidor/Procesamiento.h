@@ -6,16 +6,19 @@
 #define FINAL_FIGHT_PROCESAMIENTO_H
 
 
-#include "../hilos/Eventos.h"
-#include "../hilos/Evento.h"
+#include "../eventos/queue.h"
+#include "../modelo/Mapa.h"
+#include "../eventos/Eventos.h"
 
 class Procesamiento {
 
 private:
-    Eventos eventos;
+    EventosAProcesar eventosAProcesar;
+    Mapa mapa;
 
 public:
-    Eventos *devolverCola();
+    Procesamiento();
+    EventosAProcesar *devolverCola();
     void procesar();
     pthread_t procesarEnHilo();
 };

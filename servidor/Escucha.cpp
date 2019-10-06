@@ -5,11 +5,10 @@
 #include <cstring>
 #include "Escucha.h"
 #include "../servicios/Locator.h"
-#include "../hilos/Eventos.h"
-#include "../hilos/data.h"
+#include "../eventos/data.h"
 #include <sys/socket.h>
 
-Escucha::Escucha(int descriptorSocket, Eventos *eventos) :
+Escucha::Escucha(int descriptorSocket, EventosAProcesar *eventos) :
         eventos(eventos),
         descriptorSocket(descriptorSocket) {}
 
@@ -26,8 +25,8 @@ void Escucha::escuchar() {
             Locator::logger()->log(ERROR, string("No se pudo leer datos del cliente. Error: ").append(strerror(errno)) + ". Se termina el hilo.");
             break;
         } else {
-            auto *evento = new Evento(msg);
-//            Locator::logger()->log(DEBUG, string("Se recibe msg: ").append(msg) + ".");
+            auto *evento = new EventoAProcesar(msg);
+//            Locator::logger()->log(DEBUG, string("Se recibe msj_: ").append(msj_) + ".");
             Locator::logger()->log(DEBUG, to_string(var.x) + to_string(var.y));
             eventos->push(evento);
         }
