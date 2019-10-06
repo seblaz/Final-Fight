@@ -6,13 +6,18 @@
 #define FINAL_FIGHT_MOSTRARPANTALLADESELECCION_H
 
 #include "Eventos.h"
+#include "../servidor/NivelServidor.h"
 
 using namespace std;
 
 class MostrarPantallaDeSeleccion : public EventoAProcesar {
 
+private:
+    Mapa * mapa;
+
 public:
-    void resolver(Mapa&) override;
+    explicit MostrarPantallaDeSeleccion(Mapa *mapa);
+    void resolver() override;
 
 };
 

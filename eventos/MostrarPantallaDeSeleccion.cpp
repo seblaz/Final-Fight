@@ -4,6 +4,8 @@
 
 #include "MostrarPantallaDeSeleccion.h"
 
-void MostrarPantallaDeSeleccion::resolver(Mapa &mapa) {
-
+void MostrarPantallaDeSeleccion::resolver() {
+    NivelServidor::generarMenuSeleccion(mapa);
 }
+
+MostrarPantallaDeSeleccion::MostrarPantallaDeSeleccion(Mapa *mapa) : mapa(mapa) {}

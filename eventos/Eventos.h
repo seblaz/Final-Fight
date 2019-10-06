@@ -20,7 +20,7 @@ private:
 
 public:
     explicit EventoAProcesar(string msg = "");
-    virtual void resolver(Mapa&) {};
+    virtual void resolver() {};
     string msj();
 
 };

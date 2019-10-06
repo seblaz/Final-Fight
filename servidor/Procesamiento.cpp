@@ -13,7 +13,8 @@ void Procesamiento::procesar() {
     while (true) {
         auto *evento = eventosAProcesar.pop();
         Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
-        evento->resolver(mapa);
+
+        evento->resolver();
         if (evento->msj() == "fin")
             break;
     }
