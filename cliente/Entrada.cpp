@@ -9,6 +9,7 @@
 #include <string>
 #include <SDL_timer.h>
 #include "Entrada.h"
+#include "../hilos/data.h"
 
 Entrada::Entrada(int socket) : socket(socket){}
 
@@ -16,6 +17,10 @@ void Entrada::procesarEntrada() {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
     string msg;
+    miData var = {1, 2};
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while(true){
         if (entrada[SDL_SCANCODE_A])  {
             msg = "Golpear";
@@ -26,9 +31,10 @@ void Entrada::procesarEntrada() {
         } else {
             msg = "Reposar";
         }
-        send(socket, msg.c_str(), msg.length(), 0);
+        send(socket, &var, sizeof(var), 0);
         SDL_Delay(1000);
     }
+#pragma clang diagnostic pop
 }
 
 pthread_t Entrada::procesarEntradaEnHilo() {

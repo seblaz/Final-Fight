@@ -29,4 +29,11 @@ struct escucharClienteArgs {
 
 void *escucharCliente(void *);
 
+struct enviarAClienteArgs {
+    int socket;
+    Eventos *eventos;
+};
+
+void *enviarACliente(void *);
+
 #endif //FINAL_FIGHT_CONTENEDORHILOS_H

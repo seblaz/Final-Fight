@@ -7,16 +7,22 @@
 
 #include <string>
 #include <utility>
+#include <cstdarg>
 
 using namespace std;
 
+void accionNula();
+
 class Evento {
 
+private:
+    void (*accion)();
+
 public:
-    explicit Evento(string msg = "") : msg(std::move(msg)){}
+    explicit Evento(string msg = "", void (*accion)() = accionNula);
+    void resolver();
     string msg;
 
 };
-
 
 #endif //FINAL_FIGHT_EVENTO_H

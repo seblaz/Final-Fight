@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
 
     ConexionCliente conexion("localhost", 5000);
     int socket = conexion.socket();
+    Locator::provide(socket);
 
     Juego juego;
     SDL_Renderer *renderer = juego.renderer();

@@ -15,14 +15,26 @@ void ContenedorHilos::esperarFinDeHilos() {
 void ContenedorHilos::crearHilos(const vector<int> &sockets, Eventos *eventos) {
     for(int socket : sockets){
         pthread_t hilo;
-        auto *args = new escucharClienteArgs({socket, eventos});
-        pthread_create(&hilo, nullptr, escucharCliente, (void *) args);
+        auto *argsEscuchar = new escucharClienteArgs({socket, eventos});
+        pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
         hilos.push_back(hilo);
+
+        auto *argsEnviar = new enviarAClienteArgs({socket, eventos});
+        pthread_create(&hilo, nullptr, enviarACliente, (void *) argsEnviar);
+
     }
 }
 
 void *escucharCliente(void *args) {
     auto *argumentos = (escucharClienteArgs *) args;
+    Escucha escucha(argumentos->socket, argumentos->eventos);
+    delete argumentos;
+    escucha.escuchar();
+    return nullptr;
+}
+
+void *enviarACliente(void *args) {
+    auto *argumentos = (enviarAClienteArgs *) args;
     Escucha escucha(argumentos->socket, argumentos->eventos);
     delete argumentos;
     escucha.escuchar();

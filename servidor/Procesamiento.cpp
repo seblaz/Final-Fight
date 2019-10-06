@@ -13,6 +13,7 @@ void Procesamiento::procesar() {
     while (true) {
         auto *evento = eventos.pop();
         Locator::logger()->log(DEBUG, "Se procesa msg: " + evento->msg + ".");
+        evento->resolver();
         if(evento->msg == "fin")
             break;
     }

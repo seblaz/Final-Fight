@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     ConexionesClientes conexiones(socketServidor, 1);
     conexiones.esperarConexiones();
     vector<int> socketsClientes = conexiones.devolverConexiones();
-    pthread_t p1 = conexiones.rechazarConexionesEnHilo();
+    pthread_t hiloRechazo = conexiones.rechazarConexionesEnHilo();
 
     /**
      * Procesamiento.
