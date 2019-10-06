@@ -43,6 +43,19 @@ void Locator::provide(SDL_Renderer *renderer) {
     renderer_ = renderer;
 }
 
+/**
+ * Socket.
+ */
+int Locator::socket_;
+
+int Locator::socket() {
+    return socket_;
+}
+
+void Locator::provide(int socket) {
+    socket_ = socket;
+}
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 

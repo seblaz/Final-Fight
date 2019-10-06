@@ -43,11 +43,11 @@ void Juego::inicializarGraficos() {
             SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
             int imgFlags = IMG_INIT_PNG;
             if (!(IMG_Init(imgFlags) & imgFlags)) {
-                logger->log(ERROR, string("SDL_image no se pudo iniciar! SDL_Error: ").append(IMG_GetError()));
+                logger->log(ERROR, string("SDL_image no se pudo escuchar! SDL_Error: ").append(IMG_GetError()));
                 exit = true;
             }
             if (TTF_Init() < 0) {
-                logger->log(ERROR, string("SDL_ttf no se pudo iniciar! SDL_Error: ").append(TTF_GetError()));
+                logger->log(ERROR, string("SDL_ttf no se pudo escuchar! SDL_Error: ").append(TTF_GetError()));
                 exit = true;
             }
         }

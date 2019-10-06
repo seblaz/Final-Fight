@@ -19,11 +19,16 @@ public:
     static Configuracion *configuracion();
     static void provide(Configuracion *configuracion);
 
-    static void clean();
+    static int socket();
+    static void provide(int socket);
+
     static SDL_Renderer *renderer();
     static void provide(SDL_Renderer *);
 
+    static void clean();
+
 private:
+    static int socket_;
     static Logger *logger_;
     static Configuracion *configuracion_;
     static SDL_Renderer * renderer_;
