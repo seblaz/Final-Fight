@@ -26,14 +26,14 @@ int main(int argc, char *argv[]) {
     ConexionesClientes conexiones(socketServidor, 1);
     conexiones.esperarConexiones();
     vector<int> socketsClientes = conexiones.devolverConexiones();
-    conexiones.rechazarConexionesEnHilo();
+    pthread_t p1 = conexiones.rechazarConexionesEnHilo();
 
     /**
      * Procesamiento.
      */
     Procesamiento procesamiento;
     auto *eventos = procesamiento.devolverCola();
-    procesamiento.procesarEnHilo();
+    pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
 
     /**
      * Contenedor de hilos.
@@ -41,6 +41,13 @@ int main(int argc, char *argv[]) {
     ContenedorHilos contenedor;
     contenedor.crearHilos(socketsClientes, eventos);
     contenedor.esperarFinDeHilos();
+
+    /**
+     * Termino el procesamiento.
+     */
+    auto *fin = new Evento("fin");
+    eventos->push(fin);
+    pthread_join(hiloProcesamiento, nullptr);
 
     return 0;
 }

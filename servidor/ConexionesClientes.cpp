@@ -49,13 +49,12 @@ void ConexionesClientes::rechazarProximasConexiones() {
     sockaddr_in newSockAddr{};
     socklen_t newSockAddrSize = sizeof(newSockAddr);
 
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true){
         int nuevoSocket = accept(socketServidor, (sockaddr * ) & newSockAddr, &newSockAddrSize);
 
         if (nuevoSocket < 0) {
             Locator::logger()->log(ERROR, "Error al aceptar el pedido de conexión del cliente.");
+            break;
         } else {
             Locator::logger()->log(INFO, "Se conecta un nuevo cliente, pero la partida ya comenzó así que se termina la conexión.");
             string msg("Juego completo");
@@ -63,18 +62,21 @@ void ConexionesClientes::rechazarProximasConexiones() {
             close(nuevoSocket);
         }
     }
-    #pragma clang diagnostic pop
 }
 
 vector<int> ConexionesClientes::devolverConexiones() {
     return socketsClientes;
 }
 
-void ConexionesClientes::rechazarConexionesEnHilo() {
+pthread_t ConexionesClientes::rechazarConexionesEnHilo() {
     pthread_t hilo;
     pthread_create(&hilo, nullptr, [](void* arg)->void *{
             auto *conexiones = (ConexionesClientes *)arg;
             conexiones->rechazarProximasConexiones();
             return nullptr;
         }, (void *) this);
+
+    Locator::logger()->log(DEBUG, "Se creó el hilo de rechazo de conexiones.");
+
+    return hilo;
 }

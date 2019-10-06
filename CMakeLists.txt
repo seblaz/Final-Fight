@@ -97,8 +97,8 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ServicesSources} ${ThreadSources})
-target_link_libraries(cliente ${XercesC_LIBRARIES})
+add_executable(cliente ${ClientSources} ${ServicesSources} ${ThreadSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources} main/Juego.cpp)
+target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
 
 #[[
   Compilar el servidor.

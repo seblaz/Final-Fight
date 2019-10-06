@@ -25,7 +25,7 @@ public:
     ~ConexionesClientes();
     void esperarConexiones();
     vector<int> devolverConexiones();
-    void rechazarConexionesEnHilo();
+    pthread_t rechazarConexionesEnHilo();
 };
 
 

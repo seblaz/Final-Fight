@@ -7,7 +7,7 @@
 
 
 #include "../hilos/Eventos.h"
-#include "Evento.h"
+#include "../hilos/Evento.h"
 
 class Procesamiento {
 

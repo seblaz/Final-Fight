@@ -33,6 +33,7 @@ ConexionCliente::ConexionCliente(const string &ip, int puerto) {
 
 ConexionCliente::~ConexionCliente() {
     close(descriptorSocket);
+    Locator::logger()->log(INFO, "Se terminó la conexión con el servidor.");
 }
 
 int ConexionCliente::socket() {

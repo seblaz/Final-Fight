@@ -5,30 +5,26 @@
 #ifndef FINAL_FIGHT_EVENTOS_H
 #define FINAL_FIGHT_EVENTOS_H
 
-#include <queue>
+//#include <queue>
 #include <mutex>
-#include "../servidor/Evento.h"
+#include "Evento.h"
+#include "queue.h"
 
 using namespace std;
 
 class Eventos {
 
 private:
-    queue<Evento*> cola;
-    mutex m;
+    blocking_queue<Evento*> cola;
+
 
 public:
     void push(Evento *elem) {
-        lock_guard<std::mutex> lock(m);
         cola.push(elem);
     }
 
     Evento *pop() {
-        lock_guard<std::mutex> lock(m);
-        Evento *elem = cola.front();
-        if( elem != nullptr)
-            cola.pop();
-        return elem;
+        return cola.pop();
     }
 };
 
