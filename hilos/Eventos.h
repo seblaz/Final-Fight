@@ -14,19 +14,20 @@ using namespace std;
 class Eventos {
 
 private:
-    queue<Evento> cola;
+    queue<Evento*> cola;
     mutex m;
 
 public:
-    void push(Evento elem) {
+    void push(Evento *elem) {
         lock_guard<std::mutex> lock(m);
         cola.push(elem);
     }
 
-    Evento pop() {
+    Evento *pop() {
         lock_guard<std::mutex> lock(m);
-        Evento elem = cola.front();
-        cola.pop();
+        Evento *elem = cola.front();
+        if( elem != nullptr)
+            cola.pop();
         return elem;
     }
 };

@@ -26,13 +26,14 @@ int main(int argc, char *argv[]) {
     ConexionesClientes conexiones(socketServidor, 1);
     conexiones.esperarConexiones();
     vector<int> socketsClientes = conexiones.devolverConexiones();
-    conexiones.rechazarConexiones();
+    conexiones.rechazarConexionesEnHilo();
 
     /**
-     * Hilo de procesamiento.
+     * Procesamiento.
      */
-     Procesamiento procesamiento;
-     auto *eventos = procesamiento.devolverCola();
+    Procesamiento procesamiento;
+    auto *eventos = procesamiento.devolverCola();
+    procesamiento.procesarEnHilo();
 
     /**
      * Contenedor de hilos.

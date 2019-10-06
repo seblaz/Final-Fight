@@ -16,6 +16,8 @@ private:
 
 public:
     Eventos *devolverCola();
+    void procesar();
+    pthread_t procesarEnHilo();
 };
 
 

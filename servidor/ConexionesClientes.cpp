@@ -38,7 +38,7 @@ void ConexionesClientes::esperarConexiones() {
         } else {
             jugadoresFaltantes--;
             socketsClientes.push_back(nuevoSocket);
-            Locator::logger()->log(INFO, "Nuevo cliente conectado. Esperando " + to_string(jugadoresFaltantes) + " jugadores.");
+            Locator::logger()->log(INFO, "Nuevo cliente conectado. Esperando " + to_string(jugadoresFaltantes) + " jugador(es).");
         }
 
     }
@@ -70,7 +70,7 @@ vector<int> ConexionesClientes::devolverConexiones() {
     return socketsClientes;
 }
 
-void ConexionesClientes::rechazarConexiones() {
+void ConexionesClientes::rechazarConexionesEnHilo() {
     pthread_t hilo;
     pthread_create(&hilo, nullptr, [](void* arg)->void *{
             auto *conexiones = (ConexionesClientes *)arg;
