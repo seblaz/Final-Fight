@@ -87,7 +87,7 @@ string Logger::getLogDateTime() {
 
     stringstream dateTime;
     dateTime << localTime->tm_year + 1900 << "-";
-    dateTime << setfill('0') << setw(2) << localTime->tm_mon << "-";
+    dateTime << setfill('0') << setw(2) << localTime->tm_mon + 1 << "-";
     dateTime << setfill('0') << setw(2) << localTime->tm_mday << " ";
     dateTime << setfill('0') << setw(2) << localTime->tm_hour << ":";
     dateTime << setfill('0') << setw(2) << localTime->tm_min << ":";
@@ -102,7 +102,7 @@ string Logger::getLogFileName() {
 
     stringstream fileName;
     fileName << localTime->tm_year + 1900 << "-";
-    fileName << setfill('0') << setw(2) << localTime->tm_mon << "-";
+    fileName << setfill('0') << setw(2) << localTime->tm_mon + 1 << "-";
     fileName << setfill('0') << setw(2) << localTime->tm_mday << " ";
     fileName << setfill('0') << setw(2) << localTime->tm_hour;
     fileName << setfill('0') << setw(2) << localTime->tm_min;

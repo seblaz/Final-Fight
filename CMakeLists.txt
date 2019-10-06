@@ -45,6 +45,11 @@ endif()
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/")
 
 #[[
+  Para que funcione pthread.
+]]
+SET(CMAKE_CXX_FLAGS -pthread)
+
+#[[
   Definición de variables.
 ]]
 FILE(GLOB TestSources test/*.cpp)
@@ -60,6 +65,9 @@ FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
 FILE(GLOB Configurations *.xml)
 FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
+FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
+FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
+FILE(GLOB_RECURSE ThreadSources hilos/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
@@ -85,3 +93,15 @@ target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2
 ]]
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
+
+#[[
+  Compilar el cliente.
+]]
+add_executable(cliente ${ClientSources} ${ServicesSources} ${ThreadSources})
+target_link_libraries(cliente ${XercesC_LIBRARIES})
+
+#[[
+  Compilar el servidor.
+]]
+add_executable(servidor ${ServerSources} ${ServicesSources} ${ThreadSources})
+target_link_libraries(servidor ${XercesC_LIBRARIES})
