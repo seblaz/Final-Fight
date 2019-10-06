@@ -22,20 +22,46 @@ int main(int argc, char *argv[]) {
     auto* config = new Configuracion();
     Locator::provide(config);
 
-    ConexionCliente conexion("localhost", 5000);
-    int socket = conexion.socket();
-    Locator::provide(socket);
+    string ipAddress;
+    int port;
+    bool paramsOk = false;
 
-    Juego juego;
-    SDL_Renderer *renderer = juego.renderer();
-    Locator::provide(renderer);
-    Mapa &mapa = juego.mapa();
-    Nivel::generarPantallaDeEspera(&mapa);
+    if (argc < 3){
+        logger->log(ERROR, "No se recibio ip y/o puerto. Se termina la ejecucion");
+    }else{
+        ipAddress = argv[1];
 
-    Entrada entrada(socket);
-    entrada.procesarEntradaEnHilo();
+        try{
+            port = stoi(argv[2]);
+            paramsOk = true;
+        }catch(...){
+            logger->log(ERROR, "Error en puerto recibido. Se termina la ejecucion.");
+        }
+    }
 
-    juego.loop();
-    juego.terminar();
+    if (paramsOk) {
+        string user;
+        string pass;
 
+        cout << "Ingrese nombre de usuario" << endl;
+        cin >> user;
+        cout << "Ingrese contraseña" << endl;
+        cin >> pass;
+
+        ConexionCliente conexion(ipAddress, port);
+        int socket = conexion.socket();
+        Locator::provide(socket);
+
+        Juego juego;
+        SDL_Renderer *renderer = juego.renderer();
+        Locator::provide(renderer);
+        Mapa &mapa = juego.mapa();
+        Nivel::generarPantallaDeEspera(&mapa);
+
+        Entrada entrada(socket);
+        entrada.procesarEntradaEnHilo();
+
+        juego.loop();
+        juego.terminar();
+    }
 }
