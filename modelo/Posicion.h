@@ -9,12 +9,12 @@
 #include "Velocidad.h"
 #include "Entidad.h"
 
-class Posicion : public Estado{
+class Posicion : public Estado, public Serializador {
 
 private:
 
 public:
-    Posicion(int x, int y, int z);
+    explicit Posicion(int x = 0, int y = 0, int z = 0);
     Posicion operator-(Posicion otraPosicion);
     void mover(Velocidad& velocidad);
     int x, y, z;
@@ -22,6 +22,9 @@ public:
     int getY();
     int getZ();
     void setX(int x);
+
+    void serializar(ostream& stream) override;
+    void deserializar(istream& stream) override;
 };
 
 

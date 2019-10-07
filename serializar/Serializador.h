@@ -6,7 +6,8 @@
 #define FINAL_FIGHT_SERIALIZADOR_H
 
 
-#include "../modelo/Mapa.h"
+//#include "../modelo/Mapa.h"
+#include <sstream>
 
 using namespace std;
 
@@ -22,6 +23,11 @@ public:
     static void serializarEntero(ostream& stream, int entero);
     static int deserializarEntero(istream& stream);
 
+    static void serializarString(ostream& stream, string string);
+    static string deserializarString(istream& stream);
+
+    static void serializarBoolean(ostream& stream, bool boolean);
+    static bool deserializarBoolean(istream& stream);
 };
 
 

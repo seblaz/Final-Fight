@@ -35,4 +35,16 @@ void Posicion::setX(int xNuevo) {
     x = xNuevo;
 }
 
+void Posicion::serializar(ostream &stream) {
+    serializarEntero(stream, x);
+    serializarEntero(stream, y);
+    serializarEntero(stream, z);
+}
+
+void Posicion::deserializar(istream &stream) {
+    x = deserializarEntero(stream);
+    y = deserializarEntero(stream);
+    z = deserializarEntero(stream);
+}
+
 

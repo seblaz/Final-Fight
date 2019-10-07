@@ -63,6 +63,8 @@ void Juego::loop() {
         processInput();
         clearScene();
         actualizar();
+
+
         graficar();
 
         size_t end = SDL_GetTicks();
