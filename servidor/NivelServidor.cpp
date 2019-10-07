@@ -11,7 +11,9 @@ void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
 
     Entidad *pantalla = mapa->crearEntidad();
     auto *posicion = new Posicion(0, 0, 0);
+    auto *tipo = new Tipo(PANTALLA_SELECCION);
 
     pantalla->agregarEstado("posicion", posicion);
     pantalla->agregarEstado("mapa", mapa);
+    pantalla->agregarEstado("tipo", tipo);
 }

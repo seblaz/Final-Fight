@@ -68,6 +68,7 @@ int main(int argc, char *argv[]) {
     eventosATransmitir->push(finTransmitir);
 
     pthread_join(hiloProcesamiento, nullptr);
+    pthread_join(hiloTransmision, nullptr);
 
     return 0;
 }

@@ -83,4 +83,24 @@ public:
 };
 
 
+/**
+ * Tipo de entidad.
+ */
+enum TIPO {
+    PANTALLA_SELECCION,
+    PERSONAJE,
+    ESCENARIO
+};
+
+class Tipo : public Estado {
+
+private:
+    TIPO tipo_;
+
+public:
+    explicit Tipo(TIPO tipo);
+    TIPO tipo();
+
+};
+
 #endif //FINAL_FIGHT_ENTIDAD_H

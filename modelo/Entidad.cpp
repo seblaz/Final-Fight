@@ -28,3 +28,9 @@ vector<Estado *> Entidad::getEstados() {
     transform(estados.begin(), estados.end(), values.begin(), value_selector);
     return values;
 }
+
+Tipo::Tipo(TIPO tipo) : tipo_(tipo) {}
+
+TIPO Tipo::tipo() {
+    return tipo_;
+}
