@@ -14,3 +14,24 @@ int Serializador::deserializarEntero(istream &stream) {
     getline(stream, line);
     return stoi(line);
 }
+
+void Serializador::serializarString(ostream &in, string string) {
+    in << string << endl;
+}
+
+string Serializador::deserializarString(istream &stream) {
+    string line;
+    getline(stream, line);
+    return line;
+}
+
+void Serializador::serializarBoolean(ostream &in, bool boolean) {
+    in << boolean << endl;
+}
+
+bool Serializador::deserializarBoolean(istream &stream) {
+    string line;
+    getline(stream, line);
+    return stoi(line);
+}
+

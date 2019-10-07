@@ -8,10 +8,15 @@
 
 #include "Entidad.h"
 
-class Orientacion : public Estado {
+class Orientacion : public Estado, Serializador {
 
 public:
     bool adelante = true;
+
+    explicit Orientacion(bool adelante = true);
+
+    void serializar(ostream& stream);
+    void deserializar(istream& stream);
 };
 
 

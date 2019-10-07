@@ -7,6 +7,7 @@
 
 #include <unordered_map>
 #include "Iterator.cpp"
+#include "../serializar/Serializador.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -40,7 +41,7 @@ public:
  */
 using IdEntidad = size_t;
 
-class Entidad {
+class Entidad{
 
 private:
     static IdEntidad ultimoId;
