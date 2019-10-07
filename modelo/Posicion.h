@@ -9,7 +9,7 @@
 #include "Velocidad.h"
 #include "Entidad.h"
 
-class Posicion : public Estado, public Serializador {
+class Posicion : public Estado, public Serializable {
 
 private:
 

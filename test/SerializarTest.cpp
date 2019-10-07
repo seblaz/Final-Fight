@@ -4,13 +4,13 @@
 #include <utility>
 
 #include "gtest/gtest.h"
-#include "../serializar/Serializador.h"
+#include "../serializar/Serializable.h"
 #include "../modelo/Posicion.h"
 #include "../modelo/Orientacion.h"
 
 using namespace std;
 
-class UnaClase : public Serializador {
+class UnaClase : public Serializable {
 
 private:
     int x;
@@ -31,7 +31,6 @@ public:
     }
 
     void deserializar(istream &stream) override {
-//        stream >> x;
         x = deserializarEntero(stream);
         c = deserializarString(stream);
         b = deserializarBoolean(stream);
@@ -43,21 +42,6 @@ public:
 
 };
 
-//ostream &operator<<(ostream &in, const UnaClase &obj) {
-//    in << 5;
-//    return in << obj.x << endl << obj.c << endl;
-//}
-//
-//std::istream &operator>>(std::istream &in, UnaClase &obj) {
-//    string line;
-//    getline(in, line);
-//    obj.x = atoi(line.c_str());
-//    getline(in, line);
-//    obj.c = line;
-//    return in;
-//}
-//
-
 TEST(Serializar, PuedoSerializarUnaClase) {
 
     UnaClase unObjeto(10, "mi cadena", true);
@@ -65,13 +49,12 @@ TEST(Serializar, PuedoSerializarUnaClase) {
     unObjeto.serializar(s);
 
     UnaClase otroObjeto;
-//    stringstream s("10mi cadena");
     otroObjeto.deserializar(s);
 
-    cout << (unObjeto == otroObjeto);
+    ASSERT_TRUE(unObjeto == otroObjeto);
 }
 
-TEST(SerializarPosicion, SerializarUnaPosicion) {
+TEST(Serializar, SerializarUnaPosicion) {
 
     Posicion posicionServidor(10, 10, 10);
     stringstream s;
@@ -80,10 +63,10 @@ TEST(SerializarPosicion, SerializarUnaPosicion) {
     Posicion posicionCliente;
     posicionCliente.deserializar(s);
 
-    cout << (posicionCliente.x == posicionServidor.x && posicionCliente.y == posicionServidor.y && posicionCliente.z == posicionServidor.z);
+    ASSERT_TRUE(posicionCliente.x == posicionServidor.x && posicionCliente.y == posicionServidor.y && posicionCliente.z == posicionServidor.z);
 }
 
-TEST(SerializarOrientacion, SerializarUnaOrientacion) {
+TEST(Serializar, SerializarUnaOrientacion) {
 
     Orientacion orientacionServidor(true);
     stringstream s;
@@ -92,6 +75,17 @@ TEST(SerializarOrientacion, SerializarUnaOrientacion) {
     Orientacion orientacionCliente;
     orientacionCliente.deserializar(s);
 
-    cout << ( orientacionCliente.adelante == orientacionServidor.adelante );
+    ASSERT_TRUE( orientacionCliente.adelante == orientacionServidor.adelante );
+}
+
+TEST(Serializar, SerializarUnTipo) {
+    Tipo tipo(PANTALLA_SELECCION);
+    stringstream s;
+    tipo.serializar(s);
+
+    Tipo otroTipo;
+    otroTipo.deserializar(s);
+
+    ASSERT_TRUE(tipo == otroTipo);
 }
 

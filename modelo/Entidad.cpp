@@ -34,3 +34,17 @@ Tipo::Tipo(TIPO tipo) : tipo_(tipo) {}
 TIPO Tipo::tipo() {
     return tipo_;
 }
+
+void Tipo::serializar(ostream &stream) {
+    serializarEntero(stream, tipo_);
+}
+
+void Tipo::deserializar(istream &stream) {
+    tipo_ = static_cast<TIPO>(deserializarEntero(stream));
+}
+
+Tipo::Tipo() : tipo_(PANTALLA_SELECCION){}
+
+bool Tipo::operator==(const Tipo &otroTipo) {
+    return tipo_ == otroTipo.tipo_;
+}

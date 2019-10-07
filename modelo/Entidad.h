@@ -7,7 +7,7 @@
 
 #include <unordered_map>
 #include "Iterator.cpp"
-#include "../serializar/Serializador.h"
+#include "../serializar/Serializable.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -93,14 +93,20 @@ enum TIPO {
     ESCENARIO
 };
 
-class Tipo : public Estado {
+class Tipo : public Estado, Serializable {
 
 private:
     TIPO tipo_;
 
 public:
     explicit Tipo(TIPO tipo);
+    Tipo();
     TIPO tipo();
+    
+    void serializar(ostream& stream) override;
+    void deserializar(istream& stream) override;
+
+    bool operator==(const Tipo &otroTipo);
 
 };
 
