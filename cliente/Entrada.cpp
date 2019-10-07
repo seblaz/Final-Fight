@@ -17,7 +17,6 @@ void Entrada::procesarEntrada() {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
     string msg;
-    miData var = {1, 2};
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
@@ -31,7 +30,7 @@ void Entrada::procesarEntrada() {
         } else {
             msg = "Reposar";
         }
-        send(socket, &var, sizeof(var), 0);
+        send(socket, msg.c_str(), msg.length(), 0);
         SDL_Delay(1000);
     }
 #pragma clang diagnostic pop
