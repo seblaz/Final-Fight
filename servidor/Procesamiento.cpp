@@ -17,6 +17,7 @@ void Procesamiento::procesar() {
         evento->resolver();
         if (evento->msj() == "fin")
             break;
+
     }
 }
 

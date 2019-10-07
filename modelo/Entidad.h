@@ -23,6 +23,10 @@ class Entidad;
  * Estado. Representa un estado de una entidad (solo datos sin comportamiento).
  */
 class Estado {
+
+public:
+    virtual void serializar(ostream& stream) {};
+    virtual void deserializar(istream& stream) {};
 };
 
 /**
@@ -41,13 +45,14 @@ public:
  */
 using IdEntidad = size_t;
 
-class Entidad{
+class Entidad : public Serializable {
 
 private:
     static IdEntidad ultimoId;
     IdEntidad idEntidad;
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
+    vector<string> estadosSerializables = {"posicion", "orientacion"};
 
 public:
     Entidad();
@@ -81,6 +86,10 @@ public:
     vector<Comportamiento *> getComportamientos();
 
     vector<Estado *> getEstados();
+
+    void serializar(ostream& stream) override;
+    void deserializar(istream& stream) override;
+
 };
 
 
@@ -102,7 +111,7 @@ public:
     explicit Tipo(TIPO tipo);
     Tipo();
     TIPO tipo();
-    
+
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 

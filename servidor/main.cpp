@@ -39,18 +39,18 @@ int main(int argc, char *argv[]) {
     pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
 
     /**
-     * Transmision.
-     */
-    Transmision transmision(socketsClientes);
-    auto *eventosATransmitir = transmision.devolverCola();
-    pthread_t hiloTransmision = transmision.transmitirEnHilo();
-
-    /**
      * Iniciar juego.
      */
     Mapa mapa;
     auto *comenzar = new MostrarPantallaDeSeleccion(&mapa);
     eventosAProcesar->push(comenzar);
+
+    /**
+     * Transmision.
+     */
+    Transmision transmision(socketsClientes);
+    auto *eventosATransmitir = transmision.devolverCola();
+    pthread_t hiloTransmision = transmision.transmitirEnHilo();
 
     /**
      * Contenedor de hilos.

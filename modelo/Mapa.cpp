@@ -33,3 +33,7 @@ Entidad *Mapa::crearJugador() {
 Entidad *Mapa::getJugador() {
     return jugador;
 }
+
+Entidad *Mapa::getEntidad(IdEntidad idEntidad) {
+    return nullptr;
+}

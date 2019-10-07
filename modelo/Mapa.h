@@ -26,6 +26,7 @@ public:
     auto devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end()));
     void vaciarMapa();
     Entidad *getJugador();
+    Entidad *getEntidad(IdEntidad idEntidad);
 
 };
 

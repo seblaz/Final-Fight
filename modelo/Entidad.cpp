@@ -3,6 +3,7 @@
 //
 
 #include "Entidad.h"
+#include "Posicion.h"
 #include <algorithm>
 
 IdEntidad Entidad::ultimoId = 0;
@@ -27,6 +28,32 @@ vector<Estado *> Entidad::getEstados() {
     auto value_selector = [](auto pair){return pair.second;};
     transform(estados.begin(), estados.end(), values.begin(), value_selector);
     return values;
+}
+
+void Entidad::serializar(ostream &stream) {
+    serializarEntero(stream, idEntidad);
+    getEstado<Tipo>("tipo")->serializar(stream);
+
+    for (Estado * estado : getEstados()){
+        if(find(estadosSerializables.begin(), estadosSerializables.end(), estado) != estadosSerializables.end()){
+            estado->serializar(stream);
+        }
+    }
+}
+
+void Entidad::deserializar(istream &stream) {
+    idEntidad = deserializarEntero(stream);
+    auto * tipo = new Tipo();
+    tipo->deserializar(stream);
+    agregarEstado("tipo", tipo);
+
+    switch (tipo->tipo()){
+        case PANTALLA_SELECCION:
+            auto* posicion = new Posicion();
+            posicion->deserializar(stream);
+            agregarEstado("posicion", posicion);
+            break;
+    }
 }
 
 Tipo::Tipo(TIPO tipo) : tipo_(tipo) {}
