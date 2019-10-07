@@ -8,7 +8,7 @@
 
 #include <pthread.h>
 #include <vector>
-#include "../hilos/Eventos.h"
+#include "../eventos/Eventos.h"
 
 using namespace std;
 
@@ -18,20 +18,20 @@ private:
     vector<pthread_t> hilos;
 
 public:
-    void crearHilos(const vector<int>& sockets, Eventos *eventos);
+    void crearHilos(const vector<int>& sockets, EventosAProcesar *eventos);
     void esperarFinDeHilos();
 };
 
 struct escucharClienteArgs {
     int socket;
-    Eventos *eventos;
+    EventosAProcesar *eventos;
 };
 
 void *escucharCliente(void *);
 
 struct enviarAClienteArgs {
     int socket;
-    Eventos *eventos;
+    EventosAProcesar *eventos;
 };
 
 void *enviarACliente(void *);

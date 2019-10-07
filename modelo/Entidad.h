@@ -7,6 +7,7 @@
 
 #include <unordered_map>
 #include "Iterator.cpp"
+#include "../serializar/Serializador.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -40,7 +41,7 @@ public:
  */
 using IdEntidad = size_t;
 
-class Entidad {
+class Entidad{
 
 private:
     static IdEntidad ultimoId;
@@ -82,5 +83,25 @@ public:
     vector<Estado *> getEstados();
 };
 
+
+/**
+ * Tipo de entidad.
+ */
+enum TIPO {
+    PANTALLA_SELECCION,
+    PERSONAJE,
+    ESCENARIO
+};
+
+class Tipo : public Estado {
+
+private:
+    TIPO tipo_;
+
+public:
+    explicit Tipo(TIPO tipo);
+    TIPO tipo();
+
+};
 
 #endif //FINAL_FIGHT_ENTIDAD_H

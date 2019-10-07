@@ -9,7 +9,7 @@
 #include <string>
 #include <SDL_timer.h>
 #include "Entrada.h"
-#include "../hilos/data.h"
+#include "../eventos/data.h"
 
 Entrada::Entrada(int socket) : socket(socket){}
 

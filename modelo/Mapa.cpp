@@ -19,7 +19,7 @@ auto Mapa::devolverEntidades() -> decltype(make_iterable(entidades.begin(), enti
 
 void Mapa::vaciarMapa() {
     entidades.clear();
-    Locator::logger()->log(DEBUG, "Se vacio el vector de entidades.");
+    Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
     if(jugador)
         entidades.push_back(jugador);
     Locator::logger()->log(DEBUG, "Se agregó al jugador a las entidades.");

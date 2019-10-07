@@ -32,5 +32,5 @@ public:
     static Entidad *generarJugador(Mapa *mapa, nombreJugador jugadorElegido);
     static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
 };
-#endif //FINAL_FIGHT_NIVEL_H
 
+#endif //FINAL_FIGHT_NIVEL_H

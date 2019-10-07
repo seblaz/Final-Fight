@@ -6,16 +6,16 @@
 #define FINAL_FIGHT_ESCUCHA_H
 
 
-#include "../hilos/Eventos.h"
+#include "../eventos/Eventos.h"
 
 class Escucha {
 
 private:
     int descriptorSocket;
-    Eventos *eventos;
+    EventosAProcesar *eventos;
 
 public:
-    explicit Escucha(int descriptorSocket, Eventos *eventos);
+    explicit Escucha(int descriptorSocket, EventosAProcesar *eventos);
     void escuchar();
 
 };
