@@ -6,20 +6,21 @@
 #define FINAL_FIGHT_MANAGERUSUARIOS_H
 
 #include <array>
+#include <list>
 #include "Usuario.h"
 
 using namespace std;
 
 class ManagerUsuarios {
     private:
-        array<Usuario, 6> usuarios;
+        list<Usuario> usuarios;
         int maximo;
 
     public:
         ManagerUsuarios(int maximo);
         void agregarUsuario(Usuario usuario);
         bool estaPresente(Usuario usuario);
-
+        bool estaLogueado(Usuario usuario);
 };
 
 
