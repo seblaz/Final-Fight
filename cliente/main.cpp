@@ -71,10 +71,12 @@ int main(int argc, char *argv[]) {
          */
         Escucha escucha(socket, &actualizador);
         escucha.escucharEnHilo();
+
+
+        juego.loop();
+        juego.terminar();
     }
 
     return 0;
 
 }
-
-
