@@ -6,26 +6,31 @@
 #include "Escucha.h"
 #include "../servicios/Locator.h"
 #include "../eventos/data.h"
+#include "../modelo/Accion.h"
 #include <sys/socket.h>
 
-Escucha::Escucha(int descriptorSocket, EventosAProcesar *eventos) :
-        eventos(eventos),
+Escucha::Escucha(int descriptorSocket) :
         descriptorSocket(descriptorSocket) {}
 
-void Escucha::escuchar() {
+void Escucha::escuchar(ActualizadorServidor *actualizador) {
 
-    while(true) {
-        char msg[1500];
+    stringstream s;
+    char msg[5000];
+
+    while (true) {
         memset(&msg, 0, sizeof(msg)); // clear the buffer
 
         int valueRead = recv(descriptorSocket, (char *) &msg, sizeof(msg), 0);
-        if (valueRead <= 0) {
+        if (valueRead < 0) {
             Locator::logger()->log(ERROR, string("No se pudo leer datos del cliente. Error: ").append(strerror(errno)) + ". Se termina el hilo.");
             break;
+        } else if(valueRead == 0){
+            Locator::logger()->log(INFO, "El cliente se desconectó.");
+            break;
         } else {
-            auto *evento = new EventoAProcesar(msg);
-            Locator::logger()->log(DEBUG, string("Se recibe msj_: ").append(msg) + ".");
-            eventos->push(evento);
+            Locator::logger()->log(DEBUG, string("Se recibe msj: ").append(msg) + ".");
+            s << msg;
+            actualizador->interpretarComando(s);
         }
     }
 

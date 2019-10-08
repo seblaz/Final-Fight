@@ -78,7 +78,6 @@ void Juego::loop() {
 
 void Juego::inicializarElementos() {
     Locator::logger()->log(DEBUG, "Se inicializa el mapa");
-    mapa_ = Mapa();
 }
 
 void Juego::processInput() {

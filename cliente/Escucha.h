@@ -6,17 +6,17 @@
 #define FINAL_FIGHT_ESCUCHA_H
 
 #include <pthread.h>
-#include "Actualizador.h"
+#include "ActualizadorCliente.h"
 
 class Escucha {
 
 private:
     int socket;
-    Actualizador *actualizador;
+    ActualizadorCliente *actualizador;
     void escuchar();
 
 public:
-    explicit Escucha(int socket, Actualizador *actualizador);
+    explicit Escucha(int socket, ActualizadorCliente *actualizador);
     pthread_t escucharEnHilo();
 
 };

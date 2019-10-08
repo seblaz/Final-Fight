@@ -14,6 +14,7 @@ public:
     static void generarPantallaDeEspera(Mapa *mapa);
     static void generarMenuSeleccion(Mapa *mapa, Entidad *pantalla);
 
+    static void generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador);
 };
 
 

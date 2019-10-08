@@ -12,7 +12,7 @@ EventosAProcesar *Procesamiento::devolverCola() {
 void Procesamiento::procesar() {
     while (true) {
         auto *evento = eventosAProcesar.pop();
-        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
+//        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
 
         evento->resolver();
         if (evento->msj() == "fin")

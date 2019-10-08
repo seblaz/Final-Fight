@@ -7,7 +7,7 @@
 #include "../servicios/Locator.h"
 #include "../main/Juego.h"
 #include "Escucha.h"
-#include "Actualizador.h"
+#include "ActualizadorCliente.h"
 #include "NivelCliente.h"
 
 using namespace std;
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
      */
     ConexionCliente conexion("localhost", 5000);
     int socket = conexion.socket();
+    Locator::provide(socket);
 
     /**
      * Iniciar juego.
@@ -37,7 +38,7 @@ int main(int argc, char *argv[]) {
     /**
      * Actualizador.
      */
-     Actualizador actualizador(&mapa);
+     ActualizadorCliente actualizador(&mapa);
 
     /**
      * Escuchar al servidor.

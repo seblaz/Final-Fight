@@ -4,6 +4,7 @@
 
 #include "Entidad.h"
 #include "Posicion.h"
+#include "Orientacion.h"
 #include <algorithm>
 
 
@@ -24,11 +25,14 @@ vector<Estado *> Entidad::getEstados() {
 void Entidad::serializar(ostream &stream) {
     getEstado<Tipo>("tipo")->serializar(stream);
 
-    for (auto estado : estados){
-        if(find(estadosSerializables.begin(), estadosSerializables.end(), estado.first) != estadosSerializables.end()){
-            estado.second->serializar(stream);
+    for (size_t i = 0; i < estadosSerializables.size(); i++){
+        string estado = estadosSerializables.at(i);
+        if (!(estados.find(estado) == estados.end())){
+            serializarEntero(stream, i);
+            estados[estado]->serializar(stream);
         }
     }
+    serializarEntero(stream, fin);
 }
 
 void Entidad::deserializar(istream &stream) {
@@ -36,12 +40,19 @@ void Entidad::deserializar(istream &stream) {
     tipo->deserializar(stream);
     agregarEstado("tipo", tipo);
 
-    switch (tipo->tipo()){
-        case PANTALLA_SELECCION:
+    int posicionEstado = deserializarEntero(stream);
+    while (posicionEstado != fin){
+        string estado = estadosSerializables.at(posicionEstado);
+        if (estado == "posicion") {
             auto* posicion = new Posicion();
             posicion->deserializar(stream);
             agregarEstado("posicion", posicion);
-            break;
+        } else if (estado == "orientacion") {
+            auto *orientacion = new Orientacion();
+            orientacion->deserializar(stream);
+            agregarEstado("orientacion", orientacion);
+        }
+        posicionEstado = deserializarEntero(stream);
     }
 }
 

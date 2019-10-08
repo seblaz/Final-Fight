@@ -12,6 +12,8 @@ class NivelServidor {
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);
+    static void generarJugador(Mapa *mapa);
+
 };
 
 

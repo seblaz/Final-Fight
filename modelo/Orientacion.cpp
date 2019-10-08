@@ -15,3 +15,7 @@ void Orientacion::deserializar(istream &stream) {
 Orientacion::Orientacion(bool adelante) {
     this -> adelante = adelante;
 }
+
+bool Orientacion::operator==(const Orientacion &otraOrientacion) {
+    return adelante == otraOrientacion.adelante;
+}

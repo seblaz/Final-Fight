@@ -9,9 +9,10 @@
 #include "Procesamiento.h"
 #include "../eventos/Eventos.h"
 #include "Transmision.h"
-#include "../eventos/MostrarPantallaDeSeleccion.h"
+#include "../eventos/MostrarMenuSeleccion.h"
 #include "../eventos/ActualizarYTransmitir.h"
 #include "GameLoop.h"
+#include "ActualizadorServidor.h"
 
 using namespace std;
 
@@ -62,14 +63,15 @@ int main(int argc, char *argv[]) {
     GameLoop gameLoop(eventosAProcesar, actualizar);
     pthread_t hiloGameLoop = gameLoop.loopEnHilo();
 
-    auto *comenzar = new MostrarPantallaDeSeleccion(&mapa);
+    auto *comenzar = new MostrarMenuSeleccion(&mapa);
     eventosAProcesar->push(comenzar);
 
     /**
      * Contenedor de hilos.
      */
+    ActualizadorServidor actualizador(&mapa, eventosAProcesar);
     ContenedorHilos contenedor;
-    contenedor.crearHilos(socketsClientes, eventosAProcesar);
+    contenedor.crearHilos(socketsClientes, &actualizador);
     contenedor.esperarFinDeHilos();
 
     /**

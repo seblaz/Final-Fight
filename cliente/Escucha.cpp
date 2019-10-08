@@ -6,10 +6,10 @@
 #include "Escucha.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Entidad.h"
-#include "Actualizador.h"
+#include "ActualizadorCliente.h"
 
-Escucha::Escucha(int socket, Actualizador *actualizador) :
-        socket(socket),
+Escucha::Escucha(int descriptorSocket, ActualizadorCliente *actualizador) :
+        socket(descriptorSocket),
         actualizador(actualizador) {}
 
 void Escucha::escuchar() {
@@ -28,7 +28,7 @@ void Escucha::escuchar() {
             Locator::logger()->log(INFO, "El cliente se desconectó.");
             break;
         } else {
-            Locator::logger()->log(DEBUG, string("Se recibe msj: ").append(msg) + ".");
+//            Locator::logger()->log(DEBUG, string("Se recibe msj: ").append(msg) + ".");
             s << msg;
             actualizador->actualizarEntidades(s);
         }
@@ -39,8 +39,8 @@ void Escucha::escuchar() {
 pthread_t Escucha::escucharEnHilo() {
     pthread_t hilo;
     pthread_create(&hilo, nullptr, [](void *arg) -> void * {
-        auto *conexiones = (Escucha *) arg;
-        conexiones->escuchar();
+        auto *escucha = (Escucha *) arg;
+        escucha->escuchar();
         return nullptr;
     }, (void *) this);
 

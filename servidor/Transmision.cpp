@@ -23,7 +23,7 @@ void Transmision::transmitir() {
             } else if(result == 0){
                 Locator::logger()->log(INFO, "Cliente desconectado.");
             } else {
-                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
+//                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
             }
         }
 

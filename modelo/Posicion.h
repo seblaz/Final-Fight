@@ -15,13 +15,15 @@ private:
 
 public:
     explicit Posicion(int x = 0, int y = 0, int z = 0);
-    Posicion operator-(Posicion otraPosicion);
+    Posicion operator-(const Posicion& otraPosicion);
     void mover(Velocidad& velocidad);
     int x, y, z;
     int getX();
     int getY();
     int getZ();
     void setX(int x);
+
+    bool operator==(const Posicion &otraPosicion);
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
