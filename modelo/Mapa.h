@@ -17,13 +17,13 @@ class Mapeable;
 class Mapa : public Estado {
 
 private:
-    vector<Entidad*> entidades;
+    unordered_map<IdEntidad, Entidad*> entidades;
     Entidad *jugador;
 
 public:
     Entidad *crearEntidad();
     Entidad *crearJugador();
-    auto devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end()));
+    vector<Entidad *> devolverEntidades();
     void vaciarMapa();
     Entidad *getJugador();
     Entidad *getEntidad(IdEntidad idEntidad);

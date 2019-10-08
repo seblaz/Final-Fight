@@ -16,8 +16,16 @@ void Transmision::transmitir() {
         EventoATransmitir *evento = eventosATransmitir.pop();
         string msj = evento->msj();
 
-        for (int socket : sockets)
-            send(socket, &msj, msj.length(), 0);
+        for (int socket : sockets){
+            int result = send(socket, &msj, msj.length(), 0);
+            if (result == -1 ){
+                Locator::logger()->log(ERROR, "Error al transmitir.");
+            } else if(result == 0){
+                Locator::logger()->log(INFO, "Cliente desconectado.");
+            } else {
+                Locator::logger()->log(DEBUG, "Transmisión correcta.");
+            }
+        }
 
         if (msj == "fin") {
             Locator::logger()->log(DEBUG, "Se termina el socket de transmisión.");

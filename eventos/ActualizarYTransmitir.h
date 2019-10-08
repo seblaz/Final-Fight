@@ -13,7 +13,8 @@ class ActualizarYTransmitir : public EventoAProcesar {
 private:
     Mapa *mapa;
     EventosATransmitir *eventosATransmitir;
-    void transmitir();
+    stringstream serializar();
+    void transmitir(stringstream s);
 
 public:
     ActualizarYTransmitir(Mapa *mapa, EventosATransmitir *eventosATransmitir);

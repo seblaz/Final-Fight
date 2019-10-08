@@ -34,9 +34,9 @@ void Entidad::serializar(ostream &stream) {
     serializarEntero(stream, idEntidad);
     getEstado<Tipo>("tipo")->serializar(stream);
 
-    for (Estado * estado : getEstados()){
-        if(find(estadosSerializables.begin(), estadosSerializables.end(), estado) != estadosSerializables.end()){
-            estado->serializar(stream);
+    for (auto estado : estados){
+        if(find(estadosSerializables.begin(), estadosSerializables.end(), estado.first) != estadosSerializables.end()){
+            estado.second->serializar(stream);
         }
     }
 }
