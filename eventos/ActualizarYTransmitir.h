@@ -14,7 +14,7 @@ private:
     Mapa *mapa;
     EventosATransmitir *eventosATransmitir;
     stringstream serializar();
-    void transmitir(stringstream s);
+    void transmitir(stringstream &s);
 
 public:
     ActualizarYTransmitir(Mapa *mapa, EventosATransmitir *eventosATransmitir);

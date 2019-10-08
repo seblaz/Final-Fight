@@ -17,13 +17,13 @@ void Transmision::transmitir() {
         string msj = evento->msj();
 
         for (int socket : sockets){
-            int result = send(socket, &msj, msj.length(), 0);
+            int result = send(socket, msj.c_str(), msj.length(), 0);
             if (result == -1 ){
                 Locator::logger()->log(ERROR, "Error al transmitir.");
             } else if(result == 0){
                 Locator::logger()->log(INFO, "Cliente desconectado.");
             } else {
-                Locator::logger()->log(DEBUG, "Transmisión correcta.");
+                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
             }
         }
 

@@ -12,6 +12,10 @@ Entidad::Entidad() {
     idEntidad = ultimoId++;
 }
 
+Entidad::Entidad(IdEntidad idEntidad_) {
+    idEntidad = idEntidad_;
+}
+
 IdEntidad Entidad::getId() {
     return idEntidad;
 }
@@ -54,6 +58,14 @@ void Entidad::deserializar(istream &stream) {
             agregarEstado("posicion", posicion);
             break;
     }
+}
+
+void Entidad::putIdInStream(ostream &in) {
+    serializarEntero(in, idEntidad);
+}
+
+IdEntidad Entidad::getIdFromStream(istream &stream) {
+    return deserializarEntero(stream);
 }
 
 Tipo::Tipo(TIPO tipo) : tipo_(tipo) {}

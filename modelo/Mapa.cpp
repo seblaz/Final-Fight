@@ -14,6 +14,12 @@ Entidad *Mapa::crearEntidad() {
     return e;
 }
 
+Entidad *Mapa::crearEntidadConId(IdEntidad idEntidad) {
+    auto* e = new Entidad(idEntidad);
+    entidades[e->getId()] = e;
+    return e;
+}
+
 vector<Entidad *> Mapa::devolverEntidades() {
     vector<Entidad *> values(entidades.size());
     auto value_selector = [](auto pair){return pair.second;};
@@ -24,9 +30,10 @@ vector<Entidad *> Mapa::devolverEntidades() {
 void Mapa::vaciarMapa() {
     entidades.clear();
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
-    if(jugador)
+    if(jugador){
         entidades[jugador->getId()] = jugador;
-    Locator::logger()->log(DEBUG, "Se agregó al jugador a las entidades.");
+        Locator::logger()->log(DEBUG, "Se agregó al jugador a las entidades.");
+    }
 }
 
 Entidad *Mapa::crearJugador() {
@@ -40,4 +47,8 @@ Entidad *Mapa::getJugador() {
 
 Entidad *Mapa::getEntidad(IdEntidad idEntidad) {
     return entidades[idEntidad];
+}
+
+bool Mapa::contiene(IdEntidad idEntidad) {
+    return !(entidades.find(idEntidad) == entidades.end());
 }

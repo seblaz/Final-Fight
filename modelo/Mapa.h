@@ -22,12 +22,13 @@ private:
 
 public:
     Entidad *crearEntidad();
+    Entidad *crearEntidadConId(IdEntidad idEntidad);
     Entidad *crearJugador();
     vector<Entidad *> devolverEntidades();
     void vaciarMapa();
     Entidad *getJugador();
     Entidad *getEntidad(IdEntidad idEntidad);
-
+    bool contiene(IdEntidad idEntidad);
 };
 
 #endif //FINAL_FIGHT_MAPA_H

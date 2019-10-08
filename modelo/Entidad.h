@@ -56,8 +56,11 @@ private:
 
 public:
     Entidad();
+    explicit Entidad(IdEntidad idEntidad);
 
     IdEntidad getId();
+    void putIdInStream(ostream &in);
+    static IdEntidad getIdFromStream(istream &stream);
 
     template<typename T>
     void agregarEstado(const string &s, T *t) {
@@ -89,7 +92,6 @@ public:
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
-
 };
 
 

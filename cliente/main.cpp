@@ -12,6 +12,8 @@
 #include "Entrada.h"
 #include "../main/Juego.h"
 #include "../niveles/Nivel.h"
+#include "Escucha.h"
+#include "Actualizador.h"
 
 using namespace std;
 
@@ -22,18 +24,32 @@ int main(int argc, char *argv[]) {
     auto* config = new Configuracion();
     Locator::provide(config);
 
+    /**
+     * Conexion cliente.
+     */
     ConexionCliente conexion("localhost", 5000);
     int socket = conexion.socket();
-    Locator::provide(socket);
 
+    /**
+     * Iniciar juego.
+     */
     Juego juego;
     SDL_Renderer *renderer = juego.renderer();
     Locator::provide(renderer);
     Mapa &mapa = juego.mapa();
     Nivel::generarPantallaDeEspera(&mapa);
 
-    Entrada entrada(socket);
-    entrada.procesarEntradaEnHilo();
+    /**
+     * Actualizador.
+     */
+     Actualizador actualizador(&mapa);
+
+    /**
+     * Escuchar al servidor.
+     */
+    Escucha escucha(socket, &actualizador);
+    escucha.escucharEnHilo();
+
 
     juego.loop();
     juego.terminar();
