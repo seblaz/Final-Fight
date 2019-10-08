@@ -7,6 +7,7 @@
 #include "../serializar/Serializable.h"
 #include "../modelo/Posicion.h"
 #include "../modelo/Orientacion.h"
+#include "../usuario/Usuario.h"
 
 using namespace std;
 
@@ -89,3 +90,14 @@ TEST(Serializar, SerializarUnTipo) {
     ASSERT_TRUE(tipo == otroTipo);
 }
 
+TEST(Serializar, SerializarUnUsuario) {
+    Usuario usuario("user", "pass");
+    stringstream s;
+    usuario.serializar(s);
+
+    Usuario otroUsuario;
+    otroUsuario.deserializar(s);
+
+    ASSERT_TRUE( usuario.getUsuario() == otroUsuario.getUsuario() );
+    ASSERT_TRUE( usuario.getContrasenia() == otroUsuario.getContrasenia() );
+}

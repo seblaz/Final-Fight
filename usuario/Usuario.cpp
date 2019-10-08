@@ -15,3 +15,11 @@ void Usuario::deserializar(istream &stream) {
     usuario = deserializarString(stream);
     contrasenia = deserializarString(stream);
 }
+
+string Usuario::getUsuario() {
+    return usuario;
+}
+
+string Usuario::getContrasenia() {
+    return contrasenia;
+}
