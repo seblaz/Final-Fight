@@ -2,18 +2,13 @@
 // Created by sebas on 4/10/19.
 //
 
-#include <iostream>
 #include <string>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <string.h>
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
-#include "Entrada.h"
 #include "../main/Juego.h"
-#include "../niveles/Nivel.h"
 #include "Escucha.h"
 #include "Actualizador.h"
+#include "NivelCliente.h"
 
 using namespace std;
 
@@ -37,7 +32,7 @@ int main(int argc, char *argv[]) {
     SDL_Renderer *renderer = juego.renderer();
     Locator::provide(renderer);
     Mapa &mapa = juego.mapa();
-    Nivel::generarPantallaDeEspera(&mapa);
+    NivelCliente::generarPantallaDeEspera(&mapa);
 
     /**
      * Actualizador.
@@ -54,4 +49,5 @@ int main(int argc, char *argv[]) {
     juego.loop();
     juego.terminar();
 
+    return 0;
 }

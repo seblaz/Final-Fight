@@ -6,19 +6,6 @@
 #include "Posicion.h"
 #include <algorithm>
 
-IdEntidad Entidad::ultimoId = 0;
-
-Entidad::Entidad() {
-    idEntidad = ultimoId++;
-}
-
-Entidad::Entidad(IdEntidad idEntidad_) {
-    idEntidad = idEntidad_;
-}
-
-IdEntidad Entidad::getId() {
-    return idEntidad;
-}
 
 vector<Comportamiento *> Entidad::getComportamientos() {
     vector<Comportamiento *> values(comportamientos.size());
@@ -35,7 +22,6 @@ vector<Estado *> Entidad::getEstados() {
 }
 
 void Entidad::serializar(ostream &stream) {
-    serializarEntero(stream, idEntidad);
     getEstado<Tipo>("tipo")->serializar(stream);
 
     for (auto estado : estados){
@@ -46,7 +32,6 @@ void Entidad::serializar(ostream &stream) {
 }
 
 void Entidad::deserializar(istream &stream) {
-    idEntidad = deserializarEntero(stream);
     auto * tipo = new Tipo();
     tipo->deserializar(stream);
     agregarEstado("tipo", tipo);
@@ -60,7 +45,7 @@ void Entidad::deserializar(istream &stream) {
     }
 }
 
-void Entidad::putIdInStream(ostream &in) {
+void Entidad::putIdInStream(ostream &in, IdEntidad idEntidad) {
     serializarEntero(in, idEntidad);
 }
 

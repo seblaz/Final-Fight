@@ -48,18 +48,12 @@ using IdEntidad = size_t;
 class Entidad : public Serializable {
 
 private:
-    static IdEntidad ultimoId;
-    IdEntidad idEntidad;
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
     vector<string> estadosSerializables = {"posicion", "orientacion"};
 
 public:
-    Entidad();
-    explicit Entidad(IdEntidad idEntidad);
-
-    IdEntidad getId();
-    void putIdInStream(ostream &in);
+    static void putIdInStream(ostream &in, IdEntidad idEntidad);
     static IdEntidad getIdFromStream(istream &stream);
 
     template<typename T>

@@ -6,6 +6,7 @@
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDePantallaCompleta.h"
+#include "NivelCliente.h"
 
 Actualizador::Actualizador(Mapa *mapa) : mapa(mapa) {}
 
@@ -15,33 +16,26 @@ void Actualizador::actualizarEntidades(stringstream &s) {
         mapa->vaciarMapa();
     }
 
-    IdEntidad idEntidad = Entidad::getIdFromStream(s);
-    if (!mapa->contiene(idEntidad)) {
-        Locator::logger()->log(DEBUG,
-                               "El cliente no contiene la entidad: " + to_string(idEntidad) + ". Se va a crear.");
-        Entidad *entidad = mapa->crearEntidadConId(idEntidad);
-        entidad->deserializar(s);
+    while (s.rdbuf()->in_avail() != 0) {
+        IdEntidad idEntidad = Entidad::getIdFromStream(s);
+        if (!mapa->contiene(idEntidad)) {
+            Locator::logger()->log(DEBUG, "El cliente no contiene la entidad: " + to_string(idEntidad) + ", por lo tanto se crea.");
+            Entidad *entidad = mapa->crearEntidadConId(idEntidad);
+            entidad->deserializar(s);
 
-        auto *tipo = entidad->getEstado<Tipo>("tipo");
-        switch (tipo->tipo()) {
-            case PANTALLA_SELECCION:
-                Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
-                Configuracion *config = Locator::configuracion();
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador1/seleccion/src");
-                auto *renderer = Locator::renderer();
-                auto *sprite = new Sprite(renderer, srcSprite);
-                auto *grafico = new GraficoDePantallaCompleta();
-//                auto *entrada = new EntradaPantallaDeSeleccion();
-
-                entidad->agregarEstado("sprite", sprite);
-                entidad->agregarEstado("mapa", mapa);
-                entidad->agregarComportamiento("grafico", grafico);
-//                pantalla->agregarComportamiento("entrada", entrada);
-                break;
-//            case PERSONAJE:
-//                break;
-//            case ESCENARIO:
-//                break;
+            auto *tipo = entidad->getEstado<Tipo>("tipo");
+            switch (tipo->tipo()) {
+                case PANTALLA_SELECCION:
+                    NivelCliente::generarMenuSeleccion(mapa, entidad);
+                    break;
+                case PERSONAJE:
+                    break;
+                case ESCENARIO:
+                    break;
+            }
+        } else {
+            Entidad *entidad = mapa->getEntidad(idEntidad);
+            entidad->deserializar(s);
         }
     }
 }

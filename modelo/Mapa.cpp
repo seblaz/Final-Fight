@@ -8,15 +8,17 @@
 
 using namespace std;
 
+IdEntidad Mapa::ultimoId = 0;
+
 Entidad *Mapa::crearEntidad() {
     auto* e = new Entidad();
-    entidades[e->getId()] = e;
+    entidades[ultimoId++] = e;
     return e;
 }
 
 Entidad *Mapa::crearEntidadConId(IdEntidad idEntidad) {
-    auto* e = new Entidad(idEntidad);
-    entidades[e->getId()] = e;
+    auto* e = new Entidad();
+    entidades[idEntidad] = e;
     return e;
 }
 
@@ -30,19 +32,22 @@ vector<Entidad *> Mapa::devolverEntidades() {
 void Mapa::vaciarMapa() {
     entidades.clear();
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
-    if(jugador){
-        entidades[jugador->getId()] = jugador;
-        Locator::logger()->log(DEBUG, "Se agregó al jugador a las entidades.");
+    for(auto tupla : jugadores){
+        entidades[tupla.first] = tupla.second;
+        Locator::logger()->log(DEBUG, "Se agregó al  jugador " + to_string(tupla.first) + " a las entidades.");
     }
 }
 
 Entidad *Mapa::crearJugador() {
-    jugador = crearEntidad();
+    Entidad *jugador = crearEntidad();
+    jugadores[ultimoId] = jugador;
     return jugador;
 }
 
 Entidad *Mapa::getJugador() {
-    return jugador;
+    for(auto tuple : jugadores)
+        return tuple.second;
+    return nullptr;
 }
 
 Entidad *Mapa::getEntidad(IdEntidad idEntidad) {
@@ -51,4 +56,8 @@ Entidad *Mapa::getEntidad(IdEntidad idEntidad) {
 
 bool Mapa::contiene(IdEntidad idEntidad) {
     return !(entidades.find(idEntidad) == entidades.end());
+}
+
+unordered_map<IdEntidad, Entidad *> Mapa::devolverEntidadesConId() {
+    return entidades;
 }

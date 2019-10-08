@@ -18,10 +18,9 @@ void ActualizarYTransmitir::resolver() {
 stringstream ActualizarYTransmitir::serializar() {
     Locator::logger()->log(DEBUG, "Se serializa el modelo.");
     stringstream s;
-    auto entidades = mapa->devolverEntidades();
-    for(Entidad * entidad : entidades){
-        entidad->putIdInStream(s);
-        entidad->serializar(s);
+    for(auto tupla : mapa->devolverEntidadesConId()){
+        Entidad::putIdInStream(s, tupla.first);
+        tupla.second->serializar(s);
     }
     return s;
 }

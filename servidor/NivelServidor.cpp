@@ -10,7 +10,7 @@ void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
     Entidad *pantalla = mapa->crearEntidad();
-    auto *posicion = new Posicion(0, 0, 0);
+    auto *posicion = new Posicion(10, 20, 50);
     auto *tipo = new Tipo(PANTALLA_SELECCION);
 
     pantalla->agregarEstado("posicion", posicion);

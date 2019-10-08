@@ -15,7 +15,7 @@ Escucha::Escucha(int socket, Actualizador *actualizador) :
 void Escucha::escuchar() {
 
     stringstream s;
-    char msg[1500];
+    char msg[5000];
 
     while (true) {
         memset(&msg, 0, sizeof(msg)); // clear the buffer
