@@ -6,6 +6,7 @@
 
 void MostrarPantallaDeSeleccion::resolver() {
     NivelServidor::generarMenuSeleccion(mapa);
+
 }
 
 MostrarPantallaDeSeleccion::MostrarPantallaDeSeleccion(Mapa *mapa) : mapa(mapa) {}

@@ -2,16 +2,13 @@
 // Created by sebas on 4/10/19.
 //
 
-#include <iostream>
 #include <string>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <string.h>
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
-#include "Entrada.h"
 #include "../main/Juego.h"
-#include "../niveles/Nivel.h"
+#include "Escucha.h"
+#include "Actualizador.h"
+#include "NivelCliente.h"
 
 using namespace std;
 
@@ -43,25 +40,41 @@ int main(int argc, char *argv[]) {
         string user;
         string pass;
 
+
         cout << "Ingrese nombre de usuario" << endl;
         cin >> user;
         cout << "Ingrese contraseña" << endl;
         cin >> pass;
 
+        /**
+        * Conexion cliente.
+        */
         ConexionCliente conexion(ipAddress, port);
         int socket = conexion.socket();
-        Locator::provide(socket);
 
+        /**
+         * Iniciar juego.
+         */
         Juego juego;
         SDL_Renderer *renderer = juego.renderer();
         Locator::provide(renderer);
         Mapa &mapa = juego.mapa();
-        Nivel::generarPantallaDeEspera(&mapa);
+        NivelCliente::generarPantallaDeEspera(&mapa);
 
-        Entrada entrada(socket);
-        entrada.procesarEntradaEnHilo();
+        /**
+         * Actualizador.
+         */
+        Actualizador actualizador(&mapa);
 
-        juego.loop();
-        juego.terminar();
+        /**
+         * Escuchar al servidor.
+         */
+        Escucha escucha(socket, &actualizador);
+        escucha.escucharEnHilo();
     }
+
+    return 0;
+
 }
+
+

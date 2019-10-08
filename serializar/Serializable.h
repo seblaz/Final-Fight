@@ -2,8 +2,8 @@
 // Created by sebas on 6/10/19.
 //
 
-#ifndef FINAL_FIGHT_SERIALIZADOR_H
-#define FINAL_FIGHT_SERIALIZADOR_H
+#ifndef FINAL_FIGHT_SERIALIZABLE_H
+#define FINAL_FIGHT_SERIALIZABLE_H
 
 
 //#include "../modelo/Mapa.h"
@@ -11,11 +11,11 @@
 
 using namespace std;
 
-class Serializador {
+class Serializable {
 
 public:
-    Serializador()= default;
-    virtual ~Serializador()= default;
+    Serializable()= default;
+    virtual ~Serializable()= default;
 
     virtual void serializar(ostream& stream) = 0;
     virtual void deserializar(istream& stream) = 0;
@@ -31,4 +31,4 @@ public:
 };
 
 
-#endif //FINAL_FIGHT_SERIALIZADOR_H
+#endif //FINAL_FIGHT_SERIALIZABLE_H

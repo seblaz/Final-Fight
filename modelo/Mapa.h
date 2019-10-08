@@ -12,21 +12,30 @@
 
 using namespace std;
 
+/**
+ * IdEntidad. Id de la entidad de tipo numérico y estático.
+ */
+using IdEntidad = size_t;
+
 class Mapeable;
 
 class Mapa : public Estado {
 
 private:
-    vector<Entidad*> entidades;
-    Entidad *jugador;
+    static IdEntidad ultimoId;
+    unordered_map<IdEntidad, Entidad*> entidades;
+    unordered_map<IdEntidad, Entidad*> jugadores;
 
 public:
     Entidad *crearEntidad();
+    Entidad *crearEntidadConId(IdEntidad idEntidad);
     Entidad *crearJugador();
-    auto devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end()));
+    vector<Entidad *> devolverEntidades();
+    unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
     void vaciarMapa();
     Entidad *getJugador();
-
+    Entidad *getEntidad(IdEntidad idEntidad);
+    bool contiene(IdEntidad idEntidad);
 };
 
 #endif //FINAL_FIGHT_MAPA_H

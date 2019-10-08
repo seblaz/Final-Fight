@@ -10,6 +10,8 @@
 #include "../eventos/Eventos.h"
 #include "Transmision.h"
 #include "../eventos/MostrarPantallaDeSeleccion.h"
+#include "../eventos/ActualizarYTransmitir.h"
+#include "GameLoop.h"
 
 using namespace std;
 
@@ -17,6 +19,9 @@ int main(int argc, char *argv[]) {
     auto *logger = new Logger();
     Locator::provide(logger);
 
+    auto *config = new Configuracion();
+    Locator::provide(config);
+    
     /**
      * Conexion al servidor.
      */
@@ -46,9 +51,17 @@ int main(int argc, char *argv[]) {
     pthread_t hiloTransmision = transmision.transmitirEnHilo();
 
     /**
-     * Iniciar juego.
+     * Crear el mapa.
      */
     Mapa mapa;
+
+    /**
+     * Game loop.
+     */
+    auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
+    GameLoop gameLoop(eventosAProcesar, actualizar);
+    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
+
     auto *comenzar = new MostrarPantallaDeSeleccion(&mapa);
     eventosAProcesar->push(comenzar);
 
