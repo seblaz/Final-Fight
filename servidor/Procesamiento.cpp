@@ -32,6 +32,3 @@ pthread_t Procesamiento::procesarEnHilo() {
     Locator::logger()->log(DEBUG, "Se creó el hilo de procesamiento.");
     return hilo;
 }
-
-Procesamiento::Procesamiento() : mapa(Mapa()) {}
-
