@@ -8,35 +8,113 @@
 
 #include "Eventos.h"
 
-class Reposar : public EventoAProcesar {
+class EventoPersonaje : public EventoAProcesar{
 
-private:
-    Mapa *mapa;
-    
+protected:
+    Entidad *personaje;
+
 public:
-    explicit Reposar(Mapa *mapa);
+    explicit EventoPersonaje(Entidad *personaje);
+
+};
+
+class Reposar : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
     void resolver() override;
+
 };
 
 
-class Saltar : public EventoAProcesar {
+class Saltar : public EventoPersonaje {
 
-private:
-    Mapa *mapa;
-    
 public:
-    explicit Saltar(Mapa *mapa);
+    using EventoPersonaje::EventoPersonaje;
     void resolver() override;
+
 };
 
-class Golpear : public EventoAProcesar {
+class Golpear : public EventoPersonaje {
 
-private:
-    Mapa *mapa;
-    
 public:
-    explicit Golpear(Mapa *mapa);
+    using EventoPersonaje::EventoPersonaje;
     void resolver() override;
+
 };
+
+class Agachar : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+
+class CaminarIzquierda : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarDerecha : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarArriba : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarAbajo : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarIzquierdaArriba : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarIzquierdaAbajo : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarDerechaArriba : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
+class CaminarDerechaAbajo : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
+
 
 #endif //FINAL_FIGHT_EVENTOPERSONAJE_H

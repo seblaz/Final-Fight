@@ -13,7 +13,16 @@ enum ACCION {
     CONFIRMAR,
     GOLPEAR,
     SALTAR,
-    REPOSAR
+    REPOSAR,
+    AGACHAR,
+    CAM_IZQUIERDA,
+    CAM_DERECHA,
+    CAM_ARRIBA,
+    CAM_ABAJO,
+    CAM_IZQUIERDA_ARRIBA,
+    CAM_IZQUIERDA_ABAJO,
+    CAM_DERECHA_ARRIBA,
+    CAM_DERECHA_ABAJO,
 };
 
 class Accion : public Serializable {

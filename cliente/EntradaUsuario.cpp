@@ -33,22 +33,28 @@ Accion *EntradaJuego::getAccion() {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
     ACCION accion;
-    if (entrada[SDL_SCANCODE_A])  { // Tecla S -> El personaje Salta
+    if (entrada[SDL_SCANCODE_A]) {
         accion = GOLPEAR;
     } else if (entrada[SDL_SCANCODE_S]) {
         accion = SALTAR;
-//    } else if (entrada[SDL_SCANCODE_D]) {
-//        estado->agachar(entidad);
-//    } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
-//               entrada[SDL_SCANCODE_UP]) {
-//        if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT]) {
-//            estado->reposar(entidad);
-//        } else if (entrada[SDL_SCANCODE_DOWN] && entrada[SDL_SCANCODE_UP]) {
-//            estado->reposar(entidad);
-//        } else {
-//            estado->caminar(entidad, entrada[SDL_SCANCODE_RIGHT], entrada[SDL_SCANCODE_LEFT], entrada[SDL_SCANCODE_UP],
-//                            entrada[SDL_SCANCODE_DOWN]);
-//        }
+    } else if (entrada[SDL_SCANCODE_D]) {
+        accion = AGACHAR;
+    } else if (entrada[SDL_SCANCODE_LEFT] && entrada[SDL_SCANCODE_UP]) {
+        accion = CAM_IZQUIERDA_ARRIBA;
+    } else if (entrada[SDL_SCANCODE_LEFT] && entrada[SDL_SCANCODE_DOWN]) {
+        accion = CAM_IZQUIERDA_ABAJO;
+    } else if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_UP]) {
+        accion = CAM_DERECHA_ARRIBA;
+    } else if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_DOWN]) {
+        accion = CAM_DERECHA_ABAJO;
+    } else if (entrada[SDL_SCANCODE_LEFT]) {
+        accion = CAM_IZQUIERDA;
+    } else if (entrada[SDL_SCANCODE_RIGHT]) {
+        accion = CAM_DERECHA;
+    } else if (entrada[SDL_SCANCODE_UP]) {
+        accion = CAM_ARRIBA;
+    } else if (entrada[SDL_SCANCODE_DOWN]) {
+        accion = CAM_ABAJO;
     } else {
         accion = REPOSAR;
     }

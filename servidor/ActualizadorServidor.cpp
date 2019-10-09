@@ -15,7 +15,7 @@ ActualizadorServidor::ActualizadorServidor(Mapa *mapa, EventosAProcesar *eventos
 void ActualizadorServidor::interpretarComando(stringstream &s) {
 
     Accion accion;
-
+    Entidad *jugador = mapa->getJugador();
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
 
@@ -30,15 +30,51 @@ void ActualizadorServidor::interpretarComando(stringstream &s) {
             case SELECCIONAR_ANTERIOR:
                 break;
             case GOLPEAR:
-                evento = new Golpear(mapa);
+                evento = new Golpear(jugador);
                 eventos->push(evento);
                 break;
             case SALTAR:
-                evento = new Saltar(mapa);
+                evento = new Saltar(jugador);
                 eventos->push(evento);
                 break;
             case REPOSAR:
-                evento = new Reposar(mapa);
+                evento = new Reposar(jugador);
+                eventos->push(evento);
+                break;
+            case AGACHAR:
+                evento = new Agachar(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_IZQUIERDA:
+                evento = new CaminarIzquierda(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_DERECHA:
+                evento = new CaminarDerecha(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_ARRIBA:
+                evento = new CaminarArriba(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_ABAJO:
+                evento = new CaminarAbajo(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_IZQUIERDA_ARRIBA:
+                evento = new CaminarIzquierdaArriba(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_IZQUIERDA_ABAJO:
+                evento = new CaminarIzquierdaAbajo(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_DERECHA_ARRIBA:
+                evento = new CaminarDerechaArriba(jugador);
+                eventos->push(evento);
+                break;
+            case CAM_DERECHA_ABAJO:
+                evento = new CaminarDerechaAbajo(jugador);
                 eventos->push(evento);
                 break;
         }
