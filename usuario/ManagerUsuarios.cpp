@@ -9,20 +9,20 @@ ManagerUsuarios::ManagerUsuarios(int max) {
 }
 
 void ManagerUsuarios::agregarUsuario(Usuario nuevoUsuario) {
-    if(usuarios.size() < maximo){
+    if(usuarios.size() < maximo && !estaPresente(nuevoUsuario.getUsuario())){
         usuarios.push_back(nuevoUsuario);
     }else{
         throw exception();
     }
 }
 
-bool ManagerUsuarios::estaPresente(Usuario usuario){
+bool ManagerUsuarios::estaPresente(string usuario){
     bool encontrado = false;
 
     std::list<Usuario>::iterator it = usuarios.begin();
 
     while(usuarios.end() != it && !encontrado){
-        encontrado = it->getUsuario() == usuario.getUsuario();
+        encontrado = it->getUsuario() == usuario;
     }
 
     return encontrado;
