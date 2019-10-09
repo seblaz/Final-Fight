@@ -13,8 +13,8 @@ void ContenedorHilos::esperarFinDeHilos() {
     Locator::logger()->log(DEBUG, "Todos los eventos terminaron.");
 }
 
-void ContenedorHilos::crearHilos(const vector<int> &sockets, ActualizadorServidor *actualizador) {
-    for (int socket : sockets) {
+void ContenedorHilos::crearHilos(vector<Socket> sockets, ActualizadorServidor *actualizador) {
+    for (Socket socket : sockets) {
         pthread_t hilo;
         auto *argsEscuchar = new escucharClienteArgs({socket, actualizador});
         pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);

@@ -7,7 +7,6 @@
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDePantallaCompleta.h"
 #include "../modelo/Posicion.h"
-#include "EntradaPantallaDeSeleccionNuevo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
 #include "../modelo/Nivel.h"
@@ -40,12 +39,12 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     auto *renderer = Locator::renderer();
     auto *sprite = new Sprite(renderer, srcSprite);
     auto *grafico = new GraficoDePantallaCompleta();
-    auto *entrada = new EntradaPantallaDeSeleccionNuevo();
+//    auto *entrada = new EntradaPantallaDeSeleccionNuevo();
 
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
     pantalla->agregarComportamiento("grafico", grafico);
-    pantalla->agregarComportamiento("entrada", entrada);
+//    pantalla->agregarComportamiento("entrada", entrada);
 }
 
 void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {
@@ -72,10 +71,10 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     jugador->agregarComportamiento("grafico", grafico);
 }
 
-void NivelCliente::generarEscenario(Mapa *mapa, Entidad *entidad) {
+void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     Configuracion *config = Locator::configuracion();
 
-    auto *nivelEstado = entidad->getEstado<Nivel>("nivel");
+    auto *nivelEstado = escenario->getEstado<Nivel>("nivel");
     string nivel = nivelEstado->nivel();
     Locator::logger()->log(DEBUG, "Se genera escenario para " + nivel);
 
@@ -88,7 +87,6 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *entidad) {
     Locator::logger()->log(DEBUG, "Se cargo ancho para escenario: " + to_string(anchoNivel));
     Locator::logger()->log(DEBUG, "Se cargo cantidad de capas para escenario: " + to_string(cantidadDeCapas));
 
-    Entidad *escenario = mapa->crearEntidad();
     auto* sdlRenderer = Locator::renderer();
     auto *sprite = new Sprite(sdlRenderer, srcSprite);
 

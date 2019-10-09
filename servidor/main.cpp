@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
      */
     ConexionesClientes conexiones(socketServidor, 1);
     conexiones.esperarConexiones();
-    vector<int> socketsClientes = conexiones.devolverConexiones();
+    vector<Socket> socketsClientes = conexiones.devolverConexiones();
     pthread_t hiloRechazo = conexiones.rechazarConexionesEnHilo();
 
     /**

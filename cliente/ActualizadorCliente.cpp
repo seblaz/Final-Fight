@@ -11,7 +11,7 @@
 
 ActualizadorCliente::ActualizadorCliente(Mapa *mapa) : mapa(mapa) {}
 
-void ActualizadorCliente::actualizarEntidades(stringstream &s) {
+void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente *transmision) {
     if (borrar) {
         borrar = false;
         mapa->vaciarMapa();
@@ -19,30 +19,38 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s) {
 
     unordered_set<IdEntidad> nuevasEntidades;
 
-    while (s.rdbuf()->in_avail() != 0) {
+    int i = 0;
+    while (i < 2) {
+        i++;
+//    while (s.rdbuf()->in_avail() != 0) {
 
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
         Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
         nuevasEntidades.insert(idEntidad);
+        string tmp = s.str();
         if (!mapa->contiene(idEntidad)) {
 //            Locator::logger()->log(DEBUG, "El cliente no contiene la entidad: " + to_string(idEntidad) + ", por lo tanto se crea y se borran las anteriores.");
 //            mapa->vaciarMapa();
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
             entidad->deserializar(s);
-
+            Posicion *posicion;
             auto *tipo = entidad->getEstado<Tipo>("tipo");
             switch (tipo->tipo()) {
                 case PANTALLA_SELECCION:
+                    transmision->setEntradaUsuario(new EntradaMenuSeleccion);
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
                     break;
-//                case JUGADOR:
-//                    mapa->agregarJugadorConId(idEntidad, entidad);
-//                    NivelCliente::generarJugador(mapa, idEntidad, entidad);
-//                    break;
+                case JUGADOR:
+                    mapa->agregarJugadorConId(idEntidad, entidad);
+                    NivelCliente::generarJugador(mapa, idEntidad, entidad);
+                    break;
                 case PERSONAJE_SELECCION:
                     NivelCliente::generarSelectorDePersonaje(mapa, entidad);
                     break;
                 case ESCENARIO:
+                    posicion = entidad->getEstado<Posicion>("posicion");
+                    Locator::provide(posicion);
+                    transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
                     break;
                 default:
@@ -51,11 +59,13 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s) {
         } else {
             Entidad *entidad = mapa->getEntidad(idEntidad);
             entidad->deserializar(s);
+            auto *posicion = entidad->getEstado<Posicion>("posicion");
+            Locator::logger()->log(DEBUG, "Posicion x:" + to_string(posicion->x) + " y:" + to_string(posicion->y) + " z:" + to_string(posicion->z));
         }
     }
 
-    for(auto tupla : mapa->devolverEntidadesConId()) {
-        if(nuevasEntidades.find(tupla.first) == nuevasEntidades.end()){
+    for (auto tupla : mapa->devolverEntidadesConId()) {
+        if (nuevasEntidades.find(tupla.first) == nuevasEntidades.end()) {
             mapa->quitarEntidad(tupla.first);
         }
     }

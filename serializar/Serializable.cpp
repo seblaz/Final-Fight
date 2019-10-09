@@ -11,6 +11,10 @@ void Serializable::serializarEntero(ostream &in, int entero) {
 
 int Serializable::deserializarEntero(istream &stream) {
     string line;
+//    stream.rdbuf();
+//    stringstream s;
+//    s << stream.rdbuf();
+//    string tmp = s.str();
     getline(stream, line);
     return stoi(line);
 }

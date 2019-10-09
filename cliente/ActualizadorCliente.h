@@ -8,6 +8,7 @@
 
 #include "../modelo/Mapa.h"
 #include "../eventos/Eventos.h"
+#include "EntradaUsuario.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ private:
 
 public:
     explicit ActualizadorCliente(Mapa *mapa);
-    void actualizarEntidades(stringstream &s);
+    void actualizarEntidades(stringstream &s, TrasmisionCliente *transmision);
 
 };
 

@@ -22,7 +22,6 @@ stringstream ActualizarYTransmitir::serializar() {
         Entidad::putIdInStream(s, tupla.first);
         tupla.second->serializar(s);
     }
-    string resultado = s.str();
     return s;
 }
 

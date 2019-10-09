@@ -6,7 +6,7 @@
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
 #include "../main/Juego.h"
-#include "Escucha.h"
+#include "ReceptorCliente.h"
 #include "ActualizadorCliente.h"
 #include "NivelCliente.h"
 #include "EntradaUsuario.h"
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
      * Conexion cliente.
      */
     ConexionCliente conexion("localhost", 5000);
-    int socket = conexion.socket();
+    Socket socket = conexion.socket();
     Locator::provide(socket);
 
     /**
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
      */
      EntradaNula entrada;
      TrasmisionCliente trasmision(socket, &entrada);
+     trasmision.transmitirEnHilo();
 
     /**
      * Iniciar juego.
@@ -42,7 +43,7 @@ int main(int argc, char *argv[]) {
     Mapa &mapa = juego.mapa();
     NivelCliente::generarPantallaDeEspera(&mapa);
 
-    juego.loop();
+    juego.loop(&trasmision);
     juego.terminar();
 
 //    /**

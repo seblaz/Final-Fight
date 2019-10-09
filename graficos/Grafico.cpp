@@ -34,7 +34,7 @@ SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEn
 void Grafico::actualizar(Entidad *entidad) {
     SDL_Renderer *renderer = Locator::renderer();
     auto *posicion = entidad->getEstado<Posicion>("posicion");
-    int posicionDeEscenarioX = entidad->getEstado<Posicion>("posicion de escenario")->getX();
+    int posicionDeEscenarioX = Locator::posicionEscenario()->x;
     auto *animacion = entidad->getEstado<Animacion>("animacion");
     auto *sprite = entidad->getEstado<Sprite>("sprite");
     auto *orientacion = entidad->getEstado<Orientacion>("orientacion");
@@ -43,6 +43,7 @@ void Grafico::actualizar(Entidad *entidad) {
     SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
     SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
 
+    Locator::logger()->log(DEBUG, "nuevaPosicion x: " + to_string(nuevaPosicion.x));
     if ((orientacion != nullptr) && (!orientacion->adelante)) {
         SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla,
                          180, nullptr, SDL_FLIP_VERTICAL);

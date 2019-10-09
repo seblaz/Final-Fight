@@ -6,6 +6,8 @@
 #include "Juego.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Posicion.h"
+#include "../cliente/ReceptorCliente.h"
+#include "../cliente/EntradaUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -54,12 +56,17 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::loop() {
+void Juego::loop(TrasmisionCliente *transmicion) {
 //    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
+    ActualizadorCliente actualizador(&mapa_);
+    ReceptorCliente receptor(Locator::socket());
 
     while (!exit) {
-//        size_t start = SDL_GetTicks();
-
+//        size_t start = SDL_GetTicks()
+        processInput();
+        auto *s = receptor.escuchar();
+        if(!s) break;
+        actualizador.actualizarEntidades(*s, transmicion);
         clearScene();
         actualizar();
         graficar();

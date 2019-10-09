@@ -6,7 +6,9 @@
 #define FINAL_FIGHT_ENTRADAUSUARIO_H
 
 
+#include <mutex>
 #include "../modelo/Accion.h"
+#include "../modelo/Socket.h"
 
 /**
  * Lectura de input de usuario.
@@ -46,14 +48,16 @@ public:
 class TrasmisionCliente {
 
 private:
-    int socket;
+    std::mutex m;
+    Socket socket;
     EntradaUsuario *entradaUsuario;
     void transmitir();
+    EntradaUsuario *getEntradaUsuario();
 
 public:
-    explicit TrasmisionCliente(int socket, EntradaUsuario *entradaUsuario);
-    pthread_t transmitirEnHilo();
+    explicit TrasmisionCliente(Socket socket, EntradaUsuario *entradaUsuario);
     void setEntradaUsuario(EntradaUsuario *entradaUsuario);
+    pthread_t transmitirEnHilo();
 };
 
 #endif //FINAL_FIGHT_ENTRADAUSUARIO_H

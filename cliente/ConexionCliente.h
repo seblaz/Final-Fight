@@ -6,6 +6,7 @@
 #define FINAL_FIGHT_CONEXIONCLIENTE_H
 
 #include <string>
+#include "../modelo/Socket.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ private:
 public:
     ConexionCliente(const string& ip, int puerto);
     ~ConexionCliente();
-    int socket();
+    Socket socket();
 };
 
 #endif //FINAL_FIGHT_CONEXIONCLIENTE_H

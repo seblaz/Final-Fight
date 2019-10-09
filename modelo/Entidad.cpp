@@ -39,6 +39,10 @@ void Entidad::serializar(ostream &stream) {
 }
 
 void Entidad::deserializar(istream &stream) {
+    auto* a = stream.rdbuf();
+    stringstream s;
+//    s << a;
+
     auto * tipo = new Tipo();
     tipo->deserializar(stream);
     agregarEstado("tipo", tipo);

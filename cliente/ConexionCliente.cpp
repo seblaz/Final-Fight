@@ -36,6 +36,6 @@ ConexionCliente::~ConexionCliente() {
     Locator::logger()->log(INFO, "Se terminó la conexión con el servidor.");
 }
 
-int ConexionCliente::socket() {
-    return descriptorSocket;
+Socket ConexionCliente::socket() {
+    return Socket(descriptorSocket);
 }

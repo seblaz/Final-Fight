@@ -7,18 +7,19 @@
 
 #include <vector>
 #include "../eventos/Eventos.h"
+#include "../modelo/Socket.h"
 
 using namespace std;
 
 class Transmision {
 
 private:
-    vector<int> sockets;
+    vector<Socket> sockets;
     EventosATransmitir eventosATransmitir;
     void transmitir();
 
 public:
-    explicit Transmision(vector<int> sockets);
+    explicit Transmision(vector<Socket> sockets);
     EventosATransmitir * devolverCola();
     pthread_t transmitirEnHilo();
 };

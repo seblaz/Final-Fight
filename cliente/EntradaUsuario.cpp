@@ -31,9 +31,19 @@ Accion *EntradaJuego::getAccion() {
     return nullptr;
 }
 
-TrasmisionCliente::TrasmisionCliente(int socket, EntradaUsuario *entradaUsuario) :
+TrasmisionCliente::TrasmisionCliente(Socket socket, EntradaUsuario *entradaUsuario) :
         entradaUsuario(entradaUsuario),
         socket(socket) {}
+
+EntradaUsuario *TrasmisionCliente::getEntradaUsuario() {
+    std::lock_guard<std::mutex> lock(m);
+    return entradaUsuario;
+}
+
+void TrasmisionCliente::setEntradaUsuario(EntradaUsuario *entradaUsuario_) {
+    std::lock_guard<std::mutex> lock(m);
+    entradaUsuario = entradaUsuario_;
+}
 
 void TrasmisionCliente::transmitir() {
 
@@ -44,19 +54,20 @@ void TrasmisionCliente::transmitir() {
     while (true) {
         size_t start = SDL_GetTicks();
 
-        Accion *accion = entradaUsuario->getAccion();
+        Accion *accion = getEntradaUsuario()->getAccion();
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            string msg = s.str();
-            int result = send(socket, msg.c_str(), msg.length(), 0);
-            if (result == -1) {
-                Locator::logger()->log(ERROR, "Error al transmitir.");
-            } else if (result == 0) {
-                Locator::logger()->log(INFO, "Cliente desconectado.");
-            } else {
-                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msg);
-            }
+            socket.enviar(s);
+//            string msg = s.str();
+//            int result = send(socket, msg.c_str(), msg.length(), 0);
+//            if (result == -1) {
+//                Locator::logger()->log(ERROR, "Error al transmitir.");
+//            } else if (result == 0) {
+//                Locator::logger()->log(INFO, "Cliente desconectado.");
+//            } else {
+//                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msg);
+//            }
         }
 
         size_t end = SDL_GetTicks();
@@ -78,8 +89,4 @@ pthread_t TrasmisionCliente::transmitirEnHilo() {
 
     Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
     return hilo;
-}
-
-void TrasmisionCliente::setEntradaUsuario(EntradaUsuario *entradaUsuario_) {
-    entradaUsuario = entradaUsuario_;
 }

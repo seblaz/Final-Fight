@@ -8,14 +8,15 @@
 
 #include "../eventos/Eventos.h"
 #include "ActualizadorServidor.h"
+#include "../modelo/Socket.h"
 
 class Escucha {
 
 private:
-    int descriptorSocket;
+    Socket socket;
 
 public:
-    explicit Escucha(int descriptorSocket);
+    explicit Escucha(Socket socket);
     void escuchar(ActualizadorServidor *actualizador);
 
 };

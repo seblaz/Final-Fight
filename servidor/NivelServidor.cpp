@@ -64,7 +64,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
     escenario->agregarEstado("posicion de jugador", posicionDeJugador);
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
-    posicionDeJugador->x = 300;
+    posicionDeJugador->x = 200;
     posicionDeJugador->y = 100;
 
 //    generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);

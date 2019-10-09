@@ -64,8 +64,12 @@ void ConexionesClientes::rechazarProximasConexiones() {
     }
 }
 
-vector<int> ConexionesClientes::devolverConexiones() {
-    return socketsClientes;
+vector<Socket> ConexionesClientes::devolverConexiones() {
+    vector<Socket> conexiones;
+    for(int socket : socketsClientes){
+        conexiones.emplace_back(socket);
+    }
+    return conexiones;
 }
 
 pthread_t ConexionesClientes::rechazarConexionesEnHilo() {
