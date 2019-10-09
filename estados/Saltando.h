@@ -23,7 +23,7 @@ public:
     Saltando();
     ~Saltando();
     void actualizar(Entidad *) override;
-    void enter(Entidad *) override;
+//    void enter(Entidad *) override;
     void saltar(Entidad * entidad) override;
     void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
     void agachar(Entidad *) override;

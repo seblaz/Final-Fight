@@ -5,17 +5,18 @@
 #include "ContenedorHilos.h"
 #include "Escucha.h"
 #include "../servicios/Locator.h"
+#include "ActualizadorServidor.h"
 
 void ContenedorHilos::esperarFinDeHilos() {
-    for(pthread_t hilo : hilos)
+    for (pthread_t hilo : hilos)
         pthread_join(hilo, nullptr);
     Locator::logger()->log(DEBUG, "Todos los eventos terminaron.");
 }
 
-void ContenedorHilos::crearHilos(const vector<int> &sockets, EventosAProcesar *eventos) {
-    for(int socket : sockets){
+void ContenedorHilos::crearHilos(vector<Socket> sockets, ActualizadorServidor *actualizador) {
+    for (Socket socket : sockets) {
         pthread_t hilo;
-        auto *argsEscuchar = new escucharClienteArgs({socket, eventos});
+        auto *argsEscuchar = new escucharClienteArgs({socket, actualizador});
         pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
         hilos.push_back(hilo);
 
@@ -27,16 +28,16 @@ void ContenedorHilos::crearHilos(const vector<int> &sockets, EventosAProcesar *e
 
 void *escucharCliente(void *args) {
     auto *argumentos = (escucharClienteArgs *) args;
-    Escucha escucha(argumentos->socket, argumentos->eventos);
+    Escucha escucha(argumentos->socket);
     delete argumentos;
-    escucha.escuchar();
+    escucha.escuchar(argumentos->actualizador);
     return nullptr;
 }
 
 void *enviarACliente(void *args) {
     auto *argumentos = (enviarAClienteArgs *) args;
-    Escucha escucha(argumentos->socket, argumentos->eventos);
+    Escucha escucha(argumentos->socket);
     delete argumentos;
-    escucha.escuchar();
+    escucha.escuchar(nullptr);
     return nullptr;
 }

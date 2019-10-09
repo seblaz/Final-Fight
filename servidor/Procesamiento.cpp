@@ -12,7 +12,7 @@ EventosAProcesar *Procesamiento::devolverCola() {
 void Procesamiento::procesar() {
     while (true) {
         auto *evento = eventosAProcesar.pop();
-        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
+//        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
 
         evento->resolver();
         if (evento->msj() == "fin")
@@ -32,6 +32,3 @@ pthread_t Procesamiento::procesarEnHilo() {
     Locator::logger()->log(DEBUG, "Se creó el hilo de procesamiento.");
     return hilo;
 }
-
-Procesamiento::Procesamiento() : mapa(Mapa()) {}
-

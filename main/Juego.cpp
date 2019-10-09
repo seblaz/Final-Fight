@@ -6,6 +6,8 @@
 #include "Juego.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Posicion.h"
+#include "../cliente/ReceptorCliente.h"
+#include "../cliente/EntradaUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -54,31 +56,32 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::loop() {
-    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
+void Juego::loop(TrasmisionCliente *transmicion) {
+//    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
+    ActualizadorCliente actualizador(&mapa_);
+    ReceptorCliente receptor(Locator::socket());
 
     while (!exit) {
-        size_t start = SDL_GetTicks();
-
+//        size_t start = SDL_GetTicks()
         processInput();
+        auto *s = receptor.escuchar();
+        if(!s) break;
+        actualizador.actualizarEntidades(*s, transmicion);
         clearScene();
         actualizar();
-
-
         graficar();
 
-        size_t end = SDL_GetTicks();
-        int sleepTime = MS_PER_FRAME + start - end;
-
-        if (sleepTime > 0) {
-            SDL_Delay(sleepTime);
-        }
+//        size_t end = SDL_GetTicks();
+//        int sleepTime = MS_PER_FRAME + start - end;
+//
+//        if (sleepTime > 0) {
+//            SDL_Delay(sleepTime);
+//        }
     }
 }
 
 void Juego::inicializarElementos() {
     Locator::logger()->log(DEBUG, "Se inicializa el mapa");
-    mapa_ = Mapa();
 }
 
 void Juego::processInput() {

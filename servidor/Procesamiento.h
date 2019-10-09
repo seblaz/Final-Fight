@@ -17,7 +17,6 @@ private:
     Mapa mapa;
 
 public:
-    Procesamiento();
     EventosAProcesar *devolverCola();
     void procesar();
     pthread_t procesarEnHilo();

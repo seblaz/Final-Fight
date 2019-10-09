@@ -12,11 +12,11 @@
 #include "../servicios/Locator.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
-class EstadoDePersonaje : public Estado {
+class EstadoDePersonaje : public Estado, public Comportamiento {
 
 public:
-    virtual void actualizar(Entidad * entidad) {};
-    virtual void enter(Entidad* entidad) = 0;
+    void actualizar(Entidad * entidad) override {};
+//    virtual void enter(Entidad* entidad) = 0;
     virtual void saltar(Entidad *);
     virtual void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
     virtual void reposar(Entidad *);

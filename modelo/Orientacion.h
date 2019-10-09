@@ -15,6 +15,8 @@ public:
 
     explicit Orientacion(bool adelante = true);
 
+    bool operator==(const Orientacion &otraOrientacion);
+
     void serializar(ostream& stream);
     void deserializar(istream& stream);
 };

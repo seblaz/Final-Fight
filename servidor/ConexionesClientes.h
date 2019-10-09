@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <pthread.h>
+#include "../modelo/Socket.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ public:
     explicit ConexionesClientes(int socketServidor, int jugadoresMax = 4);
     ~ConexionesClientes();
     void esperarConexiones();
-    vector<int> devolverConexiones();
+    vector<Socket> devolverConexiones();
     pthread_t rechazarConexionesEnHilo();
 };
 

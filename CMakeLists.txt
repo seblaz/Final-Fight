@@ -4,6 +4,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(final_fight)
 set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_EXE_LINKER_FLAGS "-static-libstdc++")
 
 #[[
   Compilar la test suite de Google.
@@ -86,9 +87,8 @@ add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
-]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources} ${SerializeSources} ${UsuarioSources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
+]]
 
 #[[
   Copiar los assets
@@ -105,5 +105,6 @@ target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAG
 #[[
   Compilar el servidor.
 ]]
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${SerializeSources} ${UsuarioSources})
+
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
 target_link_libraries(servidor ${XercesC_LIBRARIES})

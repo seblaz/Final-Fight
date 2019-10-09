@@ -7,16 +7,17 @@
 
 
 #include "../eventos/Eventos.h"
+#include "ActualizadorServidor.h"
+#include "../modelo/Socket.h"
 
 class Escucha {
 
 private:
-    int descriptorSocket;
-    EventosAProcesar *eventos;
+    Socket socket;
 
 public:
-    explicit Escucha(int descriptorSocket, EventosAProcesar *eventos);
-    void escuchar();
+    explicit Escucha(Socket socket);
+    void escuchar(ActualizadorServidor *actualizador);
 
 };
 

@@ -8,6 +8,7 @@
 #include "../modelo/Mapa.h"
 #include <SDL2/SDL.h>
 #include "../tipos/tipos.h"
+#include "../cliente/EntradaUsuario.h"
 
 #define CANTIDAD_JUGADORES 4
 
@@ -31,7 +32,7 @@ private:
 public:
     Juego();
 
-    void loop();
+    void loop(TrasmisionCliente *pCliente);
     Mapa &mapa();
 //    nombreJugador generarMenuPrincipal();
     SDL_Renderer* renderer();

@@ -50,7 +50,8 @@ class Entidad : public Serializable {
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = {"posicion", "orientacion"};
+    vector<string> estadosSerializables = {"posicion", "orientacion", "nivel"};
+    const int fin = 999999999;
 
 public:
     static void putIdInStream(ostream &in, IdEntidad idEntidad);
@@ -58,8 +59,8 @@ public:
 
     template<typename T>
     void agregarEstado(const string &s, T *t) {
-        if (estados.find(s) != estados.end())
-            delete estados[s];
+//        if (estados.find(s) != estados.end())
+//            delete estados[s];
         estados[s] = t;
     };
 
@@ -68,10 +69,14 @@ public:
         return (T *) estados[s];
     };
 
+    bool contieneEstado(const string &s){
+        return estados.find(s) != estados.end();
+    }
+
     template<typename T>
     void agregarComportamiento(const string &s, T *t) {
-        if (comportamientos.find(s) != comportamientos.end())
-            delete comportamientos[s];
+//        if (comportamientos.find(s) != comportamientos.end())
+//            delete comportamientos[s];
         comportamientos[s] = t;
     };
 
@@ -94,8 +99,10 @@ public:
  */
 enum TIPO {
     PANTALLA_SELECCION,
+    PERSONAJE_SELECCION,
     PERSONAJE,
-    ESCENARIO
+    ESCENARIO,
+    JUGADOR
 };
 
 class Tipo : public Estado, Serializable {
@@ -108,6 +115,11 @@ public:
     Tipo();
     TIPO tipo();
 
+    /**
+     * Serializar.
+     * Formato: Tipo, idEstado1, estado1, idEstado2, estado2, ...
+     * @param stream
+     */
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 

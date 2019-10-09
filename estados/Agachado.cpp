@@ -19,11 +19,11 @@ Agachado::~Agachado() {
 }
 
 
-void Agachado::enter(Entidad *entidad) {
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    auto *animacion = fabricaDeAnimaciones->agachado();
-    entidad->agregarEstado("animacion", animacion);
-}
+//void Agachado::enter(Entidad *entidad) {
+//    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+//    auto *animacion = fabricaDeAnimaciones->agachado();
+//    entidad->agregarEstado("animacion", animacion);
+//}
 
 void Agachado::actualizar(Entidad *entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");

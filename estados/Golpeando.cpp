@@ -14,11 +14,11 @@ Golpeando::~Golpeando() {
     logger -> log(DEBUG, "Se elimino un objeto de clase Golpeando");
 }
 
-void Golpeando::enter(Entidad *entidad) {
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    auto* animacion = fabricaDeAnimaciones->golpear();
-    entidad->agregarEstado("animacion", animacion);
-}
+//void Golpeando::enter(Entidad *entidad) {
+//    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+//    auto* animacion = fabricaDeAnimaciones->golpear();
+//    entidad->agregarEstado("animacion", animacion);
+//}
 
 void Golpeando::actualizar(Entidad * entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");

@@ -8,7 +8,7 @@
 #include <utility>
 #include <sys/socket.h>
 
-Transmision::Transmision(vector<int> sockets) :
+Transmision::Transmision(vector<Socket> sockets) :
         sockets(std::move(sockets)) {}
 
 void Transmision::transmitir() {
@@ -16,20 +16,22 @@ void Transmision::transmitir() {
         EventoATransmitir *evento = eventosATransmitir.pop();
         string msj = evento->msj();
 
-        for (int socket : sockets){
-            int result = send(socket, msj.c_str(), msj.length(), 0);
-            if (result == -1 ){
-                Locator::logger()->log(ERROR, "Error al transmitir.");
-            } else if(result == 0){
-                Locator::logger()->log(INFO, "Cliente desconectado.");
-            } else {
-                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
-            }
-        }
-
         if (msj == "fin") {
             Locator::logger()->log(DEBUG, "Se termina el socket de transmisión.");
             break;
+        }
+
+        for (Socket socket : sockets){
+            stringstream s(msj);
+            socket.enviar(s);
+//            int result = send(socket, msj.c_str(), msj.length(), 0);
+//            if (result == -1 ){
+//                Locator::logger()->log(ERROR, "Error al transmitir.");
+//            } else if(result == 0){
+//                Locator::logger()->log(INFO, "Cliente desconectado.");
+//            } else {
+//                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
+//            }
         }
     }
 }

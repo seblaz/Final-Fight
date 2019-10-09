@@ -9,6 +9,7 @@
 #include "Iterator.cpp"
 #include "Entidad.h"
 #include <vector>
+#include <mutex>
 
 using namespace std;
 
@@ -30,9 +31,11 @@ public:
     Entidad *crearEntidad();
     Entidad *crearEntidadConId(IdEntidad idEntidad);
     Entidad *crearJugador();
+    void agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador);
     vector<Entidad *> devolverEntidades();
     unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
     void vaciarMapa();
+    void quitarEntidad(IdEntidad idEntidad);
     Entidad *getJugador();
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);

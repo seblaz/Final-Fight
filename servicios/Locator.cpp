@@ -46,14 +46,28 @@ void Locator::provide(SDL_Renderer *renderer) {
 /**
  * Socket.
  */
-int Locator::socket_;
+Socket Locator::socket_(0);
 
-int Locator::socket() {
+Socket Locator::socket() {
     return socket_;
 }
 
-void Locator::provide(int socket) {
+void Locator::provide(Socket socket) {
     socket_ = socket;
+}
+
+
+/**
+ * Posicion.
+ */
+Posicion *Locator::posicion;
+
+Posicion *Locator::posicionEscenario() {
+    return posicion;
+}
+
+void Locator::provide(Posicion *posicion_) {
+    posicion = posicion_;
 }
 
 void Locator::clean() {

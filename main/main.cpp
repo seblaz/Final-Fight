@@ -69,7 +69,7 @@ int main(int argc, const char **args) {
 
 //    Nivel::generarNivel("nivel1", &mapa, jugador);
     Nivel::generarPantallaDeEspera(&mapa);
-    juego.loop();
+    juego.loop(nullptr);
     juego.terminar();
 
     Locator::clean();

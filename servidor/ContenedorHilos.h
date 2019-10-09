@@ -9,6 +9,8 @@
 #include <pthread.h>
 #include <vector>
 #include "../eventos/Eventos.h"
+#include "ActualizadorServidor.h"
+#include "../modelo/Socket.h"
 
 using namespace std;
 
@@ -18,19 +20,19 @@ private:
     vector<pthread_t> hilos;
 
 public:
-    void crearHilos(const vector<int>& sockets, EventosAProcesar *eventos);
+    void crearHilos(vector<Socket> sockets, ActualizadorServidor *actualizador);
     void esperarFinDeHilos();
 };
 
 struct escucharClienteArgs {
-    int socket;
-    EventosAProcesar *eventos;
+    Socket socket;
+    ActualizadorServidor *actualizador;
 };
 
 void *escucharCliente(void *);
 
 struct enviarAClienteArgs {
-    int socket;
+    Socket socket;
     EventosAProcesar *eventos;
 };
 

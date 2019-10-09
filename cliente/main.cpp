@@ -6,9 +6,10 @@
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
 #include "../main/Juego.h"
-#include "Escucha.h"
-#include "Actualizador.h"
+#include "ReceptorCliente.h"
+#include "ActualizadorCliente.h"
 #include "NivelCliente.h"
+#include "EntradaUsuario.h"
 
 using namespace std;
 
@@ -41,16 +42,24 @@ int main(int argc, char *argv[]) {
         string pass;
 
 
-        cout << "Ingrese nombre de usuario" << endl;
+        /*cout << "Ingrese nombre de usuario" << endl;
         cin >> user;
         cout << "Ingrese contraseña" << endl;
-        cin >> pass;
+        cin >> pass;*/
 
         /**
-        * Conexion cliente.
-        */
+     * Conexion cliente.
+     */
         ConexionCliente conexion(ipAddress, port);
-        int socket = conexion.socket();
+        Socket socket = conexion.socket();
+        Locator::provide(socket);
+
+        /**
+         * Transmisión de acciones.
+         */
+        EntradaNula entrada;
+        TrasmisionCliente trasmision(socket, &entrada);
+        trasmision.transmitirEnHilo();
 
         /**
          * Iniciar juego.
@@ -61,21 +70,20 @@ int main(int argc, char *argv[]) {
         Mapa &mapa = juego.mapa();
         NivelCliente::generarPantallaDeEspera(&mapa);
 
-        /**
-         * Actualizador.
-         */
-        Actualizador actualizador(&mapa);
-
-        /**
-         * Escuchar al servidor.
-         */
-        Escucha escucha(socket, &actualizador);
-        escucha.escucharEnHilo();
-
-
-        juego.loop();
+        juego.loop(&trasmision);
         juego.terminar();
     }
+
+//    /**
+//     * Actualizador.
+//     */
+//     ActualizadorCliente actualizador(&mapa);
+//
+//    /**
+//     * Escuchar al servidor.
+//     */
+//    Escucha escucha(socket, &actualizador);
+//    escucha.escucharEnHilo();
 
     return 0;
 
