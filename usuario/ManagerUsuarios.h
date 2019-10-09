@@ -21,6 +21,7 @@ class ManagerUsuarios {
         void agregarUsuario(Usuario usuario);
         bool estaPresente(Usuario usuario);
         bool estaLogueado(Usuario usuario);
+        int getCantidadLogueados();
 };
 
 

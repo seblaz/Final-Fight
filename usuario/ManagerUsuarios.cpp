@@ -39,3 +39,7 @@ bool ManagerUsuarios::estaLogueado(Usuario usuario){
 
     return encontrado;
 }
+
+int ManagerUsuarios::getCantidadLogueados() {
+    return usuarios.size();
+}
