@@ -26,7 +26,6 @@ private:
     static IdEntidad ultimoId;
     unordered_map<IdEntidad, Entidad*> entidades;
     unordered_map<IdEntidad, Entidad*> jugadores;
-    mutex m;
 
 public:
     Entidad *crearEntidad();

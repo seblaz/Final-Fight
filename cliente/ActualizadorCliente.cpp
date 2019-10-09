@@ -24,7 +24,6 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
 //        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
         nuevasEntidades.insert(idEntidad);
-        string tmp = s.str();
         if (!mapa->contiene(idEntidad)) {
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
             entidad->deserializar(s);
