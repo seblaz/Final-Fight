@@ -31,14 +31,14 @@ bool Socket::enviar(stringstream &s) {
     string msg = s.str();
     size_t tamano = msg.size();
 
-    Locator::logger()->log(DEBUG, "Se pretende enviar un mensaje de tamaño: " + to_string((tamano)));
-    Locator::logger()->log(DEBUG, "Con el mensaje: " + msg);
+//    Locator::logger()->log(DEBUG, "Se pretende enviar un mensaje de tamaño: " + to_string((tamano)));
+//    Locator::logger()->log(DEBUG, "Con el mensaje: " + msg);
 
     std::stringstream ss;
     ss << std::setw(tamanoDigitos) << std::setfill('0') << tamano;
 
     bool resultado = enviarSinChequeo(ss) && enviarSinChequeo(s);
-    Locator::logger()->log(DEBUG, "Mensaje enviado con resultado: " + to_string(resultado));
+//    Locator::logger()->log(DEBUG, "Mensaje enviado con resultado: " + to_string(resultado));
     return resultado;
 }
 
@@ -65,7 +65,7 @@ bool Socket::recibirConCantidad(stringstream &s, size_t cantidad) {
 }
 
 bool Socket::recibir(stringstream &s) {
-    Locator::logger()->log(DEBUG, "Comienzo a recibir.");
+//    Locator::logger()->log(DEBUG, "Comienzo a recibir.");
 
     stringstream ss;
     bool res1 = recibirConCantidad(ss, tamanoDigitos);
@@ -73,18 +73,18 @@ bool Socket::recibir(stringstream &s) {
     ss >> tamanoPaquete;
 
     if(!res1){
-        Locator::logger()->log(DEBUG, "No se pudo recibir el mensaje.");
+        Locator::logger()->log(ERROR, "No se pudo recibir el mensaje.");
         return false;
     }
 
     bool res2 = recibirConCantidad(s, tamanoPaquete);
 
     if(!res2){
-        Locator::logger()->log(DEBUG, "No se pudo recibir el mensaje.");
+        Locator::logger()->log(ERROR, "No se pudo recibir el mensaje.");
         return false;
     }
 
-    Locator::logger()->log(DEBUG, "Mensaje recibido: " + s.str());
+//    Locator::logger()->log(DEBUG, "Mensaje recibido: " + s.str());
     return res2;
 }
 
