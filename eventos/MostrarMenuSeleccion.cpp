@@ -8,4 +8,5 @@ MostrarMenuSeleccion::MostrarMenuSeleccion(Mapa *mapa) : mapa(mapa) {}
 
 void MostrarMenuSeleccion::resolver() {
     NivelServidor::generarMenuSeleccion(mapa);
+    NivelServidor::generarPersonajesSeleccion(mapa);
 }

@@ -5,7 +5,7 @@
 #include "ActualizadorServidor.h"
 #include "NivelServidor.h"
 #include "../modelo/Accion.h"
-#include "../eventos/SeleccionarCody.h"
+#include "../eventos/ConfirmarSeleccion.h"
 
 ActualizadorServidor::ActualizadorServidor(Mapa *mapa, EventosAProcesar *eventos) :
         mapa(mapa),
@@ -14,12 +14,19 @@ ActualizadorServidor::ActualizadorServidor(Mapa *mapa, EventosAProcesar *eventos
 void ActualizadorServidor::interpretarComando(stringstream &s) {
 
     Accion accion;
-    accion.deserializar(s);
 
-    switch (accion.accion()) {
-        case SELECCIONAR_CODY:
-            auto *evento = new SeleccionarCody(mapa);
-            eventos->push(evento);
-            break;
+    while (s.rdbuf()->in_avail() != 0) {
+        accion.deserializar(s);
+
+        switch (accion.accion()) {
+            case CONFIRMAR:
+                auto *evento = new ConfirmarSeleccion(mapa);
+                eventos->push(evento);
+                break;
+//            case SELECCIONAR_SIGUIENTE:
+//                break;
+//            case SELECCIONAR_ANTERIOR:
+//                break;
+        }
     }
 }

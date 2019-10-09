@@ -15,6 +15,10 @@ public:
     static void generarMenuSeleccion(Mapa *mapa, Entidad *pantalla);
 
     static void generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador);
+
+    static void generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad);
+
+    static void generarEscenario(Mapa *mapa, Entidad *entidad);
 };
 
 

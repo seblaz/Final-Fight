@@ -15,7 +15,7 @@ class ActualizadorCliente {
 
 private:
     Mapa *mapa;
-    bool inicio = false;
+    bool borrar = true;
 
 public:
     explicit ActualizadorCliente(Mapa *mapa);

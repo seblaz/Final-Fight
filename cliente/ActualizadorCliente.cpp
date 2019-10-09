@@ -2,6 +2,7 @@
 // Created by sebas on 8/10/19.
 //
 
+#include <unordered_set>
 #include "ActualizadorCliente.h"
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
@@ -11,16 +12,21 @@
 ActualizadorCliente::ActualizadorCliente(Mapa *mapa) : mapa(mapa) {}
 
 void ActualizadorCliente::actualizarEntidades(stringstream &s) {
-    if (!inicio) {
-        inicio = true;
+    if (borrar) {
+        borrar = false;
         mapa->vaciarMapa();
     }
 
+    unordered_set<IdEntidad> nuevasEntidades;
+
     while (s.rdbuf()->in_avail() != 0) {
+
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
+        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
+        nuevasEntidades.insert(idEntidad);
         if (!mapa->contiene(idEntidad)) {
-            Locator::logger()->log(DEBUG, "El cliente no contiene la entidad: " + to_string(idEntidad) + ", por lo tanto se crea y se borran las anteriores.");
-            mapa->vaciarMapa();
+//            Locator::logger()->log(DEBUG, "El cliente no contiene la entidad: " + to_string(idEntidad) + ", por lo tanto se crea y se borran las anteriores.");
+//            mapa->vaciarMapa();
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
             entidad->deserializar(s);
 
@@ -29,11 +35,15 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s) {
                 case PANTALLA_SELECCION:
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
                     break;
-                case JUGADOR:
-                    mapa->agregarJugadorConId(idEntidad, entidad);
-                    NivelCliente::generarJugador(mapa, idEntidad, entidad);
+//                case JUGADOR:
+//                    mapa->agregarJugadorConId(idEntidad, entidad);
+//                    NivelCliente::generarJugador(mapa, idEntidad, entidad);
+//                    break;
+                case PERSONAJE_SELECCION:
+                    NivelCliente::generarSelectorDePersonaje(mapa, entidad);
                     break;
                 case ESCENARIO:
+                    NivelCliente::generarEscenario(mapa, entidad);
                     break;
                 default:
                     Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
@@ -41,6 +51,12 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s) {
         } else {
             Entidad *entidad = mapa->getEntidad(idEntidad);
             entidad->deserializar(s);
+        }
+    }
+
+    for(auto tupla : mapa->devolverEntidadesConId()) {
+        if(nuevasEntidades.find(tupla.first) == nuevasEntidades.end()){
+            mapa->quitarEntidad(tupla.first);
         }
     }
 }

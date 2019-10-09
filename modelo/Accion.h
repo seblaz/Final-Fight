@@ -7,8 +7,10 @@
 
 #include "../serializar/Serializable.h"
 
-enum ACCION{
-    SELECCIONAR_CODY
+enum ACCION {
+    SELECCIONAR_SIGUIENTE,
+    SELECCIONAR_ANTERIOR,
+    CONFIRMAR
 };
 
 class Accion : public Serializable {

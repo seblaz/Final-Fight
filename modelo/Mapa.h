@@ -36,6 +36,7 @@ public:
     vector<Entidad *> devolverEntidades();
     unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
     void vaciarMapa();
+    void quitarEntidad(IdEntidad idEntidad);
     Entidad *getJugador();
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);

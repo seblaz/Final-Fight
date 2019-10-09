@@ -99,6 +99,8 @@ TEST(Serializar, SerializarUnaEntidad) {
     stringstream s;
     entidad.serializar(s);
 
+//    string msg = s.str();
+
     Entidad otraEntidad;
     otraEntidad.deserializar(s);
 
@@ -135,4 +137,38 @@ TEST(Serializar, SerializarVariasEntidades) {
     bool eq3 = *entidad2.getEstado<Orientacion>("orientacion") == *otraEntidad2.getEstado<Orientacion>("orientacion");
     bool eq4 = *entidad2.getEstado<Tipo>("tipo") == *otraEntidad2.getEstado<Tipo>("tipo");
     ASSERT_TRUE(eq1 && eq2 && eq3 && eq4);
+}
+
+TEST(Serializar, FuncionamientoStringStream) {
+    stringstream s;
+    s << "una cadena" << endl;
+    s << "otra cadena" << endl;
+
+    string line;
+    getline(s, line);
+
+    ASSERT_TRUE(line == "una cadena");
+
+    getline(s, line);
+    ASSERT_TRUE(line == "otra cadena");
+
+    line = s.str();
+    ASSERT_TRUE(line == "una cadena\notra cadena\n");
+}
+
+TEST(Serializar, FuncionamientoStringStream2) {
+    stringstream s;
+    s << "una cadena" << endl;
+    s << "otra cadena" << endl;
+
+    string line;
+    getline(s, line);
+
+    ASSERT_TRUE(line == "una cadena");
+
+    getline(s, line);
+    ASSERT_TRUE(line == "otra cadena");
+
+    line = s.rdbuf()->str();
+    ASSERT_TRUE(line == "una cadena\notra cadena\n");
 }

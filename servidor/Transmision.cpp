@@ -16,6 +16,11 @@ void Transmision::transmitir() {
         EventoATransmitir *evento = eventosATransmitir.pop();
         string msj = evento->msj();
 
+        if (msj == "fin") {
+            Locator::logger()->log(DEBUG, "Se termina el socket de transmisión.");
+            break;
+        }
+
         for (int socket : sockets){
             int result = send(socket, msj.c_str(), msj.length(), 0);
             if (result == -1 ){
@@ -25,11 +30,6 @@ void Transmision::transmitir() {
             } else {
 //                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
             }
-        }
-
-        if (msj == "fin") {
-            Locator::logger()->log(DEBUG, "Se termina el socket de transmisión.");
-            break;
         }
     }
 }

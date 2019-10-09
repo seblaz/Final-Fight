@@ -8,8 +8,8 @@
 #include "../modelo/Entidad.h"
 #include "ActualizadorCliente.h"
 
-Escucha::Escucha(int descriptorSocket, ActualizadorCliente *actualizador) :
-        socket(descriptorSocket),
+Escucha::Escucha(int socket) :
+        socket(socket),
         actualizador(actualizador) {}
 
 void Escucha::escuchar() {
@@ -44,7 +44,7 @@ pthread_t Escucha::escucharEnHilo() {
         return nullptr;
     }, (void *) this);
 
-    Locator::logger()->log(DEBUG, "Se creó el hilo de rechazo de conexiones.");
+    Locator::logger()->log(DEBUG, "Se creó el hilo que escucha las actualizaciones del servidor.");
 
     return hilo;
 }

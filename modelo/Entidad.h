@@ -50,7 +50,7 @@ class Entidad : public Serializable {
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = {"posicion", "orientacion"};
+    vector<string> estadosSerializables = {"posicion", "orientacion", "nivel"};
     const int fin = 999999999;
 
 public:
@@ -95,6 +95,7 @@ public:
  */
 enum TIPO {
     PANTALLA_SELECCION,
+    PERSONAJE_SELECCION,
     PERSONAJE,
     ESCENARIO,
     JUGADOR
@@ -110,6 +111,11 @@ public:
     Tipo();
     TIPO tipo();
 
+    /**
+     * Serializar.
+     * Formato: Tipo, idEstado1, estado1, idEstado2, estado2, ...
+     * @param stream
+     */
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 

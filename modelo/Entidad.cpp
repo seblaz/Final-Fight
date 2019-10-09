@@ -5,7 +5,10 @@
 #include "Entidad.h"
 #include "Posicion.h"
 #include "Orientacion.h"
+#include "Personaje.h"
+#include "Nivel.h"
 #include <algorithm>
+#include <iostream>
 
 
 vector<Comportamiento *> Entidad::getComportamientos() {
@@ -51,7 +54,16 @@ void Entidad::deserializar(istream &stream) {
             auto *orientacion = new Orientacion();
             orientacion->deserializar(stream);
             agregarEstado("orientacion", orientacion);
+        } else if(estado == "nivel"){
+            auto *nivel = new Nivel();
+            nivel->deserializar(stream);
+            agregarEstado("nivel", nivel);
         }
+//        else if(estado == "personaje"){
+//            auto *personaje = new Personaje();
+//            personaje->deserializar(stream);
+//            agregarEstado("personaje", personaje);
+//        }
         posicionEstado = deserializarEntero(stream);
     }
 }

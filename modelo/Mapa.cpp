@@ -42,7 +42,7 @@ void Mapa::vaciarMapa() {
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
     for(auto tupla : jugadores){
         entidades[tupla.first] = tupla.second;
-        Locator::logger()->log(DEBUG, "Se agregó al  jugador " + to_string(tupla.first) + " a las entidades.");
+        Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) + " a las entidades.");
     }
 }
 
@@ -81,5 +81,9 @@ bool Mapa::contiene(IdEntidad idEntidad) {
 unordered_map<IdEntidad, Entidad *> Mapa::devolverEntidadesConId() {
     std::lock_guard<std::mutex> lock(m);
     return entidades;
+}
+
+void Mapa::quitarEntidad(IdEntidad idEntidad) {
+    entidades.erase(idEntidad);
 }
 

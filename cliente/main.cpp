@@ -9,6 +9,7 @@
 #include "Escucha.h"
 #include "ActualizadorCliente.h"
 #include "NivelCliente.h"
+#include "EntradaUsuario.h"
 
 using namespace std;
 
@@ -27,6 +28,12 @@ int main(int argc, char *argv[]) {
     Locator::provide(socket);
 
     /**
+     * Transmisión de acciones.
+     */
+     EntradaNula entrada;
+     TrasmisionCliente trasmision(socket, &entrada);
+
+    /**
      * Iniciar juego.
      */
     Juego juego;
@@ -35,20 +42,19 @@ int main(int argc, char *argv[]) {
     Mapa &mapa = juego.mapa();
     NivelCliente::generarPantallaDeEspera(&mapa);
 
-    /**
-     * Actualizador.
-     */
-     ActualizadorCliente actualizador(&mapa);
-
-    /**
-     * Escuchar al servidor.
-     */
-    Escucha escucha(socket, &actualizador);
-    escucha.escucharEnHilo();
-
-
     juego.loop();
     juego.terminar();
+
+//    /**
+//     * Actualizador.
+//     */
+//     ActualizadorCliente actualizador(&mapa);
+//
+//    /**
+//     * Escuchar al servidor.
+//     */
+//    Escucha escucha(socket, &actualizador);
+//    escucha.escucharEnHilo();
 
     return 0;
 }

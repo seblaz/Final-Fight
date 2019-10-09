@@ -4,7 +4,7 @@
 
 #include "Accion.h"
 
-Accion::Accion() : accion_(SELECCIONAR_CODY){}
+Accion::Accion() : accion_(CONFIRMAR){}
 
 Accion::Accion(ACCION accion) : accion_(accion){}
 

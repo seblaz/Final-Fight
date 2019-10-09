@@ -16,8 +16,7 @@ private:
     void escuchar();
 
 public:
-    explicit Escucha(int socket, ActualizadorCliente *actualizador);
-    pthread_t escucharEnHilo();
+    explicit Escucha(int socket);
 
 };
 
