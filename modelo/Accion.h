@@ -12,7 +12,8 @@ enum ACCION {
     SELECCIONAR_ANTERIOR,
     CONFIRMAR,
     GOLPEAR,
-    SALTAR
+    SALTAR,
+    REPOSAR
 };
 
 class Accion : public Serializable {

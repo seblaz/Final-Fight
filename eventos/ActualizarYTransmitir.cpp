@@ -10,9 +10,18 @@ ActualizarYTransmitir::ActualizarYTransmitir(Mapa *mapa, EventosATransmitir *eve
         mapa(mapa), eventosATransmitir(eventosATransmitir) {}
 
 void ActualizarYTransmitir::resolver() {
-    // TODO: actualizar.
+    actualizar();
     stringstream s = serializar();
     transmitir(s);
+}
+
+void ActualizarYTransmitir::actualizar() {
+    for (auto entidad : mapa->devolverEntidades()) {
+        auto comportamientos = entidad->getComportamientos();
+        for (auto *comportamiento : comportamientos) {
+            comportamiento->actualizar(entidad);
+        }
+    }
 }
 
 stringstream ActualizarYTransmitir::serializar() {
@@ -30,4 +39,5 @@ void ActualizarYTransmitir::transmitir(stringstream &s) {
     eventosATransmitir->push(trasmision);
 //    Locator::logger()->log(DEBUG, "Se transmite el modelo.");
 }
+
 

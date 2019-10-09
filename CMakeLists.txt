@@ -105,5 +105,5 @@ target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAG
 #[[
   Compilar el servidor.
 ]]
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${SerializeSources})
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${SerializeSources} ${StatesSources} ${PhysicsSources})
 target_link_libraries(servidor ${XercesC_LIBRARIES})

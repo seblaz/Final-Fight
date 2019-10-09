@@ -59,8 +59,8 @@ public:
 
     template<typename T>
     void agregarEstado(const string &s, T *t) {
-        if (estados.find(s) != estados.end())
-            delete estados[s];
+//        if (estados.find(s) != estados.end())
+//            delete estados[s];
         estados[s] = t;
     };
 
@@ -75,8 +75,8 @@ public:
 
     template<typename T>
     void agregarComportamiento(const string &s, T *t) {
-        if (comportamientos.find(s) != comportamientos.end())
-            delete comportamientos[s];
+//        if (comportamientos.find(s) != comportamientos.end())
+//            delete comportamientos[s];
         comportamientos[s] = t;
     };
 

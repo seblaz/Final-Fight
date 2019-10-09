@@ -4,9 +4,8 @@
 
 #include "FisicaDeEscenario.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
 #include "../modelo/Mapa.h"
-#include "../niveles/Nivel.h"
+//#include "../niveles/Nivel.h"
 
 FisicaDeEscenario::FisicaDeEscenario(int largo) :
         largo(largo) {
@@ -31,6 +30,6 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
         auto *mapa = entidad->getEstado<Mapa>("mapa");
         mapa->vaciarMapa();
         Entidad *jugador = mapa->getJugador();
-        Nivel::generarNivel("nivel2", mapa, jugador);
+//        Nivel::generarNivel("nivel2", mapa, jugador);
     }
 }

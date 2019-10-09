@@ -30,8 +30,29 @@ Accion *EntradaMenuSeleccion::getAccion() {
 }
 
 Accion *EntradaJuego::getAccion() {
-    // TODO: completar con acciones de usuario.
-    return nullptr;
+    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+
+    ACCION accion;
+    if (entrada[SDL_SCANCODE_A])  { // Tecla S -> El personaje Salta
+        accion = GOLPEAR;
+    } else if (entrada[SDL_SCANCODE_S]) {
+        accion = SALTAR;
+//    } else if (entrada[SDL_SCANCODE_D]) {
+//        estado->agachar(entidad);
+//    } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
+//               entrada[SDL_SCANCODE_UP]) {
+//        if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT]) {
+//            estado->reposar(entidad);
+//        } else if (entrada[SDL_SCANCODE_DOWN] && entrada[SDL_SCANCODE_UP]) {
+//            estado->reposar(entidad);
+//        } else {
+//            estado->caminar(entidad, entrada[SDL_SCANCODE_RIGHT], entrada[SDL_SCANCODE_LEFT], entrada[SDL_SCANCODE_UP],
+//                            entrada[SDL_SCANCODE_DOWN]);
+//        }
+    } else {
+        accion = REPOSAR;
+    }
+    return new Accion(accion);
 }
 
 TrasmisionCliente::TrasmisionCliente(Socket socket, EntradaUsuario *entradaUsuario) :

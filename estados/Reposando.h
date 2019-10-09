@@ -15,7 +15,7 @@ private:
 public:
     Reposando();
     ~Reposando();
-    void enter(Entidad *) override;
+//    void enter(Entidad *) override;
     void actualizar(Entidad *) override;
     void reposar(Entidad *) override {};
 };

@@ -4,6 +4,8 @@
 
 #include "NivelServidor.h"
 #include "../modelo/Nivel.h"
+#include "../estados/Reposando.h"
+#include "../fisica/FisicaDePersonaje.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -38,17 +40,16 @@ void NivelServidor::generarJugador(Mapa *mapa) {
     auto *velocidad = new Velocidad();
     auto *orientacion = new Orientacion;
     auto *tipo = new Tipo(JUGADOR);
-//    EstadoDePersonaje *estado = new Reposando();
-//    auto *fisica = new FisicaDePersonaje();
-//    auto *entradaJugador = new EntradaJugador();
+    EstadoDePersonaje *estado = new Reposando();
+    auto *fisica = new FisicaDePersonaje();
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
-//    jugador->agregarEstado("estado", estado);
-//    jugador->agregarComportamiento("fisica", fisica);
-//    jugador->agregarComportamiento("entrada jugador", entradaJugador);
+    jugador->agregarEstado("estado", estado);
+    jugador->agregarComportamiento("estado", estado);
+    jugador->agregarComportamiento("fisica", fisica);
 }
 
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {

@@ -18,7 +18,7 @@ public:
 
     void agachar(Entidad *) override {};
     void actualizar(Entidad *) override;
-    void enter(Entidad *entidad) override;
+//    void enter(Entidad *entidad) override;
 
 };
 
