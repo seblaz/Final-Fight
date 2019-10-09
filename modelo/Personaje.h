@@ -16,7 +16,7 @@ enum PERSONAJE {
     MAKI
 };
 
-class Personaje : public Estado, Serializable{
+class Personaje : public Estado, Serializable {
 
 private:
     enum PERSONAJE personaje;

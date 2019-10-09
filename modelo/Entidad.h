@@ -69,6 +69,10 @@ public:
         return (T *) estados[s];
     };
 
+    bool contieneEstado(const string &s){
+        return estados.find(s) != estados.end();
+    }
+
     template<typename T>
     void agregarComportamiento(const string &s, T *t) {
         if (comportamientos.find(s) != comportamientos.end())

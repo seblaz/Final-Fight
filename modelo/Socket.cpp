@@ -31,7 +31,7 @@ bool Socket::enviar(stringstream &s) {
     string msg = s.str();
     size_t tamano = msg.size();
 
-    Locator::logger()->log(DEBUG, "Se pretende un mensaje de tamaño: " + to_string((tamano)));
+    Locator::logger()->log(DEBUG, "Se pretende enviar un mensaje de tamaño: " + to_string((tamano)));
     Locator::logger()->log(DEBUG, "Con el mensaje: " + msg);
 
     std::stringstream ss;

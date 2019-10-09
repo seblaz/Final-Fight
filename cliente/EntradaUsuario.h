@@ -29,6 +29,9 @@ public:
 
 class EntradaMenuSeleccion : public EntradaUsuario {
 
+private:
+    bool activo = true;
+
 public:
     Accion *getAccion() override;
 

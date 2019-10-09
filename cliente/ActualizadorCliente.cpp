@@ -19,18 +19,13 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
 
     unordered_set<IdEntidad> nuevasEntidades;
 
-    int i = 0;
-    while (i < 2) {
-        i++;
-//    while (s.rdbuf()->in_avail() != 0) {
+    while (s.rdbuf()->in_avail() != 0) {
 
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
         Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
         nuevasEntidades.insert(idEntidad);
         string tmp = s.str();
         if (!mapa->contiene(idEntidad)) {
-//            Locator::logger()->log(DEBUG, "El cliente no contiene la entidad: " + to_string(idEntidad) + ", por lo tanto se crea y se borran las anteriores.");
-//            mapa->vaciarMapa();
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
             entidad->deserializar(s);
             Posicion *posicion;
@@ -59,8 +54,6 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
         } else {
             Entidad *entidad = mapa->getEntidad(idEntidad);
             entidad->deserializar(s);
-            auto *posicion = entidad->getEstado<Posicion>("posicion");
-            Locator::logger()->log(DEBUG, "Posicion x:" + to_string(posicion->x) + " y:" + to_string(posicion->y) + " z:" + to_string(posicion->z));
         }
     }
 

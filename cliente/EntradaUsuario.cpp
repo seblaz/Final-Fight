@@ -15,13 +15,16 @@ Accion *EntradaNula::getAccion() {
 }
 
 Accion *EntradaMenuSeleccion::getAccion() {
-    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-    if (entrada[SDL_SCANCODE_RETURN]) {
-        return new Accion(CONFIRMAR);
-    } else if (entrada[SDL_SCANCODE_LEFT]) {
-        return new Accion(SELECCIONAR_ANTERIOR);
-    } else if (entrada[SDL_SCANCODE_RIGHT]) {
-        return new Accion(SELECCIONAR_SIGUIENTE);
+    if (activo) {
+        const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+        if (entrada[SDL_SCANCODE_RETURN]) {
+            activo = false;
+            return new Accion(CONFIRMAR);
+        } else if (entrada[SDL_SCANCODE_LEFT]) {
+            return new Accion(SELECCIONAR_ANTERIOR);
+        } else if (entrada[SDL_SCANCODE_RIGHT]) {
+            return new Accion(SELECCIONAR_SIGUIENTE);
+        }
     }
     return nullptr;
 }
@@ -59,15 +62,6 @@ void TrasmisionCliente::transmitir() {
             stringstream s;
             accion->serializar(s);
             socket.enviar(s);
-//            string msg = s.str();
-//            int result = send(socket, msg.c_str(), msg.length(), 0);
-//            if (result == -1) {
-//                Locator::logger()->log(ERROR, "Error al transmitir.");
-//            } else if (result == 0) {
-//                Locator::logger()->log(INFO, "Cliente desconectado.");
-//            } else {
-//                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msg);
-//            }
         }
 
         size_t end = SDL_GetTicks();
