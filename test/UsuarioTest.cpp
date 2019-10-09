@@ -55,7 +55,6 @@ TEST(ManagerUsuarios, AgregarUsuarioSuperaCantidadMaxima){
     Usuario usuario2("user2", "pass");
 
     manager.agregarUsuario(usuario);
-    manager.agregarUsuario(usuario2);
 
     try {
         manager.agregarUsuario(usuario2);
