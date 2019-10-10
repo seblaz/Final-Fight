@@ -45,11 +45,11 @@ void Juego::inicializarGraficos() {
             SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
             int imgFlags = IMG_INIT_PNG;
             if (!(IMG_Init(imgFlags) & imgFlags)) {
-                logger->log(ERROR, string("SDL_image no se pudo escuchar! SDL_Error: ").append(IMG_GetError()));
+                logger->log(ERROR, string("SDL_image no se pudo recibir! SDL_Error: ").append(IMG_GetError()));
                 exit = true;
             }
             if (TTF_Init() < 0) {
-                logger->log(ERROR, string("SDL_ttf no se pudo escuchar! SDL_Error: ").append(TTF_GetError()));
+                logger->log(ERROR, string("SDL_ttf no se pudo recibir! SDL_Error: ").append(TTF_GetError()));
                 exit = true;
             }
         }
@@ -60,13 +60,15 @@ void Juego::loop(TrasmisionCliente *transmicion) {
 //    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
-
+    receptor.recibirEnHilo();
+    
     while (!exit) {
 //        size_t start = SDL_GetTicks()
         processInput();
-        auto *s = receptor.escuchar();
+        stringstream s;
+        receptor.devolverStreamMasReciente(s);
         if(!s) break;
-        actualizador.actualizarEntidades(*s, transmicion);
+        actualizador.actualizarEntidades(s, transmicion);
         clearScene();
         actualizar();
         graficar();

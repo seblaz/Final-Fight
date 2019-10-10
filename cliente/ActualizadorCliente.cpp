@@ -19,6 +19,8 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
 
     unordered_set<IdEntidad> nuevasEntidades;
 
+    nuevasEntidades.clear();
+
     while (s.rdbuf()->in_avail() != 0) {
 
         IdEntidad idEntidad = Entidad::getIdFromStream(s);

@@ -18,23 +18,42 @@ using namespace std;
 int main(int argc, char *argv[]) {
     auto *logger = new Logger();
     Locator::provide(logger);
-    auto* config = new Configuracion();
+    auto *config = new Configuracion();
     Locator::provide(config);
 
     string ipAddress;
     int port;
     bool paramsOk = false;
+    string configPath;
+    string nivelDebug;
 
-    if (argc < 3){
+    if (argc < 3) {
         logger->log(ERROR, "No se recibio ip y/o puerto. Se termina la ejecucion");
-    }else{
+    } else {
         ipAddress = argv[1];
 
-        try{
+        try {
             port = stoi(argv[2]);
             paramsOk = true;
-        }catch(...){
+        } catch (...) {
             logger->log(ERROR, "Error en puerto recibido. Se termina la ejecucion.");
+        }
+
+        if(argc > 3){
+            if(argc == 4){
+                string param = argv[3];
+                size_t found = param.find(".xml");
+
+
+                if(found==std::string::npos){ //no encontro .xml
+                    nivelDebug = param;
+                }else{
+                    configPath = param;
+                }
+            }else{
+                nivelDebug = argv[3];
+                configPath = argv[4];
+            }
         }
     }
 
@@ -68,6 +87,7 @@ int main(int argc, char *argv[]) {
         TrasmisionCliente trasmision(socket, &entrada);
         trasmision.transmitirEnHilo();
 
+
         /**
          * Iniciar juego.
          */
@@ -79,18 +99,9 @@ int main(int argc, char *argv[]) {
 
         juego.loop(&trasmision);
         juego.terminar();
+
     }
 
-//    /**
-//     * Actualizador.
-//     */
-//     ActualizadorCliente actualizador(&mapa);
-//
-//    /**
-//     * Escuchar al servidor.
-//     */
-//    Escucha escucha(socket, &actualizador);
-//    escucha.escucharEnHilo();
 
     return 0;
 
