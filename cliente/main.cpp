@@ -23,6 +23,8 @@ int main(int argc, char *argv[]) {
     string ipAddress;
     int port;
     bool paramsOk = false;
+    string configPath;
+    string nivelDebug;
 
     if (argc < 3) {
         logger->log(ERROR, "No se recibio ip y/o puerto. Se termina la ejecucion");
@@ -34,6 +36,23 @@ int main(int argc, char *argv[]) {
             paramsOk = true;
         } catch (...) {
             logger->log(ERROR, "Error en puerto recibido. Se termina la ejecucion.");
+        }
+
+        if(argc > 3){
+            if(argc == 4){
+                string param = argv[3];
+                size_t found = param.find(".xml");
+
+
+                if(found==std::string::npos){ //no encontro .xml
+                    nivelDebug = param;
+                }else{
+                    configPath = param;
+                }
+            }else{
+                nivelDebug = argv[3];
+                configPath = argv[4];
+            }
         }
     }
 
