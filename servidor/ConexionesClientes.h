@@ -8,6 +8,7 @@
 #include <vector>
 #include <pthread.h>
 #include "../modelo/Socket.h"
+#include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
 
@@ -16,13 +17,13 @@ class ConexionesClientes {
 private:
     int socketServidor;
     const int jugadoresMax;
-    int jugadoresFaltantes;
+    ManagerUsuarios manager;
     vector<int> socketsClientes;
     vector<pthread_t> hilos;
     void rechazarProximasConexiones();
 
 public:
-    explicit ConexionesClientes(int socketServidor, int jugadoresMax = 4);
+    explicit ConexionesClientes(int socketServidor, ManagerUsuarios managerUsuarios);
     ~ConexionesClientes();
     void esperarConexiones();
     vector<Socket> devolverConexiones();

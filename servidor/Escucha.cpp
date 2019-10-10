@@ -4,6 +4,7 @@
 
 #include "Escucha.h"
 #include "../modelo/Accion.h"
+#include "../usuario/Usuario.h"
 
 Escucha::Escucha(Socket socket) :
         socket(socket) {}

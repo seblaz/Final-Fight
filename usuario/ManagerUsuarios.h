@@ -22,6 +22,8 @@ class ManagerUsuarios {
         bool estaPresente(string usuario);
         bool estaLogueado(Usuario usuario);
         int getCantidadLogueados();
+        bool faltanJugadores();
+        int cantidadJugadoresFaltantes();
 };
 
 

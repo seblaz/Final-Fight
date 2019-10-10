@@ -10,6 +10,7 @@
 #include "ActualizadorCliente.h"
 #include "NivelCliente.h"
 #include "EntradaUsuario.h"
+#include "../usuario/Usuario.h"
 
 using namespace std;
 
@@ -42,17 +43,23 @@ int main(int argc, char *argv[]) {
         string pass;
 
 
-        /*cout << "Ingrese nombre de usuario" << endl;
+        cout << "Ingrese nombre de usuario" << endl;
         cin >> user;
         cout << "Ingrese contraseña" << endl;
-        cin >> pass;*/
+        cin >> pass;
 
         /**
-     * Conexion cliente.
-     */
+         * Conexion cliente.
+         */
         ConexionCliente conexion(ipAddress, port);
         Socket socket = conexion.socket();
         Locator::provide(socket);
+
+        Usuario usuario(user, pass);
+
+        stringstream userStream;
+        usuario.serializar(userStream);
+        socket.enviar(userStream);
 
         /**
          * Transmisión de acciones.

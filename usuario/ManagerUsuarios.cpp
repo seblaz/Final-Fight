@@ -43,3 +43,11 @@ bool ManagerUsuarios::estaLogueado(Usuario usuario){
 int ManagerUsuarios::getCantidadLogueados() {
     return usuarios.size();
 }
+
+bool ManagerUsuarios::faltanJugadores() {
+    return usuarios.size() < maximo;
+}
+
+int ManagerUsuarios::cantidadJugadoresFaltantes() {
+    return maximo - usuarios.size();
+}

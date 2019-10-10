@@ -11,9 +11,9 @@
 #include <unistd.h>
 #include <netinet/in.h>
 
-ConexionesClientes::ConexionesClientes(int socketServidor, int jugadoresMax) :
+ConexionesClientes::ConexionesClientes(int socketServidor, ManagerUsuarios managerUsuarios) :
         jugadoresMax(jugadoresMax),
-        jugadoresFaltantes(jugadoresMax),
+        manager(managerUsuarios),
         socketServidor(socketServidor) {}
 
 ConexionesClientes::~ConexionesClientes() {
@@ -25,7 +25,7 @@ ConexionesClientes::~ConexionesClientes() {
 void ConexionesClientes::esperarConexiones() {
     Locator::logger()->log(INFO, "Esperando " + to_string(jugadoresMax)+ " jugador(es).");
 
-    while (jugadoresFaltantes > 0) {
+    while (manager.faltanJugadores()) {
 
         sockaddr_in newSockAddr{};
         socklen_t newSockAddrSize = sizeof(newSockAddr);
@@ -33,12 +33,25 @@ void ConexionesClientes::esperarConexiones() {
         // accept, create a new socket descriptor to handle the new connection with client
         int nuevoSocket = accept(socketServidor, (sockaddr * ) & newSockAddr, &newSockAddrSize);
 
+
+
         if (nuevoSocket < 0) {
             Locator::logger()->log(ERROR, "Error al aceptar el pedido de conexión del cliente.");
         } else {
-            jugadoresFaltantes--;
-            socketsClientes.push_back(nuevoSocket);
-            Locator::logger()->log(INFO, "Nuevo cliente conectado. Esperando " + to_string(jugadoresFaltantes) + " jugador(es).");
+            //jugadoresFaltantes--;
+
+            Socket socketNuevoUsuario(nuevoSocket);
+
+            stringstream user;
+            socketNuevoUsuario.recibir(user);
+            Usuario nuevoUsuario;
+            nuevoUsuario.deserializar(user);
+
+            if(!manager.estaPresente(nuevoUsuario.getUsuario())){
+                manager.agregarUsuario(nuevoUsuario);
+                socketsClientes.push_back(nuevoSocket);
+                Locator::logger()->log(INFO, "Nuevo cliente conectado. Esperando " + to_string(manager.cantidadJugadoresFaltantes()) + " jugador(es).");
+            }
         }
 
     }

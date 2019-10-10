@@ -13,6 +13,7 @@
 #include "../eventos/ActualizarYTransmitir.h"
 #include "GameLoop.h"
 #include "ActualizadorServidor.h"
+#include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
 
@@ -32,7 +33,8 @@ int main(int argc, char *argv[]) {
     /**
      * Conexiones de clientes.
      */
-    ConexionesClientes conexiones(socketServidor, 1);
+    ManagerUsuarios managerUsuarios(1);
+    ConexionesClientes conexiones(socketServidor, managerUsuarios);
     conexiones.esperarConexiones();
     vector<Socket> socketsClientes = conexiones.devolverConexiones();
     pthread_t hiloRechazo = conexiones.rechazarConexionesEnHilo();
