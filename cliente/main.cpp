@@ -17,22 +17,22 @@ using namespace std;
 int main(int argc, char *argv[]) {
     auto *logger = new Logger();
     Locator::provide(logger);
-    auto* config = new Configuracion();
+    auto *config = new Configuracion();
     Locator::provide(config);
 
     string ipAddress;
     int port;
     bool paramsOk = false;
 
-    if (argc < 3){
+    if (argc < 3) {
         logger->log(ERROR, "No se recibio ip y/o puerto. Se termina la ejecucion");
-    }else{
+    } else {
         ipAddress = argv[1];
 
-        try{
+        try {
             port = stoi(argv[2]);
             paramsOk = true;
-        }catch(...){
+        } catch (...) {
             logger->log(ERROR, "Error en puerto recibido. Se termina la ejecucion.");
         }
     }
@@ -48,8 +48,8 @@ int main(int argc, char *argv[]) {
         cin >> pass;*/
 
         /**
-     * Conexion cliente.
-     */
+         * Conexion cliente.
+         */
         ConexionCliente conexion(ipAddress, port);
         Socket socket = conexion.socket();
         Locator::provide(socket);
@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
         EntradaNula entrada;
         TrasmisionCliente trasmision(socket, &entrada);
         trasmision.transmitirEnHilo();
+
 
         /**
          * Iniciar juego.
@@ -72,18 +73,9 @@ int main(int argc, char *argv[]) {
 
         juego.loop(&trasmision);
         juego.terminar();
+
     }
 
-//    /**
-//     * Actualizador.
-//     */
-//     ActualizadorCliente actualizador(&mapa);
-//
-//    /**
-//     * Escuchar al servidor.
-//     */
-//    Escucha escucha(socket, &actualizador);
-//    escucha.escucharEnHilo();
 
     return 0;
 
