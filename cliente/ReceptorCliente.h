@@ -11,12 +11,14 @@
 class ReceptorCliente {
 
 private:
+    bool nuevo = false;
     Socket socket;
 
 public:
     explicit ReceptorCliente(Socket socket);
     stringstream *escuchar();
-
+    stringstream *devolverTransmicion();
+    pthread_t recibirEnHilo();
 };
 
 

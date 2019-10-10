@@ -17,3 +17,19 @@ stringstream *ReceptorCliente::escuchar() {
     socket.recibir(*s);
     return s;
 }
+
+stringstream *ReceptorCliente::devolverTransmicion() {
+    return nullptr;
+}
+
+pthread_t ReceptorCliente::recibirEnHilo() {
+    pthread_t hilo;
+    pthread_create(&hilo, nullptr, [](void *arg) -> void * {
+        auto *receptor = (ReceptorCliente *) arg;
+        receptor.re();
+        return nullptr;
+    }, (void *) this);
+
+    Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
+    return hilo;
+}
