@@ -14,6 +14,7 @@ private:
     std::mutex mutex;
     Socket socket;
     bool nuevo = false;
+    semaphore disponible;
     stringstream ultimoStream;
     void recibir();
 
