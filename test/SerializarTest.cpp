@@ -7,6 +7,7 @@
 #include "../serializar/Serializable.h"
 #include "../modelo/Posicion.h"
 #include "../modelo/Orientacion.h"
+#include "../usuario/Usuario.h"
 
 using namespace std;
 
@@ -88,6 +89,7 @@ TEST(Serializar, SerializarUnTipo) {
 
     ASSERT_TRUE(tipo == otroTipo);
 }
+
 
 TEST(Serializar, SerializarUnaEntidad) {
     Entidad entidad;
@@ -171,4 +173,16 @@ TEST(Serializar, FuncionamientoStringStream2) {
 
     line = s.rdbuf()->str();
     ASSERT_TRUE(line == "una cadena\notra cadena\n");
+}
+
+TEST(Serializar, SerializarUnUsuario) {
+    Usuario usuario("user", "pass");
+    stringstream s;
+    usuario.serializar(s);
+
+    Usuario otroUsuario;
+    otroUsuario.deserializar(s);
+
+    ASSERT_TRUE( usuario.getUsuario() == otroUsuario.getUsuario() );
+    ASSERT_TRUE( usuario.getContrasenia() == otroUsuario.getContrasenia() );
 }

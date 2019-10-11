@@ -11,12 +11,16 @@
 class ReceptorCliente {
 
 private:
+    std::mutex mutex;
     Socket socket;
+    bool nuevo = false;
+    stringstream ultimoStream;
+    void recibir();
 
 public:
     explicit ReceptorCliente(Socket socket);
-    stringstream *escuchar();
-
+    void devolverStreamMasReciente(stringstream &s);
+    pthread_t recibirEnHilo();
 };
 
 
