@@ -5,7 +5,7 @@
 #include "FisicaDeEscenario.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Mapa.h"
-//#include "../niveles/Nivel.h"
+#include "../servidor/NivelServidor.h"
 
 FisicaDeEscenario::FisicaDeEscenario(int largo) :
         largo(largo) {
@@ -29,7 +29,6 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
         Locator::logger()->log(INFO, "Se llego al final del nivel.");
         auto *mapa = entidad->getEstado<Mapa>("mapa");
         mapa->vaciarMapa();
-        Entidad *jugador = mapa->getJugador();
-//        Nivel::generarNivel("nivel2", mapa, jugador);
+        NivelServidor::generarNivel("nivel2", mapa);
     }
 }

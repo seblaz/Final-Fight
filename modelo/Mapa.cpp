@@ -12,7 +12,7 @@ IdEntidad Mapa::ultimoId = 0;
 
 Entidad *Mapa::crearEntidad() {
     auto* e = new Entidad();
-    entidades[ultimoId++] = e;
+    entidades[++ultimoId] = e;
     return e;
 }
 
