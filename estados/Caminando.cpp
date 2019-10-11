@@ -6,6 +6,7 @@
 #include "../servicios/Locator.h"
 
 Caminando::Caminando(){
+    estadoDePersonaje = "caminando";
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Caminando");
 }
@@ -16,11 +17,11 @@ Caminando::~Caminando() {
 }
 
 
-//void Caminando::enter(Entidad *entidad) {
-//    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-//    auto *animacion = fabricaDeAnimaciones->caminando();
-//    entidad->agregarEstado("animacion", animacion);
-//}
+void Caminando::enter(Entidad *entidad) {
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    auto *animacion = fabricaDeAnimaciones->caminando();
+    entidad->agregarEstado("animacion", animacion);
+}
 
 #define RAPIDEZ 4
 
@@ -31,4 +32,6 @@ void Caminando::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bo
     velocidad->x = RAPIDEZ * velocidadRelativa * X_pos - RAPIDEZ * velocidadRelativa * X_neg;
     velocidad->y = RAPIDEZ * velocidadRelativa * Y_pos - RAPIDEZ * velocidadRelativa * Y_neg;
 }
+
+
 

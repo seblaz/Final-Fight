@@ -7,6 +7,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 Reposando::Reposando() {
+    estadoDePersonaje = "reposando";
     Logger* logger = Locator::logger();
     logger -> log(DEBUG, "Se instancio un objeto de clase Reposando");
 }
@@ -17,11 +18,11 @@ Reposando::~Reposando() {
 }
 
 
-//void Reposando::enter(Entidad *entidad) {
-//    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-//    auto* animacion = fabricaDeAnimaciones->reposando();
-//    entidad->agregarEstado("animacion", animacion);
-//}
+void Reposando::enter(Entidad *entidad) {
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    auto* animacion = fabricaDeAnimaciones->reposando();
+    entidad->agregarEstado("animacion", animacion);
+}
 
 void Reposando::actualizar(Entidad *entidad) {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");

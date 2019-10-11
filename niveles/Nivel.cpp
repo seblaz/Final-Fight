@@ -72,7 +72,6 @@ Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador jugadorElegido) {
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
     auto *grafico = new Grafico();
-    auto *entradaJugador = new EntradaJugador();
 
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
@@ -83,7 +82,6 @@ Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador jugadorElegido) {
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("grafico", grafico);
-    jugador->agregarComportamiento("entrada jugador", entradaJugador);
 
     return jugador;
 }

@@ -44,3 +44,38 @@ void EstadoDePersonaje::golpear(Entidad * entidad) {
     entidad->agregarComportamiento("estado", golpeando);
 //    golpeando->enter(entidad);
 }
+
+void EstadoDePersonaje::serializar(ostream &stream) {
+    serializarString(stream, this->estadoDePersonaje);
+}
+
+void EstadoDePersonaje::deserializar(istream &stream) {
+    this->nuevoEstado = deserializarString(stream);
+}
+
+EstadoDePersonaje::EstadoDePersonaje() {
+    this->estadoDePersonaje = "";
+    this->nuevoEstado = "";
+}
+
+string EstadoDePersonaje::getNuevoEstado() {
+    return nuevoEstado;
+}
+
+void EstadoDePersonaje::actualizar(Entidad *entidad) {
+ //   auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+  //  auto* animacion = fabricaDeAnimaciones->golpear();
+   // entidad->agregarEstado("animacion", animacion);
+}
+
+bool EstadoDePersonaje::cambioElEstado() {
+    if ( nuevoEstado == "" ){
+        return false;
+    }else if ( estadoDePersonaje != nuevoEstado ){
+        return true;
+    }else return false;
+}
+
+void EstadoDePersonaje::consolidarEstados() {
+    estadoDePersonaje = nuevoEstado;
+}

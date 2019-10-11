@@ -50,7 +50,7 @@ class Entidad : public Serializable {
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = {"posicion", "orientacion", "nivel"};
+    vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado" };
     const int fin = 999999999;
 
 public:
@@ -102,7 +102,8 @@ enum TIPO {
     PERSONAJE_SELECCION,
     PERSONAJE,
     ESCENARIO,
-    JUGADOR
+    JUGADOR,
+    ESTADO
 };
 
 class Tipo : public Estado, Serializable {

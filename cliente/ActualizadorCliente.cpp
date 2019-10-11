@@ -20,7 +20,6 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
     unordered_set<IdEntidad> nuevasEntidades;
 
     while (s.rdbuf()->in_avail() != 0) {
-
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
 //        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
         nuevasEntidades.insert(idEntidad);
@@ -47,6 +46,8 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
                     break;
+                case ESTADO:
+                    //TODO
                 default:
                     Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
             }

@@ -11,6 +11,9 @@
 #include "../graficos/Grafico.h"
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
+#include "../comportamiento/EntradaJugador.h"
+#include "../estados/EstadoDePersonaje.h"
+#include "../estados/Reposando.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -60,6 +63,8 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
     auto *animacion = fabricaDeAnimaciones->reposando();
     auto *grafico = new Grafico();
+    auto *estado = new Reposando();
+    auto *entradaJugador = new EntradaJugador();
 //    EstadoDePersonaje *estado = new Reposando();
 //    auto *entradaJugador = new EntradaJugador();
 
@@ -68,7 +73,9 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     jugador->agregarEstado("sprite", spriteJugador);
     jugador->agregarEstado("animacion", animacion);
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
+    jugador->agregarEstado("estado", estado);
     jugador->agregarComportamiento("grafico", grafico);
+    jugador->agregarComportamiento("entrada jugador", entradaJugador);
 }
 
 void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {

@@ -48,6 +48,7 @@ void NivelServidor::generarJugador(Mapa *mapa) {
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("estado", estado);
+    //jugador ->agregarEstado("estado", estado);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
 }

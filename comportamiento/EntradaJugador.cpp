@@ -11,18 +11,30 @@
 #define RAPIDEZ 4
 
 void EntradaJugador::actualizar(Entidad *entidad) {
-    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+    //const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado");
-    estado->actualizar(entidad);
+    //estado->actualizar(entidad);
+    if (estado->cambioElEstado()) {
+        string tipoEstado = estado->getNuevoEstado();
+        estado -> consolidarEstados();
+        if (tipoEstado == "golpeando") { // Tecla S -> El personaje Salta
+            //estado->golpear(entidad);
+            auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+            auto *animacion = fabricaDeAnimaciones->golpear();
+            entidad->agregarEstado("animacion", animacion);
 
-    if (entrada[SDL_SCANCODE_A])  { // Tecla S -> El personaje Salta
-        estado->golpear(entidad);
-    } else if (entrada[SDL_SCANCODE_S]) {
-        estado->saltar(entidad);
-    } else if (entrada[SDL_SCANCODE_D]) {
-        estado->agachar(entidad);
-    } else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
+        } else if (tipoEstado == "saltando") {
+            //estado->saltar(entidad);
+            auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+            auto *animacion = fabricaDeAnimaciones->saltando();
+            entidad->agregarEstado("animacion", animacion);
+        } else if (tipoEstado == "agachando") {
+            //estado->agachar(entidad);
+            auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+            auto *animacion = fabricaDeAnimaciones->agachado();
+            entidad->agregarEstado("animacion", animacion);
+        } /*else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
                entrada[SDL_SCANCODE_UP]) {
         if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT]) {
             estado->reposar(entidad);
@@ -32,7 +44,12 @@ void EntradaJugador::actualizar(Entidad *entidad) {
             estado->caminar(entidad, entrada[SDL_SCANCODE_RIGHT], entrada[SDL_SCANCODE_LEFT], entrada[SDL_SCANCODE_UP],
                             entrada[SDL_SCANCODE_DOWN]);
         }
-    } else {
-        estado->reposar(entidad);
+        }*/
+        else {
+            estado->reposar(entidad);
+            auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+            auto *animacion = fabricaDeAnimaciones->caminando();
+            entidad->agregarEstado("animacion", animacion);
+        }
     }
 }

@@ -9,6 +9,7 @@
 #include "Caminando.h"
 
 Saltando::Saltando() {
+    estadoDePersonaje = "saltando";
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
@@ -30,18 +31,18 @@ void Saltando::actualizar(Entidad *entidad) {
     }
     frames++;
 }
-//
-//void Saltando::enter(Entidad *entidad) {
-//    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
-//    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-//    if (velocidad->x == 0) {
-//        auto *animacion = fabricaDeAnimaciones->saltando();
-//        entidad->agregarEstado("animacion", animacion);
-//    } else if (velocidad->x != 0) {
-//        auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
-//        entidad->agregarEstado("animacion", animacion);
-//    }
-//}
+
+void Saltando::enter(Entidad *entidad) {
+    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    if (velocidad->x == 0) {
+        auto *animacion = fabricaDeAnimaciones->saltando();
+        entidad->agregarEstado("animacion", animacion);
+    } else if (velocidad->x != 0) {
+        auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
+        entidad->agregarEstado("animacion", animacion);
+    }
+}
 
 void Saltando::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
     if (Saltando::termine)
