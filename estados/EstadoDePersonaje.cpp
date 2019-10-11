@@ -63,17 +63,16 @@ enum ESTADO EstadoDePersonaje::getNuevoEstado() {
 }
 
 void EstadoDePersonaje::actualizar(Entidad *entidad) {
- //   auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-  //  auto* animacion = fabricaDeAnimaciones->golpear();
-   // entidad->agregarEstado("animacion", animacion);
 }
 
 bool EstadoDePersonaje::cambioElEstado() {
-    if ( estadoDePersonaje != nuevoEstado ){
-        return true;
-    }else return false;
+    return estadoDePersonaje != nuevoEstado;
 }
 
 void EstadoDePersonaje::consolidarEstados() {
     estadoDePersonaje = nuevoEstado;
+}
+
+enum ESTADO EstadoDePersonaje::getEstadoDePersonaje() {
+    return estadoDePersonaje;
 }

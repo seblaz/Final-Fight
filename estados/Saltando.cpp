@@ -25,8 +25,6 @@ void Saltando::actualizar(Entidad *entidad) {
     velocidad->z = velocidadInicial + aceleracion * frames;
     if (velocidad->z == -velocidadInicial) {
         termine = true;
-        //velocidad->x = 0;
-        //velocidad->y = 0;
         velocidad->z = 0;
     }
     frames++;
@@ -70,10 +68,8 @@ void Saltando::golpear(Entidad *entidad) {
     if (!Saltando::termine) {
         if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
             if (!pateando) {
-//                auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-//                auto *animacion = fabricaDeAnimaciones->patadaBasica();
-//                entidad->agregarEstado("animacion", animacion);
                 pateando = true;
+                estadoDePersonaje = GOLPEANDO;
             }
         }
     } else {

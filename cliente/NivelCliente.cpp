@@ -11,7 +11,7 @@
 #include "../graficos/Grafico.h"
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
-#include "../comportamiento/EntradaJugador.h"
+#include "../comportamiento/Animador.h"
 #include "../estados/EstadoDePersonaje.h"
 #include "../estados/Reposando.h"
 
@@ -64,7 +64,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     auto *animacion = fabricaDeAnimaciones->reposando();
     auto *grafico = new Grafico();
     auto *estado = new Reposando();
-    auto *entradaJugador = new EntradaJugador();
+    auto *animador = new Animador();
 //    EstadoDePersonaje *estado = new Reposando();
 //    auto *entradaJugador = new EntradaJugador();
 
@@ -75,7 +75,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarEstado("estado", estado);
     jugador->agregarComportamiento("grafico", grafico);
-    jugador->agregarComportamiento("entrada jugador", entradaJugador);
+    jugador->agregarComportamiento("animador", animador);
 }
 
 void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {

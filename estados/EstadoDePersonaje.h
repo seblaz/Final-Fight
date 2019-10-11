@@ -7,7 +7,7 @@
 
 
 #include "../modelo/Entidad.h"
-#include "../comportamiento/EntradaJugador.h"
+#include "../comportamiento/Animador.h"
 #include "../modelo/Velocidad.h"
 #include "../servicios/Locator.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
@@ -42,6 +42,7 @@ public:
 
     bool cambioElEstado();
     enum ESTADO getNuevoEstado();
+    enum ESTADO getEstadoDePersonaje();
     void consolidarEstados();
 
 };

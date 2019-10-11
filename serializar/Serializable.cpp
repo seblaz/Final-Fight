@@ -10,9 +10,7 @@ void Serializable::serializarEntero(ostream &in, int entero) {
 }
 
 int Serializable::deserializarEntero(istream &stream) {
-    string line;
-    getline(stream, line);
-    return stoi(line);
+    return stoi(deserializarString(stream));
 }
 
 void Serializable::serializarString(ostream &in, string string) {
