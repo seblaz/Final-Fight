@@ -5,7 +5,7 @@
 #include "Golpeando.h"
 
 Golpeando::Golpeando() {
-    estadoDePersonaje = "golpeando";
+    estadoDePersonaje = GOLPEANDO;
     Logger* logger = Locator::logger();
     logger -> log(DEBUG, "Se instancio un objeto de clase Golpeando");
 }

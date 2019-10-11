@@ -9,7 +9,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 Agachado::Agachado() {
-    estadoDePersonaje = "agachado";
+    estadoDePersonaje = AGACHADO;
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Agachado");
 }

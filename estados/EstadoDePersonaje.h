@@ -12,11 +12,19 @@
 #include "../servicios/Locator.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
+enum ESTADO{
+    CAMINANDO,
+    SALTANDO,
+    REPOSANDO,
+    GOLPEANDO,
+    AGACHADO
+};
+
 class EstadoDePersonaje : public Estado, public Comportamiento, public Serializable {
 
 protected:
-    string estadoDePersonaje;
-    string nuevoEstado;
+    enum ESTADO estadoDePersonaje;
+    enum ESTADO nuevoEstado;
 
 public:
     EstadoDePersonaje() ;
@@ -33,7 +41,7 @@ public:
     void deserializar(istream& stream) override ;
 
     bool cambioElEstado();
-    string getNuevoEstado();
+    enum ESTADO getNuevoEstado();
     void consolidarEstados();
 
 };

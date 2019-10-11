@@ -9,7 +9,7 @@
 #include "Caminando.h"
 
 Saltando::Saltando() {
-    estadoDePersonaje = "saltando";
+    estadoDePersonaje = SALTANDO;
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }

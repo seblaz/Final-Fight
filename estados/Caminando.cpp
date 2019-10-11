@@ -6,7 +6,7 @@
 #include "../servicios/Locator.h"
 
 Caminando::Caminando(){
-    estadoDePersonaje = "caminando";
+    estadoDePersonaje = CAMINANDO;
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Caminando");
 }

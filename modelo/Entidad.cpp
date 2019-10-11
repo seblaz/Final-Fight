@@ -33,7 +33,7 @@ void Entidad::serializar(ostream &stream) {
         string estado = estadosSerializables.at(i);
         if (!(estados.find(estado) == estados.end())) {
             serializarEntero(stream, i);
-            Locator::logger()->log(DEBUG, "Se serializa un entero " + to_string(i));
+            //Locator::logger()->log(DEBUG, "Se serializa un entero " + to_string(i));
             estados[estado]->serializar(stream);
         }
     }

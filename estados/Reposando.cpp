@@ -7,7 +7,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 Reposando::Reposando() {
-    estadoDePersonaje = "reposando";
+    estadoDePersonaje = REPOSANDO;
     Logger* logger = Locator::logger();
     logger -> log(DEBUG, "Se instancio un objeto de clase Reposando");
 }

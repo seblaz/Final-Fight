@@ -16,40 +16,38 @@ void EntradaJugador::actualizar(Entidad *entidad) {
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado");
     //estado->actualizar(entidad);
     if (estado->cambioElEstado()) {
-        string tipoEstado = estado->getNuevoEstado();
+        enum ESTADO tipoEstado = estado->getNuevoEstado();
         estado -> consolidarEstados();
-        if (tipoEstado == "golpeando") { // Tecla S -> El personaje Salta
+        if (tipoEstado == GOLPEANDO) { // Tecla S -> El personaje Salta
             //estado->golpear(entidad);
             auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
             auto *animacion = fabricaDeAnimaciones->golpear();
             entidad->agregarEstado("animacion", animacion);
 
-        } else if (tipoEstado == "saltando") {
+        } else if (tipoEstado == SALTANDO) {
             //estado->saltar(entidad);
             auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
             auto *animacion = fabricaDeAnimaciones->saltando();
             entidad->agregarEstado("animacion", animacion);
-        } else if (tipoEstado == "agachando") {
+        } else if (tipoEstado == AGACHADO) {
             //estado->agachar(entidad);
             auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
             auto *animacion = fabricaDeAnimaciones->agachado();
             entidad->agregarEstado("animacion", animacion);
-        } /*else if (entrada[SDL_SCANCODE_RIGHT] || entrada[SDL_SCANCODE_LEFT] || entrada[SDL_SCANCODE_DOWN] ||
-               entrada[SDL_SCANCODE_UP]) {
-        if (entrada[SDL_SCANCODE_RIGHT] && entrada[SDL_SCANCODE_LEFT]) {
-            estado->reposar(entidad);
-        } else if (entrada[SDL_SCANCODE_DOWN] && entrada[SDL_SCANCODE_UP]) {
-            estado->reposar(entidad);
-        } else {
-            estado->caminar(entidad, entrada[SDL_SCANCODE_RIGHT], entrada[SDL_SCANCODE_LEFT], entrada[SDL_SCANCODE_UP],
-                            entrada[SDL_SCANCODE_DOWN]);
-        }
-        }*/
-        else {
-            estado->reposar(entidad);
+        } else if ( tipoEstado == CAMINANDO ){
             auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
             auto *animacion = fabricaDeAnimaciones->caminando();
             entidad->agregarEstado("animacion", animacion);
+        } else if ( tipoEstado == REPOSANDO ){
+            auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+            auto *animacion = fabricaDeAnimaciones->reposando();
+            entidad->agregarEstado("animacion", animacion);
         }
+       /* else {
+            estado->reposar(entidad);
+            auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+            auto *animacion = fabricaDeAnimaciones->reposando();
+            entidad->agregarEstado("animacion", animacion);
+        } */
     }
 }

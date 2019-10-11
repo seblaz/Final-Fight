@@ -46,19 +46,19 @@ void EstadoDePersonaje::golpear(Entidad * entidad) {
 }
 
 void EstadoDePersonaje::serializar(ostream &stream) {
-    serializarString(stream, this->estadoDePersonaje);
+    serializarEntero(stream, this->estadoDePersonaje);
 }
 
 void EstadoDePersonaje::deserializar(istream &stream) {
-    this->nuevoEstado = deserializarString(stream);
+    this->nuevoEstado = static_cast<enum ESTADO>(deserializarEntero(stream));
 }
 
 EstadoDePersonaje::EstadoDePersonaje() {
-    this->estadoDePersonaje = "";
-    this->nuevoEstado = "";
+    this->estadoDePersonaje = REPOSANDO;
+    this->nuevoEstado = REPOSANDO;
 }
 
-string EstadoDePersonaje::getNuevoEstado() {
+enum ESTADO EstadoDePersonaje::getNuevoEstado() {
     return nuevoEstado;
 }
 
@@ -69,9 +69,7 @@ void EstadoDePersonaje::actualizar(Entidad *entidad) {
 }
 
 bool EstadoDePersonaje::cambioElEstado() {
-    if ( nuevoEstado == "" ){
-        return false;
-    }else if ( estadoDePersonaje != nuevoEstado ){
+    if ( estadoDePersonaje != nuevoEstado ){
         return true;
     }else return false;
 }
