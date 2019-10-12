@@ -17,7 +17,7 @@ class NivelServidor {
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);
-    static void generarJugador(Mapa *mapa);
+    static void generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado);
 
     static void generarPersonajesSeleccion(Mapa *mapa);
     static void generarNivel(const string &nivel, Mapa *mapa);

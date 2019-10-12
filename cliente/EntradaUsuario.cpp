@@ -20,10 +20,10 @@ Accion *EntradaMenuSeleccion::getAccion() {
         if (entrada[SDL_SCANCODE_RETURN]) {
             activo = false;
             return new Accion(CONFIRMAR);
-        } else if (entrada[SDL_SCANCODE_LEFT]) {
-            return new Accion(SELECCIONAR_ANTERIOR);
-        } else if (entrada[SDL_SCANCODE_RIGHT]) {
-            return new Accion(SELECCIONAR_SIGUIENTE);
+        } else if (entrada[SDL_SCANCODE_1]) {
+            return new Accion(SELECCIONAR_CODDY);
+        } else if (entrada[SDL_SCANCODE_2]) {
+            return new Accion(SELECCIONAR_HAGGAR);
         }
     }
     return nullptr;

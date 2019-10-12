@@ -23,6 +23,8 @@ enum ACCION {
     CAM_IZQUIERDA_ABAJO,
     CAM_DERECHA_ARRIBA,
     CAM_DERECHA_ABAJO,
+    SELECCIONAR_CODDY,
+    SELECCIONAR_HAGGAR
 };
 
 class Accion : public Serializable {

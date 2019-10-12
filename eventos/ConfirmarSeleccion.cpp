@@ -5,10 +5,11 @@
 #include "ConfirmarSeleccion.h"
 #include "../servidor/NivelServidor.h"
 
-ConfirmarSeleccion::ConfirmarSeleccion(Mapa *mapa) : mapa(mapa) {}
+ConfirmarSeleccion::ConfirmarSeleccion(Mapa *mapa, enum PERSONAJE personaje) :
+mapa(mapa),personajeSeleccionado(personaje) {}
 
 void ConfirmarSeleccion::resolver() {
     mapa->vaciarMapa();
-    NivelServidor::generarJugador(mapa);
+    NivelServidor::generarJugador(mapa,personajeSeleccionado);
     NivelServidor::generarNivel("nivel1", mapa);
 }
