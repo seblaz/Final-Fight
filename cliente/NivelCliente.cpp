@@ -11,7 +11,7 @@
 #include "../graficos/Grafico.h"
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
-#include "../comportamiento/Animador.h"
+#include "Animador.h"
 #include "../estados/EstadoDePersonaje.h"
 #include "../estados/Reposando.h"
 #include "../modelo/Personaje.h"

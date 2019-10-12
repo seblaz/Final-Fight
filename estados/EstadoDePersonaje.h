@@ -7,7 +7,7 @@
 
 
 #include "../modelo/Entidad.h"
-#include "../comportamiento/Animador.h"
+#include "../cliente/Animador.h"
 #include "../modelo/Velocidad.h"
 #include "../servicios/Locator.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
