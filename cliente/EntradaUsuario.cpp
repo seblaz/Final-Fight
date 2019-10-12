@@ -17,13 +17,18 @@ Accion *EntradaNula::getAccion() {
 Accion *EntradaMenuSeleccion::getAccion() {
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-        if (entrada[SDL_SCANCODE_RETURN]) {
+        if (entrada[SDL_SCANCODE_1]) {
             activo = false;
-            return new Accion(CONFIRMAR);
-        } else if (entrada[SDL_SCANCODE_LEFT]) {
-            return new Accion(SELECCIONAR_ANTERIOR);
-        } else if (entrada[SDL_SCANCODE_RIGHT]) {
-            return new Accion(SELECCIONAR_SIGUIENTE);
+            return new Accion(SELECCIONAR_GUY);
+        } else if (entrada[SDL_SCANCODE_2]) {
+            activo = false;
+            return new Accion(SELECCIONAR_CODY);
+        } else if (entrada[SDL_SCANCODE_3]) {
+            activo = false;
+            return new Accion(SELECCIONAR_HAGGAR);
+        } else if (entrada[SDL_SCANCODE_4]) {
+            activo = false;
+            return new Accion(SELECCIONAR_MAKI);
         }
     }
     return nullptr;

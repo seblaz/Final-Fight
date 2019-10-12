@@ -21,10 +21,7 @@ void ActualizadorServidor::interpretarComando(stringstream &s) {
 
         EventoAProcesar *evento;
         switch (accion.accion()) {
-            case CONFIRMAR:
-                evento = new ConfirmarSeleccion(mapa);
-                eventos->push(evento);
-                break;
+
             case SELECCIONAR_SIGUIENTE:
                 break;
             case SELECCIONAR_ANTERIOR:
@@ -75,6 +72,22 @@ void ActualizadorServidor::interpretarComando(stringstream &s) {
                 break;
             case CAM_DERECHA_ABAJO:
                 evento = new CaminarDerechaAbajo(jugador);
+                eventos->push(evento);
+                break;
+            case SELECCIONAR_CODY:
+                evento = new ConfirmarSeleccion(mapa, CODY);
+                eventos->push(evento);
+                break;
+            case SELECCIONAR_HAGGAR:
+                evento = new ConfirmarSeleccion(mapa, HAGGAR);
+                eventos->push(evento);
+                break;
+            case SELECCIONAR_GUY:
+                evento = new ConfirmarSeleccion(mapa, GUY);
+                eventos->push(evento);
+                break;
+            case SELECCIONAR_MAKI:
+                evento = new ConfirmarSeleccion(mapa, MAKI);
                 eventos->push(evento);
                 break;
         }

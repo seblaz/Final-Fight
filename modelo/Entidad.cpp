@@ -28,7 +28,6 @@ vector<Estado *> Entidad::getEstados() {
 
 void Entidad::serializar(ostream &stream) {
     getEstado<Tipo>("tipo")->serializar(stream);
-
     for (size_t i = 0; i < estadosSerializables.size(); i++) {
         string estado = estadosSerializables.at(i);
         if (!(estados.find(estado) == estados.end())) {
@@ -80,6 +79,15 @@ void Entidad::deserializar(istream &stream) {
                 auto *estado = new Reposando();
                 estado->deserializar(stream);
                 agregarEstado("estado", estado);
+            }
+        }
+        else if (estado == "personaje") {
+            if (existe) {
+                getEstado<Personaje>("personaje")->deserializar(stream);
+            } else {
+                auto *personaje = new Personaje();
+                personaje->deserializar(stream);
+                agregarEstado("personaje", personaje);
             }
         }
         posicionEstado = deserializarEntero(stream);

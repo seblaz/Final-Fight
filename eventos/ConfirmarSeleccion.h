@@ -7,14 +7,16 @@
 
 
 #include "Eventos.h"
+#include "../modelo/Personaje.h"
 
 class ConfirmarSeleccion : public EventoAProcesar {
 
 private:
     Mapa *mapa;
+    enum PERSONAJE personajeSeleccionado;
 
 public:
-    explicit ConfirmarSeleccion(Mapa *mapa);
+    explicit ConfirmarSeleccion(Mapa *mapa, enum PERSONAJE personaje);
     void resolver() override;
 };
 
