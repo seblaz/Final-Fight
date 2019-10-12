@@ -23,3 +23,15 @@ string Usuario::getUsuario() {
 string Usuario::getContrasenia() {
     return contrasenia;
 }
+
+void Usuario::setSocket(Socket* nuevoSocket) {
+    socket = nuevoSocket;
+}
+
+void Usuario::setPersonaje(Entidad *pEntidad) {
+    personaje = pEntidad;
+}
+
+Socket* Usuario::getSocket() {
+    return socket;
+}

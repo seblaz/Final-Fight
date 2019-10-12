@@ -88,3 +88,6 @@ bool Socket::recibir(stringstream &s) {
     return res2;
 }
 
+int Socket::getIntSocket() {
+    return socket;
+}

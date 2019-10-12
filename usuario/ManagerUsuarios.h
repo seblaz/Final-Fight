@@ -19,11 +19,12 @@ class ManagerUsuarios {
     public:
         ManagerUsuarios(int maximo);
         void agregarUsuario(Usuario usuario);
-        bool estaPresente(string usuario);
-        bool estaLogueado(Usuario usuario);
+        bool estaPresente(Usuario usuario);
         int getCantidadLogueados();
         bool faltanJugadores();
         int cantidadJugadoresFaltantes();
+        vector<Socket> getSockets();
+        void cambiarSocketParaUsuario(string usuario, Socket* pSocket);
 };
 
 

@@ -31,13 +31,19 @@ int main(int argc, char *argv[]) {
     int socketServidor = conexion.socket();
 
     /**
+     * Crear el mapa.
+     */
+    Mapa mapa;
+    int maximoJugadores = Locator::configuracion()->getIntValue("/usuarios/maximo", 4);
+
+    /**
      * Conexiones de clientes.
      */
-    ManagerUsuarios managerUsuarios(1);
-    ConexionesClientes conexiones(socketServidor, managerUsuarios);
+    ManagerUsuarios* managerUsuarios = new ManagerUsuarios(maximoJugadores);
+    ConexionesClientes conexiones(socketServidor, managerUsuarios, mapa);
     conexiones.esperarConexiones();
-    vector<Socket> socketsClientes = conexiones.devolverConexiones();
-    pthread_t hiloRechazo = conexiones.rechazarConexionesEnHilo();
+    vector<Socket> socketsClientes = managerUsuarios->getSockets();
+    pthread_t hiloConexionesEntrantes = conexiones.abrirHiloConexionesEntrantes();
 
     /**
      * Procesamiento.
@@ -52,11 +58,6 @@ int main(int argc, char *argv[]) {
     Transmision transmision(socketsClientes);
     auto *eventosATransmitir = transmision.devolverCola();
     pthread_t hiloTransmision = transmision.transmitirEnHilo();
-
-    /**
-     * Crear el mapa.
-     */
-    Mapa mapa;
 
     /**
      * Game loop.

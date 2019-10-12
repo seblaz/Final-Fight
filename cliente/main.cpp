@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
         usuario.serializar(userStream);
         socket.enviar(userStream);
 
+        //REVISAR es necesario una confirmacion sino se cierra
         /**
          * Transmisión de acciones.
          */

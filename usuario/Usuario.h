@@ -7,6 +7,8 @@
 
 #include <string>
 #include "../serializar/Serializable.h"
+#include "../modelo/Entidad.h"
+#include "../modelo/Socket.h"
 
 using namespace std;
 
@@ -15,6 +17,8 @@ class Usuario : public Serializable {
     private:
         string usuario;
         string contrasenia;
+        Entidad* personaje;
+        Socket* socket;
 
     public:
         Usuario()= default;
@@ -25,6 +29,11 @@ class Usuario : public Serializable {
         void deserializar(istream& stream) override;
         string getUsuario();
         string getContrasenia();
+        Socket* getSocket();
+
+    void setPersonaje(Entidad *pEntidad);
+
+    void setSocket(Socket* socket);
 };
 
 

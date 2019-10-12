@@ -13,7 +13,7 @@ void Escucha::escuchar(ActualizadorServidor *actualizador) {
 
     while (true) {
         stringstream s;
-        if(!socket.recibir(s)) break;
+        if(!socket.recibir(s)) break; //desactivar usuario
         actualizador->interpretarComando(s);
     }
 }

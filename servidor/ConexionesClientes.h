@@ -9,6 +9,7 @@
 #include <pthread.h>
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
+#include "../modelo/Mapa.h"
 
 using namespace std;
 
@@ -16,18 +17,19 @@ class ConexionesClientes {
 
 private:
     int socketServidor;
-    const int jugadoresMax;
-    ManagerUsuarios manager;
-    vector<int> socketsClientes;
+    ManagerUsuarios* manager;
     vector<pthread_t> hilos;
-    void rechazarProximasConexiones();
+    void administrarConexionesEntrantes();
+    Mapa mapa;
+    void evaluarIngresoDeJugador(int nuevoSocket, bool juegoComenzado, ManagerUsuarios *pUsuarios);
+    void ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* usuarios);
 
 public:
-    explicit ConexionesClientes(int socketServidor, ManagerUsuarios managerUsuarios);
+    explicit ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, Mapa mapa);
     ~ConexionesClientes();
     void esperarConexiones();
     vector<Socket> devolverConexiones();
-    pthread_t rechazarConexionesEnHilo();
+    pthread_t abrirHiloConexionesEntrantes();
 };
 
 
