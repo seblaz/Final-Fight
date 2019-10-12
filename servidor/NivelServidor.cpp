@@ -35,15 +35,7 @@ void NivelServidor::generarPersonajesSeleccion(Mapa *mapa) {
 
 void NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
     Locator::logger()->log(INFO, "Se genera jugador.");
-
-    switch (personajeSeleccionado){
-        case HAGGAR:
-            Locator::logger()->log(DEBUG,"Se selecciono Haggar");
-            break;
-        case CODY:
-            Locator::logger()->log(DEBUG,"Se selecciono Coddy");
-            break;
-    }
+    Locator::logger()->log(INFO,"Se selecciono personaje:" + personajeSeleccionado);
 
     auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
