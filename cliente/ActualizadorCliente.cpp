@@ -49,6 +49,9 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
                     break;
+                case USUARIO:
+                    Locator::logger()->log(DEBUG, "Usuario");
+                    break;
                 default:
                     Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
             }

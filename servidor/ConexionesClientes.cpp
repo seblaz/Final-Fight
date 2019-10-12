@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <netinet/in.h>
 
-ConexionesClientes::ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, Mapa mapa) :
+ConexionesClientes::ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, Mapa* mapa) :
         manager(managerUsuarios),
         socketServidor(socketServidor),
         mapa(mapa){}
@@ -98,7 +98,7 @@ void ConexionesClientes::evaluarIngresoDeJugador(int nuevoSocket, bool juegoCome
         if(pManager->estaPresente(nuevoUsuario) == juegoComenzado){
 
             if(juegoComenzado){
-                pManager->cambiarSocketParaUsuario(nuevoUsuario.getUsuario(), socketNuevoUsuario);
+                pManager->cambiarSocketParaUsuario(nuevoUsuario, socketNuevoUsuario);
             }else{
                 ingresarNuevoUsuario(nuevoUsuario, socketNuevoUsuario, pManager);
             }
@@ -113,9 +113,12 @@ void ConexionesClientes::evaluarIngresoDeJugador(int nuevoSocket, bool juegoCome
 
 void
 ConexionesClientes::ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* pManager) {
-    Entidad* jugador = mapa.crearJugador();
+    Entidad* jugador = mapa->crearJugador();
+    Tipo* tipo = new Tipo(USUARIO);
+    jugador->agregarEstado("tipo", tipo);
+    Posicion* posicion = new Posicion(0, 0,0);
+    jugador->agregarEstado("posicion", posicion);
     nuevoUsuario.setPersonaje(jugador);
-
     nuevoUsuario.setSocket(pSocketNuevoUsuario);
 
     try{

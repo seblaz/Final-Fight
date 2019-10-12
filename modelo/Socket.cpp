@@ -44,6 +44,7 @@ bool Socket::enviar(stringstream &s) {
 
 bool Socket::recibirConCantidad(stringstream &s, size_t cantidad) {
     char buffer[cantidad + 1];
+    buffer[cantidad] = '\0';
 //    memset(&buffer, 0, sizeof(buffer)); // clear the buffer
 
     size_t leidos;

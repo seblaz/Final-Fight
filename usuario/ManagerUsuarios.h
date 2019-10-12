@@ -24,7 +24,7 @@ class ManagerUsuarios {
         bool faltanJugadores();
         int cantidadJugadoresFaltantes();
         vector<Socket> getSockets();
-        void cambiarSocketParaUsuario(string usuario, Socket* pSocket);
+        void cambiarSocketParaUsuario(Usuario usuario, Socket* pSocket);
 };
 
 

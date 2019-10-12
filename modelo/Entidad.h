@@ -102,7 +102,8 @@ enum TIPO {
     PERSONAJE_SELECCION,
     PERSONAJE,
     ESCENARIO,
-    JUGADOR
+    JUGADOR,
+    USUARIO
 };
 
 class Tipo : public Estado, Serializable {

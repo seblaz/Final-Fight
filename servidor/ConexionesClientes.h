@@ -20,12 +20,12 @@ private:
     ManagerUsuarios* manager;
     vector<pthread_t> hilos;
     void administrarConexionesEntrantes();
-    Mapa mapa;
+    Mapa* mapa;
     void evaluarIngresoDeJugador(int nuevoSocket, bool juegoComenzado, ManagerUsuarios *pUsuarios);
     void ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* usuarios);
 
 public:
-    explicit ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, Mapa mapa);
+    explicit ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, Mapa* mapa);
     ~ConexionesClientes();
     void esperarConexiones();
     vector<Socket> devolverConexiones();

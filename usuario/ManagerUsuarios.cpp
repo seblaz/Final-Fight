@@ -55,13 +55,13 @@ vector<Socket> ManagerUsuarios::getSockets(){
     return conexiones;
 }
 
-void ManagerUsuarios::cambiarSocketParaUsuario(string usuario, Socket* pSocket) {
+void ManagerUsuarios::cambiarSocketParaUsuario(Usuario usuario, Socket* pSocket) {
     bool encontrado = false;
 
     std::list<Usuario>::iterator it = usuarios.begin();
 
     while(usuarios.end() != it && !encontrado){
-        encontrado = it->getUsuario() == usuario;
+        encontrado = it->getUsuario() == usuario.getUsuario();
     }
 
     it->setSocket(pSocket);

@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
      * Conexiones de clientes.
      */
     ManagerUsuarios* managerUsuarios = new ManagerUsuarios(maximoJugadores);
-    ConexionesClientes conexiones(socketServidor, managerUsuarios, mapa);
+    ConexionesClientes conexiones(socketServidor, managerUsuarios, &mapa);
     conexiones.esperarConexiones();
     vector<Socket> socketsClientes = managerUsuarios->getSockets();
     pthread_t hiloConexionesEntrantes = conexiones.abrirHiloConexionesEntrantes();
