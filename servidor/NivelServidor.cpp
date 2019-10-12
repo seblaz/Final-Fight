@@ -7,6 +7,9 @@
 #include "../estados/Reposando.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../fisica/FisicaDeEscenario.h"
+#include "../graficos/GraficoDeTransicion.h"
+#include "../modelo/Opacidad.h"
+#include "../fisica/FisicaDeTransicion.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -77,7 +80,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 //    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarEnemigo(nivel, sdlRenderer, mapa, posicionDeEscenario);
-//    generarTransicion(nivel, sdlRenderer, mapa, posicionDeJugador);
+    generarTransicion(nivel, mapa, posicionDeJugador);
 }
 
 Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
@@ -105,4 +108,21 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 
     return escenario;
 
+}
+
+void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Posicion* posicionDeJugador) {
+    Locator::logger()->log(DEBUG, "Se genera transicion");
+
+    Entidad *transicion = mapa->crearEntidad();
+    auto *tipo = new Tipo(TRANSICION);
+    int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    auto *posicion = new Posicion(0, 1, 0);
+    auto *opacidad = new Opacidad();
+    auto* fisicaDeTransicion = new FisicaDeTransicion(anchoDeNivel);
+
+    transicion->agregarEstado("posicion", posicion);
+    transicion->agregarEstado("tipo", tipo);
+    transicion->agregarEstado("opacidad", opacidad);
+    transicion->agregarEstado("posicion de jugador", posicionDeJugador);
+    transicion->agregarComportamiento("fisica de transicion", fisicaDeTransicion);
 }

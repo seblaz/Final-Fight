@@ -7,6 +7,7 @@
 
 
 #include "../modelo/Mapa.h"
+#include "../modelo/Posicion.h"
 
 class NivelCliente {
 
@@ -19,6 +20,7 @@ public:
     static void generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad);
 
     static void generarEscenario(Mapa *mapa, Entidad *entidad);
+    static void generarTransicion(Mapa *mapa, Entidad* entidad);
 };
 
 

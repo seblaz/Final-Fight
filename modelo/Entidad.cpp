@@ -8,6 +8,7 @@
 #include "Personaje.h"
 #include "Nivel.h"
 #include "../estados/Reposando.h"
+#include "Opacidad.h"
 #include <algorithm>
 #include <iostream>
 
@@ -32,7 +33,6 @@ void Entidad::serializar(ostream &stream) {
         string estado = estadosSerializables.at(i);
         if (!(estados.find(estado) == estados.end())) {
             serializarEntero(stream, i);
-            //Locator::logger()->log(DEBUG, "Se serializa un entero " + to_string(i));
             estados[estado]->serializar(stream);
         }
     }
@@ -80,14 +80,21 @@ void Entidad::deserializar(istream &stream) {
                 estado->deserializar(stream);
                 agregarEstado("estado", estado);
             }
-        }
-        else if (estado == "personaje") {
+        } else if (estado == "personaje") {
             if (existe) {
                 getEstado<Personaje>("personaje")->deserializar(stream);
             } else {
                 auto *personaje = new Personaje();
                 personaje->deserializar(stream);
                 agregarEstado("personaje", personaje);
+            }
+        } else if (estado == "opacidad") {
+            if (existe) {
+                getEstado<Opacidad>("opacidad")->deserializar(stream);
+            } else {
+                auto *opacidad = new Opacidad();
+                opacidad->deserializar(stream);
+                agregarEstado("opacidad", opacidad);
             }
         }
         posicionEstado = deserializarEntero(stream);

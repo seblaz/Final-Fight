@@ -17,6 +17,8 @@
 #include "../modelo/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
+#include "../graficos/GraficoDeTransicion.h"
+#include "../modelo/Opacidad.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -180,4 +182,14 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     escenario->agregarEstado("sprite", sprite);
     escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
+}
+
+void NivelCliente::generarTransicion(Mapa *mapa, Entidad* transicion) {
+    Locator::logger()->log(DEBUG, "Se genera transicion");
+
+    //auto *opacidad = new Opacidad(100);
+    auto *grafico = new GraficoDeTransicion();
+
+    //transicion->agregarEstado("opacidad", opacidad);
+    transicion->agregarComportamiento("grafico", grafico);
 }

@@ -23,6 +23,7 @@ public:
     static void generarNivel(const string &nivel, Mapa *mapa);
 
     static Entidad *generarEscenario(const string &nivel, Mapa *mapa);
+    static void generarTransicion(const string &nivel,Mapa *mapa, Posicion* posicionDeJugador);
 };
 
 
