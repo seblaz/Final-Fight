@@ -12,7 +12,6 @@
 #include "../eventos/MostrarMenuSeleccion.h"
 #include "../eventos/ActualizarYTransmitir.h"
 #include "GameLoop.h"
-#include "ActualizadorServidor.h"
 #include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
@@ -23,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     auto *config = new Configuracion();
     Locator::provide(config);
-    
+
     /**
      * Conexion al servidor.
      */
@@ -34,16 +33,18 @@ int main(int argc, char *argv[]) {
      * Crear el mapa.
      */
     Mapa mapa;
-    int maximoJugadores = Locator::configuracion()->getIntValue("/usuarios/maximo", 4);
 
     /**
-     * Conexiones de clientes.
+     * Lista de sockets
      */
-    ManagerUsuarios* managerUsuarios = new ManagerUsuarios(maximoJugadores);
-    ConexionesClientes conexiones(socketServidor, managerUsuarios, &mapa);
-    conexiones.esperarConexiones();
-    vector<Socket> socketsClientes = managerUsuarios->getSockets();
-    pthread_t hiloConexionesEntrantes = conexiones.abrirHiloConexionesEntrantes();
+     ListaSockets listaSockets;
+
+    /**
+     * Transmision.
+     */
+    Transmision transmision(&listaSockets);
+    auto *eventosATransmitir = transmision.devolverCola();
+    pthread_t hiloTransmision = transmision.transmitirEnHilo();
 
     /**
      * Procesamiento.
@@ -53,30 +54,36 @@ int main(int argc, char *argv[]) {
     pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
 
     /**
-     * Transmision.
+     * Manager de usuarios.
      */
-    Transmision transmision(socketsClientes);
-    auto *eventosATransmitir = transmision.devolverCola();
-    pthread_t hiloTransmision = transmision.transmitirEnHilo();
+    int maximoJugadores = Locator::configuracion()->getIntValue("/usuarios/cantidad", 4);
+    ManagerUsuarios managerUsuarios(maximoJugadores);
+    Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
+
+    /**
+     * Contenedor de hilos.
+     */
+     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios);
+
+    /**
+     * Conexiones de clientes.
+     */
+    ConexionesClientes conexiones(socketServidor, &managerUsuarios, &contenedor);
+    pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
+
+    managerUsuarios.esperarUsuarios();
 
     /**
      * Game loop.
      */
     auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
     GameLoop gameLoop(eventosAProcesar, actualizar);
-    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
+    gameLoop.loop();
+//    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
 
     auto *comenzar = new MostrarMenuSeleccion(&mapa);
     eventosAProcesar->push(comenzar);
-
-    /**
-     * Contenedor de hilos.
-     */
-    ActualizadorServidor actualizador(&mapa, eventosAProcesar);
-    ContenedorHilos contenedor;
-    contenedor.crearHilos(socketsClientes, &actualizador);
-    contenedor.esperarFinDeHilos();
-
+    
     /**
      * Termino el procesamiento.
      */

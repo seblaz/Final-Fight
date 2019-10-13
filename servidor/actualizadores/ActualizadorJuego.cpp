@@ -2,17 +2,17 @@
 // Created by sebas on 8/10/19.
 //
 
-#include "ActualizadorServidor.h"
-#include "NivelServidor.h"
-#include "../modelo/Accion.h"
-#include "../eventos/ConfirmarSeleccion.h"
-#include "../eventos/EventoPersonaje.h"
+#include "ActualizadorJuego.h"
+#include "../NivelServidor.h"
+#include "../../modelo/Accion.h"
+#include "../../eventos/ConfirmarSeleccion.h"
+#include "../../eventos/EventoPersonaje.h"
 
-ActualizadorServidor::ActualizadorServidor(Mapa *mapa, EventosAProcesar *eventos) :
+ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos) :
         mapa(mapa),
         eventos(eventos) {}
 
-void ActualizadorServidor::interpretarComando(stringstream &s) {
+void ActualizadorJuego::interpretarComando(stringstream &s) {
 
     Accion accion;
     Entidad *jugador = mapa->getJugador();
@@ -21,14 +21,6 @@ void ActualizadorServidor::interpretarComando(stringstream &s) {
 
         EventoAProcesar *evento;
         switch (accion.accion()) {
-            case CONFIRMAR:
-                evento = new ConfirmarSeleccion(mapa);
-                eventos->push(evento);
-                break;
-            case SELECCIONAR_SIGUIENTE:
-                break;
-            case SELECCIONAR_ANTERIOR:
-                break;
             case GOLPEAR:
                 evento = new Golpear(jugador);
                 eventos->push(evento);
@@ -77,6 +69,13 @@ void ActualizadorServidor::interpretarComando(stringstream &s) {
                 evento = new CaminarDerechaAbajo(jugador);
                 eventos->push(evento);
                 break;
+            default:
+                Locator::logger()->log(ERROR, "Se recibió una acción inválida en ActualizarJuego.");
+                fin_ = true;
         }
     }
+}
+
+bool ActualizadorJuego::fin() {
+    return fin_;
 }

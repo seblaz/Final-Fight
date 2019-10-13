@@ -36,7 +36,7 @@ public:
 private:
     std::mutex m_mutex;
     std::condition_variable m_cv;
-    unsigned int m_count;
+    int m_count;
 };
 
 #endif //FINAL_FIGHT_SEMAPHORE_H

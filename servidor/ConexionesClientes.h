@@ -10,27 +10,27 @@
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "../modelo/Mapa.h"
-
-using namespace std;
+#include "ContenedorHilos.h"
+#include "ListaSockets.h"
 
 class ConexionesClientes {
 
 private:
     int socketServidor;
     ManagerUsuarios* manager;
-    vector<pthread_t> hilos;
-    void administrarConexionesEntrantes();
-    Mapa* mapa;
-    void evaluarIngresoDeJugador(int nuevoSocket, bool juegoComenzado, ManagerUsuarios *pUsuarios);
-    void ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* usuarios);
+    ListaSockets sockets;
+    ContenedorHilos *contenedor;
+    void manejarConexiones();
+//    void administrarConexionesEntrantes();
+//    void evaluarIngresoDeJugador(int nuevoSocket, bool juegoComenzado, ManagerUsuarios *pUsuarios);
+//    void ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* usuarios);
+//    pthread_t abrirHiloConexionesEntrantes();
 
 public:
-    explicit ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, Mapa* mapa);
+    explicit ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, ContenedorHilos* contenedor);
     ~ConexionesClientes();
-    void esperarConexiones();
-    vector<Socket> devolverConexiones();
-    pthread_t abrirHiloConexionesEntrantes();
-};
+    pthread_t manejarConexionesEnHilo();
 
+};
 
 #endif //FINAL_FIGHT_CONEXIONESCLIENTES_H

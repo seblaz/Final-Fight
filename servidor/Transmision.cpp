@@ -8,8 +8,8 @@
 #include <utility>
 #include <sys/socket.h>
 
-Transmision::Transmision(vector<Socket> sockets) :
-        sockets(std::move(sockets)) {}
+Transmision::Transmision(ListaSockets *sockets) :
+        sockets(sockets) {}
 
 void Transmision::transmitir() {
     while (true) {
@@ -21,7 +21,7 @@ void Transmision::transmitir() {
             break;
         }
 
-        for (Socket socket : sockets){
+        for (Socket socket : sockets->devolverSockets()){
             stringstream s(msj);
             socket.enviar(s);
 //            int result = send(socket, msj.c_str(), msj.length(), 0);
