@@ -38,6 +38,6 @@ void ReceptorServidor::recibir() {
     do {
         stringstream s;
         if (!socket.recibir(s)) pthread_exit(nullptr);
-        actualizadorMenu.interpretarStream(s);
+        actualizadorJuego.interpretarStream(s);
     } while (!actualizadorJuego.fin());
 }

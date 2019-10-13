@@ -12,7 +12,7 @@ ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos) :
         mapa(mapa),
         eventos(eventos) {}
 
-void ActualizadorJuego::interpretarComando(stringstream &s) {
+void ActualizadorJuego::interpretarStream(stringstream &s) {
 
     Accion accion;
     Entidad *jugador = mapa->getJugador();

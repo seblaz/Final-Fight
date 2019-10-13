@@ -8,8 +8,9 @@
 
 #include "../../modelo/Mapa.h"
 #include "../../eventos/Eventos.h"
+#include "Actualizador.h"
 
-class ActualizadorJuego {
+class ActualizadorJuego : public Actualizador {
 
 private:
     bool fin_ = false;
@@ -18,8 +19,8 @@ private:
 
 public:
     explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos);
-    void interpretarComando(stringstream &s);
-    bool fin();
+    void interpretarStream(stringstream &s) override;
+    bool fin() override;
 
 };
 
