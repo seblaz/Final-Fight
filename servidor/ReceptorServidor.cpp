@@ -16,7 +16,7 @@ ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios * 
         
 void ReceptorServidor::recibir() {
 
-    ActualizadorUsuario actualizadorUsuario(manager);
+    ActualizadorUsuario actualizadorUsuario(eventos, manager);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de usuario.");
     
     do {

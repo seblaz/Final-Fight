@@ -8,17 +8,31 @@
 
 #include "Actualizador.h"
 #include "../../usuario/ManagerUsuarios.h"
+#include "../../eventos/Eventos.h"
 
 using namespace std;
+
+class ManejarUsuario : public EventoAProcesar {
+
+private:
+    Usuario *usuario;
+    ManagerUsuarios *manager;
+    
+public:
+    ManejarUsuario(Usuario *usuario, ManagerUsuarios *manager);
+    void resolver() override;
+
+};
 
 class ActualizadorUsuario : public Actualizador {
 
 private:
     bool fin_ = false;
+    EventosAProcesar *eventos;
     ManagerUsuarios *manager;
     
 public:
-    explicit ActualizadorUsuario(ManagerUsuarios *manager);
+    explicit ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager);
     void interpretarStream(stringstream &s) override;
     bool fin() override;
 

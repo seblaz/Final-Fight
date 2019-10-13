@@ -9,16 +9,22 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
+#include <SDL_events.h>
 
 Accion *EntradaNula::getAccion() {
     return nullptr;
 }
 
 Accion *EntradaMenuSeleccion::getAccion() {
+    SDL_Event e;
+    SDL_PollEvent(&e);
+
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-        if (entrada[SDL_SCANCODE_RETURN]) {
-            activo = false;
+        if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN){
+//        if (entrada[SDL_SCANCODE_RETURN]) {
+//            activo = false;
+            cout << "confirmo";
             return new Accion(CONFIRMAR);
         } else if (entrada[SDL_SCANCODE_LEFT]) {
             return new Accion(SELECCIONAR_ANTERIOR);
