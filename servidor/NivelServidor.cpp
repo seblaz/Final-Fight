@@ -84,6 +84,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 //    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarElementos(nivel, mapa, posicionDeEscenario);
     generarEnemigo(nivel, mapa, posicionDeEscenario);
     generarTransicion(nivel, mapa, posicionDeJugador);
 }
@@ -176,4 +177,27 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarComportamiento("comportamiento", comportamiento);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
     }
+}
+
+void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario) {
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/caja/sprite/src");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+
+    auto* tipo = new Tipo(ELEMENTO);
+    auto* nivelElemento = new Nivel(nivel);
+
+    for (int i = 1; i <= cantidad; i++) {
+        Locator::logger()->log(INFO, "Se inicia la construccion de la cajaRandom:" + to_string(i));
+        auto cajaRandom = mapa->crearEntidad();
+
+        auto *posicionCajaRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
+        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
+        cajaRandom->agregarEstado("tipo", tipo);
+        cajaRandom->agregarEstado("nivel", nivelElemento);
+        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+    }
+
 }

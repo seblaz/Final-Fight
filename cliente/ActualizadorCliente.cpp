@@ -53,10 +53,14 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     break;
                 case ENEMIGO:
                     NivelCliente::generarEnemigo(mapa, entidad);
-                default:
-                    Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
+                    break;
+                case ELEMENTO:
+                    NivelCliente::generarElementos(mapa, entidad);
+                    break;
                 case PERSONAJE:
                     break;
+                default:
+                    Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
             }
         } else {
             Entidad *entidad = mapa->getEntidad(idEntidad);

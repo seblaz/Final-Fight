@@ -20,6 +20,7 @@
 #include "../graficos/GraficoDeTransicion.h"
 #include "../modelo/Opacidad.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -188,10 +189,8 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
 void NivelCliente::generarTransicion(Mapa *mapa, Entidad* transicion) {
     Locator::logger()->log(DEBUG, "Se genera transicion");
 
-    //auto *opacidad = new Opacidad(100);
     auto *grafico = new GraficoDeTransicion();
 
-    //transicion->agregarEstado("opacidad", opacidad);
     transicion->agregarComportamiento("grafico", grafico);
 }
 
@@ -211,5 +210,21 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     enemigo->agregarEstado("animacion", animacion);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
 
+}
+
+void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
+        Configuracion *config = Locator::configuracion();
+        //auto* nivel = elemento->getEstado<Nivel>("nivel");
+        //string srcSprite = config->getValue("/niveles/" + nivel->nivel() + "/escenario/objetos/caja/sprite/src");
+        string srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/caja/sprite/src");
+
+        SDL_Renderer *sdlRenderer = Locator::renderer();
+        auto *spriteCaja = new Sprite(sdlRenderer, srcSprite);
+        auto *graficoDeCaja = new Grafico();
+        auto *animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+
+        elemento->agregarEstado("sprite", spriteCaja);
+        elemento->agregarEstado("animacion", animacionCaja);
+        elemento->agregarComportamiento("grafico", graficoDeCaja);
 
 }
