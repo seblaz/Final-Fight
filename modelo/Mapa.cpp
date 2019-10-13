@@ -67,6 +67,10 @@ unordered_map<IdEntidad, Entidad *> Mapa::devolverEntidadesConId() {
     return entidades;
 }
 
+unordered_map<IdEntidad, Entidad *> Mapa::devolverJugadores() {
+    return jugadores;
+}
+
 void Mapa::quitarEntidad(IdEntidad idEntidad) {
     Locator::logger()->log(DEBUG, "Se quita la entidad: " + to_string(idEntidad));
     entidades.erase(idEntidad);

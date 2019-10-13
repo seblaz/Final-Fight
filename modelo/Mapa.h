@@ -39,6 +39,7 @@ public:
     Entidad *getJugador();
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);
+    unordered_map<IdEntidad, Entidad *> devolverJugadores();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

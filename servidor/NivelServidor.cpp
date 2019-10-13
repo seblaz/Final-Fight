@@ -32,6 +32,7 @@ void NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccion
     Locator::logger()->log(INFO, "Se genera jugador.");
     Locator::logger()->log(INFO,"Se selecciono personaje:" + personajeSeleccionado);
 
+
     auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
     auto *velocidad = new Velocidad();
