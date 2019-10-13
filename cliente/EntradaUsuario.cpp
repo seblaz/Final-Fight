@@ -6,6 +6,7 @@
 #include <SDL_system.h>
 #include "EntradaUsuario.h"
 #include "../servicios/Locator.h"
+#include "../modelo/Personaje.h"
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
@@ -14,22 +15,28 @@ Accion *EntradaNula::getAccion() {
     return nullptr;
 }
 
+EntradaMenuSeleccion::EntradaMenuSeleccion(enum PERSONAJE personajeSeleccionado_) :
+        personajeSeleccionado(personajeSeleccionado_)
+        {}
+
 Accion *EntradaMenuSeleccion::getAccion() {
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-        if (entrada[SDL_SCANCODE_1]) {
+
+        if (entrada[SDL_SCANCODE_RETURN]){
             activo = false;
-            return new Accion(SELECCIONAR_GUY);
-        } else if (entrada[SDL_SCANCODE_2]) {
-            activo = false;
-            return new Accion(SELECCIONAR_CODY);
-        } else if (entrada[SDL_SCANCODE_3]) {
-            activo = false;
-            return new Accion(SELECCIONAR_HAGGAR);
-        } else if (entrada[SDL_SCANCODE_4]) {
-            activo = false;
-            return new Accion(SELECCIONAR_MAKI);
+            switch (getPersonajeSeleccionado()){
+                case GUY:
+                    return new Accion(SELECCIONAR_GUY);
+                case CODY:
+                    return new Accion(SELECCIONAR_CODY);
+                case HAGGAR:
+                    return new Accion(SELECCIONAR_HAGGAR);
+                case MAKI:
+                    return new Accion(SELECCIONAR_MAKI);
+            };
         }
+
     }
     return nullptr;
 }
@@ -78,7 +85,7 @@ EntradaUsuario *TrasmisionCliente::getEntradaUsuario() {
 void TrasmisionCliente::setEntradaUsuario(EntradaUsuario *entradaUsuario_) {
     std::lock_guard<std::mutex> lock(m);
     entradaUsuario = entradaUsuario_;
-}
+}ll
 
 void TrasmisionCliente::transmitir() {
 

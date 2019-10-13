@@ -11,12 +11,11 @@
 class EntradaPantallaDeSeleccion : public Comportamiento {
 
 private:
-    int delay = 10;
+ //   int delay = 10;
 
 public:
     void actualizar(Entidad*) override;
-
 };
 
 
-#endif //FINAL_FIGHT_ENTRADAPANTALLADESELECCIONNUEVO_H
+#endif //FINAL_FIGHT_ENTRADAPANTALLADESELECCION_H

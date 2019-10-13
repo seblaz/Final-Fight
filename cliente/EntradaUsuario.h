@@ -9,6 +9,7 @@
 #include <mutex>
 #include "../modelo/Accion.h"
 #include "../modelo/Socket.h"
+#include "../modelo/Personaje.h"
 
 /**
  * Lectura de input de usuario.
@@ -30,11 +31,15 @@ public:
 class EntradaMenuSeleccion : public EntradaUsuario {
 
 private:
+    enum PERSONAJE personajeSeleccionado;
     bool activo = true;
 
 public:
     Accion *getAccion() override;
 
+    EntradaMenuSeleccion(enum PERSONAJE personajeSeleccionado_);
+
+    enum PERSONAJE getPersonajeSeleccionado() { return personajeSeleccionado; };
 };
 
 class EntradaJuego : public EntradaUsuario {
@@ -54,12 +59,16 @@ private:
     std::mutex m;
     Socket socket;
     EntradaUsuario *entradaUsuario;
+
     void transmitir();
+
     EntradaUsuario *getEntradaUsuario();
 
 public:
     explicit TrasmisionCliente(Socket socket, EntradaUsuario *entradaUsuario);
+
     void setEntradaUsuario(EntradaUsuario *entradaUsuario);
+
     pthread_t transmitirEnHilo();
 };
 

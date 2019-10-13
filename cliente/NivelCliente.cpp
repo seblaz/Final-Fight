@@ -20,6 +20,8 @@
 #include "../graficos/GraficoDeTransicion.h"
 #include "../modelo/Opacidad.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
+#include "../comportamiento/EntradaPantallaDeSeleccion.h"
+#include "EntradaSeleccionPersonaje.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -44,16 +46,20 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/pantallaDeSeleccion/jugador1/seleccion/src");
+    string srcSprite = config->getValue("/pantallaDeSeleccion/jugador2/seleccion/src");
     auto *renderer = Locator::renderer();
     auto *sprite = new Sprite(renderer, srcSprite);
     auto *grafico = new GraficoDePantallaCompleta();
-//    auto *entrada = new EntradaPantallaDeSeleccionNuevo();
+    auto *entrada = new EntradaSeleccionPersonaje();
+
+    auto *personajeMarcado = new Personaje(GUY);
 
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
+    pantalla->agregarEstado("personajeMarcado", personajeMarcado);
     pantalla->agregarComportamiento("grafico", grafico);
-//    pantalla->agregarComportamiento("entrada", entrada);
+    pantalla->agregarComportamiento("entrada", entrada);
+
 }
 
 void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {

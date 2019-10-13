@@ -80,7 +80,7 @@ TEST(Serializar, SerializarUnaOrientacion) {
 }
 
 TEST(Serializar, SerializarUnTipo) {
-    Tipo tipo(PANTALLA_SELECCION);
+    Tipo tipo(INICIAR_MENU_SELECCION);
     stringstream s;
     tipo.serializar(s);
 
@@ -119,7 +119,7 @@ TEST(Serializar, SerializarVariasEntidades) {
     entidad1.agregarEstado("posicion", &posicion1);
 
     Entidad entidad2;
-    Tipo tipo2(PANTALLA_SELECCION);
+    Tipo tipo2(INICIAR_MENU_SELECCION);
     Orientacion orientacion2(true);
     entidad2.agregarEstado("tipo", &tipo2);
     entidad2.agregarEstado("orientacion", &orientacion2);

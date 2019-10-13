@@ -8,6 +8,7 @@
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDePantallaCompleta.h"
 #include "NivelCliente.h"
+#include "../modelo/Personaje.h"
 
 ActualizadorCliente::ActualizadorCliente(Mapa *mapa) : mapa(mapa) {}
 
@@ -31,9 +32,11 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
             Posicion *posicion;
             auto *tipo = entidad->getEstado<Tipo>("tipo");
             switch (tipo->tipo()) {
-                case PANTALLA_SELECCION:
-                    transmision->setEntradaUsuario(new EntradaMenuSeleccion);
+                case INICIAR_MENU_SELECCION:{
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
+                    enum PERSONAJE personajeMarcado = entidad->getEstado<Personaje>("personajeMarcado")->getPersonaje();
+                    transmision->setEntradaUsuario(new EntradaMenuSeleccion(personajeMarcado));
+                }
                     break;
                 case JUGADOR:
                     mapa->agregarJugadorConId(idEntidad, entidad);
