@@ -8,7 +8,7 @@
 #include "../graficos/Sprite.h"
 #include "../modelo/Orientacion.h"
 #include "../estados/Reposando.h"
-#include "../comportamiento/Patrullar.h"
+#include "../estados/ia/Patrullar.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../graficos/Grafico.h"
 #include "../fisica/FisicaDeEscenario.h"

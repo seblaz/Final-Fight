@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_PATRULLAR_H
 #define FINAL_FIGHT_PATRULLAR_H
 
-#include "../estados/EstadoDePersonaje.h"
+#include "../EstadoDePersonaje.h"
 #include<stdlib.h>
 #include<time.h>
 

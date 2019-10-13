@@ -21,6 +21,7 @@ public:
 
     static void generarEscenario(Mapa *mapa, Entidad *entidad);
     static void generarTransicion(Mapa *mapa, Entidad* entidad);
+    static void generarEnemigo(Mapa *mapa, Entidad* entidad);
 };
 
 

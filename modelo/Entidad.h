@@ -103,7 +103,8 @@ enum TIPO {
     PERSONAJE,
     ESCENARIO,
     JUGADOR,
-    TRANSICION
+    TRANSICION,
+    ENEMIGO
 };
 
 class Tipo : public Estado, Serializable {

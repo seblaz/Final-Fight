@@ -19,6 +19,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../modelo/Opacidad.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -192,4 +193,23 @@ void NivelCliente::generarTransicion(Mapa *mapa, Entidad* transicion) {
 
     //transicion->agregarEstado("opacidad", opacidad);
     transicion->agregarComportamiento("grafico", grafico);
+}
+
+void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
+
+    Locator::logger()->log(INFO, "Se genera enemigo");
+    //string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
+    string spritePath = "assets/personajes/poison.png";
+    SDL_Renderer *sdlRenderer = Locator::renderer();
+
+    auto *spriteEnemigo = new Sprite(sdlRenderer, spritePath);
+    auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
+    auto *graficoDeEnemigo = new Grafico();
+    auto *animacion = fabricaDeEnemigo->caminando();
+    enemigo->agregarEstado("sprite", spriteEnemigo);
+    enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
+    enemigo->agregarEstado("animacion", animacion);
+    enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
+
+
 }

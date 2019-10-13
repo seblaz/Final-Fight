@@ -2,6 +2,7 @@
 // Created by sebas on 6/10/19.
 //
 
+#include <random>
 #include "NivelServidor.h"
 #include "../modelo/Nivel.h"
 #include "../estados/Reposando.h"
@@ -10,6 +11,10 @@
 #include "../graficos/GraficoDeTransicion.h"
 #include "../modelo/Opacidad.h"
 #include "../fisica/FisicaDeTransicion.h"
+#include "../graficos/Sprite.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
+#include "../estados/ia/Patrullar.h"
+#include "../estados/Caminando.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -79,7 +84,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 //    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
-//    generarEnemigo(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarEnemigo(nivel, mapa, posicionDeEscenario);
     generarTransicion(nivel, mapa, posicionDeJugador);
 }
 
@@ -111,7 +116,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 }
 
 void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Posicion* posicionDeJugador) {
-    Locator::logger()->log(DEBUG, "Se genera transicion");
+    //Locator::logger()->log(DEBUG, "Se genera transicion");
 
     Entidad *transicion = mapa->crearEntidad();
     auto *tipo = new Tipo(TRANSICION);
@@ -125,4 +130,50 @@ void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Posicion*
     transicion->agregarEstado("opacidad", opacidad);
     transicion->agregarEstado("posicion de jugador", posicionDeJugador);
     transicion->agregarComportamiento("fisica de transicion", fisicaDeTransicion);
+}
+
+int generarPosicionX(int frontera) {
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_real_distribution<double> dist(400, frontera - 400);
+    return dist(mt);
+}
+
+int generarPosicionY(int frontera) {
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_real_distribution<double> dist(20, frontera - 20);
+    return dist(mt);
+}
+
+void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario) {
+
+    Configuracion *config = Locator::configuracion();
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/enemigos/cantidad");
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+    string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
+
+    for (int i = 0; i < cantidad; i++) {
+        Locator::logger()->log(INFO, "Se genera enemigo");
+
+        Entidad *enemigo = mapa->crearEntidad();
+
+        auto* tipo = new Tipo(ENEMIGO);
+        auto *velocidadDeEnemigo = new Velocidad();
+        auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
+        auto *orientacionDeEnemigo = new Orientacion;
+        auto *comportamiento = new Patrullar();
+        auto *fisicaDeEnemigo = new FisicaDePersonaje();
+        EstadoDePersonaje *estado = new Caminando();
+
+        enemigo->agregarEstado("tipo", tipo);
+        enemigo->agregarEstado("estado", estado);
+        enemigo->agregarEstado("posicion", posicionEnemigoRandom);
+        enemigo->agregarEstado("velocidad", velocidadDeEnemigo);
+        enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
+        enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
+        enemigo->agregarComportamiento("comportamiento", comportamiento);
+        enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
+    }
 }

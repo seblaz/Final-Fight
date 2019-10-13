@@ -49,9 +49,10 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     NivelCliente::generarEscenario(mapa, entidad);
                     break;
                 case TRANSICION:
-                    //TODO
                     NivelCliente::generarTransicion(mapa, entidad);
                     break;
+                case ENEMIGO:
+                    NivelCliente::generarEnemigo(mapa, entidad);
                 default:
                     Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
                 case PERSONAJE:
