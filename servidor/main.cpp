@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
     /**
      * Conexiones de clientes.
      */
-    ConexionesClientes conexiones(socketServidor, &managerUsuarios, &contenedor);
+    ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
     managerUsuarios.esperarUsuarios();
@@ -76,14 +76,14 @@ int main(int argc, char *argv[]) {
     /**
      * Game loop.
      */
+    auto *comenzar = new MostrarMenuSeleccion(&mapa);
+    eventosAProcesar->push(comenzar);
+
     auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
     GameLoop gameLoop(eventosAProcesar, actualizar);
     gameLoop.loop();
 //    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
 
-    auto *comenzar = new MostrarMenuSeleccion(&mapa);
-    eventosAProcesar->push(comenzar);
-    
     /**
      * Termino el procesamiento.
      */

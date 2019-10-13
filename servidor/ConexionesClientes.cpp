@@ -11,7 +11,8 @@
 #include <unistd.h>
 #include <netinet/in.h>
 
-ConexionesClientes::ConexionesClientes(int socketServidor, ManagerUsuarios *managerUsuarios, ContenedorHilos* contenedor) :
+ConexionesClientes::ConexionesClientes(int socketServidor, ListaSockets *sockets, ManagerUsuarios *managerUsuarios, ContenedorHilos* contenedor) :
+        sockets(sockets),
         manager(managerUsuarios),
         socketServidor(socketServidor),
         contenedor(contenedor) {}
@@ -28,7 +29,7 @@ void ConexionesClientes::manejarConexiones() {
         socklen_t newSockAddrSize = sizeof(newSockAddr);
         int nuevoSocket = accept(socketServidor, (sockaddr *) &newSockAddr, &newSockAddrSize);
         Socket socket(nuevoSocket);
-        sockets.agregar(socket);
+        sockets->agregar(socket);
 
         if (nuevoSocket < 0) {
             Locator::logger()->log(ERROR, "Error al aceptar el pedido de conexión del cliente.");

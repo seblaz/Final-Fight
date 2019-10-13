@@ -18,7 +18,7 @@ class ConexionesClientes {
 private:
     int socketServidor;
     ManagerUsuarios* manager;
-    ListaSockets sockets;
+    ListaSockets *sockets;
     ContenedorHilos *contenedor;
     void manejarConexiones();
 //    void administrarConexionesEntrantes();
@@ -27,7 +27,7 @@ private:
 //    pthread_t abrirHiloConexionesEntrantes();
 
 public:
-    explicit ConexionesClientes(int socketServidor, ManagerUsuarios* managerUsuarios, ContenedorHilos* contenedor);
+    explicit ConexionesClientes(int socketServidor, ListaSockets *sockets, ManagerUsuarios* managerUsuarios, ContenedorHilos* contenedor);
     ~ConexionesClientes();
     pthread_t manejarConexionesEnHilo();
 
