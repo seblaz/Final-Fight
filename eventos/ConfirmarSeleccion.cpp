@@ -13,6 +13,8 @@ ConfirmarSeleccion::ConfirmarSeleccion(Mapa *mapa, enum PERSONAJE personaje) :
 void ConfirmarSeleccion::resolver() {
     mapa->vaciarMapa();
 
+
+    /*
     unordered_map<IdEntidad, Entidad *> jugadores = mapa->devolverJugadores();
     if (jugadores.size() > 0) {
         for (auto &jugador: jugadores) {
@@ -28,5 +30,10 @@ void ConfirmarSeleccion::resolver() {
     } else {
         NivelServidor::generarJugador(mapa, personajeSeleccionado);
         NivelServidor::generarNivel("nivel1", mapa);
+    }
+    */
+
+    if (personajeSeleccionado == GUY){
+        NivelServidor::generarMenuSeleccion(mapa);
     }
 }
