@@ -34,7 +34,7 @@ private:
 
 public:
     explicit ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager);
-    Usuario * interpretarStream(stringstream &s);
+    Usuario *interpretarStream(stringstream &s, Socket socket);
     bool fin();
 
 };

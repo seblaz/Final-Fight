@@ -25,15 +25,21 @@ void ReceptorServidor::recibir() {
 
 //    do {
     stringstream s;
-    if (!socket.recibir(s)) pthread_exit(nullptr);
-    Usuario *usuario = actualizadorUsuario.interpretarStream(s);
+    if (!socket.recibir(s)) {
+        Locator::logger()->log(ERROR, "Se termina el hilo.");
+        pthread_exit(nullptr);
+    }
+    Usuario *usuario = actualizadorUsuario.interpretarStream(s, socket);
 //    } while (!actualizadorUsuario.fin());
 
     ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
     do {
         stringstream ss;
-        if (!socket.recibir(ss)) pthread_exit(nullptr);
+        if (!socket.recibir(ss)) {
+            Locator::logger()->log(ERROR, "Se termina el hilo.");
+            pthread_exit(nullptr);
+        }
         actualizadorMenu.interpretarStream(ss);
     } while (!actualizadorMenu.fin());
 
@@ -43,7 +49,10 @@ void ReceptorServidor::recibir() {
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
     do {
         stringstream sss;
-        if (!socket.recibir(sss)) pthread_exit(nullptr);
+        if (!socket.recibir(sss)) {
+            Locator::logger()->log(ERROR, "Se termina el hilo.");
+            pthread_exit(nullptr);
+        }
         actualizadorJuego.interpretarStream(sss);
     } while (!actualizadorJuego.fin());
 }

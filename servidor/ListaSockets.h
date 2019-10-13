@@ -21,6 +21,7 @@ private:
 public:
     void agregar(Socket socket);
     vector<Socket> devolverSockets();
+    void quitar(Socket socket);
 
 };
 

@@ -13,3 +13,8 @@ vector<Socket> ListaSockets::devolverSockets() {
     lock_guard<mutex> lock(m);
     return vector<Socket>(sockets);
 }
+
+void ListaSockets::quitar(Socket socket) {
+    lock_guard<mutex> lock(m);
+//    sockets.
+}
