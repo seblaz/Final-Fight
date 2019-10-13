@@ -12,7 +12,7 @@
 #include "../eventos/MostrarMenuSeleccion.h"
 #include "../eventos/ActualizarYTransmitir.h"
 #include "GameLoop.h"
-#include "ActualizadorServidor.h"
+#include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     auto *config = new Configuracion();
     Locator::provide(config);
-    
+
     /**
      * Conexion al servidor.
      */
@@ -30,12 +30,21 @@ int main(int argc, char *argv[]) {
     int socketServidor = conexion.socket();
 
     /**
-     * Conexiones de clientes.
+     * Crear el mapa.
      */
-    ConexionesClientes conexiones(socketServidor, 1);
-    conexiones.esperarConexiones();
-    vector<Socket> socketsClientes = conexiones.devolverConexiones();
-    pthread_t hiloRechazo = conexiones.rechazarConexionesEnHilo();
+    Mapa mapa;
+
+    /**
+     * Lista de sockets
+     */
+     ListaSockets listaSockets;
+
+    /**
+     * Transmision.
+     */
+    Transmision transmision(&listaSockets);
+    auto *eventosATransmitir = transmision.devolverCola();
+    pthread_t hiloTransmision = transmision.transmitirEnHilo();
 
     /**
      * Procesamiento.
@@ -45,34 +54,40 @@ int main(int argc, char *argv[]) {
     pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
 
     /**
-     * Transmision.
+     * Manager de usuarios.
      */
-    Transmision transmision(socketsClientes);
-    auto *eventosATransmitir = transmision.devolverCola();
-    pthread_t hiloTransmision = transmision.transmitirEnHilo();
+    int maximoJugadores = Locator::configuracion()->getIntValue("/usuarios/cantidad", 4);
+    ManagerUsuarios managerUsuarios(maximoJugadores);
+    Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
 
     /**
-     * Crear el mapa.
+     * Selector de personajes.
      */
-    Mapa mapa;
-
-    /**
-     * Game loop.
-     */
-    auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
-    GameLoop gameLoop(eventosAProcesar, actualizar);
-    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
-
-    auto *comenzar = new MostrarMenuSeleccion(&mapa);
-    eventosAProcesar->push(comenzar);
+     SelectorPersonajes selector(maximoJugadores);
 
     /**
      * Contenedor de hilos.
      */
-    ActualizadorServidor actualizador(&mapa, eventosAProcesar);
-    ContenedorHilos contenedor;
-    contenedor.crearHilos(socketsClientes, &actualizador);
-    contenedor.esperarFinDeHilos();
+     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector);
+
+    /**
+     * Conexiones de clientes.
+     */
+    ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
+    pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
+
+    managerUsuarios.esperarUsuarios();
+
+    /**
+     * Game loop.
+     */
+    auto *comenzar = new MostrarMenuSeleccion(&mapa);
+    eventosAProcesar->push(comenzar);
+
+    auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
+    GameLoop gameLoop(eventosAProcesar, actualizar);
+    gameLoop.loop();
+//    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
 
     /**
      * Termino el procesamiento.

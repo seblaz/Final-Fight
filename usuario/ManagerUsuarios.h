@@ -8,20 +8,29 @@
 #include <array>
 #include <list>
 #include "Usuario.h"
+#include "../eventos/semaphore.h"
 
 using namespace std;
 
 class ManagerUsuarios {
-    private:
-        list<Usuario> usuarios;
-        int maximo;
 
-    public:
-        ManagerUsuarios(int maximo);
-        void agregarUsuario(Usuario usuario);
-        bool estaPresente(string usuario);
-        bool estaLogueado(Usuario usuario);
-        int getCantidadLogueados();
+private:
+    int maximo;
+    semaphore juegoListo;
+    list<Usuario *> usuarios;
+
+public:
+    explicit ManagerUsuarios(int maximo);
+    void agregarUsuario(Usuario *usuario);
+    bool estaPresente(Usuario *usuario);
+    int cantidadJugadoresFaltantes();
+    void esperarUsuarios();
+    list<Usuario *> getUsuarios();
+    int cantidadJugadoresTotales();
+//        int getCantidadLogueados();
+//        bool faltanJugadores();
+//        vector<Socket> getSockets();
+//        void cambiarSocketParaUsuario(Usuario usuario, Socket* pSocket);
 };
 
 

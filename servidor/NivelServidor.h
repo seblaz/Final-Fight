@@ -21,12 +21,12 @@ private:
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);
-    static void generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado);
-    static Entidad *generarEscenario(const string &nivel, Mapa *mapa);
+    static Entidad * generarJugador(Mapa *mapa);
 
     static void generarPersonajesSeleccion(Mapa *mapa);
 
     static void generarNivel(const string &nivel, Mapa *mapa);
+    static Entidad *generarEscenario(const string &nivel, Mapa *mapa);
 };
 
 

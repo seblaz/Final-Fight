@@ -15,20 +15,19 @@ Accion *EntradaNula::getAccion() {
 }
 
 Accion *EntradaMenuSeleccion::getAccion() {
+
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-        if (entrada[SDL_SCANCODE_1]) {
+        if (entrada[SDL_SCANCODE_RETURN]) {
             activo = false;
-            return new Accion(SELECCIONAR_GUY);
-        } else if (entrada[SDL_SCANCODE_2]) {
-            activo = false;
-            return new Accion(SELECCIONAR_CODY);
-        } else if (entrada[SDL_SCANCODE_3]) {
-            activo = false;
-            return new Accion(SELECCIONAR_HAGGAR);
-        } else if (entrada[SDL_SCANCODE_4]) {
-            activo = false;
-            return new Accion(SELECCIONAR_MAKI);
+            Locator::logger()->log(DEBUG, "Se presionó enter.");
+            return new Accion(CONFIRMAR);
+        } else if (entrada[SDL_SCANCODE_LEFT]) {
+            Locator::logger()->log(DEBUG, "Se presionó izquierda.");
+            return new Accion(SELECCIONAR_ANTERIOR);
+        } else if (entrada[SDL_SCANCODE_RIGHT]) {
+            Locator::logger()->log(DEBUG, "Se presionó derecha.");
+            return new Accion(SELECCIONAR_SIGUIENTE);
         }
     }
     return nullptr;
@@ -84,8 +83,6 @@ void TrasmisionCliente::transmitir() {
 
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Milisegundos.
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true) {
         size_t start = SDL_GetTicks();
 
@@ -102,7 +99,6 @@ void TrasmisionCliente::transmitir() {
             SDL_Delay(sleepTime);
         }
     }
-#pragma clang diagnostic pop
 }
 
 pthread_t TrasmisionCliente::transmitirEnHilo() {

@@ -16,6 +16,7 @@
 #include "../estados/ia/Patrullar.h"
 #include "../estados/Caminando.h"
 
+
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
@@ -41,16 +42,14 @@ void NivelServidor::generarPersonajesSeleccion(Mapa *mapa) {
     personajeDeSeleccion->agregarEstado("personaje", personaje);
 }
 
-void NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
+Entidad * NivelServidor::generarJugador(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera jugador.");
-    Locator::logger()->log(INFO,"Se selecciono personaje:" + personajeSeleccionado);
 
     auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
     auto *velocidad = new Velocidad();
     auto *orientacion = new Orientacion;
     auto *tipo = new Tipo(JUGADOR);
-    auto *personaje = new Personaje(personajeSeleccionado);
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
 
@@ -59,12 +58,14 @@ void NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccion
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("estado", estado);
-    jugador->agregarEstado("personaje", personaje);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
+    return jugador;
 }
 
+
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
+    mapa->vaciarMapa();
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);
@@ -84,9 +85,12 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 //    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
+//    generarEnemigo(nivel, sdlRenderer, mapa, posicionDeEscenario);
+//    generarTransicion(nivel, sdlRenderer, mapa, posicionDeJugador);
     generarEnemigo(nivel, mapa, posicionDeEscenario);
     generarTransicion(nivel, mapa, posicionDeJugador);
 }
+
 
 Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
     Locator::logger()->log(DEBUG, "Se genera escenario para " + nivel);
@@ -177,3 +181,4 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
     }
 }
+

@@ -22,8 +22,9 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
     nuevasEntidades.clear();
 
     while (s.rdbuf()->in_avail() != 0) {
+
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
-        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
+//        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
         nuevasEntidades.insert(idEntidad);
         if (!mapa->contiene(idEntidad)) {
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
@@ -48,15 +49,17 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
                     break;
-                case TRANSICION:
+                    case USUARIO:
+                    Locator::logger()->log(DEBUG, "Usuario");
+                    break;
+                     case TRANSICION:
                     NivelCliente::generarTransicion(mapa, entidad);
                     break;
                 case ENEMIGO:
                     NivelCliente::generarEnemigo(mapa, entidad);
+                    break;
                 default:
                     Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");
-                case PERSONAJE:
-                    break;
             }
         } else {
             Entidad *entidad = mapa->getEntidad(idEntidad);
