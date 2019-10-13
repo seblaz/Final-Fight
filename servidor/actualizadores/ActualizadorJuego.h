@@ -8,19 +8,19 @@
 
 #include "../../modelo/Mapa.h"
 #include "../../eventos/Eventos.h"
-#include "Actualizador.h"
 
-class ActualizadorJuego : public Actualizador {
+class ActualizadorJuego {
 
 private:
     bool fin_ = false;
     Mapa *mapa;
     EventosAProcesar *eventos;
+    Entidad *jugador;
 
 public:
-    explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos);
-    void interpretarStream(stringstream &s) override;
-    bool fin() override;
+    explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador);
+    void interpretarStream(stringstream &s);
+    bool fin();
 
 };
 

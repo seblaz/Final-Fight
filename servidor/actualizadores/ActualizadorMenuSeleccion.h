@@ -6,25 +6,45 @@
 #define FINAL_FIGHT_ACTUALIZADORMENUSELECCION_H
 
 #include <sstream>
-#include "Actualizador.h"
 #include "../../modelo/Accion.h"
 #include "../../eventos/Eventos.h"
-#include "../../eventos/ConfirmarSeleccion.h"
 #include "../../servicios/Locator.h"
+#include "../SelectorPersonajes.h"
+#include "../../usuario/Usuario.h"
+#include "../../usuario/ManagerUsuarios.h"
 
 using namespace std;
 
-class ActualizadorMenuSeleccion : public Actualizador {
+class ConfirmarSeleccion : public EventoAProcesar {
+
+private:
+    Mapa *mapa;
+    ManagerUsuarios *manager;
+    SelectorPersonajes *selector;
+    semaphore *confirmacion;
+
+public:
+    explicit ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
+                                semaphore *confirmacion);
+    void resolver() override;
+};
+
+class ActualizadorMenuSeleccion {
 
 private:
     bool fin_ = false;
     Mapa *mapa;
+    Usuario *usuario;
     EventosAProcesar *eventos;
+    SelectorPersonajes *selector;
+    semaphore *confirmacion;
+    ManagerUsuarios *manager;
 
 public:
-    ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesar *eventos);
-    void interpretarStream(stringstream &s) override;
-    bool fin() override;
+    ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesar *eventos, SelectorPersonajes *selector, Usuario *usuario,
+                              ManagerUsuarios *manager, semaphore *confirmacion);
+    void interpretarStream(stringstream &s);
+    bool fin();
 
 };
 

@@ -5,20 +5,18 @@
 #include "ActualizadorJuego.h"
 #include "../NivelServidor.h"
 #include "../../modelo/Accion.h"
-#include "../../eventos/ConfirmarSeleccion.h"
 #include "../../eventos/EventoPersonaje.h"
 
-ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos) :
+ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador) :
         mapa(mapa),
+        jugador(jugador),
         eventos(eventos) {}
 
 void ActualizadorJuego::interpretarStream(stringstream &s) {
 
     Accion accion;
-    Entidad *jugador = mapa->getJugador();
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
-
         EventoAProcesar *evento;
         switch (accion.accion()) {
             case GOLPEAR:

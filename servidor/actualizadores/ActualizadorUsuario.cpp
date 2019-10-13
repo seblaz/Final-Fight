@@ -7,36 +7,38 @@
 #include "../../servicios/Locator.h"
 
 ActualizadorUsuario::ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager) :
+        usuarioAgregado(0),
         eventos(eventos),
         manager(manager) {}
 
-void ActualizadorUsuario::interpretarStream(stringstream &s) {
+Usuario *ActualizadorUsuario::interpretarStream(stringstream &s) {
     auto *nuevoUsuario = new Usuario;
     nuevoUsuario->deserializar(s);
-    
-    auto *crear = new ManejarUsuario(nuevoUsuario, manager);
+
+    string password = Locator::configuracion()->getValue("/password");
+    if (password != nuevoUsuario->getContrasenia()) {
+        Locator::logger()->log(ERROR, "Se recibió una contraseña incorrecta.");
+        pthread_exit(nullptr);
+    }
+
+    auto *crear = new AgregarUsuario(nuevoUsuario, manager, usuarioAgregado);
     eventos->push(crear);
+    usuarioAgregado.wait();
     fin_ = true;
+    return nuevoUsuario;
 }
 
 bool ActualizadorUsuario::fin() {
     return fin_;
 }
 
-ManejarUsuario::ManejarUsuario(Usuario *usuario, ManagerUsuarios *manager) :
+AgregarUsuario::AgregarUsuario(Usuario *usuario, ManagerUsuarios *manager, semaphore &semaphore) :
+        usuarioAgregado(semaphore),
         usuario(usuario),
         manager(manager) {}
 
-void ManejarUsuario::resolver() {
-    string password = Locator::configuracion()->getValue("/password");
-
-    if (password != usuario->getContrasenia()) {
-        Locator::logger()->log(ERROR, "Se recibió una contraseña incorrecta.");
-        pthread_exit(nullptr);
-    } else if (!manager->estaPresente(usuario)) {
-        Locator::logger()->log(DEBUG, "El usuario: " + usuario->getUsuario() + " no está presente.");
-        // TODO: manejar juego lleno o mismo usuario.
-        manager->agregarUsuario(usuario);
-    }
+void AgregarUsuario::resolver() {
+    manager->agregarUsuario(usuario);
+    usuarioAgregado.post();
 }
 

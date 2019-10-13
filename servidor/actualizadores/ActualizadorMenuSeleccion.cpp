@@ -3,11 +3,39 @@
 //
 
 #include "ActualizadorMenuSeleccion.h"
+#include "../NivelServidor.h"
+#include "../../usuario/Usuario.h"
 
+ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
+                                       semaphore *confirmacion) :
+        confirmacion(confirmacion),
+        selector(selector),
+        manager(manager),
+        mapa(mapa) {}
 
-ActualizadorMenuSeleccion::ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesar *eventos) :
+void ConfirmarSeleccion::resolver() {
+    selector->confirmar();
+    if(selector->puedoComenzar()){
+        for(Usuario *usuario : manager->getUsuarios()){
+            Entidad *personaje = NivelServidor::generarJugador(mapa);
+            usuario->setPersonaje(personaje);
+        }
+        NivelServidor::generarNivel("nivel1", mapa);
+        for(int i = 0; i < manager->cantidadJugadoresTotales(); i++){
+            confirmacion->post();
+        }
+    }
+}
+
+ActualizadorMenuSeleccion::ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesar *eventos,
+                                                     SelectorPersonajes *selector, Usuario *usuario,
+                                                     ManagerUsuarios *manager, semaphore *confirmacion) :
         mapa(mapa),
-        eventos(eventos) {}
+        usuario(usuario),
+        eventos(eventos),
+        manager(manager),
+        selector(selector),
+        confirmacion(confirmacion){}
 
 void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
     Accion accion;
@@ -16,9 +44,8 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
 
         EventoAProcesar *evento;
         switch (accion.accion()) {
-            // TODO: utilizar la clase que maneja las selecciones.
             case CONFIRMAR:
-                evento = new ConfirmarSeleccion(mapa);
+                evento = new ConfirmarSeleccion(selector, mapa, manager, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
                 break;
@@ -35,3 +62,4 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
 bool ActualizadorMenuSeleccion::fin() {
     return fin_;
 }
+

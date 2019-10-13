@@ -73,6 +73,7 @@ Configuracion::~Configuracion() {
 }
 
 string Configuracion::getValue(const string &xPath) {
+    lock_guard<mutex> lock(m);
     XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
 
     xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(

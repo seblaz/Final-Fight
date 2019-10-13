@@ -32,7 +32,7 @@ void NivelServidor::generarPersonajesSeleccion(Mapa *mapa) {
     personajeDeSeleccion->agregarEstado("personaje", personaje);
 }
 
-void NivelServidor::generarJugador(Mapa *mapa) {
+Entidad * NivelServidor::generarJugador(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera jugador.");
 
     auto* jugador = mapa->crearJugador();
@@ -50,9 +50,11 @@ void NivelServidor::generarJugador(Mapa *mapa) {
     jugador->agregarEstado("estado", estado);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
+    return jugador;
 }
 
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
+    mapa->vaciarMapa();
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);

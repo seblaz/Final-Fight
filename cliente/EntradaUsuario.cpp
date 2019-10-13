@@ -9,26 +9,24 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
-#include <SDL_events.h>
 
 Accion *EntradaNula::getAccion() {
     return nullptr;
 }
 
 Accion *EntradaMenuSeleccion::getAccion() {
-    SDL_Event e;
-    SDL_PollEvent(&e);
 
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-        if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN){
-//        if (entrada[SDL_SCANCODE_RETURN]) {
-//            activo = false;
-            cout << "confirmo";
+        if (entrada[SDL_SCANCODE_RETURN]) {
+            activo = false;
+            Locator::logger()->log(DEBUG, "Se presionó enter.");
             return new Accion(CONFIRMAR);
         } else if (entrada[SDL_SCANCODE_LEFT]) {
+            Locator::logger()->log(DEBUG, "Se presionó izquierda.");
             return new Accion(SELECCIONAR_ANTERIOR);
         } else if (entrada[SDL_SCANCODE_RIGHT]) {
+            Locator::logger()->log(DEBUG, "Se presionó derecha.");
             return new Accion(SELECCIONAR_SIGUIENTE);
         }
     }
@@ -85,8 +83,6 @@ void TrasmisionCliente::transmitir() {
 
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Milisegundos.
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true) {
         size_t start = SDL_GetTicks();
 
@@ -103,7 +99,6 @@ void TrasmisionCliente::transmitir() {
             SDL_Delay(sleepTime);
         }
     }
-#pragma clang diagnostic pop
 }
 
 pthread_t TrasmisionCliente::transmitirEnHilo() {

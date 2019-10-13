@@ -61,9 +61,14 @@ int main(int argc, char *argv[]) {
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
 
     /**
+     * Selector de personajes.
+     */
+     SelectorPersonajes selector(maximoJugadores);
+
+    /**
      * Contenedor de hilos.
      */
-     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios);
+     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector);
 
     /**
      * Conexiones de clientes.

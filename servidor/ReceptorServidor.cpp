@@ -6,38 +6,44 @@
 #include "../usuario/Usuario.h"
 #include "actualizadores/ActualizadorUsuario.h"
 #include "actualizadores/ActualizadorMenuSeleccion.h"
+#include "NivelServidor.h"
 
 
-ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios * manager, EventosAProcesar *eventos) :
+ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
+                                   SelectorPersonajes *selector, semaphore *confirmacion) :
         mapa(mapa),
         socket(socket),
         manager(manager),
-        eventos(eventos) {}
-        
+        eventos(eventos),
+        selector(selector),
+        confirmacion(confirmacion){}
+
 void ReceptorServidor::recibir() {
 
     ActualizadorUsuario actualizadorUsuario(eventos, manager);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de usuario.");
-    
-    do {
-        stringstream s;
-        if (!socket.recibir(s)) pthread_exit(nullptr);
-        actualizadorUsuario.interpretarStream(s);
-    } while (!actualizadorUsuario.fin());
 
-    ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos);
+//    do {
+    stringstream s;
+    if (!socket.recibir(s)) pthread_exit(nullptr);
+    Usuario *usuario = actualizadorUsuario.interpretarStream(s);
+//    } while (!actualizadorUsuario.fin());
+
+    ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
     do {
-        stringstream s;
-        if (!socket.recibir(s)) pthread_exit(nullptr);
-        actualizadorMenu.interpretarStream(s);
+        stringstream ss;
+        if (!socket.recibir(ss)) pthread_exit(nullptr);
+        actualizadorMenu.interpretarStream(ss);
     } while (!actualizadorMenu.fin());
 
-    ActualizadorJuego actualizadorJuego(mapa, eventos);
+    confirmacion->wait();
+    Entidad *jugador = usuario->getPersonaje();
+    ActualizadorJuego actualizadorJuego(mapa, eventos, jugador);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
     do {
-        stringstream s;
-        if (!socket.recibir(s)) pthread_exit(nullptr);
-        actualizadorJuego.interpretarStream(s);
+        stringstream sss;
+        if (!socket.recibir(sss)) pthread_exit(nullptr);
+        actualizadorJuego.interpretarStream(sss);
     } while (!actualizadorJuego.fin());
 }

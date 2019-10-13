@@ -6,35 +6,36 @@
 #define FINAL_FIGHT_ACTUALIZADORUSUARIO_H
 
 
-#include "Actualizador.h"
 #include "../../usuario/ManagerUsuarios.h"
 #include "../../eventos/Eventos.h"
 
 using namespace std;
 
-class ManejarUsuario : public EventoAProcesar {
+class AgregarUsuario : public EventoAProcesar {
 
 private:
     Usuario *usuario;
     ManagerUsuarios *manager;
-    
+    semaphore &usuarioAgregado;
+
 public:
-    ManejarUsuario(Usuario *usuario, ManagerUsuarios *manager);
+    AgregarUsuario(Usuario *usuario, ManagerUsuarios *manager, semaphore &semaphore);
     void resolver() override;
 
 };
 
-class ActualizadorUsuario : public Actualizador {
+class ActualizadorUsuario {
 
 private:
     bool fin_ = false;
     EventosAProcesar *eventos;
     ManagerUsuarios *manager;
-    
+    semaphore usuarioAgregado;
+
 public:
     explicit ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager);
-    void interpretarStream(stringstream &s) override;
-    bool fin() override;
+    Usuario * interpretarStream(stringstream &s);
+    bool fin();
 
 };
 

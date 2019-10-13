@@ -25,6 +25,8 @@ public:
     bool estaPresente(Usuario *usuario);
     int cantidadJugadoresFaltantes();
     void esperarUsuarios();
+    list<Usuario *> getUsuarios();
+    int cantidadJugadoresTotales();
 //        int getCantidadLogueados();
 //        bool faltanJugadores();
 //        vector<Socket> getSockets();

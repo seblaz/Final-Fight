@@ -45,6 +45,14 @@ void ManagerUsuarios::esperarUsuarios() {
     juegoListo.wait();
 }
 
+list<Usuario *> ManagerUsuarios::getUsuarios() {
+    return usuarios;
+}
+
+int ManagerUsuarios::cantidadJugadoresTotales() {
+    return maximo;
+}
+
 //
 //vector<Socket> ManagerUsuarios::getSockets(){
 //    vector<Socket> conexiones;

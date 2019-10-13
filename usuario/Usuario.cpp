@@ -35,3 +35,7 @@ void Usuario::setPersonaje(Entidad *pEntidad) {
 Socket* Usuario::getSocket() {
     return socket;
 }
+
+Entidad *Usuario::getPersonaje() {
+    return personaje;
+}

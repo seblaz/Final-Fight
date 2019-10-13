@@ -9,8 +9,8 @@
 #include "../eventos/Eventos.h"
 #include "actualizadores/ActualizadorJuego.h"
 #include "../modelo/Socket.h"
-#include "actualizadores/Actualizador.h"
 #include "../usuario/ManagerUsuarios.h"
+#include "SelectorPersonajes.h"
 
 class ReceptorServidor {
 
@@ -19,9 +19,12 @@ private:
     Socket socket;
     ManagerUsuarios *manager;
     EventosAProcesar *eventos;
+    SelectorPersonajes *selector;
+    semaphore *confirmacion;
 
 public:
-    ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos);
+    ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
+                     SelectorPersonajes *selector, semaphore *confirmacion);
     void recibir();
 
 };
