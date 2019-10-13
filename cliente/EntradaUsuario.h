@@ -31,15 +31,15 @@ public:
 class EntradaMenuSeleccion : public EntradaUsuario {
 
 private:
-    enum PERSONAJE personajeSeleccionado;
+    Entidad *entidad;
     bool activo = true;
 
 public:
     Accion *getAccion() override;
 
-    EntradaMenuSeleccion(enum PERSONAJE personajeSeleccionado_);
+    EntradaMenuSeleccion(Entidad *entidad) ;
 
-    enum PERSONAJE getPersonajeSeleccionado() { return personajeSeleccionado; };
+    Entidad* getEntidad() { return entidad; };
 };
 
 class EntradaJuego : public EntradaUsuario {

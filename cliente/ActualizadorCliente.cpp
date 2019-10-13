@@ -35,7 +35,7 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                 case INICIAR_MENU_SELECCION:{
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
                     enum PERSONAJE personajeMarcado = entidad->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-                    transmision->setEntradaUsuario(new EntradaMenuSeleccion(personajeMarcado));
+                    transmision->setEntradaUsuario(new EntradaMenuSeleccion(entidad));
                 }
                     break;
                 case JUGADOR:

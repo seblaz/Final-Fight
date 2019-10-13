@@ -15,17 +15,17 @@ Accion *EntradaNula::getAccion() {
     return nullptr;
 }
 
-EntradaMenuSeleccion::EntradaMenuSeleccion(enum PERSONAJE personajeSeleccionado_) :
-        personajeSeleccionado(personajeSeleccionado_)
+EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *entidad_) :
+        entidad(entidad_)
         {}
 
 Accion *EntradaMenuSeleccion::getAccion() {
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-
+        enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
         if (entrada[SDL_SCANCODE_RETURN]){
             activo = false;
-            switch (getPersonajeSeleccionado()){
+            switch (personajeMarcado){
                 case GUY:
                     return new Accion(SELECCIONAR_GUY);
                 case CODY:
@@ -85,7 +85,7 @@ EntradaUsuario *TrasmisionCliente::getEntradaUsuario() {
 void TrasmisionCliente::setEntradaUsuario(EntradaUsuario *entradaUsuario_) {
     std::lock_guard<std::mutex> lock(m);
     entradaUsuario = entradaUsuario_;
-}ll
+}
 
 void TrasmisionCliente::transmitir() {
 
