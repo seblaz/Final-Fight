@@ -18,6 +18,7 @@ void ConfirmarSeleccion::resolver() {
         for (auto &jugador: jugadores) {
             enum PERSONAJE personajeEnMapa = jugador.second->getEstado<Personaje>("personaje")->getPersonaje();
             if (personajeEnMapa == personajeSeleccionado) {
+                Locator::logger()->log(ERROR, "El personaje seleccionado ya se encuentra elegido");
                 NivelServidor::generarMenuSeleccion(mapa);
             } else {
                 NivelServidor::generarJugador(mapa, personajeSeleccionado);
@@ -25,9 +26,7 @@ void ConfirmarSeleccion::resolver() {
             }
         }
     } else {
-
         NivelServidor::generarJugador(mapa, personajeSeleccionado);
         NivelServidor::generarNivel("nivel1", mapa);
-
     }
 }
