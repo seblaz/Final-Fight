@@ -16,7 +16,11 @@ bool Socket::enviarSinChequeo(stringstream &s) {
     size_t enviados;
 
     do {
-        enviados = send(socket, msg.c_str() + total, tamano - total, 0);
+        enviados = send(socket, msg.c_str() + total, tamano - total, MSG_NOSIGNAL);
+        if(enviados > tamano){
+            Locator::logger()->log(ERROR, "El socket se desconectó.");
+            return false;
+        }
         total += enviados;
     } while ((enviados > 0) && (tamano != total));
 
@@ -91,4 +95,8 @@ bool Socket::recibir(stringstream &s) {
 
 int Socket::getIntSocket() {
     return socket;
+}
+
+bool Socket::operator==(const Socket &otroSocket) {
+    return socket == otroSocket.socket;
 }

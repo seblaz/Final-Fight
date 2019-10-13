@@ -3,6 +3,7 @@
 //
 
 #include "ListaSockets.h"
+#include <algorithm>
 
 void ListaSockets::agregar(Socket socket) {
     lock_guard<mutex> lock(m);
@@ -16,5 +17,6 @@ vector<Socket> ListaSockets::devolverSockets() {
 
 void ListaSockets::quitar(Socket socket) {
     lock_guard<mutex> lock(m);
-//    sockets.
+    auto position = find(sockets.begin(), sockets.end(), socket);
+    sockets.erase(position);
 }
