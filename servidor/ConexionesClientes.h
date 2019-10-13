@@ -8,26 +8,29 @@
 #include <vector>
 #include <pthread.h>
 #include "../modelo/Socket.h"
-
-using namespace std;
+#include "../usuario/ManagerUsuarios.h"
+#include "../modelo/Mapa.h"
+#include "ContenedorHilos.h"
+#include "ListaSockets.h"
 
 class ConexionesClientes {
 
 private:
     int socketServidor;
-    const int jugadoresMax;
-    int jugadoresFaltantes;
-    vector<int> socketsClientes;
-    vector<pthread_t> hilos;
-    void rechazarProximasConexiones();
+    ManagerUsuarios* manager;
+    ListaSockets *sockets;
+    ContenedorHilos *contenedor;
+    void manejarConexiones();
+//    void administrarConexionesEntrantes();
+//    void evaluarIngresoDeJugador(int nuevoSocket, bool juegoComenzado, ManagerUsuarios *pUsuarios);
+//    void ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* usuarios);
+//    pthread_t abrirHiloConexionesEntrantes();
 
 public:
-    explicit ConexionesClientes(int socketServidor, int jugadoresMax = 4);
+    explicit ConexionesClientes(int socketServidor, ListaSockets *sockets, ManagerUsuarios* managerUsuarios, ContenedorHilos* contenedor);
     ~ConexionesClientes();
-    void esperarConexiones();
-    vector<Socket> devolverConexiones();
-    pthread_t rechazarConexionesEnHilo();
-};
+    pthread_t manejarConexionesEnHilo();
 
+};
 
 #endif //FINAL_FIGHT_CONEXIONESCLIENTES_H

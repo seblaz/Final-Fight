@@ -14,7 +14,6 @@ class Procesamiento {
 
 private:
     EventosAProcesar eventosAProcesar;
-    Mapa mapa;
 
 public:
     EventosAProcesar *devolverCola();

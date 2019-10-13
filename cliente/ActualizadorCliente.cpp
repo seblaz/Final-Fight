@@ -22,8 +22,9 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
     nuevasEntidades.clear();
 
     while (s.rdbuf()->in_avail() != 0) {
+
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
-        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
+//        Locator::logger()->log(DEBUG, "Se recibe la entidad " + to_string(idEntidad));
         nuevasEntidades.insert(idEntidad);
         if (!mapa->contiene(idEntidad)) {
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
@@ -47,6 +48,9 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     Locator::provide(posicion);
                     transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
+                    break;
+                    case USUARIO:
+                    Locator::logger()->log(DEBUG, "Usuario");
                     break;
                 case TRANSICION:
                     NivelCliente::generarTransicion(mapa, entidad);

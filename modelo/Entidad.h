@@ -51,7 +51,7 @@ private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
     vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado" ,"personaje", "opacidad"};
-    const int fin = 999999999;
+     const int fin = 999999999;
 
 public:
     static void putIdInStream(ostream &in, IdEntidad idEntidad);
@@ -105,6 +105,7 @@ enum TIPO {
     JUGADOR,
     TRANSICION,
     ENEMIGO,
+    USUARIO,
     ELEMENTO
 };
 

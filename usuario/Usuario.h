@@ -7,27 +7,33 @@
 
 #include <string>
 #include "../serializar/Serializable.h"
+#include "../modelo/Entidad.h"
+#include "../modelo/Socket.h"
 
 using namespace std;
 
 
 class Usuario : public Serializable {
-    private:
-        string usuario;
-        string contrasenia;
 
-    public:
-        Usuario()= default;
-        virtual ~Usuario()= default;
+private:
+    string usuario;
+    string contrasenia;
+    Entidad *personaje;
+    Socket *socket;
 
-        Usuario(string usuario, string contrasenia);
-        void serializar(ostream& stream) override;
-        void deserializar(istream& stream) override;
-        string getUsuario();
-        string getContrasenia();
+public:
+    Usuario() = default;
+    virtual ~Usuario() = default;
+    Usuario(string usuario, string contrasenia);
+    void serializar(ostream &stream) override;
+    void deserializar(istream &stream) override;
+    string getUsuario();
+    string getContrasenia();
+    void setPersonaje(Entidad *pEntidad);
+    Entidad *getPersonaje();
+    Socket *getSocket();
+    void setSocket(Socket *socket);
 };
-
-
 
 
 #endif //FINAL_FIGHT_USUARIO_H
