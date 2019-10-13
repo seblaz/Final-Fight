@@ -19,12 +19,12 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
     switch (personajeMarcado->getPersonaje()) {
         case GUY: {
             if (entrada[SDL_SCANCODE_RIGHT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador1/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(CODY));
             } else if (entrada[SDL_SCANCODE_LEFT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador4/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(MAKI));
@@ -33,12 +33,12 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
             break;
         case CODY: {
             if (entrada[SDL_SCANCODE_RIGHT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador3/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
             } else if (entrada[SDL_SCANCODE_LEFT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador2/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(GUY));
@@ -47,12 +47,12 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
             break;
         case HAGGAR: {
             if (entrada[SDL_SCANCODE_RIGHT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador4/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(MAKI));
             } else if (entrada[SDL_SCANCODE_LEFT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador1/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(CODY));
@@ -61,12 +61,12 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
             break;
         case MAKI: {
             if (entrada[SDL_SCANCODE_RIGHT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador2/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(GUY));
             } else if (entrada[SDL_SCANCODE_LEFT]) {
-                string srcSprite = config->getValue("/pantallaDeSeleccion/jugador3/seleccion/src");
+                string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
                 auto *sprite = new Sprite(renderer, srcSprite);
                 pantalla->agregarEstado("sprite", sprite);
                 pantalla->agregarEstado("personajeMarcado", new Personaje(HAGGAR));

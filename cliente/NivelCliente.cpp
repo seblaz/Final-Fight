@@ -46,7 +46,7 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/pantallaDeSeleccion/jugador2/seleccion/src");
+    string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
     auto *renderer = Locator::renderer();
     auto *sprite = new Sprite(renderer, srcSprite);
     auto *grafico = new GraficoDePantallaCompleta();

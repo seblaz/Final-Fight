@@ -5,8 +5,6 @@
 #include <unordered_set>
 #include "ActualizadorCliente.h"
 #include "../servicios/Locator.h"
-#include "../graficos/Sprite.h"
-#include "../graficos/GraficoDePantallaCompleta.h"
 #include "NivelCliente.h"
 #include "../modelo/Personaje.h"
 
@@ -34,16 +32,12 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
             switch (tipo->tipo()) {
                 case INICIAR_MENU_SELECCION:{
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
-                    enum PERSONAJE personajeMarcado = entidad->getEstado<Personaje>("personajeMarcado")->getPersonaje();
                     transmision->setEntradaUsuario(new EntradaMenuSeleccion(entidad));
                 }
                     break;
                 case JUGADOR:
                     mapa->agregarJugadorConId(idEntidad, entidad);
                     NivelCliente::generarJugador(mapa, idEntidad, entidad);
-                    break;
-                case PERSONAJE_SELECCION:
-                    NivelCliente::generarSelectorDePersonaje(mapa, entidad);
                     break;
                 case ESCENARIO:
                     posicion = entidad->getEstado<Posicion>("posicion");
