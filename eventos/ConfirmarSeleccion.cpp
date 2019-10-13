@@ -35,5 +35,8 @@ void ConfirmarSeleccion::resolver() {
 
     if (personajeSeleccionado == GUY){
         NivelServidor::generarMenuSeleccion(mapa);
+    } else {
+        NivelServidor::generarJugador(mapa, personajeSeleccionado);
+        NivelServidor::generarNivel("nivel1", mapa);
     }
 }
