@@ -16,7 +16,11 @@ bool Socket::enviarSinChequeo(stringstream &s) {
     size_t enviados;
 
     do {
-        enviados = send(socket, msg.c_str() + total, tamano - total, 0);
+        enviados = send(socket, msg.c_str() + total, tamano - total, MSG_NOSIGNAL);
+        if(enviados > tamano){
+            Locator::logger()->log(ERROR, "El socket se desconectó.");
+            return false;
+        }
         total += enviados;
     } while ((enviados > 0) && (tamano != total));
 
@@ -31,33 +35,31 @@ bool Socket::enviar(stringstream &s) {
     string msg = s.str();
     size_t tamano = msg.size();
 
-    //Locator::logger()->log(DEBUG, "Se pretende enviar un mensaje de tamaño: " + to_string((tamano)));
-    //Locator::logger()->log(DEBUG, "Con el mensaje: " + msg);
+//    Locator::logger()->log(DEBUG, "Se pretende enviar un mensaje de tamaño: " + to_string((tamano)));
+//    Locator::logger()->log(DEBUG, "Con el mensaje: " + msg);
 
     std::stringstream ss;
     ss << std::setw(tamanoDigitos) << std::setfill('0') << tamano;
 
     bool resultado = enviarSinChequeo(ss) && enviarSinChequeo(s);
-    //Locator::logger()->log(DEBUG, "Mensaje enviado con resultado: " + to_string(resultado));
+//    Locator::logger()->log(DEBUG, "Mensaje enviado con resultado: " + to_string(resultado));
     return resultado;
 }
 
 bool Socket::recibirConCantidad(stringstream &s, size_t cantidad) {
     char buffer[cantidad + 1];
-    //memset(&buffer, 0, sizeof(buffer)); // clear the buffer
     buffer[cantidad] = '\0';
+//    memset(&buffer, 0, sizeof(buffer)); // clear the buffer
 
     size_t leidos;
     size_t total = 0;
     size_t tamano = cantidad;
-    //Locator::logger()->log(DEBUG, "Cantidad " + to_string(cantidad));
-    do {
 
+    do {
         leidos = recv(socket, buffer + total, tamano - total, 0);
-        //Locator::logger()->log(DEBUG, "Ocurrió un error al recibir por el socket: " + string(strerror(errno)));
         total += leidos;
     } while ((leidos > 0) && (total != tamano));
-    //Locator::logger()->log(DEBUG, "Buffer:  " + string(buffer));
+
     s << buffer;
 
     if (leidos == -1) {
@@ -68,7 +70,7 @@ bool Socket::recibirConCantidad(stringstream &s, size_t cantidad) {
 }
 
 bool Socket::recibir(stringstream &s) {
-    //Locator::logger()->log(DEBUG, "Comienzo a recibir.");
+//    Locator::logger()->log(DEBUG, "Comienzo a recibir.");
 
     stringstream ss;
     bool res1 = recibirConCantidad(ss, tamanoDigitos);
@@ -87,6 +89,14 @@ bool Socket::recibir(stringstream &s) {
         return false;
     }
 
-    //Locator::logger()->log(DEBUG, "Mensaje recibido: " + s.str());
+//    Locator::logger()->log(DEBUG, "Mensaje recibido: " + s.str());
     return res2;
+}
+
+int Socket::getIntSocket() {
+    return socket;
+}
+
+bool Socket::operator==(const Socket &otroSocket) {
+    return socket == otroSocket.socket;
 }

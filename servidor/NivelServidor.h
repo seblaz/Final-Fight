@@ -11,6 +11,7 @@
 #include "../modelo/Posicion.h"
 #include "../modelo/Orientacion.h"
 #include "../modelo/Personaje.h"
+#include "../modelo/TipoElemento.h"
 
 
 class NivelServidor {
@@ -18,15 +19,16 @@ class NivelServidor {
 private:
     static void generarTransicion(const string &nivel,Mapa *mapa, Posicion* posicionDeJugador);
     static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario);
+    static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);
-    static void generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado);
-    static Entidad *generarEscenario(const string &nivel, Mapa *mapa);
+    static Entidad * generarJugador(Mapa *mapa);
 
     static void generarPersonajesSeleccion(Mapa *mapa);
 
     static void generarNivel(const string &nivel, Mapa *mapa);
+    static Entidad *generarEscenario(const string &nivel, Mapa *mapa);
 };
 
 

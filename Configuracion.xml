@@ -1,4 +1,8 @@
 <configuracion>
+    <usuarios>
+        <cantidad>1</cantidad>
+    </usuarios>
+    <password>p</password>
     <debug>
         <level>DEBUG</level>
     </debug>

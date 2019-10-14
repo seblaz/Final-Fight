@@ -17,11 +17,11 @@ TEST(ManagerUsuarios, EstaPresente){
     ManagerUsuarios manager(4);
     Usuario usuario("user", "pass");
 
-    EXPECT_EQ(false, manager.estaPresente("user"));
+    EXPECT_EQ(false, manager.estaPresente(usuario));
 
     manager.agregarUsuario(usuario);
 
-    EXPECT_EQ(true, manager.estaPresente("user"));
+    EXPECT_EQ(true, manager.estaPresente(usuario));
 }
 
 TEST(ManagerUsuarios, AgregarUsuarioOk){
@@ -64,15 +64,4 @@ TEST(ManagerUsuarios, AgregarUsuarioSuperaCantidadMaxima){
         EXPECT_EQ(true, true);
     }
 
-}
-
-TEST(ManagerUsuarios, EstaLogueadoOk){
-    ManagerUsuarios manager(4);
-    Usuario usuario("user", "pass");
-
-    EXPECT_EQ(false, manager.estaLogueado(usuario));
-
-    manager.agregarUsuario(usuario);
-
-    EXPECT_EQ(true, manager.estaLogueado(usuario));
 }

@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <mutex>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ private:
     string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;
     xercesc::ErrorHandler *errHandler;
+    mutex m;
 
 public:
     explicit Configuracion(const string &path = "Configuracion.xml");

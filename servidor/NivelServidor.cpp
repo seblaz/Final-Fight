@@ -15,30 +15,41 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../estados/ia/Patrullar.h"
 #include "../estados/Caminando.h"
+#include "../modelo/TipoElemento.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
     Entidad *pantalla = mapa->crearEntidad();
     auto *posicion = new Posicion(0, 10, 0);
-    auto *tipo = new Tipo(INICIAR_MENU_SELECCION);
+    auto *tipo = new Tipo(PANTALLA_SELECCION);
 
     pantalla->agregarEstado("posicion", posicion);
     pantalla->agregarEstado("mapa", mapa);
     pantalla->agregarEstado("tipo", tipo);
 }
 
-void NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
-    Locator::logger()->log(INFO, "Se genera jugador.");
-    Locator::logger()->log(INFO,"Se selecciono personaje:" + personajeSeleccionado);
+void NivelServidor::generarPersonajesSeleccion(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se generan los personajes de seleccion.");
 
+    Entidad *personajeDeSeleccion = mapa->crearEntidad();
+    auto *posicion = new Posicion(0, 0, 0);
+    auto *personaje = new Personaje(CODY);
+    auto *tipo = new Tipo(PERSONAJE_SELECCION);
+
+    personajeDeSeleccion->agregarEstado("posicion", posicion);
+    personajeDeSeleccion->agregarEstado("tipo", tipo);
+    personajeDeSeleccion->agregarEstado("personaje", personaje);
+}
+
+Entidad * NivelServidor::generarJugador(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se genera jugador.");
 
     auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
     auto *velocidad = new Velocidad();
     auto *orientacion = new Orientacion;
     auto *tipo = new Tipo(JUGADOR);
-    auto *personaje = new Personaje(personajeSeleccionado);
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
 
@@ -47,12 +58,14 @@ void NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccion
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("estado", estado);
-    jugador->agregarEstado("personaje", personaje);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
+    return jugador;
 }
 
+
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
+    mapa->vaciarMapa();
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);
@@ -72,6 +85,10 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 //    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
+    generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
+    generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
+    generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
     generarEnemigo(nivel, mapa, posicionDeEscenario);
     generarTransicion(nivel, mapa, posicionDeJugador);
 }
@@ -164,4 +181,45 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarComportamiento("comportamiento", comportamiento);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
     }
+}
+
+void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART) {
+    Configuracion *config = Locator::configuracion();
+    int cantidad;
+    switch (ART) {
+        case CAJA:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
+            break;
+        case CUCHILLO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/cantidad");
+            break;
+        case NEUMATICO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/neumatico/cantidad");
+            break;
+        case TUBO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/tubo/cantidad");
+            break;
+        default:
+            cantidad = 0;
+    }
+            int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+            int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+
+            auto *tipo = new Tipo(ELEMENTO);
+            auto *nivelElemento = new Nivel(nivel);
+            auto *tipoElemento = new TipoElemento(ART);
+
+            for (int i = 1; i <= cantidad; i++) {
+                Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
+                auto elementoRandom = mapa->crearEntidad();
+
+                auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
+                                                        0);
+                elementoRandom->agregarEstado("posicion", posicionElementoRandom);
+                elementoRandom->agregarEstado("tipo", tipo);
+                elementoRandom->agregarEstado("nivel", nivelElemento);
+                elementoRandom->agregarEstado("tipo elemento" , tipoElemento);
+                elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+            }
+
 }

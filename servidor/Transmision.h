@@ -8,18 +8,19 @@
 #include <vector>
 #include "../eventos/Eventos.h"
 #include "../modelo/Socket.h"
+#include "ListaSockets.h"
 
 using namespace std;
 
 class Transmision {
 
 private:
-    vector<Socket> sockets;
+    ListaSockets *sockets;
     EventosATransmitir eventosATransmitir;
     void transmitir();
 
 public:
-    explicit Transmision(vector<Socket> sockets);
+    explicit Transmision(ListaSockets *sockets);
     EventosATransmitir * devolverCola();
     pthread_t transmitirEnHilo();
 };

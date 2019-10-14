@@ -99,12 +99,12 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${StatesSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources} cliente/EntradaSeleccionPersonaje.h cliente/EntradaSeleccionPersonaje.cpp)
+add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${StatesSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources} modelo/TipoElemento.h modelo/TipoElemento.cpp)
 target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
 
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} )
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} modelo/TipoElemento.h modelo/TipoElemento.cpp)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

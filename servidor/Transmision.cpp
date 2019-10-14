@@ -7,9 +7,10 @@
 
 #include <utility>
 #include <sys/socket.h>
+#include <csignal>
 
-Transmision::Transmision(vector<Socket> sockets) :
-        sockets(std::move(sockets)) {}
+Transmision::Transmision(ListaSockets *sockets) :
+        sockets(sockets) {}
 
 void Transmision::transmitir() {
     while (true) {
@@ -21,17 +22,11 @@ void Transmision::transmitir() {
             break;
         }
 
-        for (Socket socket : sockets){
+        for (Socket socket : sockets->devolverSockets()){
             stringstream s(msj);
-            socket.enviar(s);
-//            int result = send(socket, msj.c_str(), msj.length(), 0);
-//            if (result == -1 ){
-//                Locator::logger()->log(ERROR, "Error al transmitir.");
-//            } else if(result == 0){
-//                Locator::logger()->log(INFO, "Cliente desconectado.");
-//            } else {
-//                Locator::logger()->log(DEBUG, "Transmisión correcta de: " + msj);
-//            }
+            if(!socket.enviar(s)){
+                sockets->quitar(socket);
+            }
         }
     }
 }

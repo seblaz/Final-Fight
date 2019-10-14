@@ -22,7 +22,8 @@ public:
     explicit Socket(int socket);
     bool enviar(stringstream &s);
     bool recibir(stringstream &s);
-
+    int getIntSocket();
+    bool operator==(const Socket &otroSocket);
 };
 
 

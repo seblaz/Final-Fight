@@ -13,10 +13,10 @@ class GameLoop {
 private:
     EventosAProcesar* eventos;
     EventoAProcesar* eventoAProcesar;
-    void loop();
 
 public:
     explicit GameLoop(EventosAProcesar *eventos, EventoAProcesar *eventoAProcesar);
+    void loop();
     pthread_t loopEnHilo();
 
 };

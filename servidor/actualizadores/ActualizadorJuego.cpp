@@ -2,30 +2,23 @@
 // Created by sebas on 8/10/19.
 //
 
-#include "ActualizadorServidor.h"
-#include "NivelServidor.h"
-#include "../modelo/Accion.h"
-#include "../eventos/ConfirmarSeleccion.h"
-#include "../eventos/EventoPersonaje.h"
+#include "ActualizadorJuego.h"
+#include "../NivelServidor.h"
+#include "../../modelo/Accion.h"
+#include "../../eventos/EventoPersonaje.h"
 
-ActualizadorServidor::ActualizadorServidor(Mapa *mapa, EventosAProcesar *eventos) :
+ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador) :
         mapa(mapa),
+        jugador(jugador),
         eventos(eventos) {}
 
-void ActualizadorServidor::interpretarComando(stringstream &s) {
+void ActualizadorJuego::interpretarStream(stringstream &s) {
 
     Accion accion;
-    Entidad *jugador = mapa->getJugador();
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
-
         EventoAProcesar *evento;
         switch (accion.accion()) {
-
-            case SELECCIONAR_SIGUIENTE:
-                break;
-            case SELECCIONAR_ANTERIOR:
-                break;
             case GOLPEAR:
                 evento = new Golpear(jugador);
                 eventos->push(evento);
@@ -74,22 +67,13 @@ void ActualizadorServidor::interpretarComando(stringstream &s) {
                 evento = new CaminarDerechaAbajo(jugador);
                 eventos->push(evento);
                 break;
-            case SELECCIONAR_CODY:
-                evento = new ConfirmarSeleccion(mapa, CODY);
-                eventos->push(evento);
-                break;
-            case SELECCIONAR_HAGGAR:
-                evento = new ConfirmarSeleccion(mapa, HAGGAR);
-                eventos->push(evento);
-                break;
-            case SELECCIONAR_GUY:
-                evento = new ConfirmarSeleccion(mapa, GUY);
-                eventos->push(evento);
-                break;
-            case SELECCIONAR_MAKI:
-                evento = new ConfirmarSeleccion(mapa, MAKI);
-                eventos->push(evento);
-                break;
+            default:
+                Locator::logger()->log(ERROR, "Se recibió una acción inválida en ActualizarJuego.");
+                fin_ = true;
         }
     }
+}
+
+bool ActualizadorJuego::fin() {
+    return fin_;
 }
