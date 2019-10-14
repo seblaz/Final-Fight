@@ -28,9 +28,9 @@ Accion *EntradaMenuSeleccion::getAccion() {
             switch (personajeMarcado){
                 case GUY:
                     activo = false;
-                    Locator::logger()->log(DEBUG, "Se presionó enter.");
-                    return new Accion(CONFIRMAR);
-                    //return new Accion(SELECCIONAR_GUY);
+                    Locator::logger()->log(DEBUG, "Se selecciono guy.");
+                    //return new Accion(CONFIRMAR);
+                    return new Accion(SELECCIONAR_GUY);
                 case CODY:
                     activo = false;
                     Locator::logger()->log(DEBUG, "Se presionó enter.");

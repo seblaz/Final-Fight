@@ -15,9 +15,14 @@ ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa,
 
 void ConfirmarSeleccion::resolver() {
     selector->confirmar();
+
+    //Entidad *personaje = mapa->crearEntidad();
+    //personaje->agregarEstado("personaje",new Personaje(GUY));
+    manager->getUsuarios().back()->setPersonajeSeleccionado(GUY);
+
     if(selector->puedoComenzar()){
         for(Usuario *usuario : manager->getUsuarios()){
-            Entidad *personaje = NivelServidor::generarJugador(mapa);
+            Entidad *personaje = NivelServidor::generarJugador(mapa, GUY);
             usuario->setPersonaje(personaje);
         }
         NivelServidor::generarNivel("nivel1", mapa);
@@ -49,7 +54,11 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
                 eventos->push(evento);
                 fin_ = true;
                 break;
-            case SELECCIONAR_SIGUIENTE:
+            case SELECCIONAR_GUY:
+                Locator::logger()->log(DEBUG, "Se selecciono a GUY");
+                evento = new ConfirmarSeleccion(selector, mapa, manager, confirmacion);
+                eventos->push(evento);
+                fin_ = true;
                 break;
             case SELECCIONAR_ANTERIOR:
                 break;

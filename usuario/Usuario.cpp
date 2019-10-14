@@ -4,7 +4,7 @@
 
 #include "Usuario.h"
 
-Usuario::Usuario(string usuario, string contrasenia): usuario(usuario), contrasenia(contrasenia) {}
+Usuario::Usuario(string usuario, string contrasenia) : usuario(usuario), contrasenia(contrasenia) {}
 
 void Usuario::serializar(ostream &stream) {
     serializarString(stream, usuario);
@@ -24,7 +24,7 @@ string Usuario::getContrasenia() {
     return contrasenia;
 }
 
-void Usuario::setSocket(Socket* nuevoSocket) {
+void Usuario::setSocket(Socket *nuevoSocket) {
     socket = nuevoSocket;
 }
 
@@ -32,10 +32,19 @@ void Usuario::setPersonaje(Entidad *pEntidad) {
     personaje = pEntidad;
 }
 
-Socket* Usuario::getSocket() {
+Socket *Usuario::getSocket() {
     return socket;
 }
 
 Entidad *Usuario::getPersonaje() {
     return personaje;
+}
+
+void Usuario::setPersonajeSeleccionado(
+        enum PERSONAJE personajeSeleccionado_) {
+    personajeSeleccionado = personajeSeleccionado_;
+};
+
+enum PERSONAJE Usuario::getPersonajeSeleccionado() {
+    return personajeSeleccionado;
 }
