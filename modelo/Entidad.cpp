@@ -10,6 +10,7 @@
 #include "../estados/Reposando.h"
 #include "Opacidad.h"
 #include "TipoElemento.h"
+#include "Actividad.h"
 #include <algorithm>
 #include <iostream>
 
@@ -97,13 +98,21 @@ void Entidad::deserializar(istream &stream) {
                 opacidad->deserializar(stream);
                 agregarEstado("opacidad", opacidad);
             }
-        }else if (estado == "tipo elemento") {
+        } else if (estado == "tipo elemento") {
             if (existe) {
                 getEstado<TipoElemento>("tipo elemento")->deserializar(stream);
             } else {
                 auto *tipoElemento = new TipoElemento();
                 tipoElemento->deserializar(stream);
                 agregarEstado("tipo elemento", tipoElemento);
+            }
+        } else if (estado == "actividad") {
+            if (existe) {
+                getEstado<Actividad>("actividad")->deserializar(stream);
+            } else {
+                auto *actividad = new Actividad();
+                actividad->deserializar(stream);
+                agregarEstado("actividad", actividad);
             }
         }
         posicionEstado = deserializarEntero(stream);

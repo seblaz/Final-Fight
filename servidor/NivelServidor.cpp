@@ -16,6 +16,7 @@
 #include "../estados/ia/Patrullar.h"
 #include "../estados/Caminando.h"
 #include "../modelo/TipoElemento.h"
+#include "../modelo/Actividad.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -52,12 +53,14 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa) {
     auto *tipo = new Tipo(JUGADOR);
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
+    auto *actividad = new Actividad(true);
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("estado", estado);
+    jugador->agregarEstado("actividad", actividad);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     return jugador;
