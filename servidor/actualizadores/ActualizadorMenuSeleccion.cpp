@@ -54,15 +54,14 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
         switch (accion.accion()) {
             case SELECCIONAR_GUY:
                 Locator::logger()->log(DEBUG, "Se selecciono a GUY");
-                if (!personajeFueEligidoPorOtroUsuario(GUY)) {
-                    evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
-                    eventos->push(evento);
-                    fin_ = true;
-                } else {
-                    evento = new MostrarMenuSeleccion(mapa);
-                    eventos->push(evento);
-
-                }
+                //if (!personajeFueEligidoPorOtroUsuario(GUY)) {
+                //    evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
+                //    eventos->push(evento);
+                //    fin_ = true;
+                //}
+                evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
+                eventos->push(evento);
+                fin_ = true;
                 break;
             case SELECCIONAR_MAKI:
                 Locator::logger()->log(DEBUG, "Se selecciono a MAKI");

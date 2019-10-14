@@ -20,7 +20,7 @@ EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *entidad_) :
         {}
 
 Accion *EntradaMenuSeleccion::getAccion() {
-    if (activo) {
+   if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
         enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
 
@@ -50,7 +50,7 @@ Accion *EntradaMenuSeleccion::getAccion() {
             };
         }
 
-    }
+      }
     return nullptr;
 }
 
