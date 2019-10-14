@@ -22,6 +22,7 @@ private:
     Entidad *personaje;
     enum PERSONAJE personajeSeleccionado;
     Socket *socket;
+    bool seleccionoPersonaje = false;
 
 public:
     Usuario() = default;
@@ -37,6 +38,8 @@ public:
     void setSocket(Socket *socket);
     void setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado);
     enum PERSONAJE getPersonajeSeleccionado();
+    void setSeleccionoPersonaje(bool seleccionoPersonaje_);
+    bool getSeleccionoPersonaje();
 };
 
 

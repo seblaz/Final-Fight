@@ -40,11 +40,20 @@ Entidad *Usuario::getPersonaje() {
     return personaje;
 }
 
-void Usuario::setPersonajeSeleccionado(
-        enum PERSONAJE personajeSeleccionado_) {
-    personajeSeleccionado = personajeSeleccionado_;
+
+void Usuario::setSeleccionoPersonaje(bool seleccionoPersonaje_) {
+    seleccionoPersonaje = seleccionoPersonaje_;
 };
+
+bool Usuario::getSeleccionoPersonaje() {
+    return personajeSeleccionado;
+}
 
 enum PERSONAJE Usuario::getPersonajeSeleccionado() {
     return personajeSeleccionado;
 }
+
+void Usuario::setPersonajeSeleccionado(
+        enum PERSONAJE personajeSeleccionado_) {
+    personajeSeleccionado = personajeSeleccionado_;
+};

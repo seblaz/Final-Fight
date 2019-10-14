@@ -5,26 +5,31 @@
 #include "ActualizadorMenuSeleccion.h"
 #include "../NivelServidor.h"
 #include "../../usuario/Usuario.h"
+#include "../../eventos/MostrarMenuSeleccion.h"
 
-ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager, enum PERSONAJE personaje_, Usuario *usuario_,
+ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
+                                       enum PERSONAJE personaje_, Usuario *usuario_,
                                        semaphore *confirmacion) :
         confirmacion(confirmacion),
         selector(selector),
         manager(manager),
         mapa(mapa),
         usuario(usuario_),
-        personajeSeleccionado(personaje_){}
+        personajeSeleccionado(personaje_) {}
 
 void ConfirmarSeleccion::resolver() {
     selector->confirmar();
+
+    usuario->setSeleccionoPersonaje(true);
     usuario->setPersonajeSeleccionado(personajeSeleccionado);
-    if(selector->puedoComenzar()){
-        for(Usuario *usuario : manager->getUsuarios()){
+    if (selector->puedoComenzar()) {
+        for (Usuario *usuario : manager->getUsuarios()) {
+
             Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado());
             usuario->setPersonaje(personaje);
         }
         NivelServidor::generarNivel("nivel1", mapa);
-        for(int i = 0; i < manager->cantidadJugadoresTotales(); i++){
+        for (int i = 0; i < manager->cantidadJugadoresTotales(); i++) {
             confirmacion->post();
         }
     }
@@ -38,7 +43,7 @@ ActualizadorMenuSeleccion::ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesa
         eventos(eventos),
         manager(manager),
         selector(selector),
-        confirmacion(confirmacion){}
+        confirmacion(confirmacion) {}
 
 void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
     Accion accion;
@@ -49,25 +54,31 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
         switch (accion.accion()) {
             case SELECCIONAR_GUY:
                 Locator::logger()->log(DEBUG, "Se selecciono a GUY");
-                evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
-                eventos->push(evento);
-                fin_ = true;
+                if (!personajeFueEligidoPorOtroUsuario(GUY)) {
+                    evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
+                    eventos->push(evento);
+                    fin_ = true;
+                } else {
+                    evento = new MostrarMenuSeleccion(mapa);
+                    eventos->push(evento);
+
+                }
                 break;
             case SELECCIONAR_MAKI:
                 Locator::logger()->log(DEBUG, "Se selecciono a MAKI");
-                evento = new ConfirmarSeleccion(selector, mapa, manager ,MAKI, usuario, confirmacion);
+                evento = new ConfirmarSeleccion(selector, mapa, manager, MAKI, usuario, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
                 break;
             case SELECCIONAR_CODY:
                 Locator::logger()->log(DEBUG, "Se selecciono a CODY");
-                evento = new ConfirmarSeleccion(selector, mapa, manager,CODY, usuario, confirmacion);
+                evento = new ConfirmarSeleccion(selector, mapa, manager, CODY, usuario, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
                 break;
             case SELECCIONAR_HAGGAR:
                 Locator::logger()->log(DEBUG, "Se selecciono a HAGGAR");
-                evento = new ConfirmarSeleccion(selector, mapa, manager,HAGGAR, usuario,confirmacion);
+                evento = new ConfirmarSeleccion(selector, mapa, manager, HAGGAR, usuario, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
                 break;
@@ -76,6 +87,19 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
         }
     }
 }
+
+bool ActualizadorMenuSeleccion::personajeFueEligidoPorOtroUsuario(enum PERSONAJE personajeABuscar) {
+    for (Usuario *elementoUsuario : manager->getUsuarios()) {
+        if (elementoUsuario->getSeleccionoPersonaje() == true) {
+            if (elementoUsuario->getPersonajeSeleccionado() == personajeABuscar) {
+                Locator::logger()->log(DEBUG, "Personaje ya elegido por otro usuario");
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 
 bool ActualizadorMenuSeleccion::fin() {
     return fin_;

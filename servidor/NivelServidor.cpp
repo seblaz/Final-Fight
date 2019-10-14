@@ -74,14 +74,14 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSele
     auto *tipo = new Tipo(JUGADOR);
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
-    auto *personaje = new Personaje(personajeSeleccionado);
+    
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("estado", estado);
-    jugador->agregarEstado("personaje", personaje);
+    jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     return jugador;

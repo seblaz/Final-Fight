@@ -23,6 +23,7 @@ Accion *EntradaMenuSeleccion::getAccion() {
     if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
         enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
+
         if (entrada[SDL_SCANCODE_RETURN]){
             activo = false;
             switch (personajeMarcado){
