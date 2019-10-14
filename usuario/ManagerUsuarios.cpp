@@ -7,35 +7,28 @@
 #include <algorithm>
 
 ManagerUsuarios::ManagerUsuarios(int max) :
-    maximo(max),
-    juegoListo(1 - max){}
+        maximo(max),
+        juegoListo(1 - max) {}
 
 void ManagerUsuarios::agregarUsuario(Usuario *nuevoUsuario) {
     Locator::logger()->log(DEBUG, "Se agrega el usuario: " + nuevoUsuario->getUsuario());
 
-    if(usuarios.size() < maximo && !estaPresente(nuevoUsuario)){
+    if (usuarios.size() < maximo && !estaPresente(nuevoUsuario)) {
         usuarios.push_back(nuevoUsuario);
-    }else{
+    } else {
         throw exception();
     }
-    
+
     Locator::logger()->log(DEBUG, "Faltan " + to_string(cantidadJugadoresFaltantes()) + " jugadores.");
 
     juegoListo.post();
 }
 
-bool ManagerUsuarios::estaPresente(Usuario *usuario){
-    //auto findIter = std::find(usuarios.begin(), usuarios.end(), usuario);
-    bool encontrado = false;
-
-    std::list<Usuario*>::iterator it = usuarios.begin();
-
-    while(usuarios.end() != it && !encontrado){
-        Usuario* pUsuario = *it.operator->();
-        encontrado = pUsuario->getUsuario() == usuario->getUsuario();
-    }
-
-    return encontrado;
+bool ManagerUsuarios::estaPresente(Usuario *usuario) {
+    auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
+        return u->getUsuario() == usuario->getUsuario();
+    });
+    return pos != usuarios.end();
 }
 
 //int ManagerUsuarios::getCantidadLogueados() {
@@ -63,25 +56,22 @@ int ManagerUsuarios::cantidadJugadoresTotales() {
 }
 
 void ManagerUsuarios::administrarUsuario(Usuario *usuario) {
-    if(!estaPresente(usuario)){
+    if (!estaPresente(usuario)) {
         agregarUsuario(usuario);
-    }else{
-        Usuario* usuarioEncontrado;
-        std::list<Usuario*>::iterator it = usuarios.begin();
-        while(usuarios.end() != it){
-            Usuario* pUsuario = *it.operator->();
-            if(pUsuario->getUsuario() == usuario->getUsuario()){
-                usuarioEncontrado = pUsuario;
-            }
-            it.operator++();
-        }
+    } else {
+        auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
+            return u->getUsuario() == usuario->getUsuario();
+        });
+        Usuario *usuarioAnterior = *pos;
 
-        if(usuarioEncontrado->getSocket() == NULL){
-            usuarioEncontrado->setSocket(usuario->getSocket());
-            Locator::logger()->log(INFO, "Se cambio socket para usuario " + usuarioEncontrado->getUsuario());
-        } else{
-            Locator::logger()->log(ERROR, "Se detecta segunda conexion para usuario " + usuarioEncontrado->getUsuario());
-            throw new exception; //DOS USUARIOS MISMO NOMBRE
+        if (usuarioAnterior->getSocket() == NULL) {
+            usuario->setPersonaje(usuarioAnterior->getPersonaje());
+            *pos = usuario;
+            delete usuarioAnterior;
+            Locator::logger()->log(INFO, "Se cambio socket para usuario " + usuarioAnterior->getUsuario());
+        } else {
+            Locator::logger()->log(ERROR, "Se detecta segunda conexion para usuario " + usuarioAnterior->getUsuario());
+            pthread_exit(nullptr); //DOS USUARIOS MISMO NOMBRE
         }
     }
 }

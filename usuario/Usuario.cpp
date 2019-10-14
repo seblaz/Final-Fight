@@ -43,3 +43,7 @@ Entidad *Usuario::getPersonaje() {
 void Usuario::desactivar(){
     //personaje->getEstado()
 }
+
+bool Usuario::operator==(const Usuario &obj) {
+    return usuario == obj.usuario;
+}

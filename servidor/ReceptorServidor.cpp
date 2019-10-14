@@ -16,7 +16,7 @@ ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *m
         manager(manager),
         eventos(eventos),
         selector(selector),
-        confirmacion(confirmacion){}
+        confirmacion(confirmacion) {}
 
 void ReceptorServidor::recibir() {
 
@@ -32,19 +32,22 @@ void ReceptorServidor::recibir() {
     Usuario *usuario = actualizadorUsuario.interpretarStream(s, socket);
 //    } while (!actualizadorUsuario.fin());
 
-    ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);
-    Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
-    do {
-        stringstream ss;
-        if (!socket.recibir(ss)) {
-            Locator::logger()->log(ERROR, "Se termina el hilo.");
-            pthread_exit(nullptr);
-        }
-        actualizadorMenu.interpretarStream(ss);
-    } while (!actualizadorMenu.fin());
+    if (!usuario->getPersonaje()) {
+        ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);
+        Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
+        do {
+            stringstream ss;
+            if (!socket.recibir(ss)) {
+                Locator::logger()->log(ERROR, "Se termina el hilo.");
+                pthread_exit(nullptr);
+            }
+            actualizadorMenu.interpretarStream(ss);
+        } while (!actualizadorMenu.fin());
 
-    confirmacion->wait();
+        confirmacion->wait();
+    }
     Entidad *jugador = usuario->getPersonaje();
+    
     ActualizadorJuego actualizadorJuego(mapa, eventos, jugador);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
     do {
