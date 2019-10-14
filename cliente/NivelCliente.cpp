@@ -21,6 +21,10 @@
 #include "../modelo/Opacidad.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
+#include "../modelo/TipoElemento.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -159,18 +163,40 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
 }
 
 void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
-        Configuracion *config = Locator::configuracion();
         //auto* nivel = elemento->getEstado<Nivel>("nivel");
-        //string srcSprite = config->getValue("/niveles/" + nivel->nivel() + "/escenario/objetos/caja/sprite/src");
-        string srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/caja/sprite/src");
+    //string srcSprite = config->getValue("/niveles/" + nivel->nivel() + "/escenario/objetos/caja/sprite/src");
+    Configuracion *config = Locator::configuracion();
+    auto* tipoElemento = elemento->getEstado<TipoElemento>("tipo elemento");
+    string srcSprite;
+    Animacion* animacion;
+    int ART = tipoElemento->getElemento();
+    switch (ART) {
+        case CAJA:
+            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/caja/sprite/src");
+            animacion = FabricaDeAnimacionesDeCaja::standby();
+            break;
+        case CUCHILLO:
+            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/cuchillo/sprite/src");
+            animacion = FabricaDeAnimacionesDeCuchillo::standby();
+            break;
+        case NEUMATICO:
+            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/neumatico/sprite/src");
+            animacion = FabricaDeAnimacionesDeNeumatico::standby();
+            break;
+        case TUBO:
+            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/tubo/sprite/src");
+            animacion = FabricaDeAnimacionesDeTubo::standby();
+            break;
+        default:
+            break;
+    }
 
         SDL_Renderer *sdlRenderer = Locator::renderer();
-        auto *spriteCaja = new Sprite(sdlRenderer, srcSprite);
-        auto *graficoDeCaja = new Grafico();
-        auto *animacionCaja = FabricaDeAnimacionesDeCaja::standby();
+        auto *sprite = new Sprite(sdlRenderer, srcSprite);
+        auto *grafico= new Grafico();
 
-        elemento->agregarEstado("sprite", spriteCaja);
-        elemento->agregarEstado("animacion", animacionCaja);
-        elemento->agregarComportamiento("grafico", graficoDeCaja);
+        elemento->agregarEstado("sprite", sprite);
+        elemento->agregarEstado("animacion", animacion);
+        elemento->agregarComportamiento("grafico", grafico);
 
 }

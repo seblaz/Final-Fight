@@ -11,13 +11,7 @@
 #include "../modelo/Posicion.h"
 #include "../modelo/Orientacion.h"
 #include "../modelo/Personaje.h"
-
-enum{
-    CAJAS,
-    NEUMATICOS,
-    TUBOS,
-    CUCHILLOS
-};
+#include "../modelo/TipoElemento.h"
 
 
 class NivelServidor {
@@ -25,7 +19,7 @@ class NivelServidor {
 private:
     static void generarTransicion(const string &nivel,Mapa *mapa, Posicion* posicionDeJugador);
     static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario);
-    static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario);
+    static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);

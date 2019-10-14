@@ -15,6 +15,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../estados/ia/Patrullar.h"
 #include "../estados/Caminando.h"
+#include "../modelo/TipoElemento.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -84,7 +85,10 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 //    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
-    generarElementos(nivel, mapa, posicionDeEscenario);
+    generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
+    generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
+    generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
+    generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
     generarEnemigo(nivel, mapa, posicionDeEscenario);
     generarTransicion(nivel, mapa, posicionDeJugador);
 }
@@ -179,25 +183,43 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
     }
 }
 
-void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario) {
+void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART) {
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/caja/sprite/src");
-    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
-    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
-    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
-
-    auto* tipo = new Tipo(ELEMENTO);
-    auto* nivelElemento = new Nivel(nivel);
-
-    for (int i = 1; i <= cantidad; i++) {
-        Locator::logger()->log(INFO, "Se inicia la construccion de la cajaRandom:" + to_string(i));
-        auto cajaRandom = mapa->crearEntidad();
-
-        auto *posicionCajaRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
-        cajaRandom->agregarEstado("posicion", posicionCajaRandom);
-        cajaRandom->agregarEstado("tipo", tipo);
-        cajaRandom->agregarEstado("nivel", nivelElemento);
-        cajaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+    int cantidad;
+    switch (ART) {
+        case CAJA:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
+            break;
+        case CUCHILLO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/cantidad");
+            break;
+        case NEUMATICO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/neumatico/cantidad");
+            break;
+        case TUBO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/tubo/cantidad");
+            break;
+        default:
+            cantidad = 0;
     }
+            int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+            int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+
+            auto *tipo = new Tipo(ELEMENTO);
+            auto *nivelElemento = new Nivel(nivel);
+            auto *tipoElemento = new TipoElemento(ART);
+
+            for (int i = 1; i <= cantidad; i++) {
+                Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
+                auto elementoRandom = mapa->crearEntidad();
+
+                auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
+                                                        0);
+                elementoRandom->agregarEstado("posicion", posicionElementoRandom);
+                elementoRandom->agregarEstado("tipo", tipo);
+                elementoRandom->agregarEstado("nivel", nivelElemento);
+                elementoRandom->agregarEstado("tipo elemento" , tipoElemento);
+                elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+            }
 
 }
