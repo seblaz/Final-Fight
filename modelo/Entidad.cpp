@@ -132,7 +132,7 @@ void Tipo::deserializar(istream &stream) {
     tipo_ = static_cast<TIPO>(deserializarEntero(stream));
 }
 
-Tipo::Tipo() : tipo_(INICIAR_MENU_SELECCION) {}
+Tipo::Tipo() : tipo_(PANTALLA_SELECCION) {}
 
 bool Tipo::operator==(const Tipo &otroTipo) {
     return tipo_ == otroTipo.tipo_;

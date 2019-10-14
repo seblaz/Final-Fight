@@ -98,7 +98,7 @@ public:
  * Tipo de entidad.
  */
 enum TIPO {
-    INICIAR_MENU_SELECCION,
+    PANTALLA_SELECCION,
     PERSONAJE_SELECCION,
     PERSONAJE,
     ESCENARIO,

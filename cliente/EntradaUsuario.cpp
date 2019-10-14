@@ -27,13 +27,25 @@ Accion *EntradaMenuSeleccion::getAccion() {
             activo = false;
             switch (personajeMarcado){
                 case GUY:
-                    return new Accion(SELECCIONAR_GUY);
+                    activo = false;
+                    Locator::logger()->log(DEBUG, "Se presionó enter.");
+                    return new Accion(CONFIRMAR);
+                    //return new Accion(SELECCIONAR_GUY);
                 case CODY:
-                    return new Accion(SELECCIONAR_CODY);
+                    activo = false;
+                    Locator::logger()->log(DEBUG, "Se presionó enter.");
+                    return new Accion(CONFIRMAR);
+                    //return new Accion(SELECCIONAR_CODY);
                 case HAGGAR:
-                    return new Accion(SELECCIONAR_HAGGAR);
+                    activo = false;
+                    Locator::logger()->log(DEBUG, "Se presionó enter.");
+                    return new Accion(CONFIRMAR);
+                    //return new Accion(SELECCIONAR_HAGGAR);
                 case MAKI:
-                    return new Accion(SELECCIONAR_MAKI);
+                    activo = false;
+                    Locator::logger()->log(DEBUG, "Se presionó enter.");
+                    return new Accion(CONFIRMAR);
+                    //return new Accion(SELECCIONAR_MAKI);
             };
         }
 

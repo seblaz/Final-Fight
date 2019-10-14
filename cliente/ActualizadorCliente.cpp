@@ -31,7 +31,7 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
             Posicion *posicion;
             auto *tipo = entidad->getEstado<Tipo>("tipo");
             switch (tipo->tipo()) {
-                case INICIAR_MENU_SELECCION:{
+                case PANTALLA_SELECCION:{
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
                     transmision->setEntradaUsuario(new EntradaMenuSeleccion(entidad));
                 }
