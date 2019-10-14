@@ -25,8 +25,17 @@ void ManagerUsuarios::agregarUsuario(Usuario *nuevoUsuario) {
 }
 
 bool ManagerUsuarios::estaPresente(Usuario *usuario){
-    auto findIter = std::find(usuarios.begin(), usuarios.end(), usuario);
-    return findIter != usuarios.end();
+    //auto findIter = std::find(usuarios.begin(), usuarios.end(), usuario);
+    bool encontrado = false;
+
+    std::list<Usuario*>::iterator it = usuarios.begin();
+
+    while(usuarios.end() != it && !encontrado){
+        Usuario* pUsuario = *it.operator->();
+        encontrado = pUsuario->getUsuario() == usuario->getUsuario();
+    }
+
+    return encontrado;
 }
 
 //int ManagerUsuarios::getCantidadLogueados() {
@@ -51,6 +60,30 @@ list<Usuario *> ManagerUsuarios::getUsuarios() {
 
 int ManagerUsuarios::cantidadJugadoresTotales() {
     return maximo;
+}
+
+void ManagerUsuarios::administrarUsuario(Usuario *usuario) {
+    if(!estaPresente(usuario)){
+        agregarUsuario(usuario);
+    }else{
+        Usuario* usuarioEncontrado;
+        std::list<Usuario*>::iterator it = usuarios.begin();
+        while(usuarios.end() != it){
+            Usuario* pUsuario = *it.operator->();
+            if(pUsuario->getUsuario() == usuario->getUsuario()){
+                usuarioEncontrado = pUsuario;
+            }
+            it.operator++();
+        }
+
+        if(usuarioEncontrado->getSocket() == NULL){
+            usuarioEncontrado->setSocket(usuario->getSocket());
+            Locator::logger()->log(INFO, "Se cambio socket para usuario " + usuarioEncontrado->getUsuario());
+        } else{
+            Locator::logger()->log(ERROR, "Se detecta segunda conexion para usuario " + usuarioEncontrado->getUsuario());
+            throw new exception; //DOS USUARIOS MISMO NOMBRE
+        }
+    }
 }
 
 //

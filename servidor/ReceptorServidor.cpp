@@ -50,6 +50,8 @@ void ReceptorServidor::recibir() {
     do {
         stringstream sss;
         if (!socket.recibir(sss)) {
+            usuario->setSocket(nullptr);
+            usuario->desactivar();
             Locator::logger()->log(ERROR, "Se termina el hilo.");
             pthread_exit(nullptr);
         }

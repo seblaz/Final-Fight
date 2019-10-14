@@ -14,8 +14,11 @@ ReceptorCliente::ReceptorCliente(Socket socket) :
 
 void ReceptorCliente::recibir() {
     while (true) {
-        stringstream s;
-        socket.recibir(s);
+        stringstream s; // MANEJAR DESCONEXION DESDE CLIENTE
+        if(!socket.recibir(s)){
+            Locator::logger()->log(ERROR, "El servidor rechaza la conexion");
+            break;
+        }
         {
             std::lock_guard<std::mutex> lock(mutex);
             ultimoStream.str(std::string());

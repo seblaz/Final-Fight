@@ -23,10 +23,13 @@ Usuario *ActualizadorUsuario::interpretarStream(stringstream &s, Socket socket) 
         pthread_exit(nullptr);
     }
 
+    nuevoUsuario->setSocket(&socket);
+
     auto *crear = new AgregarUsuario(nuevoUsuario, manager, usuarioAgregado);
     eventos->push(crear);
     usuarioAgregado.wait();
     fin_ = true;
+
     return nuevoUsuario;
 }
 
@@ -40,7 +43,11 @@ AgregarUsuario::AgregarUsuario(Usuario *usuario, ManagerUsuarios *manager, semap
         manager(manager) {}
 
 void AgregarUsuario::resolver() {
-    manager->agregarUsuario(usuario);
+    manager->administrarUsuario(usuario);
     usuarioAgregado.post();
 }
+
+// NO ESTA PRESENTE --> AGREGO USUARIO, hecho
+// ESTA PRESENTE Y SOCKET ACTIVO --> RECHAZAR
+// ESTA PRESENTE Y SOCKET INACTIVO --> Modificar socket de usuario actual
 

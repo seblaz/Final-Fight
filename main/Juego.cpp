@@ -67,7 +67,7 @@ void Juego::loop(TrasmisionCliente *transmicion) {
         processInput();
         stringstream s;
         receptor.devolverStreamMasReciente(s);
-        if(!s) break;
+        if(!s) break; // || receptor.conexionCerrada()
         actualizador.actualizarEntidades(s, transmicion);
         clearScene();
         actualizar();

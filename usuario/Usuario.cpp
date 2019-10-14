@@ -39,3 +39,7 @@ Socket* Usuario::getSocket() {
 Entidad *Usuario::getPersonaje() {
     return personaje;
 }
+
+void Usuario::desactivar(){
+    //personaje->getEstado()
+}
