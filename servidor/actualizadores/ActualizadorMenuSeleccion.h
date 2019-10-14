@@ -22,9 +22,9 @@ private:
     ManagerUsuarios *manager;
     SelectorPersonajes *selector;
     semaphore *confirmacion;
-
+    enum PERSONAJE personajeSeleccionado;
 public:
-    explicit ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
+    explicit ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager, enum PERSONAJE personaje,
                                 semaphore *confirmacion);
     void resolver() override;
 };

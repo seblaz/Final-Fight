@@ -6,23 +6,20 @@
 #include "../NivelServidor.h"
 #include "../../usuario/Usuario.h"
 
-ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
+ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager, enum PERSONAJE personaje_,
                                        semaphore *confirmacion) :
         confirmacion(confirmacion),
         selector(selector),
         manager(manager),
-        mapa(mapa) {}
+        mapa(mapa),
+        personajeSeleccionado(personaje_){}
 
 void ConfirmarSeleccion::resolver() {
     selector->confirmar();
 
-    //Entidad *personaje = mapa->crearEntidad();
-    //personaje->agregarEstado("personaje",new Personaje(GUY));
-    manager->getUsuarios().back()->setPersonajeSeleccionado(GUY);
-
     if(selector->puedoComenzar()){
         for(Usuario *usuario : manager->getUsuarios()){
-            Entidad *personaje = NivelServidor::generarJugador(mapa, GUY);
+            Entidad *personaje = NivelServidor::generarJugador(mapa, personajeSeleccionado);
             usuario->setPersonaje(personaje);
         }
         NivelServidor::generarNivel("nivel1", mapa);
@@ -49,18 +46,29 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
 
         EventoAProcesar *evento;
         switch (accion.accion()) {
-            case CONFIRMAR:
-                evento = new ConfirmarSeleccion(selector, mapa, manager, confirmacion);
-                eventos->push(evento);
-                fin_ = true;
-                break;
             case SELECCIONAR_GUY:
                 Locator::logger()->log(DEBUG, "Se selecciono a GUY");
-                evento = new ConfirmarSeleccion(selector, mapa, manager, confirmacion);
+                evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
                 break;
-            case SELECCIONAR_ANTERIOR:
+            case SELECCIONAR_MAKI:
+                Locator::logger()->log(DEBUG, "Se selecciono a MAKI");
+                evento = new ConfirmarSeleccion(selector, mapa, manager ,MAKI, confirmacion);
+                eventos->push(evento);
+                fin_ = true;
+                break;
+            case SELECCIONAR_CODY:
+                Locator::logger()->log(DEBUG, "Se selecciono a CODY");
+                evento = new ConfirmarSeleccion(selector, mapa, manager,CODY, confirmacion);
+                eventos->push(evento);
+                fin_ = true;
+                break;
+            case SELECCIONAR_HAGGAR:
+                Locator::logger()->log(DEBUG, "Se selecciono a HAGGAR");
+                evento = new ConfirmarSeleccion(selector, mapa, manager,HAGGAR, confirmacion);
+                eventos->push(evento);
+                fin_ = true;
                 break;
             default:
                 Locator::logger()->log(ERROR, "El actualizador del menu de selección recibió una acción inválida.");

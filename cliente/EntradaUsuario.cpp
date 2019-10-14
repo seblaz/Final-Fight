@@ -34,18 +34,18 @@ Accion *EntradaMenuSeleccion::getAccion() {
                 case CODY:
                     activo = false;
                     Locator::logger()->log(DEBUG, "Se presionó enter.");
-                    return new Accion(CONFIRMAR);
-                    //return new Accion(SELECCIONAR_CODY);
+                    //return new Accion(CONFIRMAR);
+                    return new Accion(SELECCIONAR_CODY);
                 case HAGGAR:
                     activo = false;
                     Locator::logger()->log(DEBUG, "Se presionó enter.");
-                    return new Accion(CONFIRMAR);
-                    //return new Accion(SELECCIONAR_HAGGAR);
+                   // return new Accion(CONFIRMAR);
+                    return new Accion(SELECCIONAR_HAGGAR);
                 case MAKI:
                     activo = false;
                     Locator::logger()->log(DEBUG, "Se presionó enter.");
-                    return new Accion(CONFIRMAR);
-                    //return new Accion(SELECCIONAR_MAKI);
+                   // return new Accion(CONFIRMAR);
+                    return new Accion(SELECCIONAR_MAKI);
             };
         }
 
