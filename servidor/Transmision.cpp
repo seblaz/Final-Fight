@@ -13,8 +13,6 @@ Transmision::Transmision(ListaSockets *sockets) :
         sockets(sockets) {}
 
 void Transmision::transmitir() {
-    std::signal(SIGPIPE, SIG_IGN);
-
     while (true) {
         EventoATransmitir *evento = eventosATransmitir.pop();
         string msj = evento->msj();
@@ -26,10 +24,7 @@ void Transmision::transmitir() {
 
         for (Socket socket : sockets->devolverSockets()){
             stringstream s(msj);
-            try {
-                socket.enviar(s);
-            } catch (...){
-                Locator::logger()->log(ERROR, "Se desconectó el socket: " + to_string(socket.getIntSocket()));
+            if(!socket.enviar(s)){
                 sockets->quitar(socket);
             }
         }

@@ -23,6 +23,7 @@ public:
     bool enviar(stringstream &s);
     bool recibir(stringstream &s);
     int getIntSocket();
+    bool operator==(const Socket &otroSocket);
 };
 
 
