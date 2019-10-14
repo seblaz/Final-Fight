@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
          */
         EntradaNula entrada;
         TrasmisionCliente trasmision(socket, &entrada);
-        trasmision.transmitirEnHilo();
+        pthread_t hiloTransmision = trasmision.transmitirEnHilo();
 
 
         /**
@@ -116,6 +116,7 @@ int main(int argc, char *argv[]) {
         juego.loop(&trasmision);
         juego.terminar();
 
+//        pthread_join(hiloTransmision, nullptr);
     }
 
 
