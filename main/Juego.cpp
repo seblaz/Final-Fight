@@ -66,8 +66,9 @@ void Juego::loop(TrasmisionCliente *transmicion) {
 //        size_t start = SDL_GetTicks()
         processInput();
         stringstream s;
+        if (!receptor.conexionEstaActiva()) break;
         receptor.devolverStreamMasReciente(s);
-        if(!s) break; // || receptor.conexionCerrada()
+        if(!s) break;
         actualizador.actualizarEntidades(s, transmicion);
         clearScene();
         actualizar();

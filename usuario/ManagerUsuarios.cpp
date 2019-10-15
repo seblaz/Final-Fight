@@ -16,6 +16,7 @@ void ManagerUsuarios::agregarUsuario(Usuario *nuevoUsuario) {
     if (usuarios.size() < maximo && !estaPresente(nuevoUsuario)) {
         usuarios.push_back(nuevoUsuario);
     } else {
+        Locator::logger()->log(ERROR, "No se puede conectar usuario, cantidad maxima alcanzada.");
         throw exception();
     }
 

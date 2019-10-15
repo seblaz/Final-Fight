@@ -17,6 +17,7 @@ void ReceptorCliente::recibir() {
         stringstream s; // MANEJAR DESCONEXION DESDE CLIENTE
         if(!socket.recibir(s)){
             Locator::logger()->log(ERROR, "El servidor rechaza la conexion");
+            this->conexionActiva = false;
             break;
         }
         {
@@ -48,4 +49,8 @@ pthread_t ReceptorCliente::recibirEnHilo() {
 
     Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
     return hilo;
+}
+
+bool ReceptorCliente::conexionEstaActiva(){
+    return conexionActiva;
 }

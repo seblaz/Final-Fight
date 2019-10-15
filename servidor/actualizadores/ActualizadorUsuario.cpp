@@ -47,7 +47,3 @@ void AgregarUsuario::resolver() {
     usuarioAgregado.post();
 }
 
-// NO ESTA PRESENTE --> AGREGO USUARIO, hecho
-// ESTA PRESENTE Y SOCKET ACTIVO --> RECHAZAR
-// ESTA PRESENTE Y SOCKET INACTIVO --> Modificar socket de usuario actual
-
