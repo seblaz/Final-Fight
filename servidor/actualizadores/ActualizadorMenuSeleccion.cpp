@@ -18,10 +18,11 @@ ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa,
         personajeSeleccionado(personaje_) {}
 
 void ConfirmarSeleccion::resolver() {
+    usuario->setPersonajeSeleccionado(personajeSeleccionado);
     selector->confirmar();
     if (selector->puedoComenzar()) {
         for (Usuario *usuario : manager->getUsuarios()) {
-            Entidad *personaje = NivelServidor::generarJugador(mapa, personajeSeleccionado);
+            Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado());
             usuario->setPersonaje(personaje);
         }
         NivelServidor::generarNivel("nivel1", mapa);

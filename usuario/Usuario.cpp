@@ -43,3 +43,13 @@ Entidad *Usuario::getPersonaje() {
 bool Usuario::operator==(const Usuario &obj) {
     return usuario == obj.usuario;
 }
+
+void Usuario::setPersonajeSeleccionado(
+        enum PERSONAJE personajeSeleccionado_) {
+    personajeSeleccionado = personajeSeleccionado_;
+};
+
+enum PERSONAJE Usuario::getPersonajeSeleccionado() {
+    return personajeSeleccionado;
+}
+

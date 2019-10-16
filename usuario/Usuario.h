@@ -9,6 +9,7 @@
 #include "../serializar/Serializable.h"
 #include "../modelo/Entidad.h"
 #include "../modelo/Socket.h"
+#include "../modelo/Personaje.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
     string contrasenia;
     Entidad *personaje;
     Socket *socket;
+    enum PERSONAJE personajeSeleccionado;
 
 public:
     Usuario() = default;
@@ -34,6 +36,8 @@ public:
     Socket *getSocket();
     void setSocket(Socket *socket);
     bool operator==(const Usuario &otroUsuario);
+    void setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado);
+    enum PERSONAJE getPersonajeSeleccionado();
 
 };
 
