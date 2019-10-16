@@ -25,8 +25,6 @@ public:
     static void generarMenuSeleccion(Mapa *mapa);
     static Entidad * generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado);
 
-    static void generarPersonajesSeleccion(Mapa *mapa);
-
     static void generarNivel(const string &nivel, Mapa *mapa);
     static Entidad *generarEscenario(const string &nivel, Mapa *mapa);
 };

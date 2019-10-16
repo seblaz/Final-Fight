@@ -30,20 +30,6 @@ void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     pantalla->agregarEstado("tipo", tipo);
 }
 
-void NivelServidor::generarPersonajesSeleccion(Mapa *mapa) {
-    Locator::logger()->log(INFO, "Se generan los personajes de seleccion.");
-
-    Entidad *personajeDeSeleccion = mapa->crearEntidad();
-    auto *posicion = new Posicion(0, 0, 0);
-    auto *personaje = new Personaje(CODY);
-    auto *tipo = new Tipo(PERSONAJE_SELECCION);
-
-    personajeDeSeleccion->agregarEstado("posicion", posicion);
-    personajeDeSeleccion->agregarEstado("tipo", tipo);
-    personajeDeSeleccion->agregarEstado("personaje", personaje);
-}
-
-
 
 Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
     Locator::logger()->log(INFO, "Se genera jugador.");
