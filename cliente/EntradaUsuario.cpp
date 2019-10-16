@@ -23,29 +23,20 @@ Accion *EntradaMenuSeleccion::getAccion() {
    if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
         enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-
         if (entrada[SDL_SCANCODE_RETURN]){
             activo = false;
             switch (personajeMarcado){
                 case GUY:
-                    activo = false;
                     Locator::logger()->log(DEBUG, "Se selecciono guy.");
-                    //return new Accion(CONFIRMAR);
                     return new Accion(SELECCIONAR_GUY);
                 case CODY:
-                    activo = false;
-                    Locator::logger()->log(DEBUG, "Se presionó enter.");
-                    //return new Accion(CONFIRMAR);
+                    Locator::logger()->log(DEBUG, "Se selecciono cody.");
                     return new Accion(SELECCIONAR_CODY);
                 case HAGGAR:
-                    activo = false;
-                    Locator::logger()->log(DEBUG, "Se presionó enter.");
-                   // return new Accion(CONFIRMAR);
+                    Locator::logger()->log(DEBUG, "Se selecciono haggar.");
                     return new Accion(SELECCIONAR_HAGGAR);
                 case MAKI:
-                    activo = false;
-                    Locator::logger()->log(DEBUG, "Se presionó enter.");
-                   // return new Accion(CONFIRMAR);
+                    Locator::logger()->log(DEBUG, "Se selecciono maki.");
                     return new Accion(SELECCIONAR_MAKI);
             };
         }
