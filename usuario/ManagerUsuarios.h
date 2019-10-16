@@ -18,10 +18,11 @@ private:
     int maximo;
     semaphore juegoListo;
     list<Usuario *> usuarios;
+    void agregarUsuario(Usuario *usuario);
 
 public:
     explicit ManagerUsuarios(int maximo);
-    void agregarUsuario(Usuario *usuario);
+    void administrarUsuario(Usuario *usuario);
     bool estaPresente(Usuario *usuario);
     int cantidadJugadoresFaltantes();
     void esperarUsuarios();

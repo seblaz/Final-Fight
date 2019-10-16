@@ -17,11 +17,13 @@ private:
     semaphore disponible;
     stringstream ultimoStream;
     void recibir();
+    bool conexionActiva = true;
 
 public:
     explicit ReceptorCliente(Socket socket);
     void devolverStreamMasReciente(stringstream &s);
     pthread_t recibirEnHilo();
+    bool conexionEstaActiva();
 };
 
 

@@ -7,6 +7,7 @@
 #include "actualizadores/ActualizadorUsuario.h"
 #include "actualizadores/ActualizadorMenuSeleccion.h"
 #include "NivelServidor.h"
+#include "../modelo/Actividad.h"
 
 
 ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
@@ -16,7 +17,7 @@ ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *m
         manager(manager),
         eventos(eventos),
         selector(selector),
-        confirmacion(confirmacion){}
+        confirmacion(confirmacion) {}
 
 void ReceptorServidor::recibir() {
 
@@ -32,27 +33,42 @@ void ReceptorServidor::recibir() {
     Usuario *usuario = actualizadorUsuario.interpretarStream(s, socket);
 //    } while (!actualizadorUsuario.fin());
 
-    ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);
-    Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
-    do {
-        stringstream ss;
-        if (!socket.recibir(ss)) {
-            Locator::logger()->log(ERROR, "Se termina el hilo.");
-            pthread_exit(nullptr);
-        }
-        actualizadorMenu.interpretarStream(ss);
-    } while (!actualizadorMenu.fin());
+    if (!usuario->getPersonaje()) {
+        ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);
+        Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
+        do {
+            stringstream ss;
+            if (!socket.recibir(ss)) {
+                usuario->setSocket(nullptr);
+                Locator::logger()->log(ERROR, "Se termina el hilo.");
+                pthread_exit(nullptr);
+            }
+            actualizadorMenu.interpretarStream(ss);
+        } while (!actualizadorMenu.fin());
 
-    confirmacion->wait();
+        confirmacion->wait();
+    }
     Entidad *jugador = usuario->getPersonaje();
+    eventos->push(new SetActividadJugador(jugador, true));
+
     ActualizadorJuego actualizadorJuego(mapa, eventos, jugador);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
     do {
         stringstream sss;
         if (!socket.recibir(sss)) {
+            usuario->setSocket(nullptr);
+            eventos->push(new SetActividadJugador(jugador, false));
             Locator::logger()->log(ERROR, "Se termina el hilo.");
             pthread_exit(nullptr);
         }
         actualizadorJuego.interpretarStream(sss);
     } while (!actualizadorJuego.fin());
+}
+
+SetActividadJugador::SetActividadJugador(Entidad *jugador, bool activo) :
+        activo(activo),
+        jugador(jugador) {}
+
+void SetActividadJugador::resolver() {
+    jugador->getEstado<Actividad>("actividad")->activo = activo;
 }

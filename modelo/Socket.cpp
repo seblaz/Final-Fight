@@ -13,14 +13,14 @@ bool Socket::enviarSinChequeo(stringstream &s) {
     string msg = s.str();
     size_t total = 0;
     size_t tamano = msg.size();
-    size_t enviados;
+    int enviados;
 
     do {
         enviados = send(socket, msg.c_str() + total, tamano - total, MSG_NOSIGNAL);
-        if(enviados > tamano){
-            Locator::logger()->log(ERROR, "El socket se desconectó.");
-            return false;
-        }
+//        if(enviados > tamano){
+//            Locator::logger()->log(ERROR, "El socket se desconectó.");
+//            return false;
+//        }
         total += enviados;
     } while ((enviados > 0) && (tamano != total));
 
