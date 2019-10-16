@@ -32,21 +32,26 @@ SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEn
 }
 
 void Grafico::actualizar(Entidad *entidad) {
-    SDL_Renderer *renderer = Locator::renderer();
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     int posicionDeEscenarioX = Locator::posicionEscenario()->x;
-    auto *animacion = entidad->getEstado<Animacion>("animacion");
-    auto *sprite = entidad->getEstado<Sprite>("sprite");
-    auto *orientacion = entidad->getEstado<Orientacion>("orientacion");
+    int dif = posicion->x - posicionDeEscenarioX;
 
-    Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
-    SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
-    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
+    if(dif > -200 && dif < Locator::configuracion()->getIntValue("/resolucion/ancho") + 200){
+        SDL_Renderer *renderer = Locator::renderer();
+        auto *animacion = entidad->getEstado<Animacion>("animacion");
+        auto *sprite = entidad->getEstado<Sprite>("sprite");
+        auto *orientacion = entidad->getEstado<Orientacion>("orientacion");
 
-    if ((orientacion != nullptr) && (!orientacion->adelante)) {
-        SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla,
-                         180, nullptr, SDL_FLIP_VERTICAL);
-    } else {
-        SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla);
+        Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
+        SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
+        SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
+
+        if ((orientacion != nullptr) && (!orientacion->adelante)) {
+            SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla,
+                             180, nullptr, SDL_FLIP_VERTICAL);
+        } else {
+            SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla);
+        }
     }
 }
+
