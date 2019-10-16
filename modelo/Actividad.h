@@ -11,12 +11,11 @@
 class Actividad : public Estado, public Serializable {
 
 private:
-    bool activo_ = true;
 
 public:
     Actividad()= default;
+    bool activo = true;
     explicit Actividad(bool activo);
-    bool estaActivo();
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 };

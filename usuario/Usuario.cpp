@@ -40,10 +40,6 @@ Entidad *Usuario::getPersonaje() {
     return personaje;
 }
 
-void Usuario::desactivar(){
-    //personaje->getEstado()
-}
-
 bool Usuario::operator==(const Usuario &obj) {
     return usuario == obj.usuario;
 }

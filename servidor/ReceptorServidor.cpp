@@ -7,6 +7,7 @@
 #include "actualizadores/ActualizadorUsuario.h"
 #include "actualizadores/ActualizadorMenuSeleccion.h"
 #include "NivelServidor.h"
+#include "../modelo/Actividad.h"
 
 
 ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
@@ -47,17 +48,26 @@ void ReceptorServidor::recibir() {
         confirmacion->wait();
     }
     Entidad *jugador = usuario->getPersonaje();
-    
+    eventos->push(new SetActividadJugador(jugador, true));
+
     ActualizadorJuego actualizadorJuego(mapa, eventos, jugador);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
     do {
         stringstream sss;
         if (!socket.recibir(sss)) {
             usuario->setSocket(nullptr);
-            usuario->desactivar();
+            eventos->push(new SetActividadJugador(jugador, false));
             Locator::logger()->log(ERROR, "Se termina el hilo.");
             pthread_exit(nullptr);
         }
         actualizadorJuego.interpretarStream(sss);
     } while (!actualizadorJuego.fin());
+}
+
+SetActividadJugador::SetActividadJugador(Entidad *jugador, bool activo) :
+        activo(activo),
+        jugador(jugador) {}
+
+void SetActividadJugador::resolver() {
+    jugador->getEstado<Actividad>("actividad")->activo = activo;
 }

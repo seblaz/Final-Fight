@@ -4,17 +4,13 @@
 
 #include "Actividad.h"
 
-bool Actividad::estaActivo() {
-    return activo_;
-}
-
 void Actividad::serializar(ostream &stream) {
-    serializarEntero(stream, activo_);
+    serializarEntero(stream, activo);
 }
 
 void Actividad::deserializar(istream &stream) {
-    activo_ = deserializarEntero(stream);
+    activo = deserializarEntero(stream);
 }
 
 Actividad::Actividad(bool activo) :
-        activo_(activo) {}
+        activo(activo) {}

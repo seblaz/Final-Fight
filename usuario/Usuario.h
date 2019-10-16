@@ -33,7 +33,6 @@ public:
     Entidad *getPersonaje();
     Socket *getSocket();
     void setSocket(Socket *socket);
-    void desactivar();
     bool operator==(const Usuario &otroUsuario);
 
 };
