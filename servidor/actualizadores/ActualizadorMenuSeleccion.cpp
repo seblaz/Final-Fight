@@ -19,13 +19,9 @@ ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa,
 
 void ConfirmarSeleccion::resolver() {
     selector->confirmar();
-
-    usuario->setSeleccionoPersonaje(true);
-    usuario->setPersonajeSeleccionado(personajeSeleccionado);
     if (selector->puedoComenzar()) {
         for (Usuario *usuario : manager->getUsuarios()) {
-
-            Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado());
+            Entidad *personaje = NivelServidor::generarJugador(mapa, personajeSeleccionado);
             usuario->setPersonaje(personaje);
         }
         NivelServidor::generarNivel("nivel1", mapa);
@@ -49,16 +45,10 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
     Accion accion;
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
-
         EventoAProcesar *evento;
         switch (accion.accion()) {
             case SELECCIONAR_GUY:
                 Locator::logger()->log(DEBUG, "Se selecciono a GUY");
-                //if (!personajeFueEligidoPorOtroUsuario(GUY)) {
-                //    evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
-                //    eventos->push(evento);
-                //    fin_ = true;
-                //}
                 evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
@@ -85,18 +75,6 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
                 Locator::logger()->log(ERROR, "El actualizador del menu de selección recibió una acción inválida.");
         }
     }
-}
-
-bool ActualizadorMenuSeleccion::personajeFueEligidoPorOtroUsuario(enum PERSONAJE personajeABuscar) {
-    for (Usuario *elementoUsuario : manager->getUsuarios()) {
-        if (elementoUsuario->getSeleccionoPersonaje() == true) {
-            if (elementoUsuario->getPersonajeSeleccionado() == personajeABuscar) {
-                Locator::logger()->log(DEBUG, "Personaje ya elegido por otro usuario");
-                return true;
-            }
-        }
-    }
-    return false;
 }
 
 

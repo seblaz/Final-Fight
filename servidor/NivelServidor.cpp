@@ -43,7 +43,9 @@ void NivelServidor::generarPersonajesSeleccion(Mapa *mapa) {
     personajeDeSeleccion->agregarEstado("personaje", personaje);
 }
 
-Entidad * NivelServidor::generarJugador(Mapa *mapa) {
+
+
+Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
     Locator::logger()->log(INFO, "Se genera jugador.");
 
     auto* jugador = mapa->crearJugador();
@@ -60,31 +62,8 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa) {
     jugador->agregarEstado("velocidad", velocidad);
     jugador->agregarEstado("orientacion", orientacion);
     jugador->agregarEstado("estado", estado);
-    jugador->agregarEstado("actividad", actividad);
-    jugador->agregarComportamiento("estado", estado);
-    jugador->agregarComportamiento("fisica", fisica);
-    return jugador;
-}
-
-
-Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
-    Locator::logger()->log(INFO, "Se genera jugador.");
-
-    auto* jugador = mapa->crearJugador();
-    auto* posicion = new Posicion(200, 100, 0);
-    auto *velocidad = new Velocidad();
-    auto *orientacion = new Orientacion;
-    auto *tipo = new Tipo(JUGADOR);
-    EstadoDePersonaje *estado = new Reposando();
-    auto *fisica = new FisicaDePersonaje();
-    
-
-    jugador->agregarEstado("tipo", tipo);
-    jugador->agregarEstado("posicion", posicion);
-    jugador->agregarEstado("velocidad", velocidad);
-    jugador->agregarEstado("orientacion", orientacion);
-    jugador->agregarEstado("estado", estado);
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
+    jugador->agregarEstado("actividad", actividad);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     return jugador;

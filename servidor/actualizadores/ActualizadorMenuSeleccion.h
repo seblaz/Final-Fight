@@ -12,6 +12,7 @@
 #include "../SelectorPersonajes.h"
 #include "../../usuario/Usuario.h"
 #include "../../usuario/ManagerUsuarios.h"
+#include "../../modelo/Personaje.h"
 
 using namespace std;
 
@@ -46,7 +47,6 @@ public:
     ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesar *eventos, SelectorPersonajes *selector, Usuario *usuario,
                               ManagerUsuarios *manager, semaphore *confirmacion);
     void interpretarStream(stringstream &s);
-    bool personajeFueEligidoPorOtroUsuario(enum PERSONAJE personajeABuscar);
     bool fin();
 
 };

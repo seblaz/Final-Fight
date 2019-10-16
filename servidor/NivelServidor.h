@@ -23,7 +23,6 @@ private:
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);
-    static Entidad * generarJugador(Mapa *mapa);
     static Entidad * generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado);
 
     static void generarPersonajesSeleccion(Mapa *mapa);
