@@ -14,35 +14,43 @@
 using namespace std;
 
 
-class Usuario : public Serializable {
+class Usuario : private Serializable {
 
 private:
     string usuario;
     string contrasenia;
-    Entidad *personaje;
-    Socket *socket;
-    bool valido_;
-    enum PERSONAJE personajeSeleccionado;
+    Entidad *personaje{};
+    Socket *socket{};
+    bool valido_{};
+    enum PERSONAJE personajeSeleccionado = CODY;
 
 public:
     Usuario() = default;
     ~Usuario() override = default;
     Usuario(string usuario, string contrasenia);
-    void serializar(ostream &stream) override;
-    void deserializar(istream &stream) override;
+
     string getUsuario();
     string getContrasenia();
-    void setPersonaje(Entidad *pEntidad);
+
+    void setPersonaje(Entidad *personaje);
     Entidad *getPersonaje();
-    Socket *getSocket();
+
     void setSocket(Socket *socket);
+    Socket *getSocket();
+
+    bool estaConectado();
+    void desconectar();
+
+    void setValido(bool valido);
+    bool getValido();
+
     bool operator==(const Usuario &otroUsuario);
+    void serializar(ostream &stream) override;
+    void deserializar(istream &stream) override;
+
     void setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado);
     enum PERSONAJE getPersonajeSeleccionado();
 
-    bool valido();
-
-    void setValido(bool valido);
 };
 
 

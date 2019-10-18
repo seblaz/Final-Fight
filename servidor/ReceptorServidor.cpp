@@ -33,7 +33,7 @@ void ReceptorServidor::recibir() {
         do {
             stringstream ss;
             if (!socket.recibir(ss)) {
-                usuario->setSocket(nullptr);
+                usuario->desconectar();
                 Locator::logger()->log(ERROR, "Se termina el hilo.");
                 pthread_exit(nullptr);
             }
@@ -50,7 +50,7 @@ void ReceptorServidor::recibir() {
     do {
         stringstream sss;
         if (!socket.recibir(sss)) {
-            usuario->setSocket(nullptr);
+            usuario->desconectar();
             eventos->push(new SetActividadJugador(jugador, false));
             Locator::logger()->log(ERROR, "Se termina el hilo.");
             pthread_exit(nullptr);

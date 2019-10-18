@@ -76,8 +76,6 @@ int main(int argc, char *argv[]) {
     ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
-    managerUsuarios.esperarUsuarios();
-
     /**
      * Game loop.
      */
@@ -87,7 +85,6 @@ int main(int argc, char *argv[]) {
     auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
     GameLoop gameLoop(eventosAProcesar, actualizar);
     gameLoop.loop();
-//    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
 
     /**
      * Termino el procesamiento.

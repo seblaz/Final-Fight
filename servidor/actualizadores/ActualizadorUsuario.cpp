@@ -44,13 +44,10 @@ Usuario *ActualizadorUsuario::getUsuario(Socket socket) {
     eventos->push(crear);
     usuarioAgregado.wait();
 
-    if (nuevoUsuario->valido()) {
-        Locator::logger()->log(INFO, "El usuario: " + nuevoUsuario->getUsuario() + " es válido e ingresa a la partida.");
-        return nuevoUsuario;
-    } else {
-        Locator::logger()->log(INFO, "El usuario: " + nuevoUsuario->getUsuario() + " es inválido y se termina su hilo.");
+    if (!nuevoUsuario->getValido()) {
         pthread_exit(nullptr);
     }
+    return nuevoUsuario;
 }
 
 AgregarUsuario::AgregarUsuario(Usuario *usuario, ManagerUsuarios *manager, semaphore &semaphore) :
@@ -59,7 +56,38 @@ AgregarUsuario::AgregarUsuario(Usuario *usuario, ManagerUsuarios *manager, semap
         manager(manager) {}
 
 void AgregarUsuario::resolver() {
-    manager->administrarUsuario(usuario);
+    EventoUsuario *evento;
+    if(manager->estaPresente(usuario)){
+        Usuario *usuarioAnterior = manager->getUsuarioAnterior(usuario);
+
+        if(usuarioAnterior->estaConectado()){ // El usuario esta conectado desde otro cliente.
+            usuario->setValido(false);
+            evento = new EventoUsuario(USUARIO_YA_CONECTADO);
+            Locator::logger()->log(ERROR, "El usuario: " + usuarioAnterior->getUsuario() + " se encuentra conectado desdo otro cliente.");
+
+        } else { // El usuario se había desconectado.
+            usuario->setPersonaje(usuarioAnterior->getPersonaje());
+            manager->reemplazarUsuarioCon(usuario);
+            usuario->setValido(true);
+            evento = new EventoUsuario(CONECTADO);
+            Locator::logger()->log(INFO, "El usuario: " + usuarioAnterior->getUsuario() + " se reconectó a la partida.");
+        }
+    } else {
+        if (manager->faltanJugadores()){ // Hay espacio para un jugador más.
+            manager->agregarUsuario(usuario);
+            usuario->setValido(true);
+            evento = new EventoUsuario(CONECTADO);
+            Locator::logger()->log(INFO, "El usuario: " + usuario->getUsuario() + " se conectó a la partida.");
+
+        } else { // No queda espacio en la partida
+            Locator::logger()->log(ERROR, "El usuario: " + usuario->getUsuario() + " trató de conectarse cuando la partida ya estaba completa.");
+            usuario->setValido(false);
+            evento = new EventoUsuario(PARTIDA_LLENA);
+        }
+    }
+    stringstream ss;
+    evento->serializar(ss);
+    usuario->getSocket()->enviar(ss);
     usuarioAgregado.post();
 }
 
