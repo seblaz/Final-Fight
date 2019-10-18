@@ -40,7 +40,9 @@ ActualizadorMenuSeleccion::ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesa
         eventos(eventos),
         manager(manager),
         selector(selector),
-        confirmacion(confirmacion) {}
+        confirmacion(confirmacion) {
+    Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
+}
 
 void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
     Accion accion;
@@ -81,5 +83,19 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
 
 bool ActualizadorMenuSeleccion::fin() {
     return fin_;
+}
+
+void ActualizadorMenuSeleccion::actualizarPersonaje() {
+    do {
+        stringstream s;
+        if (!usuario->getSocket()->recibir(s)) {
+            usuario->desconectar();
+            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada. Se termina el hilo.");
+            pthread_exit(nullptr);
+        }
+        interpretarStream(s);
+    } while (!fin());
+
+    confirmacion->wait();
 }
 

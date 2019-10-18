@@ -31,16 +31,4 @@ public:
 
 };
 
-class SetActividadJugador : public EventoAProcesar {
-
-private:
-    Entidad *jugador;
-    bool activo;
-    
-public:
-    explicit SetActividadJugador(Entidad *jugador, bool activo);
-    void resolver() override;
-
-};
-
 #endif //FINAL_FIGHT_RECEPTORSERVIDOR_H
