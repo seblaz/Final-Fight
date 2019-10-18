@@ -11,6 +11,7 @@
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "SelectorPersonajes.h"
+#include "ListaSockets.h"
 
 class ReceptorServidor {
 
@@ -20,10 +21,11 @@ private:
     ManagerUsuarios *manager;
     EventosAProcesar *eventos;
     SelectorPersonajes *selector;
+    ListaSockets *listaSockets;
     semaphore *confirmacion;
 
 public:
-    ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
+    ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager, EventosAProcesar *eventos,
                      SelectorPersonajes *selector, semaphore *confirmacion);
     void recibir();
 

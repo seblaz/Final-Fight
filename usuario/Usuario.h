@@ -21,11 +21,12 @@ private:
     string contrasenia;
     Entidad *personaje;
     Socket *socket;
+    bool valido_;
     enum PERSONAJE personajeSeleccionado;
 
 public:
     Usuario() = default;
-    virtual ~Usuario() = default;
+    ~Usuario() override = default;
     Usuario(string usuario, string contrasenia);
     void serializar(ostream &stream) override;
     void deserializar(istream &stream) override;
@@ -39,6 +40,9 @@ public:
     void setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado);
     enum PERSONAJE getPersonajeSeleccionado();
 
+    bool valido();
+
+    void setValido(bool valido);
 };
 
 

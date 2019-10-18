@@ -37,7 +37,7 @@ private:
 public:
     Accion *getAccion() override;
 
-    EntradaMenuSeleccion(Entidad *entidad) ;
+    explicit EntradaMenuSeleccion(Entidad *entidad) ;
 
     Entidad* getEntidad() { return entidad; };
 };

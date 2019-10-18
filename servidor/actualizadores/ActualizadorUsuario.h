@@ -27,16 +27,13 @@ public:
 class ActualizadorUsuario {
 
 private:
-    bool fin_ = false;
     EventosAProcesar *eventos;
     ManagerUsuarios *manager;
     semaphore usuarioAgregado;
 
 public:
     explicit ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager);
-    Usuario *interpretarStream(stringstream &s, Socket socket);
-    bool fin();
-
+    Usuario *getUsuario(Socket socket);
 };
 
 

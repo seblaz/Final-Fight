@@ -4,6 +4,7 @@
 
 #include "ManagerUsuarios.h"
 #include "../servicios/Locator.h"
+#include "../modelo/EventoUsuario.h"
 #include <algorithm>
 
 ManagerUsuarios::ManagerUsuarios(int max) :
@@ -59,6 +60,11 @@ int ManagerUsuarios::cantidadJugadoresTotales() {
 void ManagerUsuarios::administrarUsuario(Usuario *usuario) {
     if (!estaPresente(usuario)) {
         agregarUsuario(usuario);
+        usuario->setValido(true);
+        EventoUsuario evento(CONECTADO);
+        stringstream ss;
+        evento.serializar(ss);
+        usuario->getSocket()->enviar(ss);
     } else {
         auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
             return u->getUsuario() == usuario->getUsuario();
@@ -70,9 +76,20 @@ void ManagerUsuarios::administrarUsuario(Usuario *usuario) {
             *pos = usuario;
             delete usuarioAnterior;
             Locator::logger()->log(INFO, "Se cambio socket para usuario " + usuarioAnterior->getUsuario());
-        } else {
+            usuario->setValido(true);
+
+            EventoUsuario evento(CONECTADO);
+            stringstream ss;
+            evento.serializar(ss);
+            usuario->getSocket()->enviar(ss);
+        } else { // DOS USUARIOS MISMO NOMBRE
             Locator::logger()->log(ERROR, "Se detecta segunda conexion para usuario " + usuarioAnterior->getUsuario());
-            pthread_exit(nullptr); //DOS USUARIOS MISMO NOMBRE
+            usuario->setValido(false);
+
+            EventoUsuario evento(USUARIO_YA_CONECTADO);
+            stringstream ss;
+            evento.serializar(ss);
+            usuario->getSocket()->enviar(ss);
         }
     }
 }

@@ -8,8 +8,6 @@
 #include "../serializar/Serializable.h"
 
 enum ACCION {
-    SELECCIONAR_SIGUIENTE,
-    SELECCIONAR_ANTERIOR,
     CONFIRMAR,
     GOLPEAR,
     SALTAR,
@@ -38,8 +36,8 @@ public:
     Accion();
     explicit Accion(ACCION accion);
     ACCION accion();
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+    void serializar(ostream &stream) override;
+    void deserializar(istream &stream) override;
 
 };
 

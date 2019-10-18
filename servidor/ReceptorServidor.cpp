@@ -6,17 +6,17 @@
 #include "../usuario/Usuario.h"
 #include "actualizadores/ActualizadorUsuario.h"
 #include "actualizadores/ActualizadorMenuSeleccion.h"
-#include "NivelServidor.h"
 #include "../modelo/Actividad.h"
 
 
-ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
+ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager, EventosAProcesar *eventos,
                                    SelectorPersonajes *selector, semaphore *confirmacion) :
         mapa(mapa),
         socket(socket),
         manager(manager),
         eventos(eventos),
         selector(selector),
+        listaSockets(listaSockets),
         confirmacion(confirmacion) {}
 
 void ReceptorServidor::recibir() {
@@ -24,14 +24,8 @@ void ReceptorServidor::recibir() {
     ActualizadorUsuario actualizadorUsuario(eventos, manager);
     Locator::logger()->log(DEBUG, "Se crea un actualizador de usuario.");
 
-//    do {
-    stringstream s;
-    if (!socket.recibir(s)) {
-        Locator::logger()->log(ERROR, "Se termina el hilo.");
-        pthread_exit(nullptr);
-    }
-    Usuario *usuario = actualizadorUsuario.interpretarStream(s, socket);
-//    } while (!actualizadorUsuario.fin());
+    Usuario *usuario = actualizadorUsuario.getUsuario(socket);
+    listaSockets->agregar(socket);
 
     if (!usuario->getPersonaje()) {
         ActualizadorMenuSeleccion actualizadorMenu(mapa, eventos, selector, usuario, manager, confirmacion);

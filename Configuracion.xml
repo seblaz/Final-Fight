@@ -1,6 +1,6 @@
 <configuracion>
     <usuarios>
-        <cantidad>2</cantidad>
+        <cantidad>1</cantidad>
     </usuarios>
     <password>p</password>
     <debug>

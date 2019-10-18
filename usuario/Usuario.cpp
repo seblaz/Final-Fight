@@ -4,7 +4,14 @@
 
 #include "Usuario.h"
 
-Usuario::Usuario(string usuario, string contrasenia): usuario(usuario), contrasenia(contrasenia) {}
+#include <utility>
+
+Usuario::Usuario(string usuario, string contrasenia) :
+        valido_(false),
+        socket(nullptr),
+        personaje(nullptr),
+        usuario(std::move(usuario)),
+        contrasenia(std::move(contrasenia)) {}
 
 void Usuario::serializar(ostream &stream) {
     serializarString(stream, usuario);
@@ -24,7 +31,7 @@ string Usuario::getContrasenia() {
     return contrasenia;
 }
 
-void Usuario::setSocket(Socket* nuevoSocket) {
+void Usuario::setSocket(Socket *nuevoSocket) {
     socket = nuevoSocket;
 }
 
@@ -32,7 +39,7 @@ void Usuario::setPersonaje(Entidad *pEntidad) {
     personaje = pEntidad;
 }
 
-Socket* Usuario::getSocket() {
+Socket *Usuario::getSocket() {
     return socket;
 }
 
@@ -51,5 +58,13 @@ void Usuario::setPersonajeSeleccionado(
 
 enum PERSONAJE Usuario::getPersonajeSeleccionado() {
     return personajeSeleccionado;
+}
+
+bool Usuario::valido() {
+    return valido_;
+}
+
+void Usuario::setValido(bool valido) {
+    valido_ = valido;
 }
 

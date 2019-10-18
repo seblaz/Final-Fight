@@ -17,7 +17,6 @@ class Juego {
 private:
 
     void inicializarGraficos();
-    void inicializarElementos();
 
     void processInput();
     void actualizar();
@@ -32,7 +31,7 @@ private:
 public:
     Juego();
 
-    void loop(TrasmisionCliente *pCliente);
+    void loop();
     Mapa &mapa();
 //    nombreJugador generarMenuPrincipal();
     SDL_Renderer* renderer();

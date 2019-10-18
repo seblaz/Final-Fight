@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
     /**
      * Contenedor de hilos.
      */
-     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector);
+     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector, &listaSockets);
 
     /**
      * Conexiones de clientes.
