@@ -59,6 +59,17 @@ int ManagerUsuarios::cantidadJugadoresTotales() {
 
 void ManagerUsuarios::administrarUsuario(Usuario *usuario) {
     if (!estaPresente(usuario)) {
+        if(usuarios.size() == maximo ){
+            Locator::logger()->log(ERROR, "el usuario: " + usuario->getUsuario() + " trató de conectarse cuando la partida ya está completa.");
+            usuario->setValido(false);
+
+            EventoUsuario evento(PARTIDA_LLENA);
+            stringstream ss;
+            evento.serializar(ss);
+            usuario->getSocket()->enviar(ss);
+            return;
+        }
+
         agregarUsuario(usuario);
         usuario->setValido(true);
         EventoUsuario evento(CONECTADO);

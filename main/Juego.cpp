@@ -86,11 +86,11 @@ void Juego::loop() {
                 Locator::logger()->log(ERROR, "Contraseña incorrecta.");
                 break;
             case USUARIO_YA_CONECTADO:
-                Locator::logger()->log(INFO, "El usuario ya se encuentra conectado en otro cliente.");
+                Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
                 std::exit(0);
                 break;
             case PARTIDA_LLENA:
-                Locator::logger()->log(INFO, "La partida se encuentra llena.");
+                Locator::logger()->log(ERROR, "La partida se encuentra llena.");
                 std::exit(0);
                 break;
             case CONECTADO:
