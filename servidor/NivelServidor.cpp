@@ -78,13 +78,16 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     /**
      * Dependencias.
      */
+    Jugadores* jugadores = mapa->getJugadores();
+    jugadores->reiniciarPosiciones(200, 100);
+
     Entidad *jugador = mapa->getJugador();
     auto *posicionDeJugador = jugador->getEstado<Posicion>("posicion");
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
     escenario->agregarEstado("posicion de jugador", posicionDeJugador);
     jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
-    posicionDeJugador->x = 200;
-    posicionDeJugador->y = 100;
+    //posicionDeJugador->x = 200;
+    //posicionDeJugador->y = 100;
 
 //    generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
 //    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);

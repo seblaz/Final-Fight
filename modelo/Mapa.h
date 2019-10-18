@@ -8,6 +8,7 @@
 
 #include "Iterator.cpp"
 #include "Entidad.h"
+#include "Jugadores.h"
 #include <vector>
 #include <mutex>
 
@@ -37,6 +38,7 @@ public:
     void vaciarMapa();
     void quitarEntidad(IdEntidad idEntidad);
     Entidad *getJugador();
+    Jugadores* getJugadores();
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);
     unordered_map<IdEntidad, Entidad *> devolverJugadores();

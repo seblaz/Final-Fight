@@ -15,19 +15,25 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
 }
 
 void FisicaDeEscenario::actualizar(Entidad *entidad) {
+    auto *mapa = entidad->getEstado<Mapa>("mapa");
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
-    int xPersonaje = entidad->getEstado<Posicion>("posicion de jugador")->getX();
+    auto* xPersonaje = entidad->getEstado<Posicion>("posicion de jugador");
+    int xMayorPersonaje = mapa->getJugadores()->getMayorX();
+    int xMenorPersonaje = mapa->getJugadores()->getMenorX();
+    xPersonaje->x = xMayorPersonaje;
 
-    int xEscenario = posicionEscenario->getX();
-    if ((xPersonaje - xEscenario < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
-        posicionEscenario->setX(xPersonaje - scrollIzquierdo);
-    if ((xPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xPersonaje) > scrollDerecho)
-        posicionEscenario->setX(xPersonaje + scrollDerecho - ancho);
-
-    if (xPersonaje > largo) {
+    if ( xMayorPersonaje - xMenorPersonaje <= 800 ) {
+        int xEscenario = posicionEscenario->getX();
+        if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
+            posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
+        }
+        if ((xMenorPersonaje - xEscenario < scrollIzquierdo) && (xMenorPersonaje - scrollIzquierdo) > 0) {
+            posicionEscenario->setX(xMenorPersonaje - scrollIzquierdo);
+        }
+    }
+    if (xMayorPersonaje > largo) {
         Locator::logger()->log(INFO, "Se llego al final del nivel.");
-        auto *mapa = entidad->getEstado<Mapa>("mapa");
         mapa->vaciarMapa();
         NivelServidor::generarNivel("nivel2", mapa);
     }
