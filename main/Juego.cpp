@@ -57,7 +57,9 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::loop() {
+bool Juego::validarUserPass() {
+    bool exit = false;
+    bool correcto;
 
     while (!exit) {
         processInput();
@@ -87,20 +89,30 @@ void Juego::loop() {
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
-                std::exit(0);
+                correcto = false;
+                exit = true;
+                //std::exit(0);
                 break;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-                std::exit(0);
+                correcto = false;
+                exit = true;
+//                std::exit(0);
                 break;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
+                correcto = true;
                 exit = true;
                 break;
         }
     }
 
-    exit = false;
+    return correcto;
+}
+
+void Juego::loop() {
+
+    exit = validarUserPass();
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
     receptor.recibirEnHilo();
