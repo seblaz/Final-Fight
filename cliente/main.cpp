@@ -24,7 +24,7 @@ void configApplication(int argc, char *argv[]){
             size_t found = param.find(".xml");
 
 
-            if(found==std::string::npos){ //no encontro .xml
+            if(found==std::string::npos){
                 nivelDebug = param;
             }else{
                 configPath = param;
