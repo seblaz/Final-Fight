@@ -112,7 +112,7 @@ bool Juego::validarUserPass() {
 
 void Juego::loop() {
 
-    exit = validarUserPass();
+    exit = !validarUserPass();
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
     receptor.recibirEnHilo();
