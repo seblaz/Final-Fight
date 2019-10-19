@@ -131,7 +131,6 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
         case CODY: {
             Locator::logger()->log(DEBUG, "Se va a crear jugador coddy");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
-            auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
