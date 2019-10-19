@@ -17,6 +17,7 @@
 #include "../estados/Caminando.h"
 #include "../modelo/TipoElemento.h"
 #include "../modelo/Actividad.h"
+#include "../modelo/NumeroJugador.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -31,7 +32,7 @@ void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
 }
 
 
-Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado) {
+Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int contadorJugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
 
     auto* jugador = mapa->crearJugador();
@@ -42,6 +43,7 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSele
     EstadoDePersonaje *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
     auto *actividad = new Actividad(true);
+    auto *numeroJugador = new NumeroJugador(contadorJugador);
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -50,6 +52,7 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSele
     jugador->agregarEstado("estado", estado);
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("actividad", actividad);
+    jugador->agregarEstado("numeroJugador", numeroJugador);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     return jugador;

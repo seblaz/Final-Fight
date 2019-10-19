@@ -26,6 +26,8 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
 #include "EntradaSeleccionPersonaje.h"
+#include "../modelo/NumeroJugador.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -75,11 +77,44 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     SDL_Renderer *sdlRenderer = Locator::renderer();
 
     auto *personaje = jugador->getEstado<Personaje>("personaje");
+    auto *numeroJugador = jugador->getEstado<NumeroJugador>("numeroJugador");
     Locator::logger()->log(INFO, "Se obtuvo personaje." + personaje->getPersonaje());
+    Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
+
+    switch (numeroJugador->numeroJugador) {
+        case 1: {
+            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador1.png");
+            jugador->agregarEstado("spriteIndicador", spriteIndicador);
+        }
+            break;
+        case 2: {
+            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador2.png");
+            jugador->agregarEstado("spriteIndicador", spriteIndicador);
+        }
+            break;
+        case 3: {
+            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador3.png");
+            jugador->agregarEstado("spriteIndicador", spriteIndicador);
+        }
+            break;
+        case 4: {
+            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador4.png");
+            jugador->agregarEstado("spriteIndicador", spriteIndicador);
+        }
+            break;
+
+    };
+
+    auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
+    auto *animacionIndicador = fabricaDeAnimacionesIndicador->indicador();
+    jugador->agregarEstado("animacionIndicador", animacionIndicador);
+
+
     switch (personaje->getPersonaje()) {
         case HAGGAR: {
             Locator::logger()->log(DEBUG, "Se va a crear jugador haggar");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
+
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/haggar.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
@@ -96,6 +131,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
         case CODY: {
             Locator::logger()->log(DEBUG, "Se va a crear jugador coddy");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();

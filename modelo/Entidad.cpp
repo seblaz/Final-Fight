@@ -11,6 +11,7 @@
 #include "Opacidad.h"
 #include "TipoElemento.h"
 #include "Actividad.h"
+#include "NumeroJugador.h"
 #include <algorithm>
 #include <iostream>
 
@@ -113,6 +114,15 @@ void Entidad::deserializar(istream &stream) {
                 auto *actividad = new Actividad();
                 actividad->deserializar(stream);
                 agregarEstado("actividad", actividad);
+            }
+        }
+        else if (estado == "numeroJugador") {
+            if (existe) {
+                getEstado<NumeroJugador>("numeroJugador")->deserializar(stream);
+            } else {
+                auto *numeroJugador = new NumeroJugador();
+                numeroJugador->deserializar(stream);
+                agregarEstado("numeroJugador", numeroJugador);
             }
         }
         posicionEstado = deserializarEntero(stream);

@@ -61,26 +61,20 @@ void Grafico::actualizar(Entidad *entidad) {
         }
 
         if (personaje != nullptr){
-            SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+            auto *animacionIndicador = entidad->getEstado<Animacion>("animacionIndicador");
+            auto *spriteIndicador = entidad->getEstado<Sprite>("spriteIndicador");
 
-       //     SDL_RenderSetScale( renderer, 2.0, 2.0 );
+            SDL_Rect posicionEnSpriteIndicador = animacionIndicador->actualizarYDevolverPosicion();
+            Posicion nuevaPosicionIndicador(posicion->getX() - posicionDeEscenarioX, posicion->getY()+450, posicion->getZ());
+            SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla(nuevaPosicionIndicador, posicionEnSpriteIndicador, animacionIndicador->escala());
 
-            SDL_RenderDrawLine(renderer, nuevaPosicion.getX() , -nuevaPosicion.getY() + 380 *2,nuevaPosicion.getX()+40 *2 ,-nuevaPosicion.getY() + 380 *2);
-            SDL_RenderDrawLine(renderer, nuevaPosicion.getX() + 20, -nuevaPosicion.getY() + 420 *2,nuevaPosicion.getX()+40 *2 ,-nuevaPosicion.getY() + 380 *2);
-            SDL_RenderDrawLine(renderer, nuevaPosicion.getX() , -nuevaPosicion.getY() + 380 *2,nuevaPosicion.getX()+20 *2 ,-nuevaPosicion.getY() + 420 *2);
+            SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
 
-         //   SDL_RenderSetScale(renderer,
-           //                          1,
-             //                        1);
+            //SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
 
-  //            SDL_RenderDrawLine(renderer, nuevaPosicion.getX() , -nuevaPosicion.getY() + 300,nuevaPosicion.getX()+30 ,-nuevaPosicion.getY() + 320);
-  //          SDL_RenderDrawLine(renderer, nuevaPosicion.getX() , -nuevaPosicion.getY() + 300,nuevaPosicion.getX()+30 ,-nuevaPosicion.getY() + 320);
-  //          SDL_RenderDrawLine(renderer, posicion->getX()+300, posicion->getY()+240, nuevaPosicion.getX()+340, nuevaPosicion.getY()+240);
-  //          SDL_RenderDrawLine(renderer, posicion->getX()+340, posicion->getY()+240, nuevaPosicion.getX()+320, nuevaPosicion.getY()+200);
-
-  //          SDL_RenderDrawLine(renderer, posicion->getX() + 300, posicion->getY() + 200, nuevaPosicion.getX(),  nuevaPosicion.getY() + 200);
-          //  SDL_RenderDrawLine(renderer, posicion->getX()+300, posicion->getY()+240, nuevaPosicion.getX()+340, nuevaPosicion.getY()+240);
-          //  SDL_RenderDrawLine(renderer, posicion->getX()+340, posicion->getY()+200, nuevaPosicion.getX()+320, nuevaPosicion.getY()+240);
+            //SDL_RenderDrawLine(renderer, nuevaPosicion.getX() , -nuevaPosicion.getY() + 380 *2,nuevaPosicion.getX()+40 *2 ,-nuevaPosicion.getY() + 380 *2);
+            //SDL_RenderDrawLine(renderer, nuevaPosicion.getX() + 20, -nuevaPosicion.getY() + 420 *2,nuevaPosicion.getX()+40 *2 ,-nuevaPosicion.getY() + 380 *2);
+            //SDL_RenderDrawLine(renderer, nuevaPosicion.getX() , -nuevaPosicion.getY() + 380 *2,nuevaPosicion.getX()+20 *2 ,-nuevaPosicion.getY() + 420 *2);
         }
 
         if ((orientacion != nullptr) && (!orientacion->adelante)) {
