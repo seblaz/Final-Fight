@@ -10,7 +10,6 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
-#include <SDL_events.h>
 #include "../graficos/Sprite.h"
 
 Accion *EntradaNula::getAccion() {
@@ -21,82 +20,45 @@ EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *entidad_) :
         entidad(entidad_) {}
 
 Accion *EntradaMenuSeleccion::getAccion() {
-    enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-
-
-    SDL_Event ev;
-    while (SDL_PollEvent(&ev)) {
-        if (ev.type == SDL_QUIT || ev.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-            return 0;
-        else if (ev.type == SDL_KEYUP) {
-            if (activo) {
-                if (ev.key.keysym.sym == SDL_SCANCODE_LEFT) {
-                    cambiarSpriteAlAnterior(personajeMarcado);
-                } else if (ev.key.keysym.scancode == SDL_SCANCODE_RIGHT) {
-                    cambiarSpriteAlSiguiente(personajeMarcado);
-                } else if (ev.key.keysym.scancode == SDL_SCANCODE_RETURN) {
-                    activo = false;
-                    switch (personajeMarcado) {
-                        case GUY:
-                            Locator::logger()->log(DEBUG, "Se selecciono guy.");
-                            return new Accion(SELECCIONAR_GUY);
-                        case CODY:
-                            Locator::logger()->log(DEBUG, "Se selecciono cody.");
-                            return new Accion(SELECCIONAR_CODY);
-                        case HAGGAR:
-                            Locator::logger()->log(DEBUG, "Se selecciono haggar.");
-                            return new Accion(SELECCIONAR_HAGGAR);
-                        case MAKI:
-                            Locator::logger()->log(DEBUG, "Se selecciono maki.");
-                            return new Accion(SELECCIONAR_MAKI);
-                    }
+    if (framesInactivo == 0) {
+        if (activo) {
+            const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+            enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
+            if (entrada[SDL_SCANCODE_RETURN]) {
+                activo = false;
+                switch (personajeMarcado) {
+                    case GUY:
+                        Locator::logger()->log(DEBUG, "Se selecciono guy.");
+                        return new Accion(SELECCIONAR_GUY);
+                    case CODY:
+                        Locator::logger()->log(DEBUG, "Se selecciono cody.");
+                        return new Accion(SELECCIONAR_CODY);
+                    case HAGGAR:
+                        Locator::logger()->log(DEBUG, "Se selecciono haggar.");
+                        return new Accion(SELECCIONAR_HAGGAR);
+                    case MAKI:
+                        Locator::logger()->log(DEBUG, "Se selecciono maki.");
+                        return new Accion(SELECCIONAR_MAKI);
                 }
-            }
-        }
-    }
-
-    /*
-     *
-     *
-     *   if (activo) {
-        const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-        enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-        auto *renderer = Locator::renderer();
-        if (entrada[SDL_SCANCODE_RETURN]) {
-            activo = false;
-            switch (personajeMarcado) {
-                case GUY:
-                    Locator::logger()->log(DEBUG, "Se selecciono guy.");
-                    return new Accion(SELECCIONAR_GUY);
-                case CODY:
-                    Locator::logger()->log(DEBUG, "Se selecciono cody.");
-                    return new Accion(SELECCIONAR_CODY);
-                case HAGGAR:
-                    Locator::logger()->log(DEBUG, "Se selecciono haggar.");
-                    return new Accion(SELECCIONAR_HAGGAR);
-                case MAKI:
-                    Locator::logger()->log(DEBUG, "Se selecciono maki.");
-                    return new Accion(SELECCIONAR_MAKI);
-            }
-        } else {
-            if (entrada[SDL_SCANCODE_LEFT]) {
+                framesInactivo = framesPorAccion;
+            } else if (entrada[SDL_SCANCODE_LEFT]) {
                 cambiarSpriteAlAnterior(personajeMarcado);
+                framesInactivo = framesPorAccion;
             } else if (entrada[SDL_SCANCODE_RIGHT]) {
-                cambiarAlSpriteSiguiente(personajeMarcado);
+                cambiarSpriteAlSiguiente(personajeMarcado);
+                framesInactivo = framesPorAccion;
             }
         }
-
+    } else {
+        framesInactivo--;
     }
-    return nullptr;
-     *
-     */
     return nullptr;
 }
-
 
 void EntradaMenuSeleccion::cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const {
     Configuracion *config = Locator::configuracion();
     auto *renderer = Locator::renderer();
+//    delete entidad->getEstado<Sprite>("sprite");
     switch (personajeMarcado) {
         case GUY: {
             string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");

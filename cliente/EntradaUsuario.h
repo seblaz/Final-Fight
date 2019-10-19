@@ -34,16 +34,14 @@ class EntradaMenuSeleccion : public EntradaUsuario {
 private:
     Entidad *entidad;
     bool activo = true;
+    int framesPorAccion = 20;
+    int framesInactivo = 0;
 
 public:
     Accion *getAccion() override;
-
-    EntradaMenuSeleccion(Entidad *entidad) ;
-
+    explicit EntradaMenuSeleccion(Entidad *entidad) ;
     Entidad* getEntidad() { return entidad; };
-
     void cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const;
-
     void cambiarSpriteAlSiguiente(enum PERSONAJE personajeMarcado) const;
 };
 
