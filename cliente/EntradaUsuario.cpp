@@ -95,8 +95,6 @@ void TrasmisionCliente::transmitir() {
 
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Milisegundos.
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (true) {
         size_t start = SDL_GetTicks();
 
@@ -104,7 +102,7 @@ void TrasmisionCliente::transmitir() {
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            socket.enviar(s);
+            if(!socket.enviar(s)) break;
         }
 
         size_t end = SDL_GetTicks();
@@ -113,7 +111,6 @@ void TrasmisionCliente::transmitir() {
             SDL_Delay(sleepTime);
         }
     }
-#pragma clang diagnostic pop
 }
 
 pthread_t TrasmisionCliente::transmitirEnHilo() {

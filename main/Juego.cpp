@@ -107,7 +107,7 @@ void Juego::loop() {
     exit = false;
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
-    receptor.recibirEnHilo();
+    pthread_t hiloRecepcion = receptor.recibirEnHilo();
 
     /**
     * Transmisión de acciones.
@@ -122,13 +122,14 @@ void Juego::loop() {
 
         if (!receptor.conexionEstaActiva()) break;
         receptor.devolverStreamMasReciente(s);
-
-        if (!s) break;
         actualizador.actualizarEntidades(s, &trasmision);
         clearScene();
         actualizar();
         graficar();
     }
+
+    pthread_join(hiloTransmision, nullptr);
+    pthread_join(hiloRecepcion, nullptr);
 }
 
 void Juego::processInput() {

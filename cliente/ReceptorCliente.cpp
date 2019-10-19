@@ -16,10 +16,9 @@ void ReceptorCliente::recibir() {
     while (true) {
         stringstream s;
         if(!socket.recibir(s)){
-            Locator::logger()->log(ERROR, "Se detecta error en el servidor.");
-            this->conexionActiva = false;
-            throw new exception();
-            //break;
+            Locator::logger()->log(ERROR, "Se detecta desconexión del servidor.");
+            conexionActiva = false;
+            break;
         }
         {
             std::lock_guard<std::mutex> lock(mutex);
