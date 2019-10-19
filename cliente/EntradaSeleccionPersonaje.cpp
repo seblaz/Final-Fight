@@ -17,7 +17,6 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
 
     auto *personajeMarcado = pantalla->getEstado<Personaje>("personajeMarcado");
 
-
     SDL_Event e;
     while (SDL_PollEvent(&e)) {
         switch (e.type) {
@@ -90,6 +89,12 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
                         break;
                     }
                 }
+                break;
+            case SDL_QUIT:{
+                exit(1);
+            }
         }
+
     }
 }
+
