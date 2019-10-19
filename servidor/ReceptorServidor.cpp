@@ -9,15 +9,16 @@
 #include "../modelo/Actividad.h"
 
 
-ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager, EventosAProcesar *eventos,
-                                   SelectorPersonajes *selector, semaphore *confirmacion) :
+semaphore *ReceptorServidor::confirmacion = new semaphore(0);
+
+ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
+                                   EventosAProcesar *eventos, SelectorPersonajes *selector) :
         mapa(mapa),
         socket(socket),
         manager(manager),
         eventos(eventos),
         selector(selector),
-        listaSockets(listaSockets),
-        confirmacion(confirmacion) {}
+        listaSockets(listaSockets) {}
 
 void ReceptorServidor::recibir() {
     // Validar usuario.

@@ -22,11 +22,11 @@ private:
     EventosAProcesar *eventos;
     SelectorPersonajes *selector;
     ListaSockets *listaSockets;
-    semaphore *confirmacion;
+    static semaphore *confirmacion;
 
 public:
-    ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager, EventosAProcesar *eventos,
-                     SelectorPersonajes *selector, semaphore *confirmacion);
+    ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
+                     EventosAProcesar *eventos, SelectorPersonajes *selector);
     void recibir();
 
 };

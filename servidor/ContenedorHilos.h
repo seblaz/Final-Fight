@@ -25,7 +25,6 @@ private:
     EventosAProcesar *eventosAProcesar;
     SelectorPersonajes *selector;
     ListaSockets *listaSockets;
-    semaphore confirmacion;
 
 public:
     ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
@@ -41,7 +40,6 @@ struct escucharClienteArgs {
     ManagerUsuarios *manager{};
     EventosAProcesar *eventos{};
     SelectorPersonajes *selector{};
-    semaphore *confirmacion{};
 };
 
 void *escucharCliente(void *);

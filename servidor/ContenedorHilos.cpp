@@ -12,7 +12,6 @@ ContenedorHilos::ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar,
         mapa(mapa),
         manager(manager),
         selector(selector),
-        confirmacion(0),
         listaSockets(listaSockets),
         eventosAProcesar(eventosAProcesar) {}
 
@@ -26,7 +25,7 @@ void ContenedorHilos::crearHilo(Socket socket) {
     Locator::logger()->log(DEBUG, "Se crea un nuevo thread para recibir las acciones de los clientes.");
 
     pthread_t hilo;
-    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector, &confirmacion});
+    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector});
     pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
     hilos.push_back(hilo);
 }
@@ -35,7 +34,7 @@ void *escucharCliente(void *args) {
     auto *argumentos = (escucharClienteArgs *) args;
     ReceptorServidor receptor(argumentos->mapa, argumentos->socket, argumentos->listaSockets,
                               argumentos->manager, argumentos->eventos,
-                              argumentos->selector, argumentos->confirmacion);
+                              argumentos->selector);
     delete argumentos;
     receptor.recibir();
     return nullptr;
