@@ -22,6 +22,7 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     int xMayorPersonaje = mapa->getJugadores()->getMayorX();
     int xMenorPersonaje = mapa->getJugadores()->getMenorX();
     //xPersonaje->x = xMayorPersonaje;
+    Locator::configuracion()->getIntValue("/scroll/derecho");
 
     if ( xMayorPersonaje - xMenorPersonaje <= 800 ) { //HARDCODE = TAMAÑO de la pantalla menos los Margenes
         int xEscenario = posicionEscenario->getX();
