@@ -6,11 +6,13 @@
 #define FINAL_FIGHT_JUGADORES_H
 
 #include "Entidad.h"
+#include "Posicion.h"
 
-class Jugadores : public Entidad {
+class Jugadores : public Estado {
 
 private:
     unordered_map<IdEntidad, Entidad*> jugadores;
+    unordered_map<IdEntidad, Posicion*> posiciones;
 
 public:
     explicit Jugadores(unordered_map<IdEntidad, Entidad*> jugadores);
@@ -19,6 +21,7 @@ public:
     int getMenorX();
 
     void reiniciarPosiciones(int x, int y);
+    unordered_map<IdEntidad, Posicion*> *getPosiciones();
 };
 
 

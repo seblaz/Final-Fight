@@ -18,12 +18,12 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     auto *mapa = entidad->getEstado<Mapa>("mapa");
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
-    auto* xPersonaje = entidad->getEstado<Posicion>("posicion de jugador");
+    //auto* xPersonaje = entidad->getEstado<Jugadores>("posicion de jugadores")->
     int xMayorPersonaje = mapa->getJugadores()->getMayorX();
     int xMenorPersonaje = mapa->getJugadores()->getMenorX();
-    xPersonaje->x = xMayorPersonaje;
+    //xPersonaje->x = xMayorPersonaje;
 
-    if ( xMayorPersonaje - xMenorPersonaje <= 800 ) {
+    if ( xMayorPersonaje - xMenorPersonaje <= 800 ) { //HARDCODE = TAMAÑO de la pantalla menos los Margenes
         int xEscenario = posicionEscenario->getX();
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);

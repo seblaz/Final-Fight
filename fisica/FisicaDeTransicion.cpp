@@ -7,6 +7,7 @@
 #include "../servicios/Locator.h"
 #include "../servicios/Configuracion.h"
 #include "../modelo/Opacidad.h"
+#include "../modelo/Jugadores.h"
 
 FisicaDeTransicion::FisicaDeTransicion(int anchoDeEscenario) {
     this->anchoDeEscenario = anchoDeEscenario;
@@ -18,7 +19,7 @@ FisicaDeTransicion::FisicaDeTransicion(int anchoDeEscenario) {
 
 void FisicaDeTransicion::actualizar(Entidad* entidad) {
     Configuracion *config = Locator::configuracion();
-    int posicionDeJugadorX = entidad->getEstado<Posicion>("posicion de jugador")->getX();
+    int posicionDeJugadorX = entidad->getEstado<Jugadores>("posicion de jugadores")->getMayorX();
     auto* opacidad = entidad->getEstado<Opacidad>("opacidad");
 
     if ((anchoDeEscenario - posicionDeJugadorX) <= 0) {
