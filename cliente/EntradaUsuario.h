@@ -10,6 +10,7 @@
 #include "../modelo/Accion.h"
 #include "../modelo/Socket.h"
 #include "../modelo/Personaje.h"
+#include "../servicios/Configuracion.h"
 
 /**
  * Lectura de input de usuario.
@@ -40,6 +41,10 @@ public:
     EntradaMenuSeleccion(Entidad *entidad) ;
 
     Entidad* getEntidad() { return entidad; };
+
+    void cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const;
+
+    void cambiarAlSpriteSiguiente(enum PERSONAJE personajeMarcado) const;
 };
 
 class EntradaJuego : public EntradaUsuario {

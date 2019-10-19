@@ -10,22 +10,30 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
+#include <SDL_events.h>
+#include "../graficos/Sprite.h"
 
 Accion *EntradaNula::getAccion() {
     return nullptr;
 }
 
 EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *entidad_) :
-        entidad(entidad_)
-        {}
+        entidad(entidad_) {}
 
 Accion *EntradaMenuSeleccion::getAccion() {
-   if (activo) {
+
+
+
+
+
+
+    if (activo) {
         const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
         enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-        if (entrada[SDL_SCANCODE_RETURN]){
+        auto *renderer = Locator::renderer();
+        if (entrada[SDL_SCANCODE_RETURN]) {
             activo = false;
-            switch (personajeMarcado){
+            switch (personajeMarcado) {
                 case GUY:
                     Locator::logger()->log(DEBUG, "Se selecciono guy.");
                     return new Accion(SELECCIONAR_GUY);
@@ -38,12 +46,89 @@ Accion *EntradaMenuSeleccion::getAccion() {
                 case MAKI:
                     Locator::logger()->log(DEBUG, "Se selecciono maki.");
                     return new Accion(SELECCIONAR_MAKI);
-            };
+            }
+        } else {
+            if (entrada[SDL_SCANCODE_LEFT]) {
+                cambiarSpriteAlAnterior(personajeMarcado);
+            } else if (entrada[SDL_SCANCODE_RIGHT]) {
+                cambiarAlSpriteSiguiente(personajeMarcado);
+            }
         }
 
-      }
+    }
     return nullptr;
 }
+
+void EntradaMenuSeleccion::cambiarAlSpriteSiguiente(enum PERSONAJE personajeMarcado) const {
+    Configuracion *config = Locator::configuracion();
+    auto *renderer = Locator::renderer();
+    switch (personajeMarcado) {
+        case GUY: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(MAKI));
+        }
+            break;
+        case CODY: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(GUY));
+        }
+            break;
+        case HAGGAR: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(CODY));
+        }
+            break;
+        case MAKI: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
+        }
+            break;
+    }
+}
+
+void EntradaMenuSeleccion::cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const {
+    Configuracion *config = Locator::configuracion();
+    auto *renderer = Locator::renderer();
+    switch (personajeMarcado) {
+        case GUY: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(CODY));
+        }
+            break;
+        case CODY: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
+        }
+            break;
+        case HAGGAR: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(MAKI));
+        }
+            break;
+        case MAKI: {
+            string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
+            auto *sprite = new Sprite(renderer, srcSprite);
+            entidad->agregarEstado("sprite", sprite);
+            entidad->agregarEstado("personajeMarcado", new Personaje(GUY));
+        }
+            break;
+    }
+}
+
 
 Accion *EntradaJuego::getAccion() {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
@@ -77,7 +162,8 @@ Accion *EntradaJuego::getAccion() {
     return new Accion(accion);
 }
 
-TrasmisionCliente::TrasmisionCliente(Socket socket, EntradaUsuario *entradaUsuario) :
+TrasmisionCliente::TrasmisionCliente(Socket
+                                     socket, EntradaUsuario *entradaUsuario) :
         entradaUsuario(entradaUsuario),
         socket(socket) {}
 
