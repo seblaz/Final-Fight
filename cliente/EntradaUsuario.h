@@ -44,7 +44,7 @@ public:
 
     void cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const;
 
-    void cambiarAlSpriteSiguiente(enum PERSONAJE personajeMarcado) const;
+    void cambiarSpriteAlSiguiente(enum PERSONAJE personajeMarcado) const;
 };
 
 class EntradaJuego : public EntradaUsuario {

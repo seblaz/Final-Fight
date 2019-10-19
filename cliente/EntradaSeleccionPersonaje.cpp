@@ -11,13 +11,41 @@
 #include "../graficos/Sprite.h"
 
 void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
+    /*
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
     Configuracion *config = Locator::configuracion();
     auto *renderer = Locator::renderer();
 
     auto *personajeMarcado = pantalla->getEstado<Personaje>("personajeMarcado");
 
+    SDL_Event e;
 
+    while (SDL_PollEvent(&e)) {
+        switch (e.type) {
+            case SDL_KEYDOWN:
+                switch (e.key.keysym.sym) {
+                    case SDLK_LEFT:
+                        if (activo) {
+                            cambiarSpriteAlAnterior(pantalla, config, renderer, personajeMarcado);
+                        }
+                        break;
+                    case SDLK_RIGHT:
+                        if (activo) {
+                            cambiarSpriteAlSiguiente(pantalla, config, renderer, personajeMarcado);
+                        }
+                        break;
+                    case SDLK_RETURN:
+                        activo = false;
+                        break;
+                }
+                break;
+            case SDL_QUIT: {
+                exit(1);
+            }
+        }
+
+    }
+     */
 }
 
 void EntradaSeleccionPersonaje::cambiarSpriteAlSiguiente(Entidad *pantalla, Configuracion *config,
