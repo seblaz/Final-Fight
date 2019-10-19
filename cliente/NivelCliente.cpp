@@ -28,6 +28,7 @@
 #include "EntradaSeleccionPersonaje.h"
 #include "../modelo/NumeroJugador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -162,7 +163,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             break;
         case GUY: {
             Locator::logger()->log(DEBUG, "Se va a crear jugador guy");
-            auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
