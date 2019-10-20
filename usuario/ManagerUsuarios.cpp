@@ -47,3 +47,11 @@ void ManagerUsuarios::reemplazarUsuarioCon(Usuario *usuario) {
 bool ManagerUsuarios::faltanJugadores() {
     return usuarios.size() < maximo;
 }
+
+void ManagerUsuarios::desconectarJugadorVoluntariamente() {
+    this->usuariosDesconectados++;
+}
+
+bool ManagerUsuarios::hayJugadoresConectados(){
+    return this->usuariosDesconectados < this->maximo;
+}
