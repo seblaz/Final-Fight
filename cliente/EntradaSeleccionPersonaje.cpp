@@ -34,7 +34,7 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
 
 }
 
-void EntradaSeleccionPersonaje::cambiarAlPersonajeAnterior(Entidad *pantalla, Personaje *personajeMarcado) {
+void EntradaSeleccionPersonaje::cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado) {
     switch (personajeMarcado->getPersonaje()) {
         case GUY: {
             Locator::logger()->log(DEBUG, "Se marco a cody");
@@ -59,7 +59,7 @@ void EntradaSeleccionPersonaje::cambiarAlPersonajeAnterior(Entidad *pantalla, Pe
     }
 }
 
-void EntradaSeleccionPersonaje::cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado) {
+void EntradaSeleccionPersonaje::cambiarAlPersonajeAnterior(Entidad *pantalla, Personaje *personajeMarcado) {
     switch (personajeMarcado->getPersonaje()) {
         case GUY: {
             Locator::logger()->log(DEBUG, "Se marco a maki");
