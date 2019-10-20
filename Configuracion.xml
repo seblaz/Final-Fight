@@ -1,6 +1,6 @@
 <configuracion>
     <usuarios>
-        <cantidad>1</cantidad>
+        <cantidad>2</cantidad>
     </usuarios>
     <password>p</password>
     <debug>
@@ -111,7 +111,7 @@
                     </neumatico>
                 </objetos>
                 <enemigos>
-                    <cantidad>0</cantidad>
+                    <cantidad>5</cantidad>
                     <sprite>
                         <src>assets/personajes/poison.png</src>
                     </sprite>

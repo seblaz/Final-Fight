@@ -12,27 +12,33 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
     Configuracion *config = Locator::configuracion();
     scrollIzquierdo = config->getIntValue("/scroll/izquierdo");
     scrollDerecho = config->getIntValue("/scroll/derecho");
+    ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    xScrollIzquierdo = scrollIzquierdo;
+    xScrollDerecho = ancho - scrollDerecho;
 }
 
 void FisicaDeEscenario::actualizar(Entidad *entidad) {
     auto *mapa = entidad->getEstado<Mapa>("mapa");
-    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
-    //auto* xPersonaje = entidad->getEstado<Jugadores>("posicion de jugadores")->
-    int xMayorPersonaje = mapa->getJugadores()->getMayorX();
-    int xMenorPersonaje = mapa->getJugadores()->getMenorX();
-    //xPersonaje->x = xMayorPersonaje;
-    Locator::configuracion()->getIntValue("/scroll/derecho");
+    auto* jugadores = mapa->getJugadores();
+    int xMayorPersonaje = jugadores->getMayorX();
+    int xMenorPersonaje = jugadores->getMenorX();
+    int xEscenario = posicionEscenario->getX();
+    xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if ( xMayorPersonaje - xMenorPersonaje <= 1000 ) { //HARDCODE = TAMAÑO de la pantalla menos los Margenes
-        int xEscenario = posicionEscenario->getX();
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo) {
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
+            xScrollDerecho = xMayorPersonaje;
         }
         if ((xMenorPersonaje - xEscenario < scrollIzquierdo) && (xMenorPersonaje - scrollIzquierdo) > 0) {
             posicionEscenario->setX(xMenorPersonaje - scrollIzquierdo);
+            xScrollDerecho = xEscenario + ancho - scrollDerecho;
         }
+    }else {
+        mapa->getJugadores()->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
     }
+    jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
     if (xMayorPersonaje > largo) {
         Locator::logger()->log(INFO, "Se llego al final del nivel.");
         mapa->vaciarMapa();

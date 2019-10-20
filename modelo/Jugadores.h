@@ -22,6 +22,9 @@ public:
 
     void reiniciarPosiciones(int x, int y);
     unordered_map<IdEntidad, Posicion*> *getPosiciones();
+
+    void bloquearMovientos(int scrollIzquierdo, int scrollDerecho);
+    void arrastrarInactivos(int scrollIzquierdo, int scrollDerecho);
 };
 
 

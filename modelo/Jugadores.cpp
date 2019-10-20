@@ -6,6 +6,7 @@
 
 #include <utility>
 #include "Posicion.h"
+#include "Actividad.h"
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
@@ -17,7 +18,7 @@ Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
 int Jugadores::getMayorX() {
     int x = 0;
     for(auto tuple : jugadores){
-        if ( tuple.second->getEstado<Posicion>("posicion")->getX() > x )
+        if ( tuple.second->getEstado<Posicion>("posicion")->getX() > x && tuple.second->getEstado<Actividad>("actividad")->activo)
             x = tuple.second->getEstado<Posicion>("posicion")->getX();
     }
     return x;
@@ -26,7 +27,7 @@ int Jugadores::getMayorX() {
 int Jugadores::getMenorX() {
     int x = 99999999;
     for(auto tuple : jugadores){
-        if ( tuple.second->getEstado<Posicion>("posicion")->getX() < x )
+        if ( tuple.second->getEstado<Posicion>("posicion")->getX() < x && tuple.second->getEstado<Actividad>("actividad")->activo)
             x = tuple.second->getEstado<Posicion>("posicion")->getX();
     }
     return x;
@@ -41,6 +42,30 @@ void Jugadores::reiniciarPosiciones(int x, int y) {
 
 unordered_map<IdEntidad, Posicion *>* Jugadores::getPosiciones() {
     return &posiciones;
+}
+
+void Jugadores::bloquearMovientos(int scrollIzquierdo, int scrollDerecho) {
+    for(auto tuple : jugadores){
+        int x = tuple.second->getEstado<Posicion>("posicion")->getX();
+        if ( x >= scrollDerecho ){
+            tuple.second->getEstado<Posicion>("posicion")->x = scrollDerecho;
+        }else if ( x <= scrollIzquierdo ){
+            tuple.second->getEstado<Posicion>("posicion")->x = scrollIzquierdo;
+        }
+    }
+}
+
+void Jugadores::arrastrarInactivos(int scrollIzquierdo, int scrollDerecho) {
+    for(auto tuple : jugadores){
+        if (!tuple.second->getEstado<Actividad>("actividad")->activo){
+            int x = tuple.second->getEstado<Posicion>("posicion")->getX();
+            if ( x >= scrollDerecho ){
+                tuple.second->getEstado<Posicion>("posicion")->x = scrollDerecho;
+            }else if ( x <= scrollIzquierdo ){
+                tuple.second->getEstado<Posicion>("posicion")->x = scrollIzquierdo;
+            }
+        }
+    }
 }
 
 
