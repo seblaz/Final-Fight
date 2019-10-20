@@ -63,10 +63,10 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
     auto *animacionIndicador = fabricaDeAnimacionesIndicador->indicador();
 
-    pantalla->agregarEstado("animacion_selector", animacionIndicador);
+    pantalla->agregarEstado("indicador", animacionIndicador);
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
-    pantalla->agregarEstado("sprite_selector", spriteSelector);
+    pantalla->agregarEstado("selector", spriteSelector);
     pantalla->agregarEstado("personajeMarcado", personaje);
     pantalla->agregarComportamiento("grafico", grafico);
     pantalla->agregarComportamiento("entrada", entrada);

@@ -37,8 +37,8 @@ void GraficoDePantallaCompleta::actualizar(Entidad *entidad) {
     SDL_RenderCopy(renderer, sprite->getTexture(), nullptr, nullptr);
     if (personajeMarcado != nullptr) {
 
-        auto *animacionIndicador = entidad->getEstado<Animacion>("animacion_selector");
-        auto *spriteIndicador = entidad->getEstado<Sprite>("sprite_selector");
+        auto *animacionIndicador = entidad->getEstado<Animacion>("indicador");
+        auto *spriteIndicador = entidad->getEstado<Sprite>("selector");
 
         SDL_Rect posicionEnSpriteIndicador = animacionIndicador->actualizarYDevolverPosicion();
 

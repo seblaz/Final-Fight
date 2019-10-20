@@ -20,33 +20,26 @@ EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *entidad_) :
         entidad(entidad_) {}
 
 Accion *EntradaMenuSeleccion::getAccion() {
-    if (framesInactivo == 0) {
-        if (activo) {
-            const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-            enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-            if (entrada[SDL_SCANCODE_RETURN]) {
-                activo = false;
-                switch (personajeMarcado) {
-                    case GUY:
-                        Locator::logger()->log(DEBUG, "Se selecciono guy.");
-                        return new Accion(SELECCIONAR_GUY);
-                    case CODY:
-                        Locator::logger()->log(DEBUG, "Se selecciono cody.");
-                        return new Accion(SELECCIONAR_CODY);
-                    case HAGGAR:
-                        Locator::logger()->log(DEBUG, "Se selecciono haggar.");
-                        return new Accion(SELECCIONAR_HAGGAR);
-                    case MAKI:
-                        Locator::logger()->log(DEBUG, "Se selecciono maki.");
-                        return new Accion(SELECCIONAR_MAKI);
-                }
-                framesInactivo = framesPorAccion;
-            }
-        } else {
-            framesInactivo--;
+
+    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+    enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
+    if (entrada[SDL_SCANCODE_RETURN]) {
+        switch (personajeMarcado) {
+            case GUY:
+                Locator::logger()->log(DEBUG, "Se selecciono guy.");
+                return new Accion(SELECCIONAR_GUY);
+            case CODY:
+                Locator::logger()->log(DEBUG, "Se selecciono cody.");
+                return new Accion(SELECCIONAR_CODY);
+            case HAGGAR:
+                Locator::logger()->log(DEBUG, "Se selecciono haggar.");
+                return new Accion(SELECCIONAR_HAGGAR);
+            case MAKI:
+                Locator::logger()->log(DEBUG, "Se selecciono maki.");
+                return new Accion(SELECCIONAR_MAKI);
         }
-        return nullptr;
     }
+    return nullptr;
 }
 
 

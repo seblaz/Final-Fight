@@ -12,18 +12,10 @@
 
 void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
 
-    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-    Configuracion *config = Locator::configuracion();
-    auto *renderer = Locator::renderer();
-
     auto *personajeMarcado = pantalla->getEstado<Personaje>("personajeMarcado");
-
-    SDL_Event e;
-
     if (framesInactivo == 0) {
         if (activo) {
             const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-            //   enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
             if (entrada[SDL_SCANCODE_LEFT]) {
                 Locator::logger()->log(DEBUG, "SE selecciono izquierda");
                 cambiarAlPersonajeAnterior(pantalla, personajeMarcado);
