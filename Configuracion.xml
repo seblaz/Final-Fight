@@ -39,6 +39,12 @@
         </sprite>
     </pantallaDeEspera>
     <pantallaDeSeleccion>
+        <fondo>
+            <src>assets/varios/pantallaMenuPersonaje.png</src>
+        </fondo>
+        <selector>
+            <src>assets/varios/selectorMenu.png</src>
+        </selector>
         <guy>
             <src>assets/varios/selectorGuy.png</src>
         </guy>

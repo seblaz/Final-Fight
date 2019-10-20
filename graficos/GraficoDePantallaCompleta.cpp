@@ -9,74 +9,59 @@
 #include "animaciones/Animacion.h"
 
 
-SDL_Rect calcularPosicionEnPantalla2(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {
-    Configuracion *config = Locator::configuracion();
-
-    float escala = config->getFloatValue("/escala/entidades") * esacalaDeAnimacion;
-
-    const int screenX = int(round((float) posicionEnMapa.getX()
-                                  - (float) posicionEnSprite.w / 2 * escala));
-
-    const int screenY = int(round((float) config->getIntValue("/resolucion/alto")
-                                  - (float) posicionEnMapa.getZ()
-                                  - (float) posicionEnMapa.getY()
-                                  - (float) posicionEnSprite.h * escala));
-
-    SDL_Rect posicionEnPantalla = {screenX,
-                                   screenY,
-                                   int((float) posicionEnSprite.w * escala),
-                                   int((float) posicionEnSprite.h * escala)};
-
-    return posicionEnPantalla;
-}
-
 void GraficoDePantallaCompleta::actualizar(Entidad *entidad) {
-    auto *sprite = entidad->getEstado<Sprite>("sprite");
-    auto *personajeMarcado = entidad->getEstado<Personaje>("personajeMarcado");
     auto *renderer = Locator::renderer();
+    auto *sprite = entidad->getEstado<Sprite>("sprite");
+
     SDL_RenderCopy(renderer, sprite->getTexture(), nullptr, nullptr);
+    auto *personajeMarcado = entidad->getEstado<Personaje>("personajeMarcado");
+
     if (personajeMarcado != nullptr) {
 
-        auto *animacionIndicador = entidad->getEstado<Animacion>("indicador");
-        auto *spriteIndicador = entidad->getEstado<Sprite>("selector");
+        auto *selectorMenu = entidad->getEstado<Animacion>("selector_menu");
+        auto *spriteSelectorMenu = entidad->getEstado<Sprite>("sprite_selector_menu");
 
-        SDL_Rect posicionEnSpriteIndicador = animacionIndicador->actualizarYDevolverPosicion();
+        SDL_Rect posicionEnSpriteIndicador = selectorMenu->actualizarYDevolverPosicion();
 
         switch (personajeMarcado->getPersonaje()) {
             case GUY: {
-                Posicion nuevaPosicionIndicador(300, 450, 100);
-                SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla2(nuevaPosicionIndicador,
-                                                                                   posicionEnSpriteIndicador,
-                                                                                   animacionIndicador->escala());
-                SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador,
-                               &posicionEnPantallaIndicador);
+                SDL_Rect posicionEnPantalla = {30,
+                                               100,
+                                               int(posicionEnSpriteIndicador.w * selectorMenu->escala()),
+                                               int(posicionEnSpriteIndicador.h * selectorMenu->escala())};
+
+                SDL_RenderCopy(renderer, spriteSelectorMenu->getTexture(), &posicionEnSpriteIndicador,
+                               &posicionEnPantalla);
             }
                 break;
             case CODY: {
-                Posicion nuevaPosicionIndicador(500, 450, 100);
-                SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla2(nuevaPosicionIndicador,
-                                                                                   posicionEnSpriteIndicador,
-                                                                                   animacionIndicador->escala());
-                SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador,
-                               &posicionEnPantallaIndicador);
+                SDL_Rect posicionEnPantalla = {430,
+                                               100,
+                                               int(posicionEnSpriteIndicador.w * selectorMenu->escala()),
+                                               int(posicionEnSpriteIndicador.h * selectorMenu->escala())};
+
+                SDL_RenderCopy(renderer, spriteSelectorMenu->getTexture(), &posicionEnSpriteIndicador,
+                               &posicionEnPantalla);
             }
                 break;
             case HAGGAR: {
-                Posicion nuevaPosicionIndicador(700, 450, 100);
-                SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla2(nuevaPosicionIndicador,
-                                                                                   posicionEnSpriteIndicador,
-                                                                                   animacionIndicador->escala());
-                SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador,
-                               &posicionEnPantallaIndicador);
+                SDL_Rect posicionEnPantalla = {830,
+                                               100,
+                                               int(posicionEnSpriteIndicador.w * selectorMenu->escala()),
+                                               int(posicionEnSpriteIndicador.h * selectorMenu->escala())};
+
+                SDL_RenderCopy(renderer, spriteSelectorMenu->getTexture(), &posicionEnSpriteIndicador,
+                               &posicionEnPantalla);
             }
                 break;
             case MAKI: {
-                Posicion nuevaPosicionIndicador(900, 450, 100);
-                SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla2(nuevaPosicionIndicador,
-                                                                                   posicionEnSpriteIndicador,
-                                                                                   animacionIndicador->escala());
-                SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador,
-                               &posicionEnPantallaIndicador);
+                SDL_Rect posicionEnPantalla = {1230,
+                                               100,
+                                               int(posicionEnSpriteIndicador.w * selectorMenu->escala()),
+                                               int(posicionEnSpriteIndicador.h * selectorMenu->escala())};
+
+                SDL_RenderCopy(renderer, spriteSelectorMenu->getTexture(), &posicionEnSpriteIndicador,
+                               &posicionEnPantalla);
             }
                 break;
         }
