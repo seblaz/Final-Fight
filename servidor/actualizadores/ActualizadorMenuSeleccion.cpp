@@ -21,9 +21,11 @@ void ConfirmarSeleccion::resolver() {
     usuario->setPersonajeSeleccionado(personajeSeleccionado);
     selector->confirmar();
     if (selector->puedoComenzar()) {
+        int numeroJugador = 1;
         for (Usuario *usuario : manager->getUsuarios()) {
-            Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado());
+            Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado(), numeroJugador);
             usuario->setPersonaje(personaje);
+            numeroJugador++;
         }
         NivelServidor::generarNivel("nivel1", mapa);
         for (int i = 0; i < manager->cantidadJugadoresTotales(); i++) {

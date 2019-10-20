@@ -10,7 +10,7 @@ Animacion* FabricaDeAnimacionesDeGuy::caminando() {
 
     };
 
-    vector<float> duraciones = {1, 1, 1, 1, 1, 1};
+    vector<float> duraciones = {1, 1, 1, 1, 1};
 
     return new Animacion(posiciones, duraciones, 60, 4.5);
 }

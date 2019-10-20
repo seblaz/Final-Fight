@@ -50,7 +50,7 @@ class Entidad : public Serializable {
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado" ,"personaje", "opacidad", "tipo elemento", "actividad"};
+    vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado" ,"personaje", "opacidad", "tipo elemento", "actividad", "numeroJugador"};
      const int fin = 999999999;
 
 public:
