@@ -16,13 +16,53 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-    auto *logger = new Logger();
+void configApplication(int argc, const char*args[]){
+    bool defaultLogger = argc == 1;
+    bool defaultConfiguration = argc == 1;
+    bool paramIsLoggerLevel = false;
+
+    if (argc == 2){
+        string param = args[1];
+        size_t found = param.find(".xml");
+
+        defaultConfiguration = found==std::string::npos;
+        defaultLogger = found!=std::string::npos;
+        paramIsLoggerLevel = !defaultLogger;
+    }
+
+    auto* logger = new Logger();
     Locator::provide(logger);
 
-    auto *config = new Configuracion();
+    Configuracion *config =
+            defaultConfiguration ?
+            new Configuracion() :
+            (argc == 2 ?
+             new Configuracion(args[1]) :
+             new Configuracion(args[2]));
+
     Locator::provide(config);
 
+    string loggerLevel = config->getValue("/debug/level");
+    defaultLogger = defaultLogger && loggerLevel.empty();
+
+    if (!defaultLogger){
+        string newLevel = (argc > 2 || paramIsLoggerLevel) ? args[1] : loggerLevel;
+        Locator::logger()->setLevel(newLevel);
+    }
+
+    string configPath = config->getActualPath();
+
+    Locator::logger()->log(INFO, "Archivo de configuracion abierto: " + configPath);
+}
+
+int main(int argc, const char **args) {
+
+    if (argc == 1){
+        const char *args2[] = {"", "DEBUG", "Configuracion.xml"};
+        configApplication(1, args2);
+    }else{
+        configApplication(argc, args);
+    }
     /**
      * Conexion al servidor.
      */
@@ -68,15 +108,13 @@ int main(int argc, char *argv[]) {
     /**
      * Contenedor de hilos.
      */
-     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector);
+     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector, &listaSockets);
 
     /**
      * Conexiones de clientes.
      */
     ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
-
-    managerUsuarios.esperarUsuarios();
 
     /**
      * Game loop.
@@ -87,7 +125,6 @@ int main(int argc, char *argv[]) {
     auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
     GameLoop gameLoop(eventosAProcesar, actualizar);
     gameLoop.loop();
-//    pthread_t hiloGameLoop = gameLoop.loopEnHilo();
 
     /**
      * Termino el procesamiento.
@@ -102,3 +139,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+

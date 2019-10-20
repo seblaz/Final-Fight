@@ -12,6 +12,7 @@
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "SelectorPersonajes.h"
+#include "ListaSockets.h"
 
 using namespace std;
 
@@ -23,10 +24,11 @@ private:
     ManagerUsuarios *manager;
     EventosAProcesar *eventosAProcesar;
     SelectorPersonajes *selector;
-    semaphore confirmacion;
+    ListaSockets *listaSockets;
 
 public:
-    ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager, SelectorPersonajes *selector);
+    ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
+                    SelectorPersonajes *selector, ListaSockets *listaSockets);
     void crearHilo(Socket socket);
     void esperarFinDeHilos();
 };
@@ -34,10 +36,10 @@ public:
 struct escucharClienteArgs {
     Mapa *mapa{};
     Socket socket;
+    ListaSockets *listaSockets{};
     ManagerUsuarios *manager{};
     EventosAProcesar *eventos{};
     SelectorPersonajes *selector{};
-    semaphore *confirmacion{};
 };
 
 void *escucharCliente(void *);

@@ -76,3 +76,7 @@ void Mapa::quitarEntidad(IdEntidad idEntidad) {
     entidades.erase(idEntidad);
 }
 
+Jugadores* Mapa::getJugadores() {
+    return new Jugadores(jugadores);
+}
+

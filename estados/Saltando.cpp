@@ -20,14 +20,16 @@ Saltando::~Saltando() {
 }
 
 void Saltando::actualizar(Entidad *entidad) {
-    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
-    velocidad->y = 0;
-    velocidad->z = velocidadInicial + aceleracion * frames;
-    if (velocidad->z == -velocidadInicial) {
-        termine = true;
-        velocidad->z = 0;
+    if(!termine){
+        auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
+        velocidad->y = 0;
+        velocidad->z = velocidadInicial + aceleracion * frames;
+        if (velocidad->z == -velocidadInicial) {
+            termine = true;
+            velocidad->z = 0;
+        }
+        frames++;
     }
-    frames++;
 }
 
 void Saltando::enter(Entidad *entidad) {

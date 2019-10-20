@@ -27,8 +27,8 @@ private:
     enum PERSONAJE personajeSeleccionado;
 
 public:
-    explicit ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager, enum PERSONAJE personaje, Usuario *usuario,
-                                semaphore *confirmacion);
+    explicit ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
+                                enum PERSONAJE personaje, Usuario *usuario, semaphore *confirmacion);
     void resolver() override;
 };
 
@@ -42,12 +42,14 @@ private:
     SelectorPersonajes *selector;
     semaphore *confirmacion;
     ManagerUsuarios *manager;
+    void interpretarStream(stringstream &s);
+    bool fin();
 
 public:
     ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesar *eventos, SelectorPersonajes *selector, Usuario *usuario,
                               ManagerUsuarios *manager, semaphore *confirmacion);
-    void interpretarStream(stringstream &s);
-    bool fin();
+    void actualizarPersonaje();
+
 
 };
 

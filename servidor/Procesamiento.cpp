@@ -14,12 +14,12 @@ void Procesamiento::procesar() {
         auto *evento = eventosAProcesar.pop();
 //        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
 
-        try{
+//        try{
             evento->resolver();
-        } catch(...){
-            Locator::logger()->log(ERROR, "Error en procesamiento, se cierra el hilo");
-            pthread_exit(nullptr);
-        }
+//        } catch(...){
+//            Locator::logger()->log(ERROR, "Error en procesamiento, se cierra el hilo");
+//            pthread_exit(nullptr);
+//        }
 
         if (evento->msj() == "fin")
             break;

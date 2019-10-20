@@ -16,18 +16,19 @@ class ManagerUsuarios {
 
 private:
     int maximo;
-    semaphore juegoListo;
     list<Usuario *> usuarios;
-    void agregarUsuario(Usuario *usuario);
 
 public:
     explicit ManagerUsuarios(int maximo);
-    void administrarUsuario(Usuario *usuario);
-    bool estaPresente(Usuario *usuario);
-    int cantidadJugadoresFaltantes();
-    void esperarUsuarios();
+
+    bool faltanJugadores();
     list<Usuario *> getUsuarios();
     int cantidadJugadoresTotales();
+    bool estaPresente(Usuario *usuario);
+    void agregarUsuario(Usuario *usuario);
+    void reemplazarUsuarioCon(Usuario *usuario);
+    Usuario *getUsuarioAnterior(Usuario *usuario);
+//    void administrarUsuario(Usuario *usuario);
 //        int getCantidadLogueados();
 //        bool faltanJugadores();
 //        vector<Socket> getSockets();

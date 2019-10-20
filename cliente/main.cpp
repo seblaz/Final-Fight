@@ -24,7 +24,7 @@ void configApplication(int argc, char *argv[]){
             size_t found = param.find(".xml");
 
 
-            if(found==std::string::npos){ //no encontro .xml
+            if(found==std::string::npos){
                 nivelDebug = param;
             }else{
                 configPath = param;
@@ -73,14 +73,6 @@ int main(int argc, char *argv[]) {
     if (paramsOk) {
         configApplication(argc, argv);
 
-        string user;
-        string pass;
-
-
-        cout << "Ingrese nombre de usuario" << endl;
-        cin >> user;
-        cout << "Ingrese contraseña" << endl;
-        cin >> pass;
 
         /**
          * Conexion cliente.
@@ -88,21 +80,6 @@ int main(int argc, char *argv[]) {
         ConexionCliente conexion(ipAddress, port);
         Socket socket = conexion.socket();
         Locator::provide(socket);
-
-        Usuario usuario(user, pass);
-
-        stringstream userStream;
-        usuario.serializar(userStream);
-        socket.enviar(userStream);
-
-        //REVISAR es necesario una confirmacion sino se cierra
-        /**
-         * Transmisión de acciones.
-         */
-        EntradaNula entrada;
-        TrasmisionCliente trasmision(socket, &entrada);
-        pthread_t hiloTransmision = trasmision.transmitirEnHilo();
-
 
         /**
          * Iniciar juego.
@@ -113,7 +90,7 @@ int main(int argc, char *argv[]) {
         Mapa &mapa = juego.mapa();
         NivelCliente::generarPantallaDeEspera(&mapa);
 
-        juego.loop(&trasmision);
+        juego.loop();
         juego.terminar();
 
 //        pthread_join(hiloTransmision, nullptr);

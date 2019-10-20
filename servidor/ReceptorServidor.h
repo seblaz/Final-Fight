@@ -11,6 +11,7 @@
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "SelectorPersonajes.h"
+#include "ListaSockets.h"
 
 class ReceptorServidor {
 
@@ -20,24 +21,13 @@ private:
     ManagerUsuarios *manager;
     EventosAProcesar *eventos;
     SelectorPersonajes *selector;
-    semaphore *confirmacion;
+    ListaSockets *listaSockets;
+    static semaphore *confirmacion;
 
 public:
-    ReceptorServidor(Mapa *mapa, Socket socket, ManagerUsuarios *manager, EventosAProcesar *eventos,
-                     SelectorPersonajes *selector, semaphore *confirmacion);
+    ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
+                     EventosAProcesar *eventos, SelectorPersonajes *selector);
     void recibir();
-
-};
-
-class SetActividadJugador : public EventoAProcesar {
-
-private:
-    Entidad *jugador;
-    bool activo;
-    
-public:
-    explicit SetActividadJugador(Entidad *jugador, bool activo);
-    void resolver() override;
 
 };
 

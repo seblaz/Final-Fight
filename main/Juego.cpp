@@ -8,20 +8,21 @@
 #include "../modelo/Posicion.h"
 #include "../cliente/ReceptorCliente.h"
 #include "../cliente/EntradaUsuario.h"
+#include "../usuario/Usuario.h"
+#include "../modelo/EventoUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
 Juego::Juego() {
     inicializarGraficos();
-    inicializarElementos();
 }
 
 void Juego::inicializarGraficos() {
     const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
     const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
 
-    Logger* logger = Locator::logger();
+    Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se inicializan los graficos.");
 
     //Initialize SDL
@@ -56,35 +57,79 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::loop(TrasmisionCliente *transmicion) {
-//    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Microsegundos.
-    ActualizadorCliente actualizador(&mapa_);
-    ReceptorCliente receptor(Locator::socket());
-    receptor.recibirEnHilo();
-    
-    while (!exit) {
-//        size_t start = SDL_GetTicks()
-        processInput();
-        stringstream s;
-        if (!receptor.conexionEstaActiva()) break;
-        receptor.devolverStreamMasReciente(s);
-        if(!s) break;
-        actualizador.actualizarEntidades(s, transmicion);
-        clearScene();
-        actualizar();
-        graficar();
+void Juego::validarUserPass() {
+    bool exit = false;
 
-//        size_t end = SDL_GetTicks();
-//        int sleepTime = MS_PER_FRAME + start - end;
-//
-//        if (sleepTime > 0) {
-//            SDL_Delay(sleepTime);
-//        }
+    while (!exit) {
+        processInput();
+        string user;
+        string pass;
+
+
+        cout << "Ingrese nombre de usuario" << endl;
+        cin >> user;
+        cout << "Ingrese contraseña" << endl;
+        cin >> pass;
+
+        Usuario usuario(user, pass);
+        stringstream userStream;
+        usuario.serializar(userStream);
+        Socket socket = Locator::socket();
+        socket.enviar(userStream);
+
+        stringstream streamEvento;
+        socket.recibir(streamEvento);
+        EventoUsuario evento;
+        evento.deserializar(streamEvento);
+
+        switch (evento.evento()){
+            case CONTRASENIA_INCORRECTA:
+                Locator::logger()->log(ERROR, "Contraseña incorrecta.");
+                break;
+            case USUARIO_YA_CONECTADO:
+                Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
+                std::exit(0);
+            case PARTIDA_LLENA:
+                Locator::logger()->log(ERROR, "La partida se encuentra llena.");
+                std::exit(0);
+            case CONECTADO:
+                Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
+                exit = true;
+                break;
+        }
     }
 }
 
-void Juego::inicializarElementos() {
-    Locator::logger()->log(DEBUG, "Se inicializa el mapa");
+void Juego::loop() {
+
+    validarUserPass();
+
+    exit = false;
+    ActualizadorCliente actualizador(&mapa_);
+    ReceptorCliente receptor(Locator::socket());
+    pthread_t hiloRecepcion = receptor.recibirEnHilo();
+
+    /**
+    * Transmisión de acciones.
+    */
+    EntradaNula entrada;
+    TrasmisionCliente trasmision(Locator::socket(), &entrada);
+    pthread_t hiloTransmision = trasmision.transmitirEnHilo();
+
+    while (!exit) {
+        processInput();
+        stringstream s;
+
+        if (!receptor.conexionEstaActiva()) break;
+        receptor.devolverStreamMasReciente(s);
+        actualizador.actualizarEntidades(s, &trasmision);
+        clearScene();
+        actualizar();
+        graficar();
+    }
+
+    pthread_join(hiloTransmision, nullptr);
+    pthread_join(hiloRecepcion, nullptr);
 }
 
 void Juego::processInput() {

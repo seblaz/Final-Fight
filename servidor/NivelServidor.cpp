@@ -67,24 +67,23 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     /**
      * Dependencias.
      */
-    Entidad *jugador = mapa->getJugador();
-    auto *posicionDeJugador = jugador->getEstado<Posicion>("posicion");
-    auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
-    escenario->agregarEstado("posicion de jugador", posicionDeJugador);
-    jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
-    posicionDeJugador->x = 200;
-    posicionDeJugador->y = 100;
+    Jugadores* jugadores = mapa->getJugadores();
+    jugadores->reiniciarPosiciones(200, 100);
 
-//    generarCajas(nivel, sdlRenderer, mapa, posicionDeEscenario);
-//    generarNeumaticos(nivel, sdlRenderer, mapa, posicionDeEscenario);
-//    generarCuchillos(nivel, sdlRenderer, mapa, posicionDeEscenario);
-//    generarTubos(nivel, sdlRenderer, mapa, posicionDeEscenario);
+    Entidad *jugador = mapa->getJugador();
+    //auto *posicionDeJugador = jugador->getEstado<Posicion>("posicion");
+    //auto *posicionesDeJugadores = jugadores->getPosiciones();
+    auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
+    //escenario->agregarEstado("posicion de jugador", posicionDeJugador);
+    //escenario->agregarEstado("posicion de jugadores", jugadores);
+    jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
+
     generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
     generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
     generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
     generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
     generarEnemigo(nivel, mapa, posicionDeEscenario);
-    generarTransicion(nivel, mapa, posicionDeJugador);
+    generarTransicion(nivel, mapa, jugadores);
 }
 
 Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
@@ -114,7 +113,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 
 }
 
-void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Posicion* posicionDeJugador) {
+void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Jugadores* posicionDeJugadores) {
     //Locator::logger()->log(DEBUG, "Se genera transicion");
 
     Entidad *transicion = mapa->crearEntidad();
@@ -127,7 +126,7 @@ void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Posicion*
     transicion->agregarEstado("posicion", posicion);
     transicion->agregarEstado("tipo", tipo);
     transicion->agregarEstado("opacidad", opacidad);
-    transicion->agregarEstado("posicion de jugador", posicionDeJugador);
+    transicion->agregarEstado("posicion de jugadores", posicionDeJugadores);
     transicion->agregarComportamiento("fisica de transicion", fisicaDeTransicion);
 }
 

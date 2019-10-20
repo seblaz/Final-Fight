@@ -17,7 +17,7 @@
 class NivelServidor {
 
 private:
-    static void generarTransicion(const string &nivel,Mapa *mapa, Posicion* posicionDeJugador);
+    static void generarTransicion(const string &nivel,Mapa *mapa, Jugadores* posicionDeJugador);
     static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario);
     static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
 

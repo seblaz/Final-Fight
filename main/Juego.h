@@ -17,12 +17,12 @@ class Juego {
 private:
 
     void inicializarGraficos();
-    void inicializarElementos();
 
     void processInput();
     void actualizar();
     void graficar();
     void clearScene();
+    void validarUserPass();
 
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
@@ -32,7 +32,7 @@ private:
 public:
     Juego();
 
-    void loop(TrasmisionCliente *pCliente);
+    void loop();
     Mapa &mapa();
 //    nombreJugador generarMenuPrincipal();
     SDL_Renderer* renderer();

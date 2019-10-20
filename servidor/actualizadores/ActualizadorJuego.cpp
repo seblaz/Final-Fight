@@ -6,11 +6,15 @@
 #include "../NivelServidor.h"
 #include "../../modelo/Accion.h"
 #include "../../eventos/EventoPersonaje.h"
+#include "../../usuario/Usuario.h"
+#include "../../modelo/Actividad.h"
 
 ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador) :
         mapa(mapa),
         jugador(jugador),
-        eventos(eventos) {}
+        eventos(eventos) {
+    Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
+}
 
 void ActualizadorJuego::interpretarStream(stringstream &s) {
 
@@ -76,4 +80,26 @@ void ActualizadorJuego::interpretarStream(stringstream &s) {
 
 bool ActualizadorJuego::fin() {
     return fin_;
+}
+
+void ActualizadorJuego::actualizarJuego(Usuario *usuario) {
+    do {
+        stringstream s;
+        if (!usuario->getSocket()->recibir(s)) {
+            usuario->desconectar();
+            eventos->push(new SetActividadJugador(jugador, false));
+            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada. Se termina el hilo.");
+            pthread_exit(nullptr);
+        }
+        interpretarStream(s);
+    } while (!fin());
+
+}
+
+SetActividadJugador::SetActividadJugador(Entidad *jugador, bool activo) :
+        activo(activo),
+        jugador(jugador) {}
+
+void SetActividadJugador::resolver() {
+    jugador->getEstado<Actividad>("actividad")->activo = activo;
 }

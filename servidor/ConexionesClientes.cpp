@@ -29,7 +29,6 @@ void ConexionesClientes::manejarConexiones() {
         socklen_t newSockAddrSize = sizeof(newSockAddr);
         int nuevoSocket = accept(socketServidor, (sockaddr *) &newSockAddr, &newSockAddrSize);
         Socket socket(nuevoSocket);
-        sockets->agregar(socket);
 
         if (nuevoSocket < 0) {
             Locator::logger()->log(ERROR, "Error al aceptar el pedido de conexión del cliente.");

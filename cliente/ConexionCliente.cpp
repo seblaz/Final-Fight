@@ -21,12 +21,18 @@ ConexionCliente::ConexionCliente(const string &ip, int puerto) {
     sendSockAddr.sin_addr.s_addr = inet_addr(inet_ntoa(*(struct in_addr *) *host->h_addr_list));
     sendSockAddr.sin_port = htons(puerto);
     descriptorSocket = ::socket(AF_INET, SOCK_STREAM, 0);
+
+    if(descriptorSocket == -1){
+        Locator::logger()->log(ERROR, "No se pudo crear el descriptor de socket: " + string(strerror(errno)) + ".");
+        exit(0);
+    }
+
     int status = connect(descriptorSocket, (sockaddr *) &sendSockAddr, sizeof(sendSockAddr));
     if (status < 0) {
-        Locator::logger()->log(ERROR, "El cliente no pudo conectarse al servidor.");
+        Locator::logger()->log(ERROR, "El cliente no pudo conectarse al servidor: " + string(strerror(errno)) + ".");
         exit(0);
     } else {
-        Locator::logger()->log(INFO, "El cliente se conectó al servidor.");
+        Locator::logger()->log(INFO, "El cliente se conectó al servidor correctamente.");
     }
 
 }
