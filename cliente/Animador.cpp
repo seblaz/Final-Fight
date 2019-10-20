@@ -24,7 +24,10 @@ void Animador::actualizar(Entidad *entidad) {
                 auto *animacion = fabricaDeAnimaciones->golpear();
                 entidad->agregarEstado("animacion", animacion);
             }
-        } else if (tipoEstado == SALTANDO) {
+        }else if (tipoEstado == PATEANDO) {
+            auto *animacion = fabricaDeAnimaciones->patadaBasica();
+            entidad->agregarEstado("animacion", animacion);
+        }else if (tipoEstado == SALTANDO) {
             if( estado->getEstadoDePersonaje() == CAMINANDO ){
                 auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
                 entidad->agregarEstado("animacion", animacion);

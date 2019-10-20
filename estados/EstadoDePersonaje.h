@@ -17,7 +17,8 @@ enum ESTADO{
     SALTANDO,
     REPOSANDO,
     GOLPEANDO,
-    AGACHADO
+    AGACHADO,
+    PATEANDO
 };
 
 class EstadoDePersonaje : public Estado, public Comportamiento, public Serializable {

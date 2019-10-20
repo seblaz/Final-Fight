@@ -71,7 +71,7 @@ void Saltando::golpear(Entidad *entidad) {
         if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
             if (!pateando) {
                 pateando = true;
-                estadoDePersonaje = GOLPEANDO;
+                estadoDePersonaje = PATEANDO;
             }
         }
     } else {

@@ -24,7 +24,7 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     //xPersonaje->x = xMayorPersonaje;
     Locator::configuracion()->getIntValue("/scroll/derecho");
 
-    if ( xMayorPersonaje - xMenorPersonaje <= 800 ) { //HARDCODE = TAMAÑO de la pantalla menos los Margenes
+    if ( xMayorPersonaje - xMenorPersonaje <= 1000 ) { //HARDCODE = TAMAÑO de la pantalla menos los Margenes
         int xEscenario = posicionEscenario->getX();
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
