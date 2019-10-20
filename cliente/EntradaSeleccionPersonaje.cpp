@@ -2,16 +2,13 @@
 // Created by felipe on 12/10/19.
 //
 
-
 #include <SDL_keyboard.h>
-#include <SDL_events.h>
 #include "EntradaSeleccionPersonaje.h"
 #include "../modelo/Personaje.h"
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
 
 void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
-
     auto *personajeMarcado = pantalla->getEstado<Personaje>("personajeMarcado");
     if (framesInactivo == 0) {
         if (activo) {
@@ -31,7 +28,6 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
     } else {
         framesInactivo--;
     }
-
 }
 
 void EntradaSeleccionPersonaje::cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado) {

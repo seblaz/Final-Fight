@@ -23,9 +23,7 @@ public:
     bool activo = true;
 
     void actualizar(Entidad *) override;
-
     void cambiarAlPersonajeAnterior(Entidad *pantalla,  Personaje *personajeMarcado);
-
     void cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado);
 };
 
