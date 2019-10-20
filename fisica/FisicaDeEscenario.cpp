@@ -26,7 +26,7 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     int xEscenario = posicionEscenario->getX();
     xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo) {
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo) {
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
             xScrollDerecho = xMayorPersonaje;
