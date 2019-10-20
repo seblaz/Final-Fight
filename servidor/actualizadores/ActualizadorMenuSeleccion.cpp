@@ -6,6 +6,7 @@
 #include "../NivelServidor.h"
 #include "../../usuario/Usuario.h"
 #include "../../eventos/MostrarMenuSeleccion.h"
+#include "../../eventos/DesconectarVoluntariamente.h"
 
 ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
                                        enum PERSONAJE personaje_, Usuario *usuario_,
@@ -75,6 +76,11 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
                 evento = new ConfirmarSeleccion(selector, mapa, manager, HAGGAR, usuario, confirmacion);
                 eventos->push(evento);
                 fin_ = true;
+                break;
+            case FIN:
+                Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
+                evento = new DesconectarVoluntariamente(manager);
+                eventos->push(evento);
                 break;
             default:
                 Locator::logger()->log(ERROR, "El actualizador del menu de selección recibió una acción inválida.");

@@ -106,5 +106,5 @@ target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAG
   Compilar el servidor.
 ]]
 
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} modelo/TipoElemento.h modelo/TipoElemento.cpp modelo/Jugadores.h modelo/Jugadores.cpp)
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} modelo/TipoElemento.h modelo/TipoElemento.cpp modelo/Jugadores.h modelo/Jugadores.cpp eventos/DesconectarVoluntariamente.cpp eventos/DesconectarVoluntariamente.h)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

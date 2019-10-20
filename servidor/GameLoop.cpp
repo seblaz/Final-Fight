@@ -7,16 +7,17 @@
 #include "../servicios/Locator.h"
 #include <unistd.h>
 
-GameLoop::GameLoop(EventosAProcesar *eventos, EventoAProcesar *eventoAProcesar) :
+GameLoop::GameLoop(EventosAProcesar *eventos, EventoAProcesar *eventoAProcesar, ManagerUsuarios *managerUsuarios) :
         eventos(eventos),
-        eventoAProcesar(eventoAProcesar) {}
+        eventoAProcesar(eventoAProcesar),
+        managerUsuarios(managerUsuarios) {}
 
 void GameLoop::loop() {
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-    while (true) {
+    while (managerUsuarios->hayJugadoresConectados()) {
 //        size_t start = SDL_GetTicks();
 //
 //        size_t end = SDL_GetTicks();

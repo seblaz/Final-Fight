@@ -123,7 +123,7 @@ int main(int argc, const char **args) {
     eventosAProcesar->push(comenzar);
 
     auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
-    GameLoop gameLoop(eventosAProcesar, actualizar);
+    GameLoop gameLoop(eventosAProcesar, actualizar, &managerUsuarios);
     gameLoop.loop();
 
     /**

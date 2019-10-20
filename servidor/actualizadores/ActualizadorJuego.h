@@ -9,6 +9,7 @@
 #include "../../modelo/Mapa.h"
 #include "../../eventos/Eventos.h"
 #include "../../usuario/Usuario.h"
+#include "../../usuario/ManagerUsuarios.h"
 
 class ActualizadorJuego {
 
@@ -16,9 +17,10 @@ private:
     Mapa *mapa;
     EventosAProcesar *eventos;
     Entidad *jugador;
+    ManagerUsuarios* managerUsuarios;
 
 public:
-    explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador);
+    explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios);
     void interpretarStream(stringstream &s);
     void actualizarJuego(Usuario *pUsuario);
 

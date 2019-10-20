@@ -37,6 +37,6 @@ void ReceptorServidor::recibir() {
     eventos->push(new SetActividadJugador(jugador, true));
 
     // Actualizar el juego.
-    ActualizadorJuego actualizadorJuego(mapa, eventos, jugador);
+    ActualizadorJuego actualizadorJuego(mapa, eventos, jugador, manager);
     actualizadorJuego.actualizarJuego(usuario);
 }
