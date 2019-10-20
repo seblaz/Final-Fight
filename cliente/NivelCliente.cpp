@@ -80,111 +80,72 @@ void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {
 }
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
+    Configuracion *config = Locator::configuracion();
     Locator::logger()->log(INFO, "Se genera jugador.");
     SDL_Renderer *sdlRenderer = Locator::renderer();
 
     auto *personaje = jugador->getEstado<Personaje>("personaje");
     auto *numeroJugador = jugador->getEstado<NumeroJugador>("numeroJugador");
-    Locator::logger()->log(INFO, "Se obtuvo personaje." + personaje->getPersonaje());
-    Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
 
-    switch (numeroJugador->numeroJugador) {
-        case 1: {
-            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador1.png");
-            jugador->agregarEstado("spriteIndicador", spriteIndicador);
-        }
-            break;
-        case 2: {
-            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador2.png");
-            jugador->agregarEstado("spriteIndicador", spriteIndicador);
-        }
-            break;
-        case 3: {
-            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador3.png");
-            jugador->agregarEstado("spriteIndicador", spriteIndicador);
-        }
-            break;
-        case 4: {
-            auto *spriteIndicador = new Sprite(sdlRenderer, "assets/varios/indicador4.png");
-            jugador->agregarEstado("spriteIndicador", spriteIndicador);
-        }
-            break;
+    Locator::logger()->log(INFO, "Se obtuvo jugador numero: " + to_string(numeroJugador->numeroJugador));
 
-    };
+    string srcSprite = config->getValue(
+            "/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
 
+
+    auto *spriteIndicador = new Sprite(sdlRenderer, srcSprite);
     auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
     auto *animacionIndicador = fabricaDeAnimacionesIndicador->indicador();
+
+    jugador->agregarEstado("spriteIndicador", spriteIndicador);
     jugador->agregarEstado("animacionIndicador", animacionIndicador);
 
+    string srcSpritePersonaje = "";
 
     switch (personaje->getPersonaje()) {
-        case HAGGAR: {
-            Locator::logger()->log(DEBUG, "Se va a crear jugador haggar");
+        case HAGGAR:{
+            srcSpritePersonaje = config->getValue("/personajes/haggar/src");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
-
-            auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/haggar.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
-            auto *estado = new Reposando();
-            auto *animador = new Animador();
-            jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
-            jugador->agregarComportamiento("grafico", grafico);
-            jugador->agregarComportamiento("animador", animador);
         }
             break;
-        case CODY: {
-            Locator::logger()->log(DEBUG, "Se va a crear jugador coddy");
+        case CODY:{
+            srcSpritePersonaje = config->getValue("/personajes/cody/src");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
-            auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
-            auto *estado = new Reposando();
-            auto *animador = new Animador();
-            jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
-            jugador->agregarComportamiento("grafico", grafico);
-            jugador->agregarComportamiento("animador", animador);
         }
             break;
-        case MAKI: {
-            Locator::logger()->log(DEBUG, "Se va a crear jugador maki");
+        case MAKI:
+        {
+            srcSpritePersonaje = config->getValue("/personajes/maki/src");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
-            auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/maki.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
-            auto *estado = new Reposando();
-            auto *animador = new Animador();
-            jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
-            jugador->agregarComportamiento("grafico", grafico);
-            jugador->agregarComportamiento("animador", animador);
         }
             break;
-        case GUY: {
-            Locator::logger()->log(DEBUG, "Se va a crear jugador guy");
+        case GUY:{
+            srcSpritePersonaje = config->getValue("/personajes/guy/src");
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
-            auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
-            auto *estado = new Reposando();
-            auto *animador = new Animador();
-            jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
-            jugador->agregarComportamiento("grafico", grafico);
-            jugador->agregarComportamiento("animador", animador);
         }
             break;
     }
 
+    auto *spriteJugador = new Sprite(sdlRenderer, srcSpritePersonaje);
+    auto *grafico = new Grafico();
+    auto *estado = new Reposando();
+    auto *animador = new Animador();
+    jugador->agregarEstado("sprite", spriteJugador);
+    jugador->agregarEstado("estado", estado);
+    jugador->agregarComportamiento("grafico", grafico);
+    jugador->agregarComportamiento("animador", animador);
 
 }
 
