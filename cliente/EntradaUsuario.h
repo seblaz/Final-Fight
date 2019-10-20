@@ -41,8 +41,6 @@ public:
     Accion *getAccion() override;
     explicit EntradaMenuSeleccion(Entidad *entidad) ;
     Entidad* getEntidad() { return entidad; };
-    void cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const;
-    void cambiarSpriteAlSiguiente(enum PERSONAJE personajeMarcado) const;
 };
 
 class EntradaJuego : public EntradaUsuario {

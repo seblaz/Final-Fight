@@ -28,6 +28,7 @@
 #include "EntradaSeleccionPersonaje.h"
 #include "../modelo/NumeroJugador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeSelectorMenu.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
@@ -53,16 +54,21 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
+    string srcSprite = config->getValue("/pantallaDeSeleccion/fondo/src");
     auto *renderer = Locator::renderer();
     auto *sprite = new Sprite(renderer, srcSprite);
     auto *grafico = new GraficoDePantallaCompleta();
     auto *entrada = new EntradaSeleccionPersonaje();
     auto *personaje = new Personaje(GUY);
 
+    auto *spriteSelector = new Sprite(renderer, "assets/varios/selectorMenu.png");
+    auto *fabricaDeAnimacionesSelectorMenu = new FabricaDeAnimacionesDeSelectorMenu();
+    auto *animacionSelectorMenu = fabricaDeAnimacionesSelectorMenu->selector();
+
+    pantalla->agregarEstado("selector_menu", animacionSelectorMenu);
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
-    pantalla->agregarComportamiento("grafico", grafico);
+    pantalla->agregarEstado("sprite_selector_menu", spriteSelector);
     pantalla->agregarEstado("personajeMarcado", personaje);
     pantalla->agregarComportamiento("grafico", grafico);
     pantalla->agregarComportamiento("entrada", entrada);

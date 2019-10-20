@@ -5,27 +5,22 @@
 #ifndef FINAL_FIGHT_ENTRADASELECCIONPERSONAJE_H
 #define FINAL_FIGHT_ENTRADASELECCIONPERSONAJE_H
 
-#include <SDL_system.h>
 #include "../modelo/Entidad.h"
 #include "../servicios/Configuracion.h"
 #include "../modelo/Personaje.h"
 
 class EntradaSeleccionPersonaje : public Comportamiento {
 
-private:
-    int delay = 10;
-
 public:
+
+    int framesPorAccion = 7;
+    int framesInactivo = 0;
 
     bool activo = true;
 
     void actualizar(Entidad *) override;
-
-    void cambiarSpriteAlAnterior(Entidad *pantalla, Configuracion *config, SDL_Renderer *renderer,
-                                 Personaje *personajeMarcado) const;
-
-    void cambiarSpriteAlSiguiente(Entidad *pantalla, Configuracion *config, SDL_Renderer *renderer,
-                                  Personaje *personajeMarcado) const;
+    void cambiarAlPersonajeAnterior(Entidad *pantalla,  Personaje *personajeMarcado);
+    void cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado);
 };
 
 
