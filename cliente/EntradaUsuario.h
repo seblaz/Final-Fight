@@ -62,6 +62,7 @@ private:
     std::mutex m;
     Socket socket;
     EntradaUsuario *entradaUsuario;
+    bool fin = false;
 
     void transmitir();
 
@@ -73,6 +74,8 @@ public:
     void setEntradaUsuario(EntradaUsuario *entradaUsuario);
 
     pthread_t transmitirEnHilo();
+
+    void finalizar();
 };
 
 #endif //FINAL_FIGHT_ENTRADAUSUARIO_H

@@ -24,7 +24,8 @@ enum ACCION {
     SELECCIONAR_CODY,
     SELECCIONAR_HAGGAR,
     SELECCIONAR_GUY,
-    SELECCIONAR_MAKI
+    SELECCIONAR_MAKI,
+    FIN
 };
 
 class Accion : public Serializable {

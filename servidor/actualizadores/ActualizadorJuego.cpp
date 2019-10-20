@@ -73,13 +73,8 @@ void ActualizadorJuego::interpretarStream(stringstream &s) {
                 break;
             default:
                 Locator::logger()->log(ERROR, "Se recibió una acción inválida en ActualizarJuego.");
-                fin_ = true;
         }
     }
-}
-
-bool ActualizadorJuego::fin() {
-    return fin_;
 }
 
 void ActualizadorJuego::actualizarJuego(Usuario *usuario) {
@@ -92,8 +87,7 @@ void ActualizadorJuego::actualizarJuego(Usuario *usuario) {
             pthread_exit(nullptr);
         }
         interpretarStream(s);
-    } while (!fin());
-
+    } while (true);
 }
 
 SetActividadJugador::SetActividadJugador(Entidad *jugador, bool activo) :

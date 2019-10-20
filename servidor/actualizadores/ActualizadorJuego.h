@@ -13,7 +13,6 @@
 class ActualizadorJuego {
 
 private:
-    bool fin_ = false;
     Mapa *mapa;
     EventosAProcesar *eventos;
     Entidad *jugador;
@@ -21,7 +20,6 @@ private:
 public:
     explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador);
     void interpretarStream(stringstream &s);
-    bool fin();
     void actualizarJuego(Usuario *pUsuario);
 
 };

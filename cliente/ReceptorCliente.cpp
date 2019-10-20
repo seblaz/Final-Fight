@@ -13,7 +13,7 @@ ReceptorCliente::ReceptorCliente(Socket socket) :
         socket(socket) {}
 
 void ReceptorCliente::recibir() {
-    while (true) {
+    while (conexionActiva) {
         stringstream s;
         if(!socket.recibir(s)){
             Locator::logger()->log(ERROR, "Se detecta desconexión del servidor.");
@@ -53,4 +53,8 @@ pthread_t ReceptorCliente::recibirEnHilo() {
 
 bool ReceptorCliente::conexionEstaActiva(){
     return conexionActiva;
+}
+
+void ReceptorCliente::finalizar() {
+    conexionActiva = false;
 }

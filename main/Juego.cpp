@@ -57,9 +57,7 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::validarUserPass() {
-    bool exit = false;
-
+bool Juego::validarUserPass() {
     while (!exit) {
         processInput();
         string user;
@@ -88,30 +86,29 @@ void Juego::validarUserPass() {
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
-                std::exit(0);
+                return false;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-                std::exit(0);
+                return false;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
-                exit = true;
-                break;
+                return true;
         }
     }
+    return false;
 }
 
 void Juego::loop() {
 
-    validarUserPass();
+    if(!validarUserPass()) return;
 
-    exit = false;
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
     pthread_t hiloRecepcion = receptor.recibirEnHilo();
 
     /**
-    * Transmisión de acciones.
-    */
+     * Transmisión de acciones.
+     */
     EntradaNula entrada;
     TrasmisionCliente trasmision(Locator::socket(), &entrada);
     pthread_t hiloTransmision = trasmision.transmitirEnHilo();
@@ -128,6 +125,8 @@ void Juego::loop() {
         graficar();
     }
 
+    trasmision.finalizar();
+    receptor.finalizar();
     pthread_join(hiloTransmision, nullptr);
     pthread_join(hiloRecepcion, nullptr);
 }
@@ -135,6 +134,9 @@ void Juego::loop() {
 void Juego::processInput() {
     SDL_Event e;
     if (SDL_PollEvent(&e) && (e.type == SDL_QUIT)) {
+        stringstream s;
+        Accion(FIN).serializar(s);
+        Locator::socket().enviar(s);
         exit = true;
     }
 }

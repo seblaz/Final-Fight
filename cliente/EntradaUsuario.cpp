@@ -178,7 +178,7 @@ void TrasmisionCliente::transmitir() {
 
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Milisegundos.
 
-    while (true) {
+    while (!fin) {
         size_t start = SDL_GetTicks();
 
         Accion *accion = getEntradaUsuario()->getAccion();
@@ -206,4 +206,8 @@ pthread_t TrasmisionCliente::transmitirEnHilo() {
 
     Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
     return hilo;
+}
+
+void TrasmisionCliente::finalizar() {
+    fin = true;
 }

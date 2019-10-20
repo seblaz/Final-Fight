@@ -22,7 +22,7 @@ private:
     void actualizar();
     void graficar();
     void clearScene();
-    void validarUserPass();
+    bool validarUserPass();
 
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;

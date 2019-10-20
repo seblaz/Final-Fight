@@ -24,6 +24,8 @@ public:
     void devolverStreamMasReciente(stringstream &s);
     pthread_t recibirEnHilo();
     bool conexionEstaActiva();
+
+    void finalizar();
 };
 
 
