@@ -12,7 +12,7 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
     Configuracion *config = Locator::configuracion();
     scrollIzquierdo = config->getIntValue("/scroll/izquierdo");
     scrollDerecho = config->getIntValue("/scroll/derecho");
-    ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    ancho = config->getIntValue("/resolucion/ancho");
     xScrollIzquierdo = scrollIzquierdo;
     xScrollDerecho = ancho - scrollDerecho;
 }
@@ -36,7 +36,7 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
             xScrollDerecho = xEscenario + ancho - scrollDerecho;
         }
     }else {
-        mapa->getJugadores()->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
+        jugadores->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
     if (xMayorPersonaje > largo) {

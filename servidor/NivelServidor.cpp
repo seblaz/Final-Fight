@@ -69,13 +69,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     Jugadores* jugadores = mapa->getJugadores();
     jugadores->reiniciarPosiciones(200, 100);
 
-    Entidad *jugador = mapa->getJugador();
-    //auto *posicionDeJugador = jugador->getEstado<Posicion>("posicion");
-    //auto *posicionesDeJugadores = jugadores->getPosiciones();
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
-    //escenario->agregarEstado("posicion de jugador", posicionDeJugador);
-    //escenario->agregarEstado("posicion de jugadores", jugadores);
-    jugador->agregarEstado("posicion de escenario", posicionDeEscenario);
 
     generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
     generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
@@ -113,7 +107,6 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 }
 
 void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Jugadores* posicionDeJugadores) {
-    //Locator::logger()->log(DEBUG, "Se genera transicion");
 
     Entidad *transicion = mapa->crearEntidad();
     auto *tipo = new Tipo(TRANSICION);

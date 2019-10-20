@@ -10,9 +10,6 @@
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
-    for(auto tuple : jugadores){
-        posiciones[tuple.first] = tuple.second->getEstado<Posicion>("posicion");
-    }
 }
 
 int Jugadores::getMayorX() {
@@ -38,10 +35,6 @@ void Jugadores::reiniciarPosiciones(int x, int y) {
         tuple.second->getEstado<Posicion>("posicion")->x = x;
         tuple.second->getEstado<Posicion>("posicion")->y = y;
     }
-}
-
-unordered_map<IdEntidad, Posicion *>* Jugadores::getPosiciones() {
-    return &posiciones;
 }
 
 void Jugadores::bloquearMovientos(int scrollIzquierdo, int scrollDerecho) {

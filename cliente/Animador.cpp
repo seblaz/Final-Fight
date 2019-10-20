@@ -14,25 +14,14 @@ void Animador::actualizar(Entidad *entidad) {
         enum ESTADO tipoEstado = estado->getNuevoEstado();
         auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
         if (tipoEstado == GOLPEANDO) {
-            if( estado->getEstadoDePersonaje() == SALTANDO ) {
-                auto *animacion = fabricaDeAnimaciones->patadaBasica();
-                entidad->agregarEstado("animacion", animacion);
-            }else if( estado->getEstadoDePersonaje() == GOLPEANDO ) {
-                auto *animacion = fabricaDeAnimaciones->reposando();
-                entidad->agregarEstado("animacion", animacion);
-            }else{
-                auto *animacion = fabricaDeAnimaciones->golpear();
-                entidad->agregarEstado("animacion", animacion);
-            }
+            auto *animacion = fabricaDeAnimaciones->golpear();
+            entidad->agregarEstado("animacion", animacion);
         }else if (tipoEstado == PATEANDO) {
             auto *animacion = fabricaDeAnimaciones->patadaBasica();
             entidad->agregarEstado("animacion", animacion);
         }else if (tipoEstado == SALTANDO) {
             if( estado->getEstadoDePersonaje() == CAMINANDO ){
                 auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
-                entidad->agregarEstado("animacion", animacion);
-            }else if( estado->getEstadoDePersonaje() == SALTANDO ) {
-                auto *animacion = fabricaDeAnimaciones->reposando();
                 entidad->agregarEstado("animacion", animacion);
             }else{
                 auto *animacion = fabricaDeAnimaciones->saltando();

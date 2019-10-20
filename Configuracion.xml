@@ -111,7 +111,7 @@
                     </neumatico>
                 </objetos>
                 <enemigos>
-                    <cantidad>5</cantidad>
+                    <cantidad>0</cantidad>
                     <sprite>
                         <src>assets/personajes/poison.png</src>
                     </sprite>
