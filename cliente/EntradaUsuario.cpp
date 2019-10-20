@@ -41,88 +41,11 @@ Accion *EntradaMenuSeleccion::getAccion() {
                         return new Accion(SELECCIONAR_MAKI);
                 }
                 framesInactivo = framesPorAccion;
-            } else if (entrada[SDL_SCANCODE_LEFT]) {
-                cambiarSpriteAlAnterior(personajeMarcado);
-                framesInactivo = framesPorAccion;
-            } else if (entrada[SDL_SCANCODE_RIGHT]) {
-                cambiarSpriteAlSiguiente(personajeMarcado);
-                framesInactivo = framesPorAccion;
             }
+        } else {
+            framesInactivo--;
         }
-    } else {
-        framesInactivo--;
-    }
-    return nullptr;
-}
-
-void EntradaMenuSeleccion::cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const {
-    Configuracion *config = Locator::configuracion();
-    auto *renderer = Locator::renderer();
-//    delete entidad->getEstado<Sprite>("sprite");
-    switch (personajeMarcado) {
-        case GUY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(MAKI));
-        }
-            break;
-        case CODY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(GUY));
-        }
-            break;
-        case HAGGAR: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(CODY));
-        }
-            break;
-        case MAKI: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
-        }
-            break;
-    }
-}
-
-void EntradaMenuSeleccion::cambiarSpriteAlSiguiente(enum PERSONAJE personajeMarcado) const {
-    Configuracion *config = Locator::configuracion();
-    auto *renderer = Locator::renderer();
-    switch (personajeMarcado) {
-        case GUY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(CODY));
-        }
-            break;
-        case CODY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
-        }
-            break;
-        case HAGGAR: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(MAKI));
-        }
-            break;
-        case MAKI: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            entidad->agregarEstado("sprite", sprite);
-            entidad->agregarEstado("personajeMarcado", new Personaje(GUY));
-        }
-            break;
+        return nullptr;
     }
 }
 
@@ -185,7 +108,7 @@ void TrasmisionCliente::transmitir() {
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            if(!socket.enviar(s)) break;
+            if (!socket.enviar(s)) break;
         }
 
         size_t end = SDL_GetTicks();

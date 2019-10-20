@@ -59,10 +59,14 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     auto *grafico = new GraficoDePantallaCompleta();
     auto *entrada = new EntradaSeleccionPersonaje();
     auto *personaje = new Personaje(GUY);
+    auto *spriteSelector = new Sprite(renderer, "assets/varios/indicador1.png");
+    auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
+    auto *animacionIndicador = fabricaDeAnimacionesIndicador->indicador();
 
+    pantalla->agregarEstado("animacion_selector", animacionIndicador);
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
-    pantalla->agregarComportamiento("grafico", grafico);
+    pantalla->agregarEstado("sprite_selector", spriteSelector);
     pantalla->agregarEstado("personajeMarcado", personaje);
     pantalla->agregarComportamiento("grafico", grafico);
     pantalla->agregarComportamiento("entrada", entrada);

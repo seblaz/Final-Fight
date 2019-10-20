@@ -11,7 +11,7 @@
 #include "../graficos/Sprite.h"
 
 void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
-    /*
+
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
     Configuracion *config = Locator::configuracion();
     auto *renderer = Locator::renderer();
@@ -20,98 +20,72 @@ void EntradaSeleccionPersonaje::actualizar(Entidad *pantalla) {
 
     SDL_Event e;
 
-    while (SDL_PollEvent(&e)) {
-        switch (e.type) {
-            case SDL_KEYDOWN:
-                switch (e.key.keysym.sym) {
-                    case SDLK_LEFT:
-                        if (activo) {
-                            cambiarSpriteAlAnterior(pantalla, config, renderer, personajeMarcado);
-                        }
-                        break;
-                    case SDLK_RIGHT:
-                        if (activo) {
-                            cambiarSpriteAlSiguiente(pantalla, config, renderer, personajeMarcado);
-                        }
-                        break;
-                    case SDLK_RETURN:
-                        activo = false;
-                        break;
-                }
-                break;
-            case SDL_QUIT: {
-                exit(1);
+    if (framesInactivo == 0) {
+        if (activo) {
+            const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+            //   enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
+            if (entrada[SDL_SCANCODE_LEFT]) {
+                Locator::logger()->log(DEBUG, "SE selecciono izquierda");
+                cambiarAlPersonajeAnterior(pantalla, personajeMarcado);
+            } else if (entrada[SDL_SCANCODE_RIGHT]) {
+                Locator::logger()->log(DEBUG, "Se selecciono derecha");
+                cambiarAlPersonajeSiguiente(pantalla, personajeMarcado);
+            } else if (entrada[SDL_SCANCODE_RETURN]) {
+                Locator::logger()->log(DEBUG, "Se selecciono enter. Borrar indicador");
+                activo = false;
             }
+            framesInactivo = framesPorAccion;
         }
-
+    } else {
+        framesInactivo--;
     }
-     */
+
 }
 
-void EntradaSeleccionPersonaje::cambiarSpriteAlSiguiente(Entidad *pantalla, Configuracion *config,
-                                                         SDL_Renderer *renderer,
-                                                         Personaje *personajeMarcado) const {
+void EntradaSeleccionPersonaje::cambiarAlPersonajeAnterior(Entidad *pantalla, Personaje *personajeMarcado) {
     switch (personajeMarcado->getPersonaje()) {
         case GUY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a cody");
             pantalla->agregarEstado("personajeMarcado", new Personaje(CODY));
         }
             break;
         case CODY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a haggar");
             pantalla->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
         }
             break;
         case HAGGAR: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a maki");
             pantalla->agregarEstado("personajeMarcado", new Personaje(MAKI));
         }
             break;
         case MAKI: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a guy");
             pantalla->agregarEstado("personajeMarcado", new Personaje(GUY));
         }
             break;
     }
 }
 
-void EntradaSeleccionPersonaje::cambiarSpriteAlAnterior(Entidad *pantalla, Configuracion *config,
-                                                        SDL_Renderer *renderer,
-                                                        Personaje *personajeMarcado) const {
+void EntradaSeleccionPersonaje::cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado) {
     switch (personajeMarcado->getPersonaje()) {
         case GUY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/maki/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a maki");
             pantalla->agregarEstado("personajeMarcado", new Personaje(MAKI));
         }
             break;
         case CODY: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/guy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a guy");
             pantalla->agregarEstado("personajeMarcado", new Personaje(GUY));
         }
             break;
         case HAGGAR: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/coddy/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a cody");
             pantalla->agregarEstado("personajeMarcado", new Personaje(CODY));
         }
             break;
         case MAKI: {
-            string srcSprite = config->getValue("/pantallaDeSeleccion/haggar/src");
-            auto *sprite = new Sprite(renderer, srcSprite);
-            pantalla->agregarEstado("sprite", sprite);
+            Locator::logger()->log(DEBUG, "Se marco a haggar");
             pantalla->agregarEstado("personajeMarcado", new Personaje(HAGGAR));
         }
             break;

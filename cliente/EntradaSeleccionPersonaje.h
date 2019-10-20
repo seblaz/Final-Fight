@@ -17,15 +17,16 @@ private:
 
 public:
 
+    int framesPorAccion = 20;
+    int framesInactivo = 0;
+
     bool activo = true;
 
     void actualizar(Entidad *) override;
 
-    void cambiarSpriteAlAnterior(Entidad *pantalla, Configuracion *config, SDL_Renderer *renderer,
-                                 Personaje *personajeMarcado) const;
+    void cambiarAlPersonajeAnterior(Entidad *pantalla,  Personaje *personajeMarcado);
 
-    void cambiarSpriteAlSiguiente(Entidad *pantalla, Configuracion *config, SDL_Renderer *renderer,
-                                  Personaje *personajeMarcado) const;
+    void cambiarAlPersonajeSiguiente(Entidad *pantalla, Personaje *personajeMarcado);
 };
 
 
