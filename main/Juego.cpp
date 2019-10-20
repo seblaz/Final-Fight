@@ -57,14 +57,11 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::validarUserPass() {
-    bool exit = false;
-
+bool Juego::validarUserPass() {
     while (!exit) {
         processInput();
         string user;
         string pass;
-
 
         cout << "Ingrese nombre de usuario" << endl;
         cin >> user;
@@ -88,30 +85,29 @@ void Juego::validarUserPass() {
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
-                std::exit(0);
+                return false;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-                std::exit(0);
+                return false;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
-                exit = true;
-                break;
+                return true;
         }
     }
+    return false;
 }
 
 void Juego::loop() {
 
-    validarUserPass();
+    if(exit || !validarUserPass()) return;
 
-    exit = false;
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
-    receptor.recibirEnHilo();
+    pthread_t hiloRecepcion = receptor.recibirEnHilo();
 
     /**
-    * Transmisión de acciones.
-    */
+     * Transmisión de acciones.
+     */
     EntradaNula entrada;
     TrasmisionCliente trasmision(Locator::socket(), &entrada);
     pthread_t hiloTransmision = trasmision.transmitirEnHilo();
@@ -122,18 +118,24 @@ void Juego::loop() {
 
         if (!receptor.conexionEstaActiva()) break;
         receptor.devolverStreamMasReciente(s);
-
-        if (!s) break;
         actualizador.actualizarEntidades(s, &trasmision);
         clearScene();
         actualizar();
         graficar();
     }
+
+    trasmision.finalizar();
+    receptor.finalizar();
+    pthread_join(hiloTransmision, nullptr);
+    pthread_join(hiloRecepcion, nullptr);
 }
 
 void Juego::processInput() {
     SDL_Event e;
     if (SDL_PollEvent(&e) && (e.type == SDL_QUIT)) {
+        stringstream s;
+        Accion(FIN).serializar(s);
+        Locator::socket().enviar(s);
         exit = true;
     }
 }
@@ -182,70 +184,3 @@ SDL_Renderer *Juego::renderer() {
 Mapa &Juego::mapa() {
     return mapa_;
 }
-
-//nombreJugador Juego::menuPrincipal(){
-//    Locator::logger()->log(INFO, "Se carga menu Principal");
-//    Configuracion *config = Locator::configuracion();
-//    string srcSprite = config->getValue("/pantallaPrincipal/sprite/src");
-//    SDL_Renderer *renderer = Locator::renderer();
-//    const int SCREEN_WIDTH = Locator::configuracion()->getIntValue("/resolucion/ancho");
-//    const int SCREEN_HEIGHT = Locator::configuracion()->getIntValue("/resolucion/alto");
-//    SDL_Event e;
-//    bool quit = false;
-//    char *srcSpritesJugadores[] = {
-//        "assets/varios/selectorJugadorGuy.png",
-//        "assets/varios/selectorJugadorCody.png",
-//        "assets/varios/selectorJugadorHaggar.png",
-//        "assets/varios/selectorJugadorMaki.png"
-//    };
-//    string srcSpriteSelector;
-//    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-//
-//    while (!quit){
-//        while(SDL_PollEvent(&e))
-//        if (e.key.keysym.sym == SDLK_DOWN)
-//            quit = true;
-//
-//        SDL_Surface * window_surface = SDL_GetWindowSurface(window);
-//        int flags = IMG_INIT_JPG | IMG_INIT_PNG;
-//        int initted = IMG_Init(flags);
-//        SDL_Surface * image_surface = IMG_Load(srcSprite.c_str());
-//
-//        SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image_surface);
-//        SDL_RenderCopy(renderer, texture, NULL, NULL);
-//        SDL_RenderPresent(renderer);
-//        SDL_DestroyTexture(texture);
-//        SDL_FreeSurface(image_surface);
-//
-//        clearScene();
-//    }
-//    quit = false;
-//    int pos = 3;
-//    while (!quit){
-//        while(SDL_PollEvent(&e)) {
-//            if(e.key.keysym.sym == SDLK_LEFT && pos > 0)
-//                pos--;
-//            if(e.key.keysym.sym == SDLK_RIGHT && pos < CANTIDAD_JUGADORES)
-//                pos++;
-//
-//            if(e.key.keysym.sym == SDLK_UP)
-//                quit = true;
-//            //printf("%s\n", srcSprite.c_str());
-//            SDL_Surface * window_surface = SDL_GetWindowSurface(window);
-//            int flags = IMG_INIT_JPG | IMG_INIT_PNG;
-//            int initted = IMG_Init(flags);
-//            srcSpriteSelector = srcSpritesJugadores[pos];
-//
-//            SDL_Surface * image_surface = IMG_Load(srcSpriteSelector.c_str());
-//
-//            SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image_surface);
-//            SDL_RenderCopy(renderer, texture, NULL, NULL);
-//            SDL_RenderPresent(renderer);
-//            SDL_DestroyTexture(texture);
-//            SDL_FreeSurface(image_surface);
-//        }
-//        clearScene();
-//    }
-//
-//    return (nombreJugador) pos;
-//}

@@ -10,6 +10,7 @@
 #include "../modelo/Accion.h"
 #include "../modelo/Socket.h"
 #include "../modelo/Personaje.h"
+#include "../servicios/Configuracion.h"
 
 /**
  * Lectura de input de usuario.
@@ -33,13 +34,15 @@ class EntradaMenuSeleccion : public EntradaUsuario {
 private:
     Entidad *entidad;
     bool activo = true;
+    int framesPorAccion = 20;
+    int framesInactivo = 0;
 
 public:
     Accion *getAccion() override;
-
     explicit EntradaMenuSeleccion(Entidad *entidad) ;
-
     Entidad* getEntidad() { return entidad; };
+    void cambiarSpriteAlAnterior(enum PERSONAJE personajeMarcado) const;
+    void cambiarSpriteAlSiguiente(enum PERSONAJE personajeMarcado) const;
 };
 
 class EntradaJuego : public EntradaUsuario {
@@ -59,6 +62,7 @@ private:
     std::mutex m;
     Socket socket;
     EntradaUsuario *entradaUsuario;
+    bool fin = false;
 
     void transmitir();
 
@@ -70,6 +74,8 @@ public:
     void setEntradaUsuario(EntradaUsuario *entradaUsuario);
 
     pthread_t transmitirEnHilo();
+
+    void finalizar();
 };
 
 #endif //FINAL_FIGHT_ENTRADAUSUARIO_H
