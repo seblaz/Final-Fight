@@ -5,27 +5,23 @@
 #include "NivelCliente.h"
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
-#include "../graficos/GraficoDePantallaCompleta.h"
-#include "../modelo/Posicion.h"
+#include "../graficos/GraficoMenuSeleccion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "../estados/EstadoDePersonaje.h"
 #include "../estados/Reposando.h"
 #include "../modelo/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
 #include "../graficos/GraficoDeTransicion.h"
-#include "../modelo/Opacidad.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../modelo/TipoElemento.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
-#include "EntradaSeleccionPersonaje.h"
 #include "../modelo/NumeroJugador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeSelectorMenu.h"
@@ -41,10 +37,8 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 
     auto *sprite = new Sprite(sdlRenderer, srcSprite);
     auto *posicion = new Posicion(0, 0, 0);
-    auto *grafico = new GraficoDePantallaCompleta();
-//    auto *entrada = new EntradaPantallaDeEspera();
+    auto *grafico = new GraficoMenuSeleccion();
 
-//    pantalla->agregarComportamiento("entrada", entrada);
     pantalla->agregarEstado("posicion", posicion);
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
@@ -57,13 +51,11 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     string srcSprite = config->getValue("/pantallaDeSeleccion/fondo/src");
     auto *renderer = Locator::renderer();
     auto *sprite = new Sprite(renderer, srcSprite);
-    auto *grafico = new GraficoDePantallaCompleta();
-    auto *entrada = new EntradaSeleccionPersonaje();
+    auto *grafico = new GraficoMenuSeleccion();
     auto *personaje = new Personaje(GUY);
 
     auto *spriteSelector = new Sprite(renderer, "assets/varios/selectorMenu.png");
-    auto *fabricaDeAnimacionesSelectorMenu = new FabricaDeAnimacionesDeSelectorMenu();
-    auto *animacionSelectorMenu = fabricaDeAnimacionesSelectorMenu->selector();
+    auto *animacionSelectorMenu = FabricaDeAnimacionesDeSelectorMenu::selector();
 
     pantalla->agregarEstado("selector_menu", animacionSelectorMenu);
     pantalla->agregarEstado("sprite", sprite);
@@ -71,7 +63,6 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     pantalla->agregarEstado("sprite_selector_menu", spriteSelector);
     pantalla->agregarEstado("personajeMarcado", personaje);
     pantalla->agregarComportamiento("grafico", grafico);
-    pantalla->agregarComportamiento("entrada", entrada);
 }
 
 void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {
@@ -94,13 +85,12 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
 
 
     auto *spriteIndicador = new Sprite(sdlRenderer, srcSprite);
-    auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
-    auto *animacionIndicador = fabricaDeAnimacionesIndicador->indicador();
+    auto *animacionIndicador = FabricaDeAnimacionesDeIndicador::indicador();
 
     jugador->agregarEstado("spriteIndicador", spriteIndicador);
     jugador->agregarEstado("animacionIndicador", animacionIndicador);
 
-    string srcSpritePersonaje = "";
+    string srcSpritePersonaje;
 
     switch (personaje->getPersonaje()) {
         case HAGGAR:{

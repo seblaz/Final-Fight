@@ -32,15 +32,16 @@ public:
 class EntradaMenuSeleccion : public EntradaUsuario {
 
 private:
-    Entidad *entidad;
+    Entidad *pantalla;
     bool activo = true;
     int framesPorAccion = 20;
     int framesInactivo = 0;
+    static void cambiarAlPersonajeAnterior(Personaje *personajeMarcado);
+    static void cambiarAlPersonajeSiguiente(Personaje *personajeMarcado);
 
 public:
     Accion *getAccion() override;
     explicit EntradaMenuSeleccion(Entidad *entidad) ;
-    Entidad* getEntidad() { return entidad; };
 };
 
 class EntradaJuego : public EntradaUsuario {

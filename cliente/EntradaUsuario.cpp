@@ -16,32 +16,56 @@ Accion *EntradaNula::getAccion() {
     return nullptr;
 }
 
-EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *entidad_) :
-        entidad(entidad_) {}
+EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *pantalla) :
+        pantalla(pantalla) {}
 
 Accion *EntradaMenuSeleccion::getAccion() {
+    if (framesInactivo == 0) {
+        if (activo) {
+            const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
+            auto* personaje = pantalla->getEstado<Personaje>("personajeMarcado");
 
-    const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-    enum PERSONAJE personajeMarcado = getEntidad()->getEstado<Personaje>("personajeMarcado")->getPersonaje();
-    if (entrada[SDL_SCANCODE_RETURN]) {
-        switch (personajeMarcado) {
-            case GUY:
-                Locator::logger()->log(DEBUG, "Se selecciono guy.");
-                return new Accion(SELECCIONAR_GUY);
-            case CODY:
-                Locator::logger()->log(DEBUG, "Se selecciono cody.");
-                return new Accion(SELECCIONAR_CODY);
-            case HAGGAR:
-                Locator::logger()->log(DEBUG, "Se selecciono haggar.");
-                return new Accion(SELECCIONAR_HAGGAR);
-            case MAKI:
-                Locator::logger()->log(DEBUG, "Se selecciono maki.");
-                return new Accion(SELECCIONAR_MAKI);
+            if (entrada[SDL_SCANCODE_LEFT]) {
+                cambiarAlPersonajeAnterior(personaje);
+                framesInactivo = framesPorAccion;
+
+            } else if (entrada[SDL_SCANCODE_RIGHT]) {
+                cambiarAlPersonajeSiguiente(personaje);
+                framesInactivo = framesPorAccion;
+
+            } else if (entrada[SDL_SCANCODE_RETURN]) {
+                activo = false;
+                Locator::logger()->log(DEBUG, "Se selecciono enter.");
+                switch (personaje->getPersonaje()) {
+                    case GUY:
+                        Locator::logger()->log(DEBUG, "Se selecciono guy.");
+                        return new Accion(SELECCIONAR_GUY);
+                    case CODY:
+                        Locator::logger()->log(DEBUG, "Se selecciono cody.");
+                        return new Accion(SELECCIONAR_CODY);
+                    case HAGGAR:
+                        Locator::logger()->log(DEBUG, "Se selecciono haggar.");
+                        return new Accion(SELECCIONAR_HAGGAR);
+                    case MAKI:
+                        Locator::logger()->log(DEBUG, "Se selecciono maki.");
+                        return new Accion(SELECCIONAR_MAKI);
+                }
+            }
         }
+    } else {
+        framesInactivo--;
     }
     return nullptr;
 }
 
+void EntradaMenuSeleccion::cambiarAlPersonajeSiguiente(Personaje *personajeMarcado) {
+    personajeMarcado->setPersonaje(static_cast<enum PERSONAJE>((personajeMarcado->getPersonaje() + 1) % 4));
+}
+
+void EntradaMenuSeleccion::cambiarAlPersonajeAnterior(Personaje *personajeMarcado) {
+    int pos = (personajeMarcado->getPersonaje() - 1) == -1 ? 3 : personajeMarcado->getPersonaje() - 1;
+    personajeMarcado->setPersonaje(static_cast<enum PERSONAJE>(pos));
+}
 
 Accion *EntradaJuego::getAccion() {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);

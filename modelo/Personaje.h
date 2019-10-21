@@ -10,9 +10,9 @@
 #include "Entidad.h"
 
 enum PERSONAJE {
+    GUY,
     CODY,
     HAGGAR,
-    GUY,
     MAKI
 };
 
