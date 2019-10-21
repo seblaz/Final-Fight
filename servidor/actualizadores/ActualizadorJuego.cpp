@@ -19,7 +19,6 @@ ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Enti
 }
 
 void ActualizadorJuego::interpretarStream(stringstream &s) {
-
     Accion accion;
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
@@ -74,10 +73,10 @@ void ActualizadorJuego::interpretarStream(stringstream &s) {
                 eventos->push(evento);
                 break;
             case FIN:
-                Locator::logger()->log(INFO, "Se desconecta voluntariamente un usuario ");// + jugador.get->getUsuario());
+                Locator::logger()->log(INFO, "Se desconecta voluntariamente un usuario.");// + jugador.get->getUsuario());
                 evento = new DesconectarVoluntariamente(managerUsuarios);
                 eventos->push(evento);
-                break;
+                pthread_exit(nullptr);
             default:
                 Locator::logger()->log(ERROR, "Se recibió una acción inválida en ActualizarJuego.");
         }

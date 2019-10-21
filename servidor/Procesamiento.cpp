@@ -12,17 +12,11 @@ EventosAProcesar *Procesamiento::devolverCola() {
 void Procesamiento::procesar() {
     while (true) {
         auto *evento = eventosAProcesar.pop();
-//        Locator::logger()->log(DEBUG, "Se procesa msj: " + evento->msj() + ".");
-
-//        try{
             evento->resolver();
-//        } catch(...){
-//            Locator::logger()->log(ERROR, "Error en procesamiento, se cierra el hilo");
-//            pthread_exit(nullptr);
-//        }
-
-        if (evento->msj() == "fin")
+        if (evento->msj() == "fin"){
+            Locator::logger()->log(DEBUG, "Se termina el socket de procesamiento.");
             break;
+        }
     }
 }
 

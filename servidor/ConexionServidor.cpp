@@ -29,8 +29,8 @@ ConexionServidor::ConexionServidor(int puerto) {
 }
 
 ConexionServidor::~ConexionServidor() {
-    close(descriptorSocket);
-    Locator::logger()->log(DEBUG, "Se cerró el socket de aceptación.");
+//    close(descriptorSocket);
+//    Locator::logger()->log(DEBUG, "Se cerró el socket de aceptación.");
 }
 
 int ConexionServidor::socket() {

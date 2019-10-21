@@ -125,7 +125,10 @@ void TrasmisionCliente::transmitir() {
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            if (!socket.enviar(s)) break;
+            if ((!socket.enviar(s)) || (accion->accion() == FIN)){
+                close(socket.getIntSocket());
+                break;
+            }
         }
 
         size_t end = SDL_GetTicks();

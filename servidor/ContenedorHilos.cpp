@@ -18,7 +18,7 @@ ContenedorHilos::ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar,
 void ContenedorHilos::esperarFinDeHilos() {
     for (pthread_t hilo : hilos)
         pthread_join(hilo, nullptr);
-    Locator::logger()->log(DEBUG, "Todos los eventos terminaron.");
+    Locator::logger()->log(DEBUG, "Todos los hilos de los clientes terminaron.");
 }
 
 void ContenedorHilos::crearHilo(Socket socket) {
@@ -37,5 +37,6 @@ void *escucharCliente(void *args) {
                               argumentos->selector);
     delete argumentos;
     receptor.recibir();
+    Locator::logger()->log(INFO, "Se termina un hilo de cliente");
     return nullptr;
 }

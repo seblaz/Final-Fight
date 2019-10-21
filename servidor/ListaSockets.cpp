@@ -3,7 +3,9 @@
 //
 
 #include "ListaSockets.h"
+#include "../servicios/Locator.h"
 #include <algorithm>
+#include <unistd.h>
 
 void ListaSockets::agregar(Socket socket) {
     lock_guard<mutex> lock(m);
@@ -19,4 +21,12 @@ void ListaSockets::quitar(Socket socket) {
     lock_guard<mutex> lock(m);
     auto position = find(sockets.begin(), sockets.end(), socket);
     sockets.erase(position);
+}
+
+void ListaSockets::cerrarSockets() {
+    lock_guard<mutex> lock(m);
+    for(Socket socket : sockets){
+        close(socket.getIntSocket());
+    }
+    Locator::logger()->log(INFO, "Se cerraron los sockets hacia los clientes.");
 }

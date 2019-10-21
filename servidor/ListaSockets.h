@@ -19,6 +19,7 @@ private:
     vector<Socket> sockets;
 
 public:
+    void cerrarSockets();
     void agregar(Socket socket);
     vector<Socket> devolverSockets();
     void quitar(Socket socket);

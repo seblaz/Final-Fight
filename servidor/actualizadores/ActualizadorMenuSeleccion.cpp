@@ -81,7 +81,7 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
                 evento = new DesconectarVoluntariamente(manager);
                 eventos->push(evento);
-                break;
+                pthread_exit(nullptr);
             default:
                 Locator::logger()->log(ERROR, "El actualizador del menu de selección recibió una acción inválida.");
         }

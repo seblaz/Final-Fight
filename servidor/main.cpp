@@ -137,6 +137,14 @@ int main(int argc, const char **args) {
     pthread_join(hiloProcesamiento, nullptr);
     pthread_join(hiloTransmision, nullptr);
 
+    listaSockets.cerrarSockets();
+    contenedor.esperarFinDeHilos();
+
+//    close(socketServidor);
+    shutdown(socketServidor, SHUT_RDWR);
+    pthread_join(hiloConexiones, nullptr);
+
+    Locator::logger()->log(INFO, "Fin del programa.");
     return 0;
 }
 

@@ -21,14 +21,9 @@ private:
     ListaSockets *sockets;
     ContenedorHilos *contenedor;
     void manejarConexiones();
-//    void administrarConexionesEntrantes();
-//    void evaluarIngresoDeJugador(int nuevoSocket, bool juegoComenzado, ManagerUsuarios *pUsuarios);
-//    void ingresarNuevoUsuario(Usuario nuevoUsuario, Socket* pSocketNuevoUsuario, ManagerUsuarios* usuarios);
-//    pthread_t abrirHiloConexionesEntrantes();
 
 public:
     explicit ConexionesClientes(int socketServidor, ListaSockets *sockets, ManagerUsuarios* managerUsuarios, ContenedorHilos* contenedor);
-    ~ConexionesClientes();
     pthread_t manejarConexionesEnHilo();
 
 };
