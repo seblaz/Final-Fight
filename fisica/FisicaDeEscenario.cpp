@@ -35,6 +35,9 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
             posicionEscenario->setX(xMenorPersonaje - scrollIzquierdo);
             xScrollDerecho = xEscenario + ancho - scrollDerecho;
         }
+    }else if ( largo - ancho <= posicionEscenario->x + 10) {
+        xScrollDerecho = xMayorPersonaje;
+        jugadores->bloquearMovientos(xScrollIzquierdo, largo + 1);
     }else {
         jugadores->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
     }
