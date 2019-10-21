@@ -7,6 +7,7 @@
 #include "../tipos/tipos.h"
 
 void configApplication(int argc, const char*args[]){
+
     bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
     bool paramIsLoggerLevel = false;

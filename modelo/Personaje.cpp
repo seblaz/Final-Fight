@@ -34,5 +34,7 @@ string Personaje::PersonajeACadena(enum PERSONAJE personaje) {
             return "guy";
         case MAKI:
             return "maki";
+        case POISSON:
+            return "poisson";
     }
 }

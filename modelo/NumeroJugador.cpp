@@ -16,5 +16,5 @@ void NumeroJugador::serializar(ostream &stream) {
 }
 
 void NumeroJugador::deserializar(istream &stream) {
-    numeroJugador = static_cast<int>(deserializarEntero(stream));
+    numeroJugador = deserializarEntero(stream);
 }

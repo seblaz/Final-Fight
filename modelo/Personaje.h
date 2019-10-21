@@ -13,7 +13,8 @@ enum PERSONAJE {
     CODY,
     HAGGAR,
     GUY,
-    MAKI
+    MAKI,
+    POISSON
 };
 
 class Personaje : public Estado, Serializable {

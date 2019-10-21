@@ -19,12 +19,9 @@ private:
     float escala_;
 
 public:
-    AnimacionCliente(vector<SDL_Rect> posiciones, float escala = 1);
+    explicit AnimacionCliente(vector<SDL_Rect> posiciones, float escala = 1);
     SDL_Rect devolverPosicion(Entidad *entidad);
     float escala();
-
-    void setPosicionesInicial( vector<SDL_Rect> posicionesInicial) { posiciones = posicionesInicial; }
-    bool compareTo(AnimacionCliente *animacionAcomparar);
 };
 
 

@@ -95,6 +95,30 @@
                 <total>1</total>
             </agachado>
         </cody>
+        <poisson>
+            <reposando>
+            </reposando>
+            <caminando>
+                <duraciones>4,3,4,3</duraciones>
+                <total>55</total>
+            </caminando>
+            <saltando>
+                <duraciones>1,1</duraciones>
+                <total>55</total>
+            </saltando>
+            <saltandoAdelante>
+                <duraciones>1,1,1,1,1</duraciones>
+                <total>45</total>
+            </saltandoAdelante>
+            <patada>
+            </patada>
+            <golpeando>
+            </golpeando>
+            <agachado>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </agachado>
+        </poisson>
     </animaciones>
     <niveles>
         <cantidad>2</cantidad>
@@ -153,7 +177,7 @@
                     </neumatico>
                 </objetos>
                 <enemigos>
-                    <cantidad>0</cantidad>
+                    <cantidad>5</cantidad>
                     <sprite>
                         <src>assets/personajes/poison.png</src>
                     </sprite>

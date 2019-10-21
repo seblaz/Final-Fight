@@ -6,19 +6,15 @@
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDePantallaCompleta.h"
-#include "../modelo/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "../estados/EstadoDePersonajeServidor.h"
-#include "../estados/Reposando.h"
 #include "../modelo/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
 #include "../graficos/GraficoDeTransicion.h"
-#include "../modelo/Opacidad.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../modelo/TipoElemento.h"
@@ -29,6 +25,7 @@
 #include "../modelo/NumeroJugador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
+#include "../graficos/GraficoJugador.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -79,7 +76,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
 
     auto *personaje = jugador->getEstado<Personaje>("personaje");
     auto *numeroJugador = jugador->getEstado<NumeroJugador>("numeroJugador");
-    Locator::logger()->log(INFO, "Se obtuvo personaje." + personaje->getPersonaje());
+    Locator::logger()->log(INFO, "Se obtuvo personaje." + Personaje::PersonajeACadena(personaje->getPersonaje()));
     Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
 
     switch (numeroJugador->numeroJugador) {
@@ -106,10 +103,8 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
 
     };
 
-    auto *fabricaDeAnimacionesIndicador = new FabricaDeAnimacionesDeIndicador();
-    auto *animacionIndicador = fabricaDeAnimacionesIndicador->indicador();
+    auto *animacionIndicador = FabricaDeAnimacionesDeIndicador::indicador();
     jugador->agregarEstado("animacionIndicador", animacionIndicador);
-
 
     switch (personaje->getPersonaje()) {
         case HAGGAR: {
@@ -118,7 +113,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
 
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/haggar.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
+            auto *grafico = new GraficoJugador();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
@@ -132,7 +127,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
+            auto *grafico = new GraficoJugador();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
@@ -146,7 +141,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/maki.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
+            auto *grafico = new GraficoJugador();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
@@ -160,7 +155,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
-            auto *grafico = new Grafico();
+            auto *grafico = new GraficoJugador();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
@@ -169,6 +164,9 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             jugador->agregarComportamiento("animador", animador);
         }
             break;
+        default:
+            Locator::logger()->log(ERROR, "Se trató de crear un jugador con un personaje incorrecto: " +
+                                          Personaje::PersonajeACadena(personaje->getPersonaje()) + ".");
     }
 
 
