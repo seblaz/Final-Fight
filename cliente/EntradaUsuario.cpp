@@ -23,7 +23,7 @@ Accion *EntradaMenuSeleccion::getAccion() {
     if (framesInactivo == 0) {
         if (activo) {
             const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
-            auto* personaje = pantalla->getEstado<Personaje>("personaje marcado");
+            auto *personaje = pantalla->getEstado<Personaje>("personaje marcado");
 
             if (entrada[SDL_SCANCODE_LEFT]) {
                 cambiarAlPersonajeAnterior(personaje);
@@ -125,10 +125,7 @@ void TrasmisionCliente::transmitir() {
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            if ((!socket.enviar(s)) || (accion->accion() == FIN)){
-                close(socket.getIntSocket());
-                break;
-            }
+            if (!socket.enviar(s)) break;
         }
 
         size_t end = SDL_GetTicks();
@@ -137,6 +134,7 @@ void TrasmisionCliente::transmitir() {
             SDL_Delay(sleepTime);
         }
     }
+    Locator::logger()->log(INFO, "Se termina el hilo del transmisor.");
 }
 
 pthread_t TrasmisionCliente::transmitirEnHilo() {

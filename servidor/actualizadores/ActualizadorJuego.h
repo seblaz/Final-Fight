@@ -18,10 +18,11 @@ private:
     EventosAProcesar *eventos;
     Entidad *jugador;
     ManagerUsuarios* managerUsuarios;
+    void desconectarUsuario(Usuario *usuario);
 
 public:
     explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios);
-    void interpretarStream(stringstream &s);
+    void interpretarStream(stringstream &s, Usuario *pUsuario);
     void actualizarJuego(Usuario *pUsuario);
 
 };

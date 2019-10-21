@@ -24,7 +24,8 @@ void ConfirmarSeleccion::resolver() {
     if (selector->puedoComenzar()) {
         int numeroJugador = 1;
         for (Usuario *usuario : manager->getUsuarios()) {
-            Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado(), numeroJugador);
+            Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado(),
+                                                               numeroJugador);
             usuario->setPersonaje(personaje);
             numeroJugador++;
         }
@@ -46,6 +47,7 @@ ActualizadorMenuSeleccion::ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesa
         confirmacion(confirmacion) {
     Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
 }
+
 
 void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
     Accion accion;
@@ -81,7 +83,8 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
                 evento = new DesconectarVoluntariamente(manager);
                 eventos->push(evento);
-                pthread_exit(nullptr);
+                desconectarUsuario();
+                break;
             default:
                 Locator::logger()->log(ERROR, "El actualizador del menu de selección recibió una acción inválida.");
         }
@@ -97,13 +100,19 @@ void ActualizadorMenuSeleccion::actualizarPersonaje() {
     do {
         stringstream s;
         if (!usuario->getSocket()->recibir(s)) {
-            usuario->desconectar();
-            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada. Se termina el hilo.");
+            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada.");
+            desconectarUsuario();
             pthread_exit(nullptr);
         }
         interpretarStream(s);
     } while (!fin());
 
     confirmacion->wait();
+}
+
+void ActualizadorMenuSeleccion::desconectarUsuario() {
+    Locator::logger()->log(INFO, "Se termina el hilo del cliente y se desconecta al usuario.");
+    usuario->desconectar();
+    pthread_exit(nullptr);
 }
 

@@ -30,6 +30,7 @@ void ReceptorCliente::recibir() {
             }
         }
     }
+    Locator::logger()->log(DEBUG, "Se termina el hilo del receptor.");
 }
 
 void ReceptorCliente::devolverStreamMasReciente(stringstream &s) {
