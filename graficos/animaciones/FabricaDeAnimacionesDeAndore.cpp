@@ -4,7 +4,7 @@
 
 #include "FabricaDeAnimacionesDeAndore.h"
 
-Animacion* FabricaDeAnimacionesDeAndore::caminando() {
+AnimacionCliente* FabricaDeAnimacionesDeAndore::caminando() {
     vector<SDL_Rect> posiciones = {
             //{10, 5, 55, 110},
             {62, 5, 50, 110},
@@ -14,43 +14,47 @@ Animacion* FabricaDeAnimacionesDeAndore::caminando() {
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeAndore::saltando() {
+AnimacionCliente* FabricaDeAnimacionesDeAndore::saltando() {
     vector<SDL_Rect> posiciones = {{10, 5, 55, 110}};
 
     vector<float> duraciones = {1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeAndore::reposando() {
+AnimacionCliente* FabricaDeAnimacionesDeAndore::reposando() {
     vector<SDL_Rect> posiciones = {{10, 5, 55, 110}};
     vector<float> duraciones = {1};
 
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeAndore::agachado() {
+AnimacionCliente *FabricaDeAnimacionesDeAndore::agachado() {
     vector<SDL_Rect> posiciones = {{10, 5, 55, 110}};
     vector<float> duraciones = {1};
 
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeAndore::golpear() {
+AnimacionCliente* FabricaDeAnimacionesDeAndore::golpear() {
     vector<SDL_Rect> posiciones = {
             {10, 120, 70, 110},
             {85, 120, 75, 110},
     };
 
-    vector<float> duraciones = {1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //vector<float> duraciones = {1, 1, 1, 1, 1, 1};
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeAndore::saltandoAdelante() {
+AnimacionCliente *FabricaDeAnimacionesDeAndore::saltandoAdelante() {
     vector<SDL_Rect> posiciones = {
             {16,  238, 39, 81},
             {115, 218, 47, 74},
@@ -62,11 +66,11 @@ Animacion *FabricaDeAnimacionesDeAndore::saltandoAdelante() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeAndore::patadaBasica() {
+AnimacionCliente *FabricaDeAnimacionesDeAndore::patadaBasica() {
     vector<SDL_Rect> posiciones = {
             {245,  540, 60, 80},
             {315,  540, 50, 81},
@@ -75,6 +79,6 @@ Animacion *FabricaDeAnimacionesDeAndore::patadaBasica() {
     };
 
     vector<float> duraciones = {1, 1, 3, 2};
-
-    return new Animacion(posiciones, duraciones, 35, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 35, 4.5);
 }

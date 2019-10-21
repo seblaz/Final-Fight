@@ -6,16 +6,16 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDEAXL_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDeAxl {
 
 public:
-    static Animacion* caminado();
-    static Animacion* saltando();
-    static Animacion* parado();
-    static Animacion* agachado();
-    static Animacion* golpear();
+    static AnimacionCliente* caminado();
+    static AnimacionCliente* saltando();
+    static AnimacionCliente* parado();
+    static AnimacionCliente* agachado();
+    static AnimacionCliente* golpear();
 
 };
 

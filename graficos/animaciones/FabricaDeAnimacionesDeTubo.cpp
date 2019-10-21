@@ -4,14 +4,14 @@
 
 #include "FabricaDeAnimacionesDeTubo.h"
 
-Animacion* FabricaDeAnimacionesDeTubo::standby() {
+AnimacionCliente* FabricaDeAnimacionesDeTubo::standby() {
     vector<SDL_Rect> posiciones = {
             {0, 5, 68, 8}
     };
 
-    vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 1, 3);
+    //vector<float> duraciones = {1};
+    return new AnimacionCliente(posiciones, 3);
+    //return new AnimacionCliente(posiciones, duraciones, 1, 3);
 }
 
 

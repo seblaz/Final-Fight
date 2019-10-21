@@ -5,18 +5,18 @@
 #ifndef FINAL_FIGHT_FABRICADEANIMACIONESDEPERSONAJE_H
 #define FINAL_FIGHT_FABRICADEANIMACIONESDEPERSONAJE_H
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDePersonaje : public Estado{
 
 public:
-    virtual Animacion* caminando() = 0;
-    virtual Animacion* saltando() = 0;
-    virtual Animacion* reposando() = 0;
-    virtual Animacion* agachado() = 0;
-    virtual Animacion* golpear() = 0;
-    virtual Animacion* saltandoAdelante() = 0;
-    virtual Animacion* patadaBasica() = 0;
+    virtual AnimacionCliente* caminando() = 0;
+    virtual AnimacionCliente* saltando() = 0;
+    virtual AnimacionCliente* reposando() = 0;
+    virtual AnimacionCliente* agachado() = 0;
+    virtual AnimacionCliente* golpear() = 0;
+    virtual AnimacionCliente* saltandoAdelante() = 0;
+    virtual AnimacionCliente* patadaBasica() = 0;
 
 };
 

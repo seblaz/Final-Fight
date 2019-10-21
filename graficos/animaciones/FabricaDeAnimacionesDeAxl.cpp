@@ -4,7 +4,7 @@
 
 #include "FabricaDeAnimacionesDeAxl.h"
 
-Animacion* FabricaDeAnimacionesDeAxl::caminado() {
+AnimacionCliente* FabricaDeAnimacionesDeAxl::caminado() {
     vector<SDL_Rect> posiciones = {
             //{5, 5, 60, 95},
             {60, 0, 60, 105},
@@ -12,34 +12,34 @@ Animacion* FabricaDeAnimacionesDeAxl::caminado() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeAxl::saltando() {
+AnimacionCliente* FabricaDeAnimacionesDeAxl::saltando() {
     vector<SDL_Rect> posiciones = {{5, 5, 60, 95}};
 
     vector<float> duraciones = {1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeAxl::parado() {
+AnimacionCliente* FabricaDeAnimacionesDeAxl::parado() {
     vector<SDL_Rect> posiciones = {{5, 5, 60, 95}};
     vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeAxl::agachado() {
+AnimacionCliente *FabricaDeAnimacionesDeAxl::agachado() {
     vector<SDL_Rect> posiciones = {{5, 5, 60, 95}};
 
     vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeAxl::golpear() {
+AnimacionCliente* FabricaDeAnimacionesDeAxl::golpear() {
     vector<SDL_Rect> posiciones = {
             {45, 105, 60, 104},
             {105, 105, 75, 104},
@@ -48,6 +48,6 @@ Animacion* FabricaDeAnimacionesDeAxl::golpear() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }

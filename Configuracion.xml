@@ -54,6 +54,23 @@
             <src>assets/varios/selectorMaki.png</src>
         </maki>
     </pantallaDeSeleccion>
+    <animaciones>
+        <cody>
+            <caminando>
+                <cantidad>6</cantidad>
+                <posiciones>
+                    <posicion1>
+                        <x>10</x>
+                        <y>100</y>
+                        <w>29</w>
+                        <h>90</h>
+                    </posicion1>
+                </posiciones>
+                <duraciones>1,1,1,1,1,1</duraciones>
+                <escala>4.5</escala>
+            </caminando>
+        </cody>
+    </animaciones>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>

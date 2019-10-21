@@ -263,7 +263,7 @@ void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
     Configuracion *config = Locator::configuracion();
     auto *tipoElemento = elemento->getEstado<TipoElemento>("tipo elemento");
     string srcSprite;
-    Animacion *animacion;
+    AnimacionCliente *animacion;
     int ART = tipoElemento->getElemento();
     switch (ART) {
         case CAJA:

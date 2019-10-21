@@ -7,19 +7,19 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDEPOISON_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 #include "FabricaDeAnimacionesDePersonaje.h"
 
 class FabricaDeAnimacionesDePoison : public FabricaDeAnimacionesDePersonaje{
 
 public:
-    Animacion* caminando() override ;
-    Animacion* saltando() override ;
-    Animacion* reposando() override ;
-    Animacion* agachado() override ;
-    Animacion* golpear() override ;
-    Animacion* saltandoAdelante() override ;
-    Animacion* patadaBasica() override ;
+    AnimacionCliente* caminando() override ;
+    AnimacionCliente* saltando() override ;
+    AnimacionCliente* reposando() override ;
+    AnimacionCliente* agachado() override ;
+    AnimacionCliente* golpear() override ;
+    AnimacionCliente* saltandoAdelante() override ;
+    AnimacionCliente* patadaBasica() override ;
 };
 
 

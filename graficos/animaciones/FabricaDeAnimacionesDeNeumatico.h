@@ -7,12 +7,12 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDENEUMATICO_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDeNeumatico {
 
 public:
-    static Animacion* standby();
+    static AnimacionCliente* standby();
 };
 
 

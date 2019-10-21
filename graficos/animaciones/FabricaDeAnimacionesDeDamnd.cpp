@@ -4,7 +4,7 @@
 
 #include "FabricaDeAnimacionesDeDamnd.h"
 
-Animacion* FabricaDeAnimacionesDeDamnd::caminando() {
+AnimacionCliente* FabricaDeAnimacionesDeDamnd::caminando() {
     vector<SDL_Rect> posiciones = {
             {292, 0, 88, 120},
             {392, 0, 88, 120},
@@ -12,11 +12,11 @@ Animacion* FabricaDeAnimacionesDeDamnd::caminando() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeDamnd::saltando() {
+AnimacionCliente* FabricaDeAnimacionesDeDamnd::saltando() {
     vector<SDL_Rect> posiciones = {
             {100, 150, 70, 100},
             {205, 170, 85, 100},
@@ -27,25 +27,25 @@ Animacion* FabricaDeAnimacionesDeDamnd::saltando() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeDamnd::reposando() {
+AnimacionCliente* FabricaDeAnimacionesDeDamnd::reposando() {
     vector<SDL_Rect> posiciones = {{5, 10, 85, 120}};
     vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeDamnd::agachado() {
+AnimacionCliente *FabricaDeAnimacionesDeDamnd::agachado() {
     vector<SDL_Rect> posiciones = {{5, 10, 85, 120}};
     vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeDamnd::golpear() {
+AnimacionCliente* FabricaDeAnimacionesDeDamnd::golpear() {
     vector<SDL_Rect> posiciones = {
             {605, 20, 98, 120},
             {705, 20, 95, 120},
@@ -54,11 +54,11 @@ Animacion* FabricaDeAnimacionesDeDamnd::golpear() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeDamnd::saltandoAdelante() {
+AnimacionCliente *FabricaDeAnimacionesDeDamnd::saltandoAdelante() {
     vector<SDL_Rect> posiciones = {
             {16,  238, 39, 81},
             {115, 218, 47, 74},
@@ -70,11 +70,11 @@ Animacion *FabricaDeAnimacionesDeDamnd::saltandoAdelante() {
     };
 
     vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeDamnd::patadaBasica() {
+AnimacionCliente *FabricaDeAnimacionesDeDamnd::patadaBasica() {
     vector<SDL_Rect> posiciones = {
             {245,  540, 60, 80},
             {315,  540, 50, 81},
@@ -83,6 +83,6 @@ Animacion *FabricaDeAnimacionesDeDamnd::patadaBasica() {
     };
 
     vector<float> duraciones = {1, 1, 3, 2};
-
-    return new Animacion(posiciones, duraciones, 35, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 35, 4.5);
 }

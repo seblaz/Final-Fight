@@ -6,7 +6,7 @@
 #include "Grafico.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Posicion.h"
-#include "animaciones/Animacion.h"
+#include "animaciones/AnimacionCliente.h"
 #include "Sprite.h"
 #include "../modelo/Orientacion.h"
 #include "../modelo/Actividad.h"
@@ -40,7 +40,7 @@ void Grafico::actualizar(Entidad *entidad) {
 
     if (dif > -200 && dif < Locator::configuracion()->getIntValue("/resolucion/ancho") + 200) {
         SDL_Renderer *renderer = Locator::renderer();
-        auto *animacion = entidad->getEstado<Animacion>("animacion");
+        auto *animacion = entidad->getEstado<AnimacionCliente>("animacion");
         auto *sprite = entidad->getEstado<Sprite>("sprite");
         auto *orientacion = entidad->getEstado<Orientacion>("orientacion");
         auto *actividad = entidad->getEstado<Actividad>("actividad");
@@ -49,7 +49,7 @@ void Grafico::actualizar(Entidad *entidad) {
 
 
         Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
-        SDL_Rect posicionEnSprite = animacion->actualizarYDevolverPosicion();
+        SDL_Rect posicionEnSprite = animacion->devolverPosicion(entidad);
         SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
 
         if ((actividad != nullptr)) {
@@ -61,10 +61,10 @@ void Grafico::actualizar(Entidad *entidad) {
         }
 
         if (personaje != nullptr){
-            auto *animacionIndicador = entidad->getEstado<Animacion>("animacionIndicador");
+            auto *animacionIndicador = entidad->getEstado<AnimacionCliente>("animacionIndicador");
             auto *spriteIndicador = entidad->getEstado<Sprite>("spriteIndicador");
 
-            SDL_Rect posicionEnSpriteIndicador = animacionIndicador->actualizarYDevolverPosicion();
+            SDL_Rect posicionEnSpriteIndicador = animacionIndicador->devolverPosicion(entidad);
             Posicion nuevaPosicionIndicador(posicion->getX() - posicionDeEscenarioX, posicion->getY()+450, posicion->getZ());
             SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla(nuevaPosicionIndicador, posicionEnSpriteIndicador, animacionIndicador->escala());
 

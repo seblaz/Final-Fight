@@ -4,15 +4,14 @@
 
 #include <numeric>
 #include "AnimacionServidor.h"
-#include "../modelo/PosicionSprite.h"
+#include "../modelo/IndiceSprite.h"
 
-AnimacionServidor::AnimacionServidor(vector<float> duracionesPorSprite, int duracionTotal, int cantidadDeSprites) {
+AnimacionServidor::AnimacionServidor(vector<float> duracionesPorSprite, int duracionTotal) {
     this->duracionesPorSprite = duracionesPorSprite;
     this->duracionTotal = duracionTotal;
     this->spriteActual = 0;
     this->sumaDeDuracionesRelativas = accumulate(this->duracionesPorSprite.begin(), this->duracionesPorSprite.end(), 0.0f);
     this->framesFaltantes = calcularFramesFaltantes();
-    this->cantidadDeSprites = cantidadDeSprites;
 }
 
 int AnimacionServidor::calcularFramesFaltantes() {
@@ -23,10 +22,9 @@ int AnimacionServidor::calcularFramesFaltantes() {
 void AnimacionServidor::actualizar(Entidad* entidad) {
     framesFaltantes--;
     if (framesFaltantes <= 0) {
-        spriteActual = (spriteActual + 1) % cantidadDeSprites;
+        spriteActual = (spriteActual + 1) % duracionesPorSprite.size();
         framesFaltantes = calcularFramesFaltantes();
     }
-    entidad->getEstado<PosicionSprite>("posicion sprite")->setPosicion(spriteActual);
-    //return posiciones[spriteActual];
+    entidad->getEstado<IndiceSprite>("indice sprite")->setIndice(spriteActual);
 }
 

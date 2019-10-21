@@ -7,12 +7,12 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDETUBO_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDeTubo {
 
 public:
-    static Animacion* standby();
+    static AnimacionCliente* standby();
 };
 
 

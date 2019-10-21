@@ -11,10 +11,9 @@
 class AnimacionServidor : public  Comportamiento {
 
 private:
-    int posicion{};
+    int posicion;
     vector<float> duracionesPorSprite;
     int duracionTotal;
-    int cantidadDeSprites;
 
     int framesFaltantes;
     int spriteActual;
@@ -22,7 +21,7 @@ private:
 
     int calcularFramesFaltantes();
 public:
-    AnimacionServidor(vector<float> duracionesPorSprite, int duracionTotal, int cantidadDeSprites);
+    AnimacionServidor(vector<float> duracionesPorSprite, int duracionTotal);
     void actualizar(Entidad* entidad) override;
 
 };

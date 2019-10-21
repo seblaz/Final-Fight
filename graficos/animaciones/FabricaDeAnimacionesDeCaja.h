@@ -7,12 +7,12 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDECAJA_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDeCaja {
 
 public:
-    static Animacion* standby();
+    static AnimacionCliente* standby();
 };
 
 

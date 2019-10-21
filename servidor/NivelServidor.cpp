@@ -18,6 +18,7 @@
 #include "../modelo/TipoElemento.h"
 #include "../modelo/Actividad.h"
 #include "../modelo/NumeroJugador.h"
+#include "AnimacionServidor.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -43,6 +44,7 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSele
     auto *fisica = new FisicaDePersonaje();
     auto *actividad = new Actividad(true);
     auto *numeroJugador = new NumeroJugador(contadorJugador);
+    //auto *animacionServidor = new AnimacionServidor();
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);

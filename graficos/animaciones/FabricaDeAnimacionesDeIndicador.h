@@ -7,12 +7,12 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDEINDICADOR_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDeIndicador {
 
 public:
-    static Animacion* indicador();
+    static AnimacionCliente* indicador();
 };
 
 

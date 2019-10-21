@@ -7,12 +7,12 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDECUCHILLO_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
 
 class FabricaDeAnimacionesDeCuchillo {
 
 public:
-    static Animacion* standby();
+    static AnimacionCliente* standby();
 };
 
 
