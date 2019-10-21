@@ -25,7 +25,7 @@
 #include "../servicios/Locator.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../estados/Caminando.h"
-#include "../graficos/GraficoDePantallaCompleta.h"
+#include "../graficos/GraficoMenuSeleccion.h"
 #include "../comportamiento/EntradaPantallaDeEspera.h"
 #include "../comportamiento/EntradaPantallaDeSeleccion.h"
 
@@ -337,7 +337,7 @@ void Nivel::generarPantallaDeEspera(Mapa *mapa) {
 
     auto *sprite = new Sprite(sdlRenderer, srcSprite);
     auto *posicion = new Posicion(0, 0, 0);
-    auto *grafico = new GraficoDePantallaCompleta();
+    auto *grafico = new GraficoMenuSeleccion();
     auto *entrada = new EntradaPantallaDeEspera();
 
     pantalla->agregarEstado("posicion", posicion);
@@ -358,7 +358,7 @@ void Nivel::generarMenuSeleccion(Mapa *mapa) {
 
     auto *sprite = new Sprite(renderer, srcSprite);
     auto *posicion = new Posicion(0, 0, 0);
-    auto *grafico = new GraficoDePantallaCompleta();
+    auto *grafico = new GraficoMenuSeleccion();
     auto *entrada = new EntradaPantallaDeSeleccion();
 
     pantalla->agregarEstado("posicion", posicion);

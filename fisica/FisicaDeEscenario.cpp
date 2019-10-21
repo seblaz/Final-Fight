@@ -26,7 +26,7 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     int xEscenario = posicionEscenario->getX();
     xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if ( (xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo) && (xMenorPersonaje >= xScrollIzquierdo)) {
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo) {
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
             xScrollDerecho = xMayorPersonaje;
@@ -35,7 +35,10 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
             posicionEscenario->setX(xMenorPersonaje - scrollIzquierdo);
             xScrollDerecho = xEscenario + ancho - scrollDerecho;
         }
-    }else { //largo - ancho
+    }else if ( largo - ancho <= posicionEscenario->x + 10) {
+        xScrollDerecho = xMayorPersonaje;
+        jugadores->bloquearMovientos(xScrollIzquierdo, largo + 1);
+    }else {
         jugadores->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);

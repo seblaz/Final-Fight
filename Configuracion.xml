@@ -1,6 +1,6 @@
 <configuracion>
     <usuarios>
-        <cantidad>4</cantidad>
+        <cantidad>2</cantidad>
     </usuarios>
     <password>p</password>
     <debug>
@@ -39,21 +39,41 @@
         </sprite>
     </pantallaDeEspera>
     <pantallaDeSeleccion>
-        <guy>
-            <src>assets/varios/selectorGuy.png</src>
-        </guy>
-        <coddy>
-            <src>assets/varios/selectorCody.png</src>
-
-        </coddy>
-        <haggar>
-            <src>assets/varios/selectorHaggar.png</src>
-
-        </haggar>
-        <maki>
-            <src>assets/varios/selectorMaki.png</src>
-        </maki>
+        <fondo>
+            <src>assets/varios/pantallaMenuPersonaje.png</src>
+        </fondo>
+        <selector>
+            <src>assets/varios/selectorMenu.png</src>
+        </selector>
     </pantallaDeSeleccion>
+    <personajes>
+        <cody>
+            <src>assets/personajes/cody.png</src>
+        </cody>
+        <guy>
+            <src>assets/personajes/guy.png</src>
+        </guy>
+        <maki>
+            <src>assets/personajes/maki.png</src>
+        </maki>
+        <haggar>
+            <src>assets/personajes/haggar.png</src>
+        </haggar>
+        <indicadores>
+            <jugador1>
+                <src>assets/varios/indicador1.png</src>
+            </jugador1>
+            <jugador2>
+                <src>assets/varios/indicador2.png</src>
+            </jugador2>
+            <jugador3>
+                <src>assets/varios/indicador3.png</src>
+            </jugador3>
+            <jugador4>
+                <src>assets/varios/indicador4.png</src>
+            </jugador4>
+        </indicadores>
+    </personajes>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>

@@ -10,9 +10,9 @@
 #include "Entidad.h"
 
 enum PERSONAJE {
+    GUY,
     CODY,
     HAGGAR,
-    GUY,
     MAKI,
     POISSON
 };
@@ -26,8 +26,8 @@ public:
     Personaje();
     explicit Personaje(enum PERSONAJE personaje);
     enum PERSONAJE getPersonaje();
-    static string PersonajeACadena(enum PERSONAJE);
     void setPersonaje(enum PERSONAJE personaje);
+    static string PersonajeACadena(enum PERSONAJE);
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
