@@ -136,7 +136,7 @@ Usuario& Juego::generarPantallaDeIngreso() {
         Locator::logger()->log(ERROR, "Fallo cargar la font SDL_ttf Error: ");
     else
         //cout << "Se cargo la font" << endl; //Debug
-        
+
     Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
 
     while (!exit) {
