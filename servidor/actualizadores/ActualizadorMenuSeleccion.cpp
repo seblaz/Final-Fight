@@ -79,7 +79,7 @@ void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
                 break;
             case FIN:
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
-                evento = new DesconectarVoluntariamente(manager);
+                evento = new DesconectarVoluntariamente(manager, usuario);
                 eventos->push(evento);
                 pthread_exit(nullptr);
             default:

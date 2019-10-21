@@ -16,7 +16,6 @@ class ManagerUsuarios {
 
 private:
     int maximo;
-    int usuariosDesconectados = 0;
     list<Usuario *> usuarios;
 
 public:
@@ -29,13 +28,8 @@ public:
     void agregarUsuario(Usuario *usuario);
     void reemplazarUsuarioCon(Usuario *usuario);
     Usuario *getUsuarioAnterior(Usuario *usuario);
-    void desconectarJugadorVoluntariamente();
+    void desconectarJugadorVoluntariamente(Usuario *usuario);
     bool hayJugadoresConectados();
-//    void administrarUsuario(Usuario *usuario);
-//        int getCantidadLogueados();
-//        bool faltanJugadores();
-//        vector<Socket> getSockets();
-//        void cambiarSocketParaUsuario(Usuario usuario, Socket* pSocket);
 };
 
 

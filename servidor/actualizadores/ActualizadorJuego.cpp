@@ -10,11 +10,12 @@
 #include "../../modelo/Actividad.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
 
-ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios) :
+ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios, Usuario* usuario) :
         mapa(mapa),
         jugador(jugador),
         eventos(eventos),
-        managerUsuarios(managerUsuarios){
+        managerUsuarios(managerUsuarios),
+        usuario(usuario){
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
 }
 
@@ -74,7 +75,7 @@ void ActualizadorJuego::interpretarStream(stringstream &s) {
                 break;
             case FIN:
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente un usuario.");// + jugador.get->getUsuario());
-                evento = new DesconectarVoluntariamente(managerUsuarios);
+                evento = new DesconectarVoluntariamente(managerUsuarios, usuario);
                 eventos->push(evento);
                 pthread_exit(nullptr);
             default:

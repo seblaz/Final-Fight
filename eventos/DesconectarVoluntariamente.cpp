@@ -4,8 +4,10 @@
 
 #include "DesconectarVoluntariamente.h"
 
-DesconectarVoluntariamente::DesconectarVoluntariamente(ManagerUsuarios *managerUsuarios) : manager(managerUsuarios) {}
+DesconectarVoluntariamente::DesconectarVoluntariamente(ManagerUsuarios *managerUsuarios, Usuario* usuario) :
+    manager(managerUsuarios),
+    usuario(usuario) {}
 
 void DesconectarVoluntariamente::resolver() {
-    manager->desconectarJugadorVoluntariamente();
+    manager->desconectarJugadorVoluntariamente(usuario);
 }

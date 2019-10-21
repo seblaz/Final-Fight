@@ -13,9 +13,10 @@ class DesconectarVoluntariamente : public EventoAProcesar {
 
 private:
     ManagerUsuarios *manager;
+    Usuario *usuario;
 
 public:
-    explicit DesconectarVoluntariamente(ManagerUsuarios *manager);
+    explicit DesconectarVoluntariamente(ManagerUsuarios *manager, Usuario* usuario);
     void resolver() override;
 };
 

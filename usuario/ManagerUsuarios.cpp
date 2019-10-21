@@ -48,10 +48,23 @@ bool ManagerUsuarios::faltanJugadores() {
     return usuarios.size() < maximo;
 }
 
-void ManagerUsuarios::desconectarJugadorVoluntariamente() {
-    this->usuariosDesconectados++;
+void ManagerUsuarios::desconectarJugadorVoluntariamente(Usuario *usuario) {
+    auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
+        return u->getUsuario() == usuario->getUsuario();
+    });
+
+    Usuario* pUsuario = pos.operator*();
+    pUsuario->desconectarVoluntariamente();
 }
 
 bool ManagerUsuarios::hayJugadoresConectados(){
-    return this->usuariosDesconectados < this->maximo;
+    int conectados = 0;
+
+    std::list<Usuario*>::iterator it;
+    for (it = usuarios.begin(); it != usuarios.end(); ++it){
+        if(!it.operator*()->estaDesconectadoVoluntariamente()){
+            conectados++;
+        }
+    }
+    return conectados > 0;
 }

@@ -23,6 +23,7 @@ private:
     Socket *socket{};
     bool valido_{};
     enum PERSONAJE personajeSeleccionado = CODY;
+    bool conectadoVoluntariamente = true;
 
 public:
     Usuario() = default;
@@ -40,6 +41,9 @@ public:
 
     bool estaConectado();
     void desconectar();
+
+    void desconectarVoluntariamente();
+    bool estaDesconectadoVoluntariamente();
 
     void setValido(bool valido);
     bool getValido();
