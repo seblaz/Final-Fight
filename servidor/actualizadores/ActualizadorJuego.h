@@ -18,10 +18,8 @@ private:
     EventosAProcesar *eventos;
     Entidad *jugador;
     ManagerUsuarios* managerUsuarios;
-    Usuario* usuario;
 
 public:
-    explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios, Usuario* usuario);
     void desconectarUsuario(Usuario *usuario);
 
 public:

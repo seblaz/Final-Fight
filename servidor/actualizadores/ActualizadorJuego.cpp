@@ -10,12 +10,12 @@
 #include "../../modelo/Actividad.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
 
-ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios, Usuario* usuario) :
+ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador,
+                                     ManagerUsuarios *managerUsuarios) :
         mapa(mapa),
         jugador(jugador),
         eventos(eventos),
-        managerUsuarios(managerUsuarios),
-        usuario(usuario){
+        managerUsuarios(managerUsuarios) {
 
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
 }

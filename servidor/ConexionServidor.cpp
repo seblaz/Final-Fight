@@ -18,6 +18,12 @@ ConexionServidor::ConexionServidor(int puerto) {
         exit(0);
     }
 
+    int enable = 1;
+    if (setsockopt(descriptorSocket, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0){
+        Locator::logger()->log(ERROR, "setsockopt(SO_REUSEADDR) failed");
+        exit(0);
+    }
+
     int bindStatus = bind(descriptorSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
     if (bindStatus < 0) {
         Locator::logger()->log(ERROR, string("No se pudo realizar el binding en el socket del servidor. Error: ").append(strerror(errno)) + ". Se termina el programa.");
@@ -26,11 +32,6 @@ ConexionServidor::ConexionServidor(int puerto) {
 
     listen(descriptorSocket, 4); // listen for up to 4 requests at a time
     Locator::logger()->log(DEBUG, "Se creó el socket de aceptación.");
-}
-
-ConexionServidor::~ConexionServidor() {
-//    close(descriptorSocket);
-//    Locator::logger()->log(DEBUG, "Se cerró el socket de aceptación.");
 }
 
 int ConexionServidor::socket() {

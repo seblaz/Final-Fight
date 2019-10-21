@@ -15,22 +15,11 @@ GameLoop::GameLoop(EventosAProcesar *eventos, EventoAProcesar *eventoAProcesar, 
 void GameLoop::loop() {
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (managerUsuarios->hayJugadoresConectados()) {
-//        size_t start = SDL_GetTicks();
-//
-//        size_t end = SDL_GetTicks();
-//        int sleepTime = MS_PER_FRAME + start - end;
         eventos->push(eventoAProcesar);
-//        if (sleepTime > 0) {
-//            SDL_Delay(sleepTime);
-//        }
-//        SDL_Delay(MS_PER_FRAME);
         usleep(MS_PER_FRAME);
     }
-#pragma clang diagnostic pop
-
+    Locator::logger()->log(INFO, "Todos los usuarios se desconectaron voluntariamente.");
 }
 
 pthread_t GameLoop::loopEnHilo() {

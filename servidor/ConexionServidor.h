@@ -32,7 +32,6 @@ private:
 
 public:
     explicit ConexionServidor(int puerto);
-    ~ConexionServidor();
     int socket();
 };
 
