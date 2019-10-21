@@ -13,6 +13,10 @@
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <string>
+#include "../modelo/Entidad.h"
+#include "../graficos/Sprite.h"
+#include "../graficos/GraficoDeElementosPantalla.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -59,17 +63,19 @@ void Juego::inicializarGraficos() {
 
 void Juego::validarUserPass() {
     bool exit = false;
+    SDL_Event e;
 
     while (!exit) {
-        processInput();
-        string user;
-        string pass;
+        processInput(); //Se llama para poder cerrar el juego
+        
+        Usuario usuarioAux = generarPantallaDeIngreso();
+        string user = usuarioAux.getUsuario();
+        string pass = usuarioAux.getContrasenia();
 
-
-        cout << "Ingrese nombre de usuario" << endl;
-        cin >> user;
-        cout << "Ingrese contraseña" << endl;
-        cin >> pass;
+        cout << "El nombre de usuario es: " << user << endl;
+        //cin >> user;
+        cout << "La contraseña es: " << pass << endl;
+        //cin >> pass;
 
         Usuario usuario(user, pass);
         stringstream userStream;
@@ -98,6 +104,223 @@ void Juego::validarUserPass() {
                 break;
         }
     }
+}
+
+Usuario& Juego::generarPantallaDeIngreso() {
+    Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
+    Configuracion *config = Locator::configuracion();
+    string srcSpritePantallaIngreso = config->getValue("/pantallaDeIngreso/sprite/src");
+    string srcSpriteBotonEntrar = config->getValue("/pantallaDeIngreso/botonDeEntrar/sprite/src");
+    string srcSpriteBoxIdentificacion = config->getValue("/pantallaDeIngreso/identificacionUsuario/sprite/src");
+    string srcSpriteBoxUsr = config->getValue("/pantallaDeIngreso/boxUsuario/sprite/src");
+    string srcSpriteBoxContrasenia = config->getValue("/pantallaDeIngreso/boxContrasenia/sprite/src");
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
+    SDL_Renderer *sdlRenderer = Locator::renderer();
+    SDL_Color color = { 238, 238, 238 , 0};
+    TTF_Font *gFont;
+    bool exit = false;
+    bool usuarioSeleccionado = false;
+    bool contraseniaSeleccionada = false;
+    seleccionar_box_t boxSeleccionadaRectOk;
+    seleccionar_box_t boxSeleccionadaRectUsuario;
+    seleccionar_box_t boxSeleccionadaRectContrasenia;
+    boxSeleccionadaRectUsuario.textcolor = color;
+    boxSeleccionadaRectContrasenia.textcolor = color;
+    boxSeleccionadaRectUsuario.text = "";
+    boxSeleccionadaRectContrasenia.text = "";
+
+    TTF_Init();
+    gFont = TTF_OpenFont( "../assets/fuentes/open-sans/OpenSans-Bold.ttf", 22 );
+    if(!gFont)
+        Locator::logger()->log(ERROR, "Fallo cargar la font SDL_ttf Error: ");
+    else
+        //cout << "Se cargo la font" << endl; //Debug
+        
+    Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
+
+    while (!exit) {
+        SDL_Event sdlEvento = processInput();
+        Entidad *pantalla = new Entidad();
+        SDL_Surface * surfaceTextoUsuario;
+        SDL_Surface * surfaceTextoContrasenia;
+        SDL_Texture * textureTextoUsuario = NULL;
+        SDL_Texture * textureTextoContrasenia = NULL;
+        SDL_Rect posicionEnPantallaIngresoUsuarioTexto;
+        SDL_Rect posicionEnPantallaIngresoContraseniaTexto;
+        int text_height;
+        int text_width;
+
+        //Limpieza pantalla
+        SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(renderer_);
+
+        //Boton entrar grafico
+        auto *spriteBotonDeEntrar = new Sprite(sdlRenderer, srcSpriteBotonEntrar);
+        SDL_Rect posicionEnPantallaIngresoBoton = {(int) (ancho/2.15), (int) (alto/1.15), (int) (ancho/16), (int) (alto/14)};
+        auto *graficoBotonDeEntrar = new GraficoDeElementosPantalla(spriteBotonDeEntrar->getTexture(), posicionEnPantallaIngresoBoton, 1);
+
+        pantalla->agregarEstado("spriteBotonDeEntrar", spriteBotonDeEntrar);
+        pantalla->agregarComportamiento("graficoBotonDeEntrar", graficoBotonDeEntrar);
+
+        //Box usuario grafico
+        auto *spriteBoxUsuario = new Sprite(sdlRenderer, srcSpriteBoxUsr);
+        SDL_Rect posicionEnPantallaIngresoUsuario = {(int) (ancho/2.8), (int) (alto/1.45), (int) (ancho/3.5), (int) (alto/13)};
+        auto *graficoBoxUsuario = new GraficoDeElementosPantalla(spriteBoxUsuario->getTexture(), posicionEnPantallaIngresoUsuario, 1);
+
+        pantalla->agregarEstado("spriteBoxUsuario", spriteBoxUsuario);
+        pantalla->agregarComportamiento("graficoBoxUsuario", graficoBoxUsuario);
+
+        //Grafico caracteres usuario
+        if(boxSeleccionadaRectUsuario.text.length()) {
+            cout << "Se puede" << endl;
+            surfaceTextoUsuario = TTF_RenderText_Solid(gFont, boxSeleccionadaRectUsuario.text.c_str(), boxSeleccionadaRectUsuario.textcolor);
+            textureTextoUsuario = SDL_CreateTextureFromSurface(sdlRenderer, surfaceTextoUsuario);
+            text_width = surfaceTextoUsuario->w;
+            text_height = surfaceTextoUsuario->h;
+            posicionEnPantallaIngresoUsuarioTexto = posicionEnPantallaIngresoUsuario;
+            posicionEnPantallaIngresoUsuarioTexto.w = text_width;
+            posicionEnPantallaIngresoUsuarioTexto.h = text_height;
+            posicionEnPantallaIngresoUsuarioTexto.x += (int) ancho/14;
+            posicionEnPantallaIngresoUsuarioTexto.y += (int) alto/72;
+            SDL_FreeSurface(surfaceTextoUsuario);
+        }
+
+        //Box Contrasenia
+        auto *spriteBoxContrasenia = new Sprite(sdlRenderer, srcSpriteBoxContrasenia);
+        SDL_Rect posicionEnPantallaIngresoContrasenia = {(int) (ancho/2.8), (int) (alto/1.3), (int) (ancho/3.5), (int) (alto/13)};
+        auto *graficoBoxContrasenia = new GraficoDeElementosPantalla(spriteBoxContrasenia->getTexture(), posicionEnPantallaIngresoContrasenia, 1);
+
+        pantalla->agregarEstado("spriteBoxContrasenia", spriteBoxContrasenia);
+        pantalla->agregarComportamiento("graficoBoxContrasenia", graficoBoxContrasenia);
+
+        //Grafico caracteres contraseña
+        if(boxSeleccionadaRectContrasenia.text.length()) {
+            surfaceTextoContrasenia = TTF_RenderText_Solid(gFont, boxSeleccionadaRectContrasenia.text.c_str(), boxSeleccionadaRectContrasenia.textcolor);
+            textureTextoContrasenia = SDL_CreateTextureFromSurface(sdlRenderer, surfaceTextoContrasenia);
+            text_width = surfaceTextoContrasenia->w;
+            text_height = surfaceTextoContrasenia->h;
+            posicionEnPantallaIngresoContraseniaTexto = posicionEnPantallaIngresoContrasenia;
+            posicionEnPantallaIngresoContraseniaTexto.w = text_width;
+            posicionEnPantallaIngresoContraseniaTexto.h = text_height;
+            posicionEnPantallaIngresoContraseniaTexto.x += (int) ancho/11;
+            posicionEnPantallaIngresoContraseniaTexto.y += (int) alto/72;
+            SDL_FreeSurface(surfaceTextoContrasenia);
+        }
+
+        //Box identificacion grafico
+        auto *spriteBoxIdentificacion = new Sprite(sdlRenderer, srcSpriteBoxIdentificacion);
+        SDL_Rect posicionEnPantallaIngresoBoxIdentificacion = {(int) (ancho/3), (int) (alto/1.7), (int) (ancho/3), (int) (alto/2.45)};
+        auto *graficoBoxIdentificacion = new GraficoDeElementosPantalla(spriteBoxIdentificacion->getTexture(), posicionEnPantallaIngresoBoxIdentificacion, 1);
+
+        pantalla->agregarEstado("spriteBoxIdentificacion", spriteBoxIdentificacion);
+        pantalla->agregarComportamiento("graficoBoxIdentificacion", graficoBoxIdentificacion);
+
+        //Pantalla grafico
+        auto *spritePantallaIngreso = new Sprite(sdlRenderer, srcSpritePantallaIngreso);
+        SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
+        auto *graficoPantalla = new GraficoDeElementosPantalla(spritePantallaIngreso->getTexture(), posicionEnPantallaIngreso, 1);
+
+        pantalla->agregarEstado("spritePantallaIngreso", spritePantallaIngreso);
+        pantalla->agregarComportamiento("graficoPantalla", graficoPantalla);
+
+        //Inicializacion Boxes
+        boxSeleccionadaRectOk.rect = posicionEnPantallaIngresoBoton;
+        boxSeleccionadaRectUsuario.rect = posicionEnPantallaIngresoUsuario;
+        boxSeleccionadaRectContrasenia.rect = posicionEnPantallaIngresoContrasenia;
+
+        //Pantalla Ok seleccionada
+        if(boxSeleccionada(&boxSeleccionadaRectOk, &sdlEvento)) {
+            exit = true;
+        }
+
+        //Ingreso de caracteres pantalla usuario
+        if(boxSeleccionada(&boxSeleccionadaRectUsuario, &sdlEvento)){
+            usuarioSeleccionado = true;
+            contraseniaSeleccionada = false;
+            cout << "Se seteo el usuario" << endl; //Debug
+        }
+        if(sdlEvento.type == SDL_TEXTINPUT && usuarioSeleccionado && boxSeleccionadaRectUsuario.text.length() <= CANT_MAX_CARACTERES_USUARIO)
+            boxSeleccionadaRectUsuario.text.append(sdlEvento.text.text);
+        else if (usuarioSeleccionado && sdlEvento.type == SDL_KEYDOWN && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectUsuario.text.size())
+            boxSeleccionadaRectUsuario.text.pop_back();
+        else if(usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_TAB) {
+            usuarioSeleccionado = false;
+            contraseniaSeleccionada = true;
+        }
+
+        //Ingreso de caracteres pantalla contraseña
+        if(boxSeleccionada(&boxSeleccionadaRectContrasenia, &sdlEvento)){
+            contraseniaSeleccionada = true;
+            usuarioSeleccionado = false;
+            //cout << "Se seteo la pass" << endl; //Debug
+        }
+
+        if(sdlEvento.type == SDL_TEXTINPUT && contraseniaSeleccionada && boxSeleccionadaRectContrasenia.text.length() <= CANT_MAX_CARACTERES_CONTRASENIA)
+            boxSeleccionadaRectContrasenia.text.append(sdlEvento.text.text);
+        else if (contraseniaSeleccionada && sdlEvento.type == SDL_KEYDOWN && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectContrasenia.text.size())
+            boxSeleccionadaRectContrasenia.text.pop_back();
+
+        //Actualizar
+        auto comportamientos = pantalla->getComportamientos();
+        for (auto *comportamiento : comportamientos) {
+            comportamiento->actualizar(pantalla);
+        }
+
+        //Graficar
+        if(textureTextoUsuario)
+            SDL_RenderCopy(sdlRenderer, textureTextoUsuario, NULL, &posicionEnPantallaIngresoUsuarioTexto);
+        if(textureTextoContrasenia)
+            SDL_RenderCopy(sdlRenderer, textureTextoContrasenia, NULL, &posicionEnPantallaIngresoContraseniaTexto);
+        SDL_RenderPresent(sdlRenderer); // Update screen
+
+        //Quit
+        if (/*sdlEvento.type == SDL_KEYDOWN || */sdlEvento.type == SDL_QUIT) {
+            exit = true;
+        }
+
+        //Deletes
+        SDL_DestroyTexture(textureTextoUsuario);
+        SDL_DestroyTexture(textureTextoContrasenia);
+        delete pantalla;
+        delete graficoBotonDeEntrar;
+        delete graficoBoxUsuario;
+        delete graficoBoxIdentificacion;
+        delete graficoPantalla;
+        delete graficoBoxContrasenia;
+        delete spriteBotonDeEntrar;
+        delete spriteBoxUsuario;
+        delete spriteBoxIdentificacion;
+        delete spritePantallaIngreso;
+        delete spriteBoxContrasenia;
+        //delete textureTextoUsuario;
+    }
+    TTF_CloseFont( gFont );
+    static Usuario usr;
+    usr.setUsuario(boxSeleccionadaRectUsuario.text);
+    usr.setContrasenia(boxSeleccionadaRectContrasenia.text); //"p"
+
+    //Debug
+    cout << "La contraseña ingresa por teclado es: " << boxSeleccionadaRectContrasenia.text << endl;
+
+    return usr;
+}
+
+bool boxSeleccionada(seleccionar_box_t *boxSeleccionada, SDL_Event *event) {
+    if (/*event->type == SDL_WINDOWEVENT &&
+        event->window.event == SDL_WINDOWEVENT_EXPOSED &&*/
+            event->type == SDL_MOUSEBUTTONDOWN &&
+            _boxSeleccionadaRect(event->button.x, event->button.y,
+                                 &boxSeleccionada->rect))
+        return true;
+
+    return false;
+}
+
+bool _boxSeleccionadaRect(int x, int y, SDL_Rect *rect)
+{
+    return x >= rect->x && x < rect->x + rect->w &&
+           y >= rect->y && y < rect->y + rect->h;
 }
 
 void Juego::loop() {
@@ -132,11 +355,12 @@ void Juego::loop() {
     pthread_join(hiloRecepcion, nullptr);
 }
 
-void Juego::processInput() {
-    SDL_Event e;
+SDL_Event Juego::processInput() {
+    static SDL_Event e;
     if (SDL_PollEvent(&e) && (e.type == SDL_QUIT)) {
         exit = true;
     }
+    return e;
 }
 
 void Juego::clearScene() {

@@ -32,6 +32,9 @@ public:
     string getUsuario();
     string getContrasenia();
 
+    void setUsuario(string usuario);
+    void setContrasenia(string usuario);
+
     void setPersonaje(Entidad *personaje);
     Entidad *getPersonaje();
 

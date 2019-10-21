@@ -7,8 +7,8 @@
         <level>DEBUG</level>
     </debug>
     <resolucion>
-        <ancho>1600</ancho>
-        <alto>900</alto>
+        <ancho>1280</ancho>
+        <alto>640</alto>
     </resolucion>
     <escala>
         <entidades>1</entidades>
@@ -33,11 +33,31 @@
         <derecho>400</derecho>
     </scroll>
     <fps>60</fps>
-    <pantallaDeEspera>
+    <pantallaDeIngreso>
+    <botonDeEntrar>
         <sprite>
-            <src>assets/varios/pantallaDeEspera.png</src>
-        </sprite>
-    </pantallaDeEspera>
+                <src>assets/varios/botonEntrar.png</src>
+            </sprite>
+    </botonDeEntrar>
+    <boxUsuario>
+        <sprite>
+                <src>assets/varios/boxUsuario.png</src>
+            </sprite>
+    </boxUsuario>
+    <boxContrasenia>
+        <sprite>
+                <src>assets/varios/boxPass.png</src>
+            </sprite>
+    </boxContrasenia>
+    <identificacionUsuario>
+        <sprite>
+                <src>assets/varios/identificacionUsuario.png</src>
+            </sprite>
+    </identificacionUsuario>
+        <sprite>
+            <src>assets/varios/pantallaDeIngreso.png</src>
+        </sprite>            
+    </pantallaDeIngreso>
     <pantallaDeSeleccion>
         <guy>
             <src>assets/varios/selectorGuy.png</src>

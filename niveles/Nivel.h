@@ -13,7 +13,7 @@
 #include "../tipos/tipos.h"
 #include<stdlib.h>
 #include<time.h>
-
+#include "../modelo/Personaje.h"
 
 class Nivel{
 
@@ -29,7 +29,7 @@ private:
 public:
     static void generarPantallaDeEspera(Mapa *mapa);
     static void generarMenuSeleccion(Mapa *mapa);
-    static Entidad *generarJugador(Mapa *mapa, nombreJugador jugadorElegido);
+    static Entidad *generarJugador(Mapa *mapa, enum PERSONAJE jugadorElegido);
     static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
 };
 

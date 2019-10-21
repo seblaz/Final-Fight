@@ -22,6 +22,14 @@ string Usuario::getContrasenia() {
     return contrasenia;
 }
 
+void Usuario::setUsuario(string stringUsuario) {
+    usuario = stringUsuario;
+}
+
+void Usuario::setContrasenia(string stringContrasenia) {
+    contrasenia = stringContrasenia;
+}
+
 void Usuario::setSocket(Socket *nuevoSocket) {
     socket = nuevoSocket;
 }
