@@ -10,7 +10,7 @@ AnimacionCliente* FabricaDeAnimacionesDeGuy::caminando() {
 
     };
 
-    vector<float> duraciones = {1, 1, 1, 1, 1};
+//    vector<float> duraciones = {1, 1, 1, 1, 1};
     return new AnimacionCliente(posiciones, 4.5);
     //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
@@ -30,14 +30,14 @@ AnimacionCliente* FabricaDeAnimacionesDeGuy::saltando() {
 
 AnimacionCliente* FabricaDeAnimacionesDeGuy::reposando() {
     vector<SDL_Rect> posiciones = {{5, 0, 55, 95}};
-    vector<float> duraciones = {1};
+//    vector<float> duraciones = {1};
     return new AnimacionCliente(posiciones, 4.5);
     //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
 AnimacionCliente *FabricaDeAnimacionesDeGuy::agachado() {
     vector<SDL_Rect> posiciones = {{343, 670, 50, 90}};
-    vector<float> duraciones = {1};
+//    vector<float> duraciones = {1};
     return new AnimacionCliente(posiciones, 4.5);
     //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
@@ -50,7 +50,7 @@ AnimacionCliente* FabricaDeAnimacionesDeGuy::golpear() {
             {185, 380, 70, 100},
     };
 
-    vector<float> duraciones = {1, 2, 1};
+//    vector<float> duraciones = {1, 2, 1};
     return new AnimacionCliente(posiciones, 4.5);
     //return new AnimacionCliente(posiciones, duraciones, 16, 4.5);
 }
@@ -77,7 +77,7 @@ AnimacionCliente *FabricaDeAnimacionesDeGuy::patadaBasica() {
             {200, 500, 85, 80},
     };
 
-    vector<float> duraciones = {1, 1, 3, 2};
+//    vector<float> duraciones = {1, 1, 3, 2};
     return new AnimacionCliente(posiciones, 4.5);
     //return new AnimacionCliente(posiciones, duraciones, 35, 4.5);
 }
