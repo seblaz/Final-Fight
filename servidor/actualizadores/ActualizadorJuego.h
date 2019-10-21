@@ -22,7 +22,11 @@ private:
 
 public:
     explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios, Usuario* usuario);
-    void interpretarStream(stringstream &s);
+    void desconectarUsuario(Usuario *usuario);
+
+public:
+    explicit ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador, ManagerUsuarios* managerUsuarios);
+    void interpretarStream(stringstream &s, Usuario *pUsuario);
     void actualizarJuego(Usuario *pUsuario);
 
 };

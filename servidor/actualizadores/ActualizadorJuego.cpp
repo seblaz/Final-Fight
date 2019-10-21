@@ -16,10 +16,11 @@ ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Enti
         eventos(eventos),
         managerUsuarios(managerUsuarios),
         usuario(usuario){
+
     Locator::logger()->log(DEBUG, "Se crea un actualizador de juego.");
 }
 
-void ActualizadorJuego::interpretarStream(stringstream &s) {
+void ActualizadorJuego::interpretarStream(stringstream &s, Usuario *usuario) {
     Accion accion;
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
@@ -77,7 +78,8 @@ void ActualizadorJuego::interpretarStream(stringstream &s) {
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
                 evento = new DesconectarVoluntariamente(managerUsuarios, usuario);
                 eventos->push(evento);
-                pthread_exit(nullptr);
+                desconectarUsuario(usuario);
+                break;
             default:
                 Locator::logger()->log(ERROR, "Se recibió una acción inválida en ActualizarJuego.");
         }
@@ -88,13 +90,18 @@ void ActualizadorJuego::actualizarJuego(Usuario *usuario) {
     do {
         stringstream s;
         if (!usuario->getSocket()->recibir(s)) {
-            usuario->desconectar();
-            eventos->push(new SetActividadJugador(jugador, false));
-            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada. Se termina el hilo.");
-            pthread_exit(nullptr);
+            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada.");
+            desconectarUsuario(usuario);
         }
-        interpretarStream(s);
+        interpretarStream(s, usuario);
     } while (true);
+}
+
+void ActualizadorJuego::desconectarUsuario(Usuario *usuario) {
+    Locator::logger()->log(INFO, "Se termina el hilo y se desconecta al usuario.");
+    usuario->desconectar();
+    eventos->push(new SetActividadJugador(jugador, false));
+    pthread_exit(nullptr);
 }
 
 SetActividadJugador::SetActividadJugador(Entidad *jugador, bool activo) :

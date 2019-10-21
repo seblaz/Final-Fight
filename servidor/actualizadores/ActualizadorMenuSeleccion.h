@@ -43,6 +43,7 @@ private:
     semaphore *confirmacion;
     ManagerUsuarios *manager;
     void interpretarStream(stringstream &s);
+    void desconectarUsuario();
     bool fin();
 
 public:

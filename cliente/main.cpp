@@ -93,9 +93,7 @@ int main(int argc, char *argv[]) {
         juego.loop();
         juego.terminar();
 
-//        pthread_join(hiloTransmision, nullptr);
     }
-
 
     return 0;
 

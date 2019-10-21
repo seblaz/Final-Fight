@@ -21,7 +21,7 @@ bool ActualizadorUsuario::validarContrasenia(Usuario *usuario, Socket *socket) {
     if (constraseniaCorrecta) {
         Locator::logger()->log(INFO, "Se recibió una contraseña correcta del usuario: " + usuario->getUsuario() + ".");
     } else {
-        Locator::logger()->log(ERROR, "Se recibió una contraseña incorrecta del usuario: " + usuario->getUsuario() + ".");
+        Locator::logger()->log(ERROR,  "Se recibió una contraseña incorrecta del usuario: " + usuario->getUsuario() + ".");
         EventoUsuario evento(CONTRASENIA_INCORRECTA);
         stringstream ss;
         evento.serializar(ss);

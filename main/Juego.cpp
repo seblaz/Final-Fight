@@ -136,6 +136,7 @@ void Juego::processInput() {
         stringstream s;
         Accion(FIN).serializar(s);
         Locator::socket().enviar(s);
+        Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
         exit = true;
     }
 }
