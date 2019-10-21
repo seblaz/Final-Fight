@@ -74,7 +74,7 @@ void ActualizadorJuego::interpretarStream(stringstream &s) {
                 eventos->push(evento);
                 break;
             case FIN:
-                Locator::logger()->log(INFO, "Se desconecta voluntariamente un usuario.");// + jugador.get->getUsuario());
+                Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
                 evento = new DesconectarVoluntariamente(managerUsuarios, usuario);
                 eventos->push(evento);
                 pthread_exit(nullptr);

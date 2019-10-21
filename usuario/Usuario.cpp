@@ -13,7 +13,7 @@ Usuario::Usuario(string usuario, string contrasenia) :
         personajeSeleccionado(CODY),
         usuario(std::move(usuario)),
         contrasenia(std::move(contrasenia)),
-        conectadoVoluntariamente(true){}
+        desconectadoVoluntariamente(false){}
 
 string Usuario::getUsuario() {
     return usuario;
@@ -79,9 +79,9 @@ void Usuario::deserializar(istream &stream) {
 }
 
 void Usuario::desconectarVoluntariamente(){
-    this->conectadoVoluntariamente = false;
+    this->desconectadoVoluntariamente = true;
 }
 
 bool Usuario::estaDesconectadoVoluntariamente(){
-    return this->conectadoVoluntariamente;
+    return this->desconectadoVoluntariamente;
 }

@@ -58,13 +58,13 @@ void ManagerUsuarios::desconectarJugadorVoluntariamente(Usuario *usuario) {
 }
 
 bool ManagerUsuarios::hayJugadoresConectados(){
-    int conectados = 0;
+    int desconectados = 0;
 
     std::list<Usuario*>::iterator it;
     for (it = usuarios.begin(); it != usuarios.end(); ++it){
-        if(!it.operator*()->estaDesconectadoVoluntariamente()){
-            conectados++;
+        if(it.operator*()->estaDesconectadoVoluntariamente()){
+            desconectados++;
         }
     }
-    return conectados > 0;
+    return desconectados < this->maximo;
 }
