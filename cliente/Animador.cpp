@@ -3,41 +3,34 @@
 //
 
 #include "Animador.h"
-#include "../servicios/Locator.h"
-#include "../modelo/Velocidad.h"
 #include "../estados/Caminando.h"
+#include "../modelo/EstadoDePersonaje.h"
 
 void Animador::actualizar(Entidad *entidad) {
 
-    auto *estado = entidad->getEstado<EstadoDePersonaje>("estado");
-    if (estado->cambioElEstado()) {
-        enum ESTADO tipoEstado = estado->getNuevoEstado();
-        auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-        if (tipoEstado == GOLPEANDO) {
-            auto *animacion = fabricaDeAnimaciones->golpear();
-            entidad->agregarEstado("animacion", animacion);
-        }else if (tipoEstado == PATEANDO) {
-            auto *animacion = fabricaDeAnimaciones->patadaBasica();
-            entidad->agregarEstado("animacion", animacion);
-        }else if (tipoEstado == SALTANDO) {
-            if( estado->getEstadoDePersonaje() == CAMINANDO ){
-                auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
-                entidad->agregarEstado("animacion", animacion);
-            }else{
-                auto *animacion = fabricaDeAnimaciones->saltando();
-                entidad->agregarEstado("animacion", animacion);
-            }
-        } else if (tipoEstado == AGACHADO) {
-            auto *animacion = fabricaDeAnimaciones->agachado();
-            entidad->agregarEstado("animacion", animacion);
-        } else if ( tipoEstado == CAMINANDO ){
-            auto *animacion = fabricaDeAnimaciones->caminando();
-            entidad->agregarEstado("animacion", animacion);
-        } else if ( tipoEstado == REPOSANDO ){
-            auto *animacion = fabricaDeAnimaciones->reposando();
-            entidad->agregarEstado("animacion", animacion);
-        }
-
-        estado -> consolidarEstados();
+    auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
+    switch (estado->getEstado()){
+        case CAMINANDO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->caminando());
+            break;
+        case SALTANDO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->saltando());
+            break;
+        case REPOSANDO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->reposando());
+            break;
+        case GOLPEANDO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->golpear());
+            break;
+        case AGACHADO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->agachado());
+            break;
+        case PATEANDO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->patadaBasica());
+            break;
+        case SALTANDO_CON_MOVIMIENTO:
+            entidad->agregarEstado("animacion", fabricaDeAnimaciones->saltandoAdelante());
+            break;
     }
 }

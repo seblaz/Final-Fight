@@ -7,7 +7,7 @@
 #include "Orientacion.h"
 #include "Personaje.h"
 #include "Nivel.h"
-#include "../estados/Reposando.h"
+#include "EstadoDePersonaje.h"
 #include "Opacidad.h"
 #include "TipoElemento.h"
 #include "Actividad.h"
@@ -76,13 +76,13 @@ void Entidad::deserializar(istream &stream) {
                 nivel->deserializar(stream);
                 agregarEstado("nivel", nivel);
             }
-        } else if (estado == "estado") {
+        } else if (estado == "estado de personaje") {
             if (existe) {
-                getEstado<Estado>("estado")->deserializar(stream);
+                getEstado<EstadoDePersonaje>("estado de personaje")->deserializar(stream);
             } else {
-                auto *estado = new Reposando();
-                estado->deserializar(stream);
-                agregarEstado("estado", estado);
+                auto *estadoDePersonaje = new EstadoDePersonaje();
+                estadoDePersonaje->deserializar(stream);
+                agregarEstado("estado de personaje", estadoDePersonaje);
             }
         } else if (estado == "personaje") {
             if (existe) {
@@ -116,8 +116,7 @@ void Entidad::deserializar(istream &stream) {
                 actividad->deserializar(stream);
                 agregarEstado("actividad", actividad);
             }
-        }
-        else if (estado == "numeroJugador") {
+        } else if (estado == "numeroJugador") {
             if (existe) {
                 getEstado<NumeroJugador>("numeroJugador")->deserializar(stream);
             } else {
@@ -125,7 +124,7 @@ void Entidad::deserializar(istream &stream) {
                 numeroJugador->deserializar(stream);
                 agregarEstado("numeroJugador", numeroJugador);
             }
-        }else if (estado == "indice sprite") {
+        } else if (estado == "indice sprite") {
             if (existe) {
                 getEstado<IndiceSprite>("indice sprite")->deserializar(stream);
             } else {

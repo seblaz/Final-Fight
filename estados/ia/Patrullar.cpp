@@ -22,7 +22,7 @@ Patrullar::~Patrullar() {
 
 void Patrullar::actualizar(Entidad *entidad) {
 
-    auto *estado = entidad->getEstado<EstadoDePersonaje>("estado");
+    auto *estado = entidad->getEstado<EstadoDePersonajeServidor>("estado");
     estado->actualizar(entidad);
 
     int num = 1 + rand() % (101 - 1);

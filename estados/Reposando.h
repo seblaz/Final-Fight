@@ -6,16 +6,15 @@
 #define FINAL_FIGHT_REPOSANDO_H
 
 
-#include "EstadoDePersonaje.h"
+#include "EstadoDePersonajeServidor.h"
 
-class Reposando : public EstadoDePersonaje {
+class Reposando : public EstadoDePersonajeServidor {
 
 private:
 
 public:
     Reposando();
     ~Reposando();
-    void enter(Entidad *) override;
     void actualizar(Entidad *) override;
     void reposar(Entidad *) override {};
 };

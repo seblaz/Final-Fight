@@ -12,7 +12,7 @@
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "../estados/EstadoDePersonaje.h"
+#include "../estados/EstadoDePersonajeServidor.h"
 #include "../estados/Reposando.h"
 #include "../modelo/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
@@ -119,12 +119,10 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/haggar.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
-            auto *estado = new Reposando();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
             jugador->agregarComportamiento("grafico", grafico);
             jugador->agregarComportamiento("animador", animador);
         }
@@ -135,12 +133,10 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
-            auto *estado = new Reposando();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
             jugador->agregarComportamiento("grafico", grafico);
             jugador->agregarComportamiento("animador", animador);
         }
@@ -151,12 +147,10 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/maki.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
-            auto *estado = new Reposando();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
             jugador->agregarComportamiento("grafico", grafico);
             jugador->agregarComportamiento("animador", animador);
         }
@@ -167,12 +161,10 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
             auto *animacion = fabricaDeAnimaciones->reposando();
             auto *grafico = new Grafico();
-            auto *estado = new Reposando();
             auto *animador = new Animador();
             jugador->agregarEstado("sprite", spriteJugador);
             jugador->agregarEstado("animacion", animacion);
             jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
-            jugador->agregarEstado("estado", estado);
             jugador->agregarComportamiento("grafico", grafico);
             jugador->agregarComportamiento("animador", animador);
         }

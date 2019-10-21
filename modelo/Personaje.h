@@ -25,6 +25,7 @@ public:
     Personaje();
     explicit Personaje(enum PERSONAJE personaje);
     enum PERSONAJE getPersonaje();
+    static string PersonajeACadena(enum PERSONAJE);
     void setPersonaje(enum PERSONAJE personaje);
 
     void serializar(ostream& stream) override;

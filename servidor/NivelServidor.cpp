@@ -10,6 +10,7 @@
 #include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../modelo/Opacidad.h"
+#include "../modelo/EstadoDePersonaje.h"
 #include "../fisica/FisicaDeTransicion.h"
 #include "../graficos/Sprite.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
@@ -19,6 +20,8 @@
 #include "../modelo/Actividad.h"
 #include "../modelo/NumeroJugador.h"
 #include "AnimacionServidor.h"
+#include "FabricaDeAnimacionesServidor.h"
+#include "../modelo/IndiceSprite.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -40,22 +43,26 @@ Entidad * NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSele
     auto *velocidad = new Velocidad();
     auto *orientacion = new Orientacion;
     auto *tipo = new Tipo(JUGADOR);
-    EstadoDePersonaje *estado = new Reposando();
+    auto *estado = new Reposando();
+    auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *fisica = new FisicaDePersonaje();
     auto *actividad = new Actividad(true);
     auto *numeroJugador = new NumeroJugador(contadorJugador);
-    //auto *animacionServidor = new AnimacionServidor();
+    auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
+    auto *indiceSprite = new IndiceSprite;
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
-    jugador->agregarEstado("orientacion", orientacion);
-    jugador->agregarEstado("estado", estado);
-    jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("actividad", actividad);
+    jugador->agregarEstado("orientacion", orientacion);
+    jugador->agregarEstado("indice sprite", indiceSprite);
     jugador->agregarEstado("numeroJugador", numeroJugador);
+    jugador->agregarEstado("estado de personaje", estadoDePersonaje);
+    jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
+    jugador->agregarComportamiento("animacion servidor", animacionServidor);
     return jugador;
 }
 
@@ -73,12 +80,12 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
 
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
 
-    generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
-    generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
-    generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
-    generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
-    generarEnemigo(nivel, mapa, posicionDeEscenario);
-    generarTransicion(nivel, mapa, jugadores);
+//    generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
+//    generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
+//    generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
+//    generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
+//    generarEnemigo(nivel, mapa, posicionDeEscenario);
+//    generarTransicion(nivel, mapa, jugadores);
 }
 
 Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
@@ -157,16 +164,16 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *orientacionDeEnemigo = new Orientacion;
         auto *comportamiento = new Patrullar();
         auto *fisicaDeEnemigo = new FisicaDePersonaje();
-        EstadoDePersonaje *estado = new Caminando();
+        EstadoDePersonajeServidor *estado = new Caminando();
 
         enemigo->agregarEstado("tipo", tipo);
-        enemigo->agregarEstado("estado", estado);
         enemigo->agregarEstado("posicion", posicionEnemigoRandom);
         enemigo->agregarEstado("velocidad", velocidadDeEnemigo);
         enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
         enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
-        enemigo->agregarComportamiento("comportamiento", comportamiento);
+        enemigo->agregarComportamiento("estado", estado);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
+        enemigo->agregarComportamiento("comportamiento", comportamiento);
     }
 }
 

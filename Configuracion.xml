@@ -1,6 +1,6 @@
 <configuracion>
     <usuarios>
-        <cantidad>2</cantidad>
+        <cantidad>1</cantidad>
     </usuarios>
     <password>p</password>
     <debug>
@@ -56,6 +56,10 @@
     </pantallaDeSeleccion>
     <animaciones>
         <cody>
+            <reposando>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </reposando>
             <caminando>
                 <cantidad>6</cantidad>
                 <posiciones>
@@ -67,8 +71,29 @@
                     </posicion1>
                 </posiciones>
                 <duraciones>1,1,1,1,1,1</duraciones>
+                <total>60</total>
                 <escala>4.5</escala>
             </caminando>
+            <saltando>
+                <duraciones>1,1,1,1</duraciones>
+                <total>60</total>
+            </saltando>
+            <saltandoAdelante>
+                <duraciones>1,1,1,1,1,1,1</duraciones>
+                <total>60</total>
+            </saltandoAdelante>
+            <patada>
+                <duraciones>1,1,3,2</duraciones>
+                <total>35</total>
+            </patada>
+            <golpeando>
+                <duraciones>1,2,1</duraciones>
+                <total>16</total>
+            </golpeando>
+            <agachado>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </agachado>
         </cody>
     </animaciones>
     <niveles>

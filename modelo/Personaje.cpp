@@ -23,3 +23,16 @@ void Personaje::serializar(ostream &stream) {
 void Personaje::deserializar(istream &stream) {
     personaje = static_cast<enum PERSONAJE>(deserializarEntero(stream));
 }
+
+string Personaje::PersonajeACadena(enum PERSONAJE personaje) {
+    switch(personaje){
+        case CODY:
+            return "cody";
+        case HAGGAR:
+            return "haggar";
+        case GUY:
+            return "guy";
+        case MAKI:
+            return "maki";
+    }
+}

@@ -5,7 +5,6 @@
 #include "Golpeando.h"
 
 Golpeando::Golpeando() {
-    estadoDePersonaje = GOLPEANDO;
     Logger* logger = Locator::logger();
     logger -> log(DEBUG, "Se instancio un objeto de clase Golpeando");
 }
@@ -13,12 +12,6 @@ Golpeando::Golpeando() {
 Golpeando::~Golpeando() {
     Logger* logger = Locator::logger();
     logger -> log(DEBUG, "Se elimino un objeto de clase Golpeando");
-}
-
-void Golpeando::enter(Entidad *entidad) {
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    auto* animacion = fabricaDeAnimaciones->golpear();
-    entidad->agregarEstado("animacion", animacion);
 }
 
 void Golpeando::actualizar(Entidad * entidad) {
@@ -34,21 +27,21 @@ void Golpeando::actualizar(Entidad * entidad) {
 
 void Golpeando::reposar(Entidad * entidad) {
     if ( Golpeando::termine )
-        EstadoDePersonaje::reposar(entidad);
+        EstadoDePersonajeServidor::reposar(entidad);
 }
 
 void Golpeando::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
     if ( Golpeando::termine )
-        EstadoDePersonaje::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
+        EstadoDePersonajeServidor::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
 }
 
 void Golpeando::agachar(Entidad * entidad) {
     if ( Golpeando::termine )
-        EstadoDePersonaje::agachar(entidad);
+        EstadoDePersonajeServidor::agachar(entidad);
 }
 
 void Golpeando::saltar(Entidad *entidad) {
     if ( Golpeando::termine )
-        EstadoDePersonaje::saltar(entidad);
+        EstadoDePersonajeServidor::saltar(entidad);
 }
 

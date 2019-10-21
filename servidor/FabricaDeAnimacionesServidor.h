@@ -1,20 +1,19 @@
 //
-// Created by franco on 20/10/19.
+// Created by sebas on 20/10/19.
 //
 
 #ifndef FINAL_FIGHT_FABRICADEANIMACIONESSERVIDOR_H
 #define FINAL_FIGHT_FABRICADEANIMACIONESSERVIDOR_H
 
 
-#include "../modelo/Entidad.h"
+#include "AnimacionServidor.h"
+#include "../modelo/Personaje.h"
 
-class FabricaDeAnimacionesServidor : public Estado {
-
-private:
-    string ruta;
+class FabricaDeAnimacionesServidor {
 
 public:
-    FabricaDeAnimacionesServidor(string );
+    static AnimacionServidor *getAnimacion(const string& ruta);
+    static AnimacionServidor *getAnimacion(enum PERSONAJE personajeSeleccionado, const string& estado);
 };
 
 

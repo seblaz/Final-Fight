@@ -69,7 +69,7 @@ Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador jugadorElegido) {
 
     auto *orientacion = new Orientacion;
     auto *animacion = fabricaDeAnimaciones->reposando();
-    EstadoDePersonaje *estado = new Reposando();
+    EstadoDePersonajeServidor *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
     auto *grafico = new Grafico();
 
@@ -298,7 +298,7 @@ void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa 
         auto *comportadmiento = new Patrullar();
         auto *fisicaDeEnemigo = new FisicaDePersonaje();
         auto *graficoDeEnemigo = new Grafico();
-        EstadoDePersonaje *estado = new Caminando();
+        EstadoDePersonajeServidor *estado = new Caminando();
 
         enemigo->agregarEstado("estado", estado);
         enemigo->agregarEstado("posicion", posicionEnemigoRandom);

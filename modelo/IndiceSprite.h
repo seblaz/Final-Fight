@@ -10,7 +10,7 @@
 class IndiceSprite : public Estado{
 
 private:
-    int indice;
+    int indice = 0;
 
 public:
     IndiceSprite() = default;

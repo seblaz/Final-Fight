@@ -3,54 +3,54 @@
 //
 
 #include "EventoPersonaje.h"
-#include "../estados/EstadoDePersonaje.h"
+#include "../estados/EstadoDePersonajeServidor.h"
 
 EventoPersonaje::EventoPersonaje(Entidad *personaje) : personaje(personaje) {}
 
 void Reposar::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->reposar(personaje);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->reposar(personaje);
 }
 
 void Saltar::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->saltar(personaje);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->saltar(personaje);
 }
 
 void Golpear::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->golpear(personaje);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->golpear(personaje);
 }
 
 void Agachar::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->agachar(personaje);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->agachar(personaje);
 }
 
 void CaminarIzquierda::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 0, 1, 0, 0);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 0, 1, 0, 0);
 }
 
 void CaminarDerecha::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 1, 0, 0, 0);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 1, 0, 0, 0);
 }
 
 void CaminarArriba::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 0, 0, 1, 0);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 0, 0, 1, 0);
 }
 
 void CaminarAbajo::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 0, 0, 0, 1);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 0, 0, 0, 1);
 }
 
 void CaminarIzquierdaArriba::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 0, 1, 1, 0);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 0, 1, 1, 0);
 }
 
 void CaminarIzquierdaAbajo::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 0, 1, 0, 1);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 0, 1, 0, 1);
 }
 
 void CaminarDerechaArriba::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 1, 0, 1, 0);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 1, 0, 1, 0);
 }
 
 void CaminarDerechaAbajo::resolver() {
-    personaje->getEstado<EstadoDePersonaje>("estado")->caminar(personaje, 1, 0, 0, 1);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 1, 0, 0, 1);
 }

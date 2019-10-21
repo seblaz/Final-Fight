@@ -5,19 +5,16 @@
 #ifndef FINAL_FIGHT_CAMINANDO_H
 #define FINAL_FIGHT_CAMINANDO_H
 
-#include "EstadoDePersonaje.h"
+#include "EstadoDePersonajeServidor.h"
 #include <SDL_scancode.h>
 
 
-class Caminando : public EstadoDePersonaje {
+class Caminando : public EstadoDePersonajeServidor {
 
 public:
     Caminando();
     ~Caminando();
-    void enter(Entidad *) override;
     void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
-
-    //void cambioDeEstado(Entidad *) override ;
 };
 
 #endif //FINAL_FIGHT_CAMINANDO_H

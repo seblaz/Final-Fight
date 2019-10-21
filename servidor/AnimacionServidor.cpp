@@ -3,11 +3,12 @@
 //
 
 #include <numeric>
+#include <utility>
 #include "AnimacionServidor.h"
 #include "../modelo/IndiceSprite.h"
 
-AnimacionServidor::AnimacionServidor(vector<float> duracionesPorSprite, int duracionTotal) {
-    this->duracionesPorSprite = duracionesPorSprite;
+AnimacionServidor::AnimacionServidor(vector<int> duracionesPorSprite, int duracionTotal) {
+    this->duracionesPorSprite = std::move(duracionesPorSprite);
     this->duracionTotal = duracionTotal;
     this->spriteActual = 0;
     this->sumaDeDuracionesRelativas = accumulate(this->duracionesPorSprite.begin(), this->duracionesPorSprite.end(), 0.0f);
@@ -16,13 +17,13 @@ AnimacionServidor::AnimacionServidor(vector<float> duracionesPorSprite, int dura
 
 int AnimacionServidor::calcularFramesFaltantes() {
     float velocidad = Locator::configuracion()->getFloatValue("/velocidad/juego");
-    return duracionTotal * duracionesPorSprite[spriteActual] / sumaDeDuracionesRelativas * (1 / velocidad);
+    return int(float(duracionTotal) * duracionesPorSprite[spriteActual] / sumaDeDuracionesRelativas * (1 / velocidad));
 }
 
 void AnimacionServidor::actualizar(Entidad* entidad) {
     framesFaltantes--;
     if (framesFaltantes <= 0) {
-        spriteActual = (spriteActual + 1) % duracionesPorSprite.size();
+        spriteActual = (int)((spriteActual + 1) % duracionesPorSprite.size());
         framesFaltantes = calcularFramesFaltantes();
     }
     entidad->getEstado<IndiceSprite>("indice sprite")->setIndice(spriteActual);
