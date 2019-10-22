@@ -49,10 +49,15 @@
                 <src>assets/varios/boxPass.png</src>
             </sprite>
     </boxContrasenia>
+    <usuarioRechazado>
+	<sprite>
+                <src>assets/varios/usuarioRechazado.png</src>
+    	</sprite>
+    </usuarioRechazado>
     <identificacionUsuario>
         <sprite>
                 <src>assets/varios/identificacionUsuario.png</src>
-            </sprite>
+    	</sprite>
     </identificacionUsuario>
         <sprite>
             <src>assets/varios/pantallaDeIngreso.png</src>

@@ -64,11 +64,12 @@ void Juego::inicializarGraficos() {
 void Juego::validarUserPass() {
     bool exit = false;
     SDL_Event e;
+    bool contraseniaIncorrecta = false;
 
     while (!exit) {
         processInput(); //Se llama para poder cerrar el juego
-        
-        Usuario usuarioAux = generarPantallaDeIngreso();
+
+        Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
         string user = usuarioAux.getUsuario();
         string pass = usuarioAux.getContrasenia();
 
@@ -91,6 +92,7 @@ void Juego::validarUserPass() {
         switch (evento.evento()){
             case CONTRASENIA_INCORRECTA:
                 Locator::logger()->log(ERROR, "Contraseña incorrecta.");
+                contraseniaIncorrecta = true;
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
@@ -106,7 +108,7 @@ void Juego::validarUserPass() {
     }
 }
 
-Usuario& Juego::generarPantallaDeIngreso() {
+Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
     Configuracion *config = Locator::configuracion();
     string srcSpritePantallaIngreso = config->getValue("/pantallaDeIngreso/sprite/src");
@@ -114,6 +116,7 @@ Usuario& Juego::generarPantallaDeIngreso() {
     string srcSpriteBoxIdentificacion = config->getValue("/pantallaDeIngreso/identificacionUsuario/sprite/src");
     string srcSpriteBoxUsr = config->getValue("/pantallaDeIngreso/boxUsuario/sprite/src");
     string srcSpriteBoxContrasenia = config->getValue("/pantallaDeIngreso/boxContrasenia/sprite/src");
+    string srcSpriteUsuarioRechazado = config->getValue("/pantallaDeIngreso/usuarioRechazado/sprite/src");
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
     SDL_Renderer *sdlRenderer = Locator::renderer();
@@ -130,6 +133,7 @@ Usuario& Juego::generarPantallaDeIngreso() {
     boxSeleccionadaRectUsuario.text = "";
     boxSeleccionadaRectContrasenia.text = "";
 
+    cout << "la pantalla es: " << srcSpriteUsuarioRechazado.c_str() << endl;
     TTF_Init();
     gFont = TTF_OpenFont( "../assets/fuentes/open-sans/OpenSans-Bold.ttf", 22 );
     if(!gFont)
@@ -217,6 +221,16 @@ Usuario& Juego::generarPantallaDeIngreso() {
         pantalla->agregarEstado("spriteBoxIdentificacion", spriteBoxIdentificacion);
         pantalla->agregarComportamiento("graficoBoxIdentificacion", graficoBoxIdentificacion);
 
+        //Grafico usuario rechazado
+        auto *spriteUsuarioRechazado = new Sprite(sdlRenderer, srcSpriteUsuarioRechazado);
+        SDL_Rect posicionEnPantallaIngresoUsuarioRechazado = {(int) (ancho/2.45), (int) (alto/3), (int) (ancho/6), (int) (alto/4.5)};
+        auto *graficoUsuarioRechazado = new GraficoDeElementosPantalla(spriteUsuarioRechazado->getTexture(), posicionEnPantallaIngresoUsuarioRechazado, 1);
+
+        if(contraseniaIncorrecta) {
+            pantalla->agregarEstado("spriteUsuarioRechazado", spriteUsuarioRechazado);
+            pantalla->agregarComportamiento("graficoUsuarioRechazado", graficoUsuarioRechazado);
+        }
+
         //Pantalla grafico
         auto *spritePantallaIngreso = new Sprite(sdlRenderer, srcSpritePantallaIngreso);
         SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
@@ -230,6 +244,7 @@ Usuario& Juego::generarPantallaDeIngreso() {
         boxSeleccionadaRectUsuario.rect = posicionEnPantallaIngresoUsuario;
         boxSeleccionadaRectContrasenia.rect = posicionEnPantallaIngresoContrasenia;
 
+        //Eventos
         switch (sdlEvento.type) {
             case SDL_QUIT:
                 exit = true;
@@ -278,7 +293,7 @@ Usuario& Juego::generarPantallaDeIngreso() {
                     boxSeleccionadaRectContrasenia.text.pop_back();
                 break;
         }
-        
+
         //Actualizar
         auto comportamientos = pantalla->getComportamientos();
         for (auto *comportamiento : comportamientos) {
@@ -292,7 +307,10 @@ Usuario& Juego::generarPantallaDeIngreso() {
             SDL_RenderCopy(sdlRenderer, textureTextoContrasenia, NULL, &posicionEnPantallaIngresoContraseniaTexto);
         SDL_RenderPresent(sdlRenderer); // Update screen
 
-        //Quit
+        if(contraseniaIncorrecta) {
+            SDL_Delay(1500);
+            contraseniaIncorrecta = false;
+        }
 
         //Deletes
         SDL_DestroyTexture(textureTextoUsuario);
@@ -303,6 +321,8 @@ Usuario& Juego::generarPantallaDeIngreso() {
         delete graficoBoxIdentificacion;
         delete graficoPantalla;
         delete graficoBoxContrasenia;
+        delete graficoUsuarioRechazado;
+        delete spriteUsuarioRechazado;
         delete spriteBotonDeEntrar;
         delete spriteBoxUsuario;
         delete spriteBoxIdentificacion;
