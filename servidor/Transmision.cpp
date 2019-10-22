@@ -25,7 +25,7 @@ void Transmision::transmitir() {
         for (Socket socket : sockets->devolverSockets()){
             stringstream s(msj);
             if(!socket.enviar(s)){
-                Locator::logger()->log(ERROR, "Se detecta socket invalido y se quita de la lista de sockets.");
+                Locator::logger()->log(ERROR, "Se detecta socket invalido, se quita de la lista de sockets y se cierra.");
                 sockets->quitar(socket);
             }
         }

@@ -21,6 +21,7 @@ void ListaSockets::quitar(Socket socket) {
     lock_guard<mutex> lock(m);
     auto position = find(sockets.begin(), sockets.end(), socket);
     sockets.erase(position);
+    close(socket.getIntSocket());
 }
 
 void ListaSockets::cerrarSockets() {

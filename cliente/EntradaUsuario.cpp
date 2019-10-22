@@ -125,7 +125,11 @@ void TrasmisionCliente::transmitir() {
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            if (!socket.enviar(s)) break;
+            if (!socket.enviar(s)) {
+                Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
+                close(socket.getIntSocket());
+                break;
+            }
         }
 
         size_t end = SDL_GetTicks();
