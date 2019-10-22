@@ -100,7 +100,7 @@ void ActualizadorMenuSeleccion::actualizarPersonaje() {
     do {
         stringstream s;
         if (!usuario->getSocket()->recibir(s)) {
-            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada.");
+            Locator::logger()->log(ERROR, "Se desconectó el cliente " + usuario->getUsuario() + " de forma inesperada.");
             desconectarUsuario();
             pthread_exit(nullptr);
         }

@@ -90,7 +90,7 @@ void ActualizadorJuego::actualizarJuego(Usuario *usuario) {
     do {
         stringstream s;
         if (!usuario->getSocket()->recibir(s)) {
-            Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada.");
+            Locator::logger()->log(ERROR, "Se desconectó el cliente " + usuario->getUsuario() + " de forma inesperada.");
             desconectarUsuario(usuario);
         }
         interpretarStream(s, usuario);
