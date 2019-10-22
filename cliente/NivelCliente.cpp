@@ -5,7 +5,7 @@
 #include "NivelCliente.h"
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
-#include "../graficos/GraficoDePantallaCompleta.h"
+//#include "../graficos/GraficoDePantallaCompleta.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"

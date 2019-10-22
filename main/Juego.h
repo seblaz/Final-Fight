@@ -38,7 +38,7 @@ private:
     void graficar();
     void clearScene();
     //bool validarUserPass();
-    void validarUserPass();
+    bool validarUserPass();
     Usuario& generarPantallaDeIngreso(bool &contraseniaIncorrecta);
 
     SDL_Renderer *renderer_ = nullptr;

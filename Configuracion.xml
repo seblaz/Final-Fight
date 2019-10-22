@@ -7,8 +7,8 @@
         <level>DEBUG</level>
     </debug>
     <resolucion>
-        <ancho>1280</ancho>
-        <alto>640</alto>
+        <ancho>1600</ancho>
+        <alto>900</alto>
     </resolucion>
     <escala>
         <entidades>1</entidades>
