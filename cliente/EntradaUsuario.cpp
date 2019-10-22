@@ -122,11 +122,18 @@ void TrasmisionCliente::transmitir() {
     while (!fin) {
         size_t start = SDL_GetTicks();
 
+        if ((float(clock() - ReceptorCliente::ultimaRecepcion) / CLOCKS_PER_SEC) > 1) {
+            Locator::logger()->log(ERROR, "Se detectó desconexión del servidor, se cierra la conexión.");
+            shutdown(socket.getIntSocket(), SHUT_RDWR);
+            close(socket.getIntSocket());
+            break;
+        }
+
         Accion *accion = getEntradaUsuario()->getAccion();
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            if (!socket.enviar(s) || (float( clock () - ReceptorCliente::ultimaRecepcion ) /  CLOCKS_PER_SEC) > 1) {
+            if (!socket.enviar(s)) {
                 Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
                 shutdown(socket.getIntSocket(), SHUT_RDWR);
                 close(socket.getIntSocket());
