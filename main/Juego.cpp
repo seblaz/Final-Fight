@@ -140,7 +140,8 @@ Usuario& Juego::generarPantallaDeIngreso() {
     Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
 
     while (!exit) {
-        SDL_Event sdlEvento = processInput();
+        SDL_Event sdlEvento;
+        SDL_WaitEvent(&sdlEvento);
         Entidad *pantalla = new Entidad();
         SDL_Surface * surfaceTextoUsuario;
         SDL_Surface * surfaceTextoContrasenia;
@@ -229,38 +230,55 @@ Usuario& Juego::generarPantallaDeIngreso() {
         boxSeleccionadaRectUsuario.rect = posicionEnPantallaIngresoUsuario;
         boxSeleccionadaRectContrasenia.rect = posicionEnPantallaIngresoContrasenia;
 
-        //Pantalla Ok seleccionada
-        if(boxSeleccionada(&boxSeleccionadaRectOk, &sdlEvento)) {
-            exit = true;
-        }
+        switch (sdlEvento.type) {
+            case SDL_QUIT:
+                exit = true;
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                //Pantalla Ok seleccionada
+                if(boxSeleccionada(&boxSeleccionadaRectOk, &sdlEvento))
+                    exit = true;
 
-        //Ingreso de caracteres pantalla usuario
-        if(boxSeleccionada(&boxSeleccionadaRectUsuario, &sdlEvento)){
-            usuarioSeleccionado = true;
-            contraseniaSeleccionada = false;
-            cout << "Se seteo el usuario" << endl; //Debug
-        }
-        if(sdlEvento.type == SDL_TEXTINPUT && usuarioSeleccionado && boxSeleccionadaRectUsuario.text.length() <= CANT_MAX_CARACTERES_USUARIO)
-            boxSeleccionadaRectUsuario.text.append(sdlEvento.text.text);
-        else if (usuarioSeleccionado && sdlEvento.type == SDL_KEYDOWN && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectUsuario.text.size())
-            boxSeleccionadaRectUsuario.text.pop_back();
-        else if(usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_TAB) {
-            usuarioSeleccionado = false;
-            contraseniaSeleccionada = true;
-        }
+                //Ingreso de caracteres pantalla usuario
+                if(boxSeleccionada(&boxSeleccionadaRectUsuario, &sdlEvento)){
+                    usuarioSeleccionado = true;
+                    contraseniaSeleccionada = false;
+                }
 
-        //Ingreso de caracteres pantalla contraseña
-        if(boxSeleccionada(&boxSeleccionadaRectContrasenia, &sdlEvento)){
-            contraseniaSeleccionada = true;
-            usuarioSeleccionado = false;
-            //cout << "Se seteo la pass" << endl; //Debug
+                //Ingreso de caracteres pantalla contraseña
+                if(boxSeleccionada(&boxSeleccionadaRectContrasenia, &sdlEvento)) {
+                    contraseniaSeleccionada = true;
+                    usuarioSeleccionado = false;
+                }
+                break;
+            case SDL_TEXTINPUT:
+                //Acoplo caracteres usuario
+                if(usuarioSeleccionado && boxSeleccionadaRectUsuario.text.length() <= CANT_MAX_CARACTERES_USUARIO)
+                    boxSeleccionadaRectUsuario.text.append(sdlEvento.text.text);
+
+                //Acoplo caracteres contraseña
+                if(contraseniaSeleccionada && boxSeleccionadaRectContrasenia.text.length() <= CANT_MAX_CARACTERES_CONTRASENIA)
+                    boxSeleccionadaRectContrasenia.text.append(sdlEvento.text.text);
+
+                break;
+            case SDL_KEYDOWN:
+
+                //Retroceso usuario
+                if (usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectUsuario.text.size())
+                   boxSeleccionadaRectUsuario.text.pop_back();
+
+                //Cambio usuario -> contraseña
+                else if(usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_TAB) {
+                    usuarioSeleccionado = false;
+                    contraseniaSeleccionada = true;
+                }
+
+                //Retroceso contraseña
+                else if (contraseniaSeleccionada && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectContrasenia.text.size())
+                    boxSeleccionadaRectContrasenia.text.pop_back();
+                break;
         }
-
-        if(sdlEvento.type == SDL_TEXTINPUT && contraseniaSeleccionada && boxSeleccionadaRectContrasenia.text.length() <= CANT_MAX_CARACTERES_CONTRASENIA)
-            boxSeleccionadaRectContrasenia.text.append(sdlEvento.text.text);
-        else if (contraseniaSeleccionada && sdlEvento.type == SDL_KEYDOWN && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectContrasenia.text.size())
-            boxSeleccionadaRectContrasenia.text.pop_back();
-
+        
         //Actualizar
         auto comportamientos = pantalla->getComportamientos();
         for (auto *comportamiento : comportamientos) {
@@ -275,9 +293,6 @@ Usuario& Juego::generarPantallaDeIngreso() {
         SDL_RenderPresent(sdlRenderer); // Update screen
 
         //Quit
-        if (/*sdlEvento.type == SDL_KEYDOWN || */sdlEvento.type == SDL_QUIT) {
-            exit = true;
-        }
 
         //Deletes
         SDL_DestroyTexture(textureTextoUsuario);
@@ -309,7 +324,6 @@ Usuario& Juego::generarPantallaDeIngreso() {
 bool boxSeleccionada(seleccionar_box_t *boxSeleccionada, SDL_Event *event) {
     if (/*event->type == SDL_WINDOWEVENT &&
         event->window.event == SDL_WINDOWEVENT_EXPOSED &&*/
-            event->type == SDL_MOUSEBUTTONDOWN &&
             _boxSeleccionadaRect(event->button.x, event->button.y,
                                  &boxSeleccionada->rect))
         return true;
