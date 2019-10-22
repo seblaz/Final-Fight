@@ -8,14 +8,14 @@
 #include "../modelo/Entidad.h"
 #include "ActualizadorCliente.h"
 
-clock_t ReceptorCliente::ultimaRecepcion = 0;
+std::chrono::time_point<std::chrono::system_clock> ReceptorCliente::ultimaRecepcion = std::chrono::high_resolution_clock::now();
 
 ReceptorCliente::ReceptorCliente(Socket socket) :
         disponible(0),
         socket(socket) {}
 
 void ReceptorCliente::recibir() {
-    ultimaRecepcion = clock();
+    ultimaRecepcion = std::chrono::high_resolution_clock::now();
     while (conexionActiva) {
         stringstream s;
         if(!socket.recibir(s)){
@@ -24,7 +24,7 @@ void ReceptorCliente::recibir() {
             disponible.post();
             break;
         }
-        ultimaRecepcion = clock();
+        ultimaRecepcion = std::chrono::high_resolution_clock::now();
 
         {
             std::lock_guard<std::mutex> lock(mutex);

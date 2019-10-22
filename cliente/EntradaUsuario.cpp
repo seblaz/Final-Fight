@@ -122,7 +122,8 @@ void TrasmisionCliente::transmitir() {
     while (!fin) {
         size_t start = SDL_GetTicks();
 
-        if ((float(clock() - ReceptorCliente::ultimaRecepcion) / CLOCKS_PER_SEC) > 1) {
+        size_t milisegundosPasados = std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - ReceptorCliente::ultimaRecepcion).count();
+        if (milisegundosPasados > 1000) {
             Locator::logger()->log(ERROR, "Se detectó desconexión del servidor, se cierra la conexión.");
             shutdown(socket.getIntSocket(), SHUT_RDWR);
             close(socket.getIntSocket());

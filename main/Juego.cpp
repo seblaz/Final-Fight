@@ -127,7 +127,6 @@ void Juego::loop() {
     trasmision.finalizar();
     receptor.finalizar();
 
-    Locator::logger()->log(DEBUG, "Se finalizaron los sockets!!");
     pthread_join(hiloTransmision, nullptr);
     pthread_join(hiloRecepcion, nullptr);
 

@@ -27,7 +27,7 @@ public:
 
     void finalizar();
 
-    static clock_t ultimaRecepcion;
+    static std::chrono::time_point<std::chrono::system_clock> ultimaRecepcion;
 };
 
 
