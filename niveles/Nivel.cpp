@@ -29,7 +29,7 @@
 #include "../comportamiento/EntradaPantallaDeEspera.h"
 #include "../comportamiento/EntradaPantallaDeSeleccion.h"
 
-Entidad *Nivel::generarJugador(Mapa *mapa, nombreJugador jugadorElegido) {
+Entidad *Nivel::generarJugador(Mapa *mapa, enum PERSONAJE jugadorElegido) {
     Locator::logger()->log(INFO, "Se genera jugador.");
 
     SDL_Renderer *sdlRenderer = Locator::renderer();
@@ -320,7 +320,7 @@ void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Ma
     Entidad *transicion = mapa->crearEntidad();
     int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     auto *posicion = new Posicion(0, 1, 0);
-    auto *grafico = new GraficoDeTransicion(anchoDeNivel);
+    auto *grafico = new GraficoDeTransicion(/*anchoDeNivel*/);
 
     transicion->agregarEstado("posicion", posicion);
     transicion->agregarEstado("posicion de jugador", posicionDeJugador);

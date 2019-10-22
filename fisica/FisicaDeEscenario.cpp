@@ -47,6 +47,6 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     if (xMayorPersonaje > largo) {
         Locator::logger()->log(INFO, "Se llego al final del nivel.");
         mapa->vaciarMapa();
-        NivelServidor::generarNivel("nivel2", mapa);
+        //NivelServidor::generarNivel("nivel2", mapa);
     }
 }
