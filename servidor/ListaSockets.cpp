@@ -6,6 +6,7 @@
 #include "../servicios/Locator.h"
 #include <algorithm>
 #include <unistd.h>
+#include <sys/socket.h>
 
 void ListaSockets::agregar(Socket socket) {
     lock_guard<mutex> lock(m);
@@ -21,6 +22,7 @@ void ListaSockets::quitar(Socket socket) {
     lock_guard<mutex> lock(m);
     auto position = find(sockets.begin(), sockets.end(), socket);
     sockets.erase(position);
+    shutdown(socket.getIntSocket(), SHUT_RDWR);
     close(socket.getIntSocket());
 }
 

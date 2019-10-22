@@ -140,8 +140,8 @@ int main(int argc, const char **args) {
     listaSockets.cerrarSockets();
     contenedor.esperarFinDeHilos();
 
-//    close(socketServidor);
     shutdown(socketServidor, SHUT_RDWR);
+    close(socketServidor);
     pthread_join(hiloConexiones, nullptr);
 
     Locator::logger()->log(INFO, "Fin del programa.");

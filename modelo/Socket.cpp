@@ -16,7 +16,7 @@ bool Socket::enviarSinChequeo(stringstream &s) {
     int enviados;
 
     do {
-        enviados = send(socket, msg.c_str() + total, tamano - total, MSG_NOSIGNAL);
+        enviados = send(socket, msg.c_str() + total, tamano - total, MSG_NOSIGNAL | MSG_DONTWAIT);
         total += enviados;
     } while ((enviados > 0) && (tamano != total));
 

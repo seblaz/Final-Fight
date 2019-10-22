@@ -127,6 +127,7 @@ void TrasmisionCliente::transmitir() {
             accion->serializar(s);
             if (!socket.enviar(s)) {
                 Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
+                shutdown(socket.getIntSocket(), SHUT_RDWR);
                 close(socket.getIntSocket());
                 break;
             }
