@@ -8,11 +8,14 @@
 #include "../modelo/Entidad.h"
 #include "ActualizadorCliente.h"
 
+clock_t ReceptorCliente::ultimaRecepcion = 0;
+
 ReceptorCliente::ReceptorCliente(Socket socket) :
         disponible(0),
         socket(socket) {}
 
 void ReceptorCliente::recibir() {
+    ultimaRecepcion = clock();
     while (conexionActiva) {
         stringstream s;
         if(!socket.recibir(s)){
@@ -21,6 +24,8 @@ void ReceptorCliente::recibir() {
             disponible.post();
             break;
         }
+        ultimaRecepcion = clock();
+
         {
             std::lock_guard<std::mutex> lock(mutex);
             ultimoStream.str(std::string());

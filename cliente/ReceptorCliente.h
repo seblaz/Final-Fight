@@ -26,6 +26,8 @@ public:
     bool conexionEstaActiva();
 
     void finalizar();
+
+    static clock_t ultimaRecepcion;
 };
 
 

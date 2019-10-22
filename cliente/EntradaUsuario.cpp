@@ -11,6 +11,7 @@
 #include <sys/socket.h>
 #include <SDL_timer.h>
 #include "../graficos/Sprite.h"
+#include "ReceptorCliente.h"
 
 Accion *EntradaNula::getAccion() {
     return nullptr;
@@ -125,7 +126,7 @@ void TrasmisionCliente::transmitir() {
         if (accion) {
             stringstream s;
             accion->serializar(s);
-            if (!socket.enviar(s)) {
+            if (!socket.enviar(s) || (float( clock () - ReceptorCliente::ultimaRecepcion ) /  CLOCKS_PER_SEC) > 1) {
                 Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
                 shutdown(socket.getIntSocket(), SHUT_RDWR);
                 close(socket.getIntSocket());
