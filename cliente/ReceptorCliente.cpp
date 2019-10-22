@@ -18,6 +18,7 @@ void ReceptorCliente::recibir() {
         if(!socket.recibir(s)){
             Locator::logger()->log(ERROR, "Se detecta desconexión del servidor.");
             conexionActiva = false;
+            disponible.post();
             break;
         }
         {
