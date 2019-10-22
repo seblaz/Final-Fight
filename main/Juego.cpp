@@ -62,13 +62,12 @@ void Juego::inicializarGraficos() {
 }
 
 bool Juego::validarUserPass() {
-    bool exit = false;
-    SDL_Event e;
+    //SDL_Event e;
     bool contraseniaIncorrecta = false;
+    Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
     while (!exit) {
         processInput(); //Se llama para poder cerrar el juego
 
-        Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
         string user = usuarioAux.getUsuario();
         string pass = usuarioAux.getContrasenia();
 
