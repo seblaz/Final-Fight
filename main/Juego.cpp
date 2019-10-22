@@ -64,9 +64,9 @@ void Juego::inicializarGraficos() {
 bool Juego::validarUserPass() {
     //SDL_Event e;
     bool contraseniaIncorrecta = false;
-    Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
     while (!exit) {
         processInput(); //Se llama para poder cerrar el juego
+        Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
 
         string user = usuarioAux.getUsuario();
         string pass = usuarioAux.getContrasenia();
@@ -121,7 +121,8 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     SDL_Renderer *sdlRenderer = Locator::renderer();
     SDL_Color color = { 238, 238, 238 , 0};
     TTF_Font *gFont;
-    bool exit = false;
+    //bool exit = false;
+
     bool usuarioSeleccionado = false;
     bool contraseniaSeleccionada = false;
     seleccionar_box_t boxSeleccionadaRectOk;
@@ -195,6 +196,14 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     while (!exit) {
         SDL_Event sdlEvento;
         SDL_WaitEvent(&sdlEvento);
+        if(sdlEvento.type == SDL_QUIT) {
+            stringstream s;
+            Accion(FIN).serializar(s);
+            Locator::socket().enviar(s);
+            Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
+            exit = true;
+            //break;
+        }
 
         SDL_Surface * surfaceTextoUsuario;
         SDL_Surface * surfaceTextoContrasenia;
@@ -213,7 +222,7 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
         //Grafico caracteres usuario
         if(boxSeleccionadaRectUsuario.text.length()) {
-            cout << "Se puede" << endl;
+            //cout << "Se puede" << endl;
             surfaceTextoUsuario = TTF_RenderText_Solid(gFont, boxSeleccionadaRectUsuario.text.c_str(), boxSeleccionadaRectUsuario.textcolor);
             textureTextoUsuario = SDL_CreateTextureFromSurface(sdlRenderer, surfaceTextoUsuario);
             text_width = surfaceTextoUsuario->w;
@@ -256,9 +265,9 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
         //Eventos
         switch (sdlEvento.type) {
-            case SDL_QUIT:
-                exit = true;
-                break;
+            //case SDL_QUIT:
+                //exit = true;
+                //break;
             case SDL_MOUSEBUTTONDOWN:
                 //Pantalla Ok seleccionada
                 if(boxSeleccionada(&boxSeleccionadaRectOk, &sdlEvento))
@@ -334,7 +343,7 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     usr.setContrasenia(boxSeleccionadaRectContrasenia.text); //"p"
 
     //Debug
-    cout << "La contraseña ingresa por teclado es: " << boxSeleccionadaRectContrasenia.text << endl;
+    //cout << "La contraseña ingresa por teclado es: " << boxSeleccionadaRectContrasenia.text << endl;
 
     return usr;
 }
