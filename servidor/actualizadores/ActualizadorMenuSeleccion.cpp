@@ -21,7 +21,7 @@ ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa,
 
 void ConfirmarSeleccion::resolver() {
     usuario->setPersonajeSeleccionado(personajeSeleccionado);
-    selector->confirmar();
+    selector->confirmar(usuario);
     if (selector->puedoComenzar()) {
         int numeroJugador = 1;
         for (Usuario *usuario : manager->getUsuarios()) {
@@ -122,6 +122,7 @@ void ActualizadorMenuSeleccion::actualizarPersonaje() {
 void ActualizadorMenuSeleccion::desconectarUsuario() {
     Locator::logger()->log(INFO, "Se termina el hilo del cliente y se desconecta al usuario.");
     usuario->desconectar();
+    selector->quitar(usuario);
     pthread_exit(nullptr);
 }
 

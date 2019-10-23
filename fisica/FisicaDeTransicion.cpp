@@ -19,7 +19,7 @@ FisicaDeTransicion::FisicaDeTransicion(int anchoDeEscenario) {
 
 void FisicaDeTransicion::actualizar(Entidad* entidad) {
     Configuracion *config = Locator::configuracion();
-    int posicionDeJugadorX = entidad->getEstado<Jugadores>("posicion de jugadores")->getMayorX();
+    int posicionDeJugadorX = entidad->getEstado<Jugadores>("posicion de jugadoresMax")->getMayorX();
     auto* opacidad = entidad->getEstado<Opacidad>("opacidad");
 
     if ((anchoDeEscenario - posicionDeJugadorX) <= 0) {

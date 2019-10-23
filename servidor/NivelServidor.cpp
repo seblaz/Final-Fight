@@ -124,7 +124,7 @@ void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Jugadores
     transicion->agregarEstado("posicion", posicion);
     transicion->agregarEstado("tipo", tipo);
     transicion->agregarEstado("opacidad", opacidad);
-    transicion->agregarEstado("posicion de jugadores", posicionDeJugadores);
+    transicion->agregarEstado("posicion de jugadoresMax", posicionDeJugadores);
     transicion->agregarComportamiento("fisica de transicion", fisicaDeTransicion);
 }
 

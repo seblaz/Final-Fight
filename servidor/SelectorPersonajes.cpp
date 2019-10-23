@@ -5,14 +5,21 @@
 #include "SelectorPersonajes.h"
 
 SelectorPersonajes::SelectorPersonajes(int jugadores) :
-        jugadores(jugadores){}
+        jugadoresMax(jugadores){}
 
-void SelectorPersonajes::confirmar() {
+void SelectorPersonajes::confirmar(Usuario *usuario) {
     unique_lock<mutex> lock(m_mutex);
-    jugadores -= 1;
+    usuarios[usuario->getUsuario()] = usuario;
 }
 
 bool SelectorPersonajes::puedoComenzar() {
     unique_lock<mutex> lock(m_mutex);
-    return jugadores == 0;
+    return jugadoresMax == usuarios.size();
+}
+
+void SelectorPersonajes::quitar(Usuario *usuario) {
+    unique_lock<mutex> lock(m_mutex);
+    if(!(usuarios.find(usuario->getUsuario()) == usuarios.end())){
+        usuarios.erase(usuario->getUsuario());
+    }
 }

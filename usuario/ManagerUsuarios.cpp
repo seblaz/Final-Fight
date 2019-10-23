@@ -12,7 +12,7 @@ ManagerUsuarios::ManagerUsuarios(int max) :
 void ManagerUsuarios::agregarUsuario(Usuario *nuevoUsuario) {
     Locator::logger()->log(DEBUG, "Se agrega el usuario: " + nuevoUsuario->getUsuario());
     usuarios.push_back(nuevoUsuario);
-    Locator::logger()->log(INFO, "Faltan " +  to_string(maximo - usuarios.size()) + " jugadores.");
+    Locator::logger()->log(INFO, "Faltan " +  to_string(maximo - usuarios.size()) + " jugadoresMax.");
 }
 
 bool ManagerUsuarios::estaPresente(Usuario *usuario) {

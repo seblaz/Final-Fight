@@ -6,18 +6,21 @@
 #define FINAL_FIGHT_SELECTORPERSONAJES_H
 
 #include <mutex>
+#include "../usuario/Usuario.h"
 
 using namespace std;
 
 class SelectorPersonajes {
 
 private:
-    int jugadores;
+    unordered_map<string, Usuario*> usuarios;
+    int jugadoresMax;
     mutex m_mutex;
 
 public:
     explicit SelectorPersonajes(int jugadores);
-    void confirmar();
+    void confirmar(Usuario *usuario);
+    void quitar(Usuario *usuario);
     bool puedoComenzar();
 
 };
