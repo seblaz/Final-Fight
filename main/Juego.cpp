@@ -64,6 +64,7 @@ void Juego::inicializarGraficos() {
 bool Juego::validarUserPass() {
     //SDL_Event e;
     bool contraseniaIncorrecta = false;
+
     while (!exit) {
         processInput(); //Se llama para poder cerrar el juego
         Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
@@ -75,6 +76,8 @@ bool Juego::validarUserPass() {
         //cin >> user;
         cout << "La contraseña es: " << pass << endl;
         //cin >> pass;
+        if ( pass.empty() )
+            return false;
 
         Usuario usuario(user, pass);
         stringstream userStream;
@@ -87,11 +90,7 @@ bool Juego::validarUserPass() {
         EventoUsuario evento;
         evento.deserializar(streamEvento);
 
-        switch (evento.evento()){
-            case CONTRASENIA_INCORRECTA:
-                Locator::logger()->log(ERROR, "Contraseña incorrecta.");
-                contraseniaIncorrecta = true;
-                break;
+        switch (evento.evento()) {
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
                 return false;
@@ -101,7 +100,12 @@ bool Juego::validarUserPass() {
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
                 return true;
+            case CONTRASENIA_INCORRECTA:
+                Locator::logger()->log(ERROR, "Contraseña incorrecta.");
+                contraseniaIncorrecta = true;
+                //return false;
         }
+
     }
     return false;
 }
@@ -143,7 +147,7 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
     Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
 
-    Entidad *pantalla = new Entidad();
+    auto *pantalla = new Entidad();
 
     //Boton entrar grafico
     auto *spriteBotonDeEntrar = new Sprite(sdlRenderer, srcSpriteBotonEntrar);
@@ -191,7 +195,7 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     pantalla->agregarEstado("spritePantallaIngreso", spritePantallaIngreso);
     pantalla->agregarComportamiento("graficoPantalla", graficoPantalla);
 
-
+    //bool presioneX = false;
 
     while (!exit) {
         SDL_Event sdlEvento;
@@ -201,8 +205,9 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
             Accion(FIN).serializar(s);
             Locator::socket().enviar(s);
             Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
-            exit = true;
-            //break;
+            //exit = true;
+            //presioneX = true;
+            break;
         }
 
         SDL_Surface * surfaceTextoUsuario;
@@ -337,15 +342,16 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
 
     }
-    TTF_CloseFont( gFont );
-    static Usuario usr;
-    usr.setUsuario(boxSeleccionadaRectUsuario.text);
-    usr.setContrasenia(boxSeleccionadaRectContrasenia.text); //"p"
-
+    //if(!presioneX) {
+        TTF_CloseFont( gFont );
+        static Usuario usr;
+        usr.setUsuario(boxSeleccionadaRectUsuario.text);
+        usr.setContrasenia(boxSeleccionadaRectContrasenia.text); //"p"
+        return usr;
+    //}
     //Debug
     //cout << "La contraseña ingresa por teclado es: " << boxSeleccionadaRectContrasenia.text << endl;
 
-    return usr;
 }
 
 bool boxSeleccionada(seleccionar_box_t *boxSeleccionada, SDL_Event *event) {
@@ -368,7 +374,7 @@ void Juego::loop() {
 
     if(exit || !validarUserPass()) return;
 
-    exit = false; //TODO
+    exit = false;
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
     pthread_t hiloRecepcion = receptor.recibirEnHilo();
