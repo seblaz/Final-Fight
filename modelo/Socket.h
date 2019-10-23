@@ -7,6 +7,7 @@
 
 
 #include <sstream>
+#include <chrono>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ private:
     int tamanoDigitos = 5;
     bool enviarSinChequeo(stringstream &s);
     bool recibirConCantidad(stringstream &s, size_t cantidad);
+    chrono::time_point<chrono::system_clock> ultimaRecepcion;
 
 public:
     explicit Socket(int socket);
