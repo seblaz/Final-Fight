@@ -22,7 +22,10 @@ void GraficoMenuSeleccion::actualizar(Entidad *entidad) {
     int xs[4] = {30, 430, 830, 1230};
     int x = xs[personajeMarcado->getPersonaje()];
     SDL_Rect posicionEnPantalla = {x, 100,
-                                  int(float(posicionEnSpriteIndicador.w) * 2.3),
-                                  int(float(posicionEnSpriteIndicador.h) * 2.3)};
+                                   int(float(posicionEnSpriteIndicador.w) * 2.3),
+                                   int(float(posicionEnSpriteIndicador.h) * 2.3)};
+
     SDL_RenderCopy(renderer, spriteSelectorMenu->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantalla);
+
+
 }
