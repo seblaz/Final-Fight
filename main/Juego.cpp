@@ -149,7 +149,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
         Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
 
-    Entidad *pantalla = new Entidad();
+    auto *pantalla = new Entidad();
 
     //Boton entrar grafico
     auto *spriteBotonDeEntrar = new Sprite(sdlRenderer, srcSpriteBotonEntrar);
@@ -383,7 +383,7 @@ void Juego::loop() {
 
     if (exit || !validarUserPass()) return;
 
-    exit = false; //TODO
+    exit = false;
     ActualizadorCliente actualizador(&mapa_);
     ReceptorCliente receptor(Locator::socket());
     pthread_t hiloRecepcion = receptor.recibirEnHilo();
