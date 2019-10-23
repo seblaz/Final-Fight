@@ -70,6 +70,9 @@
         <selector>
             <src>assets/varios/selectorMenu.png</src>
         </selector>
+        <personajeElegido>
+            <src>assets/varios/personajeElegido.png</src>
+        </personajeElegido>
     </pantallaDeSeleccion>
     <personajes>
         <cody>

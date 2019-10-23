@@ -35,8 +35,16 @@ Accion *EntradaMenuSeleccion::getAccion() {
                 framesInactivo = framesPorAccion;
 
             } else if (entrada[SDL_SCANCODE_RETURN]) {
-                activo = false;
                 Locator::logger()->log(DEBUG, "Se selecciono enter.");
+                activo = false;
+
+                SDL_Renderer *renderer = Locator::renderer();
+                Configuracion *config = Locator::configuracion();
+                string srcSprite = config->getValue("/pantallaDeSeleccion/personajeElegido/src");
+                auto *spritePersonajeElegido = new Sprite(renderer, srcSprite);
+
+                pantalla->agregarEstado("sprite selector", spritePersonajeElegido);
+
                 switch (personaje->getPersonaje()) {
                     case GUY:
                         Locator::logger()->log(DEBUG, "Se selecciono guy.");
