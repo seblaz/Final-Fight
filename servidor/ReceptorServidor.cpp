@@ -11,7 +11,7 @@
 
 semaphore *ReceptorServidor::confirmacion = new semaphore(0);
 
-ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
+ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket *socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
                                    EventosAProcesar *eventos, SelectorPersonajes *selector) :
         mapa(mapa),
         socket(socket),
@@ -23,7 +23,7 @@ ReceptorServidor::ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *list
 void ReceptorServidor::recibir() {
     // Validar usuario.
     ActualizadorUsuario actualizadorUsuario(eventos, manager);
-    Usuario *usuario = actualizadorUsuario.getUsuario(&socket);
+    Usuario *usuario = actualizadorUsuario.getUsuario(socket);
     listaSockets->agregar(socket);
 
     if (!usuario->getPersonaje()) {

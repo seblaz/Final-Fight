@@ -21,8 +21,8 @@ public:
     static Configuracion *configuracion();
     static void provide(Configuracion *configuracion);
 
-    static Socket socket();
-    static void provide(Socket socket);
+    static Socket *socket();
+    static void provide(Socket *socket);
 
     static SDL_Renderer *renderer();
     static void provide(SDL_Renderer *);
@@ -33,7 +33,7 @@ public:
     static void clean();
 
 private:
-    static Socket socket_;
+    static Socket *socket_;
     static Logger *logger_;
     static Configuracion *configuracion_;
     static SDL_Renderer *renderer_;

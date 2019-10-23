@@ -109,7 +109,7 @@ Accion *EntradaJuego::getAccion() {
 }
 
 TrasmisionCliente::TrasmisionCliente(Socket
-                                     socket, EntradaUsuario *entradaUsuario) :
+                                     *socket, EntradaUsuario *entradaUsuario) :
         entradaUsuario(entradaUsuario),
         socket(socket) {}
 
@@ -130,24 +130,37 @@ void TrasmisionCliente::transmitir() {
     while (!fin) {
         size_t start = SDL_GetTicks();
 
-        size_t milisegundosPasados = std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - ReceptorCliente::ultimaRecepcion).count();
+        size_t milisegundosPasados = std::chrono::duration<double, std::milli>(
+                std::chrono::high_resolution_clock::now() - socket->ultimaRecepcion()).count();
         if (milisegundosPasados > 1000) {
             Locator::logger()->log(ERROR, "Se detectó desconexión del servidor, se cierra la conexión.");
-            shutdown(socket.getIntSocket(), SHUT_RDWR);
-            close(socket.getIntSocket());
+            shutdown(socket->getIntSocket(), SHUT_RDWR);
+            close(socket->getIntSocket());
             break;
         }
 
+//        Accion *accion = getEntradaUsuario()->getAccion();
+//        if (accion) {
+//            stringstream s;
+//            accion->serializar(s);
+//            if (!socket->enviar(s)) {
+//                Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
+//                shutdown(socket->getIntSocket(), SHUT_RDWR);
+//                close(socket->getIntSocket());
+//                break;
+//            }
+//        }
         Accion *accion = getEntradaUsuario()->getAccion();
-        if (accion) {
-            stringstream s;
-            accion->serializar(s);
-            if (!socket.enviar(s)) {
-                Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
-                shutdown(socket.getIntSocket(), SHUT_RDWR);
-                close(socket.getIntSocket());
-                break;
-            }
+        if (!accion) {
+            accion = new Accion(NULA);
+        }
+        stringstream s;
+        accion->serializar(s);
+        if (!socket->enviar(s)) {
+            Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
+            shutdown(socket->getIntSocket(), SHUT_RDWR);
+            close(socket->getIntSocket());
+            break;
         }
 
         size_t end = SDL_GetTicks();

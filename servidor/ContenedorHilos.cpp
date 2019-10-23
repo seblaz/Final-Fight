@@ -21,7 +21,7 @@ void ContenedorHilos::esperarFinDeHilos() {
     Locator::logger()->log(DEBUG, "Todos los hilos de los clientes terminaron.");
 }
 
-void ContenedorHilos::crearHilo(Socket socket) {
+void ContenedorHilos::crearHilo(Socket *socket) {
     Locator::logger()->log(DEBUG, "Se crea un nuevo thread para recibir las acciones de los clientes.");
 
     pthread_t hilo;

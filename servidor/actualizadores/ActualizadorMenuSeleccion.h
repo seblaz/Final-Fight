@@ -42,6 +42,7 @@ private:
     SelectorPersonajes *selector;
     semaphore *confirmacion;
     ManagerUsuarios *manager;
+//    chrono::time_point<chrono::system_clock> ultimaRecepcion_;
     void interpretarStream(stringstream &s);
     void desconectarUsuario();
     bool fin();

@@ -59,7 +59,7 @@ class TrasmisionCliente {
 
 private:
     std::mutex m;
-    Socket socket;
+    Socket *socket;
     EntradaUsuario *entradaUsuario;
     bool fin = false;
 
@@ -68,7 +68,7 @@ private:
     EntradaUsuario *getEntradaUsuario();
 
 public:
-    explicit TrasmisionCliente(Socket socket, EntradaUsuario *entradaUsuario);
+    explicit TrasmisionCliente(Socket *socket, EntradaUsuario *entradaUsuario);
 
     void setEntradaUsuario(EntradaUsuario *entradaUsuario);
 

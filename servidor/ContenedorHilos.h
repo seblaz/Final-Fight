@@ -29,13 +29,13 @@ private:
 public:
     ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
                     SelectorPersonajes *selector, ListaSockets *listaSockets);
-    void crearHilo(Socket socket);
+    void crearHilo(Socket *socket);
     void esperarFinDeHilos();
 };
 
 struct escucharClienteArgs {
     Mapa *mapa{};
-    Socket socket;
+    Socket *socket{};
     ListaSockets *listaSockets{};
     ManagerUsuarios *manager{};
     EventosAProcesar *eventos{};

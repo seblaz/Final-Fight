@@ -13,6 +13,7 @@ class SelectorPersonajes {
 
 private:
     int jugadores;
+    mutex m_mutex;
 
 public:
     explicit SelectorPersonajes(int jugadores);

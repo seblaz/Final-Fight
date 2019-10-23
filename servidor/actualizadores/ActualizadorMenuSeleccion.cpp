@@ -7,6 +7,7 @@
 #include "../../usuario/Usuario.h"
 #include "../../eventos/MostrarMenuSeleccion.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
+#include "../../modelo/Actividad.h"
 
 ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
                                        enum PERSONAJE personaje_, Usuario *usuario_,
@@ -27,6 +28,9 @@ void ConfirmarSeleccion::resolver() {
             Entidad *personaje = NivelServidor::generarJugador(mapa, usuario->getPersonajeSeleccionado(),
                                                                numeroJugador);
             usuario->setPersonaje(personaje);
+            if(!usuario->estaConectado()){
+                personaje->getEstado<Actividad>("actividad")->activo = false;
+            }
             numeroJugador++;
         }
         NivelServidor::generarNivel("nivel1", mapa);
@@ -45,39 +49,45 @@ ActualizadorMenuSeleccion::ActualizadorMenuSeleccion(Mapa *mapa, EventosAProcesa
         manager(manager),
         selector(selector),
         confirmacion(confirmacion) {
+//    ultimaRecepcion_ = chrono::high_resolution_clock::now();
     Locator::logger()->log(DEBUG, "Se crea un actualizador de menu de selección.");
 }
 
 
 void ActualizadorMenuSeleccion::interpretarStream(stringstream &s) {
     Accion accion;
+//    ultimaRecepcion_ = chrono::high_resolution_clock::now();
+
     while (s.rdbuf()->in_avail() != 0) {
         accion.deserializar(s);
         EventoAProcesar *evento;
         switch (accion.accion()) {
+            case NULA:
+                if(selector->puedoComenzar()){
+                    Locator::logger()->log(DEBUG, "Puedo comenzar");
+                    fin_ = true;
+                }
+                // No hace nada.
+                break;
             case SELECCIONAR_GUY:
                 Locator::logger()->log(DEBUG, "Se selecciono a GUY");
                 evento = new ConfirmarSeleccion(selector, mapa, manager, GUY, usuario, confirmacion);
                 eventos->push(evento);
-                fin_ = true;
                 break;
             case SELECCIONAR_MAKI:
                 Locator::logger()->log(DEBUG, "Se selecciono a MAKI");
                 evento = new ConfirmarSeleccion(selector, mapa, manager, MAKI, usuario, confirmacion);
                 eventos->push(evento);
-                fin_ = true;
                 break;
             case SELECCIONAR_CODY:
                 Locator::logger()->log(DEBUG, "Se selecciono a CODY");
                 evento = new ConfirmarSeleccion(selector, mapa, manager, CODY, usuario, confirmacion);
                 eventos->push(evento);
-                fin_ = true;
                 break;
             case SELECCIONAR_HAGGAR:
                 Locator::logger()->log(DEBUG, "Se selecciono a HAGGAR");
                 evento = new ConfirmarSeleccion(selector, mapa, manager, HAGGAR, usuario, confirmacion);
                 eventos->push(evento);
-                fin_ = true;
                 break;
             case FIN:
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario());
@@ -106,7 +116,6 @@ void ActualizadorMenuSeleccion::actualizarPersonaje() {
         }
         interpretarStream(s);
     } while (!fin());
-
     confirmacion->wait();
 }
 

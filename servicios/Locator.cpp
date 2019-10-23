@@ -46,13 +46,13 @@ void Locator::provide(SDL_Renderer *renderer) {
 /**
  * Socket.
  */
-Socket Locator::socket_(0);
+Socket *Locator::socket_;
 
-Socket Locator::socket() {
+Socket *Locator::socket() {
     return socket_;
 }
 
-void Locator::provide(Socket socket) {
+void Locator::provide(Socket *socket) {
     socket_ = socket;
 }
 

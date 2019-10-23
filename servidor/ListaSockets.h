@@ -16,13 +16,13 @@ class ListaSockets {
 
 private:
     mutex m;
-    vector<Socket> sockets;
+    vector<Socket *> sockets;
 
 public:
     void cerrarSockets();
-    void agregar(Socket socket);
-    vector<Socket> devolverSockets();
-    void quitar(Socket socket);
+    void agregar(Socket *socket);
+    vector<Socket *> devolverSockets();
+    void quitar(Socket *socket);
 
 };
 

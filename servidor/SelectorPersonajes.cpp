@@ -8,9 +8,11 @@ SelectorPersonajes::SelectorPersonajes(int jugadores) :
         jugadores(jugadores){}
 
 void SelectorPersonajes::confirmar() {
+    unique_lock<mutex> lock(m_mutex);
     jugadores -= 1;
 }
 
 bool SelectorPersonajes::puedoComenzar() {
+    unique_lock<mutex> lock(m_mutex);
     return jugadores == 0;
 }

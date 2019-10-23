@@ -78,7 +78,7 @@ bool Juego::validarUserPass() {
 
         if (exit) break;
 
-        Socket socket = Locator::socket();
+        Socket *socket = Locator::socket();
 
         stringstream userStream;
         Accion enviarUsuario(ENVIAR_USUARIO);
@@ -86,10 +86,10 @@ bool Juego::validarUserPass() {
 
         Usuario usuario(user, pass);
         usuario.serializar(userStream);
-        socket.enviar(userStream);
+        socket->enviar(userStream);
 
         stringstream streamEvento;
-        socket.recibir(streamEvento);
+        socket->recibir(streamEvento);
         EventoUsuario evento;
         evento.deserializar(streamEvento);
 
@@ -204,7 +204,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
         if (sdlEvento.type == SDL_QUIT) {
             stringstream s;
             Accion(FIN).serializar(s);
-            Locator::socket().enviar(s);
+            Locator::socket()->enviar(s);
             Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
             exit = true;
             break;
@@ -406,7 +406,7 @@ SDL_Event Juego::processInput() {
     if (SDL_PollEvent(&e) && (e.type == SDL_QUIT)) {
         stringstream s;
         Accion(FIN).serializar(s);
-        Locator::socket().enviar(s);
+        Locator::socket()->enviar(s);
         Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
         exit = true;
     }

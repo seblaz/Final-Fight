@@ -22,11 +22,18 @@ void Transmision::transmitir() {
             break;
         }
 
-        for (Socket socket : sockets->devolverSockets()){
-            stringstream s(msj);
-            if(!socket.enviar(s)){
-                Locator::logger()->log(ERROR, "Se detecta socket invalido, se quita de la lista de sockets y se cierra.");
+        for (Socket *socket : sockets->devolverSockets()) {
+            size_t milisegundosPasados = std::chrono::duration<double, std::milli>(
+                    std::chrono::high_resolution_clock::now() - socket->ultimaRecepcion()).count();
+            if (milisegundosPasados > 1000) {
                 sockets->quitar(socket);
+            } else {
+                stringstream s(msj);
+                if (!socket->enviar(s)) {
+                    Locator::logger()->log(ERROR,
+                                           "Se detecta socket invalido, se quita de la lista de sockets y se cierra.");
+                    sockets->quitar(socket);
+                }
             }
         }
     }

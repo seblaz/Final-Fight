@@ -25,7 +25,7 @@ void ConexionesClientes::manejarConexiones() {
             Locator::logger()->log(ERROR, "Error al aceptar el pedido de conexión del cliente.");
             break;
         } else {
-            Socket socket(nuevoSocket);
+            auto *socket = new Socket(nuevoSocket);
             contenedor->crearHilo(socket);
         }
     }

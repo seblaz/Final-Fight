@@ -17,7 +17,7 @@ class ReceptorServidor {
 
 private:
     Mapa *mapa;
-    Socket socket;
+    Socket *socket;
     ManagerUsuarios *manager;
     EventosAProcesar *eventos;
     SelectorPersonajes *selector;
@@ -25,7 +25,7 @@ private:
     static semaphore *confirmacion;
 
 public:
-    ReceptorServidor(Mapa *mapa, Socket socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
+    ReceptorServidor(Mapa *mapa, Socket *socket, ListaSockets *listaSockets, ManagerUsuarios *manager,
                      EventosAProcesar *eventos, SelectorPersonajes *selector);
     void recibir();
 

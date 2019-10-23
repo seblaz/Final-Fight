@@ -30,10 +30,9 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
             Posicion *posicion;
             auto *tipo = entidad->getEstado<Tipo>("tipo");
             switch (tipo->tipo()) {
-                case PANTALLA_SELECCION:{
+                case PANTALLA_SELECCION:
                     NivelCliente::generarMenuSeleccion(mapa, entidad);
                     transmision->setEntradaUsuario(new EntradaMenuSeleccion(entidad));
-                }
                     break;
                 case JUGADOR:
                     mapa->agregarJugadorConId(idEntidad, entidad);
