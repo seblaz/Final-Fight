@@ -85,6 +85,10 @@ public:
         return (T *) comportamientos[s];
     };
 
+    void quitarComportamiento(const string &s) {
+        comportamientos.erase(s);
+    };
+
     vector<Comportamiento *> getComportamientos();
 
     vector<Estado *> getEstados();

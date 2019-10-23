@@ -24,5 +24,5 @@ void GraficoDeElementosPantalla::actualizar(Entidad *entidad) {
     //posicionSprite.x = int(round((float)100/*posicionX*/ / escalaHorizontal));
     //SDL_Rect posicionPantalla = {100, , ancho, alto};
 
-    SDL_RenderCopy(renderer, sprite, NULL/*&posicionSprite*/, &posicionPantalla);
+    SDL_RenderCopy(renderer, sprite, nullptr/*&posicionSprite*/, &posicionPantalla);
 }

@@ -7,6 +7,7 @@
 
 #include "../modelo/Mapa.h"
 #include <SDL2/SDL.h>
+#include <SDL_ttf.h>
 #include "../tipos/tipos.h"
 #include "../cliente/EntradaUsuario.h"
 #include "../usuario/Usuario.h"
@@ -43,6 +44,7 @@ private:
 
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
+    TTF_Font *font = nullptr;
     bool exit = false;
     Mapa mapa_;
 
