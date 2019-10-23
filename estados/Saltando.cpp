@@ -23,8 +23,8 @@ Saltando::~Saltando() {
 }
 
 void Saltando::actualizar(Entidad *entidad) {
-    //if (!termine && ( entidad->getEstado<Tipo>("tipo")->tipo() == JUGADOR  && entidad->getEstado<Actividad>("actividad")->activo) ) {
-    if (!termine ){
+    if (!termine ) {
+    //if (!termine ){
         auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
         velocidad->y = 0;
         velocidad->z = velocidadInicial + aceleracion * frames;
@@ -33,6 +33,8 @@ void Saltando::actualizar(Entidad *entidad) {
             velocidad->z = 0;
         }
         frames++;
+    }else if( entidad->getEstado<Tipo>("tipo")->tipo() == JUGADOR  && ! entidad->getEstado<Actividad>("actividad")->activo ){
+        EstadoDePersonajeServidor::reposar(entidad);
     }
 }
 
