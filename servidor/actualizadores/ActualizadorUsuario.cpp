@@ -64,6 +64,7 @@ Usuario *ActualizadorUsuario::getUsuario(Socket *socket) {
     usuarioAgregado.wait();
 
     if (!nuevoUsuario->getValido()) { // Usuario invalido
+        Locator::logger()->log(INFO, "Se desconecta el usuario " + nuevoUsuario->getUsuario() + " y se termina su hilo.");
         pthread_exit(nullptr);
     }
     return nuevoUsuario;
