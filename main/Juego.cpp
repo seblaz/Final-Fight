@@ -71,11 +71,6 @@ bool Juego::validarUserPass() {
         string user = usuarioAux.getUsuario();
         string pass = usuarioAux.getContrasenia();
 
-        cout << "El nombre de usuario es: " << user << endl;
-        //cin >> user;
-        cout << "La contraseña es: " << pass << endl;
-        //cin >> pass;
-
         if(exit) break;
 
         Socket socket = Locator::socket();
@@ -127,7 +122,6 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     SDL_Renderer *sdlRenderer = Locator::renderer();
     SDL_Color color = {238, 238, 238, 0};
     TTF_Font *gFont;
-    //bool exit = false;
 
     bool usuarioSeleccionado = false;
     bool contraseniaSeleccionada = false;
@@ -139,7 +133,6 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     boxSeleccionadaRectUsuario.text = "";
     boxSeleccionadaRectContrasenia.text = "";
 
-    cout << "la pantalla es: " << srcSpriteUsuarioRechazado.c_str() << endl;
     TTF_Init();
     gFont = TTF_OpenFont("../assets/fuentes/open-sans/OpenSans-Bold.ttf", 22);
     if (!gFont)
@@ -362,9 +355,6 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     static Usuario usr;
     usr.setUsuario(boxSeleccionadaRectUsuario.text);
     usr.setContrasenia(boxSeleccionadaRectContrasenia.text); //"p"
-
-    //Debug
-    //cout << "La contraseña ingresa por teclado es: " << boxSeleccionadaRectContrasenia.text << endl;
 
     return usr;
 }

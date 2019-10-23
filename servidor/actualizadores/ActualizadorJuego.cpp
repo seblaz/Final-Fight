@@ -9,6 +9,9 @@
 #include "../../usuario/Usuario.h"
 #include "../../modelo/Actividad.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
+#include "../../modelo/EstadoDePersonaje.h"
+#include "../../estados/EstadoDePersonajeServidor.h"
+#include "../../estados/Reposando.h"
 
 ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador,
                                      ManagerUsuarios *managerUsuarios) :
@@ -101,6 +104,9 @@ void ActualizadorJuego::desconectarUsuario(Usuario *usuario) {
     Locator::logger()->log(INFO, "Se termina el hilo y se desconecta al usuario.");
     usuario->desconectar();
     eventos->push(new SetActividadJugador(jugador, false));
+
+    jugador->getComportamiento<EstadoDePersonajeServidor>("estado")->reposar(usuario->getPersonaje());
+
     pthread_exit(nullptr);
 }
 
