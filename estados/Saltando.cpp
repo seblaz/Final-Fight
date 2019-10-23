@@ -13,7 +13,7 @@
 
 Saltando::Saltando() {
     Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
+//    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
 
 Saltando::~Saltando() {

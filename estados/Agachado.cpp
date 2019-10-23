@@ -11,7 +11,7 @@
 Agachado::Agachado() {
 //    estadoDePersonaje = AGACHADO;
     Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se instancio un objeto de clase Agachado");
+//    logger->log(DEBUG, "Se instancio un objeto de clase Agachado");
 }
 
 Agachado::~Agachado() {

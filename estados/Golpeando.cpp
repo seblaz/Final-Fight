@@ -6,7 +6,7 @@
 
 Golpeando::Golpeando() {
     Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se instancio un objeto de clase Golpeando");
+//    logger -> log(DEBUG, "Se instancio un objeto de clase Golpeando");
 }
 
 Golpeando::~Golpeando() {
