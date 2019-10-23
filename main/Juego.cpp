@@ -76,10 +76,16 @@ bool Juego::validarUserPass() {
         cout << "La contraseña es: " << pass << endl;
         //cin >> pass;
 
-        Usuario usuario(user, pass);
-        stringstream userStream;
-        usuario.serializar(userStream);
+        if(exit) break;
+
         Socket socket = Locator::socket();
+
+        stringstream userStream;
+        Accion enviarUsuario(ENVIAR_USUARIO);
+        enviarUsuario.serializar(userStream);
+
+        Usuario usuario(user, pass);
+        usuario.serializar(userStream);
         socket.enviar(userStream);
 
         stringstream streamEvento;
@@ -87,7 +93,7 @@ bool Juego::validarUserPass() {
         EventoUsuario evento;
         evento.deserializar(streamEvento);
 
-        switch (evento.evento()){
+        switch (evento.evento()) {
             case CONTRASENIA_INCORRECTA:
                 Locator::logger()->log(ERROR, "Contraseña incorrecta.");
                 contraseniaIncorrecta = true;
@@ -106,7 +112,7 @@ bool Juego::validarUserPass() {
     return false;
 }
 
-Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
+Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
     Configuracion *config = Locator::configuracion();
 
@@ -119,7 +125,7 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
     SDL_Renderer *sdlRenderer = Locator::renderer();
-    SDL_Color color = { 238, 238, 238 , 0};
+    SDL_Color color = {238, 238, 238, 0};
     TTF_Font *gFont;
     //bool exit = false;
 
@@ -135,35 +141,41 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
     cout << "la pantalla es: " << srcSpriteUsuarioRechazado.c_str() << endl;
     TTF_Init();
-    gFont = TTF_OpenFont( "../assets/fuentes/open-sans/OpenSans-Bold.ttf", 22 );
-    if(!gFont)
+    gFont = TTF_OpenFont("../assets/fuentes/open-sans/OpenSans-Bold.ttf", 22);
+    if (!gFont)
         Locator::logger()->log(ERROR, "Fallo cargar la font SDL_ttf Error: ");
     else
         //cout << "Se cargo la font" << endl; //Debug
 
-    Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
+        Locator::logger()->log(DEBUG, "Se genera pantalla de ingreso");
 
     Entidad *pantalla = new Entidad();
 
     //Boton entrar grafico
     auto *spriteBotonDeEntrar = new Sprite(sdlRenderer, srcSpriteBotonEntrar);
-    SDL_Rect posicionEnPantallaIngresoBoton = {(int) (ancho/2.15), (int) (alto/1.15), (int) (ancho/16), (int) (alto/14)};
-    auto *graficoBotonDeEntrar = new GraficoDeElementosPantalla(spriteBotonDeEntrar->getTexture(), posicionEnPantallaIngresoBoton, 1);
+    SDL_Rect posicionEnPantallaIngresoBoton = {(int) (ancho / 2.15), (int) (alto / 1.15), (int) (ancho / 16),
+                                               (int) (alto / 14)};
+    auto *graficoBotonDeEntrar = new GraficoDeElementosPantalla(spriteBotonDeEntrar->getTexture(),
+                                                                posicionEnPantallaIngresoBoton, 1);
 
     pantalla->agregarEstado("spriteBotonDeEntrar", spriteBotonDeEntrar);
     pantalla->agregarComportamiento("graficoBotonDeEntrar", graficoBotonDeEntrar);
 
     //Box usuario grafico
     auto *spriteBoxUsuario = new Sprite(sdlRenderer, srcSpriteBoxUsr);
-    SDL_Rect posicionEnPantallaIngresoUsuario = {(int) (ancho/2.8), (int) (alto/1.45), (int) (ancho/3.5), (int) (alto/13)};
-    auto *graficoBoxUsuario = new GraficoDeElementosPantalla(spriteBoxUsuario->getTexture(), posicionEnPantallaIngresoUsuario, 1);
+    SDL_Rect posicionEnPantallaIngresoUsuario = {(int) (ancho / 2.8), (int) (alto / 1.45), (int) (ancho / 3.5),
+                                                 (int) (alto / 13)};
+    auto *graficoBoxUsuario = new GraficoDeElementosPantalla(spriteBoxUsuario->getTexture(),
+                                                             posicionEnPantallaIngresoUsuario, 1);
 
     pantalla->agregarEstado("spriteBoxUsuario", spriteBoxUsuario);
     pantalla->agregarComportamiento("graficoBoxUsuario", graficoBoxUsuario);
 
     auto *spriteBoxContrasenia = new Sprite(sdlRenderer, srcSpriteBoxContrasenia);
-    SDL_Rect posicionEnPantallaIngresoContrasenia = {(int) (ancho/2.8), (int) (alto/1.3), (int) (ancho/3.5), (int) (alto/13)};
-    auto *graficoBoxContrasenia = new GraficoDeElementosPantalla(spriteBoxContrasenia->getTexture(), posicionEnPantallaIngresoContrasenia, 1);
+    SDL_Rect posicionEnPantallaIngresoContrasenia = {(int) (ancho / 2.8), (int) (alto / 1.3), (int) (ancho / 3.5),
+                                                     (int) (alto / 13)};
+    auto *graficoBoxContrasenia = new GraficoDeElementosPantalla(spriteBoxContrasenia->getTexture(),
+                                                                 posicionEnPantallaIngresoContrasenia, 1);
 
     //Box Contrasenia
 
@@ -172,43 +184,47 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
     //Box identificacion grafico
     auto *spriteBoxIdentificacion = new Sprite(sdlRenderer, srcSpriteBoxIdentificacion);
-    SDL_Rect posicionEnPantallaIngresoBoxIdentificacion = {(int) (ancho/3), (int) (alto/1.7), (int) (ancho/3), (int) (alto/2.45)};
-    auto *graficoBoxIdentificacion = new GraficoDeElementosPantalla(spriteBoxIdentificacion->getTexture(), posicionEnPantallaIngresoBoxIdentificacion, 1);
+    SDL_Rect posicionEnPantallaIngresoBoxIdentificacion = {(int) (ancho / 3), (int) (alto / 1.7), (int) (ancho / 3),
+                                                           (int) (alto / 2.45)};
+    auto *graficoBoxIdentificacion = new GraficoDeElementosPantalla(spriteBoxIdentificacion->getTexture(),
+                                                                    posicionEnPantallaIngresoBoxIdentificacion, 1);
 
     pantalla->agregarEstado("spriteBoxIdentificacion", spriteBoxIdentificacion);
     pantalla->agregarComportamiento("graficoBoxIdentificacion", graficoBoxIdentificacion);
 
     //Grafico usuario rechazado
     auto *spriteUsuarioRechazado = new Sprite(sdlRenderer, srcSpriteUsuarioRechazado);
-    SDL_Rect posicionEnPantallaIngresoUsuarioRechazado = {(int) (ancho/2.45), (int) (alto/3), (int) (ancho/6), (int) (alto/4.5)};
-    auto *graficoUsuarioRechazado = new GraficoDeElementosPantalla(spriteUsuarioRechazado->getTexture(), posicionEnPantallaIngresoUsuarioRechazado, 1);
+    SDL_Rect posicionEnPantallaIngresoUsuarioRechazado = {(int) (ancho / 2.45), (int) (alto / 3), (int) (ancho / 6),
+                                                          (int) (alto / 4.5)};
+    auto *graficoUsuarioRechazado = new GraficoDeElementosPantalla(spriteUsuarioRechazado->getTexture(),
+                                                                   posicionEnPantallaIngresoUsuarioRechazado, 1);
 
     //Pantalla grafico
     auto *spritePantallaIngreso = new Sprite(sdlRenderer, srcSpritePantallaIngreso);
     SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
-    auto *graficoPantalla = new GraficoDeElementosPantalla(spritePantallaIngreso->getTexture(), posicionEnPantallaIngreso, 1);
+    auto *graficoPantalla = new GraficoDeElementosPantalla(spritePantallaIngreso->getTexture(),
+                                                           posicionEnPantallaIngreso, 1);
 
     pantalla->agregarEstado("spritePantallaIngreso", spritePantallaIngreso);
     pantalla->agregarComportamiento("graficoPantalla", graficoPantalla);
 
-
-
-    while (!exit) {
+    bool usuarioExit = false;
+    while (!usuarioExit) {
         SDL_Event sdlEvento;
         SDL_WaitEvent(&sdlEvento);
-        if(sdlEvento.type == SDL_QUIT) {
+        if (sdlEvento.type == SDL_QUIT) {
             stringstream s;
             Accion(FIN).serializar(s);
             Locator::socket().enviar(s);
             Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
             exit = true;
-            //break;
+            break;
         }
 
-        SDL_Surface * surfaceTextoUsuario;
-        SDL_Surface * surfaceTextoContrasenia;
-        SDL_Texture * textureTextoUsuario = NULL;
-        SDL_Texture * textureTextoContrasenia = NULL;
+        SDL_Surface *surfaceTextoUsuario;
+        SDL_Surface *surfaceTextoContrasenia;
+        SDL_Texture *textureTextoUsuario = NULL;
+        SDL_Texture *textureTextoContrasenia = NULL;
         SDL_Rect posicionEnPantallaIngresoUsuarioTexto;
         SDL_Rect posicionEnPantallaIngresoContraseniaTexto;
         int text_height;
@@ -221,38 +237,40 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
 
         //Grafico caracteres usuario
-        if(boxSeleccionadaRectUsuario.text.length()) {
+        if (boxSeleccionadaRectUsuario.text.length()) {
             //cout << "Se puede" << endl;
-            surfaceTextoUsuario = TTF_RenderText_Solid(gFont, boxSeleccionadaRectUsuario.text.c_str(), boxSeleccionadaRectUsuario.textcolor);
+            surfaceTextoUsuario = TTF_RenderText_Solid(gFont, boxSeleccionadaRectUsuario.text.c_str(),
+                                                       boxSeleccionadaRectUsuario.textcolor);
             textureTextoUsuario = SDL_CreateTextureFromSurface(sdlRenderer, surfaceTextoUsuario);
             text_width = surfaceTextoUsuario->w;
             text_height = surfaceTextoUsuario->h;
             posicionEnPantallaIngresoUsuarioTexto = posicionEnPantallaIngresoUsuario;
             posicionEnPantallaIngresoUsuarioTexto.w = text_width;
             posicionEnPantallaIngresoUsuarioTexto.h = text_height;
-            posicionEnPantallaIngresoUsuarioTexto.x += (int) ancho/14;
-            posicionEnPantallaIngresoUsuarioTexto.y += (int) alto/72;
+            posicionEnPantallaIngresoUsuarioTexto.x += (int) ancho / 14;
+            posicionEnPantallaIngresoUsuarioTexto.y += (int) alto / 72;
             SDL_FreeSurface(surfaceTextoUsuario);
         }
 
 
 
         //Grafico caracteres contraseña
-        if(boxSeleccionadaRectContrasenia.text.length()) {
-            surfaceTextoContrasenia = TTF_RenderText_Solid(gFont, boxSeleccionadaRectContrasenia.text.c_str(), boxSeleccionadaRectContrasenia.textcolor);
+        if (boxSeleccionadaRectContrasenia.text.length()) {
+            surfaceTextoContrasenia = TTF_RenderText_Solid(gFont, boxSeleccionadaRectContrasenia.text.c_str(),
+                                                           boxSeleccionadaRectContrasenia.textcolor);
             textureTextoContrasenia = SDL_CreateTextureFromSurface(sdlRenderer, surfaceTextoContrasenia);
             text_width = surfaceTextoContrasenia->w;
             text_height = surfaceTextoContrasenia->h;
             posicionEnPantallaIngresoContraseniaTexto = posicionEnPantallaIngresoContrasenia;
             posicionEnPantallaIngresoContraseniaTexto.w = text_width;
             posicionEnPantallaIngresoContraseniaTexto.h = text_height;
-            posicionEnPantallaIngresoContraseniaTexto.x += (int) ancho/11;
-            posicionEnPantallaIngresoContraseniaTexto.y += (int) alto/72;
+            posicionEnPantallaIngresoContraseniaTexto.x += (int) ancho / 11;
+            posicionEnPantallaIngresoContraseniaTexto.y += (int) alto / 72;
             SDL_FreeSurface(surfaceTextoContrasenia);
         }
 
 
-        if(contraseniaIncorrecta) {
+        if (contraseniaIncorrecta) {
             pantalla->agregarEstado("spriteUsuarioRechazado", spriteUsuarioRechazado);
             pantalla->agregarComportamiento("graficoUsuarioRechazado", graficoUsuarioRechazado);
         }
@@ -266,49 +284,52 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
         //Eventos
         switch (sdlEvento.type) {
             //case SDL_QUIT:
-                //exit = true;
-                //break;
+            //exit = true;
+            //break;
             case SDL_MOUSEBUTTONDOWN:
                 //Pantalla Ok seleccionada
-                if(boxSeleccionada(&boxSeleccionadaRectOk, &sdlEvento))
-                    exit = true;
+                if (boxSeleccionada(&boxSeleccionadaRectOk, &sdlEvento))
+                    usuarioExit = true;
 
                 //Ingreso de caracteres pantalla usuario
-                if(boxSeleccionada(&boxSeleccionadaRectUsuario, &sdlEvento)){
+                if (boxSeleccionada(&boxSeleccionadaRectUsuario, &sdlEvento)) {
                     usuarioSeleccionado = true;
                     contraseniaSeleccionada = false;
                 }
 
                 //Ingreso de caracteres pantalla contraseña
-                if(boxSeleccionada(&boxSeleccionadaRectContrasenia, &sdlEvento)) {
+                if (boxSeleccionada(&boxSeleccionadaRectContrasenia, &sdlEvento)) {
                     contraseniaSeleccionada = true;
                     usuarioSeleccionado = false;
                 }
                 break;
             case SDL_TEXTINPUT:
                 //Acoplo caracteres usuario
-                if(usuarioSeleccionado && boxSeleccionadaRectUsuario.text.length() <= CANT_MAX_CARACTERES_USUARIO)
+                if (usuarioSeleccionado && boxSeleccionadaRectUsuario.text.length() <= CANT_MAX_CARACTERES_USUARIO)
                     boxSeleccionadaRectUsuario.text.append(sdlEvento.text.text);
 
                 //Acoplo caracteres contraseña
-                if(contraseniaSeleccionada && boxSeleccionadaRectContrasenia.text.length() <= CANT_MAX_CARACTERES_CONTRASENIA)
+                if (contraseniaSeleccionada &&
+                    boxSeleccionadaRectContrasenia.text.length() <= CANT_MAX_CARACTERES_CONTRASENIA)
                     boxSeleccionadaRectContrasenia.text.append(sdlEvento.text.text);
 
                 break;
             case SDL_KEYDOWN:
 
                 //Retroceso usuario
-                if (usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectUsuario.text.size())
-                   boxSeleccionadaRectUsuario.text.pop_back();
+                if (usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_BACKSPACE &&
+                    boxSeleccionadaRectUsuario.text.size())
+                    boxSeleccionadaRectUsuario.text.pop_back();
 
-                //Cambio usuario -> contraseña
-                else if(usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_TAB) {
+                    //Cambio usuario -> contraseña
+                else if (usuarioSeleccionado && sdlEvento.key.keysym.sym == SDLK_TAB) {
                     usuarioSeleccionado = false;
                     contraseniaSeleccionada = true;
                 }
 
-                //Retroceso contraseña
-                else if (contraseniaSeleccionada && sdlEvento.key.keysym.sym == SDLK_BACKSPACE && boxSeleccionadaRectContrasenia.text.size())
+                    //Retroceso contraseña
+                else if (contraseniaSeleccionada && sdlEvento.key.keysym.sym == SDLK_BACKSPACE &&
+                         boxSeleccionadaRectContrasenia.text.size())
                     boxSeleccionadaRectContrasenia.text.pop_back();
                 break;
         }
@@ -320,14 +341,14 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
         }
 
         //Graficar
-        if(textureTextoUsuario)
+        if (textureTextoUsuario)
             SDL_RenderCopy(sdlRenderer, textureTextoUsuario, NULL, &posicionEnPantallaIngresoUsuarioTexto);
-        if(textureTextoContrasenia)
+        if (textureTextoContrasenia)
             SDL_RenderCopy(sdlRenderer, textureTextoContrasenia, NULL, &posicionEnPantallaIngresoContraseniaTexto);
         SDL_RenderPresent(sdlRenderer); // Update screen
 
-        if(contraseniaIncorrecta) {
-            SDL_Delay(1500);
+        if (contraseniaIncorrecta) {
+//            SDL_Delay(1500);
             contraseniaIncorrecta = false;
         }
 
@@ -337,7 +358,7 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 
 
     }
-    TTF_CloseFont( gFont );
+    TTF_CloseFont(gFont);
     static Usuario usr;
     usr.setUsuario(boxSeleccionadaRectUsuario.text);
     usr.setContrasenia(boxSeleccionadaRectContrasenia.text); //"p"
@@ -349,24 +370,18 @@ Usuario& Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
 }
 
 bool boxSeleccionada(seleccionar_box_t *boxSeleccionada, SDL_Event *event) {
-    if (/*event->type == SDL_WINDOWEVENT &&
-        event->window.event == SDL_WINDOWEVENT_EXPOSED &&*/
-            _boxSeleccionadaRect(event->button.x, event->button.y,
-                                 &boxSeleccionada->rect))
-        return true;
+    return _boxSeleccionadaRect(event->button.x, event->button.y, &boxSeleccionada->rect);
 
-    return false;
 }
 
-bool _boxSeleccionadaRect(int x, int y, SDL_Rect *rect)
-{
+bool _boxSeleccionadaRect(int x, int y, SDL_Rect *rect) {
     return x >= rect->x && x < rect->x + rect->w &&
            y >= rect->y && y < rect->y + rect->h;
 }
 
 void Juego::loop() {
 
-    if(exit || !validarUserPass()) return;
+    if (exit || !validarUserPass()) return;
 
     exit = false; //TODO
     ActualizadorCliente actualizador(&mapa_);

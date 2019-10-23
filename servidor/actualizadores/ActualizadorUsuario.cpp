@@ -6,6 +6,7 @@
 #include "../../usuario/Usuario.h"
 #include "../../servicios/Locator.h"
 #include "../../modelo/EventoUsuario.h"
+#include "../../modelo/Accion.h"
 
 ActualizadorUsuario::ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager) :
         usuarioAgregado(0),
@@ -21,7 +22,8 @@ bool ActualizadorUsuario::validarContrasenia(Usuario *usuario, Socket *socket) {
     if (constraseniaCorrecta) {
         Locator::logger()->log(INFO, "Se recibió una contraseña correcta del usuario: " + usuario->getUsuario() + ".");
     } else {
-        Locator::logger()->log(ERROR,  "Se recibió una contraseña incorrecta del usuario: " + usuario->getUsuario() + ".");
+        Locator::logger()->log(ERROR,
+                               "Se recibió una contraseña incorrecta del usuario: " + usuario->getUsuario() + ".");
         EventoUsuario evento(CONTRASENIA_INCORRECTA);
         stringstream ss;
         evento.serializar(ss);
@@ -34,13 +36,27 @@ Usuario *ActualizadorUsuario::getUsuario(Socket *socket) {
     auto *nuevoUsuario = new Usuario;
 
     stringstream s;
-    do {
+    bool fin = false;
+    while (!fin) {
         if (!socket->recibir(s)) {
             Locator::logger()->log(ERROR, "Se desconectó el cliente de forma inesperada. Se termina el hilo.");
             pthread_exit(nullptr);
         }
-        nuevoUsuario->deserializar(s);
-    } while (!validarContrasenia(nuevoUsuario, socket));
+        Accion accion;
+        accion.deserializar(s);
+        switch (accion.accion()) {
+            case ENVIAR_USUARIO:
+                nuevoUsuario->deserializar(s);
+                if(validarContrasenia(nuevoUsuario, socket)) fin = true;
+                break;
+            case FIN:
+                Locator::logger()->log(INFO, "Se desconecta voluntariamente un cliente en el menu de usuario.");
+                pthread_exit(nullptr);
+            default:
+                Locator::logger()->log(ERROR, "Se recibió una acción inválilda en el actualizador de usuario.");
+                break;
+        }
+    };
 
     nuevoUsuario->setSocket(socket);
     auto *crear = new AgregarUsuario(nuevoUsuario, manager, usuarioAgregado);
@@ -66,14 +82,16 @@ void AgregarUsuario::resolver() {
         if (usuarioAnterior->estaConectado()) { // El usuario esta conectado desde otro cliente.
             usuario->setValido(false);
             evento = new EventoUsuario(USUARIO_YA_CONECTADO);
-            Locator::logger()->log(ERROR, "El usuario: " + usuarioAnterior->getUsuario() + " se encuentra conectado desdo otro cliente.");
+            Locator::logger()->log(ERROR, "El usuario: " + usuarioAnterior->getUsuario() +
+                                          " se encuentra conectado desdo otro cliente.");
 
         } else { // El usuario se había desconectado.
             usuario->setPersonaje(usuarioAnterior->getPersonaje());
             manager->reemplazarUsuarioCon(usuario);
             usuario->setValido(true);
             evento = new EventoUsuario(CONECTADO);
-            Locator::logger()->log(INFO, "El usuario: " + usuarioAnterior->getUsuario() + " se reconectó a la partida.");
+            Locator::logger()->log(INFO,
+                                   "El usuario: " + usuarioAnterior->getUsuario() + " se reconectó a la partida.");
         }
     } else {
         if (manager->faltanJugadores()) { // Hay espacio para un jugador más.
