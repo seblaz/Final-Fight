@@ -1,6 +1,6 @@
 #include "FabricaDeAnimacionesDeMaki.h"
 
-AnimacionCliente* FabricaDeAnimacionesDeMaki::caminando() {
+Animacion* FabricaDeAnimacionesDeMaki::caminando() {
     vector<SDL_Rect> posiciones = {
             {0, 105, 35, 90},
             {35, 105, 45, 90},
@@ -9,54 +9,54 @@ AnimacionCliente* FabricaDeAnimacionesDeMaki::caminando() {
             {140, 105, 45, 90},
     };
 
-    //vector<float> duraciones = {1, 1, 1, 1, 1, 1};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    vector<float> duraciones = {1, 1, 1, 1, 1, 1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-AnimacionCliente* FabricaDeAnimacionesDeMaki::saltando() {
+Animacion* FabricaDeAnimacionesDeMaki::saltando() {
     vector<SDL_Rect> posiciones = {
             {318, 85, 46, 90},
             {318, 85, 46, 90},
             {272, 95, 46, 100},
     };
 
-    //vector<float> duraciones = {1, 1, 1, 1};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    vector<float> duraciones = {1, 1, 1, 1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-AnimacionCliente* FabricaDeAnimacionesDeMaki::reposando() {
+Animacion* FabricaDeAnimacionesDeMaki::reposando() {
     vector<SDL_Rect> posiciones = {{0, 0, 45, 95}};
-    //vector<float> duraciones = {1};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    vector<float> duraciones = {1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-AnimacionCliente *FabricaDeAnimacionesDeMaki::agachado() {
+Animacion *FabricaDeAnimacionesDeMaki::agachado() {
     vector<SDL_Rect> posiciones = {{45, 6, 45, 90}};
-    //vector<float> duraciones = {1};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    vector<float> duraciones = {1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-AnimacionCliente* FabricaDeAnimacionesDeMaki::golpear() {
+Animacion* FabricaDeAnimacionesDeMaki::golpear() {
     vector<SDL_Rect> posiciones = {
-            //{0, 200, 51, 90},
+            {0, 200, 51, 90},
             {50, 200, 70, 90},
-            {118, 200, 55, 90},
+            //{118, 200, 55, 90},
             //{168, 200, 70, 90},
-            {395, 180, 43, 110},
-            {395, 180, 43, 110},
+            //{395, 180, 43, 110},
+            //{395, 180, 43, 110},
 
     };
 
-    //vector<float> duraciones = {1, 2, 1};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 16, 4.5);
+    vector<float> duraciones = {1, 2, 1};
+
+    return new Animacion(posiciones, duraciones, 16, 4.5);
 }
 
-AnimacionCliente *FabricaDeAnimacionesDeMaki::saltandoAdelante() {
+Animacion *FabricaDeAnimacionesDeMaki::saltandoAdelante() {
     vector<SDL_Rect> posiciones = {
             {365, 85, 50, 90},
             {418, 85, 50, 90},
@@ -65,17 +65,17 @@ AnimacionCliente *FabricaDeAnimacionesDeMaki::saltandoAdelante() {
 
     };
 
-    //vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
+
+    return new Animacion(posiciones, duraciones, 60, 4.5);
 }
 
-AnimacionCliente *FabricaDeAnimacionesDeMaki::patadaBasica() {
+Animacion *FabricaDeAnimacionesDeMaki::patadaBasica() {
     vector<SDL_Rect> posiciones = {
             {170, 400, 80, 80},
     };
 
-    //vector<float> duraciones = {1, 1, 3, 2};
-        return new AnimacionCliente(posiciones, 4.5);
-    //return new AnimacionCliente(posiciones, duraciones, 35, 4.5);
+    vector<float> duraciones = {1, 1, 3, 2};
+
+    return new Animacion(posiciones, duraciones, 35, 4.5);
 }
