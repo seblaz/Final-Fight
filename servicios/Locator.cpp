@@ -70,6 +70,19 @@ void Locator::provide(Posicion *posicion_) {
     posicion = posicion_;
 }
 
+/**
+ * Fabrica de sprites.
+ */
+FabricaDeSprites *Locator::fabrica;
+
+FabricaDeSprites *Locator::fabricaDeSprites() {
+    return fabrica;
+}
+
+void Locator::provide(FabricaDeSprites *fabricaDeSprites) {
+    fabrica = fabricaDeSprites;
+}
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 
