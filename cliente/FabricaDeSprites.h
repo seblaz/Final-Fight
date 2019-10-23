@@ -17,7 +17,7 @@ private:
 
 public:
     Sprite *getSpriteBySrc(const string& src);
-    Sprite *getSpriteConfigPath(string path);
+    Sprite *getSpriteConfigPath(const string& path);
 };
 
 

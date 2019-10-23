@@ -53,6 +53,9 @@ int main(int argc, char *argv[]) {
     auto *logger = new Logger();
     Locator::provide(logger);
 
+    auto *fabrica = new FabricaDeSprites();
+    Locator::provide(fabrica);
+
     string ipAddress;
     int port;
     bool paramsOk = false;

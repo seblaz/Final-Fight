@@ -13,7 +13,7 @@ Sprite *FabricaDeSprites::getSpriteBySrc(const string& src) {
     return sprites[src];
 }
 
-Sprite* FabricaDeSprites::getSpriteConfigPath(string path){
-//    return getSpriteBySrc();
-    return nullptr;
+Sprite* FabricaDeSprites::getSpriteConfigPath(const string& path){
+    string src = Locator::configuracion()->getValue(path);
+    return getSpriteBySrc(src);
 }

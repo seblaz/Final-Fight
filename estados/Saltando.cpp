@@ -10,6 +10,7 @@
 #include "../modelo/EstadoDePersonaje.h"
 #include "../modelo/Personaje.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
+#include "../modelo/Actividad.h"
 
 Saltando::Saltando() {
     Logger *logger = Locator::logger();
@@ -22,7 +23,8 @@ Saltando::~Saltando() {
 }
 
 void Saltando::actualizar(Entidad *entidad) {
-    if (!termine) {
+    //if (!termine && ( entidad->getEstado<Tipo>("tipo")->tipo() == JUGADOR  && entidad->getEstado<Actividad>("actividad")->activo) ) {
+    if (!termine ){
         auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
         velocidad->y = 0;
         velocidad->z = velocidadInicial + aceleracion * frames;
