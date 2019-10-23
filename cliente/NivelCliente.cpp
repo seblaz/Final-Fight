@@ -31,13 +31,10 @@
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
-    Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/pantallaDeEspera/sprite/src");
-    SDL_Renderer *sdlRenderer = Locator::renderer();
 
     Entidad *pantalla = mapa->crearEntidad();
 
-    auto *sprite = new Sprite(sdlRenderer, srcSprite);
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeEspera/sprite/src");
     auto *posicion = new Posicion(0, 0, 0);
 //    auto *grafico = new GraficoMenuSeleccion();
 //    auto *entrada = new EntradaPantallaDeEspera();
@@ -52,13 +49,11 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
     Configuracion *config = Locator::configuracion();
-    string srcSprite = config->getValue("/pantallaDeSeleccion/fondo/src");
 
-    auto *renderer = Locator::renderer();
-    auto *sprite = new Sprite(renderer, srcSprite);
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeSeleccion/fondo/src");
     auto *grafico = new GraficoMenuSeleccion();
     auto *personaje = new Personaje(GUY);
-    auto *spriteSelector = new Sprite(renderer, "assets/varios/selectorMenu.png");
+    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteBySrc("assets/varios/selectorMenu.png");
 
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("sprite selector", spriteSelector);
@@ -76,17 +71,13 @@ void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
     Configuracion *config = Locator::configuracion();
-    SDL_Renderer *sdlRenderer = Locator::renderer();
 
     auto *personaje = jugador->getEstado<Personaje>("personaje");
     auto *numeroJugador = jugador->getEstado<NumeroJugador>("numeroJugador");
     Locator::logger()->log(INFO, "Se obtuvo personaje." + Personaje::PersonajeACadena(personaje->getPersonaje()));
     Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
 
-    string srcSprite = config->getValue(
-            "/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
-
-    auto *spriteIndicador = new Sprite(sdlRenderer, srcSprite);
+    auto *spriteIndicador = Locator::fabricaDeSprites()->getSpriteConfigPath("/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
     auto *animacionIndicador = FabricaDeAnimacionesDeIndicador::indicador();
 
     jugador->agregarEstado("spriteIndicador", spriteIndicador);
@@ -119,7 +110,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     }
 
     auto *animacion = fabricaDeAnimaciones->reposando();
-    auto *spriteJugador = new Sprite(sdlRenderer, srcSpritePersonaje);
+    auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpritePersonaje);
     auto *grafico = new GraficoJugador();
     auto *animador = new Animador();
 
@@ -137,16 +128,13 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     string nivel = nivelEstado->nivel();
     Locator::logger()->log(DEBUG, "Se genera escenario para " + nivel);
 
-    string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/sprite/src");
-
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int cantidadDeCapas = config->getIntValue("/niveles/" + nivel + "/escenario/sprite/capas/cantidad");
 
     Locator::logger()->log(DEBUG, "Se cargo ancho para escenario: " + to_string(anchoNivel));
     Locator::logger()->log(DEBUG, "Se cargo cantidad de capas para escenario: " + to_string(cantidadDeCapas));
 
-    auto *sdlRenderer = Locator::renderer();
-    auto *sprite = new Sprite(sdlRenderer, srcSprite);
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/niveles/" + nivel + "/escenario/sprite/src");
 
     vector<SDL_Texture *> sprites(cantidadDeCapas);
     vector<SDL_Rect> posicionesSprite(cantidadDeCapas);
@@ -189,9 +177,8 @@ void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
 void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     Locator::logger()->log(INFO, "Se genera enemigo");
     string spritePath = "assets/personajes/poison.png";
-    SDL_Renderer *sdlRenderer = Locator::renderer();
 
-    auto *spriteEnemigo = new Sprite(sdlRenderer, spritePath);
+    auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc("assets/personajes/poison.png");
     auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
     auto *graficoDeEnemigo = new Grafico();
     auto *animacion = fabricaDeEnemigo->caminando();
@@ -230,8 +217,7 @@ void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
             return;
     }
 
-    SDL_Renderer *sdlRenderer = Locator::renderer();
-    auto *sprite = new Sprite(sdlRenderer, srcSprite);
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
     auto *grafico = new Grafico();
 
     elemento->agregarEstado("sprite", sprite);
