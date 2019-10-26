@@ -70,6 +70,7 @@ void Juego::inicializarGraficos() {
 bool Juego::validarUserPass() {
     //SDL_Event e;
     bool contraseniaIncorrecta = false;
+
     while (!exit) {
         processInput(); //Se llama para poder cerrar el juego
         Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
@@ -101,12 +102,14 @@ bool Juego::validarUserPass() {
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
-                //MENSAJE DE ALGUIEN CON ESE USUARIO
-                break;
+                GraficoDePantalla::graficarPantalla("/pantallaUsuarioYaConectado/src");
+                sleep(8);
+                return false;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-//                GraficoDePantalla::graficarPantalla("/pantallaPartidaLlena/src");
-                break;
+                GraficoDePantalla::graficarPantalla("/pantallaPartidaLlena/src");
+                sleep(8);
+                return false;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
                 return true;
@@ -326,7 +329,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
                 break;
         }
 
-        if(!usuarioExit){
+        if (!usuarioExit) {
             //Actualizar
             auto comportamientos = pantalla->getComportamientos();
             for (auto *comportamiento : comportamientos) {
@@ -341,7 +344,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
             SDL_RenderPresent(renderer_); // Update screen
 
             if (contraseniaIncorrecta) {
-    //            SDL_Delay(1500);
+                //            SDL_Delay(1500);
                 contraseniaIncorrecta = false;
             }
 

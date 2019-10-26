@@ -7,10 +7,13 @@
 #include "../servicios/Locator.h"
 
 void GraficoDePantalla::graficarPantalla(const string& pathConfigSrcFondo){
+
     Configuracion *config = Locator::configuracion();
     SDL_Renderer *renderer_ = Locator::renderer();
+
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
+
     auto *spritePantallaIngreso = Locator::fabricaDeSprites()->getSpriteConfigPath(pathConfigSrcFondo);
 
     SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
