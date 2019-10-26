@@ -17,6 +17,7 @@
 #include "../modelo/Entidad.h"
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDeElementosPantalla.h"
+#include "../graficos/GraficoDePantalla.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -69,6 +70,7 @@ void Juego::inicializarGraficos() {
 bool Juego::validarUserPass() {
     //SDL_Event e;
     bool contraseniaIncorrecta = false;
+
     while (!exit) {
         processInput(); //Se llama para poder cerrar el juego
         Usuario usuarioAux = generarPantallaDeIngreso(contraseniaIncorrecta);
@@ -100,9 +102,13 @@ bool Juego::validarUserPass() {
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
+                GraficoDePantalla::graficarPantalla("/pantallaUsuarioYaConectado/src");
+                sleep(8);
                 return false;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
+                GraficoDePantalla::graficarPantalla("/pantallaPartidaLlena/src");
+                sleep(8);
                 return false;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
@@ -323,7 +329,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
                 break;
         }
 
-        if(!usuarioExit){
+        if (!usuarioExit) {
             //Actualizar
             auto comportamientos = pantalla->getComportamientos();
             for (auto *comportamiento : comportamientos) {
@@ -338,7 +344,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
             SDL_RenderPresent(renderer_); // Update screen
 
             if (contraseniaIncorrecta) {
-    //            SDL_Delay(1500);
+                //            SDL_Delay(1500);
                 contraseniaIncorrecta = false;
             }
 
@@ -385,17 +391,19 @@ void Juego::loop() {
         processInput();
         stringstream s;
 
-        if (!receptor.conexionEstaActiva()) break;
-        receptor.devolverStreamMasReciente(s);
-        actualizador.actualizarEntidades(s, &trasmision);
-        clearScene();
-        actualizar();
-        graficar();
-    }
+        if (!receptor.conexionEstaActiva()) {
+            GraficoDePantalla::graficarPantalla("/pantallaErrorDeConexion/src");
+        } else {
+            receptor.devolverStreamMasReciente(s);
+            actualizador.actualizarEntidades(s, &trasmision);
+            clearScene();
+            actualizar();
+            graficar();
+        }
 
+    }
     trasmision.finalizar();
     receptor.finalizar();
-
     pthread_join(hiloTransmision, nullptr);
     pthread_join(hiloRecepcion, nullptr);
 

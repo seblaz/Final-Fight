@@ -56,7 +56,6 @@ public:
 //    nombreJugador generarMenuPrincipal();
     SDL_Renderer* renderer();
     void terminar();
-
 };
 
 #endif //FINAL_FIGHT_JUEGO_H
