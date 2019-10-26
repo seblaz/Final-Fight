@@ -80,6 +80,9 @@
     <pantallaPartidaLlena>
         <src>assets/varios/pantallaPartidaLlena.png</src>
     </pantallaPartidaLlena>
+    <pantallaUsuarioYaConectado>
+        <src>assets/varios/pantallaUsuarioYaConectado.png</src>
+    </pantallaUsuarioYaConectado>
     <personajes>
         <cody>
             <src>assets/personajes/cody.png</src>
