@@ -17,7 +17,7 @@
 #include "../modelo/Entidad.h"
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDeElementosPantalla.h"
-#include "../pantalla/PantallaErrorDeConexion.h"
+#include "../graficos/GraficoDePantalla.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -105,7 +105,7 @@ bool Juego::validarUserPass() {
                 break;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-                //MENSAJE DE LA PARTIDA ESTA LLENA
+//                GraficoDePantalla::graficarPantalla("/pantallaPartidaLlena/src");
                 break;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
@@ -389,7 +389,7 @@ void Juego::loop() {
         stringstream s;
 
         if (!receptor.conexionEstaActiva()) {
-            PantallaErrorDeConexion::graficarPantallaDeErrorDeConexion();
+            GraficoDePantalla::graficarPantalla("/pantallaErrorDeConexion/src");
         } else {
             receptor.devolverStreamMasReciente(s);
             actualizador.actualizarEntidades(s, &trasmision);
