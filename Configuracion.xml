@@ -1,6 +1,18 @@
 <configuracion>
     <usuarios>
-        <cantidad>1</cantidad>
+        <cantidad>2</cantidad>
+        <usuario>
+            <username>leo</username>
+            <password>p</password>
+        </usuario>
+        <usuario>
+            <username>seba</username>
+            <password>b</password>
+        </usuario>
+        <usuario>
+            <username>felipe</username>
+            <password>123456</password>
+        </usuario>
     </usuarios>
     <password>p</password>
     <debug>
