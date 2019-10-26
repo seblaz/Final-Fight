@@ -17,9 +17,9 @@ ActualizadorUsuario::ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuar
 
 
 bool ActualizadorUsuario::validarContrasenia(Usuario *usuario, Socket *socket) {
-    string password = Locator::configuracion()->getValue("/password");
-    bool constraseniaCorrecta = (password == usuario->getContrasenia());
-    if (constraseniaCorrecta) {
+
+    bool contraseniaCorrecta = Locator::configuracion()->isUserOk(usuario->getUsuario(), usuario->getContrasenia());
+    if (contraseniaCorrecta) {
         Locator::logger()->log(INFO, "Se recibió una contraseña correcta del usuario: " + usuario->getUsuario() + ".");
     } else {
         Locator::logger()->log(ERROR,
@@ -29,7 +29,7 @@ bool ActualizadorUsuario::validarContrasenia(Usuario *usuario, Socket *socket) {
         evento.serializar(ss);
         socket->enviar(ss);
     }
-    return constraseniaCorrecta;
+    return contraseniaCorrecta;
 }
 
 Usuario *ActualizadorUsuario::getUsuario(Socket *socket) {
