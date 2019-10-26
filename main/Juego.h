@@ -57,6 +57,7 @@ public:
     SDL_Renderer* renderer();
     void terminar();
 
+    void graficarPantallaDeErrorDeConexion();
 };
 
 #endif //FINAL_FIGHT_JUEGO_H

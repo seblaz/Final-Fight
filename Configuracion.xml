@@ -74,6 +74,9 @@
             <src>assets/varios/personajeElegido.png</src>
         </personajeElegido>
     </pantallaDeSeleccion>
+    <pantallaErrorDeConexion>
+            <src>assets/varios/pantallaErrorDeConexion.png</src>
+    </pantallaErrorDeConexion>
     <personajes>
         <cody>
             <src>assets/personajes/cody.png</src>

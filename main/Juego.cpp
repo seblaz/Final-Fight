@@ -100,10 +100,12 @@ bool Juego::validarUserPass() {
                 break;
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
-                return false;
+                //MENSAJE DE ALGUIEN CON ESE USUARIO
+                break;
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-                return false;
+                //MENSAJE DE LA PARTIDA ESTA LLENA
+                break;
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
                 return true;
@@ -385,19 +387,33 @@ void Juego::loop() {
         processInput();
         stringstream s;
 
-        if (!receptor.conexionEstaActiva()) break;
-        receptor.devolverStreamMasReciente(s);
-        actualizador.actualizarEntidades(s, &trasmision);
-        clearScene();
-        actualizar();
-        graficar();
-    }
+        if (!receptor.conexionEstaActiva()) {
+            graficarPantallaDeErrorDeConexion();
+        } else {
+            receptor.devolverStreamMasReciente(s);
+            actualizador.actualizarEntidades(s, &trasmision);
+            clearScene();
+            actualizar();
+            graficar();
+        }
 
+    }
     trasmision.finalizar();
     receptor.finalizar();
-
     pthread_join(hiloTransmision, nullptr);
     pthread_join(hiloRecepcion, nullptr);
+
+}
+
+void Juego::graficarPantallaDeErrorDeConexion() {
+    clearScene();
+    Configuracion *config = Locator::configuracion();
+    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
+    SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
+    auto *spritePantallaIngreso = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaErrorDeConexion/src");
+    SDL_RenderCopy(renderer_, spritePantallaIngreso->getTexture(), nullptr, &posicionEnPantallaIngreso);
+    SDL_RenderPresent(renderer_); // Update screen
 
 }
 
