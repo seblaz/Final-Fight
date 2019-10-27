@@ -4,8 +4,10 @@
 #include "../modelo/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../niveles/Nivel.h"
+#include "../tipos/tipos.h"
 
 void configApplication(int argc, const char*args[]){
+
     bool defaultLogger = argc == 1;
     bool defaultConfiguration = argc == 1;
     bool paramIsLoggerLevel = false;
@@ -62,11 +64,13 @@ int main(int argc, const char **args) {
 
     Mapa &mapa = juego.mapa();
 
-    Entidad *jugador = Nivel::generarJugador(&mapa);
+//    nombreJugador nombreJugador = juego.generarMenuPrincipal();
+//    nombreJugador nombre = CODY;
+//    Entidad *jugador = Nivel::generarJugador(&mapa, nombre);
 
-    Nivel::generarNivel("nivel1", &mapa, jugador);
-
-    juego.loop();
+//    Nivel::generarNivel("nivel1", &mapa, jugador);
+    Nivel::generarPantallaDeEspera(&mapa);
+    juego.loop(nullptr);
     juego.terminar();
 
     Locator::clean();

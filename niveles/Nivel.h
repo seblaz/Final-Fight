@@ -10,8 +10,10 @@
 #include "../modelo/Mapa.h"
 #include "../modelo/Posicion.h"
 #include "../graficos/Sprite.h"
+#include "../tipos/tipos.h"
 #include<stdlib.h>
 #include<time.h>
+#include "../modelo/Personaje.h"
 
 class Nivel{
 
@@ -25,8 +27,10 @@ private:
     static void generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion* posicionDeJugador);
 
 public:
+    static void generarPantallaDeEspera(Mapa *mapa);
+    static void generarMenuSeleccion(Mapa *mapa);
+    static Entidad *generarJugador(Mapa *mapa, enum PERSONAJE jugadorElegido);
     static void generarNivel(const string &nivel, Mapa *mapa, Entidad *jugador);
-    static Entidad *generarJugador(Mapa *mapa);
 };
-#endif //FINAL_FIGHT_NIVEL_H
 
+#endif //FINAL_FIGHT_NIVEL_H

@@ -8,19 +8,12 @@
 
 Reposando::Reposando() {
     Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se instancio un objeto de clase Reposando");
+//    logger -> log(DEBUG, "Se instancio un objeto de clase Reposando");
 }
 
 Reposando::~Reposando() {
     Logger* logger = Locator::logger();
     logger -> log(DEBUG, "Se elimino un objeto de clase Reposando");
-}
-
-
-void Reposando::enter(Entidad *entidad) {
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    auto* animacion = fabricaDeAnimaciones->reposando();
-    entidad->agregarEstado("animacion", animacion);
 }
 
 void Reposando::actualizar(Entidad *entidad) {

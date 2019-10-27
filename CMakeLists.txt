@@ -4,6 +4,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(final_fight)
 set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_EXE_LINKER_FLAGS "-static-libstdc++")
 
 #[[
   Compilar la test suite de Google.
@@ -45,6 +46,11 @@ endif()
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/")
 
 #[[
+  Para que funcione pthread.
+]]
+SET(CMAKE_CXX_FLAGS -pthread)
+
+#[[
   Definición de variables.
 ]]
 FILE(GLOB TestSources test/*.cpp)
@@ -60,6 +66,11 @@ FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
 FILE(GLOB Configurations *.xml)
 FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
+FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
+FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
+FILE(GLOB_RECURSE EventSources eventos/*.cpp)
+FILE(GLOB_RECURSE SerializeSources serializar/*.cpp)
+FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
@@ -70,18 +81,30 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources} ${SerializeSources} ${SerializeSources} ${UsuarioSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Compilar el juego.
-]]
-add_executable(${CMAKE_PROJECT_NAME} ${MainSources} ${PhysicsSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${InputSources} ${StatesSources} ${ServicesSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources})
 target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
+]]
 
 #[[
   Copiar los assets
 ]]
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
+
+#[[
+  Compilar el cliente.
+]]
+add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources})
+target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
+
+#[[
+  Compilar el servidor.
+]]
+
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
+target_link_libraries(servidor ${XercesC_LIBRARIES})

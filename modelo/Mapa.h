@@ -8,25 +8,40 @@
 
 #include "Iterator.cpp"
 #include "Entidad.h"
+#include "Jugadores.h"
 #include <vector>
+#include <mutex>
 
 using namespace std;
+
+/**
+ * IdEntidad. Id de la entidad de tipo numérico y estático.
+ */
+using IdEntidad = size_t;
 
 class Mapeable;
 
 class Mapa : public Estado {
 
 private:
-    vector<Entidad*> entidades;
-    Entidad *jugador;
+    static IdEntidad ultimoId;
+    unordered_map<IdEntidad, Entidad*> entidades;
+    unordered_map<IdEntidad, Entidad*> jugadores;
 
 public:
     Entidad *crearEntidad();
+    Entidad *crearEntidadConId(IdEntidad idEntidad);
     Entidad *crearJugador();
-    auto devolverEntidades() -> decltype(make_iterable(entidades.begin(), entidades.end()));
+    void agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador);
+    vector<Entidad *> devolverEntidades();
+    unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
     void vaciarMapa();
+    void quitarEntidad(IdEntidad idEntidad);
     Entidad *getJugador();
-
+    Jugadores* getJugadores();
+    Entidad *getEntidad(IdEntidad idEntidad);
+    bool contiene(IdEntidad idEntidad);
+    unordered_map<IdEntidad, Entidad *> devolverJugadores();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

@@ -9,19 +9,24 @@
 #include "Velocidad.h"
 #include "Entidad.h"
 
-class Posicion : public Estado{
+class Posicion : public Estado, public Serializable {
 
 private:
 
 public:
-    Posicion(int x, int y, int z);
-    Posicion operator-(Posicion otraPosicion);
+    explicit Posicion(int x = 0, int y = 0, int z = 0);
+    Posicion operator-(const Posicion& otraPosicion);
     void mover(Velocidad& velocidad);
     int x, y, z;
     int getX();
     int getY();
     int getZ();
     void setX(int x);
+
+    bool operator==(const Posicion &otraPosicion);
+
+    void serializar(ostream& stream) override;
+    void deserializar(istream& stream) override;
 };
 
 

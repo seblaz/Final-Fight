@@ -1,6 +1,6 @@
 #include "FabricaDeAnimacionesDeCody.h"
 
-Animacion* FabricaDeAnimacionesDeCody::caminando() {
+AnimacionCliente* FabricaDeAnimacionesDeCody::caminando() {
     vector<SDL_Rect> posiciones = {
             {10,  100, 29, 90},
             {51,  100, 47, 90},
@@ -10,12 +10,13 @@ Animacion* FabricaDeAnimacionesDeCody::caminando() {
             {266, 100, 47, 90},
     };
 
-    vector<float> duraciones = {1, 1, 1, 1, 1, 1};
+    //vector<float> duraciones = {1, 1, 1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeCody::saltando() {
+AnimacionCliente* FabricaDeAnimacionesDeCody::saltando() {
     vector<SDL_Rect> posiciones = {
             {16,  238, 39, 81},
             {74,  203, 32, 106},
@@ -23,26 +24,27 @@ Animacion* FabricaDeAnimacionesDeCody::saltando() {
             {115, 218, 47, 74},
     };
 
-    vector<float> duraciones = {1, 1, 1, 1};
+    //vector<float> duraciones = {1, 1, 1, 1};
 
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeCody::reposando() {
+AnimacionCliente* FabricaDeAnimacionesDeCody::reposando() {
     vector<SDL_Rect> posiciones = {{5, 6, 39, 90}};
-    vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //vector<float> duraciones = {1};
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeCody::agachado() {
+AnimacionCliente *FabricaDeAnimacionesDeCody::agachado() {
     vector<SDL_Rect> posiciones = {{350, 715, 39, 90}};
-    vector<float> duraciones = {1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //vector<float> duraciones = {1};
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion* FabricaDeAnimacionesDeCody::golpear() {
+AnimacionCliente* FabricaDeAnimacionesDeCody::golpear() {
     vector<SDL_Rect> posiciones = {
             {6, 439, 51, 87}, //104 , 67 ancho_
             {63, 439, 92, 87},
@@ -56,28 +58,28 @@ Animacion* FabricaDeAnimacionesDeCody::golpear() {
             //{475, 420, 60, 104},*/
     };
 
-    vector<float> duraciones = {1, 2, 1};
-
-    return new Animacion(posiciones, duraciones, 16, 4.5);
+    //vector<float> duraciones = {1, 2, 1};
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 16, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeCody::saltandoAdelante() {
+AnimacionCliente *FabricaDeAnimacionesDeCody::saltandoAdelante() {
     vector<SDL_Rect> posiciones = {
             {16,  238, 39, 81},
             {115, 218, 47, 74},
             {245,  240, 60, 60},
-            {305,  220, 60, 106},
+            {305,  239, 50, 53},
             {367, 240, 60, 83},
             {433, 225, 50, 78},
             {115, 218, 47, 74},
     };
 
-    vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
-
-    return new Animacion(posiciones, duraciones, 60, 4.5);
+    //vector<float> duraciones = {1, 1, 1, 1, 1, 1, 1};
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 60, 4.5);
 }
 
-Animacion *FabricaDeAnimacionesDeCody::patadaBasica() {
+AnimacionCliente *FabricaDeAnimacionesDeCody::patadaBasica() {
     vector<SDL_Rect> posiciones = {
             {245,  540, 60, 80},
             {315,  540, 50, 81},
@@ -85,7 +87,7 @@ Animacion *FabricaDeAnimacionesDeCody::patadaBasica() {
             {315,  540, 50, 81},
     };
 
-    vector<float> duraciones = {1, 1, 3, 2};
-
-    return new Animacion(posiciones, duraciones, 35, 4.5);
+    //vector<float> duraciones = {1, 1, 3, 2};
+    return new AnimacionCliente(posiciones, 4.5);
+    //return new AnimacionCliente(posiciones, duraciones, 35, 4.5);
 }

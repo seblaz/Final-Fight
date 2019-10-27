@@ -8,12 +8,15 @@
 #include "../graficos/Sprite.h"
 #include "../modelo/Orientacion.h"
 #include "../estados/Reposando.h"
-#include "../comportamiento/Patrullar.h"
+#include "../estados/ia/Patrullar.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../graficos/Grafico.h"
 #include "../fisica/FisicaDeEscenario.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
@@ -22,23 +25,53 @@
 #include "../servicios/Locator.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../estados/Caminando.h"
+#include "../graficos/GraficoMenuSeleccion.h"
+#include "../comportamiento/EntradaPantallaDeEspera.h"
+#include "../comportamiento/EntradaPantallaDeSeleccion.h"
 
-Entidad *Nivel::generarJugador(Mapa *mapa) {
-    Locator::logger()->log(INFO, "Se genera jugador principal.");
+Entidad *Nivel::generarJugador(Mapa *mapa, enum PERSONAJE jugadorElegido) {
+    Locator::logger()->log(INFO, "Se genera jugador.");
 
     SDL_Renderer *sdlRenderer = Locator::renderer();
 
     auto* jugador = mapa->crearJugador();
     auto* posicion = new Posicion(200, 100, 0);
     auto *velocidad = new Velocidad();
-    auto *spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+    FabricaDeAnimacionesDePersonaje *fabricaDeAnimaciones;
+    Sprite *spriteJugador;
+
+    // Develop
+    switch(jugadorElegido){
+        case HAGGAR:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/haggar.png");
+            break;
+
+        case CODY:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+            break;
+
+        case GUY:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/guy.png");
+            break;
+
+        case MAKI:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/maki.png");
+            break;
+
+        default:
+            fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            spriteJugador = new Sprite(sdlRenderer, "assets/personajes/cody.png");
+    }
+
     auto *orientacion = new Orientacion;
-    auto *fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
     auto *animacion = fabricaDeAnimaciones->reposando();
-    EstadoDePersonaje *estado = new Reposando();
+    EstadoDePersonajeServidor *estado = new Reposando();
     auto *fisica = new FisicaDePersonaje();
     auto *grafico = new Grafico();
-    auto *entradaJugador = new EntradaJugador();
 
     jugador->agregarEstado("posicion", posicion);
     jugador->agregarEstado("velocidad", velocidad);
@@ -49,7 +82,6 @@ Entidad *Nivel::generarJugador(Mapa *mapa) {
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("grafico", grafico);
-    jugador->agregarComportamiento("entrada jugador", entradaJugador);
 
     return jugador;
 }
@@ -194,8 +226,6 @@ void Nivel::generarNeumaticos(const string &nivel, SDL_Renderer *sdlRenderer, Ma
     }
 }
 
-
-
 void Nivel::generarCuchillos(const string &nivel, SDL_Renderer *sdlRenderer, Mapa *mapa, Posicion *posicionDeEscenario) {
     Configuracion *config = Locator::configuracion();
     string srcSprite = config->getValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/sprite/src");
@@ -268,7 +298,7 @@ void Nivel::generarEnemigo(const string &nivel, SDL_Renderer *sdlRenderer, Mapa 
         auto *comportadmiento = new Patrullar();
         auto *fisicaDeEnemigo = new FisicaDePersonaje();
         auto *graficoDeEnemigo = new Grafico();
-        EstadoDePersonaje *estado = new Caminando();
+        EstadoDePersonajeServidor *estado = new Caminando();
 
         enemigo->agregarEstado("estado", estado);
         enemigo->agregarEstado("posicion", posicionEnemigoRandom);
@@ -290,9 +320,50 @@ void Nivel::generarTransicion(const string &nivel, SDL_Renderer *sdlRenderer, Ma
     Entidad *transicion = mapa->crearEntidad();
     int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     auto *posicion = new Posicion(0, 1, 0);
-    auto *grafico = new GraficoDeTransicion(anchoDeNivel);
+    auto *grafico = new GraficoDeTransicion(/*anchoDeNivel*/);
 
     transicion->agregarEstado("posicion", posicion);
     transicion->agregarEstado("posicion de jugador", posicionDeJugador);
     transicion->agregarComportamiento("grafico", grafico);
+}
+
+void Nivel::generarPantallaDeEspera(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/pantallaDeEspera/sprite/src");
+    SDL_Renderer *sdlRenderer = Locator::renderer();
+
+    Entidad *pantalla = mapa->crearEntidad();
+
+    auto *sprite = new Sprite(sdlRenderer, srcSprite);
+    auto *posicion = new Posicion(0, 0, 0);
+    auto *grafico = new GraficoMenuSeleccion();
+    auto *entrada = new EntradaPantallaDeEspera();
+
+    pantalla->agregarEstado("posicion", posicion);
+    pantalla->agregarEstado("sprite", sprite);
+    pantalla->agregarEstado("mapa", mapa);
+    pantalla->agregarComportamiento("grafico", grafico);
+    pantalla->agregarComportamiento("entrada", entrada);
+
+}
+
+void Nivel::generarMenuSeleccion(Mapa *mapa) {
+    Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
+    Configuracion *config = Locator::configuracion();
+    string srcSprite = config->getValue("/pantallaDeSeleccion/jugador1/seleccion/src");
+    auto *renderer = Locator::renderer();
+
+    Entidad *pantalla = mapa->crearEntidad();
+
+    auto *sprite = new Sprite(renderer, srcSprite);
+    auto *posicion = new Posicion(0, 0, 0);
+    auto *grafico = new GraficoMenuSeleccion();
+    auto *entrada = new EntradaPantallaDeSeleccion();
+
+    pantalla->agregarEstado("posicion", posicion);
+    pantalla->agregarEstado("sprite", sprite);
+    pantalla->agregarEstado("mapa", mapa);
+    pantalla->agregarComportamiento("grafico", grafico);
+    pantalla->agregarComportamiento("entrada", entrada);
 }

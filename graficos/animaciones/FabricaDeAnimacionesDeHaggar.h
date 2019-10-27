@@ -1,23 +1,21 @@
-//
-// Created by sebas on 14/9/19.
-//
 
 #ifndef FINAL_FIGHT_FABRICADEANIMACIONESDEHAGGAR_H
 #define FINAL_FIGHT_FABRICADEANIMACIONESDEHAGGAR_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
+#include "FabricaDeAnimacionesDePersonaje.h"
 
-class FabricaDeAnimacionesDeHaggar {
+class FabricaDeAnimacionesDeHaggar : public FabricaDeAnimacionesDePersonaje {
 
 public:
-    static Animacion* caminado();
-    static Animacion* saltando();
-    static Animacion* parado();
-    static Animacion* agachado();
-    static Animacion* golpear();
-
+    AnimacionCliente* caminando() override;
+    AnimacionCliente* saltando() override;
+    AnimacionCliente* reposando() override;
+    AnimacionCliente* agachado() override;
+    AnimacionCliente* golpear() override;
+    AnimacionCliente* saltandoAdelante() override;
+    AnimacionCliente* patadaBasica() override;
 };
-
 
 #endif //FINAL_FIGHT_FABRICADEANIMACIONESDEHAGGAR_H

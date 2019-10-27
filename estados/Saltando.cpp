@@ -7,10 +7,14 @@
 #include "../modelo/Velocidad.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "Caminando.h"
+#include "../modelo/EstadoDePersonaje.h"
+#include "../modelo/Personaje.h"
+#include "../servidor/FabricaDeAnimacionesServidor.h"
+#include "../modelo/Actividad.h"
 
 Saltando::Saltando() {
     Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
+//    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
 
 Saltando::~Saltando() {
@@ -19,48 +23,39 @@ Saltando::~Saltando() {
 }
 
 void Saltando::actualizar(Entidad *entidad) {
-    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
-    velocidad->y = 0;
-    velocidad->z = velocidadInicial + aceleracion * frames;
-    if (velocidad->z == -velocidadInicial) {
-        termine = true;
-        //velocidad->x = 0;
-        //velocidad->y = 0;
-        velocidad->z = 0;
-    }
-    frames++;
-}
-
-void Saltando::enter(Entidad *entidad) {
-    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    if (velocidad->x == 0) {
-        auto *animacion = fabricaDeAnimaciones->saltando();
-        entidad->agregarEstado("animacion", animacion);
-    } else if (velocidad->x != 0) {
-        auto *animacion = fabricaDeAnimaciones->saltandoAdelante();
-        entidad->agregarEstado("animacion", animacion);
+    if (!termine ) {
+    //if (!termine ){
+        auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
+        velocidad->y = 0;
+        velocidad->z = velocidadInicial + aceleracion * frames;
+        if (velocidad->z == -velocidadInicial) {
+            termine = true;
+            velocidad->z = 0;
+        }
+        frames++;
+    }else if( entidad->getEstado<Tipo>("tipo")->tipo() == JUGADOR  && ! entidad->getEstado<Actividad>("actividad")->activo ){
+        EstadoDePersonajeServidor::reposar(entidad);
     }
 }
 
 void Saltando::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
     if (Saltando::termine)
-        EstadoDePersonaje::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
+        EstadoDePersonajeServidor::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
 }
 
 void Saltando::agachar(Entidad *entidad) {
     if (Saltando::termine)
-        EstadoDePersonaje::agachar(entidad);
+        EstadoDePersonajeServidor::agachar(entidad);
 }
 
 void Saltando::reposar(Entidad *entidad) {
     if (Saltando::termine)
-        EstadoDePersonaje::reposar(entidad);
+        EstadoDePersonajeServidor::reposar(entidad);
 }
 
 void Saltando::saltar(Entidad *entidad) {
     if (Saltando::termine)
-        EstadoDePersonaje::saltar(entidad);
+        EstadoDePersonajeServidor::saltar(entidad);
 }
 
 void Saltando::golpear(Entidad *entidad) {
@@ -69,13 +64,14 @@ void Saltando::golpear(Entidad *entidad) {
     if (!Saltando::termine) {
         if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
             if (!pateando) {
-                auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-                auto *animacion = fabricaDeAnimaciones->patadaBasica();
-                entidad->agregarEstado("animacion", animacion);
                 pateando = true;
+                entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(PATEANDO));
+                enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
+                auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "patada");
+                entidad->agregarComportamiento("animacion servidor", animacion);
             }
         }
     } else {
-        EstadoDePersonaje::golpear(entidad);
+        EstadoDePersonajeServidor::golpear(entidad);
     }
 }

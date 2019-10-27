@@ -4,33 +4,49 @@
 
 #include "FisicaDeEscenario.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
 #include "../modelo/Mapa.h"
-#include "../niveles/Nivel.h"
+#include "../servidor/NivelServidor.h"
 
 FisicaDeEscenario::FisicaDeEscenario(int largo) :
         largo(largo) {
     Configuracion *config = Locator::configuracion();
     scrollIzquierdo = config->getIntValue("/scroll/izquierdo");
     scrollDerecho = config->getIntValue("/scroll/derecho");
+    ancho = config->getIntValue("/resolucion/ancho");
+    xScrollIzquierdo = scrollIzquierdo;
+    xScrollDerecho = ancho - scrollDerecho;
 }
 
 void FisicaDeEscenario::actualizar(Entidad *entidad) {
-    int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
+    auto *mapa = entidad->getEstado<Mapa>("mapa");
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
-    int xPersonaje = entidad->getEstado<Posicion>("posicion de jugador")->getX();
-
+    auto* jugadores = mapa->getJugadores();
+    int xMayorPersonaje = jugadores->getMayorX();
+    int xMenorPersonaje = jugadores->getMenorX();
     int xEscenario = posicionEscenario->getX();
-    if ((xPersonaje - xEscenario < scrollIzquierdo) && (xPersonaje - scrollIzquierdo) > 0)
-        posicionEscenario->setX(xPersonaje - scrollIzquierdo);
-    if ((xPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xPersonaje) > scrollDerecho)
-        posicionEscenario->setX(xPersonaje + scrollDerecho - ancho);
+    xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if (xPersonaje > largo) {
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo) {
+        if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
+            posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
+            if ( xMayorPersonaje > xScrollDerecho )
+                xScrollDerecho = xMayorPersonaje;
+        }
+        if ((xMenorPersonaje - xEscenario < scrollIzquierdo) && (xMenorPersonaje - scrollIzquierdo) > 0) {
+            posicionEscenario->setX(xMenorPersonaje - scrollIzquierdo);
+            if ( xEscenario + ancho - scrollDerecho > xScrollDerecho )
+                xScrollDerecho = xEscenario + ancho - scrollDerecho;
+        }
+    }else if ( largo - ancho <= posicionEscenario->x + 10) {
+        //xScrollDerecho = xMayorPersonaje;
+        jugadores->bloquearMovientos(xScrollIzquierdo, largo + 1);
+    }else {
+        jugadores->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
+    }
+    jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
+    if (xMayorPersonaje > largo) {
         Locator::logger()->log(INFO, "Se llego al final del nivel.");
-        auto *mapa = entidad->getEstado<Mapa>("mapa");
         mapa->vaciarMapa();
-        Entidad *jugador = mapa->getJugador();
-        Nivel::generarNivel("nivel2", mapa, jugador);
+        NivelServidor::generarNivel("nivel2", mapa);
     }
 }

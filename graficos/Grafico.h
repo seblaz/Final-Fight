@@ -7,6 +7,8 @@
 
 
 #include "../modelo/Entidad.h"
+#include "../modelo/Posicion.h"
+#include <SDL_rect.h>
 
 class Grafico : public Comportamiento {
 
@@ -14,5 +16,6 @@ public:
     void actualizar(Entidad*) override;
 };
 
+SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);
 
 #endif //FINAL_FIGHT_GRAFICO_H

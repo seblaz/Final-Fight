@@ -13,6 +13,9 @@ private:
     int largo;
     int scrollDerecho;
     int scrollIzquierdo;
+    int xScrollIzquierdo;
+    int xScrollDerecho;
+    int ancho;
 
 public:
     explicit FisicaDeEscenario(int largo);

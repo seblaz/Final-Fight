@@ -6,17 +6,19 @@
 #define FINAL_FIGHT_FABRICADEANIMACIONESDEANDORE_H
 
 
-#include "Animacion.h"
+#include "AnimacionCliente.h"
+#include "FabricaDeAnimacionesDePersonaje.h"
 
-class FabricaDeAnimacionesDeAndore {
+class FabricaDeAnimacionesDeAndore: public FabricaDeAnimacionesDePersonaje {
 
 public:
-    static Animacion* caminado();
-    static Animacion* saltando();
-    static Animacion* parado();
-    static Animacion* agachado();
-    static Animacion* golpear();
-
+    AnimacionCliente* caminando() override;
+    AnimacionCliente* saltando() override;
+    AnimacionCliente* reposando() override;
+    AnimacionCliente* agachado() override;
+    AnimacionCliente* golpear() override;
+    AnimacionCliente* saltandoAdelante() override;
+    AnimacionCliente* patadaBasica() override;
 };
 
 

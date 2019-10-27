@@ -11,6 +11,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <list>
+#include <mutex>
 
 using namespace std;
 
@@ -21,6 +23,9 @@ private:
     string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;
     xercesc::ErrorHandler *errHandler;
+    mutex m;
+    list<map<string, string>> usuariosCargados;
+    void cargarUsuarios();
 
 public:
     explicit Configuracion(const string &path = "Configuracion.xml");
@@ -33,7 +38,7 @@ public:
     int getIntValue(const string &xPath, int defaultValue);
     float getFloatValue(const string &xPath, float defaultValue);
     string getActualPath();
-
+    bool isUserOk(string user, string pass);
 };
 
 #endif //FINAL_FIGHT_CONFIGURACION_H
