@@ -23,9 +23,7 @@ void Transmision::transmitir() {
         }
 
         for (Socket *socket : sockets->devolverSockets()) {
-            size_t milisegundosPasados = std::chrono::duration<double, std::milli>(
-                    std::chrono::high_resolution_clock::now() - socket->ultimaRecepcion()).count();
-            if (milisegundosPasados > 1000) {
+            if (socket->estaDesconectado()) {
                 sockets->quitar(socket);
             } else {
                 stringstream s(msj);

@@ -85,7 +85,7 @@ bool Socket::recibir(stringstream &s) {
         return false;
     }
 
-    ultimaRecepcion_ = std::chrono::high_resolution_clock::now();
+    ultimaRecepcion = std::chrono::high_resolution_clock::now();
 //    Locator::logger()->log(DEBUG, "Mensaje recibido: " + s.str());
     return res2;
 }
@@ -94,11 +94,7 @@ int Socket::getIntSocket() {
     return socket;
 }
 
-chrono::time_point<chrono::system_clock> Socket::ultimaRecepcion() {
-    return ultimaRecepcion_;
-}
-
-bool Socket::operator==(const Socket &otroSocket) {
-    return socket == otroSocket.socket;
+bool Socket::estaDesconectado() {
+    return chrono::duration<double, milli>(chrono::high_resolution_clock::now() - ultimaRecepcion).count() > milisegundosDesconexion;
 }
 

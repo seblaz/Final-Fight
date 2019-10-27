@@ -14,7 +14,7 @@
 #include "ReceptorCliente.h"
 
 Accion *EntradaNula::getAccion() {
-    return nullptr;
+    return new Accion(NULA);
 }
 
 EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *pantalla) :
@@ -64,7 +64,7 @@ Accion *EntradaMenuSeleccion::getAccion() {
     } else {
         framesInactivo--;
     }
-    return nullptr;
+    return new Accion(NULA);
 }
 
 void EntradaMenuSeleccion::cambiarAlPersonajeSiguiente(Personaje *personajeMarcado) {
@@ -129,31 +129,15 @@ void TrasmisionCliente::transmitir() {
 
     while (!fin) {
         size_t start = SDL_GetTicks();
-
-        size_t milisegundosPasados = std::chrono::duration<double, std::milli>(
-                std::chrono::high_resolution_clock::now() - socket->ultimaRecepcion()).count();
-        if (milisegundosPasados > 1000) {
+        if (socket->estaDesconectado()) {
             Locator::logger()->log(ERROR, "Se detectó desconexión del servidor, se cierra la conexión.");
             shutdown(socket->getIntSocket(), SHUT_RDWR);
             close(socket->getIntSocket());
             break;
         }
 
-//        Accion *accion = getEntradaUsuario()->getAccion();
-//        if (accion) {
-//            stringstream s;
-//            accion->serializar(s);
-//            if (!socket->enviar(s)) {
-//                Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
-//                shutdown(socket->getIntSocket(), SHUT_RDWR);
-//                close(socket->getIntSocket());
-//                break;
-//            }
-//        }
+
         Accion *accion = getEntradaUsuario()->getAccion();
-        if (!accion) {
-            accion = new Accion(NULA);
-        }
         stringstream s;
         accion->serializar(s);
         if (!socket->enviar(s)) {
