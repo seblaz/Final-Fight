@@ -1,6 +1,6 @@
 <configuracion>
     <usuarios>
-        <cantidad>2</cantidad>
+        <cantidad>1</cantidad>
         <usuario>
             <username>leo</username>
             <password>p</password>
@@ -73,7 +73,7 @@
     </identificacionUsuario>
         <sprite>
             <src>assets/varios/pantallaDeIngreso.png</src>
-        </sprite>            
+        </sprite>
     </pantallaDeIngreso>
     <pantallaDeSeleccion>
         <fondo>
