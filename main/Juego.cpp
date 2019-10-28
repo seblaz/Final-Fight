@@ -108,7 +108,7 @@ bool Juego::validarUserPass() {
 
                 while(true) {
                     e = this->processInput();
-                    if ( SDL_PollEvent(&e) && (e.type == SDL_QUIT )){
+                    if ( e.type == SDL_QUIT ){
                         return false;
                     }
                 }
@@ -118,7 +118,7 @@ bool Juego::validarUserPass() {
 
                 while(true) {
                     e = this->processInput();
-                    if ( SDL_PollEvent(&e) && (e.type == SDL_QUIT )){
+                    if ( e.type == SDL_QUIT ){
                         return false;
                     }
                 }
