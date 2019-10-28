@@ -13,6 +13,10 @@
             <username>felipe</username>
             <password>123456</password>
         </usuario>
+        <usuario>
+            <username>franco</username>
+            <password>p</password>
+        </usuario>
     </usuarios>
     <password>p</password>
     <debug>
