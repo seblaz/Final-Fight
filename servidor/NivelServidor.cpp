@@ -19,6 +19,7 @@
 #include "../modelo/NumeroJugador.h"
 #include "FabricaDeAnimacionesServidor.h"
 #include "../modelo/IndiceSprite.h"
+#include "../modelo/Energia.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -47,6 +48,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *numeroJugador = new NumeroJugador(contadorJugador);
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
+    auto *energia = new Energia(100,3);
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -57,6 +59,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("numeroJugador", numeroJugador);
     jugador->agregarEstado("estado de personaje", estadoDePersonaje);
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
+    jugador->agregarEstado("energia", energia);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);

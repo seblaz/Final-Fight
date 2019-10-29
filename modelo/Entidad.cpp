@@ -13,6 +13,7 @@
 #include "Actividad.h"
 #include "NumeroJugador.h"
 #include "IndiceSprite.h"
+#include "Energia.h"
 #include <algorithm>
 #include <iostream>
 
@@ -131,6 +132,14 @@ void Entidad::deserializar(istream &stream) {
                 auto *indiceSprite = new IndiceSprite();
                 indiceSprite->deserializar(stream);
                 agregarEstado("indice sprite", indiceSprite);
+            }
+        } else if (estado == "energia") {
+            if (existe) {
+                getEstado<Energia>("energia")->deserializar(stream);
+            } else {
+                auto *energia = new Energia();
+                energia->deserializar(stream);
+                agregarEstado("energia", energia);
             }
         }
         posicionEstado = deserializarEntero(stream);
