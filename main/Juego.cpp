@@ -356,7 +356,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
             SDL_RenderPresent(renderer_); // Update screen
 
             if (contraseniaIncorrecta) {
-                //            SDL_Delay(1500);
+                SDL_Delay(1000);
                 contraseniaIncorrecta = false;
             }
 
