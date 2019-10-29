@@ -95,6 +95,8 @@ bool Juego::validarUserPass() {
         EventoUsuario evento;
         evento.deserializar(streamEvento);
 
+        SDL_Event e;
+
         switch (evento.evento()) {
             case CONTRASENIA_INCORRECTA:
                 Locator::logger()->log(ERROR, "Contraseña incorrecta.");
@@ -103,13 +105,23 @@ bool Juego::validarUserPass() {
             case USUARIO_YA_CONECTADO:
                 Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
                 GraficoDePantalla::graficarPantalla("/pantallaUsuarioYaConectado/src");
-                sleep(8);
-                return false;
+
+                while(true) {
+                    e = this->processInput();
+                    if ( e.type == SDL_QUIT ){
+                        return false;
+                    }
+                }
             case PARTIDA_LLENA:
                 Locator::logger()->log(ERROR, "La partida se encuentra llena.");
                 GraficoDePantalla::graficarPantalla("/pantallaPartidaLlena/src");
-                sleep(8);
-                return false;
+
+                while(true) {
+                    e = this->processInput();
+                    if ( e.type == SDL_QUIT ){
+                        return false;
+                    }
+                }
             case CONECTADO:
                 Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
                 return true;
@@ -147,7 +159,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     auto *pantalla = new Entidad();
 
     //Boton entrar grafico
-    auto *spriteBotonDeEntrar = new Sprite(renderer_, srcSpriteBotonEntrar);
+    auto *spriteBotonDeEntrar = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpriteBotonEntrar);
     SDL_Rect posicionEnPantallaIngresoBoton = {(int) (ancho / 2.15), (int) (alto / 1.15), (int) (ancho / 16),
                                                (int) (alto / 14)};
     auto *graficoBotonDeEntrar = new GraficoDeElementosPantalla(spriteBotonDeEntrar->getTexture(),
@@ -157,7 +169,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     pantalla->agregarComportamiento("graficoBotonDeEntrar", graficoBotonDeEntrar);
 
     //Box usuario grafico
-    auto *spriteBoxUsuario = new Sprite(renderer_, srcSpriteBoxUsr);
+    auto *spriteBoxUsuario = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpriteBoxUsr);
     SDL_Rect posicionEnPantallaIngresoUsuario = {(int) (ancho / 2.8), (int) (alto / 1.45), (int) (ancho / 3.5),
                                                  (int) (alto / 13)};
     auto *graficoBoxUsuario = new GraficoDeElementosPantalla(spriteBoxUsuario->getTexture(),
@@ -166,7 +178,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     pantalla->agregarEstado("spriteBoxUsuario", spriteBoxUsuario);
     pantalla->agregarComportamiento("graficoBoxUsuario", graficoBoxUsuario);
 
-    auto *spriteBoxContrasenia = new Sprite(renderer_, srcSpriteBoxContrasenia);
+    auto *spriteBoxContrasenia = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpriteBoxContrasenia);
     SDL_Rect posicionEnPantallaIngresoContrasenia = {(int) (ancho / 2.8), (int) (alto / 1.3), (int) (ancho / 3.5),
                                                      (int) (alto / 13)};
     auto *graficoBoxContrasenia = new GraficoDeElementosPantalla(spriteBoxContrasenia->getTexture(),
@@ -178,7 +190,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     pantalla->agregarComportamiento("graficoBoxContrasenia", graficoBoxContrasenia);
 
     //Box identificacion grafico
-    auto *spriteBoxIdentificacion = new Sprite(renderer_, srcSpriteBoxIdentificacion);
+    auto *spriteBoxIdentificacion = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpriteBoxIdentificacion);
     SDL_Rect posicionEnPantallaIngresoBoxIdentificacion = {(int) (ancho / 3), (int) (alto / 1.7), (int) (ancho / 3),
                                                            (int) (alto / 2.45)};
     auto *graficoBoxIdentificacion = new GraficoDeElementosPantalla(spriteBoxIdentificacion->getTexture(),
@@ -188,14 +200,14 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
     pantalla->agregarComportamiento("graficoBoxIdentificacion", graficoBoxIdentificacion);
 
     //Grafico usuario rechazado
-    auto *spriteUsuarioRechazado = new Sprite(renderer_, srcSpriteUsuarioRechazado);
+    auto *spriteUsuarioRechazado = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpriteUsuarioRechazado);
     SDL_Rect posicionEnPantallaIngresoUsuarioRechazado = {(int) (ancho / 2.45), (int) (alto / 3), (int) (ancho / 6),
                                                           (int) (alto / 4.5)};
     auto *graficoUsuarioRechazado = new GraficoDeElementosPantalla(spriteUsuarioRechazado->getTexture(),
                                                                    posicionEnPantallaIngresoUsuarioRechazado, 1);
 
     //Pantalla grafico
-    auto *spritePantallaIngreso = new Sprite(renderer_, srcSpritePantallaIngreso);
+    auto *spritePantallaIngreso = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpritePantallaIngreso);
     SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
     auto *graficoPantalla = new GraficoDeElementosPantalla(spritePantallaIngreso->getTexture(),
                                                            posicionEnPantallaIngreso, 1);
@@ -344,7 +356,7 @@ Usuario &Juego::generarPantallaDeIngreso(bool &contraseniaIncorrecta) {
             SDL_RenderPresent(renderer_); // Update screen
 
             if (contraseniaIncorrecta) {
-                //            SDL_Delay(1500);
+                SDL_Delay(1000);
                 contraseniaIncorrecta = false;
             }
 
