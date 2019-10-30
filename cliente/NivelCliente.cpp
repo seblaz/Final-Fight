@@ -181,11 +181,13 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc("assets/personajes/poison.png");
     auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
     auto *graficoDeEnemigo = new Grafico();
-    auto *animacion = fabricaDeEnemigo->caminando();
+    auto *animacion = fabricaDeEnemigo->reposando();
+    auto *animador = new Animador();
     enemigo->agregarEstado("sprite", spriteEnemigo);
     enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
     enemigo->agregarEstado("animacion", animacion);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
+    enemigo->agregarComportamiento("animador", animador);
 
 }
 
