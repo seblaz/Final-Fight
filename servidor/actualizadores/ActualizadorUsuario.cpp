@@ -5,8 +5,8 @@
 #include "ActualizadorUsuario.h"
 #include "../../usuario/Usuario.h"
 #include "../../servicios/Locator.h"
-#include "../../modelo/EventoUsuario.h"
-#include "../../modelo/Accion.h"
+#include "../../modelo/serializables/EventoUsuario.h"
+#include "../../modelo/serializables/Accion.h"
 
 ActualizadorUsuario::ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager) :
         usuarioAgregado(0),

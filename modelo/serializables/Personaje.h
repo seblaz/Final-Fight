@@ -6,8 +6,8 @@
 #define FINAL_FIGHT_PERSONAJE_H
 
 
-#include "serializable/Serializable.h"
-#include "Entidad.h"
+#include "Serializable.h"
+#include "../Entidad.h"
 
 enum PERSONAJE {
     GUY,

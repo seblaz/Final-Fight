@@ -53,23 +53,19 @@ SET(CMAKE_CXX_FLAGS -pthread)
 #[[
   Definición de variables.
 ]]
-FILE(GLOB TestSources test/*.cpp)
-FILE(GLOB ModelSources modelo/*.cpp)
-FILE(GLOB ModelMapSources modelo/mapeables/*.cpp)
-FILE(GLOB MainSources main/*.cpp)
-FILE(GLOB PhysicsSources fisica/*.cpp)
-FILE(GLOB GraphicsSources graficos/*.cpp)
-FILE(GLOB InputSources comportamiento/*.cpp)
-FILE(GLOB IASources estados/ia/*.cpp)
-FILE(GLOB StatesSources estados/*.cpp)
-FILE(GLOB ServicesSources servicios/*.cpp)
-FILE(GLOB LevelSources niveles/*.cpp)
-FILE(GLOB Configurations *.xml)
-FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
+FILE(GLOB_RECURSE TestSources test/*.cpp)
+FILE(GLOB_RECURSE ModelSources modelo/*.cpp)
+FILE(GLOB_RECURSE MainSources main/*.cpp)
+FILE(GLOB_RECURSE PhysicsSources fisica/*.cpp)
+FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
+FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
+FILE(GLOB_RECURSE StatesSources estados/*.cpp)
+FILE(GLOB_RECURSE ServicesSources servicios/*.cpp)
+FILE(GLOB_RECURSE LevelSources niveles/*.cpp)
+FILE(GLOB_RECURSE Configurations *.xml)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
-FILE(GLOB_RECURSE SerializeSources modelo/serializable/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
@@ -81,14 +77,9 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources} ${SerializeSources} ${SerializeSources} ${UsuarioSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${LevelSources} ${IASources} ${UsuarioSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
-
-#[[
-  Compilar el juego.
-target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
-]]
 
 #[[
   Copiar los assets
@@ -99,12 +90,12 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources})
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} cliente/Juego.cpp ${UsuarioSources})
 target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
 
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
 target_link_libraries(servidor ${XercesC_LIBRARIES})

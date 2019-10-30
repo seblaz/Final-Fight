@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_ESTADODEPERSONAJE_H
 
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 enum ESTADO_DE_PERSONAJE {
     CAMINANDO,

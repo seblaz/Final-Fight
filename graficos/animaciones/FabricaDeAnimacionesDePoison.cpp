@@ -59,7 +59,7 @@ AnimacionCliente *FabricaDeAnimacionesDePoison::saltandoAdelante() {
             {49,  232, 77, 68},
             {129,  215, 36, 70},
             {169,  216, 60, 45},
-            {236,  199, 36, 69},
+//            {236,  199, 36, 69},
     };
 
     //vector<float> duraciones = {1, 1, 1, 1, 1};

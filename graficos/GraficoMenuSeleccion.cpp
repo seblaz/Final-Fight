@@ -5,7 +5,7 @@
 #include "GraficoMenuSeleccion.h"
 #include "Sprite.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include "animaciones/AnimacionCliente.h"
 
 

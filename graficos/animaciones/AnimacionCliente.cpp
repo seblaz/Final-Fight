@@ -3,7 +3,7 @@
 //
 
 #include "AnimacionCliente.h"
-#include "../../modelo/IndiceSprite.h"
+#include "../../modelo/serializables/IndiceSprite.h"
 
 #include <utility>
 

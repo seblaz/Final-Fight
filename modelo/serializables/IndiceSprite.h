@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_INDICESPRITE_H
 #define FINAL_FIGHT_INDICESPRITE_H
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 class IndiceSprite : public Estado {
 

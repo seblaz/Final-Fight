@@ -5,8 +5,8 @@
 #include <SDL_system.h>
 #include "GraficoDeTransicion.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
-#include "../modelo/Opacidad.h"
+#include "../modelo/serializables/Posicion.h"
+#include "../modelo/serializables/Opacidad.h"
 
 GraficoDeTransicion::GraficoDeTransicion(){
 

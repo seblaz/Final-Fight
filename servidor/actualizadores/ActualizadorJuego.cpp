@@ -4,12 +4,12 @@
 
 #include "ActualizadorJuego.h"
 #include "../NivelServidor.h"
-#include "../../modelo/Accion.h"
+#include "../../modelo/serializables/Accion.h"
 #include "../../eventos/EventoPersonaje.h"
 #include "../../usuario/Usuario.h"
-#include "../../modelo/Actividad.h"
+#include "../../modelo/serializables/Actividad.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
-#include "../../modelo/EstadoDePersonaje.h"
+#include "../../modelo/serializables/EstadoDePersonaje.h"
 #include "../../estados/EstadoDePersonajeServidor.h"
 #include "../../estados/Reposando.h"
 

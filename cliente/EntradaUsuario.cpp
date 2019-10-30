@@ -6,7 +6,7 @@
 #include <SDL_system.h>
 #include "EntradaUsuario.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>

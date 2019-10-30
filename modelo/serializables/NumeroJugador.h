@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_NUMEROJUGADOR_H
 
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 /**
  * Modela una direccion. A nivel de implementación es un vector unitario.

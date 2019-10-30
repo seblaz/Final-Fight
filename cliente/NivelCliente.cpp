@@ -6,24 +6,24 @@
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
 //#include "../graficos/GraficoDePantallaCompleta.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
-#include "../modelo/Nivel.h"
+#include "../modelo/serializables/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
-#include "../modelo/TipoElemento.h"
+#include "../modelo/serializables/TipoElemento.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
-#include "../modelo/NumeroJugador.h"
+#include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/GraficoJugador.h"
@@ -36,19 +36,14 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeEspera/sprite/src");
     auto *posicion = new Posicion(0, 0, 0);
-//    auto *grafico = new GraficoMenuSeleccion();
-//    auto *entrada = new EntradaPantallaDeEspera();
 
-//    pantalla->agregarComportamiento("entrada", entrada);
     pantalla->agregarEstado("posicion", posicion);
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
-//    pantalla->agregarComportamiento("grafico", grafico);
 }
 
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
-    Configuracion *config = Locator::configuracion();
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeSeleccion/fondo/src");
     auto *grafico = new GraficoMenuSeleccion();
@@ -56,16 +51,10 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteBySrc("assets/varios/selectorMenu.png");
 
     pantalla->agregarEstado("sprite", sprite);
-    pantalla->agregarEstado("sprite selector", spriteSelector);
     pantalla->agregarEstado("mapa", mapa);
-    pantalla->agregarComportamiento("grafico", grafico);
     pantalla->agregarEstado("personaje marcado", personaje);
+    pantalla->agregarEstado("sprite selector", spriteSelector);
     pantalla->agregarComportamiento("grafico", grafico);
-}
-
-void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {
-    Locator::logger()->log(INFO, "Se genera selector de personaje.");
-
 }
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {

@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_TIPOELEMENTO_H
 #define FINAL_FIGHT_TIPOELEMENTO_H
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 enum elementos{
     CAJA,

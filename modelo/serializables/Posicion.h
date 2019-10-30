@@ -6,8 +6,8 @@
 #define FINAL_FIGHT_POSICION_H
 
 
-#include "Velocidad.h"
-#include "Entidad.h"
+#include "../Velocidad.h"
+#include "../Entidad.h"
 
 class Posicion : public Estado {
 

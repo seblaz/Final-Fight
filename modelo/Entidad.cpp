@@ -3,17 +3,17 @@
 //
 
 #include "Entidad.h"
-#include "Posicion.h"
-#include "Orientacion.h"
-#include "Personaje.h"
-#include "Nivel.h"
-#include "EstadoDePersonaje.h"
-#include "Opacidad.h"
-#include "TipoElemento.h"
-#include "Actividad.h"
-#include "NumeroJugador.h"
-#include "IndiceSprite.h"
-#include "Energia.h"
+#include "serializables/Posicion.h"
+#include "serializables/Orientacion.h"
+#include "serializables/Personaje.h"
+#include "serializables/Nivel.h"
+#include "serializables/EstadoDePersonaje.h"
+#include "serializables/Opacidad.h"
+#include "serializables/TipoElemento.h"
+#include "serializables/Actividad.h"
+#include "serializables/NumeroJugador.h"
+#include "serializables/IndiceSprite.h"
+#include "serializables/Energia.h"
 #include <algorithm>
 #include <iostream>
 
@@ -25,11 +25,33 @@ vector<Comportamiento *> Entidad::getComportamientos() {
     return values;
 }
 
-vector<Estado *> Entidad::getEstados() {
-    vector<Estado *> values(estados.size());
-    auto value_selector = [](auto pair) { return pair.second; };
-    transform(estados.begin(), estados.end(), values.begin(), value_selector);
-    return values;
+template<typename T>
+Estado *createInstance() { return new T; }
+
+vector<string> Entidad::estadosSerializables;
+estadosMapType Entidad::mapaEstados;
+
+Entidad::Entidad() {
+    if (estadosSerializables.empty()) {
+        estadosSerializables.reserve(mapaEstados.size());
+        transform(mapaEstados.begin(), mapaEstados.end(), back_inserter(estadosSerializables),
+                  [](auto pair) { return pair.first; });
+    }
+    if (mapaEstados.empty()) {
+        mapaEstados = {
+                {"posicion",            &createInstance<Posicion>},
+                {"orientacion",         &createInstance<Orientacion>},
+                {"nivel",               &createInstance<Nivel>},
+                {"estado de personaje", &createInstance<EstadoDePersonaje>},
+                {"personaje",           &createInstance<Personaje>},
+                {"opacidad",            &createInstance<Opacidad>},
+                {"tipo elemento",       &createInstance<TipoElemento>},
+                {"actividad",           &createInstance<Actividad>},
+                {"numeroJugador",       &createInstance<NumeroJugador>},
+                {"indice sprite",       &createInstance<IndiceSprite>},
+                {"energia",             &createInstance<Energia>},
+        };
+    }
 }
 
 void Entidad::serializar(ostream &stream) {
@@ -44,24 +66,6 @@ void Entidad::serializar(ostream &stream) {
     serializarEntero(stream, fin);
 }
 
-template<typename T>
-Estado *createInstance() { return new T; }
-
-typedef map<string, Estado *(*)()> estadosMapType;
-estadosMapType mapaEstados = {
-        {"posicion",    &createInstance<Posicion>},
-        {"orientacion", &createInstance<Orientacion>},
-        {"nivel", &createInstance<Nivel>},
-        {"estado de personaje", &createInstance<EstadoDePersonaje>},
-        {"personaje", &createInstance<Personaje>},
-        {"opacidad", &createInstance<Opacidad>},
-        {"tipo elemento", &createInstance<TipoElemento>},
-        {"actividad", &createInstance<Actividad>},
-        {"numeroJugador", &createInstance<NumeroJugador>},
-        {"indice sprite", &createInstance<IndiceSprite>},
-        {"energia", &createInstance<Energia>},
-};
-
 void Entidad::deserializar(istream &stream) {
     auto *tipo = new Tipo();
     tipo->deserializar(stream);
@@ -70,8 +74,7 @@ void Entidad::deserializar(istream &stream) {
     int posicionEstado = deserializarEntero(stream);
     while (posicionEstado != fin) {
         string estado = estadosSerializables.at(posicionEstado);
-        bool existe = contieneEstado(estado);
-        if(existe){
+        if (contieneEstado(estado)) {
             getEstado<Estado>(estado)->deserializar(stream);
         } else {
             auto *estadoObjeto = mapaEstados[estado]();

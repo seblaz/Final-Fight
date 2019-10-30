@@ -7,7 +7,7 @@
 
 
 #include "AnimacionServidor.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 
 class FabricaDeAnimacionesServidor {
 

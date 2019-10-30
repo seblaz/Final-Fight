@@ -5,8 +5,6 @@
 #ifndef FINAL_FIGHT_MAPA_H
 #define FINAL_FIGHT_MAPA_H
 
-
-#include "Iterator.cpp"
 #include "Entidad.h"
 #include "Jugadores.h"
 #include <vector>
@@ -19,7 +17,6 @@ using namespace std;
  */
 using IdEntidad = size_t;
 
-class Mapeable;
 
 class Mapa : public Estado {
 
