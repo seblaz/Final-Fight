@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_EVENTOUSUARIO_H
 
 
-#include "../serializar/Serializable.h"
+#include "serializable/Serializable.h"
 
 enum EVENTO_USUARIO {
     CONTRASENIA_INCORRECTA,

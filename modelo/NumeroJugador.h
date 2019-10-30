@@ -11,7 +11,7 @@
 /**
  * Modela una direccion. A nivel de implementación es un vector unitario.
  */
-class NumeroJugador : public Estado, Serializable {
+class NumeroJugador : public Estado {
 public:
     int numeroJugador;
     NumeroJugador();

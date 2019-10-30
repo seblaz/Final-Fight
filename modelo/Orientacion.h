@@ -8,7 +8,7 @@
 
 #include "Entidad.h"
 
-class Orientacion : public Estado, Serializable {
+class Orientacion : public Estado {
 
 public:
     bool adelante = true;

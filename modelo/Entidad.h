@@ -7,7 +7,7 @@
 
 #include <unordered_map>
 #include "Iterator.cpp"
-#include "../serializar/Serializable.h"
+#include "serializable/Serializable.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -22,7 +22,7 @@ class Entidad;
 /**
  * Estado. Representa un estado de una entidad (solo datos sin comportamiento).
  */
-class Estado {
+class Estado : protected Serializable {
 
 public:
     virtual void serializar(ostream& stream) {};
@@ -51,14 +51,14 @@ private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
     vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado de personaje" ,"personaje", "opacidad", "tipo elemento", "actividad", "numeroJugador", "indice sprite", "energia"};
-     const int fin = 999999999;
+    const int fin = 999999999;
+//    static estadosMapType mapaEstados;
 
 public:
     static void putIdInStream(ostream &in, IdEntidad idEntidad);
     static IdEntidad getIdFromStream(istream &stream);
 
-    template<typename T>
-    void agregarEstado(const string &s, T *t) {
+    void agregarEstado(const string &s, Estado *t) {
 //        if (estados.find(s) != estados.end())
 //            delete estados[s];
         estados[s] = t;
@@ -73,8 +73,7 @@ public:
         return estados.find(s) != estados.end();
     }
 
-    template<typename T>
-    void agregarComportamiento(const string &s, T *t) {
+    void agregarComportamiento(const string &s, Comportamiento *t) {
 //        if (comportamientos.find(s) != comportamientos.end())
 //            delete comportamientos[s];
         comportamientos[s] = t;
@@ -113,7 +112,7 @@ enum TIPO {
     ELEMENTO
 };
 
-class Tipo : public Estado, Serializable {
+class Tipo : public Estado {
 
 private:
     TIPO tipo_;

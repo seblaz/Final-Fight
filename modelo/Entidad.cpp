@@ -44,6 +44,24 @@ void Entidad::serializar(ostream &stream) {
     serializarEntero(stream, fin);
 }
 
+template<typename T>
+Estado *createInstance() { return new T; }
+
+typedef map<string, Estado *(*)()> estadosMapType;
+estadosMapType mapaEstados = {
+        {"posicion",    &createInstance<Posicion>},
+        {"orientacion", &createInstance<Orientacion>},
+        {"nivel", &createInstance<Nivel>},
+        {"estado de personaje", &createInstance<EstadoDePersonaje>},
+        {"personaje", &createInstance<Personaje>},
+        {"opacidad", &createInstance<Opacidad>},
+        {"tipo elemento", &createInstance<TipoElemento>},
+        {"actividad", &createInstance<Actividad>},
+        {"numeroJugador", &createInstance<NumeroJugador>},
+        {"indice sprite", &createInstance<IndiceSprite>},
+        {"energia", &createInstance<Energia>},
+};
+
 void Entidad::deserializar(istream &stream) {
     auto *tipo = new Tipo();
     tipo->deserializar(stream);
@@ -53,94 +71,12 @@ void Entidad::deserializar(istream &stream) {
     while (posicionEstado != fin) {
         string estado = estadosSerializables.at(posicionEstado);
         bool existe = contieneEstado(estado);
-        if (estado == "posicion") {
-            if (existe) {
-                getEstado<Posicion>("posicion")->deserializar(stream);
-            } else {
-                auto *posicion = new Posicion();
-                posicion->deserializar(stream);
-                agregarEstado("posicion", posicion);
-            }
-        } else if (estado == "orientacion") {
-            if (existe) {
-                getEstado<Orientacion>("orientacion")->deserializar(stream);
-            } else {
-                auto *orientacion = new Orientacion();
-                orientacion->deserializar(stream);
-                agregarEstado("orientacion", orientacion);
-            }
-        } else if (estado == "nivel") {
-            if (existe) {
-                getEstado<Nivel>("nivel")->deserializar(stream);
-            } else {
-                auto *nivel = new Nivel();
-                nivel->deserializar(stream);
-                agregarEstado("nivel", nivel);
-            }
-        } else if (estado == "estado de personaje") {
-            if (existe) {
-                getEstado<EstadoDePersonaje>("estado de personaje")->deserializar(stream);
-            } else {
-                auto *estadoDePersonaje = new EstadoDePersonaje();
-                estadoDePersonaje->deserializar(stream);
-                agregarEstado("estado de personaje", estadoDePersonaje);
-            }
-        } else if (estado == "personaje") {
-            if (existe) {
-                getEstado<Personaje>("personaje")->deserializar(stream);
-            } else {
-                auto *personaje = new Personaje();
-                personaje->deserializar(stream);
-                agregarEstado("personaje", personaje);
-            }
-        } else if (estado == "opacidad") {
-            if (existe) {
-                getEstado<Opacidad>("opacidad")->deserializar(stream);
-            } else {
-                auto *opacidad = new Opacidad();
-                opacidad->deserializar(stream);
-                agregarEstado("opacidad", opacidad);
-            }
-        } else if (estado == "tipo elemento") {
-            if (existe) {
-                getEstado<TipoElemento>("tipo elemento")->deserializar(stream);
-            } else {
-                auto *tipoElemento = new TipoElemento();
-                tipoElemento->deserializar(stream);
-                agregarEstado("tipo elemento", tipoElemento);
-            }
-        } else if (estado == "actividad") {
-            if (existe) {
-                getEstado<Actividad>("actividad")->deserializar(stream);
-            } else {
-                auto *actividad = new Actividad();
-                actividad->deserializar(stream);
-                agregarEstado("actividad", actividad);
-            }
-        } else if (estado == "numeroJugador") {
-            if (existe) {
-                getEstado<NumeroJugador>("numeroJugador")->deserializar(stream);
-            } else {
-                auto *numeroJugador = new NumeroJugador();
-                numeroJugador->deserializar(stream);
-                agregarEstado("numeroJugador", numeroJugador);
-            }
-        } else if (estado == "indice sprite") {
-            if (existe) {
-                getEstado<IndiceSprite>("indice sprite")->deserializar(stream);
-            } else {
-                auto *indiceSprite = new IndiceSprite();
-                indiceSprite->deserializar(stream);
-                agregarEstado("indice sprite", indiceSprite);
-            }
-        } else if (estado == "energia") {
-            if (existe) {
-                getEstado<Energia>("energia")->deserializar(stream);
-            } else {
-                auto *energia = new Energia();
-                energia->deserializar(stream);
-                agregarEstado("energia", energia);
-            }
+        if(existe){
+            getEstado<Estado>(estado)->deserializar(stream);
+        } else {
+            auto *estadoObjeto = mapaEstados[estado]();
+            estadoObjeto->deserializar(stream);
+            agregarEstado(estado, estadoObjeto);
         }
         posicionEstado = deserializarEntero(stream);
     }

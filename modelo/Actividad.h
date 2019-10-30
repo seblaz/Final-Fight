@@ -8,7 +8,7 @@
 
 #include "Entidad.h"
 
-class Actividad : public Estado, public Serializable {
+class Actividad : public Estado {
 
 private:
 

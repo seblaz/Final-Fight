@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_PERSONAJE_H
 
 
-#include "../serializar/Serializable.h"
+#include "serializable/Serializable.h"
 #include "Entidad.h"
 
 enum PERSONAJE {
@@ -17,7 +17,7 @@ enum PERSONAJE {
     POISSON
 };
 
-class Personaje : public Estado, Serializable {
+class Personaje : public Estado {
 
 private:
     enum PERSONAJE personaje;
