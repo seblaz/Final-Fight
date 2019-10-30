@@ -7,7 +7,7 @@
 
 #include "Entidad.h"
 
-class IndiceSprite : public Estado{
+class IndiceSprite : public Estado {
 
 private:
     int indice = 0;

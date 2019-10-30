@@ -69,7 +69,7 @@ FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
-FILE(GLOB_RECURSE SerializeSources serializar/*.cpp)
+FILE(GLOB_RECURSE SerializeSources modelo/serializable/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.

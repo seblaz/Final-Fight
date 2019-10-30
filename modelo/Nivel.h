@@ -8,7 +8,7 @@
 
 #include "Entidad.h"
 
-class Nivel : public Estado, Serializable {
+class Nivel : public Estado {
 
 private:
     string nivel_;

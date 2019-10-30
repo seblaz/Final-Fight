@@ -18,7 +18,7 @@ enum ESTADO_DE_PERSONAJE {
     PATEANDO
 };
 
-class EstadoDePersonaje : public Estado, private Serializable {
+class EstadoDePersonaje : public Estado {
 
 private:
     ESTADO_DE_PERSONAJE estado;

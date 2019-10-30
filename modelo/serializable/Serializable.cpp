@@ -13,7 +13,7 @@ int Serializable::deserializarEntero(istream &stream) {
     return stoi(deserializarString(stream));
 }
 
-void Serializable::serializarString(ostream &in, string string) {
+void Serializable::serializarString(ostream &in, const string& string) {
     in << string << endl;
 }
 

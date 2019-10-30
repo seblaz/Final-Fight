@@ -82,7 +82,7 @@ TEST(Serializar, SerializarUnaOrientacion) {
 TEST(Serializar, SerializarUnTipo) {
 //    Tipo tipo(INICIAR_MENU_SELECCION);
     stringstream s;
-//    tipo.serializar(s);
+//    tipo.serializable(s);
 
     Tipo otroTipo;
     otroTipo.deserializar(s);

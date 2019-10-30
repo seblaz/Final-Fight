@@ -15,7 +15,7 @@ enum elementos{
 };
 
 
-class TipoElemento : public Estado, public Serializable{
+class TipoElemento : public Estado {
 
 private:
     int elemento{};

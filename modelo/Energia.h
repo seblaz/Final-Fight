@@ -6,10 +6,10 @@
 #define FINAL_FIGHT_ENERGIA_H
 
 
-#include "../serializar/Serializable.h"
+#include "serializable/Serializable.h"
 #include "Entidad.h"
 
-class Energia : public Estado, Serializable{
+class Energia : public Estado {
 
 private:
     int puntosDeEnergia;

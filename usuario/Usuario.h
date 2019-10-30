@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_USUARIO_H
 
 #include <string>
-#include "../serializar/Serializable.h"
+#include "../modelo/serializable/Serializable.h"
 #include "../modelo/Entidad.h"
 #include "../modelo/Socket.h"
 #include "../modelo/Personaje.h"

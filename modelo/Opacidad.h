@@ -7,7 +7,7 @@
 
 #include "Entidad.h"
 
-class Opacidad: public Estado, public Serializable{
+class Opacidad: public Estado {
 public:
     int opacidad = 0;
 
