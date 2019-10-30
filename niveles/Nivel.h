@@ -13,7 +13,7 @@
 #include "../tipos/tipos.h"
 #include<stdlib.h>
 #include<time.h>
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 
 class Nivel{
 

@@ -12,7 +12,7 @@
 #include "../SelectorPersonajes.h"
 #include "../../usuario/Usuario.h"
 #include "../../usuario/ManagerUsuarios.h"
-#include "../../modelo/Personaje.h"
+#include "../../modelo/serializables/Personaje.h"
 
 using namespace std;
 

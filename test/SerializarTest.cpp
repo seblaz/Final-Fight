@@ -6,7 +6,7 @@
 #include "gtest/gtest.h"
 #include "../serializar/Serializable.h"
 #include "../modelo/serializables/Posicion.h"
-#include "../modelo/Orientacion.h"
+#include "../modelo/serializables/Orientacion.h"
 #include "../usuario/Usuario.h"
 
 using namespace std;

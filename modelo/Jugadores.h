@@ -21,7 +21,7 @@ public:
 
     void reiniciarPosiciones(int x, int y);
 
-    void bloquearMovientos(int scrollIzquierdo, int scrollDerecho);
+    void bloquearMovimientos(int scrollIzquierdo, int scrollDerecho);
     void arrastrarInactivos(int scrollIzquierdo, int scrollDerecho);
 
     Posicion* posicionMasCercana(Posicion *posicion);

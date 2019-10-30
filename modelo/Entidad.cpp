@@ -4,8 +4,8 @@
 
 #include "Entidad.h"
 #include "serializables/Posicion.h"
-#include "Orientacion.h"
-#include "Personaje.h"
+#include "serializables/Orientacion.h"
+#include "serializables/Personaje.h"
 #include "serializables/Nivel.h"
 #include "serializables/EstadoDePersonaje.h"
 #include "serializables/Opacidad.h"

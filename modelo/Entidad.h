@@ -6,7 +6,6 @@
 #define FINAL_FIGHT_ENTIDAD_H
 
 #include <unordered_map>
-#include "Iterator.cpp"
 #include "serializables/Serializable.h"
 #include <cstddef>
 #include <vector>
@@ -92,7 +91,7 @@ public:
     };
 
     vector<Comportamiento *> getComportamientos();
-    
+
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 };

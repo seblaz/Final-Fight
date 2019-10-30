@@ -8,7 +8,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "Caminando.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/Actividad.h"
 

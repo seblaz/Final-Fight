@@ -9,8 +9,8 @@
 #include "../modelo/Mapa.h"
 #include "../servicios/Locator.h"
 #include "../modelo/serializables/Posicion.h"
-#include "../modelo/Orientacion.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Orientacion.h"
+#include "../modelo/serializables/Personaje.h"
 #include "../modelo/serializables/TipoElemento.h"
 
 

@@ -6,7 +6,7 @@
 #include "ActualizadorCliente.h"
 #include "../servicios/Locator.h"
 #include "NivelCliente.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 
 ActualizadorCliente::ActualizadorCliente(Mapa *mapa) : mapa(mapa) {}
 

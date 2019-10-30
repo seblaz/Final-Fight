@@ -37,7 +37,7 @@ void Jugadores::reiniciarPosiciones(int x, int y) {
     }
 }
 
-void Jugadores::bloquearMovientos(int scrollIzquierdo, int scrollDerecho) {
+void Jugadores::bloquearMovimientos(int scrollIzquierdo, int scrollDerecho) {
     for(auto tuple : jugadores){
         int x = tuple.second->getEstado<Posicion>("posicion")->getX();
         if ( x >= scrollDerecho ){

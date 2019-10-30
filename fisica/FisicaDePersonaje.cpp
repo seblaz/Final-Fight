@@ -3,7 +3,7 @@
 //
 
 #include "FisicaDePersonaje.h"
-#include "../modelo/Orientacion.h"
+#include "../modelo/serializables/Orientacion.h"
 
 void FisicaDePersonaje::actualizar(Entidad *entidad) {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");

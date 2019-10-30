@@ -12,7 +12,7 @@
 #include "../modelo/serializables/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
