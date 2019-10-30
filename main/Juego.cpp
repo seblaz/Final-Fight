@@ -14,6 +14,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
+#include <SDL2/SDL_mixer.h>
 #include "../modelo/Entidad.h"
 #include "../graficos/Sprite.h"
 #include "../graficos/GraficoDeElementosPantalla.h"
@@ -30,11 +31,14 @@ void Juego::inicializarGraficos() {
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se inicializan los graficos.");
 
+
+
     //Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         logger->log(ERROR, string("SDL no pudo inicializar graficos! SDL_Error: ").append(SDL_GetError()));
         exit = true;
     } else {
+
         //Create window
         window = SDL_CreateWindow("Final Fight!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH,
                                   SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -63,7 +67,14 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
+
         }
+    }
+    //Initialize SDL_mixer
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        Locator::logger()->log(ERROR, "Fallo cargar la SDL_MIXer; " + string(Mix_GetError()));
+        exit = true;
     }
 }
 

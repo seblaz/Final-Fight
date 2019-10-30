@@ -28,6 +28,7 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/GraficoMenuSeleccion.h"
+#include "SDL2/SDL_mixer.h"
 
 void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
@@ -47,6 +48,17 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 }
 
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
+    //Mix_Music *gMusic;
+    Mix_Music *gMusic;
+
+    gMusic = Mix_LoadMUS( "/home/felipe/Documentos/Final-Fight/assets/sonidos/prueba.wav" );
+    Mix_PlayMusic( gMusic, 0 );
+    if( gMusic == NULL )
+    {
+        //Locator::logger()->log(ERROR,"Failed to load beat music! SDL_mixer Error: %s\n" ) );
+        Locator::logger()->log(ERROR, "no carga music" + string(Mix_GetError()));
+    }
+
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
     Configuracion *config = Locator::configuracion();
 

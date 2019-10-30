@@ -27,7 +27,7 @@
 #include "../estados/Caminando.h"
 #include "../graficos/GraficoMenuSeleccion.h"
 #include "../comportamiento/EntradaPantallaDeEspera.h"
-#include "../comportamiento/EntradaPantallaDeSeleccion.h"
+
 
 Entidad *Nivel::generarJugador(Mapa *mapa, enum PERSONAJE jugadorElegido) {
     Locator::logger()->log(INFO, "Se genera jugador.");
