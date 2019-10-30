@@ -29,12 +29,15 @@ AnimacionCliente *FabricaDeAnimacionesDePoison::saltando() {
 }
 
 AnimacionCliente *FabricaDeAnimacionesDePoison::reposando() {
-    return nullptr;
+    vector<SDL_Rect> posiciones = {
+            {79,  8, 35, 89}
+    };
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
 AnimacionCliente *FabricaDeAnimacionesDePoison::agachado() {
     vector<SDL_Rect> posiciones = {
-            {79,  8, 35, 89},
+            {6,  257, 40, 67},
     };
 
     //vector<float> duraciones = {1};
@@ -43,7 +46,11 @@ AnimacionCliente *FabricaDeAnimacionesDePoison::agachado() {
 }
 
 AnimacionCliente *FabricaDeAnimacionesDePoison::golpear() {
-    return nullptr;
+    vector<SDL_Rect> posiciones = {
+            {236, 105, 90, 92},
+            {300, 105, 120, 92},
+    };
+    return new AnimacionCliente(posiciones, 4.5);
 }
 
 AnimacionCliente *FabricaDeAnimacionesDePoison::saltandoAdelante() {

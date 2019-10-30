@@ -297,6 +297,8 @@
         </cody>
         <poisson>
             <reposando>
+                <duraciones>1</duraciones>
+                <total>45</total>
             </reposando>
             <caminando>
                 <duraciones>4,3,4,3</duraciones>
@@ -313,10 +315,12 @@
             <patada>
             </patada>
             <golpeando>
+                <duraciones>1,1</duraciones>
+                <total>45</total>
             </golpeando>
             <agachado>
                 <duraciones>1</duraciones>
-                <total>1</total>
+                <total>45</total>
             </agachado>
         </poisson>
         <guy>

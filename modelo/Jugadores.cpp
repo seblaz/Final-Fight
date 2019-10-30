@@ -61,6 +61,23 @@ void Jugadores::arrastrarInactivos(int scrollIzquierdo, int scrollDerecho) {
     }
 }
 
+Posicion *Jugadores::posicionMasCercana(Posicion *posicion) {
+    auto* posicionMasCercana = new Posicion(3000,1000,100);
+    for(auto tuple: jugadores){
+        if (tuple.second->getEstado<Actividad>("actividad")->activo){
+            auto* posicionJugador = tuple.second->getEstado<Posicion>("posicion");
+            int distJugadorYenemigo = posicionJugador->distanciaEntrePuntos(posicion);
+            int distMasCercanaActual = posicionMasCercana->distanciaEntrePuntos(posicion);
+            if ( distJugadorYenemigo < distMasCercanaActual){
+                posicionMasCercana->x = posicionJugador->x;
+                posicionMasCercana->y = posicionJugador->y;
+                posicionMasCercana->z = posicionJugador->z;
+            }
+        }
+    }
+    return posicionMasCercana;
+}
+
 
 
 

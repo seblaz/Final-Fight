@@ -24,6 +24,10 @@ public:
     void setX(int x);
 
     bool operator==(const Posicion &otraPosicion);
+    bool operator<(const Posicion &otraPosicion);
+    int distanciaEntrePuntos(Posicion *otraPosicion);
+    float modulo();
+    Posicion menos(Posicion *);
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;

@@ -23,6 +23,8 @@ public:
 
     void bloquearMovientos(int scrollIzquierdo, int scrollDerecho);
     void arrastrarInactivos(int scrollIzquierdo, int scrollDerecho);
+
+    Posicion* posicionMasCercana(Posicion *posicion);
 };
 
 

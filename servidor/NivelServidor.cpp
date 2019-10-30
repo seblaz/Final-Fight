@@ -20,6 +20,7 @@
 #include "FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/IndiceSprite.h"
 #include "../modelo/serializables/Energia.h"
+#include "../estados/ia/buscarJugadores.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -84,7 +85,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
     generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
     generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
-    generarEnemigo(nivel, mapa, posicionDeEscenario);
+    generarEnemigo(nivel, mapa, posicionDeEscenario, jugadores);
     generarTransicion(nivel, mapa, jugadores);
 }
 
@@ -145,7 +146,7 @@ int generarPosicionY(int frontera) {
     return dist(mt);
 }
 
-void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario) {
+void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores) {
 
     Configuracion *config = Locator::configuracion();
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/enemigos/cantidad");
@@ -160,15 +161,16 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         Entidad *enemigo = mapa->crearEntidad();
 
         auto *tipo = new Tipo(ENEMIGO);
-        auto *comportamiento = new Patrullar();
+        auto *comportamiento = new buscarJugadores(jugadores);
         auto *velocidadDeEnemigo = new Velocidad();
         auto *orientacionDeEnemigo = new Orientacion;
         auto *fisicaDeEnemigo = new FisicaDePersonaje();
-        auto *estado = new Caminando();
-        auto *estadoDePersonaje = new EstadoDePersonaje(CAMINANDO);
+        auto *estado = new Reposando();
+        auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
         auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
         auto *indiceSprite = new IndiceSprite;
-        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "caminando");
+        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "reposando");
+        auto *energia = new Energia(100,1);
 
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
@@ -178,6 +180,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
         enemigo->agregarEstado("estado de personaje", estadoDePersonaje);
         enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
+        enemigo->agregarEstado("energia", energia);
         enemigo->agregarComportamiento("estado", estado);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
         enemigo->agregarComportamiento("comportamiento", comportamiento);
