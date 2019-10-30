@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_NIVEL_H
 
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 class Nivel : public Estado {
 

@@ -1,7 +1,7 @@
 #include "Juego.h"
 #include "../servicios/Locator.h"
 #include "../graficos/Sprite.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../niveles/Nivel.h"
 #include "../tipos/tipos.h"

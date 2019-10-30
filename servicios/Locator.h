@@ -9,7 +9,7 @@
 #include <SDL_system.h>
 #include "./Logger.h"
 #include "Configuracion.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../modelo/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
 

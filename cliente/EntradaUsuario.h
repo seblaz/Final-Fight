@@ -7,7 +7,7 @@
 
 
 #include <mutex>
-#include "../modelo/Accion.h"
+#include "../modelo/serializables/Accion.h"
 #include "../modelo/Socket.h"
 #include "../modelo/Personaje.h"
 #include "../servicios/Configuracion.h"

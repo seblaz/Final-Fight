@@ -4,22 +4,22 @@
 
 #include <random>
 #include "NivelServidor.h"
-#include "../modelo/Nivel.h"
+#include "../modelo/serializables/Nivel.h"
 #include "../estados/Reposando.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../fisica/FisicaDeEscenario.h"
-#include "../modelo/Opacidad.h"
-#include "../modelo/EstadoDePersonaje.h"
+#include "../modelo/serializables/Opacidad.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../fisica/FisicaDeTransicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
 #include "../estados/ia/Patrullar.h"
 #include "../estados/Caminando.h"
-#include "../modelo/TipoElemento.h"
-#include "../modelo/Actividad.h"
-#include "../modelo/NumeroJugador.h"
+#include "../modelo/serializables/TipoElemento.h"
+#include "../modelo/serializables/Actividad.h"
+#include "../modelo/serializables/NumeroJugador.h"
 #include "FabricaDeAnimacionesServidor.h"
-#include "../modelo/IndiceSprite.h"
-#include "../modelo/Energia.h"
+#include "../modelo/serializables/IndiceSprite.h"
+#include "../modelo/serializables/Energia.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -164,7 +164,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *velocidadDeEnemigo = new Velocidad();
         auto *orientacionDeEnemigo = new Orientacion;
         auto *fisicaDeEnemigo = new FisicaDePersonaje();
-        EstadoDePersonajeServidor *estado = new Caminando();
+        auto *estado = new Caminando();
         auto *estadoDePersonaje = new EstadoDePersonaje(CAMINANDO);
         auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
         auto *indiceSprite = new IndiceSprite;

@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_OPACIDAD_H
 #define FINAL_FIGHT_OPACIDAD_H
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 class Opacidad: public Estado {
 public:

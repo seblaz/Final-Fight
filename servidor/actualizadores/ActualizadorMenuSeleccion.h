@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_ACTUALIZADORMENUSELECCION_H
 
 #include <sstream>
-#include "../../modelo/Accion.h"
+#include "../../modelo/serializables/Accion.h"
 #include "../../eventos/Eventos.h"
 #include "../../servicios/Locator.h"
 #include "../SelectorPersonajes.h"

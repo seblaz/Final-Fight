@@ -6,7 +6,7 @@
 #include "Grafico.h"
 #include "animaciones/AnimacionCliente.h"
 #include "Sprite.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../servicios/Locator.h"
 
 void GraficoJugador::actualizar(Entidad *jugador) {

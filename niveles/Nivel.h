@@ -8,7 +8,7 @@
 
 #include <SDL_system.h>
 #include "../modelo/Mapa.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../graficos/Sprite.h"
 #include "../tipos/tipos.h"
 #include<stdlib.h>

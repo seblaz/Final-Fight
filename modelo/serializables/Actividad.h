@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_ACTIVIDAD_H
 
 
-#include "Entidad.h"
+#include "../Entidad.h"
 
 class Actividad : public Estado {
 

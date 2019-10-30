@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_JUGADORES_H
 
 #include "Entidad.h"
-#include "Posicion.h"
+#include "serializables/Posicion.h"
 
 class Jugadores : public Estado {
 

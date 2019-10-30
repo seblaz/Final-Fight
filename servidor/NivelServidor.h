@@ -8,10 +8,10 @@
 
 #include "../modelo/Mapa.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../modelo/Orientacion.h"
 #include "../modelo/Personaje.h"
-#include "../modelo/TipoElemento.h"
+#include "../modelo/serializables/TipoElemento.h"
 
 
 class NivelServidor {

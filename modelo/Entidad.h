@@ -7,7 +7,7 @@
 
 #include <unordered_map>
 #include "Iterator.cpp"
-#include "serializable/Serializable.h"
+#include "serializables/Serializable.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -45,22 +45,25 @@ public:
  */
 using IdEntidad = size_t;
 
+typedef map<string, Estado *(*)()> estadosMapType;
+
 class Entidad : public Serializable {
 
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado de personaje" ,"personaje", "opacidad", "tipo elemento", "actividad", "numeroJugador", "indice sprite", "energia"};
-    const int fin = 999999999;
-//    static estadosMapType mapaEstados;
+    static vector<string> estadosSerializables;
+    static estadosMapType mapaEstados;
+    const int fin = -1;
 
 public:
+    Entidad();
     static void putIdInStream(ostream &in, IdEntidad idEntidad);
     static IdEntidad getIdFromStream(istream &stream);
 
     void agregarEstado(const string &s, Estado *t) {
-//        if (estados.find(s) != estados.end())
-//            delete estados[s];
+        if (estados.find(s) != estados.end())
+            delete estados[s];
         estados[s] = t;
     };
 
@@ -89,9 +92,7 @@ public:
     };
 
     vector<Comportamiento *> getComportamientos();
-
-    vector<Estado *> getEstados();
-
+    
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 };
@@ -102,7 +103,6 @@ public:
  */
 enum TIPO {
     PANTALLA_SELECCION,
-    PERSONAJE_SELECCION,
     PERSONAJE,
     ESCENARIO,
     JUGADOR,

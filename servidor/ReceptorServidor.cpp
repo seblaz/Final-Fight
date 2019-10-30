@@ -6,7 +6,7 @@
 #include "../usuario/Usuario.h"
 #include "actualizadores/ActualizadorUsuario.h"
 #include "actualizadores/ActualizadorMenuSeleccion.h"
-#include "../modelo/Actividad.h"
+#include "../modelo/serializables/Actividad.h"
 
 
 semaphore *ReceptorServidor::confirmacion = new semaphore(0);

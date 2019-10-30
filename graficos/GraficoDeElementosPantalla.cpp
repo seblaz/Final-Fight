@@ -1,6 +1,6 @@
 #include "GraficoDeElementosPantalla.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 
 #include <utility>
 #include <cmath>

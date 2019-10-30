@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_ACCION_H
 #define FINAL_FIGHT_ACCION_H
 
-#include "serializable/Serializable.h"
+#include "Serializable.h"
 
 enum ACCION {
     CONFIRMAR,

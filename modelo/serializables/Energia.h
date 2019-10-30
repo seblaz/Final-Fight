@@ -6,8 +6,8 @@
 #define FINAL_FIGHT_ENERGIA_H
 
 
-#include "serializable/Serializable.h"
-#include "Entidad.h"
+#include "Serializable.h"
+#include "../Entidad.h"
 
 class Energia : public Estado {
 

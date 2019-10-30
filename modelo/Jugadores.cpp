@@ -5,8 +5,8 @@
 #include "Jugadores.h"
 
 #include <utility>
-#include "Posicion.h"
-#include "Actividad.h"
+#include "serializables/Posicion.h"
+#include "serializables/Actividad.h"
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
