@@ -8,15 +8,11 @@
 #include "../modelo/Mapa.h"
 #include <SDL2/SDL.h>
 #include <SDL_ttf.h>
-#include "../tipos/tipos.h"
-#include "../cliente/EntradaUsuario.h"
+#include "EntradaUsuario.h"
 #include "../usuario/Usuario.h"
 
-#define CANTIDAD_JUGADORES 4
 #define CANT_MAX_CARACTERES_USUARIO 15
 #define CANT_MAX_CARACTERES_CONTRASENIA 15
-
-#define MAX_LENGTH 100
 
 typedef struct seleccionarBox_t {
     SDL_Rect rect;
@@ -38,7 +34,6 @@ private:
     void actualizar();
     void graficar();
     void clearScene();
-    //bool validarUserPass();
     bool validarUserPass();
     Usuario& generarPantallaDeIngreso(bool &contraseniaIncorrecta);
 

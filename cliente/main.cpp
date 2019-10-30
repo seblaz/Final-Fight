@@ -5,7 +5,7 @@
 #include <string>
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
-#include "../main/Juego.h"
+#include "Juego.h"
 #include "ReceptorCliente.h"
 #include "ActualizadorCliente.h"
 #include "NivelCliente.h"

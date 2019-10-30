@@ -2,20 +2,16 @@
 // Created by sebas on 1/9/19.
 //
 
-#include <unistd.h>
 #include "Juego.h"
 #include "../servicios/Locator.h"
-#include "../modelo/serializables/Posicion.h"
-#include "../cliente/ReceptorCliente.h"
-#include "../cliente/EntradaUsuario.h"
+#include "ReceptorCliente.h"
+#include "EntradaUsuario.h"
 #include "../usuario/Usuario.h"
 #include "../modelo/serializables/EventoUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
-#include "../modelo/Entidad.h"
-#include "../graficos/Sprite.h"
 #include "../graficos/GraficoDeElementosPantalla.h"
 #include "../graficos/GraficoDePantalla.h"
 
