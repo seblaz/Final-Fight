@@ -48,7 +48,7 @@ AnimacionCliente *FabricaDeAnimacionesDePoison::agachado() {
 AnimacionCliente *FabricaDeAnimacionesDePoison::golpear() {
     vector<SDL_Rect> posiciones = {
             {236, 105, 90, 92},
-            {300, 105, 120, 92},
+            {303, 105, 120, 92},
     };
     return new AnimacionCliente(posiciones, 4.5);
 }
