@@ -8,8 +8,7 @@
 
 void GraficoDePantalla::graficarPantalla(const string& pathConfigSrcFondo){
 
-    Configuracion *config = Locator::configuracion();
-    SDL_Renderer *renderer_ = Locator::renderer();
+    SDL_Renderer *renderer = Locator::renderer();
 
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");
     int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
@@ -17,6 +16,6 @@ void GraficoDePantalla::graficarPantalla(const string& pathConfigSrcFondo){
     auto *spritePantallaIngreso = Locator::fabricaDeSprites()->getSpriteConfigPath(pathConfigSrcFondo);
 
     SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
-    SDL_RenderCopy(renderer_, spritePantallaIngreso->getTexture(), nullptr, &posicionEnPantallaIngreso);
-    SDL_RenderPresent(renderer_);
+    SDL_RenderCopy(renderer, spritePantallaIngreso->getTexture(), nullptr, &posicionEnPantallaIngreso);
+//    SDL_RenderPresent(renderer);
 };

@@ -30,18 +30,19 @@ private:
 
     void inicializarGraficos();
 
-    SDL_Event processInput();
+    SDL_Event *processInput();
     void actualizar();
     void graficar();
     void clearScene();
     bool validarUserPass();
-    Usuario& generarPantallaDeIngreso(bool &contraseniaIncorrecta);
+//    Usuario *generarPantallaDeIngreso(bool &contraseniaIncorrecta);
 
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
     TTF_Font *font = nullptr;
     bool exit = false;
     Mapa mapa_;
+    int (*getEvent)(SDL_Event *) = SDL_WaitEvent;
 
 public:
     Juego();
