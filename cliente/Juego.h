@@ -39,7 +39,7 @@ private:
 
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
-    TTF_Font *font = nullptr;
+    TTF_Font *fuente = nullptr;
     bool exit = false;
     Mapa mapa_;
     int (*getEvent)(SDL_Event *) = SDL_WaitEvent;

@@ -11,7 +11,6 @@ buscarJugadores::buscarJugadores(Jugadores *jugadores) {
 void buscarJugadores::actualizar(Entidad *entidad) {
 
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
-    estado->actualizar(entidad);
 
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     auto *posicionMasCercana = jugadores->posicionMasCercana(posicion);

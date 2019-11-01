@@ -13,7 +13,7 @@
 #include <SDL_ttf.h>
 #include <string>
 #include "../graficos/GraficoDePantalla.h"
-#include "Autenticador.h"
+#include "PantallaAutenticador.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -54,8 +54,8 @@ void Juego::inicializarGraficos() {
                 logger->log(ERROR, string("SDL_ttf no se pudo recibir! SDL_Error: ").append(TTF_GetError()));
                 exit = true;
             }
-            font = TTF_OpenFont("../assets/fuentes/open-sans/OpenSans-Bold.ttf", 22);
-            if (!font) {
+            fuente = TTF_OpenFont("../assets/fuentes/open-sans/OpenSans-Bold.ttf", 60);
+            if (!fuente) {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
@@ -65,7 +65,7 @@ void Juego::inicializarGraficos() {
 
 bool Juego::validarUserPass() {
     Locator::logger()->log(INFO, "Se genera la pantalla de autenticación.");
-    Autenticador autenticador;
+    PantallaAutenticador autenticador(fuente);
 
     while (!exit) {
         SDL_Event *e = processInput();
@@ -122,17 +122,6 @@ bool Juego::validarUserPass() {
         }
     }
     return false;
-}
-
-
-bool boxSeleccionada(seleccionar_box_t *boxSeleccionada, SDL_Event *event) {
-    return _boxSeleccionadaRect(event->button.x, event->button.y, &boxSeleccionada->rect);
-
-}
-
-bool _boxSeleccionadaRect(int x, int y, SDL_Rect *rect) {
-    return x >= rect->x && x < rect->x + rect->w &&
-           y >= rect->y && y < rect->y + rect->h;
 }
 
 void Juego::loop() {
@@ -220,7 +209,7 @@ void Juego::terminar() {
     renderer_ = nullptr;
     window = nullptr;
 
-    TTF_CloseFont(font);
+    TTF_CloseFont(fuente);
     SDL_Quit(); // Quit SDL subsystems
 }
 
