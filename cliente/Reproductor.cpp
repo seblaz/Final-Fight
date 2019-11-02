@@ -10,12 +10,6 @@
 void Reproductor::actualizar(Entidad *entidad) {
 
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
-
-    //Mix_Chunk * gScratch = Mix_LoadWAV( "/home/felipe/Documentos/Final-Fight/assets/sonidos/attack.wav" );
-
-
-
-    //(auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
     switch (estado->getEstado()){
         case CAMINANDO:
             break;
@@ -26,7 +20,9 @@ void Reproductor::actualizar(Entidad *entidad) {
         case GOLPEANDO:{
             Locator::logger()->log(DEBUG,"Se reproduce golpenaod");
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("/home/felipe/Documentos/Final-Fight/assets/sonidos/attack.wav")->getChunk();
-            Mix_PlayChannel( 1, chunk, 0 );
+            if (Mix_Playing(1)==0){
+                Mix_PlayChannel( 1, chunk, 0 );
+            };
         }
             break;
         case AGACHADO:
