@@ -96,7 +96,7 @@ int main(int argc, const char **args) {
     /**
      * Manager de usuarios.
      */
-    int maximoJugadores = Locator::configuracion()->getIntValue("/usuarios/cantidad", 4);
+    int maximoJugadores = Locator::configuracion()->getIntValue("/jugadores/cantidad");
     ManagerUsuarios managerUsuarios(maximoJugadores);
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
 

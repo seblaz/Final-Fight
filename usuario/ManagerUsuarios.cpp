@@ -7,12 +7,24 @@
 #include <algorithm>
 
 ManagerUsuarios::ManagerUsuarios(int max) :
-        maximo(max) {}
+        maximo(max) {
+    cargarUsuarios();
+}
+
+void ManagerUsuarios::cargarUsuarios() {
+    Configuracion *config = Locator::configuracion();
+    int cantidad = config->getIntValue("/usuarios/cantidad");
+    for (int i = 0; i < cantidad; i++) {
+        string user = config->getValue("/usuarios/usuario" + to_string(i) + "/username");
+        string password = config->getValue("/usuarios/usuario" + to_string(i) + "/password");
+        baseUsuarios[user] = password;
+    }
+}
 
 void ManagerUsuarios::agregarUsuario(Usuario *nuevoUsuario) {
     Locator::logger()->log(DEBUG, "Se agrega el usuario: " + nuevoUsuario->getUsuario());
     usuarios.push_back(nuevoUsuario);
-    Locator::logger()->log(INFO, "Faltan " +  to_string(maximo - usuarios.size()) + " jugadoresMax.");
+    Locator::logger()->log(INFO, "Faltan " + to_string(maximo - usuarios.size()) + " jugadoresMax.");
 }
 
 bool ManagerUsuarios::estaPresente(Usuario *usuario) {
@@ -53,18 +65,23 @@ void ManagerUsuarios::desconectarJugadorVoluntariamente(Usuario *usuario) {
         return u->getUsuario() == usuario->getUsuario();
     });
 
-    Usuario* pUsuario = pos.operator*();
+    Usuario *pUsuario = pos.operator*();
     pUsuario->desconectarVoluntariamente();
 }
 
-bool ManagerUsuarios::hayJugadoresConectados(){
+bool ManagerUsuarios::hayJugadoresConectados() {
     int desconectados = 0;
 
-    std::list<Usuario*>::iterator it;
-    for (it = usuarios.begin(); it != usuarios.end(); ++it){
-        if(it.operator*()->estaDesconectadoVoluntariamente()){
+    std::list<Usuario *>::iterator it;
+    for (it = usuarios.begin(); it != usuarios.end(); ++it) {
+        if (it.operator*()->estaDesconectadoVoluntariamente()) {
             desconectados++;
         }
     }
     return desconectados < this->maximo;
+}
+
+bool ManagerUsuarios::usuarioValido(Usuario *usuario) {
+    return (baseUsuarios.find(usuario->getUsuario()) != baseUsuarios.end()) &&
+           (baseUsuarios[usuario->getUsuario()] == usuario->getContrasenia());
 }

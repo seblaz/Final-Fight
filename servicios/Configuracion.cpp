@@ -18,7 +18,6 @@
 
 
 using namespace std;
-//using namespace xercesc;
 
 Configuracion::Configuracion(const string &path) {
     try {
@@ -46,8 +45,6 @@ Configuracion::Configuracion(const string &path) {
             parser->parse(defaultPath.c_str());
             actualPath = defaultPath;
         }
-
-        cargarUsuarios();
     }
     catch (const xercesc::SAXException &toCatch) {
         char *message = xercesc::XMLString::transcode(toCatch.getMessage());
@@ -126,66 +123,4 @@ float Configuracion::getFloatValue(const string &xPath, float defaultValue) {
 
 string Configuracion::getActualPath(){
     return actualPath;
-}
-
-void Configuracion::cargarUsuarios() {
-    XMLCh *tag = xercesc::XMLString::transcode(("/configuracion/usuarios"));
-
-    xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
-            tag,
-            parser->getDocument()->getDocumentElement(),
-            nullptr,
-            xercesc::DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
-            nullptr);
-
-    xercesc::XMLString::release(&tag);
-
-    if (!result->getNodeValue())
-        throw exception();
-
-    xercesc_3_2::DOMNodeList* usuarios = result->getNodeValue()->getChildNodes();
-
-    for( int i = 0; i < usuarios->getLength(); i++ ) {
-        xercesc_3_2::DOMNode *currentNode = usuarios->item(i);
-        if (currentNode->getNodeType() &&  currentNode->getNodeType() == xercesc_3_2::DOMNode::ELEMENT_NODE)
-        {
-            if (xercesc_3_2::XMLString::equals(currentNode->getNodeName(), xercesc_3_2::XMLString::transcode("usuario"))) {
-                xercesc_3_2::DOMNodeList* hijosUsuarios = currentNode->getChildNodes();
-
-                string configUser;
-                string configPass;
-
-                for( int j = 0; j < hijosUsuarios->getLength(); j++ ) {
-                    if (hijosUsuarios->item(j)->getNodeType() &&  hijosUsuarios->item(j)->getNodeType() == xercesc_3_2::DOMNode::ELEMENT_NODE)
-                    {
-                        if (xercesc_3_2::XMLString::equals(hijosUsuarios->item(j)->getNodeName(), xercesc_3_2::XMLString::transcode("username")))
-                            configUser = xercesc::XMLString::transcode(hijosUsuarios->item(j)->getTextContent());
-
-                        if (xercesc_3_2::XMLString::equals(hijosUsuarios->item(j)->getNodeName(), xercesc_3_2::XMLString::transcode("password")))
-                            configPass = xercesc::XMLString::transcode(hijosUsuarios->item(j)->getTextContent());
-                    }
-                }
-
-                map<string, string> nuevoUsuario;
-                nuevoUsuario["username"] = configUser;
-                nuevoUsuario["password"] = configPass;
-                this->usuariosCargados.push_back(nuevoUsuario);
-            }
-        }
-    }
-}
-
-bool Configuracion::isUserOk(string user, string pass){
-    bool encontrado = false;
-
-    std::list<map<string, string>>::iterator it;
-    for (it = usuariosCargados.begin(); it != usuariosCargados.end(); ++it){
-        map<string,string> usuario = it.operator*();
-
-        if(usuario["username"] == user && usuario["password"] == pass){
-            encontrado = true;
-        }
-    }
-
-    return encontrado;
 }
