@@ -12,7 +12,8 @@
 #include "../modelo/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "Reproductor.h"
+#include "ReproductorEfectosDePersonaje.h"
+#include "ReproductorEfectosDeNivel.h"
 #include "../modelo/Personaje.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
@@ -49,11 +50,6 @@ void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
 }
 
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
-    Mix_Music *gMusic;
-
-//    gMusic = Mix_LoadMUS( "/home/felipe/Documentos/Final-Fight/assets/sonidos/prueba.wav" );
-//    Mix_PlayMusic( gMusic, 0 );
-
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
     Configuracion *config = Locator::configuracion();
 
@@ -121,7 +117,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     auto *grafico = new GraficoJugador();
     auto *animador = new Animador();
 
-    auto *reproductor = new Reproductor();
+    auto *reproductor = new ReproductorEfectosDePersonaje();
 
     jugador->agregarEstado("sprite", spriteJugador);
     jugador->agregarEstado("animacion", animacion);
@@ -174,6 +170,10 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     escenario->agregarEstado("sprite", sprite);
     escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
+
+    auto *reproductor = new ReproductorEfectosDeNivel();
+    escenario->agregarComportamiento("reproductor", reproductor);
+
 }
 
 void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
@@ -183,6 +183,7 @@ void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
 
     transicion->agregarComportamiento("grafico", grafico);
 }
+
 
 void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     Locator::logger()->log(INFO, "Se genera enemigo");
