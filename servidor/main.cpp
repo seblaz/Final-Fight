@@ -92,6 +92,7 @@ int main(int argc, const char **args) {
     Procesamiento procesamiento;
     auto *eventosAProcesar = procesamiento.devolverCola();
     pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
+    Locator::provide(eventosAProcesar);
 
     /**
      * Manager de usuarios.

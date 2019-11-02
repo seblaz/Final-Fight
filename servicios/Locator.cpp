@@ -92,6 +92,19 @@ TTF_Font *Locator::fuente() {
     return fuente_;
 }
 
+/**
+ * Eventos a procesar.
+ */
+EventosAProcesar *Locator::eventos_;
+
+EventosAProcesar *Locator::eventos() {
+    return eventos_;
+}
+
+void Locator::provide(EventosAProcesar *eventos) {
+    eventos_ = eventos;
+}
+
 void Locator::provide(TTF_Font *fuente) {
     fuente_ = fuente;
 }

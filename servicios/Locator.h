@@ -13,6 +13,7 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../modelo/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
+#include "../eventos/Eventos.h"
 
 class Locator {
 
@@ -37,7 +38,10 @@ public:
     
     static TTF_Font *fuente();
     static void provide(TTF_Font *fuente);
-
+    
+    static EventosAProcesar *eventos();
+    static void provide(EventosAProcesar *);
+    
     static void clean();
 
 private:
@@ -48,6 +52,8 @@ private:
     static Posicion *posicion;
     static FabricaDeSprites *fabrica;
     static TTF_Font *fuente_;
+    static EventosAProcesar *eventos_;
+    
 };
 
 

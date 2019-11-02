@@ -2,14 +2,20 @@
 // Created by franco on 29/10/19.
 //
 
-#include "buscarJugadores.h"
+#include "BuscarJugadores.h"
 
-buscarJugadores::buscarJugadores(Jugadores *jugadores) {
-    this -> jugadores = jugadores;
+BuscarJugadores::BuscarJugadores(Jugadores *jugadores) : 
+        jugadores(jugadores) {}
+
+void BuscarJugadores::actualizar(Entidad *entidad) {
+    Locator::eventos()->push(new EventoBuscarJugadores(jugadores, entidad));
 }
 
-void buscarJugadores::actualizar(Entidad *entidad) {
+EventoBuscarJugadores::EventoBuscarJugadores(Jugadores *jugadores, Entidad *entidad) : 
+        entidad(entidad),
+        jugadores(jugadores) {}
 
+void EventoBuscarJugadores::resolver() {
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
 
     auto *posicion = entidad->getEstado<Posicion>("posicion");

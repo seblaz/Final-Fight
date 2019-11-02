@@ -10,16 +10,27 @@
 #include "../../modelo/Jugadores.h"
 #include "../EstadoDePersonajeServidor.h"
 
-class buscarJugadores : public Comportamiento {
+class BuscarJugadores : public Comportamiento {
 
 private:
     Jugadores *jugadores;
 
 public:
-    explicit buscarJugadores(Jugadores* jugadores);
+    explicit BuscarJugadores(Jugadores* jugadores);
 
     void actualizar(Entidad *) override;
 };
 
+class EventoBuscarJugadores : public EventoAProcesar {
+
+public:
+    Jugadores *jugadores;
+    Entidad *entidad;
+
+public:
+    explicit EventoBuscarJugadores(Jugadores* jugadores, Entidad *entidad);
+    void resolver() override;
+    
+};
 
 #endif //FINAL_FIGHT_BUSCARJUGADORES_H

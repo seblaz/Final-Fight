@@ -6,7 +6,6 @@
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
 #include "Saltando.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 Agachado::Agachado() {
 //    estadoDePersonaje = AGACHADO;
@@ -19,12 +18,6 @@ Agachado::~Agachado() {
     logger->log(DEBUG, "Se elimino un objeto de clase Agachado");
 }
 
-
-//void Agachado::enter(Entidad *entidad) {
-//    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-//    auto *animacion = fabricaDeAnimaciones->agachado();
-//    entidad->agregarEstado("animacion", animacion);
-//}
 
 void Agachado::actualizar(Entidad *entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");

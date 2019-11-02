@@ -8,18 +8,18 @@
 
 #include <SDL_rect.h>
 #include <vector>
-#include "../../modelo/Entidad.h"
+#include "../modelo/Entidad.h"
 
 using namespace std;
 
 class AnimacionCliente : public Estado {
 
 private:
-    vector<SDL_Rect> posiciones;
+    vector<SDL_Rect> *posiciones;
     float escala_;
 
 public:
-    explicit AnimacionCliente(vector<SDL_Rect> posiciones, float escala = 1);
+    explicit AnimacionCliente(vector<SDL_Rect> *posiciones, float escala = 1);
     SDL_Rect devolverPosicion(Entidad *entidad);
     float escala();
 };

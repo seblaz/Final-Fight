@@ -44,9 +44,6 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
                     break;
-                case USUARIO:
-                    Locator::logger()->log(DEBUG, "Usuario");
-                    break;
                 case TRANSICION:
                     NivelCliente::generarTransicion(mapa, entidad);
                     break;

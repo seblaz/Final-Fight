@@ -24,6 +24,7 @@ private:
     ESTADO_DE_PERSONAJE estado;
 
 public:
+    static string estadoACadena(ESTADO_DE_PERSONAJE e);
     EstadoDePersonaje();
     explicit EstadoDePersonaje(ESTADO_DE_PERSONAJE);
     ESTADO_DE_PERSONAJE getEstado();

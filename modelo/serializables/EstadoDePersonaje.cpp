@@ -19,3 +19,22 @@ void EstadoDePersonaje::serializar(ostream &stream) {
 void EstadoDePersonaje::deserializar(istream &stream) {
     estado = static_cast<enum ESTADO_DE_PERSONAJE>(deserializarEntero(stream));
 }
+
+string EstadoDePersonaje::estadoACadena(ESTADO_DE_PERSONAJE e) {
+    switch (e) {
+        case CAMINANDO:
+            return "caminando";
+        case SALTANDO:
+            return "saltando";
+        case SALTANDO_CON_MOVIMIENTO:
+            return "saltandoAdelante";
+        case REPOSANDO:
+            return "reposando";
+        case GOLPEANDO:
+            return "golpeando";
+        case AGACHADO:
+            return "agachado";
+        case PATEANDO:
+            return "pateando";
+    };
+}

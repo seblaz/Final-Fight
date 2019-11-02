@@ -4,8 +4,6 @@
 
 #include "Patrullar.h"
 #include "../../servicios/Locator.h"
-#include "../../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
-#include "../../modelo/Velocidad.h"
 
 Patrullar::Patrullar() {
     srand(time(nullptr));

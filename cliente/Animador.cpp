@@ -3,34 +3,12 @@
 //
 
 #include "Animador.h"
-#include "../estados/Caminando.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
+#include "../graficos/FabricaDeAnimacionesCliente.h"
 
 void Animador::actualizar(Entidad *entidad) {
 
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    switch (estado->getEstado()){
-        case CAMINANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->caminando());
-            break;
-        case SALTANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->saltando());
-            break;
-        case REPOSANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->reposando());
-            break;
-        case GOLPEANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->golpear());
-            break;
-        case AGACHADO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->agachado());
-            break;
-        case PATEANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->patadaBasica());
-            break;
-        case SALTANDO_CON_MOVIMIENTO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->saltandoAdelante());
-            break;
-    }
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesCliente>("fabrica de animaciones");
+    entidad->agregarEstado("animacion", fabricaDeAnimaciones->getAnimacion(estado->getEstado()));
 }
