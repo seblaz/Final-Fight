@@ -72,9 +72,9 @@ void Juego::loop() {
     ManagerPantallas manager;
     manager.agregarPantalla(new PantallaAutenticador("autenticador"));
     manager.agregarPantalla(new PantallaJuego("juego", &mapa_));
-    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallaUsuarioYaConectado/src"));
-    manager.agregarPantalla(new PantallaError("partida llena", "/pantallaPartidaLlena/src"));
-    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallaErrorDeConexion/src"));
+    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
+    manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
+    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
 
     while (!exit) {
         SDL_Event *e = processInput();

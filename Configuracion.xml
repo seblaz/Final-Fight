@@ -48,17 +48,6 @@
         <izquierdo>200</izquierdo>
         <derecho>400</derecho>
     </scroll>
-    <pantallaDeSeleccion>
-        <fondo>
-            <src>assets/varios/pantallaMenuPersonaje.png</src>
-        </fondo>
-        <selector>
-            <src>assets/varios/selectorMenu.png</src>
-        </selector>
-        <personajeElegido>
-            <src>assets/varios/personajeElegido.png</src>
-        </personajeElegido>
-    </pantallaDeSeleccion>
     <pantallas>
         <autenticacion>
             <fondo>
@@ -82,16 +71,29 @@
                 </enter>
             </formulario>
         </autenticacion>
+        <error>
+            <usuarioYaConectado>
+                <src>assets/varios/pantallaUsuarioYaConectado.png</src>
+            </usuarioYaConectado>
+            <conexion>
+                <src>assets/varios/pantallaErrorDeConexion.png</src>
+            </conexion>
+            <partidaLlena>
+                <src>assets/varios/pantallaPartidaLlena.png</src>
+            </partidaLlena>
+        </error>
+        <seleccion>
+            <fondo>
+                <src>assets/varios/pantallaMenuPersonaje.png</src>
+            </fondo>
+            <selector>
+                <src>assets/varios/selectorMenu.png</src>
+            </selector>
+            <listo>
+                <src>assets/varios/personajeElegido.png</src>
+            </listo>
+        </seleccion>
     </pantallas>
-    <pantallaErrorDeConexion>
-        <src>assets/varios/pantallaErrorDeConexion.png</src>
-    </pantallaErrorDeConexion>
-    <pantallaPartidaLlena>
-        <src>assets/varios/pantallaPartidaLlena.png</src>
-    </pantallaPartidaLlena>
-    <pantallaUsuarioYaConectado>
-        <src>assets/varios/pantallaUsuarioYaConectado.png</src>
-    </pantallaUsuarioYaConectado>
     <personajes>
         <cody>
             <src>assets/personajes/cody.png</src>

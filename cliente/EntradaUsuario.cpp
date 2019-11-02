@@ -38,11 +38,7 @@ Accion *EntradaMenuSeleccion::getAccion() {
                 Locator::logger()->log(DEBUG, "Se selecciono enter.");
                 activo = false;
 
-                SDL_Renderer *renderer = Locator::renderer();
-                Configuracion *config = Locator::configuracion();
-                string srcSprite = config->getValue("/pantallaDeSeleccion/personajeElegido/src");
-                auto *spritePersonajeElegido = new Sprite(renderer, srcSprite);
-
+                auto *spritePersonajeElegido = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/listo/src");
                 pantalla->agregarEstado("sprite selector", spritePersonajeElegido);
 
                 switch (personaje->getPersonaje()) {

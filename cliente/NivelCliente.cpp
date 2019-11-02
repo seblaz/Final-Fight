@@ -28,10 +28,10 @@
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeSeleccion/fondo/src");
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/fondo/src");
     auto *grafico = new GraficoMenuSeleccion();
     auto *personaje = new Personaje(GUY);
-    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteBySrc("assets/varios/selectorMenu.png");
+    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/selector/src");
 
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
