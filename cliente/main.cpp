@@ -56,6 +56,9 @@ int main(int argc, char *argv[]) {
     auto *fabrica = new FabricaDeSprites();
     Locator::provide(fabrica);
 
+    auto *fabricaSonidos = new FabricaDeSonidos();
+    Locator::provide(fabricaSonidos);
+
     string ipAddress;
     int port;
     bool paramsOk = false;

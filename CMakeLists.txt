@@ -64,6 +64,7 @@ FILE(GLOB IASources estados/ia/*.cpp)
 FILE(GLOB StatesSources estados/*.cpp)
 FILE(GLOB ServicesSources servicios/*.cpp)
 FILE(GLOB LevelSources niveles/*.cpp)
+FILE(GLOB SoundSources sonidos/*.cpp)
 FILE(GLOB Configurations *.xml)
 FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
@@ -77,7 +78,6 @@ find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
 find_package(SDL2TTF REQUIRED)
 find_package(SDL2_mixer REQUIRED)
-#find_package(SDL2_mixer REQUIRED) # Find SDL MIXER libraries
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS})
 
 
@@ -102,7 +102,7 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSSDL_mixerources} ${ModelMapSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources})
+add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSSDL_mixerources} ${ModelMapSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources} ${SoundSources})
 target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
 
 #[[

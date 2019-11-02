@@ -12,6 +12,7 @@
 #include "../modelo/Posicion.h"
 #include "../modelo/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
+#include "../cliente/FabricaDeSonidos.h"
 
 class Locator {
 
@@ -34,6 +35,9 @@ public:
     static FabricaDeSprites *fabricaDeSprites();
     static void provide(FabricaDeSprites *fabricaDeSprites);
 
+    static FabricaDeSonidos *fabricaDeSonidos();
+    static void provide(FabricaDeSonidos *fabricaDeSonidos);
+
     static void clean();
 
 private:
@@ -43,6 +47,7 @@ private:
     static SDL_Renderer *renderer_;
     static Posicion *posicion;
     static FabricaDeSprites *fabrica;
+    static FabricaDeSonidos *fabricaSonidos;
 
 };
 

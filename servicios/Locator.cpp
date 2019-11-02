@@ -83,6 +83,20 @@ void Locator::provide(FabricaDeSprites *fabricaDeSprites) {
     fabrica = fabricaDeSprites;
 }
 
+/**
+ * Fabrica de Sonidos.
+ */
+FabricaDeSonidos *Locator::fabricaSonidos;
+
+FabricaDeSonidos *Locator::fabricaDeSonidos() {
+    return fabricaSonidos;
+}
+
+void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
+    fabricaSonidos = fabricaDeSonidos;
+}
+
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 
