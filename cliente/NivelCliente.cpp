@@ -4,9 +4,6 @@
 
 #include "NivelCliente.h"
 #include "../servicios/Locator.h"
-#include "../graficos/Sprite.h"
-//#include "../graficos/GraficoDePantallaCompleta.h"
-#include "../modelo/serializables/Posicion.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
 #include "../modelo/serializables/Nivel.h"
@@ -25,22 +22,8 @@
 #include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/GraficoMenuSeleccion.h"
-
-void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
-    Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
-
-    Entidad *pantalla = mapa->crearEntidad();
-
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeEspera/sprite/src");
-    auto *posicion = new Posicion(0, 0, 0);
-
-    pantalla->agregarEstado("posicion", posicion);
-    pantalla->agregarEstado("sprite", sprite);
-    pantalla->agregarEstado("mapa", mapa);
-}
 
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");

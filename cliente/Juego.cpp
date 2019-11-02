@@ -6,14 +6,15 @@
 #include "../servicios/Locator.h"
 #include "ReceptorCliente.h"
 #include "EntradaUsuario.h"
-#include "../usuario/Usuario.h"
 #include "../modelo/serializables/EventoUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
-#include "../graficos/GraficoDePantalla.h"
-#include "PantallaAutenticador.h"
+#include "pantallas/autenticador/PantallaAutenticador.h"
+#include "pantallas/ManagerPantallas.h"
+#include "pantallas/juego/PantallaJuego.h"
+#include "pantallas/error/PantallaError.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -59,113 +60,32 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
+            Locator::provide(fuente);
         }
     }
-}
-
-bool Juego::validarUserPass() {
-    Locator::logger()->log(INFO, "Se genera la pantalla de autenticación.");
-    PantallaAutenticador autenticador(fuente);
-
-    while (!exit) {
-        SDL_Event *e = processInput();
-        Usuario *usuarioIngresado = autenticador.getUsuario(e);
-        delete e;
-        if (usuarioIngresado) {
-            string user = usuarioIngresado->getUsuario();
-            string pass = usuarioIngresado->getContrasenia();
-
-            Socket *socket = Locator::socket();
-
-            stringstream userStream;
-            Accion enviarUsuario(ENVIAR_USUARIO);
-            enviarUsuario.serializar(userStream);
-
-            Usuario usuario(user, pass);
-            usuario.serializar(userStream);
-            socket->enviar(userStream);
-
-            stringstream streamEvento;
-            socket->recibir(streamEvento);
-            EventoUsuario evento;
-            evento.deserializar(streamEvento);
-
-            switch (evento.evento()) {
-                case CONTRASENIA_INCORRECTA:
-                    Locator::logger()->log(ERROR, "Contraseña incorrecta.");
-//                contraseniaIncorrecta = true;
-                    break;
-                case USUARIO_YA_CONECTADO:
-                    Locator::logger()->log(ERROR, "El usuario ya se encuentra conectado en otro cliente.");
-                    GraficoDePantalla::graficarPantalla("/pantallaUsuarioYaConectado/src");
-
-//                while(true) {
-//                    e = this->processInput();
-//                    if ( e.type == SDL_QUIT ){
-//                        return false;
-//                    }
-//                }
-                case PARTIDA_LLENA:
-                    Locator::logger()->log(ERROR, "La partida se encuentra llena.");
-                    GraficoDePantalla::graficarPantalla("/pantallaPartidaLlena/src");
-
-//                while(true) {
-//                    e = this->processInput();
-//                    if ( e.type == SDL_QUIT ){
-//                        return false;
-//                    }
-//                }
-                case CONECTADO:
-                    Locator::logger()->log(INFO, "El usuario se conectó correctamente.");
-                    return true;
-            }
-        }
-    }
-    return false;
 }
 
 void Juego::loop() {
 
-    if (exit || !validarUserPass()) return;
+    if (exit) return;
 
-    getEvent = SDL_PollEvent;
-    exit = false;
-    ActualizadorCliente actualizador(&mapa_);
-    ReceptorCliente receptor(Locator::socket());
-    pthread_t hiloRecepcion = receptor.recibirEnHilo();
-
-    /**
-     * Transmisión de acciones.
-     */
-    EntradaNula entrada;
-    TrasmisionCliente trasmision(Locator::socket(), &entrada);
-    pthread_t hiloTransmision = trasmision.transmitirEnHilo();
+    ManagerPantallas manager;
+    manager.agregarPantalla(new PantallaAutenticador("autenticador"));
+    manager.agregarPantalla(new PantallaJuego("juego", &mapa_));
+    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallaUsuarioYaConectado/src"));
+    manager.agregarPantalla(new PantallaError("partida llena", "/pantallaPartidaLlena/src"));
+    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallaErrorDeConexion/src"));
 
     while (!exit) {
-        processInput();
-        stringstream s;
-
-        if (!receptor.conexionEstaActiva()) {
-            GraficoDePantalla::graficarPantalla("/pantallaErrorDeConexion/src");
-        } else {
-            receptor.devolverStreamMasReciente(s);
-            actualizador.actualizarEntidades(s, &trasmision);
-            clearScene();
-            actualizar();
-            graficar();
-        }
-
+        SDL_Event *e = processInput();
+        manager.getActual()->actualizar(e);
+        graficar();
     }
-    trasmision.finalizar();
-    receptor.finalizar();
-    pthread_join(hiloTransmision, nullptr);
-    pthread_join(hiloRecepcion, nullptr);
-
 }
 
 SDL_Event *Juego::processInput() {
     auto *e = new SDL_Event;
-    if (getEvent(e) && (e->type == SDL_QUIT)) {
+    if (SDL_PollEvent(e) && (e->type == SDL_QUIT)) {
         stringstream s;
         Accion(FIN).serializar(s);
         Locator::socket()->enviar(s);
@@ -175,29 +95,10 @@ SDL_Event *Juego::processInput() {
     return e;
 }
 
-void Juego::clearScene() {
-    //Se Construye el escenario
-    SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(renderer_);
-}
-
-void Juego::actualizar() {
-    auto entidades = mapa().devolverEntidades();
-
-    sort(entidades.begin(), entidades.end(), [](Entidad *a, Entidad *b) {
-        return a->getEstado<Posicion>("posicion")->getY() > b->getEstado<Posicion>("posicion")->getY();
-    });
-
-    for (auto entidad : entidades) {
-        auto comportamientos = entidad->getComportamientos();
-        for (auto *comportamiento : comportamientos) {
-            comportamiento->actualizar(entidad);
-        }
-    }
-}
-
 void Juego::graficar() {
     SDL_RenderPresent(renderer_); // Update screen
+    SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer_);
 }
 
 void Juego::terminar() {
@@ -215,8 +116,4 @@ void Juego::terminar() {
 
 SDL_Renderer *Juego::renderer() {
     return renderer_;
-}
-
-Mapa &Juego::mapa() {
-    return mapa_;
 }

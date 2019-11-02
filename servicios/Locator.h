@@ -7,6 +7,7 @@
 #define FINAL_FIGHT_LOCATOR_H
 
 #include <SDL_system.h>
+#include <SDL_ttf.h>
 #include "./Logger.h"
 #include "Configuracion.h"
 #include "../modelo/serializables/Posicion.h"
@@ -33,6 +34,9 @@ public:
 
     static FabricaDeSprites *fabricaDeSprites();
     static void provide(FabricaDeSprites *fabricaDeSprites);
+    
+    static TTF_Font *fuente();
+    static void provide(TTF_Font *fuente);
 
     static void clean();
 
@@ -43,7 +47,7 @@ private:
     static SDL_Renderer *renderer_;
     static Posicion *posicion;
     static FabricaDeSprites *fabrica;
-
+    static TTF_Font *fuente_;
 };
 
 

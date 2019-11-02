@@ -83,6 +83,19 @@ void Locator::provide(FabricaDeSprites *fabricaDeSprites) {
     fabrica = fabricaDeSprites;
 }
 
+/**
+ * Fuente.
+ */
+TTF_Font *Locator::fuente_;
+
+TTF_Font *Locator::fuente() {
+    return fuente_;
+}
+
+void Locator::provide(TTF_Font *fuente) {
+    fuente_ = fuente;
+}
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 

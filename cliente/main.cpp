@@ -90,8 +90,6 @@ int main(int argc, char *argv[]) {
         Juego juego;
         SDL_Renderer *renderer = juego.renderer();
         Locator::provide(renderer);
-        Mapa &mapa = juego.mapa();
-        NivelCliente::generarPantallaDeEspera(&mapa);
 
         juego.loop();
         juego.terminar();
