@@ -35,7 +35,7 @@ private:
     Entidad *pantalla;
     bool activo = true;
     int framesPorAccion = 20;
-    int framesInactivo = 0;
+    int framesInactivo = 20;
     static void cambiarAlPersonajeAnterior(Personaje *personajeMarcado);
     static void cambiarAlPersonajeSiguiente(Personaje *personajeMarcado);
 

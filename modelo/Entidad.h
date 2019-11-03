@@ -61,8 +61,8 @@ public:
     static IdEntidad getIdFromStream(istream &stream);
 
     void agregarEstado(const string &s, Estado *t) {
-        if (estados.find(s) != estados.end())
-            delete estados[s];
+//        if ((estados.find(s) != estados.end()) && (estados[s] != t))
+//            delete estados[s];
         estados[s] = t;
     };
 
@@ -107,7 +107,6 @@ enum TIPO {
     JUGADOR,
     TRANSICION,
     ENEMIGO,
-    USUARIO,
     ELEMENTO
 };
 

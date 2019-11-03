@@ -32,11 +32,6 @@ vector<string> Entidad::estadosSerializables;
 estadosMapType Entidad::mapaEstados;
 
 Entidad::Entidad() {
-    if (estadosSerializables.empty()) {
-        estadosSerializables.reserve(mapaEstados.size());
-        transform(mapaEstados.begin(), mapaEstados.end(), back_inserter(estadosSerializables),
-                  [](auto pair) { return pair.first; });
-    }
     if (mapaEstados.empty()) {
         mapaEstados = {
                 {"posicion",            &createInstance<Posicion>},
@@ -51,6 +46,11 @@ Entidad::Entidad() {
                 {"indice sprite",       &createInstance<IndiceSprite>},
                 {"energia",             &createInstance<Energia>},
         };
+    }
+    if (estadosSerializables.empty()) {
+        estadosSerializables.reserve(mapaEstados.size());
+        transform(mapaEstados.begin(), mapaEstados.end(), back_inserter(estadosSerializables),
+                  [](auto pair) { return pair.first; });
     }
 }
 

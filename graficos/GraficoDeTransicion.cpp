@@ -8,10 +8,6 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../modelo/serializables/Opacidad.h"
 
-GraficoDeTransicion::GraficoDeTransicion(){
-
-}
-
 void GraficoDeTransicion::actualizar(Entidad *entidad) {
     SDL_Renderer *renderer = Locator::renderer();
     Configuracion *config = Locator::configuracion();
@@ -19,6 +15,4 @@ void GraficoDeTransicion::actualizar(Entidad *entidad) {
     auto* opacidad = entidad->getEstado<Opacidad>("opacidad");
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, opacidad->getOpacidad()); // 0 u 255
     SDL_RenderFillRect(renderer, &rect);
-
-
 }

@@ -6,7 +6,7 @@
 #include "Sprite.h"
 #include "../servicios/Locator.h"
 #include "../modelo/serializables/Personaje.h"
-#include "animaciones/AnimacionCliente.h"
+#include "AnimacionCliente.h"
 
 
 void GraficoMenuSeleccion::actualizar(Entidad *entidad) {

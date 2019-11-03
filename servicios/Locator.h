@@ -7,11 +7,13 @@
 #define FINAL_FIGHT_LOCATOR_H
 
 #include <SDL_system.h>
+#include <SDL_ttf.h>
 #include "./Logger.h"
 #include "Configuracion.h"
 #include "../modelo/serializables/Posicion.h"
 #include "../modelo/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
+#include "../eventos/Eventos.h"
 
 class Locator {
 
@@ -33,7 +35,13 @@ public:
 
     static FabricaDeSprites *fabricaDeSprites();
     static void provide(FabricaDeSprites *fabricaDeSprites);
-
+    
+    static TTF_Font *fuente();
+    static void provide(TTF_Font *fuente);
+    
+    static EventosAProcesar *eventos();
+    static void provide(EventosAProcesar *);
+    
     static void clean();
 
 private:
@@ -43,7 +51,9 @@ private:
     static SDL_Renderer *renderer_;
     static Posicion *posicion;
     static FabricaDeSprites *fabrica;
-
+    static TTF_Font *fuente_;
+    static EventosAProcesar *eventos_;
+    
 };
 
 

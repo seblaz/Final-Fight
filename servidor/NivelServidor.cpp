@@ -11,9 +11,6 @@
 #include "../modelo/serializables/Opacidad.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../fisica/FisicaDeTransicion.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
-#include "../estados/ia/Patrullar.h"
-#include "../estados/Caminando.h"
 #include "../modelo/serializables/TipoElemento.h"
 #include "../modelo/serializables/Actividad.h"
 #include "../modelo/serializables/NumeroJugador.h"
@@ -23,6 +20,7 @@
 #include "../estados/ia/buscarJugadores.h"
 #include "../modelo/Envolvente.h"
 #include "../fisica/FisicaDeColisiones.h"
+#include "../estados/ia/BuscarJugadores.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -168,7 +166,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         Entidad *enemigo = mapa->crearEntidad();
 
         auto *tipo = new Tipo(ENEMIGO);
-        auto *comportamiento = new buscarJugadores(jugadores);
+        auto *comportamiento = new BuscarJugadores(jugadores);
         auto *velocidadDeEnemigo = new Velocidad();
         auto *orientacionDeEnemigo = new Orientacion;
         auto *fisicaDeEnemigo = new FisicaDePersonaje();

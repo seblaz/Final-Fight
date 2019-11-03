@@ -6,7 +6,7 @@
 #include "Grafico.h"
 #include "../servicios/Locator.h"
 #include "../modelo/serializables/Posicion.h"
-#include "animaciones/AnimacionCliente.h"
+#include "AnimacionCliente.h"
 #include "Sprite.h"
 #include "../modelo/serializables/Orientacion.h"
 #include "../modelo/serializables/Actividad.h"

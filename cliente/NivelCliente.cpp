@@ -4,51 +4,25 @@
 
 #include "NivelCliente.h"
 #include "../servicios/Locator.h"
-#include "../graficos/Sprite.h"
-//#include "../graficos/GraficoDePantallaCompleta.h"
-#include "../modelo/serializables/Posicion.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
 #include "../modelo/serializables/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
 #include "../modelo/serializables/Personaje.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/GraficoDeTransicion.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
 #include "../modelo/serializables/TipoElemento.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
 #include "../modelo/serializables/NumeroJugador.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/GraficoMenuSeleccion.h"
-
-void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
-    Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
-
-    Entidad *pantalla = mapa->crearEntidad();
-
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeEspera/sprite/src");
-    auto *posicion = new Posicion(0, 0, 0);
-
-    pantalla->agregarEstado("posicion", posicion);
-    pantalla->agregarEstado("sprite", sprite);
-    pantalla->agregarEstado("mapa", mapa);
-}
+#include "../graficos/FabricaDeAnimacionesCliente.h"
 
 void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeSeleccion/fondo/src");
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/fondo/src");
     auto *grafico = new GraficoMenuSeleccion();
     auto *personaje = new Personaje(GUY);
-    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteBySrc("assets/varios/selectorMenu.png");
+    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/selector/src");
 
     pantalla->agregarEstado("sprite", sprite);
     pantalla->agregarEstado("mapa", mapa);
@@ -67,30 +41,30 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
 
     auto *spriteIndicador = Locator::fabricaDeSprites()->getSpriteConfigPath("/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
-    auto *animacionIndicador = FabricaDeAnimacionesDeIndicador::indicador();
+    auto *animacionIndicador = FabricaDeAnimacionesCliente("/animaciones").getAnimacion("/indicador");
 
     jugador->agregarEstado("spriteIndicador", spriteIndicador);
     jugador->agregarEstado("animacionIndicador", animacionIndicador);
 
     string srcSpritePersonaje;
-    FabricaDeAnimacionesDePersonaje *fabricaDeAnimaciones;
+    FabricaDeAnimacionesCliente *fabricaDeAnimaciones;
 
     switch (personaje->getPersonaje()) {
         case HAGGAR:
             srcSpritePersonaje = config->getValue("/personajes/haggar/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
+            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/haggar");
             break;
         case CODY:
             srcSpritePersonaje = config->getValue("/personajes/cody/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
+            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/cody");
             break;
         case MAKI:
             srcSpritePersonaje = config->getValue("/personajes/maki/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
+            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/maki");
             break;
         case GUY:
             srcSpritePersonaje = config->getValue("/personajes/guy/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
+            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/guy");
             break;
         default:
             Locator::logger()->log(ERROR, "Se trató de crear un jugador con un personaje incorrecto: " +
@@ -98,7 +72,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
             return;
     }
 
-    auto *animacion = fabricaDeAnimaciones->reposando();
+    auto *animacion = fabricaDeAnimaciones->getAnimacion("/reposando");
     auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpritePersonaje);
     auto *grafico = new GraficoJugador();
     auto *animador = new Animador();
@@ -168,9 +142,9 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     string spritePath = "assets/personajes/poison.png";
 
     auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc("assets/personajes/poison.png");
-    auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
+    auto *fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/poisson");
     auto *graficoDeEnemigo = new Grafico();
-    auto *animacion = fabricaDeEnemigo->reposando();
+    auto *animacion = fabricaDeEnemigo->getAnimacion(REPOSANDO);
     auto *animador = new Animador();
     enemigo->agregarEstado("sprite", spriteEnemigo);
     enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
@@ -189,19 +163,19 @@ void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
     switch (ART) {
         case CAJA:
             srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/caja/sprite/src");
-            animacion = FabricaDeAnimacionesDeCaja::standby();
+            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/caja");
             break;
         case CUCHILLO:
             srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/cuchillo/sprite/src");
-            animacion = FabricaDeAnimacionesDeCuchillo::standby();
+            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/cuchillo");
             break;
         case NEUMATICO:
             srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/neumatico/sprite/src");
-            animacion = FabricaDeAnimacionesDeNeumatico::standby();
+            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/neumatico");
             break;
         case TUBO:
             srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/tubo/sprite/src");
-            animacion = FabricaDeAnimacionesDeTubo::standby();
+            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/tubo");
             break;
         default:
             Locator::logger()->log(ERROR, "Se trata de crear un elemento inexistente.");

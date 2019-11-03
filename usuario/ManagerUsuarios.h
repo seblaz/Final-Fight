@@ -17,7 +17,9 @@ class ManagerUsuarios {
 private:
     int maximo;
     list<Usuario *> usuarios;
-
+    unordered_map<string, string> baseUsuarios;
+    void cargarUsuarios();
+    
 public:
     explicit ManagerUsuarios(int maximo);
 
@@ -30,6 +32,7 @@ public:
     Usuario *getUsuarioAnterior(Usuario *usuario);
     void desconectarJugadorVoluntariamente(Usuario *usuario);
     bool hayJugadoresConectados();
+    bool usuarioValido(Usuario *usuario);
 };
 
 

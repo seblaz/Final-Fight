@@ -5,7 +5,6 @@
 #include "Saltando.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "Caminando.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../modelo/serializables/Personaje.h"
@@ -66,7 +65,7 @@ void Saltando::golpear(Entidad *entidad) {
                 pateando = true;
                 entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(PATEANDO));
                 enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-                auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "patada");
+                auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "pateando");
                 entidad->agregarComportamiento("animacion servidor", animacion);
             }
         }
