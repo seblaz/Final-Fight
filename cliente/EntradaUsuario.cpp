@@ -98,6 +98,8 @@ Accion *EntradaJuego::getAccion() {
         accion = CAM_ARRIBA;
     } else if (entrada[SDL_SCANCODE_DOWN]) {
         accion = CAM_ABAJO;
+    } else if (entrada[SDL_SCANCODE_T]) {
+        accion = MODOTEST;
     } else {
         accion = REPOSAR;
     }

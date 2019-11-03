@@ -27,7 +27,8 @@ enum ACCION {
     SELECCIONAR_MAKI,
     ENVIAR_USUARIO,
     FIN,
-    NULA
+    NULA,
+    MODOTEST
 };
 
 class Accion : public Serializable {

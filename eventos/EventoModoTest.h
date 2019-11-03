@@ -6,8 +6,16 @@
 #define FINAL_FIGHT_EVENTOMODOTEST_H
 
 
-class EventoModoTest {
+#include "Eventos.h"
 
+class EventoModoTest : public EventoAProcesar{
+
+protected:
+    Entidad *personaje;
+
+public:
+    explicit EventoModoTest(Entidad *personaje);
+    void resolver() override;
 };
 
 
