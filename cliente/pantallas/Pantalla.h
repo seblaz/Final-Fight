@@ -13,7 +13,6 @@ using namespace std;
 
 typedef string IdPantalla;
 
-class Controlador;
 class ManagerPantallas;
 
 class Pantalla {
@@ -31,6 +30,7 @@ public:
 
     virtual void actualizar(SDL_Event *e) = 0;
     virtual void iniciar() {};
+    virtual void finalizar() {};
 
 };
 

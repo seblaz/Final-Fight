@@ -13,6 +13,7 @@ void ManagerPantallas::agregarPantalla(Pantalla *pantalla) {
 
 void ManagerPantallas::cambiarA(const IdPantalla& idPantalla) {
     if(!idPantalla.empty()) {
+        getActual()->finalizar();
         actual = pantallas[idPantalla];
         actual->iniciar();
     }

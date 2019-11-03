@@ -79,8 +79,10 @@ void Juego::loop() {
     while (!exit) {
         SDL_Event *e = processInput();
         manager.getActual()->actualizar(e);
+        delete e;
         graficar();
     }
+    manager.getActual()->finalizar();
 }
 
 SDL_Event *Juego::processInput() {

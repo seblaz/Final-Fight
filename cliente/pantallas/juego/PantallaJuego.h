@@ -29,6 +29,8 @@ public:
     explicit PantallaJuego(IdPantalla id, Mapa *mapa);
     void iniciar() override;
     void actualizar(SDL_Event *evento) override;
+    void finalizar() override;
+
 };
 
 

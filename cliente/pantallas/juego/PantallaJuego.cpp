@@ -44,3 +44,10 @@ void PantallaJuego::actualizarEntidades() {
         }
     }
 }
+
+void PantallaJuego::finalizar() {
+    trasmision.finalizar();
+    receptor.finalizar();
+    pthread_join(hiloTransmision, nullptr);
+    pthread_join(hiloRecepcion, nullptr);
+}

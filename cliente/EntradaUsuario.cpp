@@ -125,18 +125,11 @@ void TrasmisionCliente::transmitir() {
 
     while (!fin) {
         size_t start = SDL_GetTicks();
-        if (socket->estaDesconectado()) {
-            Locator::logger()->log(ERROR, "Se detectó desconexión del servidor, se cierra la conexión.");
-            shutdown(socket->getIntSocket(), SHUT_RDWR);
-            close(socket->getIntSocket());
-            break;
-        }
-
 
         Accion *accion = getEntradaUsuario()->getAccion();
         stringstream s;
         accion->serializar(s);
-        if (!socket->enviar(s)) {
+        if (socket->estaDesconectado() || !socket->enviar(s)) {
             Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
             shutdown(socket->getIntSocket(), SHUT_RDWR);
             close(socket->getIntSocket());
@@ -144,10 +137,8 @@ void TrasmisionCliente::transmitir() {
         }
 
         size_t end = SDL_GetTicks();
-        int sleepTime = MS_PER_FRAME + start - end;
-        if (sleepTime > 0) {
-            SDL_Delay(sleepTime);
-        }
+        int sleepTime = int(MS_PER_FRAME) + start - end;
+        if (sleepTime > 0) SDL_Delay(sleepTime);
     }
     Locator::logger()->log(INFO, "Se termina el hilo del transmisor.");
 }
