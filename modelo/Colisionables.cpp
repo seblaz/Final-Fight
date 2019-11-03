@@ -22,10 +22,10 @@ void Colisionables::calcularPosiblesColisiones(Entidad * entidad) {
         auto* idContrario = tuple.second->getEstado<NumeroJugador>("numeroJugador");
         if ( idContrario->numeroJugador != entidad->getEstado<NumeroJugador>("numeroJugador")->numeroJugador ){
             if (envolvente->existeColisionLeft(envolventeContrario) )
-                posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho - 2 ;
+                posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho ;
 
             if (envolvente->existeColisionRight(envolventeContrario) )
-                posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho + 2;
+                posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho;
 
             if ( envolvente->existeColisionUp(envolventeContrario) )
                 posicion->y = envolventeContrario->posicion->y + envolventeContrario->profundidad + envolvente->profundidad;

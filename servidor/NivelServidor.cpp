@@ -17,7 +17,6 @@
 #include "FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/IndiceSprite.h"
 #include "../modelo/serializables/Energia.h"
-#include "../estados/ia/buscarJugadores.h"
 #include "../modelo/Envolvente.h"
 #include "../fisica/FisicaDeColisiones.h"
 #include "../estados/ia/BuscarJugadores.h"
