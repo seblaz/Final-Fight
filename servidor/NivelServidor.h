@@ -20,6 +20,7 @@ private:
     static void generarTransicion(const string &nivel,Mapa *mapa, Jugadores* posicionDeJugador);
     static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores);
     static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
+    static void generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);

@@ -12,7 +12,6 @@
 class Envolvente : public Estado{
 
 public:
-    bool colision = false;
     int alto;
     int ancho;
     int profundidad;
