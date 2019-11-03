@@ -7,6 +7,7 @@
 
 #include "Entidad.h"
 #include "Jugadores.h"
+#include "Colisionables.h"
 #include <vector>
 #include <mutex>
 
@@ -24,6 +25,7 @@ private:
     static IdEntidad ultimoId;
     unordered_map<IdEntidad, Entidad*> entidades;
     unordered_map<IdEntidad, Entidad*> jugadores;
+    unordered_map<IdEntidad, Entidad*> colisionales;
 
 public:
     Entidad *crearEntidad();
@@ -38,7 +40,8 @@ public:
     Jugadores* getJugadores();
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);
-    unordered_map<IdEntidad, Entidad *> devolverJugadores();
+    unordered_map<IdEntidad, Entidad *> *devolverJugadores();
+    Colisionables* getColisionables();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

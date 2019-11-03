@@ -21,6 +21,8 @@
 #include "../modelo/serializables/IndiceSprite.h"
 #include "../modelo/serializables/Energia.h"
 #include "../estados/ia/buscarJugadores.h"
+#include "../modelo/Envolvente.h"
+#include "../fisica/FisicaDeColisiones.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -50,6 +52,8 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
+    auto *envolvente = new Envolvente(posicion, 120,120, 10);
+    auto* colisionador = new FisicaDeColisiones();
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -61,6 +65,9 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("estado de personaje", estadoDePersonaje);
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("energia", energia);
+    jugador->agregarEstado("envolvente", envolvente);
+    jugador->agregarEstado("mapa", mapa);
+    jugador->agregarComportamiento("colisionador" , colisionador);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);

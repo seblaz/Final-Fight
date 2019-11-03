@@ -3,10 +3,14 @@
 //
 
 #include "EstadoDePersonajeServidor.h"
+#include "../cliente/Animador.h"
+#include "../modelo/Velocidad.h"
+#include "../servicios/Locator.h"
 #include "Saltando.h"
 #include "Caminando.h"
 #include "Agachado.h"
 #include "Golpeando.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
 

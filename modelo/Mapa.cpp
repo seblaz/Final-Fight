@@ -67,8 +67,8 @@ unordered_map<IdEntidad, Entidad *> Mapa::devolverEntidadesConId() {
     return entidades;
 }
 
-unordered_map<IdEntidad, Entidad *> Mapa::devolverJugadores() {
-    return jugadores;
+unordered_map<IdEntidad, Entidad *>* Mapa::devolverJugadores() {
+    return &jugadores;
 }
 
 void Mapa::quitarEntidad(IdEntidad idEntidad) {
@@ -78,5 +78,9 @@ void Mapa::quitarEntidad(IdEntidad idEntidad) {
 
 Jugadores* Mapa::getJugadores() {
     return new Jugadores(jugadores);
+}
+
+Colisionables *Mapa::getColisionables() {
+    return new Colisionables(jugadores);
 }
 

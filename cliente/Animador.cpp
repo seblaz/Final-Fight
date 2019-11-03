@@ -5,6 +5,7 @@
 #include "Animador.h"
 #include "../estados/Caminando.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
+#include "../graficos/animaciones/FabricaDeAnimacionesDePersonaje.h"
 
 void Animador::actualizar(Entidad *entidad) {
 
