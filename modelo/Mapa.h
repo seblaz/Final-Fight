@@ -17,6 +17,7 @@ using namespace std;
  * IdEntidad. Id de la entidad de tipo numérico y estático.
  */
 using IdEntidad = size_t;
+using IdColisionable = size_t;
 
 
 class Mapa : public Estado {
@@ -25,7 +26,6 @@ private:
     static IdEntidad ultimoId;
     unordered_map<IdEntidad, Entidad*> entidades;
     unordered_map<IdEntidad, Entidad*> jugadores;
-    unordered_map<IdEntidad, Entidad*> colisionales;
 
 public:
     Entidad *crearEntidad();
@@ -42,6 +42,7 @@ public:
     bool contiene(IdEntidad idEntidad);
     unordered_map<IdEntidad, Entidad *> *devolverJugadores();
     Colisionables* getColisionables();
+    IdEntidad getIdEntidad(Entidad *);
 };
 
 #endif //FINAL_FIGHT_MAPA_H

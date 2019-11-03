@@ -11,6 +11,7 @@
 void FisicaDeColisiones::actualizar(Entidad * entidad) {
 
    auto colisionables = entidad->getEstado<Mapa>("mapa")->getColisionables();
-   colisionables->calcularPosiblesColisiones(entidad);
+   auto idEntidad = entidad->getEstado<Mapa>("mapa")->getIdEntidad(entidad);
+   colisionables->calcularPosiblesColisiones(entidad, idEntidad);
 
 }

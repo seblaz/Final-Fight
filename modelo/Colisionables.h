@@ -18,7 +18,7 @@ public:
     explicit Colisionables(unordered_map<IdEntidad, Entidad *>  colisionables);
     void add(Entidad *);
 
-    void calcularPosiblesColisiones(Entidad *);
+    void calcularPosiblesColisiones(Entidad *, IdEntidad idEntidad);
 };
 
 

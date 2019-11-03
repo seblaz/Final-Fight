@@ -13,14 +13,13 @@ Colisionables::Colisionables(unordered_map<IdEntidad, Entidad *>  colisionables)
     this -> colisionables = std::move(colisionables);
 }
 
-void Colisionables::calcularPosiblesColisiones(Entidad * entidad) {
+void Colisionables::calcularPosiblesColisiones(Entidad * entidad, IdEntidad idEntidad) {
     auto* envolvente= entidad->getEstado<Envolvente>("envolvente");
     auto* posicion = entidad->getEstado<Posicion>("posicion");
-    auto* orientacion = entidad->getEstado<Orientacion>("orientacion");
     for ( auto tuple : colisionables){
-        auto* envolventeContrario = tuple.second->getEstado<Envolvente>("envolvente");
-        auto* idContrario = tuple.second->getEstado<NumeroJugador>("numeroJugador");
-        if ( idContrario->numeroJugador != entidad->getEstado<NumeroJugador>("numeroJugador")->numeroJugador ){
+        if ( tuple.first != idEntidad && tuple.second->getEstado<Envolvente>("envolvente") != nullptr){
+            auto* envolventeContrario = tuple.second->getEstado<Envolvente>("envolvente");
+
             if (envolvente->existeColisionLeft(envolventeContrario) )
                 posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho ;
 
