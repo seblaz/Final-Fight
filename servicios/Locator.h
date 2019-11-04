@@ -7,11 +7,15 @@
 #define FINAL_FIGHT_LOCATOR_H
 
 #include <SDL_system.h>
+#include <SDL_ttf.h>
 #include "./Logger.h"
 #include "Configuracion.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../modelo/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
+#include "../cliente/FabricaDeSonidos.h"
+#include "../eventos/Eventos.h"
+
 
 class Locator {
 

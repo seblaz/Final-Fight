@@ -60,6 +60,11 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
+            if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+            {
+                Locator::logger()->log(ERROR, "Fallo cargar la SDL_Mixer. Error: " + string(Mix_GetError()));
+                exit = true;
+            }
             Locator::provide(fuente);
         }
     }

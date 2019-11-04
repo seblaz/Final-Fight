@@ -5,7 +5,7 @@
 #include <SDL2/SDL_mixer.h>
 #include "ReproductorEfectosDePersonaje.h"
 #include "../estados/Caminando.h"
-#include "../modelo/EstadoDePersonaje.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
 
 void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
