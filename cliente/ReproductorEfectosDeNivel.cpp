@@ -6,15 +6,21 @@
 #include "ReproductorEfectosDeNivel.h"
 #include "../servicios/Locator.h"
 
+
+ReproductorEfectosDeNivel::ReproductorEfectosDeNivel(char * rutaMusica) {
+    this->rutaMusica = rutaMusica;
+};
+
+
 void ReproductorEfectosDeNivel::actualizar(Entidad *entidad) {
-    reproducirMusica();
+    reproducirMusica(rutaMusica);
 }
 
-void ReproductorEfectosDeNivel::reproducirMusica() {
+void ReproductorEfectosDeNivel::reproducirMusica(char *rutaMusica) {
     if(Mix_PlayingMusic() == 0 )
     {
         Mix_Music *gMusic;
-        gMusic = Mix_LoadMUS( "/home/felipe/Documentos/Final-Fight/assets/sonidos/nivel1.wav" );
+        gMusic = Mix_LoadMUS( rutaMusica);
         Mix_PlayMusic( gMusic, -1);
     }
 }

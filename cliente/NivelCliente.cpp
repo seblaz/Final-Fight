@@ -134,7 +134,7 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
 
-    auto *reproductor = new ReproductorEfectosDeNivel();
+    auto *reproductor = new ReproductorEfectosDeNivel("assets/sonidos/nivel1.wav");
     escenario->agregarComportamiento("reproductor", reproductor);
 
 }
