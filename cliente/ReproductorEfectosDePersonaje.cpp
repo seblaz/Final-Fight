@@ -11,7 +11,13 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
     switch (estado->getEstado()){
         case CAMINANDO:
-            break;
+        {
+            Locator::logger()->log(DEBUG,"Se reproduce paso");
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/paso.wav")->getChunk();
+            if (Mix_Playing(2)==0){
+                Mix_PlayChannel( 2, chunk, 0 );
+            }
+        }
         case SALTANDO:
         {
             Locator::logger()->log(DEBUG,"Se reproduce saltando");
