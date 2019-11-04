@@ -11,6 +11,8 @@ class ReproductorEfectosDeNivel : public Comportamiento{
 
 public:
     void actualizar(Entidad *) override ;
+
+    static void reproducirMusica();
 };
 
 #endif //FINAL_FIGHT_REPRODUCTOREFECTOSDENIVEL_H

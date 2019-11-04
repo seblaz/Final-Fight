@@ -161,7 +161,6 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     enemigo->agregarEstado("animacion", animacion);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
     enemigo->agregarComportamiento("animador", animador);
-
 }
 
 void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {

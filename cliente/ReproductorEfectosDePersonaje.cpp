@@ -12,47 +12,40 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
     switch (estado->getEstado()){
         case CAMINANDO:
         {
-            Locator::logger()->log(DEBUG,"Se reproduce paso");
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/paso.wav")->getChunk();
-            if (Mix_Playing(2)==0){
-                Mix_PlayChannel( 2, chunk, 0 );
+            if (Mix_Playing(-1)==0){
+                Mix_PlayChannel( -1, chunk, 0 );
             }
         }
         case SALTANDO:
         {
-            Locator::logger()->log(DEBUG,"Se reproduce saltando");
+
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltolargo.wav")->getChunk();
-            if (Mix_Playing(2)==0){
-                Mix_PlayChannel( 2, chunk, 0 );
+            if (Mix_Playing(-1)==0){
+                Mix_PlayChannel( -1, chunk, 0 );
             }
         }
             break;
-        case REPOSANDO:
-            break;
         case GOLPEANDO:{
-            Locator::logger()->log(DEBUG,"Se reproduce golpeando");
+
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/golpe.wav")->getChunk();
-            if (Mix_Playing(2)==0){
-                Mix_PlayChannel( 2, chunk, 0 );
+            if (Mix_Playing(-1)==0){
+                Mix_PlayChannel( -1, chunk, 0 );
             };
         }
             break;
-        case AGACHADO:
-            break;
         case PATEANDO:{
-            Locator::logger()->log(DEBUG,"Se reproduce saltando con patada");
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltopatada.wav")->getChunk();
-            if (Mix_Playing(2)==0){
-                Mix_PlayChannel( 2, chunk, 0 );
+            if (Mix_Playing(-1)==0){
+                Mix_PlayChannel( -1, chunk, 0 );
             }
         }
             break;
         case SALTANDO_CON_MOVIMIENTO:
         {
-            Locator::logger()->log(DEBUG,"Se reproduce saltando");
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltocorto.wav")->getChunk();
-            if (Mix_Playing(2)==0){
-                Mix_PlayChannel( 2, chunk, 0 );
+            if (Mix_Playing(-1)==0){
+                Mix_PlayChannel( -1, chunk, 0 );
             }
         }
             break;
