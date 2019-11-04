@@ -130,10 +130,8 @@ int main(int argc, const char **args) {
     /**
      * Termino el procesamiento.
      */
-    auto *finProcesar = new EventoAProcesar("fin");
-    eventosAProcesar->push(finProcesar);
-    auto *finTransmitir = new EventoATransmitir("fin");
-    eventosATransmitir->push(finTransmitir);
+    procesamiento.finalizar();
+    transmision.finalizar();
 
     pthread_join(hiloProcesamiento, nullptr);
     pthread_join(hiloTransmision, nullptr);

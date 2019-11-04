@@ -18,11 +18,13 @@ private:
     ListaSockets *sockets;
     EventosATransmitir eventosATransmitir;
     void transmitir();
+    bool fin = false;
 
 public:
     explicit Transmision(ListaSockets *sockets);
     EventosATransmitir * devolverCola();
     pthread_t transmitirEnHilo();
+    void finalizar();
 };
 
 
