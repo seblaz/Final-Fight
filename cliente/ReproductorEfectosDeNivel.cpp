@@ -11,7 +11,7 @@ void ReproductorEfectosDeNivel::actualizar(Entidad *entidad) {
     {
         Locator::logger()->log(DEBUG,"Se reproducira musica de fondo");
         Mix_Music *gMusic;
-        gMusic = Mix_LoadMUS( "/home/felipe/Documentos/Final-Fight/assets/sonidos/prueba.wav" );
+        gMusic = Mix_LoadMUS( "/home/felipe/Documentos/Final-Fight/assets/sonidos/nivel1.wav" );
         Mix_PlayMusic( gMusic, -1);
     }
 

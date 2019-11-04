@@ -15,7 +15,7 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
         case SALTANDO:
         {
             Locator::logger()->log(DEBUG,"Se reproduce saltando");
-            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/salto.wav")->getChunk();
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltolargo.wav")->getChunk();
             if (Mix_Playing(2)==0){
                 Mix_PlayChannel( 2, chunk, 0 );
             }
@@ -24,7 +24,7 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
         case REPOSANDO:
             break;
         case GOLPEANDO:{
-            Locator::logger()->log(DEBUG,"Se reproduce golpenado");
+            Locator::logger()->log(DEBUG,"Se reproduce golpeando");
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/golpe.wav")->getChunk();
             if (Mix_Playing(2)==0){
                 Mix_PlayChannel( 2, chunk, 0 );
@@ -34,7 +34,7 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
         case AGACHADO:
             break;
         case PATEANDO:{
-            Locator::logger()->log(DEBUG,"Se reproduce saltando");
+            Locator::logger()->log(DEBUG,"Se reproduce saltando con patada");
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltopatada.wav")->getChunk();
             if (Mix_Playing(2)==0){
                 Mix_PlayChannel( 2, chunk, 0 );
@@ -42,6 +42,13 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
         }
             break;
         case SALTANDO_CON_MOVIMIENTO:
+        {
+            Locator::logger()->log(DEBUG,"Se reproduce saltando");
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltocorto.wav")->getChunk();
+            if (Mix_Playing(2)==0){
+                Mix_PlayChannel( 2, chunk, 0 );
+            }
+        }
             break;
     }
 }
