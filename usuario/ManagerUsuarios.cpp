@@ -4,9 +4,7 @@
 
 #include "ManagerUsuarios.h"
 #include "../servicios/Locator.h"
-#include "../modelo/serializables/Puntaje.h"
 #include <algorithm>
-#include <set>
 
 ManagerUsuarios::ManagerUsuarios(int max) :
         maximo(max) {
@@ -86,17 +84,4 @@ bool ManagerUsuarios::hayJugadoresConectados() {
 bool ManagerUsuarios::usuarioValido(Usuario *usuario) {
     return (baseUsuarios.find(usuario->getUsuario()) != baseUsuarios.end()) &&
            (baseUsuarios[usuario->getUsuario()] == usuario->getContrasenia());
-}
-
-map<string, int> ManagerUsuarios::obtenerPuntajes() {
-    map<string, int> resultMap;
-
-    std::list<Usuario *>::iterator it;
-    for (it = usuarios.begin(); it != usuarios.end(); ++it) {
-        string usuario = it.operator*()->getUsuario();
-        int puntaje = it.operator*()->getPersonaje()->getEstado<Puntaje>("puntaje")->obtenerPuntos();
-        resultMap[usuario] = puntaje;
-    }
-
-   return resultMap;
 }

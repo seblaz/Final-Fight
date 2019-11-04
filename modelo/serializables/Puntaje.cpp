@@ -3,8 +3,6 @@
 //
 
 #include "Puntaje.h"
-Puntaje::Puntaje() : puntos(0) {}
-
 void Puntaje::serializar(ostream &stream) {
     Serializable::serializarEntero(stream, this->puntos);
 }

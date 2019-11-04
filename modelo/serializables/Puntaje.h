@@ -8,13 +8,13 @@
 
 #include "../Entidad.h"
 
-class Puntaje : Estado {
+class Puntaje : public Estado {
 
 private:
-    int puntos;
+    int puntos = 0;
 
 public:
-    explicit Puntaje();
+    Puntaje() = default;
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
     void agregarPuntos(int puntos);

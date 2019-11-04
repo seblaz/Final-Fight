@@ -7,7 +7,6 @@
 
 #include <array>
 #include <list>
-#include <map>
 #include "Usuario.h"
 #include "../eventos/semaphore.h"
 
@@ -34,7 +33,6 @@ public:
     void desconectarJugadorVoluntariamente(Usuario *usuario);
     bool hayJugadoresConectados();
     bool usuarioValido(Usuario *usuario);
-    map<string, int> obtenerPuntajes();
 };
 
 
