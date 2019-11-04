@@ -4,22 +4,23 @@
 
 #include <random>
 #include "NivelServidor.h"
-#include "../modelo/Nivel.h"
+#include "../modelo/serializables/Nivel.h"
 #include "../estados/Reposando.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../fisica/FisicaDeEscenario.h"
-#include "../modelo/Opacidad.h"
-#include "../modelo/EstadoDePersonaje.h"
+#include "../modelo/serializables/Opacidad.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../fisica/FisicaDeTransicion.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
-#include "../estados/ia/Patrullar.h"
-#include "../estados/Caminando.h"
-#include "../modelo/TipoElemento.h"
-#include "../modelo/Actividad.h"
-#include "../modelo/NumeroJugador.h"
+#include "../modelo/serializables/TipoElemento.h"
+#include "../modelo/serializables/Actividad.h"
+#include "../modelo/serializables/NumeroJugador.h"
 #include "FabricaDeAnimacionesServidor.h"
-#include "../modelo/IndiceSprite.h"
-#include "../modelo/Energia.h"
+#include "../modelo/serializables/IndiceSprite.h"
+#include "../modelo/serializables/Energia.h"
+#include "../modelo/Envolvente.h"
+#include "../fisica/FisicaDeColisiones.h"
+#include "../estados/ia/BuscarJugadores.h"
+#include "../modelo/serializables/Puntaje.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -49,6 +50,9 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
+    auto *envolvente = new Envolvente(posicion, 120,120, 10);
+    auto* colisionador = new FisicaDeColisiones();
+    auto* puntaje = new Puntaje();
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -60,6 +64,10 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("estado de personaje", estadoDePersonaje);
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("energia", energia);
+    jugador->agregarEstado("envolvente", envolvente);
+    jugador->agregarEstado("mapa", mapa);
+    jugador->agregarEstado("puntaje", puntaje);
+    jugador->agregarComportamiento("colisionador" , colisionador);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);
@@ -81,10 +89,10 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
 
     generarElementos(nivel, mapa, posicionDeEscenario, CAJA);
-    generarElementos(nivel, mapa, posicionDeEscenario, CUCHILLO);
-    generarElementos(nivel, mapa, posicionDeEscenario, TUBO);
     generarElementos(nivel, mapa, posicionDeEscenario, NEUMATICO);
-    generarEnemigo(nivel, mapa, posicionDeEscenario);
+    generarArmas(nivel, mapa, posicionDeEscenario, CUCHILLO);
+    generarArmas(nivel, mapa, posicionDeEscenario, TUBO);
+    generarEnemigo(nivel, mapa, posicionDeEscenario, jugadores);
     generarTransicion(nivel, mapa, jugadores);
 }
 
@@ -145,7 +153,7 @@ int generarPosicionY(int frontera) {
     return dist(mt);
 }
 
-void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario) {
+void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores) {
 
     Configuracion *config = Locator::configuracion();
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/enemigos/cantidad");
@@ -160,16 +168,20 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         Entidad *enemigo = mapa->crearEntidad();
 
         auto *tipo = new Tipo(ENEMIGO);
-        auto *comportamiento = new Patrullar();
+        auto *comportamiento = new BuscarJugadores(jugadores);
         auto *velocidadDeEnemigo = new Velocidad();
         auto *orientacionDeEnemigo = new Orientacion;
         auto *fisicaDeEnemigo = new FisicaDePersonaje();
-        EstadoDePersonajeServidor *estado = new Caminando();
-        auto *estadoDePersonaje = new EstadoDePersonaje(CAMINANDO);
+        auto *estado = new Reposando();
+        auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
         auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
         auto *indiceSprite = new IndiceSprite;
-        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "caminando");
+        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "reposando");
+        auto *energia = new Energia(100,1);
+        auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,120, 10);
+        auto* colisionador = new FisicaDeColisiones();
 
+        enemigo->agregarEstado("mapa", mapa);
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
         enemigo->agregarEstado("indice sprite", indiceSprite);
@@ -178,6 +190,9 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
         enemigo->agregarEstado("estado de personaje", estadoDePersonaje);
         enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
+        enemigo->agregarEstado("energia", energia);
+        enemigo->agregarEstado("envolvente", envolvente);
+        enemigo->agregarComportamiento("colisionador", colisionador);
         enemigo->agregarComportamiento("estado", estado);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
         enemigo->agregarComportamiento("comportamiento", comportamiento);
@@ -192,11 +207,46 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         case CAJA:
             cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
             break;
-        case CUCHILLO:
-            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/cantidad");
-            break;
         case NEUMATICO:
             cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/neumatico/cantidad");
+            break;
+        default:
+            cantidad = 0;
+    }
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+
+    auto *tipo = new Tipo(ELEMENTO);
+    auto *tipoElemento = new TipoElemento(ART);
+
+    for (int i = 1; i <= cantidad; i++) {
+        Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
+        auto *indiceSprite = new IndiceSprite;
+        auto elementoRandom = mapa->crearEntidad();
+
+        auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
+                                                    0);
+        auto *envolvente = new Envolvente(posicionElementoRandom, 120,120, 10);
+        auto* colisionador = new FisicaDeColisiones();
+
+        elementoRandom->agregarEstado("mapa", mapa);
+        elementoRandom->agregarEstado("posicion", posicionElementoRandom);
+        elementoRandom->agregarEstado("tipo", tipo);
+        elementoRandom->agregarEstado("indice sprite", indiceSprite);
+        elementoRandom->agregarEstado("tipo elemento", tipoElemento);
+        elementoRandom->agregarEstado("envolvente", envolvente);
+        elementoRandom->agregarComportamiento("colisionador", colisionador);
+        elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+    }
+
+}
+
+void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART) {
+    Configuracion *config = Locator::configuracion();
+    int cantidad;
+    switch (ART) {
+        case CUCHILLO:
+            cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/cuchillo/cantidad");
             break;
         case TUBO:
             cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/tubo/cantidad");
@@ -214,14 +264,15 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
         auto elementoRandom = mapa->crearEntidad();
+
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
 
+        //elementoRandom->agregarEstado("mapa", mapa);
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
         elementoRandom->agregarEstado("indice sprite", indiceSprite);
         elementoRandom->agregarEstado("tipo elemento", tipoElemento);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
     }
-
 }

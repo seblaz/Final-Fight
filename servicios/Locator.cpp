@@ -96,6 +96,34 @@ void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
     fabricaSonidos = fabricaDeSonidos;
 }
 
+/**
+ * Fuente.
+ */
+TTF_Font *Locator::fuente_;
+
+TTF_Font *Locator::fuente() {
+    return fuente_;
+}
+
+/**
+ * Eventos a procesar.
+ */
+EventosAProcesar *Locator::eventos_;
+
+EventosAProcesar *Locator::eventos() {
+    return eventos_;
+}
+
+
+
+void Locator::provide(EventosAProcesar *eventos) {
+    eventos_ = eventos;
+}
+
+void Locator::provide(TTF_Font *fuente) {
+    fuente_ = fuente;
+}
+
 
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");

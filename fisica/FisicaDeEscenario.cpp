@@ -38,10 +38,9 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
                 xScrollDerecho = xEscenario + ancho - scrollDerecho;
         }
     }else if ( largo - ancho <= posicionEscenario->x + 10) {
-        //xScrollDerecho = xMayorPersonaje;
-        jugadores->bloquearMovientos(xScrollIzquierdo, largo + 1);
+        jugadores->bloquearMovimientos(xScrollIzquierdo, largo + 1);
     }else {
-        jugadores->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
+        jugadores->bloquearMovimientos(xScrollIzquierdo, xScrollDerecho);
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
     if (xMayorPersonaje > largo) {

@@ -5,8 +5,8 @@
 #include "ActualizadorUsuario.h"
 #include "../../usuario/Usuario.h"
 #include "../../servicios/Locator.h"
-#include "../../modelo/EventoUsuario.h"
-#include "../../modelo/Accion.h"
+#include "../../modelo/serializables/EventoUsuario.h"
+#include "../../modelo/serializables/Accion.h"
 
 ActualizadorUsuario::ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuarios *manager) :
         usuarioAgregado(0),
@@ -17,19 +17,17 @@ ActualizadorUsuario::ActualizadorUsuario(EventosAProcesar *eventos, ManagerUsuar
 
 
 bool ActualizadorUsuario::validarContrasenia(Usuario *usuario, Socket *socket) {
-
-    bool contraseniaCorrecta = Locator::configuracion()->isUserOk(usuario->getUsuario(), usuario->getContrasenia());
-    if (contraseniaCorrecta) {
+    if (manager->usuarioValido(usuario)) {
         Locator::logger()->log(INFO, "Se recibió una contraseña correcta del usuario: " + usuario->getUsuario() + ".");
-    } else {
-        Locator::logger()->log(ERROR,
-                               "Se recibió una contraseña incorrecta del usuario: " + usuario->getUsuario() + ".");
-        EventoUsuario evento(CONTRASENIA_INCORRECTA);
-        stringstream ss;
-        evento.serializar(ss);
-        socket->enviar(ss);
+        return true;
     }
-    return contraseniaCorrecta;
+    Locator::logger()->log(ERROR,
+                           "Se recibió una contraseña incorrecta del usuario: " + usuario->getUsuario() + ".");
+    EventoUsuario evento(CONTRASENIA_INCORRECTA);
+    stringstream ss;
+    evento.serializar(ss);
+    socket->enviar(ss);
+    return false;
 }
 
 Usuario *ActualizadorUsuario::getUsuario(Socket *socket) {
@@ -47,7 +45,7 @@ Usuario *ActualizadorUsuario::getUsuario(Socket *socket) {
         switch (accion.accion()) {
             case ENVIAR_USUARIO:
                 nuevoUsuario->deserializar(s);
-                if(validarContrasenia(nuevoUsuario, socket)) fin = true;
+                if (validarContrasenia(nuevoUsuario, socket)) fin = true;
                 break;
             case FIN:
                 Locator::logger()->log(INFO, "Se desconecta voluntariamente un cliente en el menu de usuario.");
@@ -64,7 +62,8 @@ Usuario *ActualizadorUsuario::getUsuario(Socket *socket) {
     usuarioAgregado.wait();
 
     if (!nuevoUsuario->getValido()) { // Usuario invalido
-        Locator::logger()->log(INFO, "Se desconecta el usuario " + nuevoUsuario->getUsuario() + " y se termina su hilo.");
+        Locator::logger()->log(INFO,
+                               "Se desconecta el usuario " + nuevoUsuario->getUsuario() + " y se termina su hilo.");
         pthread_exit(nullptr);
     }
     return nuevoUsuario;

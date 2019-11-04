@@ -4,11 +4,9 @@
 
 #include "Patrullar.h"
 #include "../../servicios/Locator.h"
-#include "../../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
-#include "../../modelo/Velocidad.h"
 
 Patrullar::Patrullar() {
-    srand(time(NULL));
+    srand(time(nullptr));
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Patrullar");
 }
@@ -23,7 +21,6 @@ Patrullar::~Patrullar() {
 void Patrullar::actualizar(Entidad *entidad) {
 
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
-    estado->actualizar(entidad);
 
     int num = 1 + rand() % (101 - 1);
 

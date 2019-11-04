@@ -5,7 +5,7 @@
 #include <numeric>
 #include <utility>
 #include "AnimacionServidor.h"
-#include "../modelo/IndiceSprite.h"
+#include "../modelo/serializables/IndiceSprite.h"
 
 AnimacionServidor::AnimacionServidor(vector<int> duracionesPorSprite, int duracionTotal) {
     this->duracionesPorSprite = std::move(duracionesPorSprite);

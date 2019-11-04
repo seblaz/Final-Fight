@@ -5,7 +5,7 @@
 #include <string>
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
-#include "../main/Juego.h"
+#include "Juego.h"
 #include "ReceptorCliente.h"
 #include "ActualizadorCliente.h"
 #include "NivelCliente.h"
@@ -93,8 +93,6 @@ int main(int argc, char *argv[]) {
         Juego juego;
         SDL_Renderer *renderer = juego.renderer();
         Locator::provide(renderer);
-        Mapa &mapa = juego.mapa();
-        NivelCliente::generarPantallaDeEspera(&mapa);
 
         juego.loop();
         juego.terminar();

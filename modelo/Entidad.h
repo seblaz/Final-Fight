@@ -6,8 +6,7 @@
 #define FINAL_FIGHT_ENTIDAD_H
 
 #include <unordered_map>
-#include "Iterator.cpp"
-#include "../serializar/Serializable.h"
+#include "serializables/Serializable.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -22,7 +21,7 @@ class Entidad;
 /**
  * Estado. Representa un estado de una entidad (solo datos sin comportamiento).
  */
-class Estado {
+class Estado : protected Serializable {
 
 public:
     virtual void serializar(ostream& stream) {};
@@ -45,21 +44,24 @@ public:
  */
 using IdEntidad = size_t;
 
+typedef map<string, Estado *(*)()> estadosMapType;
+
 class Entidad : public Serializable {
 
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado de personaje" ,"personaje", "opacidad", "tipo elemento", "actividad", "numeroJugador", "indice sprite", "energia"};
-     const int fin = 999999999;
+    static vector<string> estadosSerializables;
+    static estadosMapType mapaEstados;
+    const int fin = -1;
 
 public:
+    Entidad();
     static void putIdInStream(ostream &in, IdEntidad idEntidad);
     static IdEntidad getIdFromStream(istream &stream);
 
-    template<typename T>
-    void agregarEstado(const string &s, T *t) {
-//        if (estados.find(s) != estados.end())
+    void agregarEstado(const string &s, Estado *t) {
+//        if ((estados.find(s) != estados.end()) && (estados[s] != t))
 //            delete estados[s];
         estados[s] = t;
     };
@@ -73,8 +75,7 @@ public:
         return estados.find(s) != estados.end();
     }
 
-    template<typename T>
-    void agregarComportamiento(const string &s, T *t) {
+    void agregarComportamiento(const string &s, Comportamiento *t) {
 //        if (comportamientos.find(s) != comportamientos.end())
 //            delete comportamientos[s];
         comportamientos[s] = t;
@@ -91,8 +92,6 @@ public:
 
     vector<Comportamiento *> getComportamientos();
 
-    vector<Estado *> getEstados();
-
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 };
@@ -103,17 +102,15 @@ public:
  */
 enum TIPO {
     PANTALLA_SELECCION,
-    PERSONAJE_SELECCION,
     PERSONAJE,
     ESCENARIO,
     JUGADOR,
     TRANSICION,
     ENEMIGO,
-    USUARIO,
     ELEMENTO
 };
 
-class Tipo : public Estado, Serializable {
+class Tipo : public Estado {
 
 private:
     TIPO tipo_;

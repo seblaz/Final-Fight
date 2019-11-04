@@ -7,7 +7,7 @@
 
 #include "../modelo/Entidad.h"
 
-class Animador : public Comportamiento{
+class Animador : public Comportamiento {
 
 public:
     void actualizar(Entidad *) override ;

@@ -8,18 +8,19 @@
 
 #include "../modelo/Mapa.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Posicion.h"
-#include "../modelo/Orientacion.h"
-#include "../modelo/Personaje.h"
-#include "../modelo/TipoElemento.h"
+#include "../modelo/serializables/Posicion.h"
+#include "../modelo/serializables/Orientacion.h"
+#include "../modelo/serializables/Personaje.h"
+#include "../modelo/serializables/TipoElemento.h"
 
 
 class NivelServidor {
 
 private:
     static void generarTransicion(const string &nivel,Mapa *mapa, Jugadores* posicionDeJugador);
-    static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario);
+    static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores);
     static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
+    static void generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
 
 public:
     static void generarMenuSeleccion(Mapa *mapa);

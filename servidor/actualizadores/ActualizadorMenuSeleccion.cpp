@@ -7,7 +7,7 @@
 #include "../../usuario/Usuario.h"
 #include "../../eventos/MostrarMenuSeleccion.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
-#include "../../modelo/Actividad.h"
+#include "../../modelo/serializables/Actividad.h"
 
 ConfirmarSeleccion::ConfirmarSeleccion(SelectorPersonajes *selector, Mapa *mapa, ManagerUsuarios *manager,
                                        enum PERSONAJE personaje_, Usuario *usuario_,

@@ -3,12 +3,15 @@
 //
 
 #include "EstadoDePersonajeServidor.h"
+#include "../cliente/Animador.h"
+#include "../modelo/Velocidad.h"
+#include "../servicios/Locator.h"
 #include "Saltando.h"
 #include "Caminando.h"
 #include "Agachado.h"
 #include "Golpeando.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
-#include "../modelo/EstadoDePersonaje.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
 
 #define RAPIDEZ 4
 
@@ -23,7 +26,6 @@ void EstadoDePersonajeServidor::saltar(Entidad * entidad) {
         animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "saltando");
     } else {
         estadoDePersonaje = new EstadoDePersonaje(SALTANDO_CON_MOVIMIENTO);
-        entidad->agregarEstado("estado de personaje", estadoDePersonaje);
 
         personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
         animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "saltandoAdelante");

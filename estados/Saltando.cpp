@@ -5,16 +5,15 @@
 #include "Saltando.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Velocidad.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "Caminando.h"
-#include "../modelo/EstadoDePersonaje.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
-#include "../modelo/Actividad.h"
+#include "../modelo/serializables/Actividad.h"
 
 Saltando::Saltando() {
     Logger *logger = Locator::logger();
-//    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
+    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
 
 Saltando::~Saltando() {
@@ -24,7 +23,6 @@ Saltando::~Saltando() {
 
 void Saltando::actualizar(Entidad *entidad) {
     if (!termine ) {
-    //if (!termine ){
         auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
         velocidad->y = 0;
         velocidad->z = velocidadInicial + aceleracion * frames;
@@ -67,7 +65,7 @@ void Saltando::golpear(Entidad *entidad) {
                 pateando = true;
                 entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(PATEANDO));
                 enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-                auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "patada");
+                auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "pateando");
                 entidad->agregarComportamiento("animacion servidor", animacion);
             }
         }

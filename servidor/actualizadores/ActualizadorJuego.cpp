@@ -4,14 +4,15 @@
 
 #include "ActualizadorJuego.h"
 #include "../NivelServidor.h"
-#include "../../modelo/Accion.h"
+#include "../../modelo/serializables/Accion.h"
 #include "../../eventos/EventoPersonaje.h"
 #include "../../usuario/Usuario.h"
-#include "../../modelo/Actividad.h"
+#include "../../modelo/serializables/Actividad.h"
 #include "../../eventos/DesconectarVoluntariamente.h"
-#include "../../modelo/EstadoDePersonaje.h"
+#include "../../modelo/serializables/EstadoDePersonaje.h"
 #include "../../estados/EstadoDePersonajeServidor.h"
 #include "../../estados/Reposando.h"
+#include "../../eventos/EventoModoTest.h"
 
 ActualizadorJuego::ActualizadorJuego(Mapa *mapa, EventosAProcesar *eventos, Entidad *jugador,
                                      ManagerUsuarios *managerUsuarios) :
@@ -75,6 +76,11 @@ void ActualizadorJuego::interpretarStream(stringstream &s, Usuario *usuario) {
                 break;
             case CAM_DERECHA_ABAJO:
                 evento = new CaminarDerechaAbajo(jugador);
+                eventos->push(evento);
+                break;
+            case MODOTEST:
+                Locator::logger()->log(INFO, "Se cambia el modo test del usuario " + usuario->getUsuario());
+                evento = new EventoModoTest(jugador);
                 eventos->push(evento);
                 break;
             case FIN:

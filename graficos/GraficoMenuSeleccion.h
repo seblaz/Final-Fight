@@ -8,7 +8,7 @@
 
 #include <SDL_rect.h>
 #include "../modelo/Entidad.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 
 class GraficoMenuSeleccion : public Comportamiento {
 

@@ -5,8 +5,8 @@
 
 #include "gtest/gtest.h"
 #include "../serializar/Serializable.h"
-#include "../modelo/Posicion.h"
-#include "../modelo/Orientacion.h"
+#include "../modelo/serializables/Posicion.h"
+#include "../modelo/serializables/Orientacion.h"
 #include "../usuario/Usuario.h"
 
 using namespace std;
@@ -82,7 +82,7 @@ TEST(Serializar, SerializarUnaOrientacion) {
 TEST(Serializar, SerializarUnTipo) {
 //    Tipo tipo(INICIAR_MENU_SELECCION);
     stringstream s;
-//    tipo.serializar(s);
+//    tipo.serializables(s);
 
     Tipo otroTipo;
     otroTipo.deserializar(s);

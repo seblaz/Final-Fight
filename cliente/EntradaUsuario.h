@@ -7,9 +7,9 @@
 
 
 #include <mutex>
-#include "../modelo/Accion.h"
+#include "../modelo/serializables/Accion.h"
 #include "../modelo/Socket.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include "../servicios/Configuracion.h"
 
 /**
@@ -35,7 +35,7 @@ private:
     Entidad *pantalla;
     bool activo = true;
     int framesPorAccion = 20;
-    int framesInactivo = 0;
+    int framesInactivo = 20;
     static void cambiarAlPersonajeAnterior(Personaje *personajeMarcado);
     static void cambiarAlPersonajeSiguiente(Personaje *personajeMarcado);
 

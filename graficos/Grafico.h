@@ -7,7 +7,7 @@
 
 
 #include "../modelo/Entidad.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include <SDL_rect.h>
 
 class Grafico : public Comportamiento {

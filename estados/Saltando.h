@@ -6,7 +6,6 @@
 #define FINAL_FIGHT_SALTANDO_H
 
 #include "EstadoDePersonajeServidor.h"
-#include "Reposando.h"
 
 #define LIMITE 35 // Limite del salto en altura
 

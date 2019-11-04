@@ -5,8 +5,8 @@
 #include "GraficoMenuSeleccion.h"
 #include "Sprite.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Personaje.h"
-#include "animaciones/AnimacionCliente.h"
+#include "../modelo/serializables/Personaje.h"
+#include "AnimacionCliente.h"
 
 
 void GraficoMenuSeleccion::actualizar(Entidad *entidad) {

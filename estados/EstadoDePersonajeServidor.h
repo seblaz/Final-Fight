@@ -7,10 +7,7 @@
 
 
 #include "../modelo/Entidad.h"
-#include "../cliente/Animador.h"
-#include "../modelo/Velocidad.h"
 #include "../servicios/Locator.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 
 class EstadoDePersonajeServidor : public Comportamiento {
 

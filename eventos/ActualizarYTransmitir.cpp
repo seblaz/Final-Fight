@@ -25,7 +25,6 @@ void ActualizarYTransmitir::actualizar() {
 }
 
 stringstream ActualizarYTransmitir::serializar() {
-//    Locator::logger()->log(DEBUG, "Se serializa el modelo.");
     stringstream s;
     for(auto tupla : mapa->devolverEntidadesConId()){
         Entidad::putIdInStream(s, tupla.first);
@@ -37,7 +36,6 @@ stringstream ActualizarYTransmitir::serializar() {
 void ActualizarYTransmitir::transmitir(stringstream &s) {
     auto *trasmision = new EventoATransmitir(s.str());
     eventosATransmitir->push(trasmision);
-//    Locator::logger()->log(DEBUG, "Se transmite el modelo.");
 }
 
 

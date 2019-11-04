@@ -44,7 +44,7 @@ endif()
 # Se agrega los cmake de sdl2-image
 # https://github.com/trenki2/SDL2Test
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/" "${CMAKE_SOURCE_DIR}/vendor/cmake-sdl-mixer/")
-#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sdl-mixer/")
+
 #[[
   Para que funcione pthread.
 ]]
@@ -53,38 +53,32 @@ SET(CMAKE_CXX_FLAGS -pthread)
 #[[
   Definición de variables.
 ]]
-FILE(GLOB TestSources test/*.cpp)
-FILE(GLOB ModelSources modelo/*.cpp)
-FILE(GLOB ModelMapSources modelo/mapeables/*.cpp)
-FILE(GLOB MainSources main/*.cpp)
-FILE(GLOB PhysicsSources fisica/*.cpp)
-FILE(GLOB GraphicsSources graficos/*.cpp)
-FILE(GLOB InputSources comportamiento/*.cpp)
-FILE(GLOB IASources estados/ia/*.cpp)
-FILE(GLOB StatesSources estados/*.cpp)
-FILE(GLOB ServicesSources servicios/*.cpp)
-FILE(GLOB LevelSources niveles/*.cpp)
-FILE(GLOB SoundSources sonidos/*.cpp)
-FILE(GLOB Configurations *.xml)
-FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
+FILE(GLOB_RECURSE TestSources test/*.cpp)
+FILE(GLOB_RECURSE ModelSources modelo/*.cpp)
+FILE(GLOB_RECURSE MainSources main/*.cpp)
+FILE(GLOB_RECURSE PhysicsSources fisica/*.cpp)
+FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
+FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
+FILE(GLOB_RECURSE StatesSources estados/*.cpp)
+FILE(GLOB_RECURSE ServicesSources servicios/*.cpp)
+FILE(GLOB_RECURSE LevelSources niveles/*.cpp)
+FILE(GLOB_RECURSE Configurations *.xml)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
-FILE(GLOB_RECURSE SerializeSources serializar/*.cpp)
+FILE(GLOB SoundSources sonidos/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
 find_package(SDL2TTF REQUIRED)
-find_package(SDL2_mixer REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS})
-
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources} ${SerializeSources} ${SerializeSources} ${UsuarioSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${LevelSources} ${IASources} ${UsuarioSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
@@ -102,12 +96,12 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSSDL_mixerources} ${ModelMapSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources} ${SoundSources})
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} cliente/Juego.cpp ${UsuarioSources} ${SoundSources})
 target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
 
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} eventos/EventoModoTest.cpp eventos/EventoModoTest.h)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

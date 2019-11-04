@@ -6,7 +6,7 @@
 #include <SDL_system.h>
 #include "EntradaUsuario.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
@@ -38,11 +38,7 @@ Accion *EntradaMenuSeleccion::getAccion() {
                 Locator::logger()->log(DEBUG, "Se selecciono enter.");
                 activo = false;
 
-                SDL_Renderer *renderer = Locator::renderer();
-                Configuracion *config = Locator::configuracion();
-                string srcSprite = config->getValue("/pantallaDeSeleccion/personajeElegido/src");
-                auto *spritePersonajeElegido = new Sprite(renderer, srcSprite);
-
+                auto *spritePersonajeElegido = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/listo/src");
                 pantalla->agregarEstado("sprite selector", spritePersonajeElegido);
 
                 switch (personaje->getPersonaje()) {
@@ -102,6 +98,8 @@ Accion *EntradaJuego::getAccion() {
         accion = CAM_ARRIBA;
     } else if (entrada[SDL_SCANCODE_DOWN]) {
         accion = CAM_ABAJO;
+    } else if (entrada[SDL_SCANCODE_T]) {
+        accion = MODOTEST;
     } else {
         accion = REPOSAR;
     }
@@ -129,18 +127,11 @@ void TrasmisionCliente::transmitir() {
 
     while (!fin) {
         size_t start = SDL_GetTicks();
-        if (socket->estaDesconectado()) {
-            Locator::logger()->log(ERROR, "Se detectó desconexión del servidor, se cierra la conexión.");
-            shutdown(socket->getIntSocket(), SHUT_RDWR);
-            close(socket->getIntSocket());
-            break;
-        }
-
 
         Accion *accion = getEntradaUsuario()->getAccion();
         stringstream s;
         accion->serializar(s);
-        if (!socket->enviar(s)) {
+        if (socket->estaDesconectado() || !socket->enviar(s)) {
             Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
             shutdown(socket->getIntSocket(), SHUT_RDWR);
             close(socket->getIntSocket());
@@ -148,10 +139,8 @@ void TrasmisionCliente::transmitir() {
         }
 
         size_t end = SDL_GetTicks();
-        int sleepTime = MS_PER_FRAME + start - end;
-        if (sleepTime > 0) {
-            SDL_Delay(sleepTime);
-        }
+        int sleepTime = int(MS_PER_FRAME) + start - end;
+        if (sleepTime > 0) SDL_Delay(sleepTime);
     }
     Locator::logger()->log(INFO, "Se termina el hilo del transmisor.");
 }

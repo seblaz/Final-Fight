@@ -6,7 +6,7 @@
 #include "ActualizadorCliente.h"
 #include "../servicios/Locator.h"
 #include "NivelCliente.h"
-#include "../modelo/Personaje.h"
+#include "../modelo/serializables/Personaje.h"
 
 ActualizadorCliente::ActualizadorCliente(Mapa *mapa) : mapa(mapa) {}
 
@@ -43,9 +43,6 @@ void ActualizadorCliente::actualizarEntidades(stringstream &s, TrasmisionCliente
                     Locator::provide(posicion);
                     transmision->setEntradaUsuario(new EntradaJuego);
                     NivelCliente::generarEscenario(mapa, entidad);
-                    break;
-                case USUARIO:
-                    Locator::logger()->log(DEBUG, "Usuario");
                     break;
                 case TRANSICION:
                     NivelCliente::generarTransicion(mapa, entidad);

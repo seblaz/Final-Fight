@@ -4,9 +4,9 @@
 
 #include <random>
 #include "Nivel.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../graficos/Sprite.h"
-#include "../modelo/Orientacion.h"
+#include "../modelo/serializables/Orientacion.h"
 #include "../estados/Reposando.h"
 #include "../estados/ia/Patrullar.h"
 #include "../fisica/FisicaDePersonaje.h"

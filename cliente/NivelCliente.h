@@ -7,18 +7,13 @@
 
 
 #include "../modelo/Mapa.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 
 class NivelCliente {
 
 public:
-    static void generarPantallaDeEspera(Mapa *mapa);
     static void generarMenuSeleccion(Mapa *mapa, Entidad *pantalla);
-
     static void generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador);
-
-    static void generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad);
-
     static void generarEscenario(Mapa *mapa, Entidad *entidad);
     static void generarTransicion(Mapa *mapa, Entidad* entidad);
     static void generarEnemigo(Mapa *mapa, Entidad* entidad);

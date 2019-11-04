@@ -1,24 +1,27 @@
 <configuracion>
+    <jugadores>
+        <cantidad>2</cantidad>
+    </jugadores>
     <usuarios>
-        <cantidad>1</cantidad>
-        <usuario>
+        <cantidad>4</cantidad>
+        <usuario0>
             <username>leo</username>
             <password>p</password>
-        </usuario>
-        <usuario>
+        </usuario0>
+        <usuario1>
             <username>seba</username>
             <password>b</password>
-        </usuario>
-        <usuario>
+        </usuario1>
+        <usuario2>
             <username>felipe</username>
             <password>123456</password>
-        </usuario>
-        <usuario>
+        </usuario2>
+        <usuario3>
             <username>franco</username>
             <password>p</password>
-        </usuario>
+        </usuario3>
     </usuarios>
-    <password>p</password>
+    <fps>60</fps>
     <debug>
         <level>DEBUG</level>
     </debug>
@@ -48,57 +51,52 @@
         <izquierdo>200</izquierdo>
         <derecho>400</derecho>
     </scroll>
-    <fps>60</fps>
-    <pantallaDeIngreso>
-    <botonDeEntrar>
-        <sprite>
-                <src>assets/varios/botonEntrar.png</src>
-            </sprite>
-    </botonDeEntrar>
-    <boxUsuario>
-        <sprite>
-                <src>assets/varios/boxUsuario.png</src>
-            </sprite>
-    </boxUsuario>
-    <boxContrasenia>
-        <sprite>
-                <src>assets/varios/boxPass.png</src>
-            </sprite>
-    </boxContrasenia>
-    <usuarioRechazado>
-	<sprite>
+    <pantallas>
+        <autenticacion>
+            <fondo>
+                <src>assets/varios/pantallaDeIngreso.png</src>
+            </fondo>
+            <rechazado>
                 <src>assets/varios/usuarioRechazado.png</src>
-    	</sprite>
-    </usuarioRechazado>
-    <identificacionUsuario>
-        <sprite>
-                <src>assets/varios/identificacionUsuario.png</src>
-    	</sprite>
-    </identificacionUsuario>
-        <sprite>
-            <src>assets/varios/pantallaDeIngreso.png</src>
-        </sprite>
-    </pantallaDeIngreso>
-    <pantallaDeSeleccion>
-        <fondo>
-            <src>assets/varios/pantallaMenuPersonaje.png</src>
-        </fondo>
-        <selector>
-            <src>assets/varios/selectorMenu.png</src>
-        </selector>
-        <personajeElegido>
-            <src>assets/varios/personajeElegido.png</src>
-        </personajeElegido>
-    </pantallaDeSeleccion>
-    <pantallaErrorDeConexion>
-            <src>assets/varios/pantallaErrorDeConexion.png</src>
-    </pantallaErrorDeConexion>
-    <pantallaPartidaLlena>
-        <src>assets/varios/pantallaPartidaLlena.png</src>
-    </pantallaPartidaLlena>
-    <pantallaUsuarioYaConectado>
-        <src>assets/varios/pantallaUsuarioYaConectado.png</src>
-    </pantallaUsuarioYaConectado>
+            </rechazado>
+            <formulario>
+                <fondo>
+                    <src>assets/varios/identificacionUsuario.png</src>
+                </fondo>
+                <usuario>
+                    <src>assets/varios/boxUsuario.png</src>
+                </usuario>
+                <password>
+                    <src>assets/varios/boxPass.png</src>
+                </password>
+                <enter>
+                    <src>assets/varios/botonEntrar.png</src>
+                </enter>
+            </formulario>
+        </autenticacion>
+        <error>
+            <usuarioYaConectado>
+                <src>assets/varios/pantallaUsuarioYaConectado.png</src>
+            </usuarioYaConectado>
+            <conexion>
+                <src>assets/varios/pantallaErrorDeConexion.png</src>
+            </conexion>
+            <partidaLlena>
+                <src>assets/varios/pantallaPartidaLlena.png</src>
+            </partidaLlena>
+        </error>
+        <seleccion>
+            <fondo>
+                <src>assets/varios/pantallaMenuPersonaje.png</src>
+            </fondo>
+            <selector>
+                <src>assets/varios/selectorMenu.png</src>
+            </selector>
+            <listo>
+                <src>assets/varios/personajeElegido.png</src>
+            </listo>
+        </seleccion>
+    </pantallas>
     <personajes>
         <cody>
             <src>assets/personajes/cody.png</src>
@@ -255,156 +253,942 @@
         </nivel2>
     </niveles>
     <animaciones>
+        <indicador>
+            <cantidad>1</cantidad>
+            <posiciones>
+                <posicion0>
+                    <x>0</x>
+                    <y>0</y>
+                    <w>51</w>
+                    <h>44</h>
+                </posicion0>
+            </posiciones>
+            <escala>1.5</escala>
+        </indicador>
+        <objetos>
+            <cuchillo>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>8</x>
+                        <y>5</y>
+                        <w>30</w>
+                        <h>20</h>
+                    </posicion0>
+                </posiciones>
+                <escala>3</escala>
+            </cuchillo>
+            <tubo>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>0</x>
+                        <y>5</y>
+                        <w>68</w>
+                        <h>8</h>
+                    </posicion0>
+                </posiciones>
+                <escala>3</escala>
+            </tubo>
+            <caja>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>8</x>
+                        <y>5</y>
+                        <w>70</w>
+                        <h>120</h>
+                    </posicion0>
+                </posiciones>
+                <escala>3</escala>
+            </caja>
+            <neumatico>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>8</x>
+                        <y>5</y>
+                        <w>70</w>
+                        <h>120</h>
+                    </posicion0>
+                </posiciones>
+                <escala>3</escala>
+            </neumatico>
+        </objetos>
         <cody>
             <reposando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>6</y>
+                        <w>39</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </reposando>
             <caminando>
                 <cantidad>6</cantidad>
                 <posiciones>
-                    <posicion1>
+                    <posicion0>
                         <x>10</x>
                         <y>100</y>
                         <w>29</w>
                         <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>51</x>
+                        <y>100</y>
+                        <w>47</w>
+                        <h>90</h>
                     </posicion1>
+                    <posicion2>
+                        <x>113</x>
+                        <y>100</y>
+                        <w>43</w>
+                        <h>90</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>164</x>
+                        <y>100</y>
+                        <w>27</w>
+                        <h>90</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>212</x>
+                        <y>100</y>
+                        <w>47</w>
+                        <h>90</h>
+                    </posicion4>
+                    <posicion5>
+                        <x>266</x>
+                        <y>100</y>
+                        <w>47</w>
+                        <h>90</h>
+                    </posicion5>
                 </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1,1,1</duraciones>
                 <total>60</total>
-                <escala>4.5</escala>
             </caminando>
             <saltando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>16</x>
+                        <y>238</y>
+                        <w>39</w>
+                        <h>81</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>74</x>
+                        <y>203</y>
+                        <w>32</w>
+                        <h>106</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>177</x>
+                        <y>220</y>
+                        <w>53</w>
+                        <h>83</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>115</x>
+                        <y>218</y>
+                        <w>47</w>
+                        <h>74</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1</duraciones>
                 <total>60</total>
             </saltando>
             <saltandoAdelante>
+                <cantidad>7</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>16</x>
+                        <y>238</y>
+                        <w>39</w>
+                        <h>81</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>115</x>
+                        <y>218</y>
+                        <w>47</w>
+                        <h>74</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>245</x>
+                        <y>240</y>
+                        <w>60</w>
+                        <h>60</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>305</x>
+                        <y>239</y>
+                        <w>50</w>
+                        <h>53</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>367</x>
+                        <y>240</y>
+                        <w>60</w>
+                        <h>83</h>
+                    </posicion4>
+                    <posicion5>
+                        <x>443</x>
+                        <y>225</y>
+                        <w>50</w>
+                        <h>78</h>
+                    </posicion5>
+                    <posicion6>
+                        <x>115</x>
+                        <y>218</y>
+                        <w>47</w>
+                        <h>74</h>
+                    </posicion6>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1,1,1,1</duraciones>
                 <total>60</total>
             </saltandoAdelante>
-            <patada>
+            <pateando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>245</x>
+                        <y>540</y>
+                        <w>60</w>
+                        <h>80</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>315</x>
+                        <y>540</y>
+                        <w>50</w>
+                        <h>81</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>360</x>
+                        <y>560</y>
+                        <w>85</w>
+                        <h>81</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>315</x>
+                        <y>540</y>
+                        <w>50</w>
+                        <h>81</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,3,2</duraciones>
                 <total>35</total>
-            </patada>
+            </pateando>
             <golpeando>
+                <cantidad>3</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>439</y>
+                        <w>51</w>
+                        <h>87</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>63</x>
+                        <y>439</y>
+                        <w>92</w>
+                        <h>87</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>6</x>
+                        <y>439</y>
+                        <w>51</w>
+                        <h>87</h>
+                    </posicion2>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,2,1</duraciones>
                 <total>16</total>
             </golpeando>
             <agachado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>350</x>
+                        <y>715</y>
+                        <w>39</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
         </cody>
         <poisson>
             <reposando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>79</x>
+                        <y>8</y>
+                        <w>35</w>
+                        <h>89</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
             </reposando>
             <caminando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>8</x>
+                        <y>6</y>
+                        <w>32</w>
+                        <h>89</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>46</x>
+                        <y>6</y>
+                        <w>32</w>
+                        <h>89</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>79</x>
+                        <y>8</y>
+                        <w>35</w>
+                        <h>89</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>46</x>
+                        <y>6</y>
+                        <w>32</w>
+                        <h>89</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>4,3,4,3</duraciones>
                 <total>55</total>
             </caminando>
             <saltando>
+                <cantidad>2</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>8</x>
+                        <y>6</y>
+                        <w>32</w>
+                        <h>89</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>79</x>
+                        <y>8</y>
+                        <w>35</w>
+                        <h>89</h>
+                    </posicion1>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1</duraciones>
                 <total>55</total>
             </saltando>
             <saltandoAdelante>
-                <duraciones>1,1,1,1,1</duraciones>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>49</x>
+                        <y>232</y>
+                        <w>77</w>
+                        <h>68</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>129</x>
+                        <y>215</y>
+                        <w>36</w>
+                        <h>70</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>169</x>
+                        <y>216</y>
+                        <w>60</w>
+                        <h>45</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1,1,1</duraciones>
                 <total>45</total>
             </saltandoAdelante>
-            <patada>
-            </patada>
+            <pateando>
+            </pateando>
             <golpeando>
+                <cantidad>2</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>236</x>
+                        <y>105</y>
+                        <w>90</w>
+                        <h>92</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>300</x>
+                        <y>105</y>
+                        <w>120</w>
+                        <h>92</h>
+                    </posicion1>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1</duraciones>
+                <total>45</total>
             </golpeando>
             <agachado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
-                <total>1</total>
+                <total>45</total>
             </agachado>
         </poisson>
         <guy>
             <reposando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>0</y>
+                        <w>55</w>
+                        <h>95</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </reposando>
             <caminando>
+                <cantidad>5</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>105</y>
+                        <w>35</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>40</x>
+                        <y>105</y>
+                        <w>45</w>
+                        <h>90</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>90</x>
+                        <y>105</y>
+                        <w>42</w>
+                        <h>90</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>130</x>
+                        <y>105</y>
+                        <w>42</w>
+                        <h>90</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>172</x>
+                        <y>105</y>
+                        <w>42</w>
+                        <h>90</h>
+                    </posicion4>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1,1</duraciones>
                 <total>60</total>
             </caminando>
             <saltando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>205</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>55</x>
+                        <y>195</y>
+                        <w>50</w>
+                        <h>100</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>55</x>
+                        <y>195</y>
+                        <w>50</w>
+                        <h>100</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>5</x>
+                        <y>205</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1</duraciones>
                 <total>60</total>
             </saltando>
             <saltandoAdelante>
+                <cantidad>6</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>195</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>55</x>
+                        <y>195</y>
+                        <w>50</w>
+                        <h>100</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>105</x>
+                        <y>192</y>
+                        <w>60</w>
+                        <h>95</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>165</x>
+                        <y>192</y>
+                        <w>48</w>
+                        <h>90</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>210</x>
+                        <y>192</y>
+                        <w>65</w>
+                        <h>90</h>
+                    </posicion4>
+                    <posicion5>
+                        <x>280</x>
+                        <y>192</y>
+                        <w>65</w>
+                        <h>90</h>
+                    </posicion5>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1,1,1,1</duraciones>
                 <total>60</total>
             </saltandoAdelante>
-            <patada>
+            <pateando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>200</x>
+                        <y>500</y>
+                        <w>85</w>
+                        <h>80</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
-            </patada>
+            </pateando>
             <golpeando>
+                <cantidad>3</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>60</x>
+                        <y>380</y>
+                        <w>65</w>
+                        <h>100</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>122</x>
+                        <y>380</y>
+                        <w>63</w>
+                        <h>100</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>185</x>
+                        <y>380</y>
+                        <w>70</w>
+                        <h>100</h>
+                    </posicion2>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,2,1</duraciones>
                 <total>16</total>
             </golpeando>
             <agachado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>343</x>
+                        <y>670</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
         </guy>
         <haggar>
             <reposando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>0</x>
+                        <y>0</y>
+                        <w>64</w>
+                        <h>104</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </reposando>
             <caminando>
                 <duraciones>1,1,1,1,1,1</duraciones>
+                <cantidad>6</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>0</x>
+                        <y>103</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>65</x>
+                        <y>103</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>135</x>
+                        <y>100</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>204</x>
+                        <y>103</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>275</x>
+                        <y>100</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion4>
+                    <posicion5>
+                        <x>340</x>
+                        <y>100</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion5>
+                </posiciones>
+                <escala>4.5</escala>
                 <total>60</total>
             </caminando>
             <saltando>
                 <duraciones>1,1,1,1,1</duraciones>
+                <cantidad>5</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>212</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>65</x>
+                        <y>212</y>
+                        <w>60</w>
+                        <h>140</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>115</x>
+                        <y>205</y>
+                        <w>60</w>
+                        <h>140</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>65</x>
+                        <y>212</y>
+                        <w>60</w>
+                        <h>140</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>5</x>
+                        <y>212</y>
+                        <w>60</w>
+                        <h>140</h>
+                    </posicion4>
+                </posiciones>
+                <escala>4.5</escala>
                 <total>60</total>
             </saltando>
             <saltandoAdelante>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>5</x>
+                        <y>212</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </saltandoAdelante>
-            <patada>
+            <pateando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>195</x>
+                        <y>540</y>
+                        <w>90</w>
+                        <h>65</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
-            </patada>
+            </pateando>
             <golpeando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>10</x>
+                        <y>440</y>
+                        <w>48</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>113</x>
+                        <y>440</y>
+                        <w>97</w>
+                        <h>90</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>260</x>
+                        <y>440</y>
+                        <w>60</w>
+                        <h>95</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>320</x>
+                        <y>440</y>
+                        <w>85</w>
+                        <h>90</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,2,1</duraciones>
                 <total>16</total>
             </golpeando>
             <agachado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>360</x>
+                        <y>825</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
         </haggar>
         <maki>
             <reposando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>0</x>
+                        <y>0</y>
+                        <w>45</w>
+                        <h>95</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </reposando>
             <caminando>
+                <cantidad>5</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>0</x>
+                        <y>105</y>
+                        <w>35</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>35</x>
+                        <y>105</y>
+                        <w>45</w>
+                        <h>90</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>80</x>
+                        <y>105</y>
+                        <w>35</w>
+                        <h>90</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>115</x>
+                        <y>105</y>
+                        <w>28</w>
+                        <h>90</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>140</x>
+                        <y>105</y>
+                        <w>45</w>
+                        <h>90</h>
+                    </posicion4>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1,1</duraciones>
                 <total>60</total>
             </caminando>
             <saltando>
-                <duraciones>1,1,1,1</duraciones>
+                <cantidad>3</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>318</x>
+                        <y>85</y>
+                        <w>46</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>318</x>
+                        <y>85</y>
+                        <w>46</w>
+                        <h>90</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>272</x>
+                        <y>95</y>
+                        <w>46</w>
+                        <h>100</h>
+                    </posicion2>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1,1</duraciones>
                 <total>60</total>
             </saltando>
             <saltandoAdelante>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>365</x>
+                        <y>85</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>418</x>
+                        <y>85</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>465</x>
+                        <y>85</y>
+                        <w>55</w>
+                        <h>90</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>522</x>
+                        <y>85</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,1,1,1</duraciones>
                 <total>60</total>
             </saltandoAdelante>
-            <patada>
+            <pateando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>170</x>
+                        <y>400</y>
+                        <w>80</w>
+                        <h>80</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
-            </patada>
+            </pateando>
             <golpeando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>50</x>
+                        <y>200</y>
+                        <w>70</w>
+                        <h>90</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>118</x>
+                        <y>200</y>
+                        <w>55</w>
+                        <h>90</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>395</x>
+                        <y>180</y>
+                        <w>43</w>
+                        <h>110</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>395</x>
+                        <y>180</y>
+                        <w>43</w>
+                        <h>110</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1,2,1</duraciones>
                 <total>16</total>
             </golpeando>
             <agachado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>45</x>
+                        <y>6</y>
+                        <w>45</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>

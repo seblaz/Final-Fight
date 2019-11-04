@@ -5,8 +5,8 @@
 #include "Jugadores.h"
 
 #include <utility>
-#include "Posicion.h"
-#include "Actividad.h"
+#include "serializables/Posicion.h"
+#include "serializables/Actividad.h"
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
@@ -37,7 +37,7 @@ void Jugadores::reiniciarPosiciones(int x, int y) {
     }
 }
 
-void Jugadores::bloquearMovientos(int scrollIzquierdo, int scrollDerecho) {
+void Jugadores::bloquearMovimientos(int scrollIzquierdo, int scrollDerecho) {
     for(auto tuple : jugadores){
         int x = tuple.second->getEstado<Posicion>("posicion")->getX();
         if ( x >= scrollDerecho ){
@@ -59,6 +59,23 @@ void Jugadores::arrastrarInactivos(int scrollIzquierdo, int scrollDerecho) {
             }
         }
     }
+}
+
+Posicion *Jugadores::posicionMasCercana(Posicion *posicion) {
+    auto* posicionMasCercana = new Posicion(3000,1000,100);
+    for(auto tuple: jugadores){
+        if (tuple.second->getEstado<Actividad>("actividad")->activo){
+            auto* posicionJugador = tuple.second->getEstado<Posicion>("posicion");
+            int distJugadorYenemigo = posicionJugador->distanciaEntrePuntos(posicion);
+            int distMasCercanaActual = posicionMasCercana->distanciaEntrePuntos(posicion);
+            if ( distJugadorYenemigo < distMasCercanaActual){
+                posicionMasCercana->x = posicionJugador->x;
+                posicionMasCercana->y = posicionJugador->y;
+                posicionMasCercana->z = posicionJugador->z;
+            }
+        }
+    }
+    return posicionMasCercana;
 }
 
 
