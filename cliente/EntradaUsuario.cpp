@@ -139,7 +139,7 @@ void TrasmisionCliente::transmitir() {
         }
 
         size_t end = SDL_GetTicks();
-        int sleepTime = int(MS_PER_FRAME) + start - end;
+        size_t sleepTime = size_t(MS_PER_FRAME) + start - end;
         if (sleepTime > 0) SDL_Delay(sleepTime);
     }
     Locator::logger()->log(INFO, "Se termina el hilo del transmisor.");
