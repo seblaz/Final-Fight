@@ -10,7 +10,7 @@
 #include <SDL_ttf.h>
 #include "../../usuario/Usuario.h"
 #include "Vista.h"
-#include "../Autenticador.h"
+#include "../modelos/Autenticador.h"
 
 class VistaAutenticador : public Vista {
 

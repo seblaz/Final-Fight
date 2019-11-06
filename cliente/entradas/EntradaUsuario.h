@@ -30,20 +30,20 @@ public:
 
 };
 
-class EntradaMenuSeleccion : public EntradaUsuario {
-
-private:
-    Entidad *pantalla;
-    bool activo = true;
-    int framesPorAccion = 20;
-    int framesInactivo = 20;
-    static void cambiarAlPersonajeAnterior(Personaje *personajeMarcado);
-    static void cambiarAlPersonajeSiguiente(Personaje *personajeMarcado);
-
-public:
-    Accion *getAccion(SDL_Event *e) override;
-    explicit EntradaMenuSeleccion(Entidad *entidad) ;
-};
+//class EntradaMenuSeleccion : public EntradaUsuario {
+//
+//private:
+//    Entidad *pantalla;
+//    bool activo = true;
+//    int framesPorAccion = 20;
+//    int framesInactivo = 20;
+//    static void cambiarAlPersonajeAnterior(Personaje *personajeMarcado);
+//    static void cambiarAlPersonajeSiguiente(Personaje *personajeMarcado);
+//
+//public:
+//    Accion *getAccion(SDL_Event *e) override;
+//    explicit EntradaMenuSeleccion(Entidad *entidad) ;
+//};
 
 class EntradaJuego : public EntradaUsuario {
 

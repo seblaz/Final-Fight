@@ -30,7 +30,7 @@ void ConfirmarSeleccion::resolver() {
             break;
         }
     }
-    if(listos){
+    if(listos && !Locator::usuarios()->faltanJugadores()){
         int numeroJugador = 1;
         for (Usuario *iUsuario : Locator::usuarios()->getUsuarios()) {
             Entidad *personaje = NivelServidor::generarJugador(Locator::mapa(), iUsuario->getPersonajeSeleccionado(), numeroJugador);

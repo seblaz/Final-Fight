@@ -7,7 +7,7 @@
 
 
 #include "EntradaUsuario.h"
-#include "../Autenticador.h"
+#include "../modelos/Autenticador.h"
 
 class EntradaAutenticador : public EntradaUsuario {
 

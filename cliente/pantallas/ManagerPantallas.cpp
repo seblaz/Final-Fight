@@ -20,9 +20,11 @@ void ManagerPantallas::cambiarA(const IdPantalla &idPantalla) {
     if (!idPantalla.empty()) {
         {
             unique_lock<std::mutex> lock(m);
-            actual = pantallas[idPantalla];
+            if(actual->getId() != idPantalla){
+                actual = pantallas[idPantalla];
+                Locator::logger()->log(INFO, "Se cambia a la pantalla: " + idPantalla + ".");
+            }
         }
-        Locator::logger()->log(INFO, "Se cambia a la pantalla: " + idPantalla + ".");
     }
 }
 

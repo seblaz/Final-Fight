@@ -12,6 +12,11 @@
 #include "pantallas/ManagerPantallas.h"
 #include "interpretes/InterpreteAutenticadorCli.h"
 #include "entradas/EntradaAutenticador.h"
+#include "modelos/MenuSeleccion.h"
+#include "interpretes/InterpreteNuloCli.h"
+#include "entradas/EntradaMenuSeleccion.h"
+#include "vistas/VistaMenuSeleccion.h"
+#include "pantallas/PantallaError.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -70,12 +75,21 @@ void Juego::loop() {
     auto *vistaAutenticador = new VistaAutenticador(&autenticador);
     auto *interpreteAutenticador = new InterpreteAutenticadorCli(vistaAutenticador, &manager);
     auto *entradaAutenticador = new EntradaAutenticador(&autenticador);
-    manager.agregarPantalla(new Pantalla("autenticacion", interpreteAutenticador, entradaAutenticador, vistaAutenticador));
-//    manager.agregarPantalla(new PantallaAutenticador("autenticador"));
+    manager.agregarPantalla(new Pantalla("autenticacion",
+                                         interpreteAutenticador,
+                                         entradaAutenticador,
+                                         vistaAutenticador));
+
+    MenuSeleccion menu;
+    manager.agregarPantalla(new Pantalla("menu de seleccion",
+                                         new InterpreteNuloCli(),
+                                         new EntradaMenuSeleccion(&menu),
+                                         new VistaMenuSeleccion(&menu)));
+    //    manager.agregarPantalla(new PantallaAutenticador("autenticador"));
 //    manager.agregarPantalla(new PantallaJuego("juego", &mapa_));
-//    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
-//    manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
-//    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
+    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
+    manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
+    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
 
 
     recibirEnHilo();
@@ -89,19 +103,14 @@ void Juego::loop() {
         int start = SDL_GetTicks();
 
         SDL_Event *e = processInput();
-        Accion *accion = manager.getActual()->getAccion(e);
+        manager.getActual()->enviar(e);
         delete e;
-        stringstream s;
-        accion->serializar(s);
-        if (Locator::socket()->estaDesconectado() || !Locator::socket()->enviar(s)) {
-            Locator::logger()->log(ERROR, "Ocurrió un error en el hilo de transmisión.");
-            Locator::socket()->finalizarConexion();
-            break;
-        }
+
         int end = SDL_GetTicks();
         int sleepTime = MS_PER_FRAME + start - end;
         if (sleepTime > 0) SDL_Delay(sleepTime);
     }
+
 //    manager.getActual()->finalizar();
     Locator::logger()->log(INFO, "Finaliza el hilo de transmisión.");
 }
@@ -160,11 +169,7 @@ void Juego::recibir() {
     Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
     while (!exit) {
         stringstream s;
-        if (Locator::socket()->estaDesconectado() || !Locator::socket()->recibir(s)) {
-            Locator::logger()->log(ERROR, "Ocurrió un error en el hilo de recepción.");
-            Locator::socket()->finalizarConexion();
-            break;
-        };
+        manager.getActual()->recibir(s);
         manager.getActual()->interpretar(s);
         manager.getActual()->graficar(renderer_);
         actualizarGraficos();
