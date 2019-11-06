@@ -12,7 +12,8 @@
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "SelectorPersonajes.h"
-#include "ListaSockets.h"
+#include "clientes/Cliente.h"
+#include "clientes/ManagerClientes.h"
 
 using namespace std;
 
@@ -20,28 +21,12 @@ class ContenedorHilos {
 
 private:
     vector<pthread_t> hilos;
-    Mapa *mapa;
-    ManagerUsuarios *manager;
-    EventosAProcesar *eventosAProcesar;
-    SelectorPersonajes *selector;
-    ListaSockets *listaSockets;
+    ManagerClientes clientes;
 
 public:
-    ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
-                    SelectorPersonajes *selector, ListaSockets *listaSockets);
+    ContenedorHilos();
     void crearHilo(Socket *socket);
     void esperarFinDeHilos();
 };
-
-struct escucharClienteArgs {
-    Mapa *mapa{};
-    Socket *socket{};
-    ListaSockets *listaSockets{};
-    ManagerUsuarios *manager{};
-    EventosAProcesar *eventos{};
-    SelectorPersonajes *selector{};
-};
-
-void *escucharCliente(void *);
 
 #endif //FINAL_FIGHT_CONTENEDORHILOS_H

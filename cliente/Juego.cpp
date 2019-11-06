@@ -5,16 +5,21 @@
 #include "Juego.h"
 #include "../servicios/Locator.h"
 #include "ReceptorCliente.h"
-#include "EntradaUsuario.h"
-#include "../modelo/serializables/EventoUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
-#include "pantallas/autenticador/PantallaAutenticador.h"
-#include "pantallas/ManagerPantallas.h"
-#include "pantallas/juego/PantallaJuego.h"
-#include "pantallas/error/PantallaError.h"
+#include "interpretes/InterpreteAutenticadorCli.h"
+#include "entradas/EntradaAutenticador.h"
+#include "modelos/MenuSeleccion.h"
+#include "interpretes/InterpreteNuloCli.h"
+#include "entradas/EntradaMenuSeleccion.h"
+#include "vistas/VistaMenuSeleccion.h"
+#include "pantallas/PantallaError.h"
+#include "interpretes/InterpreteJuegoCli.h"
+#include "entradas/EntradaJuego.h"
+#include "vistas/VistaJuego.h"
+#include "pantallas/PantallaJuego.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -69,20 +74,48 @@ void Juego::loop() {
 
     if (exit) return;
 
-    ManagerPantallas manager;
-    manager.agregarPantalla(new PantallaAutenticador("autenticador"));
-    manager.agregarPantalla(new PantallaJuego("juego", &mapa_));
+    Autenticador autenticador;
+    auto *vistaAutenticador = new VistaAutenticador(&autenticador);
+    auto *interpreteAutenticador = new InterpreteAutenticadorCli(vistaAutenticador, &manager);
+    auto *entradaAutenticador = new EntradaAutenticador(&autenticador);
+    manager.agregarPantalla(new Pantalla("autenticacion",
+                                         interpreteAutenticador,
+                                         entradaAutenticador,
+                                         vistaAutenticador));
+
+    MenuSeleccion menu;
+    manager.agregarPantalla(new Pantalla("menu de seleccion",
+                                         new InterpreteNuloCli(),
+                                         new EntradaMenuSeleccion(&menu),
+                                         new VistaMenuSeleccion(&menu)));
+
+    manager.agregarPantalla(new PantallaJuego("juego", new InterpreteJuegoCli(), new EntradaJuego(), new VistaJuego()));
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
     manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
     manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
 
+
+    recibirEnHilo();
+
+    /**
+     * Transmision.
+     */
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de transmisión.");
+    const int MS_PER_FRAME = int(1.0 / Locator::configuracion()->getIntValue("/fps") * 1000); // Milisegundos.
     while (!exit) {
+        int start = SDL_GetTicks();
+
         SDL_Event *e = processInput();
-        manager.getActual()->actualizar(e);
+        manager.getActual()->enviar(e);
         delete e;
-        graficar();
+
+        int end = SDL_GetTicks();
+        int sleepTime = MS_PER_FRAME + start - end;
+        if (sleepTime > 0) SDL_Delay(sleepTime);
     }
-    manager.getActual()->finalizar();
+
+//    manager.getActual()->finalizar();
+    Locator::logger()->log(INFO, "Finaliza el hilo de transmisión.");
 }
 
 SDL_Event *Juego::processInput() {
@@ -97,7 +130,7 @@ SDL_Event *Juego::processInput() {
     return e;
 }
 
-void Juego::graficar() {
+void Juego::actualizarGraficos() {
     SDL_RenderPresent(renderer_); // Update screen
     SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer_);
@@ -118,4 +151,32 @@ void Juego::terminar() {
 
 SDL_Renderer *Juego::renderer() {
     return renderer_;
+}
+
+pthread_t Juego::recibirEnHilo() {
+    pthread_t hilo;
+    pthread_create(&hilo, nullptr, [](void *arg) -> void * {
+        auto *juego = (Juego *) arg;
+        juego->recibir();
+        return nullptr;
+    }, (void *) this);
+
+    return hilo;
+}
+
+void Juego::recibir() {
+
+    /**
+     * Recepcion.
+     */
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
+    while (!exit) {
+        stringstream s;
+        manager.getActual()->recibir(s);
+        manager.getActual()->interpretarNombrePantalla(s);
+        manager.getActual()->interpretarModelo(s);
+        manager.getActual()->graficar(renderer_);
+        actualizarGraficos();
+    }
+    Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
 }

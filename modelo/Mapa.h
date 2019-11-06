@@ -26,6 +26,8 @@ private:
     static IdEntidad ultimoId;
     unordered_map<IdEntidad, Entidad*> entidades;
     unordered_map<IdEntidad, Entidad*> jugadores;
+    stringstream serializadoMasReciente;
+    mutex m;
 
 public:
     Entidad *crearEntidad();
@@ -43,6 +45,9 @@ public:
     unordered_map<IdEntidad, Entidad *> *devolverJugadores();
     Colisionables* getColisionables();
     IdEntidad getIdEntidad(Entidad *);
+
+    void guardarSerializado(stringstream &s);
+    void serializar(ostream& stream) override;
 };
 
 #endif //FINAL_FIGHT_MAPA_H

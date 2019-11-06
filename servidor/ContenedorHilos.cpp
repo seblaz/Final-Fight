@@ -3,17 +3,11 @@
 //
 
 #include "ContenedorHilos.h"
-#include "ReceptorServidor.h"
 #include "../servicios/Locator.h"
-#include "ListaSockets.h"
 
-ContenedorHilos::ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
-                                 SelectorPersonajes *selector, ListaSockets *listaSockets) :
-        mapa(mapa),
-        manager(manager),
-        selector(selector),
-        listaSockets(listaSockets),
-        eventosAProcesar(eventosAProcesar) {}
+ContenedorHilos::ContenedorHilos() {
+    Locator::provide(&clientes);
+}
 
 void ContenedorHilos::esperarFinDeHilos() {
     for (pthread_t hilo : hilos)
@@ -24,19 +18,20 @@ void ContenedorHilos::esperarFinDeHilos() {
 void ContenedorHilos::crearHilo(Socket *socket) {
     Locator::logger()->log(DEBUG, "Se crea un nuevo thread para recibir las acciones de los clientes.");
 
-    pthread_t hilo;
-    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector});
-    pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
-    hilos.push_back(hilo);
+//    pthread_t hilo;
+//    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector});
+//    pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
+//    hilos.push_back(hilo);
+    clientes.agregarCliente(new Cliente(socket));
 }
 
-void *escucharCliente(void *args) {
-    auto *argumentos = (escucharClienteArgs *) args;
-    ReceptorServidor receptor(argumentos->mapa, argumentos->socket, argumentos->listaSockets,
-                              argumentos->manager, argumentos->eventos,
-                              argumentos->selector);
-    delete argumentos;
-    receptor.recibir();
-    Locator::logger()->log(INFO, "Se termina un hilo de cliente");
-    return nullptr;
-}
+//void *escucharCliente(void *args) {
+//    auto *argumentos = (escucharClienteArgs *) args;
+//    ReceptorServidor receptor(argumentos->mapa, argumentos->socket, argumentos->listaSockets,
+//                              argumentos->manager, argumentos->eventos,
+//                              argumentos->selector);
+//    delete argumentos;
+//    receptor.recibir();
+//    Locator::logger()->log(INFO, "Se termina un hilo de cliente");
+//    return nullptr;
+//}

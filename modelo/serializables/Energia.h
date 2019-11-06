@@ -1,4 +1,4 @@
-//
+//energia
 // Created by franco on 29/10/19.
 //
 
@@ -15,6 +15,7 @@ private:
     int puntosDeEnergia;
     int vidas;
     bool vivo;
+    bool modoTest;
 
 public:
     Energia() = default;
@@ -27,7 +28,7 @@ public:
     int getEnergia();
     int getVidas();
 
-
+    void cambiarModoTest();
 };
 
 

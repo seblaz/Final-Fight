@@ -6,11 +6,6 @@
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
 #include "Juego.h"
-#include "ReceptorCliente.h"
-#include "ActualizadorCliente.h"
-#include "NivelCliente.h"
-#include "EntradaUsuario.h"
-#include "../usuario/Usuario.h"
 
 using namespace std;
 
@@ -83,7 +78,13 @@ int main(int argc, char *argv[]) {
         ConexionCliente conexion(ipAddress, port);
         Socket socket = conexion.socket();
         Locator::provide(&socket);
-
+        
+        /**
+         * Mapa.
+         */
+         Mapa mapa;
+         Locator::provide(&mapa);
+         
         /**
          * Iniciar juego.
          */

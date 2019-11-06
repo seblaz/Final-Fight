@@ -6,13 +6,16 @@
 #define FINAL_FIGHT_RECEPTORCLIENTE_H
 
 #include <pthread.h>
-#include "ActualizadorCliente.h"
+#include <mutex>
+#include <sstream>
+#include "../eventos/semaphore.h"
+
+using namespace std;
 
 class ReceptorCliente {
 
 private:
     std::mutex mutex;
-    Socket *socket;
     bool nuevo = false;
     semaphore disponible;
     stringstream ultimoStream;
@@ -20,7 +23,7 @@ private:
     bool conexionActiva = true;
 
 public:
-    explicit ReceptorCliente(Socket *socket);
+    ReceptorCliente();
     void devolverStreamMasReciente(stringstream &s);
     pthread_t recibirEnHilo();
     bool conexionEstaActiva();

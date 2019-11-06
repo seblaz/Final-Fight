@@ -10,14 +10,8 @@ EventosAProcesar *Procesamiento::devolverCola() {
 }
 
 void Procesamiento::procesar() {
-    while (true) {
-        auto *evento = eventosAProcesar.pop();
-            evento->resolver();
-        if (evento->msj() == "fin"){
-            Locator::logger()->log(DEBUG, "Se termina el socket de procesamiento.");
-            break;
-        }
-    }
+    while (!fin) eventosAProcesar.pop()->resolver();
+    Locator::logger()->log(DEBUG, "Se termina el hilo de procesamiento.");
 }
 
 pthread_t Procesamiento::procesarEnHilo() {
@@ -30,4 +24,9 @@ pthread_t Procesamiento::procesarEnHilo() {
 
     Locator::logger()->log(DEBUG, "Se creó el hilo de procesamiento.");
     return hilo;
+}
+
+void Procesamiento::finalizar() {
+    fin = true;
+    eventosAProcesar.push(new EventoVacio());
 }

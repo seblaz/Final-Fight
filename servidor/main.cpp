@@ -7,12 +7,8 @@
 #include "ConexionesClientes.h"
 #include "ContenedorHilos.h"
 #include "Procesamiento.h"
-#include "../eventos/Eventos.h"
-#include "Transmision.h"
-#include "../eventos/MostrarMenuSeleccion.h"
-#include "../eventos/ActualizarYTransmitir.h"
+#include "../eventos/ActualizarYSerializarMapa.h"
 #include "GameLoop.h"
-#include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
 
@@ -73,18 +69,7 @@ int main(int argc, const char **args) {
      * Crear el mapa.
      */
     Mapa mapa;
-
-    /**
-     * Lista de sockets
-     */
-     ListaSockets listaSockets;
-
-    /**
-     * Transmision.
-     */
-    Transmision transmision(&listaSockets);
-    auto *eventosATransmitir = transmision.devolverCola();
-    pthread_t hiloTransmision = transmision.transmitirEnHilo();
+    Locator::provide(&mapa);
 
     /**
      * Procesamiento.
@@ -99,46 +84,32 @@ int main(int argc, const char **args) {
      */
     int maximoJugadores = Locator::configuracion()->getIntValue("/jugadores/cantidad");
     ManagerUsuarios managerUsuarios(maximoJugadores);
+    Locator::provide(&managerUsuarios);
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
-
-    /**
-     * Selector de personajes.
-     */
-     SelectorPersonajes selector(maximoJugadores);
 
     /**
      * Contenedor de hilos.
      */
-     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector, &listaSockets);
+     ContenedorHilos contenedor;
 
     /**
      * Conexiones de clientes.
      */
-    ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
+    ConexionesClientes conexiones(socketServidor, &contenedor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
-    /**
-     * Game loop.
-     */
-    auto *comenzar = new MostrarMenuSeleccion(&mapa);
-    eventosAProcesar->push(comenzar);
 
-    auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
+    auto *actualizar = new ActualizarYSerializarMapa(&mapa);
     GameLoop gameLoop(eventosAProcesar, actualizar, &managerUsuarios);
     gameLoop.loop();
 
     /**
      * Termino el procesamiento.
      */
-    auto *finProcesar = new EventoAProcesar("fin");
-    eventosAProcesar->push(finProcesar);
-    auto *finTransmitir = new EventoATransmitir("fin");
-    eventosATransmitir->push(finTransmitir);
-
+    procesamiento.finalizar();
     pthread_join(hiloProcesamiento, nullptr);
-    pthread_join(hiloTransmision, nullptr);
 
-    listaSockets.cerrarSockets();
+//    listaSockets.cerrarSockets();
     contenedor.esperarFinDeHilos();
 
     shutdown(socketServidor, SHUT_RDWR);

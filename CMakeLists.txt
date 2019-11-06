@@ -61,7 +61,6 @@ FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
 FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
 FILE(GLOB_RECURSE StatesSources estados/*.cpp)
 FILE(GLOB_RECURSE ServicesSources servicios/*.cpp)
-FILE(GLOB_RECURSE LevelSources niveles/*.cpp)
 FILE(GLOB_RECURSE Configurations *.xml)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
@@ -77,7 +76,7 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${LevelSources} ${IASources} ${UsuarioSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${IASources} ${UsuarioSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
@@ -96,5 +95,5 @@ target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAG
 #[[
   Compilar el servidor.
 ]]
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} eventos/EventoModoTest.cpp eventos/EventoModoTest.h)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

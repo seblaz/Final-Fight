@@ -30,9 +30,8 @@ public:
     void agregarUsuario(Usuario *usuario);
     void reemplazarUsuarioCon(Usuario *usuario);
     Usuario *getUsuarioAnterior(Usuario *usuario);
-    void desconectarJugadorVoluntariamente(Usuario *usuario);
     bool hayJugadoresConectados();
-    bool usuarioValido(Usuario *usuario);
+    bool validarContrasenia(Usuario *usuario);
 };
 
 
