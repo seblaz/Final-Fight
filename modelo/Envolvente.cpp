@@ -17,8 +17,8 @@ bool Envolvente::existeColisionLeft(Envolvente *envolvente) {
     int y = posicion->y;
     int deltaY = this->posicion->y - envolvente->posicion->y;
 
-    return (posicion->x > envolvente->posicion->x - envolvente->ancho &&
-            posicion->x < envolvente->posicion->x &&
+    return (posicion->x + ancho > envolvente->posicion->x - envolvente->ancho &&
+            posicion->x + ancho < envolvente->posicion->x &&
             y < envolvente->posicion->y + envolvente->profundidad && y > envolvente->posicion->y - envolvente->profundidad);
 }
 
@@ -27,8 +27,8 @@ bool Envolvente::existeColisionRight(Envolvente *envolvente) {
     int x = posicion->x;
     int y = posicion->y;
     int deltaY = this->posicion->y - envolvente->posicion->y;
-    return (posicion->x < envolvente->posicion->x + envolvente->ancho  &&
-            posicion->x > envolvente->posicion->x &&
+    return (posicion->x - ancho < envolvente->posicion->x + envolvente->ancho  &&
+            posicion->x - ancho > envolvente->posicion->x &&
             y < envolvente->posicion->y + envolvente->profundidad && y > envolvente->posicion->y - envolvente->profundidad);
 }
 
