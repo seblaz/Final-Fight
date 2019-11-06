@@ -9,7 +9,7 @@
 #include "Serializable.h"
 #include "../Entidad.h"
 
-enum class PERSONAJE {
+enum PERSONAJE {
     GUY,
     CODY,
     HAGGAR,

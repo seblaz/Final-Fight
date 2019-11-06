@@ -8,6 +8,7 @@
 #include "Hilo.h"
 #include "../servicios/Locator.h"
 
+Hilo::Hilo() : hiloLanzado(0){};
 
 pthread_t Hilo::lanzarHilo(function<void()> func) {
     funcionAux = std::move(func);

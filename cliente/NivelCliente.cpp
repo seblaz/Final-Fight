@@ -34,19 +34,19 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     FabricaDeAnimacionesCliente *fabricaDeAnimaciones;
 
     switch (personaje->getPersonaje()) {
-        case PERSONAJE::HAGGAR:
+        case HAGGAR:
             srcSpritePersonaje = config->getValue("/personajes/haggar/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/haggar");
             break;
-        case PERSONAJE::CODY:
+        case CODY:
             srcSpritePersonaje = config->getValue("/personajes/cody/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/cody");
             break;
-        case PERSONAJE::MAKI:
+        case MAKI:
             srcSpritePersonaje = config->getValue("/personajes/maki/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/maki");
             break;
-        case PERSONAJE::GUY:
+        case GUY:
             srcSpritePersonaje = config->getValue("/personajes/guy/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/guy");
             break;

@@ -15,7 +15,7 @@ class InterpreteAutenticacionServ : public InterpreteServidor {
 private:
     bool validarContrasenia(Usuario *usuario);
     ModeloAutenticacion *autenticacion;
-    semaphore usuarioAgregado = semaphore(0);
+    semaphore usuarioAgregado;
 
 public:
     InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion);

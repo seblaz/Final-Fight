@@ -6,6 +6,8 @@
 
 #include <utility>
 
+Usuario::Usuario() : personajeSeleccionado(NULO){};
+
 Usuario::Usuario(string usuario, string contrasenia) :
         usuario(std::move(usuario)),
         contrasenia(std::move(contrasenia)) {}

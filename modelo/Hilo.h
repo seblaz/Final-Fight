@@ -15,9 +15,10 @@ class Hilo {
 
 protected:
     function<void()> funcionAux;
-    semaphore hiloLanzado = semaphore(0);
+    semaphore hiloLanzado;
 
 public:
+    Hilo();
     pthread_t lanzarHilo(function<void()> fun);
 
 };

@@ -11,7 +11,7 @@
 class MenuSeleccion {
 
 private:
-    enum PERSONAJE actual = PERSONAJE::CODY;
+    enum PERSONAJE actual = CODY;
     bool listo_ = false;
 
 public:

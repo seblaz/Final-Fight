@@ -20,14 +20,14 @@ private:
     string usuario;
     string contrasenia;
     Entidad *personaje {};
-    enum PERSONAJE personajeSeleccionado = PERSONAJE::NULO;
+    enum PERSONAJE personajeSeleccionado;
     bool valido_ {};
     bool conectado = true;
     bool desconectadoVoluntariamente = false;
 //    Socket *socket{};
 
 public:
-    Usuario() = default;
+    Usuario();
     ~Usuario() override = default;
     Usuario(string usuario, string contrasenia);
 

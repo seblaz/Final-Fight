@@ -2,6 +2,7 @@
 // Created by sebas on 6/11/19.
 //
 
+#include <algorithm>
 #include "VistaJuego.h"
 #include "../../servicios/Locator.h"
 

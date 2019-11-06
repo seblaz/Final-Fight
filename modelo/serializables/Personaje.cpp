@@ -4,7 +4,7 @@
 
 #include "Personaje.h"
 
-Personaje::Personaje() : personaje(PERSONAJE::CODY){}
+Personaje::Personaje() : personaje(CODY){}
 
 Personaje::Personaje(enum PERSONAJE personaje) : personaje(personaje){}
 
@@ -26,15 +26,15 @@ void Personaje::deserializar(istream &stream) {
 
 string Personaje::PersonajeACadena(enum PERSONAJE personaje) {
     switch(personaje){
-        case PERSONAJE::CODY:
+        case CODY:
             return "cody";
-        case PERSONAJE::HAGGAR:
+        case HAGGAR:
             return "haggar";
-        case PERSONAJE::GUY:
+        case GUY:
             return "guy";
-        case PERSONAJE::MAKI:
+        case MAKI:
             return "maki";
-        case PERSONAJE::POISSON:
+        case POISSON:
             return "poisson";
         default:
             throw invalid_argument("Se recibió un personaje nulo para pasar a cadena.");

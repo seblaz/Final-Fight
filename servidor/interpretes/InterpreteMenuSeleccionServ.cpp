@@ -21,7 +21,7 @@ void InterpreteMenuSeleccionServ::iniciar() {
 
 void InterpreteMenuSeleccionServ::finalizarCliente() {
     getUsuario()->desconectar();
-    getUsuario()->setPersonajeSeleccionado(PERSONAJE::NULO);
+    getUsuario()->setPersonajeSeleccionado(NULO);
 }
 
 ConfirmarSeleccion::ConfirmarSeleccion(Usuario *usuario, enum PERSONAJE personaje) :
@@ -32,7 +32,7 @@ void ConfirmarSeleccion::resolver() {
     usuario->setPersonajeSeleccionado(personajeSeleccionado);
     bool listos = true;
     for(auto *iUsuario : Locator::usuarios()->getUsuarios()){
-        if(iUsuario->getPersonajeSeleccionado() == PERSONAJE::NULO || !iUsuario->estaConectado()){
+        if(iUsuario->getPersonajeSeleccionado() == NULO || !iUsuario->estaConectado()){
             listos = false;
             break;
         }

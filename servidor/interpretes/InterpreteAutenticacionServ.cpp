@@ -6,6 +6,7 @@
 #include "../../servicios/Locator.h"
 
 InterpreteAutenticacionServ::InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion) :
+        usuarioAgregado(0),
         InterpreteServidor(usuario),
         autenticacion(autenticacion) {}
 
