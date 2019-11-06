@@ -9,7 +9,7 @@
 #include "../../usuario/Usuario.h"
 #include "../../modelo/serializables/Accion.h"
 #include "../../eventos/Eventos.h"
-#include "../modelo/Modelo.h"
+#include "../../modelo/serializables/Modelo.h"
 #include "../interpretes/InterpreteServidor.h"
 
 using namespace std;

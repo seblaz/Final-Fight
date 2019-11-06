@@ -2,14 +2,14 @@
 // Created by sebas on 5/11/19.
 //
 
-#ifndef FINAL_FIGHT_INTERPRETEMENUSELECCION_H
-#define FINAL_FIGHT_INTERPRETEMENUSELECCION_H
+#ifndef FINAL_FIGHT_INTERPRETEMENUSELECCIONSERV_H
+#define FINAL_FIGHT_INTERPRETEMENUSELECCIONSERV_H
 
 
 #include "InterpreteServidor.h"
 #include "../etapas/ManagerEtapas.h"
 
-class InterpreteMenuSeleccion : public InterpreteServidor {
+class InterpreteMenuSeleccionServ : public InterpreteServidor {
 
 public:
     using InterpreteServidor::InterpreteServidor;
@@ -29,4 +29,4 @@ public:
     void resolver() override;
 };
 
-#endif //FINAL_FIGHT_INTERPRETEMENUSELECCION_H
+#endif //FINAL_FIGHT_INTERPRETEMENUSELECCIONSERV_H

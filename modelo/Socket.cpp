@@ -6,8 +6,11 @@
 #include <cstring>
 #include "Socket.h"
 #include "../servicios/Locator.h"
+#include <unistd.h>
 
-Socket::Socket(int socket) : socket(socket) {}
+Socket::Socket(int socket) : socket(socket) {
+    
+}
 
 bool Socket::enviarSinChequeo(stringstream &s) {
     string msg = s.str();
@@ -90,11 +93,13 @@ bool Socket::recibir(stringstream &s) {
     return res2;
 }
 
-int Socket::getIntSocket() {
-    return socket;
-}
-
 bool Socket::estaDesconectado() {
     return chrono::duration<double, milli>(chrono::high_resolution_clock::now() - ultimaRecepcion).count() > milisegundosDesconexion;
+}
+
+void Socket::finalizarConexion() {
+    Locator::logger()->log(INFO, "Se termina la conexión a través del socket.");
+    shutdown(socket, SHUT_RDWR);
+    close(socket);
 }
 

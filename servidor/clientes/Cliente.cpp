@@ -4,13 +4,12 @@
 
 #include "Cliente.h"
 #include "../../servicios/Locator.h"
-#include "../etapas/Etapa.h"
 #include "../modelo/ModeloAutenticacion.h"
-#include "../interpretes/InterpreteAutenticacion.h"
+#include "../interpretes/InterpreteAutenticacionServ.h"
 #include "../modelo/ModeloMenuSeleccion.h"
-#include "../interpretes/InterpreteMenuSeleccion.h"
+#include "../interpretes/InterpreteMenuSeleccionServ.h"
 #include "../modelo/ModeloJuego.h"
-#include "../interpretes/InterpreteJuego.h"
+#include "../interpretes/InterpreteJuegoServ.h"
 #include <unistd.h>
 #include <functional>
 
@@ -18,10 +17,10 @@
 Cliente::Cliente(Socket *socket) :
         socket(socket) {
     auto *modeloAutenticacion = new ModeloAutenticacion();
-    auto *interpreteAutenticacion = new InterpreteAutenticacion(usuario, modeloAutenticacion, &etapas);
+    auto *interpreteAutenticacion = new InterpreteAutenticacionServ(usuario, modeloAutenticacion, &etapas);
     etapas.agregar(new Etapa("autenticacion", modeloAutenticacion, interpreteAutenticacion));
-    etapas.agregar(new Etapa("menu de seleccion", new ModeloMenuSeleccion(), new InterpreteMenuSeleccion(usuario, &etapas)));
-    etapas.agregar(new Etapa("juego", new ModeloJuego(), new InterpreteJuego(usuario)));
+    etapas.agregar(new Etapa("menu de seleccion", new ModeloMenuSeleccion(), new InterpreteMenuSeleccionServ(usuario)));
+    etapas.agregar(new Etapa("juego", new ModeloJuego(), new InterpreteJuegoServ(usuario)));
 
     lanzarHilo(bind(&Cliente::transmitirEnHilo, this));
     lanzarHilo(bind(&Cliente::recibirEnHilo, this));
@@ -32,10 +31,12 @@ void Cliente::cambiarA(const IdEtapa &etapa) {
 }
 
 void Cliente::recibirEnHilo() {
-    stringstream s;
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción para un cliente.");
     while (!fin) {
+        stringstream s;
         if (socket->estaDesconectado() || !socket->recibir(s)) {
-            Locator::logger()->log(ERROR, "Se detecta socket invalido y se cierra.");
+            Locator::logger()->log(ERROR, "Se detecta socket invalido en el hilo de recepción y se cierra.");
+            socket->finalizarConexion();
             break;
         };
         etapas.getActual()->getInterprete()->interpretarStream(s);
@@ -45,12 +46,14 @@ void Cliente::recibirEnHilo() {
 }
 
 void Cliente::transmitirEnHilo() {
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de transmisión para un cliente.");
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
-    stringstream s;
     while (!fin) {
+        stringstream s;
         etapas.getActual()->getModelo()->serializar(s);
         if (socket->estaDesconectado() || !socket->enviar(s)) {
-            Locator::logger()->log(ERROR, "Se detecta socket invalido y se cierra.");
+            Locator::logger()->log(ERROR, "Se detecta socket invalido en el hilo de transmisión y se cierra.");
+            socket->finalizarConexion();
             break;
         }
         usleep(MS_PER_FRAME);

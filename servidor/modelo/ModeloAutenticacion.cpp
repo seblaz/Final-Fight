@@ -8,26 +8,28 @@ void ModeloAutenticacion::serializar(ostream &stream) {
     Modelo::serializar(stream);
     {
         lock_guard<mutex> lock(m);
-        serializarEntero(stream, static_cast<int>(evento));
+        evento.serializar(stream);
+        if(evento.evento() == EVENTO_USUARIO::CONTRASENIA_INCORRECTA)
+            evento = EventoUsuario(EVENTO_USUARIO::NULO);
     }
 }
 
 void ModeloAutenticacion::deserializar(istream &stream) {
     Modelo::deserializar(stream);
-    evento = static_cast<EVENTO_USUARIO>(deserializarEntero(stream));
+    evento.deserializar(stream);
 }
 
 void ModeloAutenticacion::passwordIncorrecta() {
     lock_guard<mutex> lock(m);
-    evento = EVENTO_USUARIO::CONTRASENIA_INCORRECTA;
+    evento = EventoUsuario(EVENTO_USUARIO::CONTRASENIA_INCORRECTA);
 }
 
 void ModeloAutenticacion::usuarioYaConectado() {
     lock_guard<mutex> lock(m);
-    evento = EVENTO_USUARIO::USUARIO_YA_CONECTADO;
+    evento = EventoUsuario(EVENTO_USUARIO::USUARIO_YA_CONECTADO);
 }
 
 void ModeloAutenticacion::partidaCompleta() {
     lock_guard<mutex> lock(m);
-    evento = EVENTO_USUARIO::PARTIDA_LLENA;
+    evento = EventoUsuario(EVENTO_USUARIO::PARTIDA_LLENA);
 }

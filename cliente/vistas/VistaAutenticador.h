@@ -8,12 +8,16 @@
 
 #include <SDL_system.h>
 #include <SDL_ttf.h>
-#include "../../../usuario/Usuario.h"
+#include "../../usuario/Usuario.h"
+#include "Vista.h"
+#include "../Autenticador.h"
 
-class VistaAutenticador {
+class VistaAutenticador : public Vista {
 
 private:
     TTF_Font *fuente;
+    Autenticador *autenticador;
+    int framesFaltantesPasswordIncorrecta = 0;
 
     void generarTexto(SDL_Renderer *renderer, const string& texto, SDL_Rect posicion);
     void generarFormulario(SDL_Renderer *renderer, const string& usuario, const string& password);
@@ -21,8 +25,10 @@ private:
     static void generarMensajePasswordIncorrecta(SDL_Renderer *renderer);
 
 public:
-    explicit VistaAutenticador();
-    void actualizar(const string &usuario, const string &password, bool passIncorrecta);
+    explicit VistaAutenticador(Autenticador *autenticador);
+    void passwordIncorrecta();
+    void graficar(SDL_Renderer *renderer) override;
+//    void actualizar(const string &usuario, const string &password, bool passIncorrecta);
 };
 
 

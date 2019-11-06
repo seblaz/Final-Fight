@@ -7,21 +7,16 @@
 
 
 #include <mutex>
-#include "Modelo.h"
+#include "../../modelo/serializables/Modelo.h"
+#include "../../modelo/serializables/EventoUsuario.h"
 
 using namespace std;
 
-enum class EVENTO_USUARIO {
-    CONTRASENIA_INCORRECTA,
-    USUARIO_YA_CONECTADO,
-    PARTIDA_LLENA,
-    NULO
-};
 
 class ModeloAutenticacion : public Modelo {
 
 private:
-    EVENTO_USUARIO evento = EVENTO_USUARIO::NULO;
+    EventoUsuario evento = EventoUsuario(EVENTO_USUARIO::NULO);
     mutex m;
 
 public:

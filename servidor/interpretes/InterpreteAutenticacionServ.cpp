@@ -2,15 +2,15 @@
 // Created by sebas on 5/11/19.
 //
 
-#include "InterpreteAutenticacion.h"
+#include "InterpreteAutenticacionServ.h"
 #include "../../servicios/Locator.h"
 
-InterpreteAutenticacion::InterpreteAutenticacion(Usuario *usuario, ModeloAutenticacion *autenticacion, ManagerEtapas *managerEtapas) :
+InterpreteAutenticacionServ::InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion, ManagerEtapas *managerEtapas) :
         InterpreteServidor(usuario),
         managerEtapas(managerEtapas),
         autenticacion(autenticacion) {}
 
-bool InterpreteAutenticacion::interpretarAccion(ACCION accion, stringstream &s) {
+bool InterpreteAutenticacionServ::interpretarAccion(ACCION accion, stringstream &s) {
     if(accion == ENVIAR_USUARIO){
         getUsuario()->deserializar(s);
         if (!validarContrasenia(getUsuario())) return false;
@@ -32,7 +32,7 @@ bool InterpreteAutenticacion::interpretarAccion(ACCION accion, stringstream &s) 
     return false;
 }
 
-bool InterpreteAutenticacion::validarContrasenia(Usuario *usuario) {
+bool InterpreteAutenticacionServ::validarContrasenia(Usuario *usuario) {
     if (Locator::usuarios()->validarContrasenia(usuario)) {
         Locator::logger()->log(INFO, "Se recibió una contraseña correcta del usuario: " + usuario->getUsuario() + ".");
         return true;

@@ -2,13 +2,13 @@
 // Created by sebas on 5/11/19.
 //
 
-#ifndef FINAL_FIGHT_INTERPRETEJUEGO_H
-#define FINAL_FIGHT_INTERPRETEJUEGO_H
+#ifndef FINAL_FIGHT_INTERPRETEJUEGOSERV_H
+#define FINAL_FIGHT_INTERPRETEJUEGOSERV_H
 
 
 #include "InterpreteServidor.h"
 
-class InterpreteJuego : public InterpreteServidor {
+class InterpreteJuegoServ : public InterpreteServidor {
 
 public:
     using InterpreteServidor::InterpreteServidor;
@@ -17,4 +17,4 @@ public:
 };
 
 
-#endif //FINAL_FIGHT_INTERPRETEJUEGO_H
+#endif //FINAL_FIGHT_INTERPRETEJUEGOSERV_H

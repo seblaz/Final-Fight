@@ -9,7 +9,7 @@
 
 
 Etapa::Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete) :
-        id(std::move(id)),
+        id(id),
         modelo(modelo),
         interprete(interprete) {
     modelo->setId(id);

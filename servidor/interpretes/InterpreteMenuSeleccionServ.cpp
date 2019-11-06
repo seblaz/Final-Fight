@@ -2,17 +2,17 @@
 // Created by sebas on 5/11/19.
 //
 
-#include "InterpreteMenuSeleccion.h"
+#include "InterpreteMenuSeleccionServ.h"
 #include "../../servicios/Locator.h"
 #include "../SelectorPersonajes.h"
 #include "../NivelServidor.h"
 
-bool InterpreteMenuSeleccion::interpretarAccion(ACCION accion, stringstream &s) {
+bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream &s) {
     auto *evento = new ConfirmarSeleccion(getUsuario(), static_cast<enum PERSONAJE>(accion - SELECCIONAR_GUY));
     Locator::eventos()->push(evento);
 }
 
-void InterpreteMenuSeleccion::finalizar() {
+void InterpreteMenuSeleccionServ::finalizar() {
     getUsuario()->desconectar();
     getUsuario()->setPersonajeSeleccionado(PERSONAJE::NULO);
 }

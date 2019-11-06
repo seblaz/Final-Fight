@@ -21,6 +21,5 @@ pthread_t Hilo::lanzarHilo(function<void()> func) {
     }, (void *) this);
 
     hiloLanzado.wait();
-    Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
     return hilo;
 }

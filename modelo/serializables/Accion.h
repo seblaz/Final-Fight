@@ -6,6 +6,7 @@
 #define FINAL_FIGHT_ACCION_H
 
 #include "Serializable.h"
+#include "../../usuario/Usuario.h"
 
 enum ACCION {
     CONFIRMAR,
@@ -45,5 +46,14 @@ public:
 
 };
 
+class AccionEnviarUsuario : public Accion {
+
+private:
+    Usuario *usuario;
+
+public:
+    explicit AccionEnviarUsuario(Usuario *usuario);
+    void serializar(ostream &stream) override;
+};
 
 #endif //FINAL_FIGHT_ACCION_H

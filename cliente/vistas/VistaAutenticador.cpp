@@ -4,9 +4,11 @@
 
 #include <SDL_events.h>
 #include "VistaAutenticador.h"
-#include "../../../servicios/Locator.h"
+#include "../../servicios/Locator.h"
 
-VistaAutenticador::VistaAutenticador() : fuente(Locator::fuente()) {}
+VistaAutenticador::VistaAutenticador(Autenticador *autenticador) :
+        fuente(Locator::fuente()),
+        autenticador(autenticador) {}
 
 void VistaAutenticador::generarFondo(SDL_Renderer *renderer) {
     Configuracion *config = Locator::configuracion();
@@ -19,7 +21,7 @@ void VistaAutenticador::generarFondo(SDL_Renderer *renderer) {
     SDL_RenderCopy(renderer, fondo->getTexture(), nullptr, &posicionEnPantallaCompleta);
 }
 
-void VistaAutenticador::generarFormulario(SDL_Renderer *renderer, const string& usuario, const string& password) {
+void VistaAutenticador::generarFormulario(SDL_Renderer *renderer, const string &usuario, const string &password) {
 
     Configuracion *config = Locator::configuracion();
     int ancho = config->getIntValue("/resolucion/ancho");
@@ -69,10 +71,14 @@ void VistaAutenticador::generarMensajePasswordIncorrecta(SDL_Renderer *renderer)
     SDL_RenderCopy(renderer, sprite->getTexture(), nullptr, &cajaRechazado);
 }
 
-void VistaAutenticador::actualizar(const string &usuario, const string &password, bool passIncorrecta) {
-    SDL_Renderer *renderer = Locator::renderer();
+void VistaAutenticador::graficar(SDL_Renderer *renderer) {
     generarFondo(renderer);
-    generarFormulario(renderer, usuario, password);
-    if(passIncorrecta) generarMensajePasswordIncorrecta(renderer);
+    generarFormulario(renderer, autenticador->getUsuario(), autenticador->getPassword());
+    if (framesFaltantesPasswordIncorrecta > 0) generarMensajePasswordIncorrecta(renderer);
+    framesFaltantesPasswordIncorrecta --;
 //    if(passIncorrecta) SDL_Delay(1000);
+}
+
+void VistaAutenticador::passwordIncorrecta() {
+    framesFaltantesPasswordIncorrecta = 60;
 }

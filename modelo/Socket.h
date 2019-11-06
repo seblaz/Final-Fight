@@ -18,15 +18,16 @@ private:
     int tamanoDigitos = 5;
     bool enviarSinChequeo(stringstream &s);
     bool recibirConCantidad(stringstream &s, size_t cantidad);
-    chrono::time_point<chrono::system_clock> ultimaRecepcion;
-    const int milisegundosDesconexion = 1000;
+    chrono::time_point<chrono::system_clock> ultimaRecepcion = chrono::high_resolution_clock::now();
+    const int milisegundosDesconexion = 1000 * 1000;
 
 public:
     explicit Socket(int socket);
     bool enviar(stringstream &s);
     bool recibir(stringstream &s);
-    int getIntSocket();
     bool estaDesconectado();
+    void finalizarConexion();
+
 };
 
 

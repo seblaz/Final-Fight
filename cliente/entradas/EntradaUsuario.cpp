@@ -5,22 +5,22 @@
 #include <SDL_quit.h>
 #include <SDL_system.h>
 #include "EntradaUsuario.h"
-#include "../servicios/Locator.h"
-#include "../modelo/serializables/Personaje.h"
+#include "../../servicios/Locator.h"
+#include "../../modelo/serializables/Personaje.h"
 #include <unistd.h>
 #include <sys/socket.h>
 #include <SDL_timer.h>
-#include "../graficos/Sprite.h"
-#include "ReceptorCliente.h"
+#include "../../graficos/Sprite.h"
+#include "../ReceptorCliente.h"
 
-Accion *EntradaNula::getAccion() {
+Accion *EntradaNula::getAccion(SDL_Event *e) {
     return new Accion(NULA);
 }
 
 EntradaMenuSeleccion::EntradaMenuSeleccion(Entidad *pantalla) :
         pantalla(pantalla) {}
 
-Accion *EntradaMenuSeleccion::getAccion() {
+Accion *EntradaMenuSeleccion::getAccion(SDL_Event *e) {
     if (framesInactivo == 0) {
         if (activo) {
             const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
@@ -72,7 +72,7 @@ void EntradaMenuSeleccion::cambiarAlPersonajeAnterior(Personaje *personajeMarcad
     personajeMarcado->setPersonaje(static_cast<enum PERSONAJE>(pos));
 }
 
-Accion *EntradaJuego::getAccion() {
+Accion *EntradaJuego::getAccion(SDL_Event *e) {
     const Uint8 *entrada = SDL_GetKeyboardState(nullptr);
 
     ACCION accion;
@@ -106,57 +106,57 @@ Accion *EntradaJuego::getAccion() {
     return new Accion(accion);
 }
 
-TrasmisionCliente::TrasmisionCliente(Socket
-                                     *socket, EntradaUsuario *entradaUsuario) :
-        entradaUsuario(entradaUsuario),
-        socket(socket) {}
-
-EntradaUsuario *TrasmisionCliente::getEntradaUsuario() {
-    std::lock_guard<std::mutex> lock(m);
-    return entradaUsuario;
-}
-
-void TrasmisionCliente::setEntradaUsuario(EntradaUsuario *entradaUsuario_) {
-    std::lock_guard<std::mutex> lock(m);
-    entradaUsuario = entradaUsuario_;
-}
-
-void TrasmisionCliente::transmitir() {
-
-    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Milisegundos.
-
-    while (!fin) {
-        size_t start = SDL_GetTicks();
-
-        Accion *accion = getEntradaUsuario()->getAccion();
-        stringstream s;
-        accion->serializar(s);
-        if (socket->estaDesconectado() || !socket->enviar(s)) {
-            Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
-            shutdown(socket->getIntSocket(), SHUT_RDWR);
-            close(socket->getIntSocket());
-            break;
-        }
-
-        size_t end = SDL_GetTicks();
-        size_t sleepTime = size_t(MS_PER_FRAME) + start - end;
-        if (sleepTime > 0) SDL_Delay(sleepTime);
-    }
-    Locator::logger()->log(INFO, "Se termina el hilo del transmisor.");
-}
-
-pthread_t TrasmisionCliente::transmitirEnHilo() {
-    pthread_t hilo;
-    pthread_create(&hilo, nullptr, [](void *arg) -> void * {
-        auto *transmision = (TrasmisionCliente *) arg;
-        transmision->transmitir();
-        return nullptr;
-    }, (void *) this);
-
-    Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
-    return hilo;
-}
-
-void TrasmisionCliente::finalizar() {
-    fin = true;
-}
+//TrasmisionCliente::TrasmisionCliente(Socket
+//                                     *socket, EntradaUsuario *entradaUsuario) :
+//        entradaUsuario(entradaUsuario),
+//        socket(socket) {}
+//
+//EntradaUsuario *TrasmisionCliente::getEntradaUsuario() {
+//    std::lock_guard<std::mutex> lock(m);
+//    return entradaUsuario;
+//}
+//
+//void TrasmisionCliente::setEntradaUsuario(EntradaUsuario *entradaUsuario_) {
+//    std::lock_guard<std::mutex> lock(m);
+//    entradaUsuario = entradaUsuario_;
+//}
+//
+//void TrasmisionCliente::transmitir() {
+//
+//    const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000; // Milisegundos.
+//
+//    while (!fin) {
+//        size_t start = SDL_GetTicks();
+//
+//        Accion *accion = getEntradaUsuario()->getAccion(nullptr);
+//        stringstream s;
+//        accion->serializar(s);
+//        if (socket->estaDesconectado() || !socket->enviar(s)) {
+//            Locator::logger()->log(ERROR, "No se pudo enviar al servidor, se cierra la conexión.");
+//            shutdown(socket->getIntSocket(), SHUT_RDWR);
+//            close(socket->getIntSocket());
+//            break;
+//        }
+//
+//        size_t end = SDL_GetTicks();
+//        size_t sleepTime = size_t(MS_PER_FRAME) + start - end;
+//        if (sleepTime > 0) SDL_Delay(sleepTime);
+//    }
+//    Locator::logger()->log(INFO, "Se termina el hilo del transmisor.");
+//}
+//
+//pthread_t TrasmisionCliente::transmitirEnHilo() {
+//    pthread_t hilo;
+//    pthread_create(&hilo, nullptr, [](void *arg) -> void * {
+//        auto *transmision = (TrasmisionCliente *) arg;
+//        transmision->transmitir();
+//        return nullptr;
+//    }, (void *) this);
+//
+//    Locator::logger()->log(DEBUG, "Se creó el hilo de transmisión.");
+//    return hilo;
+//}
+//
+//void TrasmisionCliente::finalizar() {
+//    fin = true;
+//}

@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_MODELOMENUSELECCION_H
 
 
-#include "Modelo.h"
+#include "../../modelo/serializables/Modelo.h"
 
 class ModeloMenuSeleccion : public Modelo {
 

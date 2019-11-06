@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_MODELO_H
 
 
-#include "../../modelo/serializables/Serializable.h"
+#include "Serializable.h"
 
 typedef string IdEtapa;
 
@@ -17,6 +17,7 @@ private:
 
 public:
     void setId(IdEtapa id);
+    IdEtapa getId();
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
 

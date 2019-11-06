@@ -2,15 +2,15 @@
 // Created by sebas on 5/11/19.
 //
 
-#ifndef FINAL_FIGHT_INTERPRETEAUTENTICACION_H
-#define FINAL_FIGHT_INTERPRETEAUTENTICACION_H
+#ifndef FINAL_FIGHT_INTERPRETEAUTENTICACIONSERV_H
+#define FINAL_FIGHT_INTERPRETEAUTENTICACIONSERV_H
 
 
 #include "InterpreteServidor.h"
 #include "../modelo/ModeloAutenticacion.h"
 #include "../etapas/ManagerEtapas.h"
 
-class InterpreteAutenticacion : public InterpreteServidor {
+class InterpreteAutenticacionServ : public InterpreteServidor {
 
 private:
     bool validarContrasenia(Usuario *usuario);
@@ -19,7 +19,7 @@ private:
     semaphore usuarioAgregado = semaphore(0);
 
 public:
-    InterpreteAutenticacion(Usuario *usuario, ModeloAutenticacion *autenticacion, ManagerEtapas *managerEtapas);
+    InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion, ManagerEtapas *managerEtapas);
     bool interpretarAccion(ACCION accion, stringstream &s) override;
 };
 
@@ -35,4 +35,4 @@ public:
     void resolver() override;
 
 };
-#endif //FINAL_FIGHT_INTERPRETEAUTENTICACION_H
+#endif //FINAL_FIGHT_INTERPRETEAUTENTICACIONSERV_H

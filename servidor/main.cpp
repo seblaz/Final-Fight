@@ -7,11 +7,8 @@
 #include "ConexionesClientes.h"
 #include "ContenedorHilos.h"
 #include "Procesamiento.h"
-#include "../eventos/Eventos.h"
-#include "../eventos/MostrarMenuSeleccion.h"
 #include "../eventos/ActualizarYSerializarMapa.h"
 #include "GameLoop.h"
-#include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
 

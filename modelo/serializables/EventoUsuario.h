@@ -8,11 +8,11 @@
 
 #include "Serializable.h"
 
-enum EVENTO_USUARIO {
+enum class EVENTO_USUARIO {
     CONTRASENIA_INCORRECTA,
     USUARIO_YA_CONECTADO,
     PARTIDA_LLENA,
-    CONECTADO // exito al conectarse
+    NULO
 };
 
 class EventoUsuario : public Serializable {
@@ -22,7 +22,7 @@ private:
 
 public:
     EventoUsuario();
-    explicit EventoUsuario(EVENTO_USUARIO);
+    explicit EventoUsuario(enum EVENTO_USUARIO);
     EVENTO_USUARIO evento();
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;

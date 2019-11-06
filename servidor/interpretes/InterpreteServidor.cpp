@@ -16,10 +16,9 @@ bool InterpreteServidor::interpretarStream(stringstream &s) {
             desconectarUsuario();
             return false;
         case NULA:
-            break;
-        default:
-            return interpretarAccion(accion.accion(), s);
+            return true;
     }
+    return interpretarAccion(accion.accion(), s);
 }
 
 Usuario *InterpreteServidor::getUsuario() {

@@ -9,7 +9,7 @@
 #include "ReceptorCliente.h"
 #include "ActualizadorCliente.h"
 #include "NivelCliente.h"
-#include "EntradaUsuario.h"
+#include "entradas/EntradaUsuario.h"
 #include "../usuario/Usuario.h"
 
 using namespace std;

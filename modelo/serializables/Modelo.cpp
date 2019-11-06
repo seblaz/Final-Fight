@@ -10,6 +10,10 @@ void Modelo::setId(IdEtapa id_) {
     id = std::move(id_);
 }
 
+IdEtapa Modelo::getId() {
+    return id;
+}
+
 void Modelo::serializar(ostream &stream) {
     serializarString(stream, id);
 }

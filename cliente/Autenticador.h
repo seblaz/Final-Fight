@@ -6,8 +6,8 @@
 #define FINAL_FIGHT_AUTENTICADOR_H
 
 
-#include "../../../modelo/serializables/EventoUsuario.h"
-#include "../../../modelo/Socket.h"
+#include "../modelo/serializables/EventoUsuario.h"
+#include "../modelo/Socket.h"
 
 class Autenticador {
 
@@ -22,7 +22,7 @@ public:
     void cambiarCampo();
     string getUsuario();
     string getPassword();
-    EVENTO_USUARIO confirmar();
+//    EVENTO_USUARIO confirmar();
 };
 
 

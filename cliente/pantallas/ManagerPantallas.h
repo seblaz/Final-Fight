@@ -18,6 +18,7 @@ class ManagerPantallas {
 private:
     unordered_map<IdPantalla, Pantalla *> pantallas;
     Pantalla *actual = nullptr;
+    mutex m;
 
 public:
     void agregarPantalla(Pantalla *pantalla);

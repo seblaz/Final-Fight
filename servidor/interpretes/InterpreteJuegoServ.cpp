@@ -2,11 +2,11 @@
 // Created by sebas on 5/11/19.
 //
 
-#include "InterpreteJuego.h"
+#include "InterpreteJuegoServ.h"
 #include "../../servicios/Locator.h"
 #include "../../eventos/EventoPersonaje.h"
 
-bool InterpreteJuego::interpretarAccion(ACCION accion, stringstream &s) {
+bool InterpreteJuegoServ::interpretarAccion(ACCION accion, stringstream &s) {
     EventoAProcesar *evento;
     Entidad *jugador = getUsuario()->getPersonaje();
     switch (accion) {
