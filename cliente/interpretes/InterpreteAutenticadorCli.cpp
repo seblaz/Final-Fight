@@ -4,16 +4,16 @@
 
 #include "InterpreteAutenticadorCli.h"
 
-InterpreteAutenticadorCli::InterpreteAutenticadorCli(VistaAutenticador *vista, ManagerPantallas *pantallas) :
-        vista(vista),
-        pantallas(pantallas) {}
+InterpreteAutenticadorCli::InterpreteAutenticadorCli(Autenticador *autenticador, ManagerPantallas *pantallas) :
+        pantallas(pantallas),
+        autenticador(autenticador) {}
 
 void InterpreteAutenticadorCli::interpretar(stringstream &s) {
     EventoUsuario evento;
     evento.deserializar(s);
     switch (evento.evento()) {
         case EVENTO_USUARIO::CONTRASENIA_INCORRECTA:
-            vista->passwordIncorrecta();
+            autenticador->setPasswordIncorrecta();
             break;
         case EVENTO_USUARIO::USUARIO_YA_CONECTADO:
             pantallas->cambiarA("usuario ya conectado");

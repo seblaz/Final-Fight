@@ -74,11 +74,5 @@ void VistaAutenticador::generarMensajePasswordIncorrecta(SDL_Renderer *renderer)
 void VistaAutenticador::graficar(SDL_Renderer *renderer) {
     generarFondo(renderer);
     generarFormulario(renderer, autenticador->getUsuario(), autenticador->getPassword());
-    if (framesFaltantesPasswordIncorrecta > 0) generarMensajePasswordIncorrecta(renderer);
-    framesFaltantesPasswordIncorrecta --;
-//    if(passIncorrecta) SDL_Delay(1000);
-}
-
-void VistaAutenticador::passwordIncorrecta() {
-    framesFaltantesPasswordIncorrecta = 60;
+    if (autenticador->passwordIncorrecta()) generarMensajePasswordIncorrecta(renderer);
 }

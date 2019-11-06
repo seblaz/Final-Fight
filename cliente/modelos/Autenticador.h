@@ -15,6 +15,8 @@ private:
     string user = "";
     string pass = "";
     string* campoActivo = &user;
+    int framesFaltantesPasswordIncorrecta = 0;
+    int framesTotalesPasswordIncorrecta = 60;
 
 public:
     void ingresar(char *i);
@@ -22,7 +24,8 @@ public:
     void cambiarCampo();
     string getUsuario();
     string getPassword();
-
+    void setPasswordIncorrecta();
+    bool passwordIncorrecta();
 };
 
 

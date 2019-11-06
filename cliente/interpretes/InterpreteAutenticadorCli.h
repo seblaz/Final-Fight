@@ -13,11 +13,11 @@
 class InterpreteAutenticadorCli : public InterpreteCliente {
 
 private:
-    VistaAutenticador *vista;
+    Autenticador *autenticador;
     ManagerPantallas *pantallas;
 
 public:
-    explicit InterpreteAutenticadorCli(VistaAutenticador *vista, ManagerPantallas *pantallas);
+    explicit InterpreteAutenticadorCli(Autenticador *autenticador, ManagerPantallas *pantallas);
     void interpretar(stringstream &s) override;
 
 };

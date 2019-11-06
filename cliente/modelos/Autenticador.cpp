@@ -27,3 +27,15 @@ string Autenticador::getUsuario() {
 string Autenticador::getPassword() {
     return pass;
 }
+
+void Autenticador::setPasswordIncorrecta() {
+    user = "";
+    pass = "";
+    campoActivo = &user;
+    framesFaltantesPasswordIncorrecta = framesTotalesPasswordIncorrecta;
+}
+
+bool Autenticador::passwordIncorrecta() {
+    framesFaltantesPasswordIncorrecta--;
+    return framesFaltantesPasswordIncorrecta > 0;
+}

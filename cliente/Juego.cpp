@@ -76,7 +76,7 @@ void Juego::loop() {
 
     Autenticador autenticador;
     auto *vistaAutenticador = new VistaAutenticador(&autenticador);
-    auto *interpreteAutenticador = new InterpreteAutenticadorCli(vistaAutenticador, &manager);
+    auto *interpreteAutenticador = new InterpreteAutenticadorCli(&autenticador, &manager);
     auto *entradaAutenticador = new EntradaAutenticador(&autenticador);
     manager.agregarPantalla(new Pantalla("autenticacion",
                                          interpreteAutenticador,
