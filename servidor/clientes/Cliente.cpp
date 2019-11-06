@@ -50,7 +50,7 @@ void Cliente::transmitirEnHilo() {
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
     while (!fin) {
         stringstream s;
-        etapas.getActual()->getModelo()->serializar(s);
+        etapas.getActual()->serializar(s);
         if (socket->estaDesconectado() || !socket->enviar(s)) {
             Locator::logger()->log(ERROR, "Se detecta socket invalido en el hilo de transmisión y se cierra.");
             socket->finalizarConexion();

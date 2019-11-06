@@ -9,8 +9,9 @@
 #include "../../usuario/Usuario.h"
 #include "../../modelo/serializables/Accion.h"
 #include "../../eventos/Eventos.h"
-#include "../../modelo/serializables/Modelo.h"
+#include "../../modelo/serializables/NombrePantalla.h"
 #include "../interpretes/InterpreteServidor.h"
+#include "../modelo/Modelo.h"
 
 using namespace std;
 
@@ -28,7 +29,8 @@ private:
 public:
     explicit Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete);
     IdEtapa getId();
-    Modelo *getModelo();
+    void serializar(stringstream &s);
+//    Modelo *getModelo();
     InterpreteServidor *getInterprete();
 
 };

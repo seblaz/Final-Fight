@@ -7,8 +7,9 @@
 
 
 #include <mutex>
-#include "../../modelo/serializables/Modelo.h"
+#include "../../modelo/serializables/NombrePantalla.h"
 #include "../../modelo/serializables/EventoUsuario.h"
+#include "Modelo.h"
 
 using namespace std;
 

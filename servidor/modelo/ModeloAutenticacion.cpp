@@ -5,17 +5,13 @@
 #include "ModeloAutenticacion.h"
 
 void ModeloAutenticacion::serializar(ostream &stream) {
-    Modelo::serializar(stream);
-    {
-        lock_guard<mutex> lock(m);
-        evento.serializar(stream);
-        if(evento.evento() == EVENTO_USUARIO::CONTRASENIA_INCORRECTA)
-            evento = EventoUsuario(EVENTO_USUARIO::NULO);
-    }
+    lock_guard<mutex> lock(m);
+    evento.serializar(stream);
+    if (evento.evento() == EVENTO_USUARIO::CONTRASENIA_INCORRECTA)
+        evento = EventoUsuario(EVENTO_USUARIO::NULO);
 }
 
 void ModeloAutenticacion::deserializar(istream &stream) {
-    Modelo::deserializar(stream);
     evento.deserializar(stream);
 }
 

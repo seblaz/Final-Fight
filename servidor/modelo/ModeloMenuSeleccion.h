@@ -6,9 +6,14 @@
 #define FINAL_FIGHT_MODELOMENUSELECCION_H
 
 
-#include "../../modelo/serializables/Modelo.h"
+#include "../../modelo/serializables/NombrePantalla.h"
+#include "Modelo.h"
 
 class ModeloMenuSeleccion : public Modelo {
+
+public:
+    void serializar(ostream &stream) override {};
+    void deserializar(istream &stream) override {};
 
 };
 

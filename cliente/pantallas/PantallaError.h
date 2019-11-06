@@ -19,7 +19,7 @@ public:
     explicit PantallaError(IdPantalla id, string configPath);
     void enviar(SDL_Event *e) override {};
     void recibir(stringstream &s) override {};
-    void interpretar(stringstream &s) override {};
+    void interpretarModelo(stringstream &s) override {};
     void graficar(SDL_Renderer *renderer) override;
 
 };

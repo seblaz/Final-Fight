@@ -10,15 +10,14 @@
 
 std::chrono::time_point<std::chrono::system_clock> ReceptorCliente::ultimaRecepcion = std::chrono::high_resolution_clock::now();
 
-ReceptorCliente::ReceptorCliente(Socket *socket) :
-        disponible(0),
-        socket(socket) {}
+ReceptorCliente::ReceptorCliente() :
+        disponible(0) {}
 
 void ReceptorCliente::recibir() {
     ultimaRecepcion = std::chrono::high_resolution_clock::now();
     while (conexionActiva) {
         stringstream s;
-        if(!socket->recibir(s)){
+        if(!Locator::socket()->recibir(s)){
             Locator::logger()->log(ERROR, "Se detecta desconexión del servidor.");
             conexionActiva = false;
             disponible.post();

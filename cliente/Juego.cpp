@@ -19,6 +19,7 @@
 #include "interpretes/InterpreteJuegoCli.h"
 #include "entradas/EntradaJuego.h"
 #include "vistas/VistaJuego.h"
+#include "pantallas/PantallaJuego.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -88,7 +89,7 @@ void Juego::loop() {
                                          new EntradaMenuSeleccion(&menu),
                                          new VistaMenuSeleccion(&menu)));
 
-    manager.agregarPantalla(new Pantalla("juego", new InterpreteJuegoCli(), new EntradaJuego(), new VistaJuego()));
+    manager.agregarPantalla(new PantallaJuego("juego", new InterpreteJuegoCli(), new EntradaJuego(), new VistaJuego()));
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
     manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
     manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
@@ -172,7 +173,8 @@ void Juego::recibir() {
     while (!exit) {
         stringstream s;
         manager.getActual()->recibir(s);
-        manager.getActual()->interpretar(s);
+        manager.getActual()->interpretarNombrePantalla(s);
+        manager.getActual()->interpretarModelo(s);
         manager.getActual()->graficar(renderer_);
         actualizarGraficos();
     }

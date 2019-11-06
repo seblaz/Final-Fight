@@ -6,8 +6,9 @@
 #define FINAL_FIGHT_MODELOJUEGO_H
 
 
-#include "../../modelo/serializables/Modelo.h"
+#include "../../modelo/serializables/NombrePantalla.h"
 #include "../../modelo/Mapa.h"
+#include "Modelo.h"
 
 class ModeloJuego : public Modelo {
 

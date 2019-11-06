@@ -11,18 +11,22 @@
 Etapa::Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete) :
         id(id),
         modelo(modelo),
-        interprete(interprete) {
-    modelo->setId(id);
-}
+        interprete(interprete) {}
 
 IdEtapa Etapa::getId() {
     return id;
 }
 
-Modelo *Etapa::getModelo() {
-    return modelo;
-}
+//Modelo *Etapa::getModelo() {
+//    return modelo;
+//}
 
 InterpreteServidor *Etapa::getInterprete() {
     return interprete;
+}
+
+void Etapa::serializar(stringstream &s) {
+    NombrePantalla nombre(id);
+    nombre.serializar(s);
+    modelo->serializar(s);
 }

@@ -20,7 +20,13 @@ void Pantalla::setManager(ManagerPantallas *manager_) {
     manager = manager_;
 }
 
-void Pantalla::interpretar(stringstream &s) {
+void Pantalla::interpretarNombrePantalla(stringstream &s) {
+    NombrePantalla pantalla;
+    pantalla.deserializar(s);
+    manager->cambiarA(pantalla.getId());
+}
+
+void Pantalla::interpretarModelo(stringstream &s) {
     interprete->interpretar(s);
 }
 
@@ -33,15 +39,11 @@ Accion *Pantalla::getAccion(SDL_Event *e) {
 }
 
 void Pantalla::recibir(stringstream &s) {
-    Modelo modelo;
     if (Locator::socket()->estaDesconectado() || !Locator::socket()->recibir(s)) {
         Locator::logger()->log(ERROR, "Ocurrió un error en el hilo de recepción.");
         Locator::socket()->finalizarConexion();
         manager->cambiarA("error de conexion");
-        return;
     };
-    modelo.deserializar(s);
-    manager->cambiarA(modelo.getId());
 }
 
 void Pantalla::enviar(SDL_Event *e) {
