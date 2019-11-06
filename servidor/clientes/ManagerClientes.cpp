@@ -11,4 +11,9 @@ void ManagerClientes::cambiarTodosA(const IdEtapa &idEtapa) {
 
 void ManagerClientes::agregarCliente(Cliente *cliente) {
     clientes.push_back(cliente);
+    cliente->setManager(this);
+}
+
+void ManagerClientes::quitarCliente(Cliente *cliente) {
+    clientes.remove(cliente);
 }

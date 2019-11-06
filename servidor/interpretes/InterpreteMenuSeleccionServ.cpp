@@ -14,7 +14,9 @@ bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream 
 }
 
 void InterpreteMenuSeleccionServ::iniciar() {
-    if(getUsuario()->getPersonaje()){}
+    if(getUsuario()->getPersonaje()){
+
+    } // TODO.
 }
 
 void InterpreteMenuSeleccionServ::finalizarCliente() {
@@ -30,7 +32,7 @@ void ConfirmarSeleccion::resolver() {
     usuario->setPersonajeSeleccionado(personajeSeleccionado);
     bool listos = true;
     for(auto *iUsuario : Locator::usuarios()->getUsuarios()){
-        if(iUsuario->getPersonajeSeleccionado() == PERSONAJE::NULO){
+        if(iUsuario->getPersonajeSeleccionado() == PERSONAJE::NULO || !iUsuario->estaConectado()){
             listos = false;
             break;
         }
@@ -40,9 +42,6 @@ void ConfirmarSeleccion::resolver() {
         for (Usuario *iUsuario : Locator::usuarios()->getUsuarios()) {
             Entidad *personaje = NivelServidor::generarJugador(Locator::mapa(), iUsuario->getPersonajeSeleccionado(), numeroJugador);
             iUsuario->setPersonaje(personaje);
-//            if(!usuario->estaConectado()){
-//                personaje->getEstado<Actividad>("actividad")->activo = false;
-//            }
             numeroJugador++;
         }
         NivelServidor::generarNivel("nivel1", Locator::mapa());

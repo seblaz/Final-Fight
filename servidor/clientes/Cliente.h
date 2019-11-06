@@ -9,6 +9,8 @@
 #include "../etapas/ManagerEtapas.h"
 #include "../../modelo/Hilo.h"
 
+class ManagerClientes;
+
 class Cliente : public Hilo {
 
 private:
@@ -16,6 +18,7 @@ private:
     Socket *socket;
     Usuario *usuario = new Usuario;
     bool fin = false;
+    ManagerClientes *manager = nullptr;
 
 protected:
     void recibirEnHilo();
@@ -24,6 +27,7 @@ protected:
 public:
     explicit Cliente(Socket *socket);
     void cambiarA(const IdEtapa& etapa);
+    void setManager(ManagerClientes *manager);
 
 };
 

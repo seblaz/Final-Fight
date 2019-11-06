@@ -3,6 +3,7 @@
 //
 
 #include "Cliente.h"
+#include "ManagerClientes.h"
 #include "../../servicios/Locator.h"
 #include "../modelo/ModeloAutenticacion.h"
 #include "../interpretes/InterpreteAutenticacionServ.h"
@@ -24,6 +25,10 @@ Cliente::Cliente(Socket *socket) :
 
     lanzarHilo(bind(&Cliente::transmitirEnHilo, this));
     lanzarHilo(bind(&Cliente::recibirEnHilo, this));
+}
+
+void Cliente::setManager(ManagerClientes *manager_) {
+    manager = manager_;
 }
 
 void Cliente::cambiarA(const IdEtapa &etapa) {
@@ -62,4 +67,5 @@ void Cliente::transmitirEnHilo() {
     } while (!fin);
 
     Locator::logger()->log(DEBUG, "Se termina el hilo de transmisión.");
+    manager->quitarCliente(this);
 }

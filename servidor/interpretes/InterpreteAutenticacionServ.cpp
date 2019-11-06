@@ -64,13 +64,13 @@ void AgregarUsuario::resolver() {
             manager->reemplazarUsuarioCon(usuario);
             usuario->setValido(true);
             Locator::logger()->log(INFO, "El usuario: " + usuarioAnterior->getUsuario() + " se reconectó a la partida.");
-            etapas->cambiarA("juego");
+            etapas->cambiarA("menu de seleccion");
         }
     } else {
         if (manager->faltanJugadores()) { // Hay espacio para un jugador más.
+            Locator::logger()->log(INFO, "El usuario: " + usuario->getUsuario() + " se conectó a la partida.");
             manager->agregarUsuario(usuario);
             usuario->setValido(true);
-            Locator::logger()->log(INFO, "El usuario: " + usuario->getUsuario() + " se conectó a la partida.");
             etapas->cambiarA("menu de seleccion");
 
         } else { // No queda espacio en la partida

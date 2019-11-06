@@ -20,6 +20,7 @@ private:
 public:
     void agregarCliente(Cliente *cliente);
     void cambiarTodosA(const IdEtapa& idEtapa);
+    void quitarCliente(Cliente *cliente);
 
 };
 
