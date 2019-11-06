@@ -13,7 +13,7 @@ InterpreteAutenticacionServ::InterpreteAutenticacionServ(Usuario *usuario, Model
 bool InterpreteAutenticacionServ::interpretarAccion(ACCION accion, stringstream &s) {
     if(accion == ENVIAR_USUARIO){
         getUsuario()->deserializar(s);
-        if (!validarContrasenia(getUsuario())) return false;
+        if (!validarContrasenia(getUsuario())) return true;
 
         auto *crear = new AgregarUsuario(getUsuario(), autenticacion, usuarioAgregado, managerEtapas);
         Locator::eventos()->push(crear);
