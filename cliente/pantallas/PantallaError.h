@@ -21,6 +21,7 @@ public:
     void recibir(stringstream &s) override {};
     void interpretarModelo(stringstream &s) override {};
     void graficar(SDL_Renderer *renderer) override;
+    void iniciar() override;
 
 };
 

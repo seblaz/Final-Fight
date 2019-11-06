@@ -6,7 +6,11 @@
 #define FINAL_FIGHT_RECEPTORCLIENTE_H
 
 #include <pthread.h>
-#include "ActualizadorCliente.h"
+#include <mutex>
+#include <sstream>
+#include "../eventos/semaphore.h"
+
+using namespace std;
 
 class ReceptorCliente {
 

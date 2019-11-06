@@ -6,11 +6,6 @@
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
 #include "Juego.h"
-#include "ReceptorCliente.h"
-#include "ActualizadorCliente.h"
-#include "NivelCliente.h"
-#include "entradas/EntradaUsuario.h"
-#include "../usuario/Usuario.h"
 
 using namespace std;
 

@@ -20,3 +20,7 @@ void PantallaError::graficar(SDL_Renderer *renderer) {
     SDL_Rect posicionEnPantallaIngreso = {0, 0, ancho, alto};
     SDL_RenderCopy(renderer, spritePantallaIngreso->getTexture(), nullptr, &posicionEnPantallaIngreso);
 }
+
+void PantallaError::iniciar() {
+    Locator::socket()->finalizarConexion();
+}

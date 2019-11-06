@@ -6,7 +6,6 @@
 #include "ReceptorCliente.h"
 #include "../servicios/Locator.h"
 #include "../modelo/Entidad.h"
-#include "ActualizadorCliente.h"
 
 std::chrono::time_point<std::chrono::system_clock> ReceptorCliente::ultimaRecepcion = std::chrono::high_resolution_clock::now();
 
