@@ -114,7 +114,6 @@ void Juego::loop() {
         if (sleepTime > 0) SDL_Delay(sleepTime);
     }
 
-//    manager.getActual()->finalizar();
     Locator::logger()->log(INFO, "Finaliza el hilo de transmisión.");
 }
 

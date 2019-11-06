@@ -5,24 +5,17 @@
 #include <sys/socket.h>
 #include "ReceptorCliente.h"
 #include "../servicios/Locator.h"
-#include "../modelo/Entidad.h"
-
-std::chrono::time_point<std::chrono::system_clock> ReceptorCliente::ultimaRecepcion = std::chrono::high_resolution_clock::now();
 
 ReceptorCliente::ReceptorCliente() :
         disponible(0) {}
 
 void ReceptorCliente::recibir() {
-    ultimaRecepcion = std::chrono::high_resolution_clock::now();
-    while (conexionActiva) {
+    while (!Locator::socket()->estaDesconectado()) {
         stringstream s;
         if(!Locator::socket()->recibir(s)){
             Locator::logger()->log(ERROR, "Se detecta desconexión del servidor.");
-            conexionActiva = false;
-            disponible.post();
             break;
         }
-        ultimaRecepcion = std::chrono::high_resolution_clock::now();
 
         {
             std::lock_guard<std::mutex> lock(mutex);
@@ -34,6 +27,7 @@ void ReceptorCliente::recibir() {
             }
         }
     }
+    disponible.post();
     Locator::logger()->log(DEBUG, "Se termina el hilo del receptor.");
 }
 
@@ -54,12 +48,4 @@ pthread_t ReceptorCliente::recibirEnHilo() {
 
     Locator::logger()->log(DEBUG, "Se creó el hilo de recepción.");
     return hilo;
-}
-
-bool ReceptorCliente::conexionEstaActiva(){
-    return conexionActiva;
-}
-
-void ReceptorCliente::finalizar() {
-    conexionActiva = false;
 }

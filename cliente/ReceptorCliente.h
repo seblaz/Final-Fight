@@ -20,17 +20,12 @@ private:
     semaphore disponible;
     stringstream ultimoStream;
     void recibir();
-    bool conexionActiva = true;
 
 public:
     ReceptorCliente();
     void devolverStreamMasReciente(stringstream &s);
     pthread_t recibirEnHilo();
-    bool conexionEstaActiva();
 
-    void finalizar();
-
-    static std::chrono::time_point<std::chrono::system_clock> ultimaRecepcion;
 };
 
 
