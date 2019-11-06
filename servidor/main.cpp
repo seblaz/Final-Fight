@@ -8,7 +8,7 @@
 #include "ContenedorHilos.h"
 #include "Procesamiento.h"
 #include "../eventos/Eventos.h"
-#include "Transmision.h"
+#include "Transmisor.h"
 #include "../eventos/MostrarMenuSeleccion.h"
 #include "../eventos/ActualizarYTransmitir.h"
 #include "GameLoop.h"
@@ -82,7 +82,7 @@ int main(int argc, const char **args) {
     /**
      * Transmision.
      */
-    Transmision transmision(&listaSockets);
+    Transmisor transmision(&listaSockets);
     auto *eventosATransmitir = transmision.devolverCola();
     pthread_t hiloTransmision = transmision.transmitirEnHilo();
 
@@ -99,6 +99,7 @@ int main(int argc, const char **args) {
      */
     int maximoJugadores = Locator::configuracion()->getIntValue("/jugadores/cantidad");
     ManagerUsuarios managerUsuarios(maximoJugadores);
+    Locator::provide(&managerUsuarios);
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
 
     /**

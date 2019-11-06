@@ -48,4 +48,4 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
         mapa->vaciarMapa();
         NivelServidor::generarNivel("nivel2", mapa);
     }
-}
+}w

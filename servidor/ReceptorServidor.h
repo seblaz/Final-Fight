@@ -7,7 +7,6 @@
 
 
 #include "../eventos/Eventos.h"
-#include "actualizadores/ActualizadorJuego.h"
 #include "../modelo/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "SelectorPersonajes.h"
@@ -22,7 +21,6 @@ private:
     EventosAProcesar *eventos;
     SelectorPersonajes *selector;
     ListaSockets *listaSockets;
-    static semaphore *confirmacion;
 
 public:
     ReceptorServidor(Mapa *mapa, Socket *socket, ListaSockets *listaSockets, ManagerUsuarios *manager,

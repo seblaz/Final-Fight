@@ -92,6 +92,10 @@ TTF_Font *Locator::fuente() {
     return fuente_;
 }
 
+void Locator::provide(TTF_Font *fuente) {
+    fuente_ = fuente;
+}
+
 /**
  * Eventos a procesar.
  */
@@ -105,8 +109,17 @@ void Locator::provide(EventosAProcesar *eventos) {
     eventos_ = eventos;
 }
 
-void Locator::provide(TTF_Font *fuente) {
-    fuente_ = fuente;
+/**
+ * Manager de usuarios.
+ */
+ManagerUsuarios *Locator::usuarios_;
+
+ManagerUsuarios *Locator::usuarios() {
+    return usuarios_;
+}
+
+void Locator::provide(ManagerUsuarios *usuarios) {
+    usuarios_ = usuarios;
 }
 
 void Locator::clean() {

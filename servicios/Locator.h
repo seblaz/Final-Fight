@@ -14,6 +14,7 @@
 #include "../modelo/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
 #include "../eventos/Eventos.h"
+#include "../usuario/ManagerUsuarios.h"
 
 class Locator {
 
@@ -41,7 +42,10 @@ public:
     
     static EventosAProcesar *eventos();
     static void provide(EventosAProcesar *);
-    
+
+    static ManagerUsuarios *usuarios();
+    static void provide(ManagerUsuarios *);
+
     static void clean();
 
 private:
@@ -53,7 +57,8 @@ private:
     static FabricaDeSprites *fabrica;
     static TTF_Font *fuente_;
     static EventosAProcesar *eventos_;
-    
+    static ManagerUsuarios *usuarios_;
+
 };
 
 

@@ -6,6 +6,7 @@
 #include "ReceptorServidor.h"
 #include "../servicios/Locator.h"
 #include "ListaSockets.h"
+#include "clientes/Cliente.h"
 
 ContenedorHilos::ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
                                  SelectorPersonajes *selector, ListaSockets *listaSockets) :
@@ -24,10 +25,11 @@ void ContenedorHilos::esperarFinDeHilos() {
 void ContenedorHilos::crearHilo(Socket *socket) {
     Locator::logger()->log(DEBUG, "Se crea un nuevo thread para recibir las acciones de los clientes.");
 
-    pthread_t hilo;
-    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector});
-    pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
-    hilos.push_back(hilo);
+//    pthread_t hilo;
+//    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector});
+//    pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
+//    hilos.push_back(hilo);
+    auto *cliente = new Cliente(socket);
 }
 
 void *escucharCliente(void *args) {

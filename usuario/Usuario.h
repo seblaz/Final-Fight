@@ -20,10 +20,11 @@ private:
     string usuario;
     string contrasenia;
     Entidad *personaje{};
-    Socket *socket{};
-    bool valido_{};
     enum PERSONAJE personajeSeleccionado = CODY;
+    bool valido_{};
+    bool conectado = true;
     bool desconectadoVoluntariamente = false;
+//    Socket *socket{};
 
 public:
     Usuario() = default;
@@ -33,14 +34,11 @@ public:
     string getUsuario();
     string getContrasenia();
 
-    void setUsuario(string usuario);
-    void setContrasenia(string usuario);
-
     void setPersonaje(Entidad *personaje);
     Entidad *getPersonaje();
 
-    void setSocket(Socket *socket);
-    Socket *getSocket();
+//    void setSocket(Socket *socket);
+//    Socket *getSocket();
 
     bool estaConectado();
     void desconectar();
