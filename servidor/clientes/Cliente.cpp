@@ -7,6 +7,10 @@
 #include "../etapas/Etapa.h"
 #include "../modelo/ModeloAutenticacion.h"
 #include "../interpretes/InterpreteAutenticacion.h"
+#include "../modelo/ModeloMenuSeleccion.h"
+#include "../interpretes/InterpreteMenuSeleccion.h"
+#include "../modelo/ModeloJuego.h"
+#include "../interpretes/InterpreteJuego.h"
 #include <unistd.h>
 #include <functional>
 
@@ -16,6 +20,8 @@ Cliente::Cliente(Socket *socket) :
     auto *modeloAutenticacion = new ModeloAutenticacion();
     auto *interpreteAutenticacion = new InterpreteAutenticacion(usuario, modeloAutenticacion, &etapas);
     etapas.agregar(new Etapa("autenticacion", modeloAutenticacion, interpreteAutenticacion));
+    etapas.agregar(new Etapa("menu de seleccion", new ModeloMenuSeleccion(), new InterpreteMenuSeleccion(usuario)));
+    etapas.agregar(new Etapa("juego", new ModeloJuego(), new InterpreteJuego(usuario)));
 
     lanzarHilo(bind(&Cliente::transmitirEnHilo, this));
     lanzarHilo(bind(&Cliente::recibirEnHilo, this));
@@ -34,6 +40,7 @@ void Cliente::recibirEnHilo() {
         };
         etapas.getActual()->getInterprete()->interpretarStream(s);
     }
+    etapas.getActual()->getInterprete()->finalizar();
     Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
 }
 

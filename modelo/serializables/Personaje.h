@@ -9,12 +9,13 @@
 #include "Serializable.h"
 #include "../Entidad.h"
 
-enum PERSONAJE {
+enum class PERSONAJE {
     GUY,
     CODY,
     HAGGAR,
     MAKI,
-    POISSON
+    POISSON,
+    NULO
 };
 
 class Personaje : public Estado {

@@ -4,15 +4,12 @@
 
 #include "ConexionesClientes.h"
 #include "../servicios/Locator.h"
-#include "ReceptorServidor.h"
 #include <string>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-ConexionesClientes::ConexionesClientes(int socketServidor, ListaSockets *sockets, ManagerUsuarios *managerUsuarios, ContenedorHilos* contenedor) :
-        sockets(sockets),
-        manager(managerUsuarios),
+ConexionesClientes::ConexionesClientes(int socketServidor, ContenedorHilos* contenedor) :
         socketServidor(socketServidor),
         contenedor(contenedor) {}
 

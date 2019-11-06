@@ -19,9 +19,9 @@ class Usuario : private Serializable {
 private:
     string usuario;
     string contrasenia;
-    Entidad *personaje{};
-    enum PERSONAJE personajeSeleccionado = CODY;
-    bool valido_{};
+    Entidad *personaje {};
+    enum PERSONAJE personajeSeleccionado = PERSONAJE::NULO;
+    bool valido_ {};
     bool conectado = true;
     bool desconectadoVoluntariamente = false;
 //    Socket *socket{};

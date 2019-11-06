@@ -46,6 +46,9 @@ public:
     static ManagerUsuarios *usuarios();
     static void provide(ManagerUsuarios *);
 
+    static Mapa *mapa();
+    static void provide(Mapa *);
+
     static void clean();
 
 private:
@@ -58,6 +61,7 @@ private:
     static TTF_Font *fuente_;
     static EventosAProcesar *eventos_;
     static ManagerUsuarios *usuarios_;
+    static Mapa *mapa_;
 
 };
 

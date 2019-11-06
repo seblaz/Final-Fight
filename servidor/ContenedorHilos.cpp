@@ -3,18 +3,8 @@
 //
 
 #include "ContenedorHilos.h"
-#include "ReceptorServidor.h"
 #include "../servicios/Locator.h"
-#include "ListaSockets.h"
-#include "clientes/Cliente.h"
 
-ContenedorHilos::ContenedorHilos(Mapa *mapa, EventosAProcesar *eventosAProcesar, ManagerUsuarios *manager,
-                                 SelectorPersonajes *selector, ListaSockets *listaSockets) :
-        mapa(mapa),
-        manager(manager),
-        selector(selector),
-        listaSockets(listaSockets),
-        eventosAProcesar(eventosAProcesar) {}
 
 void ContenedorHilos::esperarFinDeHilos() {
     for (pthread_t hilo : hilos)
@@ -30,15 +20,17 @@ void ContenedorHilos::crearHilo(Socket *socket) {
 //    pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
 //    hilos.push_back(hilo);
     auto *cliente = new Cliente(socket);
+    clientes.push_back(cliente);
+
 }
 
-void *escucharCliente(void *args) {
-    auto *argumentos = (escucharClienteArgs *) args;
-    ReceptorServidor receptor(argumentos->mapa, argumentos->socket, argumentos->listaSockets,
-                              argumentos->manager, argumentos->eventos,
-                              argumentos->selector);
-    delete argumentos;
-    receptor.recibir();
-    Locator::logger()->log(INFO, "Se termina un hilo de cliente");
-    return nullptr;
-}
+//void *escucharCliente(void *args) {
+//    auto *argumentos = (escucharClienteArgs *) args;
+//    ReceptorServidor receptor(argumentos->mapa, argumentos->socket, argumentos->listaSockets,
+//                              argumentos->manager, argumentos->eventos,
+//                              argumentos->selector);
+//    delete argumentos;
+//    receptor.recibir();
+//    Locator::logger()->log(INFO, "Se termina un hilo de cliente");
+//    return nullptr;
+//}

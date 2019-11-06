@@ -23,7 +23,7 @@ public:
     Usuario *getUsuario();
     bool interpretarStream(stringstream &s);
     virtual bool interpretarAccion(ACCION accion, stringstream &s) = 0;
-
+    virtual void finalizar() {};
 };
 
 class DesconectarVoluntariamente : public EventoAProcesar {

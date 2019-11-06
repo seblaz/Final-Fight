@@ -11,7 +11,7 @@
 
 using namespace std;
 
-enum EVENTO_USUARIO_NUEVO {
+enum class EVENTO_USUARIO {
     CONTRASENIA_INCORRECTA,
     USUARIO_YA_CONECTADO,
     PARTIDA_LLENA,
@@ -21,7 +21,7 @@ enum EVENTO_USUARIO_NUEVO {
 class ModeloAutenticacion : public Modelo {
 
 private:
-    EVENTO_USUARIO_NUEVO evento = NULO;
+    EVENTO_USUARIO evento = EVENTO_USUARIO::NULO;
     mutex m;
 
 public:

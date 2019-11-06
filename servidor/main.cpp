@@ -8,9 +8,8 @@
 #include "ContenedorHilos.h"
 #include "Procesamiento.h"
 #include "../eventos/Eventos.h"
-#include "Transmisor.h"
 #include "../eventos/MostrarMenuSeleccion.h"
-#include "../eventos/ActualizarYTransmitir.h"
+#include "../eventos/ActualizarYSerializarMapa.h"
 #include "GameLoop.h"
 #include "../usuario/ManagerUsuarios.h"
 
@@ -73,18 +72,7 @@ int main(int argc, const char **args) {
      * Crear el mapa.
      */
     Mapa mapa;
-
-    /**
-     * Lista de sockets
-     */
-     ListaSockets listaSockets;
-
-    /**
-     * Transmision.
-     */
-    Transmisor transmision(&listaSockets);
-    auto *eventosATransmitir = transmision.devolverCola();
-    pthread_t hiloTransmision = transmision.transmitirEnHilo();
+    Locator::provide(&mapa);
 
     /**
      * Procesamiento.
@@ -103,28 +91,18 @@ int main(int argc, const char **args) {
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
 
     /**
-     * Selector de personajes.
-     */
-     SelectorPersonajes selector(maximoJugadores);
-
-    /**
      * Contenedor de hilos.
      */
-     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector, &listaSockets);
+     ContenedorHilos contenedor;
 
     /**
      * Conexiones de clientes.
      */
-    ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
+    ConexionesClientes conexiones(socketServidor, &contenedor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
-    /**
-     * Game loop.
-     */
-    auto *comenzar = new MostrarMenuSeleccion(&mapa);
-    eventosAProcesar->push(comenzar);
 
-    auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
+    auto *actualizar = new ActualizarYSerializarMapa(&mapa);
     GameLoop gameLoop(eventosAProcesar, actualizar, &managerUsuarios);
     gameLoop.loop();
 
@@ -132,12 +110,9 @@ int main(int argc, const char **args) {
      * Termino el procesamiento.
      */
     procesamiento.finalizar();
-    transmision.finalizar();
-
     pthread_join(hiloProcesamiento, nullptr);
-    pthread_join(hiloTransmision, nullptr);
 
-    listaSockets.cerrarSockets();
+//    listaSockets.cerrarSockets();
     contenedor.esperarFinDeHilos();
 
     shutdown(socketServidor, SHUT_RDWR);

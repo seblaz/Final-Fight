@@ -7,13 +7,8 @@
 #include <utility>
 
 Usuario::Usuario(string usuario, string contrasenia) :
-        valido_(false),
-        socket(nullptr),
-        personaje(nullptr),
-        personajeSeleccionado(CODY),
         usuario(std::move(usuario)),
-        contrasenia(std::move(contrasenia)),
-        desconectadoVoluntariamente(false) {}
+        contrasenia(std::move(contrasenia)) {}
 
 string Usuario::getUsuario() {
     return usuario;

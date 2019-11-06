@@ -122,6 +122,19 @@ void Locator::provide(ManagerUsuarios *usuarios) {
     usuarios_ = usuarios;
 }
 
+/**
+ * Mapa.
+ */
+Mapa *Locator::mapa_;
+
+Mapa *Locator::mapa() {
+    return mapa_;
+}
+
+void Locator::provide(Mapa *mapa) {
+    mapa_ = mapa;
+}
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 

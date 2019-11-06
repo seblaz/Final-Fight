@@ -9,13 +9,9 @@
 #include "Modelo.h"
 #include "../../modelo/Mapa.h"
 
-class ModeloJuego : Modelo {
-
-private:
-    Mapa *mapa;
+class ModeloJuego : public Modelo {
 
 public:
-    explicit ModeloJuego(Mapa *mapa);
     void serializar(ostream &stream) override;
     void deserializar(istream &stream) override;
 

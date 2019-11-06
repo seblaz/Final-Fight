@@ -160,7 +160,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
     string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
-    auto *personaje = new Personaje(POISSON);
+    auto *personaje = new Personaje(PERSONAJE::POISSON);
 
     for (int i = 0; i < cantidad; i++) {
         Locator::logger()->log(INFO, "Se genera enemigo");
@@ -176,7 +176,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
         auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
         auto *indiceSprite = new IndiceSprite;
-        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "reposando");
+        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(PERSONAJE::POISSON, "reposando");
         auto *energia = new Energia(100,1);
         auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,120, 10);
         auto* colisionador = new FisicaDeColisiones();

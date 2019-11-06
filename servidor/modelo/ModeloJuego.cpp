@@ -3,13 +3,11 @@
 //
 
 #include "ModeloJuego.h"
-
-ModeloJuego::ModeloJuego(Mapa *mapa) :
-        mapa(mapa) {}
+#include "../../servicios/Locator.h"
 
 void ModeloJuego::serializar(ostream &stream) {
     Modelo::serializar(stream);
-    // TODO.
+    Locator::mapa()->serializar(stream);
 }
 
 void ModeloJuego::deserializar(istream &stream) {

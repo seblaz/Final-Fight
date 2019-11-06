@@ -4,7 +4,7 @@
 
 #include "Personaje.h"
 
-Personaje::Personaje() : personaje(CODY){}
+Personaje::Personaje() : personaje(PERSONAJE::CODY){}
 
 Personaje::Personaje(enum PERSONAJE personaje) : personaje(personaje){}
 
@@ -17,7 +17,7 @@ void Personaje::setPersonaje(enum PERSONAJE personaje_) {
 }
 
 void Personaje::serializar(ostream &stream) {
-    serializarEntero(stream, personaje);
+    serializarEntero(stream, static_cast<int>(personaje));
 }
 
 void Personaje::deserializar(istream &stream) {
@@ -26,15 +26,15 @@ void Personaje::deserializar(istream &stream) {
 
 string Personaje::PersonajeACadena(enum PERSONAJE personaje) {
     switch(personaje){
-        case CODY:
+        case PERSONAJE::CODY:
             return "cody";
-        case HAGGAR:
+        case PERSONAJE::HAGGAR:
             return "haggar";
-        case GUY:
+        case PERSONAJE::GUY:
             return "guy";
-        case MAKI:
+        case PERSONAJE::MAKI:
             return "maki";
-        case POISSON:
+        case PERSONAJE::POISSON:
             return "poisson";
     }
 }

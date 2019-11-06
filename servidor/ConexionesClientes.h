@@ -11,19 +11,16 @@
 #include "../usuario/ManagerUsuarios.h"
 #include "../modelo/Mapa.h"
 #include "ContenedorHilos.h"
-#include "ListaSockets.h"
 
 class ConexionesClientes {
 
 private:
     int socketServidor;
-    ManagerUsuarios* manager;
-    ListaSockets *sockets;
     ContenedorHilos *contenedor;
     void manejarConexiones();
 
 public:
-    explicit ConexionesClientes(int socketServidor, ListaSockets *sockets, ManagerUsuarios* managerUsuarios, ContenedorHilos* contenedor);
+    ConexionesClientes(int socketServidor, ContenedorHilos* contenedor);
     pthread_t manejarConexionesEnHilo();
 
 };
