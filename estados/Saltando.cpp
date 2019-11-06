@@ -32,7 +32,7 @@ void Saltando::actualizar(Entidad *entidad) {
         }
         frames++;
     }else if( entidad->getEstado<Tipo>("tipo")->tipo() == JUGADOR  && ! entidad->getEstado<Actividad>("actividad")->activo ){
-        EstadoDePersonajeServidor::reposar(entidad);
+        EstadoDePersonajeServidor::reposar(entidad); //TODO
     }
 }
 

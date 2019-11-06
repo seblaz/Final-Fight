@@ -528,6 +528,20 @@
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
+            <golpeado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>350</x>
+                        <y>715</y>
+                        <w>39</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </golpeado>
         </cody>
         <poisson>
             <reposando>
@@ -664,6 +678,20 @@
                 <duraciones>1</duraciones>
                 <total>45</total>
             </agachado>
+            <golpeado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </golpeado>
         </poisson>
         <guy>
             <reposando>
@@ -848,6 +876,20 @@
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
+            <golpeado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>343</x>
+                        <y>670</y>
+                        <w>50</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </golpeado>
         </guy>
         <haggar>
             <reposando>
@@ -1003,7 +1045,7 @@
                     </posicion3>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1,2,1</duraciones>
+                <duraciones>1,1,1,1</duraciones>
                 <total>16</total>
             </golpeando>
             <agachado>
@@ -1020,6 +1062,20 @@
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
+            <golpeado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>360</x>
+                        <y>825</y>
+                        <w>60</w>
+                        <h>104</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </golpeado>
         </haggar>
         <maki>
             <reposando>
@@ -1192,6 +1248,20 @@
                 <duraciones>1</duraciones>
                 <total>1</total>
             </agachado>
+            <golpeado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>45</x>
+                        <y>6</y>
+                        <w>45</w>
+                        <h>90</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>1</total>
+            </golpeado>
         </maki>
     </animaciones>
 </configuracion>

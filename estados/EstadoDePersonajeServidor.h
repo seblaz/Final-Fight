@@ -17,6 +17,7 @@ public:
     virtual void reposar(Entidad *);
     virtual void agachar(Entidad *);
     virtual void golpear(Entidad *);
+    virtual void golpeado(Entidad *);
 
     void actualizar(Entidad * entidad) override;
 };

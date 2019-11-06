@@ -12,6 +12,7 @@
 #include "Golpeando.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
+#include "Golpeado.h"
 
 #define RAPIDEZ 4
 
@@ -86,3 +87,15 @@ void EstadoDePersonajeServidor::golpear(Entidad * entidad) {
 }
 
 void EstadoDePersonajeServidor::actualizar(Entidad *) {}
+
+void EstadoDePersonajeServidor::golpeado(Entidad * entidad) {
+    auto *estadoDePersonaje = new EstadoDePersonaje(GOLPEADO);
+    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+
+    EstadoDePersonajeServidor* golpeado = new Golpeado();
+    entidad->agregarComportamiento("estado", golpeado);
+
+    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
+    auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "golpeado");
+    entidad->agregarComportamiento("animacion servidor", animacion);
+}
