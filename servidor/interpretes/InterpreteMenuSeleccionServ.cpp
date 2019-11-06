@@ -15,8 +15,8 @@ bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream 
 
 void InterpreteMenuSeleccionServ::iniciar() {
     if(getUsuario()->getPersonaje()){
-
-    } // TODO.
+        getEtapa()->getManager()->cambiarA("juego");
+    }
 }
 
 void InterpreteMenuSeleccionServ::finalizarCliente() {

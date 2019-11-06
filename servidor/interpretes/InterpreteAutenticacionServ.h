@@ -15,11 +15,10 @@ class InterpreteAutenticacionServ : public InterpreteServidor {
 private:
     bool validarContrasenia(Usuario *usuario);
     ModeloAutenticacion *autenticacion;
-    ManagerEtapas *managerEtapas;
     semaphore usuarioAgregado = semaphore(0);
 
 public:
-    InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion, ManagerEtapas *managerEtapas);
+    InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion);
     bool interpretarAccion(ACCION accion, stringstream &s) override;
 };
 

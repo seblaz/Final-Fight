@@ -18,7 +18,7 @@
 Cliente::Cliente(Socket *socket) :
         socket(socket) {
     auto *modeloAutenticacion = new ModeloAutenticacion();
-    auto *interpreteAutenticacion = new InterpreteAutenticacionServ(usuario, modeloAutenticacion, &etapas);
+    auto *interpreteAutenticacion = new InterpreteAutenticacionServ(usuario, modeloAutenticacion);
     etapas.agregar(new Etapa("autenticacion", modeloAutenticacion, interpreteAutenticacion));
     etapas.agregar(new Etapa("menu de seleccion", new ModeloMenuSeleccion(), new InterpreteMenuSeleccionServ(usuario)));
     etapas.agregar(new Etapa("juego", new ModeloJuego(), new InterpreteJuegoServ(usuario)));

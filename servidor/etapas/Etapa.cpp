@@ -11,7 +11,9 @@
 Etapa::Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete) :
         id(id),
         modelo(modelo),
-        interprete(interprete) {}
+        interprete(interprete) {
+    interprete->setEtapa(this);
+}
 
 IdEtapa Etapa::getId() {
     return id;
@@ -37,4 +39,12 @@ void Etapa::finalizarCliente() {
 
 void Etapa::iniciar() {
     interprete->iniciar();
+}
+
+void Etapa::setManager(ManagerEtapas *manager_) {
+    manager = manager_;
+}
+
+ManagerEtapas *Etapa::getManager() {
+    return manager;
 }

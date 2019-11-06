@@ -12,15 +12,20 @@
 
 using namespace std;
 
+class Etapa;
+
 class InterpreteServidor {
 
 private:
     Usuario *usuario;
+    Etapa *etapa = nullptr;
     void desconectarUsuarioVoluntariamente();
 
 public:
     explicit InterpreteServidor(Usuario *usuario);
     Usuario *getUsuario();
+    Etapa *getEtapa();
+    void setEtapa(Etapa *etapa);
     bool interpretarStream(stringstream &s);
     virtual bool interpretarAccion(ACCION accion, stringstream &s) = 0;
     virtual void iniciar() {};

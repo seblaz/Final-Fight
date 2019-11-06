@@ -5,9 +5,8 @@
 #include "InterpreteAutenticacionServ.h"
 #include "../../servicios/Locator.h"
 
-InterpreteAutenticacionServ::InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion, ManagerEtapas *managerEtapas) :
+InterpreteAutenticacionServ::InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion) :
         InterpreteServidor(usuario),
-        managerEtapas(managerEtapas),
         autenticacion(autenticacion) {}
 
 bool InterpreteAutenticacionServ::interpretarAccion(ACCION accion, stringstream &s) {
@@ -15,7 +14,7 @@ bool InterpreteAutenticacionServ::interpretarAccion(ACCION accion, stringstream 
         getUsuario()->deserializar(s);
         if (!validarContrasenia(getUsuario())) return true;
 
-        auto *crear = new AgregarUsuario(getUsuario(), autenticacion, usuarioAgregado, managerEtapas);
+        auto *crear = new AgregarUsuario(getUsuario(), autenticacion, usuarioAgregado, getEtapa()->getManager());
         Locator::eventos()->push(crear);
         usuarioAgregado.wait();
 

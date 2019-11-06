@@ -9,7 +9,7 @@ void ManagerEtapas::agregar(Etapa *etapa) {
     if(!actual)
         actual = etapa;
     etapas[etapa->getId()] = etapa;
-//    etapa->setManager(this);
+    etapa->setManager(this);
 }
 
 Etapa *ManagerEtapas::getActual() {

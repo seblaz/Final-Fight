@@ -32,6 +32,14 @@ void InterpreteServidor::desconectarUsuarioVoluntariamente() {
     }
 }
 
+void InterpreteServidor::setEtapa(Etapa *etapa_) {
+    etapa = etapa_;
+}
+
+Etapa *InterpreteServidor::getEtapa() {
+    return etapa;
+}
+
 DesconectarVoluntariamente::DesconectarVoluntariamente(Usuario *usuario) :
         usuario(usuario) {}
 

@@ -25,10 +25,13 @@ private:
     IdEtapa id;
     Modelo *modelo;
     InterpreteServidor *interprete;
+    ManagerEtapas *manager = nullptr;
 
 public:
     explicit Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete);
     IdEtapa getId();
+    void setManager(ManagerEtapas *manager);
+    ManagerEtapas *getManager();
     InterpreteServidor *getInterprete();
     void serializar(stringstream &s);
     void iniciar();
