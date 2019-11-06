@@ -5,6 +5,9 @@
 #include "ContenedorHilos.h"
 #include "../servicios/Locator.h"
 
+ContenedorHilos::ContenedorHilos() {
+    Locator::provide(&clientes);
+}
 
 void ContenedorHilos::esperarFinDeHilos() {
     for (pthread_t hilo : hilos)
@@ -19,9 +22,7 @@ void ContenedorHilos::crearHilo(Socket *socket) {
 //    auto *argsEscuchar = new escucharClienteArgs({mapa, socket, listaSockets, manager, eventosAProcesar, selector});
 //    pthread_create(&hilo, nullptr, escucharCliente, (void *) argsEscuchar);
 //    hilos.push_back(hilo);
-    auto *cliente = new Cliente(socket);
-    clientes.push_back(cliente);
-
+    clientes.agregarCliente(new Cliente(socket));
 }
 
 //void *escucharCliente(void *args) {

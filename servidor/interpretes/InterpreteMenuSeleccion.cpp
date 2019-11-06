@@ -41,5 +41,6 @@ void ConfirmarSeleccion::resolver() {
             numeroJugador++;
         }
         NivelServidor::generarNivel("nivel1", Locator::mapa());
+        Locator::clientes()->cambiarTodosA("juego");
     }
 }

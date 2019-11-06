@@ -15,6 +15,7 @@
 #include "../cliente/FabricaDeSprites.h"
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"
+#include "../servidor/clientes/ManagerClientes.h"
 
 class Locator {
 
@@ -49,6 +50,9 @@ public:
     static Mapa *mapa();
     static void provide(Mapa *);
 
+    static ManagerClientes *clientes();
+    static void provide(ManagerClientes *);
+
     static void clean();
 
 private:
@@ -62,6 +66,7 @@ private:
     static EventosAProcesar *eventos_;
     static ManagerUsuarios *usuarios_;
     static Mapa *mapa_;
+    static ManagerClientes *clientes_;
 
 };
 

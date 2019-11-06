@@ -20,7 +20,7 @@ void GraficoMenuSeleccion::actualizar(Entidad *entidad) {
 
     SDL_Rect posicionEnSpriteIndicador = {0, 0, 150, 215};
     int xs[4] = {30, 430, 830, 1230};
-    int x = xs[personajeMarcado->getPersonaje()];
+    int x = xs[static_cast<int>(personajeMarcado->getPersonaje())];
     SDL_Rect posicionEnPantalla = {x, 100,
                                    int(float(posicionEnSpriteIndicador.w) * 2.3),
                                    int(float(posicionEnSpriteIndicador.h) * 2.3)};

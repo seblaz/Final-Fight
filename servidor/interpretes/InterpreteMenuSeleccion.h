@@ -7,10 +7,9 @@
 
 
 #include "InterpreteServidor.h"
+#include "../etapas/ManagerEtapas.h"
 
 class InterpreteMenuSeleccion : public InterpreteServidor {
-
-private:
 
 public:
     using InterpreteServidor::InterpreteServidor;

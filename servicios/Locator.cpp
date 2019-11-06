@@ -135,6 +135,19 @@ void Locator::provide(Mapa *mapa) {
     mapa_ = mapa;
 }
 
+/**
+ * Manager de clientes.
+ */
+ManagerClientes *Locator::clientes_;
+
+ManagerClientes *Locator::clientes() {
+    return clientes_;
+}
+
+void Locator::provide(ManagerClientes *clientes) {
+    clientes_ = clientes;
+}
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 

@@ -36,5 +36,7 @@ string Personaje::PersonajeACadena(enum PERSONAJE personaje) {
             return "maki";
         case PERSONAJE::POISSON:
             return "poisson";
+        default:
+            throw invalid_argument("Se recibió un personaje nulo para pasar a cadena.");
     }
 }

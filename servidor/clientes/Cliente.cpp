@@ -20,7 +20,7 @@ Cliente::Cliente(Socket *socket) :
     auto *modeloAutenticacion = new ModeloAutenticacion();
     auto *interpreteAutenticacion = new InterpreteAutenticacion(usuario, modeloAutenticacion, &etapas);
     etapas.agregar(new Etapa("autenticacion", modeloAutenticacion, interpreteAutenticacion));
-    etapas.agregar(new Etapa("menu de seleccion", new ModeloMenuSeleccion(), new InterpreteMenuSeleccion(usuario)));
+    etapas.agregar(new Etapa("menu de seleccion", new ModeloMenuSeleccion(), new InterpreteMenuSeleccion(usuario, &etapas)));
     etapas.agregar(new Etapa("juego", new ModeloJuego(), new InterpreteJuego(usuario)));
 
     lanzarHilo(bind(&Cliente::transmitirEnHilo, this));

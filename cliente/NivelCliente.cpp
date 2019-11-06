@@ -21,7 +21,7 @@ void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/fondo/src");
     auto *grafico = new GraficoMenuSeleccion();
-    auto *personaje = new Personaje(GUY);
+    auto *personaje = new Personaje(PERSONAJE::GUY);
     auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/selector/src");
 
     pantalla->agregarEstado("sprite", sprite);
@@ -50,19 +50,19 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     FabricaDeAnimacionesCliente *fabricaDeAnimaciones;
 
     switch (personaje->getPersonaje()) {
-        case HAGGAR:
+        case PERSONAJE::HAGGAR:
             srcSpritePersonaje = config->getValue("/personajes/haggar/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/haggar");
             break;
-        case CODY:
+        case PERSONAJE::CODY:
             srcSpritePersonaje = config->getValue("/personajes/cody/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/cody");
             break;
-        case MAKI:
+        case PERSONAJE::MAKI:
             srcSpritePersonaje = config->getValue("/personajes/maki/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/maki");
             break;
-        case GUY:
+        case PERSONAJE::GUY:
             srcSpritePersonaje = config->getValue("/personajes/guy/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/guy");
             break;

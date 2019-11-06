@@ -42,16 +42,16 @@ Accion *EntradaMenuSeleccion::getAccion() {
                 pantalla->agregarEstado("sprite selector", spritePersonajeElegido);
 
                 switch (personaje->getPersonaje()) {
-                    case GUY:
+                    case PERSONAJE::GUY:
                         Locator::logger()->log(DEBUG, "Se selecciono guy.");
                         return new Accion(SELECCIONAR_GUY);
-                    case CODY:
+                    case PERSONAJE::CODY:
                         Locator::logger()->log(DEBUG, "Se selecciono cody.");
                         return new Accion(SELECCIONAR_CODY);
-                    case HAGGAR:
+                    case PERSONAJE::HAGGAR:
                         Locator::logger()->log(DEBUG, "Se selecciono haggar.");
                         return new Accion(SELECCIONAR_HAGGAR);
-                    case MAKI:
+                    case PERSONAJE::MAKI:
                         Locator::logger()->log(DEBUG, "Se selecciono maki.");
                         return new Accion(SELECCIONAR_MAKI);
                 }
@@ -64,11 +64,11 @@ Accion *EntradaMenuSeleccion::getAccion() {
 }
 
 void EntradaMenuSeleccion::cambiarAlPersonajeSiguiente(Personaje *personajeMarcado) {
-    personajeMarcado->setPersonaje(static_cast<enum PERSONAJE>((personajeMarcado->getPersonaje() + 1) % 4));
+    personajeMarcado->setPersonaje(static_cast<enum PERSONAJE>((static_cast<int>(personajeMarcado->getPersonaje()) + 1) % 4));
 }
 
 void EntradaMenuSeleccion::cambiarAlPersonajeAnterior(Personaje *personajeMarcado) {
-    int pos = (personajeMarcado->getPersonaje() - 1) == -1 ? 3 : personajeMarcado->getPersonaje() - 1;
+    int pos = (static_cast<int>(personajeMarcado->getPersonaje()) - 1) == -1 ? 3 : static_cast<int>(personajeMarcado->getPersonaje()) - 1;
     personajeMarcado->setPersonaje(static_cast<enum PERSONAJE>(pos));
 }
 
