@@ -30,3 +30,11 @@ void Etapa::serializar(stringstream &s) {
     nombre.serializar(s);
     modelo->serializar(s);
 }
+
+void Etapa::finalizarCliente() {
+    interprete->finalizarCliente();
+}
+
+void Etapa::iniciar() {
+    interprete->iniciar();
+}

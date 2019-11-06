@@ -14,7 +14,8 @@ class InterpreteMenuSeleccionServ : public InterpreteServidor {
 public:
     using InterpreteServidor::InterpreteServidor;
     bool interpretarAccion(ACCION accion, stringstream &s) override;
-    void finalizar() override;
+    void finalizarCliente() override;
+    void iniciar() override;
 
 };
 

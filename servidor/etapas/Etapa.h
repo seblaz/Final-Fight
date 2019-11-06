@@ -29,9 +29,10 @@ private:
 public:
     explicit Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete);
     IdEtapa getId();
-    void serializar(stringstream &s);
-//    Modelo *getModelo();
     InterpreteServidor *getInterprete();
+    void serializar(stringstream &s);
+    void iniciar();
+    void finalizarCliente();
 
 };
 

@@ -32,31 +32,36 @@ void Cliente::cambiarA(const IdEtapa &etapa) {
 
 void Cliente::recibirEnHilo() {
     Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción para un cliente.");
-    while (!fin) {
-        stringstream s;
+    stringstream s;
+    do {
+        s.str(std::string());
         if (socket->estaDesconectado() || !socket->recibir(s)) {
             Locator::logger()->log(ERROR, "Se detecta socket invalido en el hilo de recepción y se cierra.");
-            socket->finalizarConexion();
+            fin = true;
             break;
-        };
-        etapas.getActual()->getInterprete()->interpretarStream(s);
-    }
-    etapas.getActual()->getInterprete()->finalizar();
+        }
+    } while (!fin && etapas.getActual()->getInterprete()->interpretarStream(s));
+
+    etapas.getActual()->finalizarCliente();
+    socket->finalizarConexion();
     Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
 }
 
 void Cliente::transmitirEnHilo() {
     Locator::logger()->log(DEBUG, "Se inicia el hilo de transmisión para un cliente.");
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
-    while (!fin) {
-        stringstream s;
+    stringstream s;
+    do {
+        s.str(std::string());
         etapas.getActual()->serializar(s);
         if (socket->estaDesconectado() || !socket->enviar(s)) {
             Locator::logger()->log(ERROR, "Se detecta socket invalido en el hilo de transmisión y se cierra.");
-            socket->finalizarConexion();
+            fin = true;
             break;
         }
         usleep(MS_PER_FRAME);
-    }
+    } while (!fin);
+
+    socket->finalizarConexion();
     Locator::logger()->log(DEBUG, "Se termina el hilo de transmisión.");
 }

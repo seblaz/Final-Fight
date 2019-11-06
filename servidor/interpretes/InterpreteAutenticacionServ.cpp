@@ -15,7 +15,7 @@ bool InterpreteAutenticacionServ::interpretarAccion(ACCION accion, stringstream 
         getUsuario()->deserializar(s);
         if (!validarContrasenia(getUsuario())) return false;
 
-        auto *crear = new AgregarUsuario(getUsuario(), autenticacion, usuarioAgregado);
+        auto *crear = new AgregarUsuario(getUsuario(), autenticacion, usuarioAgregado, managerEtapas);
         Locator::eventos()->push(crear);
         usuarioAgregado.wait();
 
@@ -24,7 +24,6 @@ bool InterpreteAutenticacionServ::interpretarAccion(ACCION accion, stringstream 
             return false;
         }
 
-        managerEtapas->cambiarA("menu de seleccion");
         return true;
     } else {
         Locator::logger()->log(ERROR, "Se recibió una acción inválida en el actualizador de usuario.");
@@ -43,7 +42,9 @@ bool InterpreteAutenticacionServ::validarContrasenia(Usuario *usuario) {
     return false;
 }
 
-AgregarUsuario::AgregarUsuario(Usuario *usuario, ModeloAutenticacion *autenticacion, semaphore &semaphore) :
+AgregarUsuario::AgregarUsuario(Usuario *usuario, ModeloAutenticacion *autenticacion, semaphore &semaphore,
+                               ManagerEtapas *etapas) :
+        etapas(etapas),
         usuario(usuario),
         usuarioAgregado(semaphore),
         autenticacion(autenticacion) {}
@@ -63,12 +64,14 @@ void AgregarUsuario::resolver() {
             manager->reemplazarUsuarioCon(usuario);
             usuario->setValido(true);
             Locator::logger()->log(INFO, "El usuario: " + usuarioAnterior->getUsuario() + " se reconectó a la partida.");
+            etapas->cambiarA("juego");
         }
     } else {
         if (manager->faltanJugadores()) { // Hay espacio para un jugador más.
             manager->agregarUsuario(usuario);
             usuario->setValido(true);
             Locator::logger()->log(INFO, "El usuario: " + usuario->getUsuario() + " se conectó a la partida.");
+            etapas->cambiarA("menu de seleccion");
 
         } else { // No queda espacio en la partida
             Locator::logger()->log(ERROR, "El usuario: " + usuario->getUsuario() + " trató de conectarse cuando la partida ya estaba completa.");

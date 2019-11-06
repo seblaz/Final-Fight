@@ -5,6 +5,7 @@
 #include "InterpreteJuegoServ.h"
 #include "../../servicios/Locator.h"
 #include "../../eventos/EventoPersonaje.h"
+#include "../../modelo/serializables/Actividad.h"
 
 bool InterpreteJuegoServ::interpretarAccion(ACCION accion, stringstream &s) {
     EventoAProcesar *evento;
@@ -55,5 +56,15 @@ bool InterpreteJuegoServ::interpretarAccion(ACCION accion, stringstream &s) {
             return true;
     }
     Locator::eventos()->push(evento);
-    return false;
+    return true;
 }
+
+void InterpreteJuegoServ::iniciar() {
+    getUsuario()->getPersonaje()->getEstado<Actividad>("actividad")->activo = true;
+}
+
+void InterpreteJuegoServ::finalizarCliente() {
+    getUsuario()->desconectar();
+    getUsuario()->getPersonaje()->getEstado<Actividad>("actividad")->activo = false;
+}
+

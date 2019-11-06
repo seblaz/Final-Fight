@@ -10,9 +10,14 @@
 bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream &s) {
     auto *evento = new ConfirmarSeleccion(getUsuario(), static_cast<enum PERSONAJE>(accion - SELECCIONAR_GUY));
     Locator::eventos()->push(evento);
+    return true;
 }
 
-void InterpreteMenuSeleccionServ::finalizar() {
+void InterpreteMenuSeleccionServ::iniciar() {
+    if(getUsuario()->getPersonaje()){}
+}
+
+void InterpreteMenuSeleccionServ::finalizarCliente() {
     getUsuario()->desconectar();
     getUsuario()->setPersonajeSeleccionado(PERSONAJE::NULO);
 }

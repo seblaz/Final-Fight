@@ -19,5 +19,6 @@ Etapa *ManagerEtapas::getActual() {
 void ManagerEtapas::cambiarA(const IdEtapa& id) {
 //    etapas[id]->setUsuario(actual->getUsuario());
     actual = etapas[id];
+    actual->iniciar();
     Locator::logger()->log(INFO, "Se cambia al usuario: " + actual->getInterprete()->getUsuario()->getUsuario() + " a la etapa: " + id + ".");
 }

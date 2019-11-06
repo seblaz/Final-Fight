@@ -13,7 +13,7 @@ bool InterpreteServidor::interpretarStream(stringstream &s) {
     accion.deserializar(s);
     switch (accion.accion()) {
         case FIN:
-            desconectarUsuario();
+            desconectarUsuarioVoluntariamente();
             return false;
         case NULA:
             return true;
@@ -25,12 +25,10 @@ Usuario *InterpreteServidor::getUsuario() {
     return usuario;
 }
 
-void InterpreteServidor::desconectarUsuario() {
+void InterpreteServidor::desconectarUsuarioVoluntariamente() {
     if (usuario) {
         Locator::logger()->log(INFO, "Se desconecta voluntariamente el usuario " + usuario->getUsuario() + ".");
         Locator::eventos()->push(new DesconectarVoluntariamente(usuario));
-    } else {
-        Locator::logger()->log(INFO, "Se desconecta un cliente que no pasó la etapa de usuario.");
     }
 }
 

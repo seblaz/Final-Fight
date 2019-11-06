@@ -16,7 +16,6 @@ private:
     Socket *socket;
     Usuario *usuario = new Usuario;
     bool fin = false;
-    void terminarConexionConSocket();
 
 protected:
     void recibirEnHilo();

@@ -16,14 +16,16 @@ class InterpreteServidor {
 
 private:
     Usuario *usuario;
-    void desconectarUsuario();
+    void desconectarUsuarioVoluntariamente();
 
 public:
     explicit InterpreteServidor(Usuario *usuario);
     Usuario *getUsuario();
     bool interpretarStream(stringstream &s);
     virtual bool interpretarAccion(ACCION accion, stringstream &s) = 0;
-    virtual void finalizar() {};
+    virtual void iniciar() {};
+    virtual void finalizarCliente() {};
+
 };
 
 class DesconectarVoluntariamente : public EventoAProcesar {

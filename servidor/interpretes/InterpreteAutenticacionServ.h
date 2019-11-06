@@ -29,9 +29,10 @@ private:
     Usuario *usuario;
     semaphore &usuarioAgregado;
     ModeloAutenticacion *autenticacion;
+    ManagerEtapas *etapas;
 
 public:
-    AgregarUsuario(Usuario *usuario, ModeloAutenticacion *autenticacion, semaphore &semaphore);
+    AgregarUsuario(Usuario *usuario, ModeloAutenticacion *autenticacion, semaphore &semaphore, ManagerEtapas *etapas);
     void resolver() override;
 
 };
