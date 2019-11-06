@@ -36,7 +36,7 @@ bool Envolvente::existeColisionUp(Envolvente *envolvente) {
 
     int x = this->posicion->getX();
 
-    return( x < envolvente->posicion->x + envolvente->ancho && x > envolvente->posicion->x - envolvente->ancho  &&
+    return( x - ancho < envolvente->posicion->x + envolvente->ancho && x + ancho > envolvente->posicion->x - envolvente->ancho  &&
     envolvente->posicion->y + envolvente->profundidad > posicion->y - profundidad &&
     envolvente->posicion->y + envolvente->profundidad < posicion->y);
 }
@@ -44,7 +44,7 @@ bool Envolvente::existeColisionUp(Envolvente *envolvente) {
 bool Envolvente::existeColisionDown(Envolvente *envolvente) {
     int x = this->posicion->getX();
 
-    return( x < envolvente->posicion->x + envolvente->ancho && x > envolvente->posicion->x - envolvente->ancho &&
+    return( x - ancho < envolvente->posicion->x + envolvente->ancho && x + ancho > envolvente->posicion->x - envolvente->ancho &&
     envolvente->posicion->y - envolvente->profundidad < posicion->y + profundidad &&
     envolvente->posicion->y - envolvente->profundidad > posicion->y);
 }

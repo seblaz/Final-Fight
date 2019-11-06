@@ -65,7 +65,6 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("energia", energia);
     jugador->agregarEstado("envolvente", envolvente);
-    jugador->agregarEstado("mapa", mapa);
     jugador->agregarEstado("puntaje", puntaje);
     jugador->agregarComportamiento("colisionador" , colisionador);
     jugador->agregarComportamiento("estado", estado);
@@ -181,7 +180,6 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,120, 10);
         auto* colisionador = new FisicaDeColisiones();
 
-        enemigo->agregarEstado("mapa", mapa);
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
         enemigo->agregarEstado("indice sprite", indiceSprite);
@@ -228,8 +226,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
                                                     0);
         auto *envolvente = new Envolvente(posicionElementoRandom, 120,120, 10);
         auto* colisionador = new FisicaDeColisiones();
-
-        elementoRandom->agregarEstado("mapa", mapa);
+        
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
         elementoRandom->agregarEstado("indice sprite", indiceSprite);

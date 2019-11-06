@@ -12,9 +12,11 @@ void FisicaDeColisiones::actualizar(Entidad * entidad) {
 }
 
 void EventoColisiones::resolver() {
-    auto colisionables = entidad->getEstado<Mapa>("mapa")->getColisionables();
-    auto idEntidad = entidad->getEstado<Mapa>("mapa")->getIdEntidad(entidad);
-    colisionables->calcularPosiblesColisiones(entidad, idEntidad);
+    //auto colisionables = entidad->getEstado<Mapa>("mapa")->getColisionables();
+    //auto idEntidad = entidad->getEstado<Mapa>("mapa")->getIdEntidad(entidad);
+    auto* mapa = Locator::mapa();
+    auto colisionables = mapa->getColisionables();
+    colisionables->calcularPosiblesColisiones(entidad);
 }
 
 EventoColisiones::EventoColisiones(Entidad * entidad) {
