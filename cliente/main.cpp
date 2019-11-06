@@ -83,7 +83,13 @@ int main(int argc, char *argv[]) {
         ConexionCliente conexion(ipAddress, port);
         Socket socket = conexion.socket();
         Locator::provide(&socket);
-
+        
+        /**
+         * Mapa.
+         */
+         Mapa mapa;
+         Locator::provide(&mapa);
+         
         /**
          * Iniciar juego.
          */

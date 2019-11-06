@@ -9,7 +9,6 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
-#include "pantallas/ManagerPantallas.h"
 #include "interpretes/InterpreteAutenticadorCli.h"
 #include "entradas/EntradaAutenticador.h"
 #include "modelos/MenuSeleccion.h"
@@ -17,6 +16,9 @@
 #include "entradas/EntradaMenuSeleccion.h"
 #include "vistas/VistaMenuSeleccion.h"
 #include "pantallas/PantallaError.h"
+#include "interpretes/InterpreteJuegoCli.h"
+#include "entradas/EntradaJuego.h"
+#include "vistas/VistaJuego.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -85,8 +87,8 @@ void Juego::loop() {
                                          new InterpreteNuloCli(),
                                          new EntradaMenuSeleccion(&menu),
                                          new VistaMenuSeleccion(&menu)));
-    //    manager.agregarPantalla(new PantallaAutenticador("autenticador"));
-//    manager.agregarPantalla(new PantallaJuego("juego", &mapa_));
+
+    manager.agregarPantalla(new Pantalla("juego", new InterpreteJuegoCli(), new EntradaJuego(), new VistaJuego()));
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
     manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
     manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));

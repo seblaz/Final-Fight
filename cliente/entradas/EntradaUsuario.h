@@ -45,12 +45,12 @@ public:
 //    explicit EntradaMenuSeleccion(Entidad *entidad) ;
 //};
 
-class EntradaJuego : public EntradaUsuario {
-
-public:
-    Accion *getAccion(SDL_Event *e) override;
-
-};
+//class EntradaJuego : public EntradaUsuario {
+//
+//public:
+//    Accion *getAccion(SDL_Event *e) override;
+//
+//};
 
 /**
  * Transmisión al servidor.
