@@ -34,7 +34,7 @@ void ConfirmarSeleccion::resolver() {
         int numeroJugador = 1;
         for (Usuario *iUsuario : Locator::usuarios()->getUsuarios()) {
             Entidad *personaje = NivelServidor::generarJugador(Locator::mapa(), iUsuario->getPersonajeSeleccionado(), numeroJugador);
-            usuario->setPersonaje(personaje);
+            iUsuario->setPersonaje(personaje);
 //            if(!usuario->estaConectado()){
 //                personaje->getEstado<Actividad>("actividad")->activo = false;
 //            }
