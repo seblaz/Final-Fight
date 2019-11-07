@@ -16,11 +16,13 @@ class ManagerClientes {
 
 private:
     list<Cliente *> clientes;
+    IdEtapa etapaActual;
 
 public:
     void agregarCliente(Cliente *cliente);
     void cambiarTodosA(const IdEtapa& idEtapa);
     void quitarCliente(Cliente *cliente);
+    IdEtapa getEtapaActual();
 
 };
 

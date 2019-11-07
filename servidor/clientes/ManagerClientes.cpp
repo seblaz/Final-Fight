@@ -7,6 +7,7 @@
 void ManagerClientes::cambiarTodosA(const IdEtapa &idEtapa) {
     for (auto cliente : clientes)
         cliente->cambiarA(idEtapa);
+    etapaActual = idEtapa;
 }
 
 void ManagerClientes::agregarCliente(Cliente *cliente) {
@@ -16,4 +17,8 @@ void ManagerClientes::agregarCliente(Cliente *cliente) {
 
 void ManagerClientes::quitarCliente(Cliente *cliente) {
     clientes.remove(cliente);
+}
+
+IdEtapa ManagerClientes::getEtapaActual() {
+    return etapaActual;
 }

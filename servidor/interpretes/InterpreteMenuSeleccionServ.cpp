@@ -14,7 +14,7 @@ bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream 
 
 void InterpreteMenuSeleccionServ::iniciar() {
     if(getUsuario()->getPersonaje()){
-        getEtapa()->getManager()->cambiarA("juego");
+        getEtapa()->getManager()->cambiarA(Locator::clientes()->getEtapaActual());
     }
 }
 
