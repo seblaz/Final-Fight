@@ -7,7 +7,7 @@
 
 
 #include "../etapas/ManagerEtapas.h"
-#include "../../modelo/Hilo.h"
+#include "../../utils/Hilo.h"
 
 class ManagerClientes;
 

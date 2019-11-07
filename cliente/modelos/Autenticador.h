@@ -7,7 +7,7 @@
 
 
 #include "../../modelo/serializables/EventoUsuario.h"
-#include "../../modelo/Socket.h"
+#include "../../utils/Socket.h"
 
 class Autenticador {
 

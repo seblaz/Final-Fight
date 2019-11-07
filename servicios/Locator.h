@@ -11,7 +11,7 @@
 #include "./Logger.h"
 #include "Configuracion.h"
 #include "../modelo/serializables/Posicion.h"
-#include "../modelo/Socket.h"
+#include "../utils/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"

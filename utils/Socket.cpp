@@ -8,9 +8,12 @@
 #include "../servicios/Locator.h"
 #include <unistd.h>
 
-Socket::Socket(int socket) : socket(socket) {
-    
+Socket::Socket(int socket) : socket(socket) {}
+
+int Socket::getIntSocket() {
+    return socket;
 }
+
 
 bool Socket::enviarSinChequeo(stringstream &s) {
     string msg = s.str();

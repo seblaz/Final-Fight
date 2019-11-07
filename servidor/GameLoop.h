@@ -11,15 +11,8 @@
 
 class GameLoop {
 
-private:
-    EventosAProcesar* eventos;
-    EventoAProcesar* eventoAProcesar;
-    ManagerUsuarios* managerUsuarios;
-
 public:
-    explicit GameLoop(EventosAProcesar *eventos, EventoAProcesar *eventoAProcesar, ManagerUsuarios *managerUsuarios);
     void loop();
-    pthread_t loopEnHilo();
 
 };
 

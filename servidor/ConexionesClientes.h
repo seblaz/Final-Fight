@@ -7,20 +7,21 @@
 
 #include <vector>
 #include <pthread.h>
-#include "../modelo/Socket.h"
+#include "../utils/Socket.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "../modelo/Mapa.h"
-#include "ContenedorHilos.h"
+#include "../utils/Hilo.h"
+#include "clientes/ManagerClientes.h"
 
-class ConexionesClientes {
+class ConexionesClientes : public Hilo {
 
 private:
-    int socketServidor;
-    ContenedorHilos *contenedor;
+    Socket *socketServidor;
+    ManagerClientes clientes;
     void manejarConexiones();
 
 public:
-    ConexionesClientes(int socketServidor, ContenedorHilos* contenedor);
+    explicit ConexionesClientes(Socket *socketServidor);
     pthread_t manejarConexionesEnHilo();
 
 };

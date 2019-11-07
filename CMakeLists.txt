@@ -55,7 +55,6 @@ SET(CMAKE_CXX_FLAGS -pthread)
 ]]
 FILE(GLOB_RECURSE TestSources test/*.cpp)
 FILE(GLOB_RECURSE ModelSources modelo/*.cpp)
-FILE(GLOB_RECURSE MainSources main/*.cpp)
 FILE(GLOB_RECURSE PhysicsSources fisica/*.cpp)
 FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
 FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
@@ -66,6 +65,7 @@ FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
+FILE(GLOB_RECURSE UtilsSources utils/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
@@ -89,11 +89,11 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} cliente/Juego.cpp ${UsuarioSources})
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} ${UsuarioSources} ${UtilsSources})
 target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} eventos/EventoModoTest.cpp eventos/EventoModoTest.h)
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources})
 target_link_libraries(servidor ${XercesC_LIBRARIES})

@@ -5,9 +5,7 @@
 #include "ConexionServidor.h"
 #include "../servicios/Locator.h"
 #include "ConexionesClientes.h"
-#include "ContenedorHilos.h"
 #include "Procesamiento.h"
-#include "../eventos/ActualizarYSerializarMapa.h"
 #include "GameLoop.h"
 
 using namespace std;
@@ -63,7 +61,7 @@ int main(int argc, const char **args) {
      * Conexion al servidor.
      */
     ConexionServidor conexion(5000);
-    int socketServidor = conexion.socket();
+    Socket *socketServidor = conexion.socket();
 
     /**
      * Crear el mapa.
@@ -88,19 +86,12 @@ int main(int argc, const char **args) {
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
 
     /**
-     * Contenedor de hilos.
-     */
-     ContenedorHilos contenedor;
-
-    /**
      * Conexiones de clientes.
      */
-    ConexionesClientes conexiones(socketServidor, &contenedor);
+    ConexionesClientes conexiones(socketServidor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
-
-    auto *actualizar = new ActualizarYSerializarMapa(&mapa);
-    GameLoop gameLoop(eventosAProcesar, actualizar, &managerUsuarios);
+    GameLoop gameLoop;
     gameLoop.loop();
 
     /**
@@ -108,12 +99,8 @@ int main(int argc, const char **args) {
      */
     procesamiento.finalizar();
     pthread_join(hiloProcesamiento, nullptr);
-
-//    listaSockets.cerrarSockets();
-    contenedor.esperarFinDeHilos();
-
-    shutdown(socketServidor, SHUT_RDWR);
-    close(socketServidor);
+    
+    socketServidor->finalizarConexion();
     pthread_join(hiloConexiones, nullptr);
 
     Locator::logger()->log(INFO, "Fin del programa.");

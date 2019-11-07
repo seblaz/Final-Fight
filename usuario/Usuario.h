@@ -8,7 +8,7 @@
 #include <string>
 #include "../modelo/serializables/Serializable.h"
 #include "../modelo/Entidad.h"
-#include "../modelo/Socket.h"
+#include "../utils/Socket.h"
 #include "../modelo/serializables/Personaje.h"
 
 using namespace std;

@@ -23,6 +23,7 @@ private:
 
 public:
     explicit Socket(int socket);
+    int getIntSocket();
     bool enviar(stringstream &s);
     bool recibir(stringstream &s);
     bool estaDesconectado();

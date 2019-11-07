@@ -4,7 +4,6 @@
 
 #include "InterpreteMenuSeleccionServ.h"
 #include "../../servicios/Locator.h"
-#include "../SelectorPersonajes.h"
 #include "../NivelServidor.h"
 
 bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream &s) {

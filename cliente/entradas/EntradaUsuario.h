@@ -9,7 +9,7 @@
 #include <mutex>
 #include <SDL_events.h>
 #include "../../modelo/serializables/Accion.h"
-#include "../../modelo/Socket.h"
+#include "../../utils/Socket.h"
 #include "../../modelo/serializables/Personaje.h"
 #include "../../servicios/Configuracion.h"
 
