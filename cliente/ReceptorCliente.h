@@ -9,10 +9,11 @@
 #include <mutex>
 #include <sstream>
 #include "../eventos/semaphore.h"
+#include "../utils/Hilo.h"
 
 using namespace std;
 
-class ReceptorCliente {
+class ReceptorCliente : Hilo {
 
 private:
     std::mutex mutex;

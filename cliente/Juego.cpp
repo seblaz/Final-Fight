@@ -70,31 +70,33 @@ void Juego::inicializarGraficos() {
     }
 }
 
-void Juego::loop() {
-
-    if (exit) return;
-
-    Autenticador autenticador;
-    auto *vistaAutenticador = new VistaAutenticador(&autenticador);
-    auto *interpreteAutenticador = new InterpreteAutenticadorCli(&autenticador, &manager);
-    auto *entradaAutenticador = new EntradaAutenticador(&autenticador);
+void Juego::agregarPantallas() {
+    auto *autenticador = new Autenticador();
+    auto *vistaAutenticador = new VistaAutenticador(autenticador);
+    auto *interpreteAutenticador = new InterpreteAutenticadorCli(autenticador, &manager);
+    auto *entradaAutenticador = new EntradaAutenticador(autenticador);
     manager.agregarPantalla(new Pantalla("autenticacion",
                                          interpreteAutenticador,
                                          entradaAutenticador,
                                          vistaAutenticador));
 
-    MenuSeleccion menu;
+    auto *menu = new MenuSeleccion();
     manager.agregarPantalla(new Pantalla("menu de seleccion",
                                          new InterpreteNuloCli(),
-                                         new EntradaMenuSeleccion(&menu),
-                                         new VistaMenuSeleccion(&menu)));
+                                         new EntradaMenuSeleccion(menu),
+                                         new VistaMenuSeleccion(menu)));
 
     manager.agregarPantalla(new PantallaJuego("juego", new InterpreteJuegoCli(), new EntradaJuego(), new VistaJuego()));
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
     manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
     manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
+}
 
+void Juego::loop() {
 
+    if (exit) return;
+
+    agregarPantallas();
     recibirEnHilo();
 
     /**
@@ -117,6 +119,23 @@ void Juego::loop() {
     Locator::logger()->log(INFO, "Finaliza el hilo de transmisión.");
 }
 
+void Juego::recibir() {
+
+    /**
+     * Recepcion.
+     */
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
+    while (!exit) {
+        stringstream s;
+        manager.getActual()->recibir(s);
+        manager.getActual()->interpretarNombrePantalla(s);
+        manager.getActual()->interpretarModelo(s);
+        manager.getActual()->graficar(renderer_);
+        actualizarGraficos();
+    }
+    Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
+}
+
 SDL_Event *Juego::processInput() {
     auto *e = new SDL_Event;
     if (SDL_PollEvent(e) && (e->type == SDL_QUIT)) {
@@ -135,6 +154,10 @@ void Juego::actualizarGraficos() {
     SDL_RenderClear(renderer_);
 }
 
+SDL_Renderer *Juego::renderer() {
+    return renderer_;
+}
+
 void Juego::terminar() {
     Locator::logger()->log(INFO, "Se termina el juego.");
     Locator::logger()->log(DEBUG, "Se destruye renderer y window.");
@@ -148,34 +171,6 @@ void Juego::terminar() {
     SDL_Quit(); // Quit SDL subsystems
 }
 
-SDL_Renderer *Juego::renderer() {
-    return renderer_;
-}
-
 pthread_t Juego::recibirEnHilo() {
-    pthread_t hilo;
-    pthread_create(&hilo, nullptr, [](void *arg) -> void * {
-        auto *juego = (Juego *) arg;
-        juego->recibir();
-        return nullptr;
-    }, (void *) this);
-
-    return hilo;
-}
-
-void Juego::recibir() {
-
-    /**
-     * Recepcion.
-     */
-    Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
-    while (!exit) {
-        stringstream s;
-        manager.getActual()->recibir(s);
-        manager.getActual()->interpretarNombrePantalla(s);
-        manager.getActual()->interpretarModelo(s);
-        manager.getActual()->graficar(renderer_);
-        actualizarGraficos();
-    }
-    Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
+    return lanzarHilo(bind(&Juego::recibir, this));
 }

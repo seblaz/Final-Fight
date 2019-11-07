@@ -8,14 +8,10 @@
 #include "../NivelCliente.h"
 
 void InterpreteJuegoCli::interpretar(stringstream &s) {
-//    unordered_set<IdEntidad> nuevasEntidades;
-
-//    nuevasEntidades.clear();
     Mapa *mapa = Locator::mapa();
     while (s.rdbuf()->in_avail() != 0) {
 
         IdEntidad idEntidad = Entidad::getIdFromStream(s);
-//        nuevasEntidades.insert(idEntidad);
         if (!mapa->contiene(idEntidad)) {
             Entidad *entidad = mapa->crearEntidadConId(idEntidad);
             entidad->deserializar(s);
@@ -48,10 +44,4 @@ void InterpreteJuegoCli::interpretar(stringstream &s) {
             entidad->deserializar(s);
         }
     }
-
-//    for (auto tupla : mapa->devolverEntidadesConId()) {
-//        if (nuevasEntidades.find(tupla.first) == nuevasEntidades.end()) {
-//            mapa->quitarEntidad(tupla.first);
-//        }
-//    }
 }
