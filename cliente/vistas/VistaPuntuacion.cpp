@@ -3,6 +3,7 @@
 //
 
 #include <set>
+#include <algorithm>
 #include "VistaPuntuacion.h"
 #include "../../servicios/Locator.h"
 
