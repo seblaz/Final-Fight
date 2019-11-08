@@ -6,14 +6,11 @@
 
 #include <utility>
 
+Usuario::Usuario() : personajeSeleccionado(NULO){};
+
 Usuario::Usuario(string usuario, string contrasenia) :
-        valido_(false),
-        socket(nullptr),
-        personaje(nullptr),
-        personajeSeleccionado(CODY),
         usuario(std::move(usuario)),
-        contrasenia(std::move(contrasenia)),
-        desconectadoVoluntariamente(false){}
+        contrasenia(std::move(contrasenia)) {}
 
 string Usuario::getUsuario() {
     return usuario;
@@ -23,28 +20,22 @@ string Usuario::getContrasenia() {
     return contrasenia;
 }
 
-void Usuario::setUsuario(string stringUsuario) {
-    usuario = stringUsuario;
-}
-
-void Usuario::setContrasenia(string stringContrasenia) {
-    contrasenia = stringContrasenia;
-}
-
-void Usuario::setSocket(Socket *nuevoSocket) {
-    socket = nuevoSocket;
-}
-
-Socket *Usuario::getSocket() {
-    return socket;
-}
+//void Usuario::setSocket(Socket *nuevoSocket) {
+//    socket = nuevoSocket;
+//}
+//
+//Socket *Usuario::getSocket() {
+//    return socket;
+//}
 
 bool Usuario::estaConectado() {
-    return socket != nullptr;
+//    return socket != nullptr;
+    return conectado;
 }
 
 void Usuario::desconectar() {
-    socket = nullptr;
+//    socket = nullptr;
+    conectado = false;
 }
 
 void Usuario::setValido(bool valido) {
@@ -63,8 +54,7 @@ Entidad *Usuario::getPersonaje() {
     return personaje;
 }
 
-void Usuario::setPersonajeSeleccionado(
-        enum PERSONAJE personajeSeleccionado_) {
+void Usuario::setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado_) {
     personajeSeleccionado = personajeSeleccionado_;
 };
 
@@ -86,10 +76,11 @@ void Usuario::deserializar(istream &stream) {
     contrasenia = deserializarString(stream);
 }
 
-void Usuario::desconectarVoluntariamente(){
-    this->desconectadoVoluntariamente = true;
+void Usuario::desconectarVoluntariamente() {
+    desconectar();
+    desconectadoVoluntariamente = true;
 }
 
-bool Usuario::estaDesconectadoVoluntariamente(){
-    return this->desconectadoVoluntariamente;
+bool Usuario::estaDesconectadoVoluntariamente() {
+    return desconectadoVoluntariamente;
 }

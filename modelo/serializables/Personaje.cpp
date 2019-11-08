@@ -17,7 +17,7 @@ void Personaje::setPersonaje(enum PERSONAJE personaje_) {
 }
 
 void Personaje::serializar(ostream &stream) {
-    serializarEntero(stream, personaje);
+    serializarEntero(stream, static_cast<int>(personaje));
 }
 
 void Personaje::deserializar(istream &stream) {
@@ -36,5 +36,7 @@ string Personaje::PersonajeACadena(enum PERSONAJE personaje) {
             return "maki";
         case POISSON:
             return "poisson";
+        default:
+            throw invalid_argument("Se recibió un personaje nulo para pasar a cadena.");
     }
 }

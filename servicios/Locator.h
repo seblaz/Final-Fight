@@ -11,9 +11,11 @@
 #include "./Logger.h"
 #include "Configuracion.h"
 #include "../modelo/serializables/Posicion.h"
-#include "../modelo/Socket.h"
+#include "../utils/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
 #include "../eventos/Eventos.h"
+#include "../usuario/ManagerUsuarios.h"
+#include "../servidor/clientes/ManagerClientes.h"
 
 class Locator {
 
@@ -41,7 +43,16 @@ public:
     
     static EventosAProcesar *eventos();
     static void provide(EventosAProcesar *);
-    
+
+    static ManagerUsuarios *usuarios();
+    static void provide(ManagerUsuarios *);
+
+    static Mapa *mapa();
+    static void provide(Mapa *);
+
+    static ManagerClientes *clientes();
+    static void provide(ManagerClientes *);
+
     static void clean();
 
 private:
@@ -53,7 +64,10 @@ private:
     static FabricaDeSprites *fabrica;
     static TTF_Font *fuente_;
     static EventosAProcesar *eventos_;
-    
+    static ManagerUsuarios *usuarios_;
+    static Mapa *mapa_;
+    static ManagerClientes *clientes_;
+
 };
 
 

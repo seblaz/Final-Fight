@@ -15,7 +15,8 @@ enum ESTADO_DE_PERSONAJE {
     REPOSANDO,
     GOLPEANDO,
     AGACHADO,
-    PATEANDO
+    PATEANDO,
+    GOLPEADO
 };
 
 class EstadoDePersonaje : public Estado {

@@ -11,13 +11,13 @@ using namespace std;
 IdEntidad Mapa::ultimoId = 0;
 
 Entidad *Mapa::crearEntidad() {
-    auto* e = new Entidad();
+    auto *e = new Entidad();
     entidades[++ultimoId] = e;
     return e;
 }
 
 Entidad *Mapa::crearEntidadConId(IdEntidad idEntidad) {
-    auto* e = new Entidad();
+    auto *e = new Entidad();
     entidades[idEntidad] = e;
     return e;
 }
@@ -32,9 +32,10 @@ vector<Entidad *> Mapa::devolverEntidades() {
 void Mapa::vaciarMapa() {
     entidades.clear();
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
-    for(auto tupla : jugadores){
+    for (auto tupla : jugadores) {
         entidades[tupla.first] = tupla.second;
-        Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) + " a las entidades.");
+        Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) +
+                                      " a las entidades.");
     }
 }
 
@@ -50,7 +51,7 @@ void Mapa::agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador) {
 }
 
 Entidad *Mapa::getJugador() {
-    for(auto tuple : jugadores)
+    for (auto tuple : jugadores)
         return tuple.second;
     return nullptr;
 }
@@ -67,7 +68,7 @@ unordered_map<IdEntidad, Entidad *> Mapa::devolverEntidadesConId() {
     return entidades;
 }
 
-unordered_map<IdEntidad, Entidad *>* Mapa::devolverJugadores() {
+unordered_map<IdEntidad, Entidad *> *Mapa::devolverJugadores() {
     return &jugadores;
 }
 
@@ -76,7 +77,7 @@ void Mapa::quitarEntidad(IdEntidad idEntidad) {
     entidades.erase(idEntidad);
 }
 
-Jugadores* Mapa::getJugadores() {
+Jugadores *Mapa::getJugadores() {
     return new Jugadores(jugadores);
 }
 
@@ -84,12 +85,22 @@ Colisionables *Mapa::getColisionables() {
     return new Colisionables(entidades);
 }
 
-IdEntidad Mapa::getIdEntidad(Entidad * entidad) {
-    for ( auto tuple : entidades ){
-        if ( tuple.second == entidad ){
+IdEntidad Mapa::getIdEntidad(Entidad *entidad) {
+    for (auto tuple : entidades) {
+        if (tuple.second == entidad) {
             return tuple.first;
         }
     }
+}
+
+void Mapa::guardarSerializado(stringstream &s) {
+    lock_guard<mutex> lock(m);
+    serializadoMasReciente = move(s);
+}
+
+void Mapa::serializar(ostream &stream) {
+    lock_guard<mutex> lock(m);
+    stream << serializadoMasReciente.str();
 }
 
 

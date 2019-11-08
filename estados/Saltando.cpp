@@ -13,7 +13,7 @@
 
 Saltando::Saltando() {
     Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
+//    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
 }
 
 Saltando::~Saltando() {
@@ -32,7 +32,7 @@ void Saltando::actualizar(Entidad *entidad) {
         }
         frames++;
     }else if( entidad->getEstado<Tipo>("tipo")->tipo() == JUGADOR  && ! entidad->getEstado<Actividad>("actividad")->activo ){
-        EstadoDePersonajeServidor::reposar(entidad);
+        EstadoDePersonajeServidor::reposar(entidad); //TODO
     }
 }
 

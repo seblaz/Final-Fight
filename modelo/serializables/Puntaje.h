@@ -19,6 +19,7 @@ public:
     void deserializar(istream& stream) override;
     void agregarPuntos(int puntos);
     int obtenerPuntos();
+
 };
 
 

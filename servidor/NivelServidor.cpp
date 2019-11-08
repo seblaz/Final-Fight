@@ -50,7 +50,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
-    auto *envolvente = new Envolvente(posicion, 120,120, 10);
+    auto *envolvente = new Envolvente(posicion, 120,60, 10);
     auto* colisionador = new FisicaDeColisiones();
     auto* puntaje = new Puntaje();
 
@@ -65,7 +65,6 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("energia", energia);
     jugador->agregarEstado("envolvente", envolvente);
-    jugador->agregarEstado("mapa", mapa);
     jugador->agregarEstado("puntaje", puntaje);
     jugador->agregarComportamiento("colisionador" , colisionador);
     jugador->agregarComportamiento("estado", estado);
@@ -75,7 +74,6 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
 }
 
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
-    mapa->vaciarMapa();
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);
@@ -181,7 +179,6 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,120, 10);
         auto* colisionador = new FisicaDeColisiones();
 
-        enemigo->agregarEstado("mapa", mapa);
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
         enemigo->agregarEstado("indice sprite", indiceSprite);
@@ -228,14 +225,13 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
                                                     0);
         auto *envolvente = new Envolvente(posicionElementoRandom, 120,120, 10);
         auto* colisionador = new FisicaDeColisiones();
-
-        elementoRandom->agregarEstado("mapa", mapa);
+        
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
         elementoRandom->agregarEstado("indice sprite", indiceSprite);
         elementoRandom->agregarEstado("tipo elemento", tipoElemento);
-        elementoRandom->agregarEstado("envolvente", envolvente);
-        elementoRandom->agregarComportamiento("colisionador", colisionador);
+        //elementoRandom->agregarEstado("envolvente", envolvente);
+        //elementoRandom->agregarComportamiento("colisionador", colisionador);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
     }
 

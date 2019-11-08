@@ -20,6 +20,7 @@ void Golpeando::actualizar(Entidad * entidad) {
     velocidad->y = 0;
     if ( frame == frames_totales ){
         termine = true;
+        //EstadoDePersonajeServidor::reposar(entidad);
     }else {
         frame++;
     }

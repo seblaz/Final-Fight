@@ -13,23 +13,7 @@
 #include "../modelo/serializables/TipoElemento.h"
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/GraficoJugador.h"
-#include "../graficos/GraficoMenuSeleccion.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
-
-void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
-    Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
-
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/fondo/src");
-    auto *grafico = new GraficoMenuSeleccion();
-    auto *personaje = new Personaje(GUY);
-    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/selector/src");
-
-    pantalla->agregarEstado("sprite", sprite);
-    pantalla->agregarEstado("mapa", mapa);
-    pantalla->agregarEstado("personaje marcado", personaje);
-    pantalla->agregarEstado("sprite selector", spriteSelector);
-    pantalla->agregarComportamiento("grafico", grafico);
-}
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
@@ -154,9 +138,9 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
 
 }
 
-void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
+void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
     Configuracion *config = Locator::configuracion();
-    auto *tipoElemento = elemento->getEstado<TipoElemento>("tipo elemento");
+    auto *tipoElemento = entidad->getEstado<TipoElemento>("tipo elemento");
     string srcSprite;
     AnimacionCliente *animacion;
     int ART = tipoElemento->getElemento();
@@ -185,8 +169,8 @@ void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
     auto *grafico = new Grafico();
 
-    elemento->agregarEstado("sprite", sprite);
-    elemento->agregarEstado("animacion", animacion);
-    elemento->agregarComportamiento("grafico", grafico);
+    entidad->agregarEstado("sprite", sprite);
+    entidad->agregarEstado("animacion", animacion);
+    entidad->agregarComportamiento("grafico", grafico);
 
 }

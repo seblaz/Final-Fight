@@ -34,6 +34,6 @@ ConexionServidor::ConexionServidor(int puerto) {
     Locator::logger()->log(DEBUG, "Se creó el socket de aceptación.");
 }
 
-int ConexionServidor::socket() {
-    return descriptorSocket;
+Socket *ConexionServidor::socket() {
+    return new Socket(descriptorSocket);
 }

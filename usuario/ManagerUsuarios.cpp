@@ -38,10 +38,6 @@ list<Usuario *> ManagerUsuarios::getUsuarios() {
     return usuarios;
 }
 
-int ManagerUsuarios::cantidadJugadoresTotales() {
-    return maximo;
-}
-
 Usuario *ManagerUsuarios::getUsuarioAnterior(Usuario *usuario) {
     auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
         return u->getUsuario() == usuario->getUsuario();
@@ -60,15 +56,6 @@ bool ManagerUsuarios::faltanJugadores() {
     return usuarios.size() < maximo;
 }
 
-void ManagerUsuarios::desconectarJugadorVoluntariamente(Usuario *usuario) {
-    auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
-        return u->getUsuario() == usuario->getUsuario();
-    });
-
-    Usuario *pUsuario = pos.operator*();
-    pUsuario->desconectarVoluntariamente();
-}
-
 bool ManagerUsuarios::hayJugadoresConectados() {
     int desconectados = 0;
 
@@ -81,7 +68,7 @@ bool ManagerUsuarios::hayJugadoresConectados() {
     return desconectados < this->maximo;
 }
 
-bool ManagerUsuarios::usuarioValido(Usuario *usuario) {
+bool ManagerUsuarios::validarContrasenia(Usuario *usuario) {
     return (baseUsuarios.find(usuario->getUsuario()) != baseUsuarios.end()) &&
            (baseUsuarios[usuario->getUsuario()] == usuario->getContrasenia());
 }

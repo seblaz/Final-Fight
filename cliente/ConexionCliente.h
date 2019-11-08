@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_CONEXIONCLIENTE_H
 
 #include <string>
-#include "../modelo/Socket.h"
+#include "../utils/Socket.h"
 
 using namespace std;
 

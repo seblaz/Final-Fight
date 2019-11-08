@@ -6,6 +6,7 @@
 #include "../servicios/Locator.h"
 #include "../modelo/Mapa.h"
 #include "../servidor/NivelServidor.h"
+#include "../modelo/serializables/Nivel.h"
 
 FisicaDeEscenario::FisicaDeEscenario(int largo) :
         largo(largo) {
@@ -44,8 +45,10 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
     if (xMayorPersonaje > largo) {
-        Locator::logger()->log(INFO, "Se llego al final del nivel.");
+        auto *nivel = entidad->getEstado<Nivel>("nivel");
+        Locator::logger()->log(INFO, "Se llego al final del " + nivel->nivel() + " .");
         mapa->vaciarMapa();
-        NivelServidor::generarNivel("nivel2", mapa);
+        string proxEtapa = nivel->nivel() == "nivel1" ? "puntuacion1" : "puntuacion2";
+        Locator::clientes()->cambiarTodosA(proxEtapa);
     }
 }

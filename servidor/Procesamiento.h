@@ -9,8 +9,9 @@
 #include "../eventos/queue.h"
 #include "../modelo/Mapa.h"
 #include "../eventos/Eventos.h"
+#include "../utils/Hilo.h"
 
-class Procesamiento {
+class Procesamiento : Hilo {
 
 private:
     EventosAProcesar eventosAProcesar;

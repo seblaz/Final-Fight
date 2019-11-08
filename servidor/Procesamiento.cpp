@@ -14,19 +14,13 @@ void Procesamiento::procesar() {
     Locator::logger()->log(DEBUG, "Se termina el hilo de procesamiento.");
 }
 
-pthread_t Procesamiento::procesarEnHilo() {
-    pthread_t hilo;
-    pthread_create(&hilo, nullptr, [](void *arg) -> void * {
-        auto *procesamiento = (Procesamiento *) arg;
-        procesamiento->procesar();
-        return nullptr;
-    }, (void *) this);
-
-    Locator::logger()->log(DEBUG, "Se creó el hilo de procesamiento.");
-    return hilo;
-}
-
 void Procesamiento::finalizar() {
     fin = true;
     eventosAProcesar.push(new EventoVacio());
 }
+
+pthread_t Procesamiento::procesarEnHilo() {
+    Locator::logger()->log(DEBUG, "Se creó el hilo de procesamiento.");
+    return lanzarHilo(bind(&Procesamiento::procesar, this));
+}
+
