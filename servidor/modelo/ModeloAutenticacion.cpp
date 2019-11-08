@@ -11,10 +11,6 @@ void ModeloAutenticacion::serializar(ostream &stream) {
         evento = EventoUsuario(EVENTO_USUARIO::NULO);
 }
 
-void ModeloAutenticacion::deserializar(istream &stream) {
-    evento.deserializar(stream);
-}
-
 void ModeloAutenticacion::passwordIncorrecta() {
     lock_guard<mutex> lock(m);
     evento = EventoUsuario(EVENTO_USUARIO::CONTRASENIA_INCORRECTA);

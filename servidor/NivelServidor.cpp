@@ -74,7 +74,6 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
 }
 
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
-    mapa->vaciarMapa();
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);

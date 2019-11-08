@@ -7,8 +7,11 @@
 
 #include "../../modelo/serializables/Serializable.h"
 
-class Modelo : public Serializable {
-    
+class Modelo {
+
+public:
+    virtual void serializar(ostream &stream) = 0;
+
 };
 
 #endif //FINAL_FIGHT_MODELO_H

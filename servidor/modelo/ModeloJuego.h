@@ -14,7 +14,6 @@ class ModeloJuego : public Modelo {
 
 public:
     void serializar(ostream &stream) override;
-    void deserializar(istream &stream) override;
 
 };
 

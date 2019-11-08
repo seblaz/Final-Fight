@@ -21,11 +21,14 @@ private:
     semaphore disponible;
     stringstream ultimoStream;
     void recibir();
+    bool fin = false;
+    semaphore finSemaforo;
 
 public:
     ReceptorCliente();
     void devolverStreamMasReciente(stringstream &s);
     pthread_t recibirEnHilo();
+    void finalizar();
 
 };
 

@@ -21,6 +21,7 @@ void ManagerPantallas::cambiarA(const IdPantalla &idPantalla) {
         {
             unique_lock<std::mutex> lock(m);
             if(actual->getId() != idPantalla){
+                actual->finalizar();
                 actual = pantallas[idPantalla];
                 actual->iniciar();
                 Locator::logger()->log(INFO, "Se cambia a la pantalla: " + idPantalla + ".");

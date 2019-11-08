@@ -25,13 +25,13 @@ public:
 
     bool faltanJugadores();
     list<Usuario *> getUsuarios();
-    int cantidadJugadoresTotales();
     bool estaPresente(Usuario *usuario);
     void agregarUsuario(Usuario *usuario);
     void reemplazarUsuarioCon(Usuario *usuario);
     Usuario *getUsuarioAnterior(Usuario *usuario);
     bool hayJugadoresConectados();
     bool validarContrasenia(Usuario *usuario);
+
 };
 
 

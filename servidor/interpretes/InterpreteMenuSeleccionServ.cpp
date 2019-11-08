@@ -14,7 +14,7 @@ bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream 
 
 void InterpreteMenuSeleccionServ::iniciar() {
     if(getUsuario()->getPersonaje()){
-        getEtapa()->getManager()->cambiarA(Locator::clientes()->getEtapaActual());
+        getEtapa()->getManager()->cambiarA("nivel1");
     }
 }
 
@@ -44,6 +44,6 @@ void ConfirmarSeleccion::resolver() {
             numeroJugador++;
         }
         NivelServidor::generarNivel("nivel1", Locator::mapa());
-        Locator::clientes()->cambiarTodosA("juego");
+        Locator::clientes()->cambiarTodosA("nivel1");
     }
 }

@@ -16,6 +16,7 @@ class ManagerEtapas {
 private:
     Etapa *actual = nullptr;
     map<IdEtapa, Etapa *> etapas;
+    mutex m;
 
 public:
     void agregar(Etapa *etapa);

@@ -8,7 +8,3 @@
 void ModeloJuego::serializar(ostream &stream) {
     Locator::mapa()->serializar(stream);
 }
-
-void ModeloJuego::deserializar(istream &stream) {
-    // TODO.
-}

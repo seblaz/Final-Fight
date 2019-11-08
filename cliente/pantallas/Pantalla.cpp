@@ -7,8 +7,8 @@
 #include "../../servicios/Locator.h"
 
 Pantalla::Pantalla(IdPantalla id, InterpreteCliente *interprete, EntradaUsuario *entradaUsuario, Vista *vista) :
-        vista(vista),
         id(id),
+        vista(vista),
         interprete(interprete),
         entradaUsuario(entradaUsuario) {}
 
@@ -39,9 +39,10 @@ Accion *Pantalla::getAccion(SDL_Event *e) {
 }
 
 void Pantalla::recibir(stringstream &s) {
-    if (Locator::socket()->estaDesconectado() || !Locator::socket()->recibir(s)) {
+    Socket *socket = Locator::socket();
+    if (socket->estaDesconectado() || !socket->recibir(s)) {
         Locator::logger()->log(ERROR, "Ocurrió un error en el hilo de recepción.");
-        Locator::socket()->finalizarConexion();
+        socket->finalizarConexion();
         manager->cambiarA("error de conexion");
     };
 }
@@ -55,4 +56,8 @@ void Pantalla::enviar(SDL_Event *e) {
         Locator::socket()->finalizarConexion();
         manager->cambiarA("error de conexion");
     }
+}
+
+void Pantalla::iniciar() {
+    Locator::mapa()->vaciarMapa();
 }

@@ -15,8 +15,10 @@ private:
     ReceptorCliente receptor;
 
 public:
-    using Pantalla::Pantalla;
+    PantallaJuego(IdPantalla id, InterpreteCliente *interprete,
+                  EntradaUsuario *entradaUsuario, Vista *vista);
     void iniciar() override;
+    void finalizar() override;
     void recibir(stringstream &s) override;
 
 };

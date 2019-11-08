@@ -25,7 +25,6 @@ public:
     void passwordIncorrecta();
     void usuarioYaConectado();
     void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
 
 };
 

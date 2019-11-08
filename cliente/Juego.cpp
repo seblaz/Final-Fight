@@ -20,6 +20,11 @@
 #include "entradas/EntradaJuego.h"
 #include "vistas/VistaJuego.h"
 #include "pantallas/PantallaJuego.h"
+#include "interpretes/InterpretePuntuacionCli.h"
+#include "entradas/EntradaPuntuacion.h"
+#include "vistas/VistaPuntuacion.h"
+#include "entradas/EntradaNula.h"
+#include "vistas/VistaFin.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -86,7 +91,33 @@ void Juego::agregarPantallas() {
                                          new EntradaMenuSeleccion(menu),
                                          new VistaMenuSeleccion(menu)));
 
-    manager.agregarPantalla(new PantallaJuego("juego", new InterpreteJuegoCli(), new EntradaJuego(), new VistaJuego()));
+
+    manager.agregarPantalla(new PantallaJuego("nivel1",
+                                              new InterpreteJuegoCli(),
+                                              new EntradaJuego(),
+                                              new VistaJuego()));
+
+    manager.agregarPantalla(new PantallaJuego("nivel2",
+                                              new InterpreteJuegoCli(),
+                                              new EntradaJuego(),
+                                              new VistaJuego()));
+
+    auto *puntuaciones = new PuntuacionJugadores();
+    manager.agregarPantalla(new Pantalla("puntuacion1",
+                                         new InterpretePuntuacionCli(puntuaciones),
+                                         new EntradaPuntuacion(),
+                                         new VistaPuntuacion(puntuaciones)));
+
+    manager.agregarPantalla(new Pantalla("puntuacion2",
+                                         new InterpretePuntuacionCli(puntuaciones),
+                                         new EntradaPuntuacion(),
+                                         new VistaPuntuacion(puntuaciones)));
+
+    manager.agregarPantalla(new Pantalla("fin",
+                                         new InterpreteNuloCli(),
+                                         new EntradaNula(),
+                                         new VistaFin()));
+
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
     manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
     manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
@@ -125,8 +156,9 @@ void Juego::recibir() {
      * Recepcion.
      */
     Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
+    stringstream s;
     while (!exit) {
-        stringstream s;
+        s.str(std::string());
         manager.getActual()->recibir(s);
         manager.getActual()->interpretarNombrePantalla(s);
         manager.getActual()->interpretarModelo(s);

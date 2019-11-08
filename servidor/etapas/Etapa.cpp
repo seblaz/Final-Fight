@@ -19,9 +19,6 @@ IdEtapa Etapa::getId() {
     return id;
 }
 
-//Modelo *Etapa::getModelo() {
-//    return modelo;
-//}
 
 InterpreteServidor *Etapa::getInterprete() {
     return interprete;

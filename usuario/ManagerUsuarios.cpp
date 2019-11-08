@@ -38,10 +38,6 @@ list<Usuario *> ManagerUsuarios::getUsuarios() {
     return usuarios;
 }
 
-int ManagerUsuarios::cantidadJugadoresTotales() {
-    return maximo;
-}
-
 Usuario *ManagerUsuarios::getUsuarioAnterior(Usuario *usuario) {
     auto pos = find_if(usuarios.begin(), usuarios.end(), [&usuario](Usuario *u) {
         return u->getUsuario() == usuario->getUsuario();

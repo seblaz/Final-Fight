@@ -52,7 +52,7 @@ bool InterpreteJuegoServ::interpretarAccion(ACCION accion, stringstream &s) {
             evento = new ModoTest(jugador);
             break;
         default:
-            Locator::logger()->log(ERROR, "Se recibió una acción inválida en ActualizarJuego.");
+            Locator::logger()->log(ERROR, "Se recibió una acción inválida en el juego.");
             return true;
     }
     Locator::eventos()->push(evento);
