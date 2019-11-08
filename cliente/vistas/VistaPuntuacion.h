@@ -14,6 +14,9 @@ class VistaPuntuacion : public Vista {
 
 private:
     PuntuacionJugadores *puntuaciones;
+    static void generarFondo(SDL_Renderer *renderer);
+    static void generarTitulo(SDL_Renderer *renderer);
+    void generarPuntuaciones(SDL_Renderer *renderer);
 
 public:
     explicit VistaPuntuacion(PuntuacionJugadores *puntuaciones);

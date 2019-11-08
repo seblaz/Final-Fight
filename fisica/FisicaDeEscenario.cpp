@@ -45,9 +45,9 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
     if (xMayorPersonaje > largo) {
-        mapa->vaciarMapa();
         auto *nivel = entidad->getEstado<Nivel>("nivel");
         Locator::logger()->log(INFO, "Se llego al final del " + nivel->nivel() + " .");
+        mapa->vaciarMapa();
         string proxEtapa = nivel->nivel() == "nivel1" ? "puntuacion1" : "puntuacion2";
         Locator::clientes()->cambiarTodosA(proxEtapa);
     }

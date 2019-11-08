@@ -54,9 +54,9 @@ void VistaAutenticador::generarTexto(SDL_Renderer *renderer, const string &texto
     SDL_FreeSurface(surfaceTexto);
 
     posicion.x += 160;
-    posicion.y += 13;
-    posicion.h = 40;
-    posicion.w = (int) texto.size() * 19;
+    posicion.y += 10;
+    posicion.h = 45;
+    posicion.w = (int) texto.size() * 21;
     SDL_RenderCopy(renderer, texturaTexto, nullptr, &posicion);
     SDL_DestroyTexture(texturaTexto);
 }

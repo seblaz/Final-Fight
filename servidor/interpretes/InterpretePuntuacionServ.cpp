@@ -27,6 +27,7 @@ ConfirmarSeleccionPuntuacion::ConfirmarSeleccionPuntuacion(IdEtapa siguienteEtap
         siguienteEtapa(siguienteEtapa) {}
 
 void ConfirmarSeleccionPuntuacion::resolver() {
-    NivelServidor::generarNivel("nivel2", Locator::mapa());
+    if(siguienteEtapa == "nivel2")
+        NivelServidor::generarNivel("nivel2", Locator::mapa());
     Locator::clientes()->cambiarTodosA(siguienteEtapa);
 }

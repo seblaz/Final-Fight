@@ -8,7 +8,8 @@
 #include "../../servicios/Locator.h"
 
 void Autenticador::ingresar(char *i) {
-    campoActivo->append(i);
+    if(campoActivo->size() + 1 <= maxCaracteres)
+        campoActivo->append(i);
 }
 
 void Autenticador::borrar() {

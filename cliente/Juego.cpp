@@ -65,7 +65,7 @@ void Juego::inicializarGraficos() {
                 logger->log(ERROR, string("SDL_ttf no se pudo recibir! SDL_Error: ").append(TTF_GetError()));
                 exit = true;
             }
-            fuente = TTF_OpenFont("../assets/fuentes/open-sans/OpenSans-Bold.ttf", 60);
+            fuente = TTF_OpenFont("../assets/fuentes/arcadeclassic/ARCADECLASSIC.TTF", 60);
             if (!fuente) {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;

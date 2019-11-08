@@ -3,7 +3,7 @@
         <cantidad>1</cantidad>
     </jugadores>
     <usuarios>
-        <cantidad>4</cantidad>
+        <cantidad>5</cantidad>
         <usuario0>
             <username>leo</username>
             <password>p</password>
@@ -20,6 +20,10 @@
             <username>franco</username>
             <password>p</password>
         </usuario3>
+        <usuario4>
+            <username>pedropedroped</username>
+            <password>p</password>
+        </usuario4>
     </usuarios>
     <fps>60</fps>
     <debug>
@@ -96,6 +100,11 @@
                 <src>assets/varios/personajeElegido.png</src>
             </listo>
         </seleccion>
+        <puntuacion>
+            <fondo>
+                <src>assets/varios/puntuacion.png</src>
+            </fondo>
+        </puntuacion>
     </pantallas>
     <personajes>
         <cody>

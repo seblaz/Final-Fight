@@ -15,6 +15,7 @@ private:
     string user = "";
     string pass = "";
     string* campoActivo = &user;
+    const int maxCaracteres = 13;
     int framesFaltantesPasswordIncorrecta = 0;
     int framesTotalesPasswordIncorrecta = 60;
 
