@@ -18,8 +18,7 @@ void Colisionables::calcularPosiblesColisiones() {
 
             auto *envolventeContrario = entidad_colisionable->getEstado<Envolvente>("envolvente");
             auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
-            if ( entidad_colisionable != entidadCentral && entidad_colisionable->getEstado<Velocidad>("velocidad") != nullptr
-                    && entidadCentral->getEstado<Velocidad>("velocidad") != nullptr ) {
+            if ( entidad_colisionable != entidadCentral ) {
 
                 auto *velocidadContrario = entidad_colisionable->getEstado<Velocidad>("velocidad");
 
@@ -49,10 +48,21 @@ void Colisionables::calcularPosiblesColisiones() {
                 }
             }
         }
+
+        if ( posicion->y >= limiteEnProfundidad ){
+            posicion->y = limiteEnProfundidad - 1;
+        }else if ( posicion->y <= limiteFrontal ){
+            posicion->y = limiteFrontal;
+        }
     }
 }
 
 void Colisionables::add(Entidad * entidad) {
     colisionables.insert(colisionables.begin(), entidad);
+}
+
+void Colisionables::addLimitesDeEscenario(int profundidad, int frente) {
+     this -> limiteEnProfundidad = profundidad;
+     this -> limiteFrontal = frente;
 }
 

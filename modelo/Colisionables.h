@@ -14,11 +14,14 @@ class Colisionables : public Estado {
 private:
 
     vector<Entidad *> colisionables;
+    int limiteEnProfundidad = 0;
+    int limiteFrontal = 0;
     int i = 0;
 
 public:
     explicit Colisionables() = default;
     void add(Entidad *);
+    void addLimitesDeEscenario(int profundidad, int frente);
 
     void calcularPosiblesColisiones();
 };

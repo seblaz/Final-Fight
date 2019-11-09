@@ -100,8 +100,10 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
     Locator::logger()->log(DEBUG, "Se genera escenario para " + nivel);
 
     Configuracion *config = Locator::configuracion();
+    Colisionables *colisionables = Locator::colisionables();
     int profundidad = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    colisionables->addLimitesDeEscenario(profundidad, 0);
 
     Locator::logger()->log(DEBUG, "Se cargo profundidad para escenario: " + to_string(profundidad));
     Locator::logger()->log(DEBUG, "Se cargo ancho para escenario: " + to_string(anchoNivel));
