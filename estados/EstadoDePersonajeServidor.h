@@ -8,8 +8,17 @@
 
 #include "../modelo/Entidad.h"
 #include "../servicios/Locator.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
+
+//class EstadoDePersonajeServidor;
+//typedef map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapaEstados;
 
 class EstadoDePersonajeServidor : public Comportamiento {
+
+private:
+    static void agregarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado);
+    static void cambiarAnimacion(Entidad *entidad, const string& estado);
+    static map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapa;
 
 public:
     virtual void saltar(Entidad *);

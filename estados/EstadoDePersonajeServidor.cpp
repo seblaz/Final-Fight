@@ -3,8 +3,6 @@
 //
 
 #include "EstadoDePersonajeServidor.h"
-#include "../cliente/Animador.h"
-#include "../modelo/Velocidad.h"
 #include "../servicios/Locator.h"
 #include "Saltando.h"
 #include "Caminando.h"
@@ -14,13 +12,36 @@
 #include "../modelo/serializables/EstadoDePersonaje.h"
 #include "Golpeado.h"
 
-#define RAPIDEZ 4
+template<typename T>
+EstadoDePersonajeServidor *crearEstado() { return new T; }
 
-void EstadoDePersonajeServidor::saltar(Entidad * entidad) {
+map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> EstadoDePersonajeServidor::mapa = {
+        {CAMINANDO, &crearEstado<Caminando>},
+        {SALTANDO, &crearEstado<Saltando>},
+        {SALTANDO_CON_MOVIMIENTO, &crearEstado<Saltando>},
+        {REPOSANDO, &crearEstado<Reposando>},
+        {GOLPEANDO, &crearEstado<Golpeando>},
+        {AGACHADO, &crearEstado<Agachado>},
+        {GOLPEADO, &crearEstado<Golpeado>},
+};
+
+void EstadoDePersonajeServidor::agregarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado) {
+    auto *estadoDePersonaje = new EstadoDePersonaje(estado);
+    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+}
+
+void EstadoDePersonajeServidor::cambiarAnimacion(Entidad *entidad, const string &estado) {
+    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
+    auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, estado);
+//    delete entidad->getComportamiento<AnimacionServidor>("animacion servidor");
+    entidad->agregarComportamiento("animacion servidor", animacion);
+}
+
+void EstadoDePersonajeServidor::saltar(Entidad *entidad) {
     EstadoDePersonaje *estadoDePersonaje;
     enum PERSONAJE personaje;
     AnimacionServidor *animacion;
-    if(entidad->getEstado<Velocidad>("velocidad")->x == 0){
+    if (entidad->getEstado<Velocidad>("velocidad")->x == 0) {
         estadoDePersonaje = new EstadoDePersonaje(SALTANDO);
 
         personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
@@ -34,68 +55,54 @@ void EstadoDePersonajeServidor::saltar(Entidad * entidad) {
     entidad->agregarEstado("estado de personaje", estadoDePersonaje);
     entidad->agregarComportamiento("animacion servidor", animacion);
 
-    EstadoDePersonajeServidor* saltando = new Saltando();
+    EstadoDePersonajeServidor *saltando = new Saltando();
     entidad->agregarComportamiento("estado", saltando);
 }
 
-void EstadoDePersonajeServidor::reposar(Entidad * entidad) {
-    auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
-    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+void EstadoDePersonajeServidor::reposar(Entidad *entidad) {
+    agregarEstado(entidad, REPOSANDO);
 
-    EstadoDePersonajeServidor* reposando = new Reposando();
+    EstadoDePersonajeServidor *reposando = new Reposando();
     entidad->agregarComportamiento("estado", reposando);
 
-    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-    auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "reposando");
-    entidad->agregarComportamiento("animacion servidor", animacion);
+    cambiarAnimacion(entidad, "reposando");
 }
 
-void EstadoDePersonajeServidor::agachar(Entidad * entidad) {
-    auto *estadoDePersonaje = new EstadoDePersonaje(AGACHADO);
-    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+void EstadoDePersonajeServidor::agachar(Entidad *entidad) {
+    agregarEstado(entidad, AGACHADO);
 
-    EstadoDePersonajeServidor* agachado = new Agachado();
+    EstadoDePersonajeServidor *agachado = new Agachado();
     entidad->agregarComportamiento("estado", agachado);
 
-    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-    auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "agachado");
-    entidad->agregarComportamiento("animacion servidor", animacion);
+    cambiarAnimacion(entidad, "agachado");
 }
 
-void EstadoDePersonajeServidor::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
-    auto *estadoDePersonaje = new EstadoDePersonaje(CAMINANDO);
-    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+void EstadoDePersonajeServidor::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
+    agregarEstado(entidad, CAMINANDO);
 
-    EstadoDePersonajeServidor* caminando = new Caminando();
+    EstadoDePersonajeServidor *caminando = new Caminando();
     entidad->agregarComportamiento("estado", caminando);
 
-    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-    auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "caminando");
-    entidad->agregarComportamiento("animacion servidor", animacion);
+    cambiarAnimacion(entidad, "caminando");
 }
 
-void EstadoDePersonajeServidor::golpear(Entidad * entidad) {
-    auto *estadoDePersonaje = new EstadoDePersonaje(GOLPEANDO);
-    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+void EstadoDePersonajeServidor::golpear(Entidad *entidad) {
+    agregarEstado(entidad, GOLPEANDO);
 
-    EstadoDePersonajeServidor* golpeando = new Golpeando();
+    EstadoDePersonajeServidor *golpeando = new Golpeando();
     entidad->agregarComportamiento("estado", golpeando);
 
-    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-    auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "golpeando");
-    entidad->agregarComportamiento("animacion servidor", animacion);
+    cambiarAnimacion(entidad, "golpeando");
 }
 
 void EstadoDePersonajeServidor::actualizar(Entidad *) {}
 
-void EstadoDePersonajeServidor::golpeado(Entidad * entidad) {
-    auto *estadoDePersonaje = new EstadoDePersonaje(GOLPEADO);
-    entidad->agregarEstado("estado de personaje", estadoDePersonaje);
+void EstadoDePersonajeServidor::golpeado(Entidad *entidad) {
+    agregarEstado(entidad, GOLPEADO);
 
-    EstadoDePersonajeServidor* golpeado = new Golpeado();
+    EstadoDePersonajeServidor *golpeado = new Golpeado();
     entidad->agregarComportamiento("estado", golpeado);
 
-    enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-    auto* animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "golpeado");
-    entidad->agregarComportamiento("animacion servidor", animacion);
+    cambiarAnimacion(entidad, "golpeado");
 }
+

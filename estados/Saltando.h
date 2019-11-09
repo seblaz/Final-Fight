@@ -22,11 +22,11 @@ public:
     Saltando();
     ~Saltando();
     void actualizar(Entidad *) override;
-    void saltar(Entidad * entidad) override;
-    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
-    void agachar(Entidad *) override;
-    void reposar(Entidad *) override;
     void golpear(Entidad *) override;
+    void saltar(Entidad * entidad) override {};
+    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
+    void agachar(Entidad *) override {};
+    void reposar(Entidad *) override {};
 };
 
 
