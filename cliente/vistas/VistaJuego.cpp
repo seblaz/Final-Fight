@@ -23,7 +23,7 @@ void VistaJuego::graficar(SDL_Renderer *renderer) {
 
 
 void VistaJuego::reproducir() {
-    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/sonidos/musicas/nivel1.wav")->getMusic();
+    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/musicas/nivel1.wav")->getMusic();
     if(Mix_PlayingMusic() == 0 )
     {
         Mix_PlayMusic( musica, -1);
