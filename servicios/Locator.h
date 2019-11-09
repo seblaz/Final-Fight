@@ -16,6 +16,7 @@
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "../servidor/clientes/ManagerClientes.h"
+#include "../modelo/Colisionables.h"
 
 class Locator {
 
@@ -53,6 +54,9 @@ public:
     static ManagerClientes *clientes();
     static void provide(ManagerClientes *);
 
+    static Colisionables *colisionables();
+    static void provide(Colisionables *);
+
     static void clean();
 
 private:
@@ -67,6 +71,7 @@ private:
     static ManagerUsuarios *usuarios_;
     static Mapa *mapa_;
     static ManagerClientes *clientes_;
+    static Colisionables *colisionables_;
 
 };
 

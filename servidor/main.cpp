@@ -70,6 +70,12 @@ int main(int argc, const char **args) {
     Locator::provide(&mapa);
 
     /**
+    * Crear colisionables.
+    */
+    Colisionables colisionables;
+    Locator::provide(&colisionables);
+
+    /**
      * Procesamiento.
      */
     Procesamiento procesamiento;

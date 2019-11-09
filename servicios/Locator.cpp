@@ -154,3 +154,13 @@ void Locator::clean() {
     delete configuracion_;
     delete logger_;
 }
+
+Colisionables *Locator::colisionables_;
+
+void Locator::provide(Colisionables * colisionables) {
+    colisionables_ = colisionables;
+}
+
+Colisionables *Locator::colisionables() {
+    return colisionables_;
+}

@@ -81,9 +81,6 @@ Jugadores *Mapa::getJugadores() {
     return new Jugadores(jugadores);
 }
 
-Colisionables *Mapa::getColisionables() {
-    return new Colisionables(entidades);
-}
 
 IdEntidad Mapa::getIdEntidad(Entidad *entidad) {
     for (auto tuple : entidades) {
