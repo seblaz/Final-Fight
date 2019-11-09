@@ -19,8 +19,11 @@ pthread_t Hilo::lanzarHilo(function<void()> func) {
         transmision->hiloLanzado.post();
         try {
             funcionHilo();
-        } catch (const out_of_range &e) {
+        } catch (const std::exception &e) {
             Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()) + ".");
+            exit(0);
+        } catch (...) {
+            Locator::logger()->log(ERROR, "Ocurrió una excepción y se debió finalizar el programa.");
             exit(0);
         }
         return nullptr;

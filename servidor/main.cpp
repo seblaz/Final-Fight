@@ -100,8 +100,11 @@ int main(int argc, const char **args) {
     GameLoop gameLoop;
     try {
         gameLoop.loop();
-    } catch (const out_of_range& e) {
-        Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()));
+    } catch (const std::exception& e) {
+        Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()) + ".");
+        exit(0);
+    } catch (...){
+        Locator::logger()->log(ERROR, "Ocurrió una excepción y se debió finalizar el programa.");
         exit(0);
     }
 
