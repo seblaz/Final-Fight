@@ -74,6 +74,7 @@ find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
 find_package(SDL2TTF REQUIRED)
+find_package(SDL2_mixer REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIR})
 
 #[[
