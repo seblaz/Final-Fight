@@ -75,6 +75,7 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la SDL_Mixer. Error: " + string(Mix_GetError()));
                 exit = true;
             }
+            Mix_AllocateChannels(7);
             Locator::provide(fuente);
         }
     }
