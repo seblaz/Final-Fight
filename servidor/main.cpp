@@ -98,7 +98,13 @@ int main(int argc, const char **args) {
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
     GameLoop gameLoop;
-    gameLoop.loop();
+    try {
+        gameLoop.loop();
+    } catch (const out_of_range& e) {
+        Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()));
+        exit(0);
+    }
+
 
     /**
      * Termino el procesamiento.
