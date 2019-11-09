@@ -12,6 +12,14 @@ Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
 }
 
+void Jugadores::agregarJugador(IdEntidad id, Entidad *jugador) {
+    jugadores[id] = jugador;
+}
+
+unordered_map<IdEntidad, Entidad *> &Jugadores::getJugadores() {
+    return jugadores;
+}
+
 int Jugadores::getMayorX() {
     int x = 0;
     for(auto tuple : jugadores){
@@ -77,8 +85,3 @@ Posicion *Jugadores::posicionMasCercana(Posicion *posicion) {
     }
     return posicionMasCercana;
 }
-
-
-
-
-

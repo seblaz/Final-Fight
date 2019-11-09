@@ -148,12 +148,9 @@ void Locator::provide(ManagerClientes *clientes) {
     clientes_ = clientes;
 }
 
-void Locator::clean() {
-    logger_->log(DEBUG, "Se limpian configuracion y logger");
-
-    delete configuracion_;
-    delete logger_;
-}
+/**
+ * Colisionables.
+ */
 
 Colisionables *Locator::colisionables_;
 
@@ -163,4 +160,11 @@ void Locator::provide(Colisionables * colisionables) {
 
 Colisionables *Locator::colisionables() {
     return colisionables_;
+}
+
+void Locator::clean() {
+    logger_->log(DEBUG, "Se limpian configuracion y logger");
+
+    delete configuracion_;
+    delete logger_;
 }
