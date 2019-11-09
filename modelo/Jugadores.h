@@ -26,7 +26,7 @@ public:
     void bloquearMovimientos(int scrollIzquierdo, int scrollDerecho);
     void arrastrarInactivos(int scrollIzquierdo, int scrollDerecho);
 
-    Posicion* posicionMasCercana(Posicion *posicion);
+    Posicion posicionMasCercana(Posicion *posicion);
 };
 
 
