@@ -4,35 +4,55 @@
 
 #include "Colisionables.h"
 #include "Envolvente.h"
-#include "serializables/Orientacion.h"
-#include "serializables/NumeroJugador.h"
-
+#include "../estados/EstadoDePersonajeServidor.h"
 #include <utility>
 
-Colisionables::Colisionables(unordered_map<IdEntidad, Entidad *>  colisionables) {
-    this -> colisionables = std::move(colisionables);
-}
 
-void Colisionables::calcularPosiblesColisiones(Entidad * entidad, IdEntidad idEntidad) {
-    auto* envolvente= entidad->getEstado<Envolvente>("envolvente");
-    auto* posicion = entidad->getEstado<Posicion>("posicion");
-    for ( auto tuple : colisionables){
-        if ( tuple.first != idEntidad && tuple.second->getEstado<Envolvente>("envolvente") != nullptr){
-            auto* envolventeContrario = tuple.second->getEstado<Envolvente>("envolvente");
+void Colisionables::calcularPosiblesColisiones() {
 
-            if (envolvente->existeColisionLeft(envolventeContrario) )
-                posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho ;
+    for ( auto *entidadCentral : colisionables ){
+        auto* envolvente= entidadCentral->getEstado<Envolvente>("envolvente");
+        auto* posicion = entidadCentral->getEstado<Posicion>("posicion");
+        auto* velocidad = entidadCentral->getEstado<Velocidad>("velocidad");
+        for ( auto* entidad_colisionable : colisionables ){
 
-            if (envolvente->existeColisionRight(envolventeContrario) )
-                posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho;
+            auto *envolventeContrario = entidad_colisionable->getEstado<Envolvente>("envolvente");
+            auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
+            if ( entidad_colisionable != entidadCentral && entidad_colisionable->getEstado<Velocidad>("velocidad") != nullptr
+                    && entidadCentral->getEstado<Velocidad>("velocidad") != nullptr ) {
 
-            if ( envolvente->existeColisionUp(envolventeContrario) )
-                posicion->y = envolventeContrario->posicion->y + envolventeContrario->profundidad + envolvente->profundidad;
+                auto *velocidadContrario = entidad_colisionable->getEstado<Velocidad>("velocidad");
 
-            if ( envolvente->existeColisionDown(envolventeContrario))
-                posicion->y = envolventeContrario->posicion->y - envolventeContrario->profundidad - envolvente->profundidad;
-
+                if ( velocidadContrario->y == 0 && velocidad->y != 0){
+                    if (envolvente->colisionaAbajoCon(envolventeContrario) ){
+                        posicion->y = envolventeContrario->posicion->y + envolventeContrario->profundidad + envolvente->profundidad;
+                    }else if (envolvente->colisionaArribaCon(envolventeContrario)){
+                        posicion->y = envolventeContrario->posicion->y - envolventeContrario->profundidad - envolvente->profundidad;
+                    }
+                }else if ( velocidadContrario->y != 0 && velocidad->y != 0 ){
+                    if (envolvente->colisionaAbajoCon(envolventeContrario) || envolvente->colisionaArribaCon(envolventeContrario) ){
+                        posicion->y -= int(velocidad->y);
+                        posicionContrario->y -= int(velocidadContrario->y);
+                    }
+                }
+                if ( velocidadContrario->x == 0 && velocidad->x != 0){
+                    if (envolvente->colisionaPorIzquiedaCon(envolventeContrario) ){
+                        posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho - envolvente->ancho;
+                    }else if (envolvente->colisionaPorDerechaCon(envolventeContrario) ){
+                        posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho + envolvente->ancho;
+                    }
+                }else if ( velocidadContrario->x != 0 && velocidad->x != 0 ){
+                    if (envolvente->colisionaPorIzquiedaCon(envolventeContrario) || envolvente->colisionaPorDerechaCon(envolventeContrario) ){
+                        posicion->x -= int(velocidad->x);
+                        posicionContrario->x -= int(velocidadContrario->x);
+                    }
+                }
+            }
         }
     }
+}
+
+void Colisionables::add(Entidad * entidad) {
+    colisionables.insert(colisionables.begin(), entidad);
 }
 

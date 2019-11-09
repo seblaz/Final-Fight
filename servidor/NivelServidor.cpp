@@ -50,8 +50,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
-    auto *envolvente = new Envolvente(posicion, 120,120, 10);
-    auto* colisionador = new FisicaDeColisiones();
+    auto *envolvente = new Envolvente(posicion, 120,50, 10);
     auto* puntaje = new Puntaje();
 
     jugador->agregarEstado("tipo", tipo);
@@ -65,17 +64,18 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("personaje", new Personaje(personajeSeleccionado));
     jugador->agregarEstado("energia", energia);
     jugador->agregarEstado("envolvente", envolvente);
-    jugador->agregarEstado("mapa", mapa);
     jugador->agregarEstado("puntaje", puntaje);
-    jugador->agregarComportamiento("colisionador" , colisionador);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);
+
+    auto *colisionables = Locator::colisionables();
+    colisionables->add(jugador);
+
     return jugador;
 }
 
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
-    mapa->vaciarMapa();
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);
@@ -161,6 +161,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
     string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
     auto *personaje = new Personaje(POISSON);
+    auto *colisionables = Locator::colisionables();
 
     for (int i = 0; i < cantidad; i++) {
         Locator::logger()->log(INFO, "Se genera enemigo");
@@ -178,10 +179,8 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *indiceSprite = new IndiceSprite;
         auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "reposando");
         auto *energia = new Energia(100,1);
-        auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,120, 10);
-        auto* colisionador = new FisicaDeColisiones();
+        auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,50, 10);
 
-        enemigo->agregarEstado("mapa", mapa);
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
         enemigo->agregarEstado("indice sprite", indiceSprite);
@@ -192,16 +191,19 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
         enemigo->agregarEstado("energia", energia);
         enemigo->agregarEstado("envolvente", envolvente);
-        enemigo->agregarComportamiento("colisionador", colisionador);
         enemigo->agregarComportamiento("estado", estado);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
         enemigo->agregarComportamiento("comportamiento", comportamiento);
         enemigo->agregarComportamiento("animacion servidor", animacionServidor);
+
+        colisionables->add(enemigo);
     }
 }
 
 void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART) {
     Configuracion *config = Locator::configuracion();
+    auto* colisionables = Locator::colisionables();
+
     int cantidad;
     switch (ART) {
         case CAJA:
@@ -226,17 +228,18 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
-        auto *envolvente = new Envolvente(posicionElementoRandom, 120,120, 10);
-        auto* colisionador = new FisicaDeColisiones();
-
-        elementoRandom->agregarEstado("mapa", mapa);
+        auto *envolvente = new Envolvente(posicionElementoRandom, 120,75, 8);
+        auto *velocidad = new Velocidad();
+        
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
         elementoRandom->agregarEstado("indice sprite", indiceSprite);
         elementoRandom->agregarEstado("tipo elemento", tipoElemento);
         elementoRandom->agregarEstado("envolvente", envolvente);
-        elementoRandom->agregarComportamiento("colisionador", colisionador);
+        elementoRandom->agregarEstado("velocidad", velocidad);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+
+        colisionables->add(elementoRandom);
     }
 
 }
@@ -268,7 +271,6 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
 
-        //elementoRandom->agregarEstado("mapa", mapa);
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
         elementoRandom->agregarEstado("indice sprite", indiceSprite);

@@ -4,6 +4,7 @@
 
 #include "EventoPersonaje.h"
 #include "../estados/EstadoDePersonajeServidor.h"
+#include "../modelo/serializables/Energia.h"
 
 EventoPersonaje::EventoPersonaje(Entidad *personaje) : personaje(personaje) {}
 
@@ -53,4 +54,8 @@ void CaminarDerechaArriba::resolver() {
 
 void CaminarDerechaAbajo::resolver() {
     personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(personaje, 1, 0, 0, 1);
+}
+
+void ModoTest::resolver() {
+    personaje->getEstado<Energia>("energia")->cambiarModoTest();
 }

@@ -61,8 +61,8 @@ public:
     static IdEntidad getIdFromStream(istream &stream);
 
     void agregarEstado(const string &s, Estado *t) {
-//        if ((estados.find(s) != estados.end()) && (estados[s] != t))
-//            delete estados[s];
+        if ((estados.find(s) != estados.end()) && (estados[s] != t))
+            delete estados[s];
         estados[s] = t;
     };
 
@@ -76,18 +76,14 @@ public:
     }
 
     void agregarComportamiento(const string &s, Comportamiento *t) {
-//        if (comportamientos.find(s) != comportamientos.end())
-//            delete comportamientos[s];
+        if ((comportamientos.find(s) != comportamientos.end())  && (comportamientos[s] != t))
+            delete comportamientos[s];
         comportamientos[s] = t;
     };
 
     template<typename T>
     T *getComportamiento(const string &s) {
         return (T *) comportamientos[s];
-    };
-
-    void quitarComportamiento(const string &s) {
-        comportamientos.erase(s);
     };
 
     vector<Comportamiento *> getComportamientos();

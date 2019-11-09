@@ -19,10 +19,10 @@ public:
     Posicion * posicion;
     explicit Envolvente(Posicion *posicion, int alto, int ancho, int profundidad);
 
-    bool existeColisionLeft(Envolvente * envolvente);
-    bool existeColisionRight(Envolvente * envolvente);
-    bool existeColisionUp(Envolvente * envolvente);
-    bool existeColisionDown(Envolvente * envolvente);
+    bool colisionaPorIzquiedaCon(Envolvente * envolvente);
+    bool colisionaPorDerechaCon(Envolvente * envolvente);
+    bool colisionaAbajoCon(Envolvente * envolvente);
+    bool colisionaArribaCon(Envolvente * envolvente);
 };
 
 

@@ -8,30 +8,33 @@
 #include "../modelo/Mapa.h"
 #include <SDL2/SDL.h>
 #include <SDL_ttf.h>
-#include "EntradaUsuario.h"
+#include "entradas/EntradaUsuario.h"
 #include "../usuario/Usuario.h"
+#include "pantallas/ManagerPantallas.h"
+#include "../utils/Hilo.h"
 
-class Juego {
+class Juego : Hilo {
 
 private:
-
-    void inicializarGraficos();
-
-    SDL_Event *processInput();
-    void graficar();
-
     SDL_Renderer *renderer_ = nullptr;
     SDL_Window *window = nullptr;
     TTF_Font *fuente = nullptr;
     bool exit = false;
-    Mapa mapa_;
+    ManagerPantallas manager;
+
+    pthread_t recibirEnHilo();
+    void recibir();
+    void inicializarGraficos();
+    SDL_Event *processInput();
+    void actualizarGraficos();
+    void agregarPantallas();
 
 public:
     Juego();
-
     void loop();
-    SDL_Renderer* renderer();
+    SDL_Renderer *renderer();
     void terminar();
+
 };
 
 #endif //FINAL_FIGHT_JUEGO_H

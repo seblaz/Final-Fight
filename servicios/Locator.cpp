@@ -105,6 +105,10 @@ TTF_Font *Locator::fuente() {
     return fuente_;
 }
 
+void Locator::provide(TTF_Font *fuente) {
+    fuente_ = fuente;
+}
+
 /**
  * Eventos a procesar.
  */
@@ -120,8 +124,57 @@ void Locator::provide(EventosAProcesar *eventos) {
     eventos_ = eventos;
 }
 
-void Locator::provide(TTF_Font *fuente) {
-    fuente_ = fuente;
+/**
+ * Manager de usuarios.
+ */
+ManagerUsuarios *Locator::usuarios_;
+
+ManagerUsuarios *Locator::usuarios() {
+    return usuarios_;
+}
+
+void Locator::provide(ManagerUsuarios *usuarios) {
+    usuarios_ = usuarios;
+}
+
+/**
+ * Mapa.
+ */
+Mapa *Locator::mapa_;
+
+Mapa *Locator::mapa() {
+    return mapa_;
+}
+
+void Locator::provide(Mapa *mapa) {
+    mapa_ = mapa;
+}
+
+/**
+ * Manager de clientes.
+ */
+ManagerClientes *Locator::clientes_;
+
+ManagerClientes *Locator::clientes() {
+    return clientes_;
+}
+
+void Locator::provide(ManagerClientes *clientes) {
+    clientes_ = clientes;
+}
+
+/**
+ * Colisionables.
+ */
+
+Colisionables *Locator::colisionables_;
+
+void Locator::provide(Colisionables * colisionables) {
+    colisionables_ = colisionables;
+}
+
+Colisionables *Locator::colisionables() {
+    return colisionables_;
 }
 
 

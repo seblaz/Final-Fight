@@ -19,3 +19,12 @@ void Accion::serializar(ostream &stream) {
 void Accion::deserializar(istream &stream) {
     accion_ = static_cast<ACCION>(deserializarEntero(stream));
 }
+
+AccionEnviarUsuario::AccionEnviarUsuario(Usuario *usuario) :
+        usuario(usuario),
+        Accion(ENVIAR_USUARIO) {}
+
+void AccionEnviarUsuario::serializar(ostream &stream) {
+    Accion::serializar(stream);
+    usuario->serializar(stream);
+}

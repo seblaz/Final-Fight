@@ -26,10 +26,10 @@ AnimacionCliente *FabricaDeAnimacionesCliente::getAnimacion(const string &rutaFi
         }
 
         float escala = config->getFloatValue(rutaBase + rutaFinal + "/escala");
-        animaciones[rutaFinal] = new AnimacionCliente(posiciones, escala);
+        animaciones[rutaFinal] = make_tuple(posiciones, escala);
     }
 
-    return animaciones[rutaFinal];
+    return new AnimacionCliente(get<0>(animaciones[rutaFinal]), get<1>(animaciones[rutaFinal]));
 }
 
 AnimacionCliente *FabricaDeAnimacionesCliente::getAnimacion(ESTADO_DE_PERSONAJE estado) {

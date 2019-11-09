@@ -5,7 +5,7 @@
 #include "EventoUsuario.h"
 
 EventoUsuario::EventoUsuario() :
-        evento_(CONTRASENIA_INCORRECTA) {}
+        evento_(EVENTO_USUARIO::CONTRASENIA_INCORRECTA) {}
 
 EventoUsuario::EventoUsuario(EVENTO_USUARIO evento) :
         evento_(evento) {}
@@ -15,7 +15,7 @@ EVENTO_USUARIO EventoUsuario::evento() {
 }
 
 void EventoUsuario::serializar(ostream &stream) {
-    serializarEntero(stream, evento_);
+    serializarEntero(stream, static_cast<int>(evento_));
 }
 
 void EventoUsuario::deserializar(istream &stream) {

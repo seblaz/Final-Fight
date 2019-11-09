@@ -4,14 +4,20 @@
 
 #include "FisicaDeColisiones.h"
 #include "../modelo/Envolvente.h"
-#include "../modelo/Mapa.h"
-#include "../modelo/serializables/Actividad.h"
-#include "../modelo/serializables/Orientacion.h"
+#include "../servicios/Locator.h"
 
 void FisicaDeColisiones::actualizar(Entidad * entidad) {
+    Locator::eventos()->push(new EventoColisiones(entidad));
 
-   auto colisionables = entidad->getEstado<Mapa>("mapa")->getColisionables();
-   auto idEntidad = entidad->getEstado<Mapa>("mapa")->getIdEntidad(entidad);
-   colisionables->calcularPosiblesColisiones(entidad, idEntidad);
+}
 
+void EventoColisiones::resolver() {
+
+    //auto* mapa = Locator::mapa();
+    //auto colisionables = mapa->getColisionables();
+    //colisionables->calcularPosiblesColisiones(entidad);
+}
+
+EventoColisiones::EventoColisiones(Entidad * entidad) {
+    this->entidad = entidad;
 }

@@ -66,14 +66,13 @@ FILE(GLOB_RECURSE Configurations *.xml)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
-FILE(GLOB SoundSources sonidos/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
+FILE(GLOB_RECURSE UtilsSources utils/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
 find_package(SDL2TTF REQUIRED)
-find_package(SDL2_mixer REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIR})
 
 #[[
@@ -84,11 +83,6 @@ target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE
 add_test(NAME model_tests COMMAND model_tests)
 
 #[[
-  Compilar el juego.
-target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
-]]
-
-#[[
   Copiar los assets
 ]]
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
@@ -97,12 +91,11 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} cliente/Juego.cpp ${UsuarioSources} ${SoundSources})
-target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY} )
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} cliente/Juego.cpp ${UsuarioSources} ${UtilsSources})
+target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
-
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} eventos/EventoModoTest.cpp eventos/EventoModoTest.h)
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources})
 target_link_libraries(servidor ${XercesC_LIBRARIES})

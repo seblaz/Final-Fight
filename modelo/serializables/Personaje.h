@@ -14,7 +14,8 @@ enum PERSONAJE {
     CODY,
     HAGGAR,
     MAKI,
-    POISSON
+    POISSON,
+    NULO
 };
 
 class Personaje : public Estado {

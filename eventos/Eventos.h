@@ -15,13 +15,9 @@ using namespace std;
 
 class EventoAProcesar {
 
-private:
-    string msj_;
-
 public:
-    explicit EventoAProcesar(string msg = "");
-    virtual void resolver() {};
-    string msj();
+    virtual ~EventoAProcesar() = default;
+    virtual void resolver() = 0;
 
 };
 

@@ -3,17 +3,19 @@
 //
 
 #include "Puntaje.h"
+
 void Puntaje::serializar(ostream &stream) {
     Serializable::serializarEntero(stream, this->puntos);
 }
 
 void Puntaje::deserializar(istream &stream) {
-    this -> puntos = Serializable::deserializarEntero(stream);
+    this->puntos = Serializable::deserializarEntero(stream);
 }
 
-void Puntaje::agregarPuntos(int puntosRecibidos){
+void Puntaje::agregarPuntos(int puntosRecibidos) {
     this->puntos += puntosRecibidos;
 }
-int Puntaje::obtenerPuntos(){
+
+int Puntaje::obtenerPuntos() {
     return puntos;
 }

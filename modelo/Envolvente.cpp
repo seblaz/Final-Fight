@@ -11,40 +11,40 @@ Envolvente::Envolvente(Posicion *posicion, int alto, int ancho, int profundidad)
     this->profundidad = profundidad;
 }
 
-bool Envolvente::existeColisionLeft(Envolvente *envolvente) {
+bool Envolvente::colisionaPorIzquiedaCon(Envolvente *envolvente) {
 
     int x = this->posicion->getX();
     int y = posicion->y;
     int deltaY = this->posicion->y - envolvente->posicion->y;
 
-    return (posicion->x > envolvente->posicion->x - envolvente->ancho &&
-            posicion->x < envolvente->posicion->x &&
+    return (posicion->x + ancho > envolvente->posicion->x - envolvente->ancho &&
+            posicion->x + ancho < envolvente->posicion->x &&
             y < envolvente->posicion->y + envolvente->profundidad && y > envolvente->posicion->y - envolvente->profundidad);
 }
 
-bool Envolvente::existeColisionRight(Envolvente *envolvente) {
+bool Envolvente::colisionaPorDerechaCon(Envolvente *envolvente) {
 
     int x = posicion->x;
     int y = posicion->y;
     int deltaY = this->posicion->y - envolvente->posicion->y;
-    return (posicion->x < envolvente->posicion->x + envolvente->ancho  &&
-            posicion->x > envolvente->posicion->x &&
+    return (posicion->x - ancho < envolvente->posicion->x + envolvente->ancho  &&
+            posicion->x - ancho > envolvente->posicion->x &&
             y < envolvente->posicion->y + envolvente->profundidad && y > envolvente->posicion->y - envolvente->profundidad);
 }
 
-bool Envolvente::existeColisionUp(Envolvente *envolvente) {
+bool Envolvente::colisionaAbajoCon(Envolvente *envolvente) {
 
     int x = this->posicion->getX();
 
-    return( x < envolvente->posicion->x + envolvente->ancho && x > envolvente->posicion->x - envolvente->ancho  &&
+    return( x - ancho < envolvente->posicion->x + envolvente->ancho && x + ancho > envolvente->posicion->x - envolvente->ancho  &&
     envolvente->posicion->y + envolvente->profundidad > posicion->y - profundidad &&
     envolvente->posicion->y + envolvente->profundidad < posicion->y);
 }
 
-bool Envolvente::existeColisionDown(Envolvente *envolvente) {
+bool Envolvente::colisionaArribaCon(Envolvente *envolvente) {
     int x = this->posicion->getX();
 
-    return( x < envolvente->posicion->x + envolvente->ancho && x > envolvente->posicion->x - envolvente->ancho &&
+    return( x - ancho < envolvente->posicion->x + envolvente->ancho && x + ancho > envolvente->posicion->x - envolvente->ancho &&
     envolvente->posicion->y - envolvente->profundidad < posicion->y + profundidad &&
     envolvente->posicion->y - envolvente->profundidad > posicion->y);
 }

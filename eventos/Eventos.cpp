@@ -4,12 +4,6 @@
 
 #include "Eventos.h"
 
-EventoAProcesar::EventoAProcesar(string msg) :
-        msj_(std::move(msg)) {}
-
-string EventoAProcesar::msj() {
-    return msj_;
-}
 
 EventoATransmitir::EventoATransmitir(string msg) :
         msj_(std::move(msg)) {}

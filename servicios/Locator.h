@@ -11,11 +11,13 @@
 #include "./Logger.h"
 #include "Configuracion.h"
 #include "../modelo/serializables/Posicion.h"
-#include "../modelo/Socket.h"
+#include "../utils/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
 #include "../cliente/FabricaDeSonidos.h"
 #include "../eventos/Eventos.h"
-
+#include "../usuario/ManagerUsuarios.h"
+#include "../servidor/clientes/ManagerClientes.h"
+#include "../modelo/Colisionables.h"
 
 class Locator {
 
@@ -38,14 +40,26 @@ public:
     static FabricaDeSprites *fabricaDeSprites();
     static void provide(FabricaDeSprites *fabricaDeSprites);
 
-    static FabricaDeSonidos *fabricaDeSonidos();
-    static void provide(FabricaDeSonidos *fabricaDeSonidos);
-
     static TTF_Font *fuente();
     static void provide(TTF_Font *fuente);
 
     static EventosAProcesar *eventos();
     static void provide(EventosAProcesar *);
+
+    static ManagerUsuarios *usuarios();
+    static void provide(ManagerUsuarios *);
+
+    static Mapa *mapa();
+    static void provide(Mapa *);
+
+    static ManagerClientes *clientes();
+    static void provide(ManagerClientes *);
+
+    static Colisionables *colisionables();
+    static void provide(Colisionables *);
+
+    static FabricaDeSonidos *fabricaDeSonidos();
+    static void provide(FabricaDeSonidos *fabricaDeSonidos);
 
     static void clean();
 
@@ -58,8 +72,12 @@ private:
     static FabricaDeSprites *fabrica;
     static TTF_Font *fuente_;
     static EventosAProcesar *eventos_;
+    static ManagerUsuarios *usuarios_;
+    static Mapa *mapa_;
+    static ManagerClientes *clientes_;
+    static Colisionables *colisionables_;
     static FabricaDeSonidos *fabricaSonidos;
-};
 
+};
 
 #endif //FINAL_FIGHT_LOCATOR_H

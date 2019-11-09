@@ -8,8 +8,17 @@
 
 #include "../modelo/Entidad.h"
 #include "../servicios/Locator.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
+
+//class EstadoDePersonajeServidor;
+//typedef map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapaEstados;
 
 class EstadoDePersonajeServidor : public Comportamiento {
+
+private:
+    static map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapa;
+    static void cambiarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado);
+    int frames = 0;
 
 public:
     virtual void saltar(Entidad *);
@@ -17,6 +26,7 @@ public:
     virtual void reposar(Entidad *);
     virtual void agachar(Entidad *);
     virtual void golpear(Entidad *);
+    virtual void golpeado(Entidad *);
 
     void actualizar(Entidad * entidad) override;
 };

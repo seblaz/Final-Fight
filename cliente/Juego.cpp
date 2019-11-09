@@ -5,16 +5,26 @@
 #include "Juego.h"
 #include "../servicios/Locator.h"
 #include "ReceptorCliente.h"
-#include "EntradaUsuario.h"
-#include "../modelo/serializables/EventoUsuario.h"
 #include <algorithm>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
-#include "pantallas/autenticador/PantallaAutenticador.h"
-#include "pantallas/ManagerPantallas.h"
-#include "pantallas/juego/PantallaJuego.h"
-#include "pantallas/error/PantallaError.h"
+#include "interpretes/InterpreteAutenticadorCli.h"
+#include "entradas/EntradaAutenticador.h"
+#include "modelos/MenuSeleccion.h"
+#include "interpretes/InterpreteNuloCli.h"
+#include "entradas/EntradaMenuSeleccion.h"
+#include "vistas/VistaMenuSeleccion.h"
+#include "pantallas/PantallaError.h"
+#include "interpretes/InterpreteJuegoCli.h"
+#include "entradas/EntradaJuego.h"
+#include "vistas/VistaJuego.h"
+#include "pantallas/PantallaJuego.h"
+#include "interpretes/InterpretePuntuacionCli.h"
+#include "entradas/EntradaPuntuacion.h"
+#include "vistas/VistaPuntuacion.h"
+#include "entradas/EntradaNula.h"
+#include "vistas/VistaFin.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -55,7 +65,7 @@ void Juego::inicializarGraficos() {
                 logger->log(ERROR, string("SDL_ttf no se pudo recibir! SDL_Error: ").append(TTF_GetError()));
                 exit = true;
             }
-            fuente = TTF_OpenFont("../assets/fuentes/open-sans/OpenSans-Bold.ttf", 60);
+            fuente = TTF_OpenFont("../assets/fuentes/arcadeclassic/ARCADECLASSIC.TTF", 60);
             if (!fuente) {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
@@ -70,24 +80,97 @@ void Juego::inicializarGraficos() {
     }
 }
 
+void Juego::agregarPantallas() {
+    auto *autenticador = new Autenticador();
+    auto *vistaAutenticador = new VistaAutenticador(autenticador);
+    auto *interpreteAutenticador = new InterpreteAutenticadorCli(autenticador, &manager);
+    auto *entradaAutenticador = new EntradaAutenticador(autenticador);
+    manager.agregarPantalla(new Pantalla("autenticacion",
+                                         interpreteAutenticador,
+                                         entradaAutenticador,
+                                         vistaAutenticador));
+
+    auto *menu = new MenuSeleccion();
+    manager.agregarPantalla(new Pantalla("menu de seleccion",
+                                         new InterpreteNuloCli(),
+                                         new EntradaMenuSeleccion(menu),
+                                         new VistaMenuSeleccion(menu)));
+
+
+    manager.agregarPantalla(new PantallaJuego("nivel1",
+                                              new InterpreteJuegoCli(),
+                                              new EntradaJuego(),
+                                              new VistaJuego()));
+
+    manager.agregarPantalla(new PantallaJuego("nivel2",
+                                              new InterpreteJuegoCli(),
+                                              new EntradaJuego(),
+                                              new VistaJuego()));
+
+    auto *puntuaciones = new PuntuacionJugadores();
+    manager.agregarPantalla(new Pantalla("puntuacion1",
+                                         new InterpretePuntuacionCli(puntuaciones),
+                                         new EntradaPuntuacion(),
+                                         new VistaPuntuacion(puntuaciones)));
+
+    manager.agregarPantalla(new Pantalla("puntuacion2",
+                                         new InterpretePuntuacionCli(puntuaciones),
+                                         new EntradaPuntuacion(),
+                                         new VistaPuntuacion(puntuaciones)));
+
+    manager.agregarPantalla(new Pantalla("fin",
+                                         new InterpreteNuloCli(),
+                                         new EntradaNula(),
+                                         new VistaFin()));
+
+    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
+    manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
+    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
+}
+
 void Juego::loop() {
 
     if (exit) return;
 
-    ManagerPantallas manager;
-    manager.agregarPantalla(new PantallaAutenticador("autenticador"));
-    manager.agregarPantalla(new PantallaJuego("juego", &mapa_));
-    manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
-    manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
-    manager.agregarPantalla(new PantallaError("error de conexion", "/pantallas/error/conexion/src"));
+    agregarPantallas();
+    recibirEnHilo();
 
+    /**
+     * Transmision.
+     */
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de transmisión.");
+    const int MS_PER_FRAME = int(1.0 / Locator::configuracion()->getIntValue("/fps") * 1000); // Milisegundos.
     while (!exit) {
+        int start = SDL_GetTicks();
+
         SDL_Event *e = processInput();
-        manager.getActual()->actualizar(e);
+        manager.getActual()->enviar(e);
         delete e;
-        graficar();
+
+        int end = SDL_GetTicks();
+        int sleepTime = MS_PER_FRAME + start - end;
+        if (sleepTime > 0) SDL_Delay(sleepTime);
     }
-    manager.getActual()->finalizar();
+
+    Locator::logger()->log(INFO, "Finaliza el hilo de transmisión.");
+}
+
+void Juego::recibir() {
+
+    /**
+     * Recepcion.
+     */
+    Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
+    stringstream s;
+    while (!exit) {
+        s.str(std::string());
+        manager.getActual()->recibir(s);
+        manager.getActual()->interpretarNombrePantalla(s);
+        manager.getActual()->interpretarModelo(s);
+        manager.getActual()->graficar(renderer_);
+        actualizarGraficos();
+    }
+    Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
 }
 
 SDL_Event *Juego::processInput() {
@@ -102,10 +185,14 @@ SDL_Event *Juego::processInput() {
     return e;
 }
 
-void Juego::graficar() {
+void Juego::actualizarGraficos() {
     SDL_RenderPresent(renderer_); // Update screen
     SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer_);
+}
+
+SDL_Renderer *Juego::renderer() {
+    return renderer_;
 }
 
 void Juego::terminar() {
@@ -121,6 +208,6 @@ void Juego::terminar() {
     SDL_Quit(); // Quit SDL subsystems
 }
 
-SDL_Renderer *Juego::renderer() {
-    return renderer_;
+pthread_t Juego::recibirEnHilo() {
+    return lanzarHilo(bind(&Juego::recibir, this));
 }
