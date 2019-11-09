@@ -15,7 +15,8 @@
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
 #include "ReproductorEfectosDePersonaje.h"
-#include "ReproductorEfectosDeNivel.h"
+#include "ReproductorEfectosDeEnemigos.h"
+
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
@@ -141,6 +142,9 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     enemigo->agregarEstado("animacion", animacion);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
     enemigo->agregarComportamiento("animador", animador);
+
+    auto *reproductor = new ReproductorEfectosDeEnemigos();
+    enemigo->agregarComportamiento("reproductor", reproductor);
 
 }
 

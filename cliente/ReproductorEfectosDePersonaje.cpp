@@ -14,7 +14,7 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
     switch (estado->getEstado()){
         case SALTANDO:
         {
-            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltolargo.wav")->getChunk();
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/personajes/coddy/saltolargo.wav")->getChunk();
             if (Mix_Playing(canalAReproducir)==0){
                 Mix_PlayChannel( canalAReproducir, chunk, 0 );
             }
@@ -22,14 +22,14 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
             break;
         case GOLPEANDO:{
 
-            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/golpe.wav")->getChunk();
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/personajes/coddy/golpe.wav")->getChunk();
             if (Mix_Playing(canalAReproducir)==0){
                 Mix_PlayChannel( canalAReproducir, chunk, 0 );
             };
         }
             break;
         case PATEANDO:{
-            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltopatada.wav")->getChunk();
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/personajes/coddy/saltopatada.wav")->getChunk();
                  if (Mix_Playing(canalAReproducir)==0){
                 Mix_PlayChannel( canalAReproducir, chunk, 0 );
             }
@@ -37,7 +37,7 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
             break;
         case SALTANDO_CON_MOVIMIENTO:
         {
-            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltocorto.wav")->getChunk();
+            Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/personajes/coddy/saltocorto.wav")->getChunk();
             if (Mix_Playing(canalAReproducir)==0){
                 Mix_PlayChannel( canalAReproducir, chunk, 0 );
             }
