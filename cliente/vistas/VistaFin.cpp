@@ -10,7 +10,7 @@ void VistaFin::graficar(SDL_Renderer *renderer) {
     int ancho = config->getIntValue("/resolucion/ancho");
     int alto = config->getIntValue("/resolucion/alto");
 
-    auto *fondo = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/autenticacion/formulario/fondo/src");
+    auto *fondo = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/fin/src");
 
     SDL_Rect posicionEnPantallaCompleta = {0, 0, ancho, alto};
     SDL_RenderCopy(renderer, fondo->getTexture(), nullptr, &posicionEnPantallaCompleta);

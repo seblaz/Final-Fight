@@ -37,7 +37,7 @@
         <entidades>1</entidades>
     </escala>
     <velocidad>
-        <juego>1</juego>
+        <juego>10</juego>
         <personaje>
             <x>1</x>
             <y>1</y>
@@ -105,6 +105,9 @@
                 <src>assets/varios/puntuacion.png</src>
             </fondo>
         </puntuacion>
+        <fin>
+            <src>assets/varios/game over.png</src>
+        </fin>
     </pantallas>
     <personajes>
         <cody>
