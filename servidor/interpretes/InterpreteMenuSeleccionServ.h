@@ -15,7 +15,6 @@ public:
     using InterpreteServidor::InterpreteServidor;
     bool interpretarAccion(ACCION accion, stringstream &s) override;
     void finalizarCliente() override;
-    void iniciar() override;
 
 };
 

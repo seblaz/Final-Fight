@@ -13,7 +13,6 @@ class Saltando : public EstadoDePersonajeServidor {
 
 private:
     bool pateando = false;
-    bool termine = false;
     float frames = 1;
     const float velocidadInicial = 25;
     const float aceleracion = -1;

@@ -6,6 +6,7 @@
 #include "../../servicios/Locator.h"
 #include "../../eventos/EventoPersonaje.h"
 #include "../../modelo/serializables/Actividad.h"
+#include "../../estados/EstadoDePersonajeServidor.h"
 
 bool InterpreteJuegoServ::interpretarAccion(ACCION accion, stringstream &s) {
     EventoAProcesar *evento;
@@ -66,5 +67,6 @@ void InterpreteJuegoServ::iniciar() {
 void InterpreteJuegoServ::finalizarCliente() {
     getUsuario()->desconectar();
     getUsuario()->getPersonaje()->getEstado<Actividad>("actividad")->activo = false;
+    Locator::eventos()->push(new Reposar(getUsuario()->getPersonaje()));
 }
 

@@ -12,12 +12,6 @@ bool InterpreteMenuSeleccionServ::interpretarAccion(ACCION accion, stringstream 
     return true;
 }
 
-void InterpreteMenuSeleccionServ::iniciar() {
-    if(getUsuario()->getPersonaje()){
-        getEtapa()->getManager()->cambiarA("nivel1");
-    }
-}
-
 void InterpreteMenuSeleccionServ::finalizarCliente() {
     getUsuario()->desconectar();
     getUsuario()->setPersonajeSeleccionado(NULO);

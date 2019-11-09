@@ -26,8 +26,7 @@ void Saltando::actualizar(Entidad *entidad) {
     velocidad->y = 0;
     velocidad->z = velocidadInicial + aceleracion * frames;
     if (velocidad->z <= -velocidadInicial) {
-        auto *reposando = new EstadoDePersonajeServidor();
-        entidad->agregarComportamiento("estado", reposando);
+        entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor());
         velocidad->z = 0;
     }
     frames++;

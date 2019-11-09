@@ -16,9 +16,9 @@
 class EstadoDePersonajeServidor : public Comportamiento {
 
 private:
-    static void agregarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado);
-    static void cambiarAnimacion(Entidad *entidad, const string& estado);
     static map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapa;
+    static void cambiarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado);
+    int frames = 0;
 
 public:
     virtual void saltar(Entidad *);
