@@ -16,6 +16,7 @@ using namespace std;
 class EventoAProcesar {
 
 public:
+    virtual ~EventoAProcesar() = default;
     virtual void resolver() = 0;
 
 };

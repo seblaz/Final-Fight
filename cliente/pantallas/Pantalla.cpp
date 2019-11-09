@@ -56,6 +56,7 @@ void Pantalla::enviar(SDL_Event *e) {
         Locator::socket()->finalizarConexion();
         manager->cambiarA("error de conexion");
     }
+    delete accion;
 }
 
 void Pantalla::iniciar() {
