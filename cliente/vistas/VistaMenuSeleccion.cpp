@@ -20,3 +20,11 @@ void VistaMenuSeleccion::graficar(SDL_Renderer *renderer) {
     Sprite *sprite = menu->listo() ? confirmacion : selector;
     SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantalla);
 }
+
+
+void VistaMenuSeleccion::reproducir() {
+    if(Mix_PlayingMusic() == 0 )
+    {
+        Mix_PlayMusic( musica, -1);
+    }
+}

@@ -70,6 +70,12 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
+            if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+            {
+                Locator::logger()->log(ERROR, "Fallo cargar la SDL_Mixer. Error: " + string(Mix_GetError()));
+                exit = true;
+            }
+            Mix_AllocateChannels(7);
             Locator::provide(fuente);
         }
     }
@@ -163,6 +169,7 @@ void Juego::recibir() {
         manager.getActual()->interpretarNombrePantalla(s);
         manager.getActual()->interpretarModelo(s);
         manager.getActual()->graficar(renderer_);
+        manager.getActual()->reproducir();
         actualizarGraficos();
     }
     Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");

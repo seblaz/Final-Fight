@@ -87,3 +87,12 @@ void VistaPuntuacion::graficar(SDL_Renderer *renderer) {
     generarTitulo(renderer);
     generarPuntuaciones(renderer);
 }
+
+
+void VistaPuntuacion::reproducir() {
+    if(Mix_PlayingMusic() == 0 )
+    {
+        Mix_PlayMusic( musica, 0);
+    }
+}
+
