@@ -4,7 +4,6 @@
 
 #ifndef FINAL_FIGHT_QUEUE_H
 #define FINAL_FIGHT_QUEUE_H
-#pragma once
 
 #include <mutex>
 #include "semaphore.h"
@@ -15,7 +14,7 @@ public:
     explicit blocking_queue(unsigned int size = 100)
             : m_size(size), m_pushIndex(0), m_popIndex(0), m_count(0),
               m_data((T *) operator new(size * sizeof(T))),
-              m_openSlots(size), m_fullSlots(0) {}
+              m_fullSlots(0) {}
 
     blocking_queue(const blocking_queue &) = delete;
 
@@ -34,9 +33,9 @@ public:
     }
 
     void push(const T &item) {
-        m_openSlots.wait();
         {
             std::lock_guard<std::mutex> lock(m_cs);
+            if(m_count + 1 > m_size) throw std::out_of_range("cola de procesamiento lleno");
             new(m_data + m_pushIndex) T(item);
             m_pushIndex = ++m_pushIndex % m_size;
             ++m_count;
@@ -47,14 +46,15 @@ public:
     T pop() {
         m_fullSlots.wait();
 
-
+        T item;
+        {
             std::lock_guard<std::mutex> lock(m_cs);
-            T item = m_data[m_popIndex];
+            item = m_data[m_popIndex];
             m_data[m_popIndex].~T();
             m_popIndex = ++m_popIndex % m_size;
             --m_count;
+        }
 
-        m_openSlots.post();
         return item;
     }
 
@@ -70,7 +70,6 @@ private:
     unsigned int m_count;
     T *m_data;
 
-    semaphore m_openSlots;
     semaphore m_fullSlots;
     std::mutex m_cs;
 };
