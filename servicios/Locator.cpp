@@ -84,19 +84,6 @@ void Locator::provide(FabricaDeSprites *fabricaDeSprites) {
 }
 
 /**
- * Fabrica de Sonidos.
- */
-FabricaDeSonidos *Locator::fabricaSonidos;
-
-FabricaDeSonidos *Locator::fabricaDeSonidos() {
-    return fabricaSonidos;
-}
-
-void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
-    fabricaSonidos = fabricaDeSonidos;
-}
-
-/**
  * Fuente.
  */
 TTF_Font *Locator::fuente_;
@@ -183,4 +170,18 @@ void Locator::clean() {
 
     delete configuracion_;
     delete logger_;
+}
+
+
+/**
+ * Fabrica de Sonidos.
+ */
+FabricaDeSonidos *Locator::fabricaSonidos;
+
+FabricaDeSonidos *Locator::fabricaDeSonidos() {
+    return fabricaSonidos;
+}
+
+void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
+    fabricaSonidos = fabricaDeSonidos;
 }

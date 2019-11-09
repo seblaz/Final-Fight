@@ -2,7 +2,6 @@
 // Created by poncio on 23/9/19.
 //
 
-#include <SDL2/SDL_mixer.h>
 #include "ReproductorEfectosDePersonaje.h"
 #include "../estados/Caminando.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
