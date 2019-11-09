@@ -35,7 +35,7 @@ public:
     void push(const T &item) {
         {
             std::lock_guard<std::mutex> lock(m_cs);
-            if(m_count + 1 > m_size) throw std::out_of_range("cola de procesamiento lleno");
+            if(m_count + 1 > m_size) throw std::out_of_range("cola de procesamiento llena");
             new(m_data + m_pushIndex) T(item);
             m_pushIndex = ++m_pushIndex % m_size;
             ++m_count;
