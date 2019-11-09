@@ -30,8 +30,7 @@
  
         $ apt-get install libstdc++6-8-dbg
 
- - SDL Mixer:
+ - SDL2 Mixer:
 
-
-        $ sudo apt install libsdl2-mixer-dev
+        $ apt-get install libsdl2-mixer-dev
 
