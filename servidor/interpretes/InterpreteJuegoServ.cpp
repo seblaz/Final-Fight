@@ -6,7 +6,6 @@
 #include "../../servicios/Locator.h"
 #include "../../eventos/EventoPersonaje.h"
 #include "../../modelo/serializables/Actividad.h"
-#include "../../estados/EstadoDePersonajeServidor.h"
 
 bool InterpreteJuegoServ::interpretarAccion(ACCION accion, stringstream &s) {
     EventoAProcesar *evento;

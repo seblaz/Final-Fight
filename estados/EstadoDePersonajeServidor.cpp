@@ -31,7 +31,6 @@ void EstadoDePersonajeServidor::cambiarEstado(Entidad *entidad, ESTADO_DE_PERSON
 
     enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
     auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, estado);
-//    delete entidad->getComportamiento<AnimacionServidor>("animacion servidor");
     entidad->agregarComportamiento("animacion servidor", animacion);
 }
 
