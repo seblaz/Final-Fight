@@ -8,9 +8,11 @@
 
 #include <SDL_system.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include "../../usuario/Usuario.h"
 #include "Vista.h"
 #include "../modelos/Autenticador.h"
+#include "../../servicios/Locator.h"
 
 class VistaAutenticador : public Vista {
 
@@ -22,11 +24,12 @@ private:
     void generarFormulario(SDL_Renderer *renderer, const string& usuario, const string& password);
     static void generarFondo(SDL_Renderer *renderer);
     static void generarMensajePasswordIncorrecta(SDL_Renderer *renderer);
+    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/sonidos/nombre.wav")->getMusic();
 
 public:
     explicit VistaAutenticador(Autenticador *autenticador);
     void graficar(SDL_Renderer *renderer) override;
-
+    void reproducir() override;
 };
 
 

@@ -14,6 +14,7 @@
 #include "../utils/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
 #include "../cliente/FabricaDeSonidos.h"
+#include "../cliente/FabricaDeMusicas.h"
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "../servidor/clientes/ManagerClientes.h"
@@ -61,6 +62,9 @@ public:
     static FabricaDeSonidos *fabricaDeSonidos();
     static void provide(FabricaDeSonidos *fabricaDeSonidos);
 
+    static FabricaDeMusicas *fabricaDeMusicas();
+    static void provide(FabricaDeMusicas *fabricaDeMusicas);
+
     static void clean();
 
 private:
@@ -77,6 +81,7 @@ private:
     static ManagerClientes *clientes_;
     static Colisionables *colisionables_;
     static FabricaDeSonidos *fabricaSonidos;
+    static FabricaDeMusicas *fabricaMusicas;
 
 };
 

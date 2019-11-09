@@ -117,8 +117,6 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
 
-    auto *reproductor = new ReproductorEfectosDeNivel("assets/sonidos/nivel1.wav");
-    escenario->agregarComportamiento("reproductor", reproductor);
 }
 
 void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {

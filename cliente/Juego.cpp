@@ -169,6 +169,7 @@ void Juego::recibir() {
         manager.getActual()->interpretarNombrePantalla(s);
         manager.getActual()->interpretarModelo(s);
         manager.getActual()->graficar(renderer_);
+        manager.getActual()->reproducir();
         actualizarGraficos();
     }
     Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");

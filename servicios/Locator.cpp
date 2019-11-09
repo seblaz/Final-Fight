@@ -185,3 +185,16 @@ FabricaDeSonidos *Locator::fabricaDeSonidos() {
 void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
     fabricaSonidos = fabricaDeSonidos;
 }
+
+/**
+ * Fabrica de Sonidos.
+ */
+FabricaDeMusicas *Locator::fabricaMusicas;
+
+FabricaDeMusicas *Locator::fabricaDeMusicas() {
+    return fabricaMusicas;
+}
+
+void Locator::provide(FabricaDeMusicas *_fabricaDeMusicas) {
+    fabricaMusicas = _fabricaDeMusicas;
+}

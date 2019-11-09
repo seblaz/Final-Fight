@@ -87,3 +87,9 @@ void VistaPuntuacion::graficar(SDL_Renderer *renderer) {
     generarTitulo(renderer);
     generarPuntuaciones(renderer);
 }
+
+
+void VistaPuntuacion::reproducir() {
+
+}
+

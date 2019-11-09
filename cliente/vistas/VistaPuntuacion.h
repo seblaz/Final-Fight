@@ -21,7 +21,7 @@ private:
 public:
     explicit VistaPuntuacion(PuntuacionJugadores *puntuaciones);
     void graficar(SDL_Renderer *renderer) override;
-
+    void reproducir() override;
 };
 
 
