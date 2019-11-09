@@ -9,7 +9,7 @@ class Vista {
 
 public:
     virtual void graficar(SDL_Renderer *renderer) = 0;
-
+    virtual void reproducir() = 0;
 };
 
 #endif //FINAL_FIGHT_VISTA_H

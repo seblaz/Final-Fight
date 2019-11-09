@@ -29,3 +29,8 @@
  - Debug librería estándar:
  
         $ apt-get install libstdc++6-8-dbg
+
+ - SDL2 Mixer:
+
+        $ apt-get install libsdl2-mixer-dev
+

@@ -13,6 +13,8 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../utils/Socket.h"
 #include "../cliente/FabricaDeSprites.h"
+#include "../cliente/FabricaDeSonidos.h"
+#include "../cliente/FabricaDeMusicas.h"
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "../servidor/clientes/ManagerClientes.h"
@@ -38,10 +40,10 @@ public:
 
     static FabricaDeSprites *fabricaDeSprites();
     static void provide(FabricaDeSprites *fabricaDeSprites);
-    
+
     static TTF_Font *fuente();
     static void provide(TTF_Font *fuente);
-    
+
     static EventosAProcesar *eventos();
     static void provide(EventosAProcesar *);
 
@@ -56,6 +58,12 @@ public:
 
     static Colisionables *colisionables();
     static void provide(Colisionables *);
+
+    static FabricaDeSonidos *fabricaDeSonidos();
+    static void provide(FabricaDeSonidos *fabricaDeSonidos);
+
+    static FabricaDeMusicas *fabricaDeMusicas();
+    static void provide(FabricaDeMusicas *fabricaDeMusicas);
 
     static void clean();
 
@@ -72,8 +80,9 @@ private:
     static Mapa *mapa_;
     static ManagerClientes *clientes_;
     static Colisionables *colisionables_;
+    static FabricaDeSonidos *fabricaSonidos;
+    static FabricaDeMusicas *fabricaMusicas;
 
 };
-
 
 #endif //FINAL_FIGHT_LOCATOR_H

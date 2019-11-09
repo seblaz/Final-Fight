@@ -76,3 +76,13 @@ void VistaAutenticador::graficar(SDL_Renderer *renderer) {
     generarFormulario(renderer, autenticador->getUsuario(), autenticador->getPassword());
     if (autenticador->passwordIncorrecta()) generarMensajePasswordIncorrecta(renderer);
 }
+
+
+void VistaAutenticador::reproducir() {
+
+    if(Mix_PlayingMusic() == 0 )
+    {
+        Mix_PlayMusic( musica, -1);
+    }
+}
+

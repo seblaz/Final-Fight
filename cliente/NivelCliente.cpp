@@ -14,6 +14,8 @@
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
+#include "ReproductorEfectosDePersonaje.h"
+#include "ReproductorEfectosDeNivel.h"
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
@@ -66,6 +68,9 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("grafico", grafico);
     jugador->agregarComportamiento("animador", animador);
+
+    auto *reproductor = new ReproductorEfectosDePersonaje();
+    jugador->agregarComportamiento("reproductor", reproductor);
 }
 
 void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
@@ -111,6 +116,7 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     escenario->agregarEstado("sprite", sprite);
     escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
+
 }
 
 void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
