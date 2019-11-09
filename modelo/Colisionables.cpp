@@ -59,10 +59,33 @@ void Colisionables::calcularPosiblesColisiones() {
 
 void Colisionables::add(Entidad * entidad) {
     colisionables.insert(colisionables.begin(), entidad);
+
+    auto* tipo = entidad->getEstado<Tipo>("tipo");
+    if ( tipo->tipo() == ENEMIGO || tipo->tipo() == ELEMENTO ){
+        enemigos.insert(enemigos.begin(), entidad);
+    }else if ( tipo->tipo() == JUGADOR ){
+        jugadores.insert(jugadores.begin(), entidad);
+    }
 }
 
 void Colisionables::addLimitesDeEscenario(int profundidad, int frente) {
      this -> limiteEnProfundidad = profundidad;
      this -> limiteFrontal = frente;
+}
+
+void Colisionables::calcularAtaques() {
+    for ( auto *jugador : jugadores ){
+        auto* envolvente= jugador->getEstado<Envolvente>("envolvente ataque");
+        auto* posicion = jugador->getEstado<Posicion>("posicion");
+        auto* velocidad = jugador->getEstado<Velocidad>("velocidad");
+        if ( envolvente != nullptr ){
+
+            for ( auto *enemigo : enemigos ){
+                auto* envolvente_enemigo= enemigo->getEstado<Envolvente>("envolvente");
+                auto* posicion_enemigo = enemigo->getEstado<Posicion>("posicion");
+                auto* velocidad_enemigo = enemigo->getEstado<Velocidad>("velocidad");
+            }
+        }
+    }
 }
 

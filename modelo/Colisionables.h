@@ -14,6 +14,8 @@ class Colisionables : public Estado {
 private:
 
     vector<Entidad *> colisionables;
+    vector<Entidad *> jugadores;
+    vector<Entidad *> enemigos;
     int limiteEnProfundidad = 0;
     int limiteFrontal = 0;
     int i = 0;
@@ -24,6 +26,7 @@ public:
     void addLimitesDeEscenario(int profundidad, int frente);
 
     void calcularPosiblesColisiones();
+    void calcularAtaques();
 };
 
 
