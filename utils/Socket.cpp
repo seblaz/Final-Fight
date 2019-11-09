@@ -52,7 +52,7 @@ bool Socket::recibirConCantidad(stringstream &s, size_t cantidad) {
     char buffer[cantidad + 1];
     buffer[cantidad] = '\0';
 
-    size_t leidos;
+    int leidos;
     size_t total = 0;
     size_t tamano = cantidad;
 
