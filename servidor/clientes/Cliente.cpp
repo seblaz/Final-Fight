@@ -49,7 +49,6 @@ void Cliente::recibirEnHilo() {
         s.str(std::string());
         if (socket->estaDesconectado() || !socket->recibir(s)) {
             Locator::logger()->log(ERROR, "Se detecta socket invalido en el hilo de recepción y se cierra.");
-            socket->finalizarConexion();
             break;
         }
     } while (!fin && etapas.getActual()->getInterprete()->interpretarStream(s));
@@ -75,4 +74,5 @@ void Cliente::transmitirEnHilo() {
 
     Locator::logger()->log(DEBUG, "Se termina el hilo de transmisión.");
     manager->quitarCliente(this);
+    socket->finalizarConexion();
 }

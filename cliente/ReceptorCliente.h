@@ -17,8 +17,6 @@ class ReceptorCliente : Hilo {
 
 private:
     std::mutex mutex;
-    bool nuevo = false;
-    semaphore disponible;
     stringstream ultimoStream;
     void recibir();
     bool fin = false;

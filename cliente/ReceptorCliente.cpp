@@ -7,7 +7,6 @@
 #include "../servicios/Locator.h"
 
 ReceptorCliente::ReceptorCliente() :
-        disponible(0),
         finSemaforo(0) {}
 
 void ReceptorCliente::recibir() {
@@ -22,22 +21,15 @@ void ReceptorCliente::recibir() {
             std::lock_guard<std::mutex> lock(mutex);
             ultimoStream.str(std::string());
             ultimoStream << s.str();
-            if(!nuevo){
-                nuevo = true;
-                disponible.post();
-            }
         }
     }
-    disponible.post();
     finSemaforo.post();
     Locator::logger()->log(DEBUG, "Se termina el hilo del receptor.");
 }
 
 void ReceptorCliente::devolverStreamMasReciente(stringstream &s) {
-    disponible.wait();
     std::lock_guard<std::mutex> lock(mutex);
     s << ultimoStream.str();
-    nuevo = false;
 }
 
 pthread_t ReceptorCliente::recibirEnHilo() {
