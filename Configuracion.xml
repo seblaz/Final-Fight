@@ -37,7 +37,7 @@
         <entidades>1</entidades>
     </escala>
     <velocidad>
-        <juego>10</juego>
+        <juego>1</juego>
         <personaje>
             <x>1</x>
             <y>1</y>
@@ -106,7 +106,7 @@
             </fondo>
         </puntuacion>
         <fin>
-            <src>assets/varios/game over.png</src>
+            <src>assets/varios/fin.png</src>
         </fin>
     </pantallas>
     <personajes>
