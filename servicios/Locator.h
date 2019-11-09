@@ -18,8 +18,6 @@
 #include "../servidor/clientes/ManagerClientes.h"
 #include "../modelo/Colisionables.h"
 
-class EventosAProcesar;
-
 class Locator {
 
 public:
