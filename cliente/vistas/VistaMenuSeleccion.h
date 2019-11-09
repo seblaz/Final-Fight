@@ -19,7 +19,7 @@ private:
     Sprite *fondo = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/fondo/src");
     Sprite *selector = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/selector/src");
     Sprite *confirmacion = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/listo/src");
-    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/sonidos/menu.wav")->getMusic();
+    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/musicas/menu.wav")->getMusic();
 
     MenuSeleccion *menu;
 

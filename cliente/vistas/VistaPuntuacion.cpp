@@ -90,6 +90,9 @@ void VistaPuntuacion::graficar(SDL_Renderer *renderer) {
 
 
 void VistaPuntuacion::reproducir() {
-
+    if(Mix_PlayingMusic() == 0 )
+    {
+        Mix_PlayMusic( musica, 0);
+    }
 }
 

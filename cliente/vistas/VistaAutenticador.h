@@ -24,7 +24,7 @@ private:
     void generarFormulario(SDL_Renderer *renderer, const string& usuario, const string& password);
     static void generarFondo(SDL_Renderer *renderer);
     static void generarMensajePasswordIncorrecta(SDL_Renderer *renderer);
-    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/sonidos/nombre.wav")->getMusic();
+    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/musicas/nombre.wav")->getMusic();
 
 public:
     explicit VistaAutenticador(Autenticador *autenticador);

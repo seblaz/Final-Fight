@@ -7,8 +7,10 @@
 
 
 #include <SDL_render.h>
+#include <SDL_mixer.h>
 #include "Vista.h"
 #include "../modelos/PuntuacionJugadores.h"
+#include "../../servicios/Locator.h"
 
 class VistaPuntuacion : public Vista {
 
@@ -17,6 +19,8 @@ private:
     static void generarFondo(SDL_Renderer *renderer);
     static void generarTitulo(SDL_Renderer *renderer);
     void generarPuntuaciones(SDL_Renderer *renderer);
+    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/musicas/puntaje.wav")->getMusic();
+
 
 public:
     explicit VistaPuntuacion(PuntuacionJugadores *puntuaciones);
