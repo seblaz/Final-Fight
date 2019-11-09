@@ -19,6 +19,7 @@ public:
     void add(Entidad *);
 
     void calcularPosiblesColisiones(Entidad *);
+    void calcularPosiblesColisiones();
 };
 
 

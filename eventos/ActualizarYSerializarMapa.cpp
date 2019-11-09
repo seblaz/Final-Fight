@@ -11,6 +11,9 @@ ActualizarYSerializarMapa::ActualizarYSerializarMapa(Mapa *mapa) :
 
 void ActualizarYSerializarMapa::resolver() {
     actualizar();
+    auto* mapa = Locator::mapa();
+    auto colisionables = mapa->getColisionables();
+    colisionables->calcularPosiblesColisiones();
     serializar();
 }
 
