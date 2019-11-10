@@ -1091,10 +1091,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>0</x>
-                        <y>0</y>
+                        <x>92</x>
+                        <y>95</y>
                         <w>45</w>
-                        <h>95</h>
+                        <h>94</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1105,34 +1105,34 @@
                 <cantidad>5</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>0</x>
-                        <y>105</y>
-                        <w>35</w>
-                        <h>90</h>
+                        <x>94</x>
+                        <y>228</y>
+                        <w>49</w>
+                        <h>93</h>
                     </posicion0>
                     <posicion1>
-                        <x>35</x>
-                        <y>105</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>276</x>
+                        <y>228</y>
+                        <w>48</w>
+                        <h>93</h>
                     </posicion1>
                     <posicion2>
-                        <x>80</x>
-                        <y>105</y>
-                        <w>35</w>
-                        <h>90</h>
+                        <x>435</x>
+                        <y>229</y>
+                        <w>51</w>
+                        <h>93</h>
                     </posicion2>
                     <posicion3>
-                        <x>115</x>
-                        <y>105</y>
-                        <w>28</w>
-                        <h>90</h>
+                        <x>96</x>
+                        <y>358</y>
+                        <w>51</w>
+                        <h>93</h>
                     </posicion3>
                     <posicion4>
-                        <x>140</x>
-                        <y>105</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>280</x>
+                        <y>359</y>
+                        <w>58</w>
+                        <h>92</h>
                     </posicion4>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1201,10 +1201,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>170</x>
-                        <y>400</y>
-                        <w>80</w>
-                        <h>80</h>
+                        <x>258</x>
+                        <y>621</y>
+                        <w>78</w>
+                        <h>61</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1215,28 +1215,28 @@
                 <cantidad>4</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>50</x>
-                        <y>200</y>
-                        <w>70</w>
-                        <h>90</h>
+                        <x>89</x>
+                        <y>475</y>
+                        <w>57</w>
+                        <h>87</h>
                     </posicion0>
                     <posicion1>
-                        <x>118</x>
-                        <y>200</y>
+                        <x>271</x>
+                        <y>475</y>
                         <w>55</w>
                         <h>90</h>
                     </posicion1>
                     <posicion2>
-                        <x>395</x>
-                        <y>180</y>
-                        <w>43</w>
-                        <h>110</h>
+                        <x>72</x>
+                        <y>596</y>
+                        <w>100</w>
+                        <h>106</h>
                     </posicion2>
                     <posicion3>
-                        <x>395</x>
-                        <y>180</y>
-                        <w>43</w>
-                        <h>110</h>
+                        <x>72</x>
+                        <y>596</y>
+                        <w>100</w>
+                        <h>106</h>
                     </posicion3>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1247,10 +1247,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>45</x>
-                        <y>6</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>445</x>
+                        <y>621</y>
+                        <w>36</w>
+                        <h>61</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
