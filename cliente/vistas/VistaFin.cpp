@@ -16,8 +16,6 @@ void VistaFin::graficar(SDL_Renderer *renderer) {
     SDL_RenderCopy(renderer, fondo->getTexture(), nullptr, &posicionEnPantallaCompleta);
 }
 
-
-void VistaFin::reproducir() {
-
+string VistaFin::getConfigPathMusica() {
+    return "/pantallas/fin/musica/src";
 }
-

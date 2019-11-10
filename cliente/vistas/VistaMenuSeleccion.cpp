@@ -21,10 +21,6 @@ void VistaMenuSeleccion::graficar(SDL_Renderer *renderer) {
     SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantalla);
 }
 
-
-void VistaMenuSeleccion::reproducir() {
-    if(Mix_PlayingMusic() == 0 )
-    {
-        Mix_PlayMusic( musica, -1);
-    }
+string VistaMenuSeleccion::getConfigPathMusica() {
+    return "/pantallas/seleccion/musica/src";
 }

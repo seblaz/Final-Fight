@@ -77,6 +77,9 @@
                     <src>assets/varios/botonEntrar.png</src>
                 </enter>
             </formulario>
+            <musica>
+                <src>assets/musicas/nombre.wav</src>
+            </musica>
         </autenticacion>
         <error>
             <usuarioYaConectado>
@@ -99,15 +102,29 @@
             <listo>
                 <src>assets/varios/personajeElegido.png</src>
             </listo>
+            <musica>
+                <src>assets/musicas/menu.wav</src>
+            </musica>
         </seleccion>
         <puntuacion>
             <fondo>
                 <src>assets/varios/puntuacion.png</src>
             </fondo>
+            <musica>
+                <src>assets/musicas/puntaje.wav</src>
+            </musica>
         </puntuacion>
         <fin>
             <src>assets/varios/fin.png</src>
+            <musica>
+                <src>assets/musicas/ending.wav</src>
+            </musica>
         </fin>
+        <juego>
+            <musica>
+                <src>assets/musicas/nivel1.wav</src>
+            </musica>
+        </juego>
     </pantallas>
     <personajes>
         <cody>

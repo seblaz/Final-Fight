@@ -88,11 +88,10 @@ void VistaPuntuacion::graficar(SDL_Renderer *renderer) {
     generarPuntuaciones(renderer);
 }
 
-
-void VistaPuntuacion::reproducir() {
-    if(Mix_PlayingMusic() == 0 )
-    {
-        Mix_PlayMusic( musica, 0);
-    }
+string VistaPuntuacion::getConfigPathMusica() {
+    return "/pantallas/puntuacion/musica/src";
 }
 
+int VistaPuntuacion::getLoops() {
+    return 1;
+}
