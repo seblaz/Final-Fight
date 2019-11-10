@@ -16,7 +16,7 @@ class ManagerClientes {
 
 private:
     list<Cliente *> clientes;
-    IdEtapa etapaActual;
+    IdEtapa etapaActual = "menu de seleccion";
 
 public:
     void agregarCliente(Cliente *cliente);

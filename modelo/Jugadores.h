@@ -14,17 +14,19 @@ private:
     unordered_map<IdEntidad, Entidad*> jugadores;
 
 public:
+    Jugadores() = default;
     explicit Jugadores(unordered_map<IdEntidad, Entidad*> jugadores);
+    void agregarJugador(IdEntidad id, Entidad *jugador);
+    unordered_map<IdEntidad, Entidad*>& getJugadores();
 
     int getMayorX();
     int getMenorX();
 
     void reiniciarPosiciones(int x, int y);
-
     void bloquearMovimientos(int scrollIzquierdo, int scrollDerecho);
     void arrastrarInactivos(int scrollIzquierdo, int scrollDerecho);
 
-    Posicion* posicionMasCercana(Posicion *posicion);
+    Posicion posicionMasCercana(Posicion *posicion);
 };
 
 

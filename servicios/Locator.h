@@ -12,10 +12,13 @@
 #include "Configuracion.h"
 #include "../modelo/serializables/Posicion.h"
 #include "../utils/Socket.h"
-#include "../cliente/FabricaDeSprites.h"
+#include "../cliente/fabricas/FabricaDeSprites.h"
+#include "../cliente/fabricas/FabricaDeSonidos.h"
+#include "../cliente/fabricas/FabricaDeMusicas.h"
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"
 #include "../servidor/clientes/ManagerClientes.h"
+#include "../modelo/Colisionables.h"
 
 class Locator {
 
@@ -37,10 +40,10 @@ public:
 
     static FabricaDeSprites *fabricaDeSprites();
     static void provide(FabricaDeSprites *fabricaDeSprites);
-    
+
     static TTF_Font *fuente();
     static void provide(TTF_Font *fuente);
-    
+
     static EventosAProcesar *eventos();
     static void provide(EventosAProcesar *);
 
@@ -52,6 +55,15 @@ public:
 
     static ManagerClientes *clientes();
     static void provide(ManagerClientes *);
+
+    static Colisionables *colisionables();
+    static void provide(Colisionables *);
+
+    static FabricaDeSonidos *fabricaDeSonidos();
+    static void provide(FabricaDeSonidos *fabricaDeSonidos);
+
+    static FabricaDeMusicas *fabricaDeMusicas();
+    static void provide(FabricaDeMusicas *fabricaDeMusicas);
 
     static void clean();
 
@@ -67,8 +79,10 @@ private:
     static ManagerUsuarios *usuarios_;
     static Mapa *mapa_;
     static ManagerClientes *clientes_;
+    static Colisionables *colisionables_;
+    static FabricaDeSonidos *fabricaSonidos;
+    static FabricaDeMusicas *fabricaMusicas;
 
 };
-
 
 #endif //FINAL_FIGHT_LOCATOR_H

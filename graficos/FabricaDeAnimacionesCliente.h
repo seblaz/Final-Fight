@@ -15,7 +15,7 @@ class FabricaDeAnimacionesCliente : public Estado {
 
 private:
     string rutaBase;
-    unordered_map<string, AnimacionCliente *> animaciones;
+    unordered_map<string, tuple<vector<SDL_Rect> *, float>> animaciones;
 
 public:
     explicit FabricaDeAnimacionesCliente(string rutaBase);

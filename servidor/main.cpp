@@ -70,6 +70,12 @@ int main(int argc, const char **args) {
     Locator::provide(&mapa);
 
     /**
+    * Crear colisionables.
+    */
+    Colisionables colisionables;
+    Locator::provide(&colisionables);
+
+    /**
      * Procesamiento.
      */
     Procesamiento procesamiento;
@@ -92,7 +98,16 @@ int main(int argc, const char **args) {
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
     GameLoop gameLoop;
-    gameLoop.loop();
+    try {
+        gameLoop.loop();
+    } catch (const std::exception& e) {
+        Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()) + ".");
+        exit(0);
+    } catch (...){
+        Locator::logger()->log(ERROR, "Ocurrió una excepción y se debió finalizar el programa.");
+        exit(0);
+    }
+
 
     /**
      * Termino el procesamiento.

@@ -8,9 +8,11 @@
 
 #include <SDL_system.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include "../../usuario/Usuario.h"
 #include "Vista.h"
 #include "../modelos/Autenticador.h"
+#include "../../servicios/Locator.h"
 
 class VistaAutenticador : public Vista {
 
@@ -26,6 +28,8 @@ private:
 public:
     explicit VistaAutenticador(Autenticador *autenticador);
     void graficar(SDL_Renderer *renderer) override;
+    string getConfigPathMusica() override;
+    void reproducir() override;
 
 };
 

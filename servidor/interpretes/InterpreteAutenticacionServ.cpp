@@ -64,7 +64,7 @@ void AgregarUsuario::resolver() {
             manager->reemplazarUsuarioCon(usuario);
             usuario->setValido(true);
             Locator::logger()->log(INFO, "El usuario: " + usuarioAnterior->getUsuario() + " se reconectó a la partida.");
-            etapas->cambiarA("menu de seleccion");
+            etapas->cambiarA(Locator::clientes()->getEtapaActual());
         }
     } else {
         if (manager->faltanJugadores()) { // Hay espacio para un jugador más.

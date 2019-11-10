@@ -12,6 +12,14 @@ Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
 }
 
+void Jugadores::agregarJugador(IdEntidad id, Entidad *jugador) {
+    jugadores[id] = jugador;
+}
+
+unordered_map<IdEntidad, Entidad *> &Jugadores::getJugadores() {
+    return jugadores;
+}
+
 int Jugadores::getMayorX() {
     int x = 0;
     for(auto tuple : jugadores){
@@ -61,24 +69,20 @@ void Jugadores::arrastrarInactivos(int scrollIzquierdo, int scrollDerecho) {
     }
 }
 
-Posicion *Jugadores::posicionMasCercana(Posicion *posicion) {
-    auto* posicionMasCercana = new Posicion(3000,1000,100);
+Posicion Jugadores::posicionMasCercana(Posicion *posicion) {
+    Posicion posicionMasCercana(3000, 1000, 100);
+
     for(auto tuple: jugadores){
         if (tuple.second->getEstado<Actividad>("actividad")->activo){
             auto* posicionJugador = tuple.second->getEstado<Posicion>("posicion");
             int distJugadorYenemigo = posicionJugador->distanciaEntrePuntos(posicion);
-            int distMasCercanaActual = posicionMasCercana->distanciaEntrePuntos(posicion);
+            int distMasCercanaActual = posicionMasCercana.distanciaEntrePuntos(posicion);
             if ( distJugadorYenemigo < distMasCercanaActual){
-                posicionMasCercana->x = posicionJugador->x;
-                posicionMasCercana->y = posicionJugador->y;
-                posicionMasCercana->z = posicionJugador->z;
+                posicionMasCercana.x = posicionJugador->x;
+                posicionMasCercana.y = posicionJugador->y;
+                posicionMasCercana.z = posicionJugador->z;
             }
         }
     }
     return posicionMasCercana;
 }
-
-
-
-
-

@@ -77,6 +77,9 @@
                     <src>assets/varios/botonEntrar.png</src>
                 </enter>
             </formulario>
+            <musica>
+                <src>assets/musicas/nombre.wav</src>
+            </musica>
         </autenticacion>
         <error>
             <usuarioYaConectado>
@@ -99,12 +102,29 @@
             <listo>
                 <src>assets/varios/personajeElegido.png</src>
             </listo>
+            <musica>
+                <src>assets/musicas/menu.wav</src>
+            </musica>
         </seleccion>
         <puntuacion>
             <fondo>
                 <src>assets/varios/puntuacion.png</src>
             </fondo>
+            <musica>
+                <src>assets/musicas/puntaje.wav</src>
+            </musica>
         </puntuacion>
+        <fin>
+            <src>assets/varios/fin.png</src>
+            <musica>
+                <src>assets/musicas/ending.wav</src>
+            </musica>
+        </fin>
+        <juego>
+            <musica>
+                <src>assets/musicas/nivel1.wav</src>
+            </musica>
+        </juego>
     </pantallas>
     <personajes>
         <cody>
@@ -134,6 +154,37 @@
             </jugador4>
         </indicadores>
     </personajes>
+    <sonidos>
+        <personaje>
+            <cody>
+                <golpeando>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </golpeando>
+                <golpeado>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </golpeado>
+                <saltando>
+                    <src>assets/sonidos/personajes/cody/saltocorto.wav</src>
+                </saltando>
+                <pateando>
+                    <src>assets/sonidos/personajes/cody/saltopatada.wav</src>
+                </pateando>
+                <saltandoAdelante>
+                    <src>assets/sonidos/personajes/cody/saltolargo.wav</src>
+                </saltandoAdelante>
+            </cody>
+        </personaje>
+        <enemigo>
+            <poison>
+                <golpeando>
+                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                </golpeando>
+                <pateando>
+                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                </pateando>
+            </poison>
+        </enemigo>
+    </sonidos>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>
@@ -316,9 +367,9 @@
                 <posiciones>
                     <posicion0>
                         <x>8</x>
-                        <y>5</y>
+                        <y>0</y>
                         <w>70</w>
-                        <h>120</h>
+                        <h>116</h>
                     </posicion0>
                 </posiciones>
                 <escala>3</escala>

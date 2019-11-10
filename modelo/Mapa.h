@@ -25,7 +25,7 @@ class Mapa : public Estado {
 private:
     static IdEntidad ultimoId;
     unordered_map<IdEntidad, Entidad*> entidades;
-    unordered_map<IdEntidad, Entidad*> jugadores;
+    Jugadores jugadores;
     stringstream serializadoMasReciente;
     mutex m;
 
@@ -37,15 +37,9 @@ public:
     vector<Entidad *> devolverEntidades();
     unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
     void vaciarMapa();
-    void quitarEntidad(IdEntidad idEntidad);
-    Entidad *getJugador();
     Jugadores* getJugadores();
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);
-    unordered_map<IdEntidad, Entidad *> *devolverJugadores();
-    Colisionables* getColisionables();
-    IdEntidad getIdEntidad(Entidad *);
-
     void guardarSerializado(stringstream &s);
     void serializar(ostream& stream) override;
 };

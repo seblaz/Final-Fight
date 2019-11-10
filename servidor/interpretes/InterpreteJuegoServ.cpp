@@ -66,5 +66,6 @@ void InterpreteJuegoServ::iniciar() {
 void InterpreteJuegoServ::finalizarCliente() {
     getUsuario()->desconectar();
     getUsuario()->getPersonaje()->getEstado<Actividad>("actividad")->activo = false;
+    Locator::eventos()->push(new Reposar(getUsuario()->getPersonaje()));
 }
 

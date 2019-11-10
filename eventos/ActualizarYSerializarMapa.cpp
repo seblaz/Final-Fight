@@ -21,6 +21,8 @@ void ActualizarYSerializarMapa::actualizar() {
             comportamiento->actualizar(entidad);
         }
     }
+    auto *colisionables = Locator::colisionables();
+    colisionables->calcularPosiblesColisiones();
 }
 
 void ActualizarYSerializarMapa::serializar() {

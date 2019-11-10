@@ -8,11 +8,10 @@
 #include <unistd.h>
 
 void GameLoop::loop() {
-    auto *actualizar = new ActualizarYSerializarMapa(Locator::mapa());
     const size_t MS_PER_FRAME = 1.0 / Locator::configuracion()->getIntValue("/fps") * 1000 * 1000; // Microsegundos.
 
     while (Locator::usuarios()->hayJugadoresConectados()) {
-        Locator::eventos()->push(actualizar);
+        Locator::eventos()->push(new ActualizarYSerializarMapa(Locator::mapa()));
         usleep(MS_PER_FRAME);
     }
     Locator::logger()->log(INFO, "Todos los usuarios se desconectaron voluntariamente.");

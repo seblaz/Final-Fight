@@ -43,7 +43,7 @@ endif()
 
 # Se agrega los cmake de sdl2-image
 # https://github.com/trenki2/SDL2Test
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/" "${CMAKE_SOURCE_DIR}/vendor/cmake-sdl-mixer/")
 
 #[[
   Para que funcione pthread.
@@ -55,28 +55,32 @@ SET(CMAKE_CXX_FLAGS -pthread)
 ]]
 FILE(GLOB_RECURSE TestSources test/*.cpp)
 FILE(GLOB_RECURSE ModelSources modelo/*.cpp)
+FILE(GLOB_RECURSE MainSources main/*.cpp)
 FILE(GLOB_RECURSE PhysicsSources fisica/*.cpp)
 FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
 FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
 FILE(GLOB_RECURSE StatesSources estados/*.cpp)
 FILE(GLOB_RECURSE ServicesSources servicios/*.cpp)
+FILE(GLOB_RECURSE LevelSources niveles/*.cpp)
 FILE(GLOB_RECURSE Configurations *.xml)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
 FILE(GLOB_RECURSE UtilsSources utils/*.cpp)
+FILE(GLOB_RECURSE SoundSources sonidos/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
 find_package(SDL2TTF REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+find_package(SDL2_mixer REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIR})
 
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${IASources} ${UsuarioSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${LevelSources} ${IASources} ${UsuarioSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
 
@@ -89,8 +93,8 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} ${UsuarioSources} ${UtilsSources})
-target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} cliente/Juego.cpp ${UsuarioSources} ${UtilsSources} ${SoundSources})
+target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
 
 #[[
   Compilar el servidor.

@@ -19,5 +19,6 @@ void PantallaJuego::recibir(stringstream &s) {
 }
 
 void PantallaJuego::finalizar() {
+    Pantalla::finalizar();
     receptor.finalizar();
 }

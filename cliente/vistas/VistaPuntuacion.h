@@ -7,8 +7,10 @@
 
 
 #include <SDL_render.h>
+#include <SDL_mixer.h>
 #include "Vista.h"
 #include "../modelos/PuntuacionJugadores.h"
+#include "../../servicios/Locator.h"
 
 class VistaPuntuacion : public Vista {
 
@@ -21,6 +23,8 @@ private:
 public:
     explicit VistaPuntuacion(PuntuacionJugadores *puntuaciones);
     void graficar(SDL_Renderer *renderer) override;
+    string getConfigPathMusica() override;
+    int getLoops() override;
 
 };
 

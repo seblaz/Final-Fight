@@ -8,7 +8,7 @@
 #include "Hilo.h"
 #include "../servicios/Locator.h"
 
-Hilo::Hilo() : hiloLanzado(0){};
+Hilo::Hilo() : hiloLanzado(0) {};
 
 pthread_t Hilo::lanzarHilo(function<void()> func) {
     funcionAux = std::move(func);
@@ -17,7 +17,16 @@ pthread_t Hilo::lanzarHilo(function<void()> func) {
         auto *transmision = (Hilo *) arg;
         function<void()> funcionHilo = transmision->funcionAux;
         transmision->hiloLanzado.post();
-        funcionHilo();
+//        try {
+            funcionHilo();
+//        }
+//        catch (const std::exception &e) {
+//            Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()) + ".");
+//            exit(0);
+//        } catch (...) {
+//            Locator::logger()->log(ERROR, "Ocurrió una excepción y se debió finalizar el programa.");
+//            exit(0);
+//        }
         return nullptr;
     }, (void *) this);
 

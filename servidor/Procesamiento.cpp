@@ -10,7 +10,11 @@ EventosAProcesar *Procesamiento::devolverCola() {
 }
 
 void Procesamiento::procesar() {
-    while (!fin) eventosAProcesar.pop()->resolver();
+    while (!fin) {
+        auto *evento = eventosAProcesar.pop();
+        evento->resolver();
+        delete evento;
+    }
     Locator::logger()->log(DEBUG, "Se termina el hilo de procesamiento.");
 }
 

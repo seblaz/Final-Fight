@@ -9,16 +9,18 @@
 #include "Entidad.h"
 #include "Jugadores.h"
 
-class Colisionables {
+class Colisionables : public Estado {
 
 private:
-    unordered_map<IdEntidad, Entidad*> colisionables;
+
+    vector<Entidad *> colisionables;
+    int i = 0;
 
 public:
-    explicit Colisionables(unordered_map<IdEntidad, Entidad *>  colisionables);
+    explicit Colisionables() = default;
     void add(Entidad *);
 
-    void calcularPosiblesColisiones(Entidad *);
+    void calcularPosiblesColisiones();
 };
 
 

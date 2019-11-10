@@ -38,7 +38,7 @@ void Juego::inicializarGraficos() {
     logger->log(DEBUG, "Se inicializan los graficos.");
 
     //Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         logger->log(ERROR, string("SDL no pudo inicializar graficos! SDL_Error: ").append(SDL_GetError()));
         exit = true;
     } else {
@@ -70,6 +70,13 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
+            if( Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+            {
+                Locator::logger()->log(ERROR, "Fallo cargar la SDL_Mixer. Error: " + string(Mix_GetError()));
+                exit = true;
+            }
+            Mix_Init(0);
+            Mix_AllocateChannels(7);
             Locator::provide(fuente);
         }
     }
@@ -157,6 +164,7 @@ void Juego::recibir() {
      */
     Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
     stringstream s;
+    manager.getActual()->iniciar();
     while (!exit) {
         s.str(std::string());
         manager.getActual()->recibir(s);
@@ -200,7 +208,11 @@ void Juego::terminar() {
     window = nullptr;
 
     TTF_CloseFont(fuente);
-    SDL_Quit(); // Quit SDL subsystems
+    Mix_CloseAudio();
+    Mix_Quit(); // Quit SDL subsystems
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
 }
 
 pthread_t Juego::recibirEnHilo() {

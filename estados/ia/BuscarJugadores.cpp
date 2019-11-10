@@ -19,9 +19,9 @@ void EventoBuscarJugadores::resolver() {
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
 
     auto *posicion = entidad->getEstado<Posicion>("posicion");
-    auto *posicionMasCercana = jugadores->posicionMasCercana(posicion);
+    auto posicionMasCercana = jugadores->posicionMasCercana(posicion);
 
-    Posicion restaPosicion = posicion->menos(posicionMasCercana);
+    Posicion restaPosicion = posicion->menos(&posicionMasCercana);
     float mod = restaPosicion.modulo();
     if ( mod <= 700 ) {
         if( mod >= 200 ) {
@@ -29,7 +29,8 @@ void EventoBuscarJugadores::resolver() {
                             restaPosicion.y > 0);
         }else{
             //TODO atacar
-            if( restaPosicion.y <= 10 && restaPosicion.y >= -10){
+            int num = 1 + rand() % (101 - 1);
+            if( restaPosicion.y <= 10 && restaPosicion.y >= -10 && num > 50){
                 estado->golpear(entidad);
             }
         }
