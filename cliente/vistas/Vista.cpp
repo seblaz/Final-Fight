@@ -9,7 +9,14 @@
 void Vista::reproducir() {
     if (Mix_PlayingMusic() == 0) {
         const string &configPath = getConfigPathMusica();
-        Mix_PlayMusic(Locator::fabricaDeMusicas()->getMusicByConfigPath(configPath)->getMusic(), getLoops());
+        Mix_Music *musica = Locator::fabricaDeMusicas()->getMusicByConfigPath(configPath)->getMusic();
+        if (Mix_PlayMusic(musica, 10) == -1) {
+            Locator::logger()->log(ERROR, "No se pudo reproducir la música: " + string(Mix_GetError()));
+        } else {
+            Locator::logger()->log(DEBUG, "Inicio reproducción de musica.");
+        }
+    } else {
+        Locator::logger()->log(ERROR, "No se pudo reproducir música, ya hay otra en reproducción.");
     }
 }
 

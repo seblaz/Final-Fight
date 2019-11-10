@@ -65,4 +65,5 @@ void Pantalla::enviar(SDL_Event *e) {
 
 void Pantalla::iniciar() {
     Locator::mapa()->vaciarMapa();
+    vista->reproducir();
 }
