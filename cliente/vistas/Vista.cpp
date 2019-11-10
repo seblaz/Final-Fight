@@ -10,10 +10,10 @@ void Vista::reproducir() {
     if (Mix_PlayingMusic() == 0) {
         const string &configPath = getConfigPathMusica();
         Mix_Music *musica = Locator::fabricaDeMusicas()->getMusicByConfigPath(configPath)->getMusic();
-        if (Mix_PlayMusic(musica, 10) == -1) {
+        if (Mix_PlayMusic(musica, getLoops()) == -1) {
             Locator::logger()->log(ERROR, "No se pudo reproducir la música: " + string(Mix_GetError()));
         } else {
-            Locator::logger()->log(DEBUG, "Inicio reproducción de musica.");
+            Locator::logger()->log(DEBUG, "Inicio reproducción de musica: " + configPath);
         }
     } else {
         Locator::logger()->log(ERROR, "No se pudo reproducir música, ya hay otra en reproducción.");

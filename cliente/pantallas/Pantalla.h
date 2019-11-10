@@ -44,7 +44,7 @@ public:
     virtual void recibir(stringstream &s);
     
     virtual void iniciar();
-    virtual void finalizar() {};
+    virtual void finalizar();
 
 };
 

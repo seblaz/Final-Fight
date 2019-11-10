@@ -75,6 +75,7 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la SDL_Mixer. Error: " + string(Mix_GetError()));
                 exit = true;
             }
+            Mix_Init(0);
             Mix_AllocateChannels(7);
             Locator::provide(fuente);
         }
@@ -163,6 +164,7 @@ void Juego::recibir() {
      */
     Locator::logger()->log(DEBUG, "Se inicia el hilo de recepción.");
     stringstream s;
+    manager.getActual()->iniciar();
     while (!exit) {
         s.str(std::string());
         manager.getActual()->recibir(s);
@@ -206,6 +208,7 @@ void Juego::terminar() {
     window = nullptr;
 
     TTF_CloseFont(fuente);
+    Mix_CloseAudio();
     Mix_Quit(); // Quit SDL subsystems
     TTF_Quit();
     IMG_Quit();

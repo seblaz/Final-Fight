@@ -93,5 +93,5 @@ string VistaPuntuacion::getConfigPathMusica() {
 }
 
 int VistaPuntuacion::getLoops() {
-    return 0;
+    return 1;
 }

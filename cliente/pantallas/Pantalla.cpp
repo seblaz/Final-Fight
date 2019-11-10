@@ -67,3 +67,7 @@ void Pantalla::iniciar() {
     Locator::mapa()->vaciarMapa();
     vista->reproducir();
 }
+
+void Pantalla::finalizar() {
+    Mix_HaltMusic();
+}

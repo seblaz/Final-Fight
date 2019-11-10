@@ -25,7 +25,6 @@ void ManagerPantallas::cambiarA(const IdPantalla &idPantalla) {
                 actual = pantallas[idPantalla];
                 actual->iniciar();
                 Locator::logger()->log(INFO, "Se cambia a la pantalla: " + idPantalla + ".");
-                Mix_HaltMusic();
             }
         }
     }

@@ -16,7 +16,8 @@ public:
     virtual void graficar(SDL_Renderer *renderer) = 0;
     virtual string getConfigPathMusica() = 0;
     virtual int getLoops();
-    void reproducir();
+
+    virtual void reproducir();
 
 };
 

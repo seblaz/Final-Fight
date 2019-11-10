@@ -80,3 +80,7 @@ void VistaAutenticador::graficar(SDL_Renderer *renderer) {
 string VistaAutenticador::getConfigPathMusica() {
     return "/pantallas/autenticacion/musica/src";
 }
+
+void VistaAutenticador::reproducir() {
+    Vista::reproducir();
+}

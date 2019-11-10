@@ -29,6 +29,7 @@ public:
     explicit VistaAutenticador(Autenticador *autenticador);
     void graficar(SDL_Renderer *renderer) override;
     string getConfigPathMusica() override;
+    void reproducir() override;
 
 };
 
