@@ -2,8 +2,8 @@
 #define FINAL_FIGHT_FABRICADEMUSICAS_H
 
 #include <unordered_map>
-#include "../graficos/Sprite.h"
-#include "../sonidos/Musica.h"
+#include "../../graficos/Sprite.h"
+#include "../../sonidos/Musica.h"
 
 using namespace std;
 

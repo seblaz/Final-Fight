@@ -187,7 +187,7 @@ void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
 }
 
 /**
- * Fabrica de Sonidos.
+ * Fabrica de Musicas.
  */
 FabricaDeMusicas *Locator::fabricaMusicas;
 

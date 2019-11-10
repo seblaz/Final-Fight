@@ -77,12 +77,6 @@ void VistaAutenticador::graficar(SDL_Renderer *renderer) {
     if (autenticador->passwordIncorrecta()) generarMensajePasswordIncorrecta(renderer);
 }
 
-
-void VistaAutenticador::reproducir() {
-
-    if(Mix_PlayingMusic() == 0 )
-    {
-        Mix_PlayMusic( musica, -1);
-    }
+string VistaAutenticador::getConfigPathMusica() {
+    return "/pantallas/autenticacion/musica/src";
 }
-

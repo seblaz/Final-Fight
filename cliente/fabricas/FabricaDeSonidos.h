@@ -7,8 +7,8 @@
 
 #include <unordered_map>
 #include <SDL2/SDL_mixer.h>
-#include "../graficos/Sprite.h"
-#include "../sonidos/Sonido.h"
+#include "../../graficos/Sprite.h"
+#include "../../sonidos/Sonido.h"
 
 using namespace std;
 

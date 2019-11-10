@@ -3,7 +3,7 @@
 //
 
 #include "FabricaDeSprites.h"
-#include "../servicios/Locator.h"
+#include "../../servicios/Locator.h"
 
 Sprite *FabricaDeSprites::getSpriteBySrc(const string& src) {
     if(sprites.find(src) == sprites.end()){

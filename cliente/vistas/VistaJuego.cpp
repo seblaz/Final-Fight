@@ -21,12 +21,6 @@ void VistaJuego::graficar(SDL_Renderer *renderer) {
     }
 }
 
-
-void VistaJuego::reproducir() {
-    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/musicas/nivel1.wav")->getMusic();
-    if(Mix_PlayingMusic() == 0 )
-    {
-        Mix_PlayMusic( musica, -1);
-    }
+string VistaJuego::getConfigPathMusica() {
+    return "/pantallas/juego/musica/src";
 }
-

@@ -7,13 +7,17 @@
 
 
 #include <SDL_render.h>
+#include <string>
 #include "Vista.h"
+
+using namespace std;
 
 class VistaFin : public Vista {
 
 public:
     void graficar(SDL_Renderer *renderer) override;
-    void reproducir() override;
+    string getConfigPathMusica() override {};
+
 };
 
 

@@ -24,12 +24,12 @@ private:
     void generarFormulario(SDL_Renderer *renderer, const string& usuario, const string& password);
     static void generarFondo(SDL_Renderer *renderer);
     static void generarMensajePasswordIncorrecta(SDL_Renderer *renderer);
-    Mix_Music* musica = Locator::fabricaDeMusicas()->getMusicBySrc("assets/musicas/nombre.wav")->getMusic();
 
 public:
     explicit VistaAutenticador(Autenticador *autenticador);
     void graficar(SDL_Renderer *renderer) override;
-    void reproducir() override;
+    string getConfigPathMusica() override;
+
 };
 
 

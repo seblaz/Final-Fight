@@ -3,8 +3,8 @@
 //
 
 #include "FabricaDeSonidos.h"
-#include "../servicios/Locator.h"
-#include "../sonidos/Sonido.h"
+#include "../../servicios/Locator.h"
+#include "../../sonidos/Sonido.h"
 
 Sonido* FabricaDeSonidos::getSoundBySrc(const string& src) {
     if(sonidos.find(src) == sonidos.end()){

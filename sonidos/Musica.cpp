@@ -7,7 +7,7 @@
 #include "../servicios/Locator.h"
 
 Musica::Musica(const string &rutaSprite){
-    Locator::logger()->log(DEBUG,"Se va a buscar la musica: " + rutaSprite);
+    Locator::logger()->log(DEBUG, "Se va a buscar la musica: " + rutaSprite);
     music = Mix_LoadMUS( rutaSprite.c_str());
     if( music == NULL )
     {

@@ -15,9 +15,3 @@ void VistaFin::graficar(SDL_Renderer *renderer) {
     SDL_Rect posicionEnPantallaCompleta = {0, 0, ancho, alto};
     SDL_RenderCopy(renderer, fondo->getTexture(), nullptr, &posicionEnPantallaCompleta);
 }
-
-
-void VistaFin::reproducir() {
-
-}
-

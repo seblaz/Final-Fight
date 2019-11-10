@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_FABRICADESPRITES_H
 
 #include <unordered_map>
-#include "../graficos/Sprite.h"
+#include "../../graficos/Sprite.h"
 
 using namespace std;
 
