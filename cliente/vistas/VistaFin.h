@@ -16,7 +16,7 @@ class VistaFin : public Vista {
 
 public:
     void graficar(SDL_Renderer *renderer) override;
-    string getConfigPathMusica() override {};
+    string getConfigPathMusica() override;
 
 };
 

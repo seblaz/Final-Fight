@@ -116,6 +116,9 @@
         </puntuacion>
         <fin>
             <src>assets/varios/fin.png</src>
+            <musica>
+                <src>assets/musicas/ending.wav</src>
+            </musica>
         </fin>
         <juego>
             <musica>
@@ -151,6 +154,37 @@
             </jugador4>
         </indicadores>
     </personajes>
+    <sonidos>
+        <personaje>
+            <cody>
+                <golpeando>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </golpeando>
+                <golpeado>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </golpeado>
+                <saltando>
+                    <src>assets/sonidos/personajes/cody/saltocorto.wav</src>
+                </saltando>
+                <pateando>
+                    <src>assets/sonidos/personajes/cody/saltopatada.wav</src>
+                </pateando>
+                <saltandoAdelante>
+                    <src>assets/sonidos/personajes/cody/saltolargo.wav</src>
+                </saltandoAdelante>
+            </cody>
+        </personaje>
+        <enemigo>
+            <poison>
+                <golpeando>
+                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                </golpeando>
+                <pateando>
+                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                </pateando>
+            </poison>
+        </enemigo>
+    </sonidos>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>

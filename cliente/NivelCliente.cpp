@@ -14,8 +14,8 @@
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
-#include "ReproductorEfectosDePersonaje.h"
-#include "ReproductorEfectosDeNivel.h"
+#include "ReproductorSonidoPersonaje.h"
+
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
@@ -26,7 +26,8 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     Locator::logger()->log(INFO, "Se obtuvo personaje." + Personaje::PersonajeACadena(personaje->getPersonaje()));
     Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
 
-    auto *spriteIndicador = Locator::fabricaDeSprites()->getSpriteConfigPath("/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
+    auto *spriteIndicador = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
     auto *animacionIndicador = FabricaDeAnimacionesCliente("/animaciones").getAnimacion("/indicador");
 
     jugador->agregarEstado("spriteIndicador", spriteIndicador);
@@ -35,22 +36,28 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     string srcSpritePersonaje;
     FabricaDeAnimacionesCliente *fabricaDeAnimaciones;
 
+    ReproductorSonidoPersonaje *reproductorSonidoPersonaje;
+
     switch (personaje->getPersonaje()) {
         case HAGGAR:
             srcSpritePersonaje = config->getValue("/personajes/haggar/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/haggar");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
             break;
         case CODY:
             srcSpritePersonaje = config->getValue("/personajes/cody/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/cody");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
             break;
         case MAKI:
             srcSpritePersonaje = config->getValue("/personajes/maki/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/maki");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
             break;
         case GUY:
             srcSpritePersonaje = config->getValue("/personajes/guy/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/guy");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
             break;
         default:
             Locator::logger()->log(ERROR, "Se trató de crear un jugador con un personaje incorrecto: " +
@@ -68,9 +75,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("grafico", grafico);
     jugador->agregarComportamiento("animador", animador);
-
-    auto *reproductor = new ReproductorEfectosDePersonaje();
-    jugador->agregarComportamiento("reproductor", reproductor);
+    jugador->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 }
 
 void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
@@ -141,6 +146,9 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     enemigo->agregarEstado("animacion", animacion);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
     enemigo->agregarComportamiento("animador", animador);
+
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/enemigo/poison/");
+    enemigo->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 
 }
 
