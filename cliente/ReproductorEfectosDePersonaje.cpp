@@ -11,35 +11,41 @@ void ReproductorEfectosDePersonaje::actualizar(Entidad *entidad) {
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
     auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
     int canalAReproducir = numeroJugador->numeroJugador;
-    switch (estado->getEstado()){
-        case SALTANDO:
-        {
+
+//    TODO: @Felipe
+//    string estadoEnCadena = EstadoDePersonaje::estadoACadena(estado->getEstado());
+//    Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundConfigPath("/sonidos/" + estadoEnCadena +  "/src")->getChunk();
+//    if (Mix_Playing(canalAReproducir) == 0) {
+//        Mix_PlayChannel(canalAReproducir, chunk, 0);
+//    }
+
+    switch (estado->getEstado()) {
+        case SALTANDO: {
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltolargo.wav")->getChunk();
-            if (Mix_Playing(canalAReproducir)==0){
-                Mix_PlayChannel( canalAReproducir, chunk, 0 );
+            if (Mix_Playing(canalAReproducir) == 0) {
+                Mix_PlayChannel(canalAReproducir, chunk, 0);
             }
         }
             break;
-        case GOLPEANDO:{
+        case GOLPEANDO: {
 
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/golpe.wav")->getChunk();
-            if (Mix_Playing(canalAReproducir)==0){
-                Mix_PlayChannel( canalAReproducir, chunk, 0 );
+            if (Mix_Playing(canalAReproducir) == 0) {
+                Mix_PlayChannel(canalAReproducir, chunk, 0);
             };
         }
             break;
-        case PATEANDO:{
+        case PATEANDO: {
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltopatada.wav")->getChunk();
-                 if (Mix_Playing(canalAReproducir)==0){
-                Mix_PlayChannel( canalAReproducir, chunk, 0 );
+            if (Mix_Playing(canalAReproducir) == 0) {
+                Mix_PlayChannel(canalAReproducir, chunk, 0);
             }
         }
             break;
-        case SALTANDO_CON_MOVIMIENTO:
-        {
+        case SALTANDO_CON_MOVIMIENTO: {
             Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundBySrc("assets/sonidos/saltocorto.wav")->getChunk();
-            if (Mix_Playing(canalAReproducir)==0){
-                Mix_PlayChannel( canalAReproducir, chunk, 0 );
+            if (Mix_Playing(canalAReproducir) == 0) {
+                Mix_PlayChannel(canalAReproducir, chunk, 0);
             }
         }
             break;
