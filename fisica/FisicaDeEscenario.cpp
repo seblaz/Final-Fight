@@ -19,7 +19,7 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
 }
 
 void FisicaDeEscenario::actualizar(Entidad *entidad) {
-    auto *mapa = entidad->getEstado<Mapa>("mapa");
+    auto *mapa = Locator::mapa();
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
     auto* jugadores = mapa->getJugadores();
     int xMayorPersonaje = jugadores->getMayorX();

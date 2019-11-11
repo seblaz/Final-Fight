@@ -10,7 +10,6 @@
 class DandoGolpe : public EstadoDePersonajeServidor{
 
 private:
-    bool termine = false;
     int frame = 0;
     int frames_totales = 15;
 public:
@@ -19,9 +18,9 @@ public:
 
     void actualizar(Entidad *) override;
     void darGolpe(Entidad *) override {}; // Agregar secuencia de Golpes
-    void saltar(Entidad *) override ;
-    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override ;
-    void reposar(Entidad *) override ;
-    void agachar(Entidad *) override ;
+    void saltar(Entidad *) override {};
+    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
+    void reposar(Entidad *) override {};
+    void agachar(Entidad *) override {};
 };
 #endif //FINAL_FIGHT_DANDOGOLPE_H

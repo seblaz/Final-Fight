@@ -21,34 +21,10 @@ void DandoGolpe::actualizar(Entidad * entidad) {
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     auto *envolventeDeAtaque = entidad->getEstado<Envolvente>("envolvente ataque");
     auto orientacion = entidad->getEstado<Orientacion>("orientacion")->adelante;
+    envolventeDeAtaque->setXposicion(posicion, orientacion);
+
     velocidad->x = 0;
     velocidad->y = 0;
-    envolventeDeAtaque->setXposicion(posicion, orientacion);
-    if ( frame == frames_totales ){
-        termine = true;
-        //EstadoDePersonajeServidor::reposar(entidad);
-    }else {
-        frame++;
-    }
-}
 
-void DandoGolpe::reposar(Entidad * entidad) {
-    if ( DandoGolpe::termine )
-        EstadoDePersonajeServidor::reposar(entidad);
+    if ( frame++ == frames_totales ) entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor());
 }
-
-void DandoGolpe::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
-    if ( DandoGolpe::termine )
-        EstadoDePersonajeServidor::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
-}
-
-void DandoGolpe::agachar(Entidad * entidad) {
-    if ( DandoGolpe::termine )
-        EstadoDePersonajeServidor::agachar(entidad);
-}
-
-void DandoGolpe::saltar(Entidad *entidad) {
-    if ( DandoGolpe::termine )
-        EstadoDePersonajeServidor::saltar(entidad);
-}
-

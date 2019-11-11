@@ -29,7 +29,6 @@ void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     auto *posicion = new Posicion(0, 10, 0);
     auto *tipo = new Tipo(PANTALLA_SELECCION);
     pantalla->agregarEstado("posicion", posicion);
-    pantalla->agregarEstado("mapa", mapa);
     pantalla->agregarEstado("tipo", tipo);
 }
 
@@ -120,7 +119,6 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 
     escenario->agregarComportamiento("fisica", fisica);
     escenario->agregarEstado("posicion", posicion);
-    escenario->agregarEstado("mapa", mapa);
     escenario->agregarEstado("tipo", tipo);
     escenario->agregarEstado("nivel", nivelEstado);
 

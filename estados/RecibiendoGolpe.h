@@ -10,6 +10,10 @@
 
 class RecibiendoGolpe : public EstadoDePersonajeServidor{
 
+private:
+    int duracion = 20;
+    int faltante = duracion;
+
 public:
     RecibiendoGolpe();
     ~RecibiendoGolpe();

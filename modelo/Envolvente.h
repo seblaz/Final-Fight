@@ -24,6 +24,10 @@ public:
     bool colisionaPorDerechaCon(Envolvente * envolvente);
     bool colisionaAbajoCon(Envolvente * envolvente);
     bool colisionaArribaCon(Envolvente * envolvente);
+
+    bool colisionaCon(Envolvente * envolvente);
+    bool colisionaEnXCon(Envolvente * envolvente);
+
 };
 
 

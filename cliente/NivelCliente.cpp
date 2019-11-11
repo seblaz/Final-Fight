@@ -119,7 +119,6 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     auto *grafico = new GraficoDeEscenario(sprites, posicionesSprite, distanciasAlFondo, escalaHorizontal);
 
     escenario->agregarEstado("sprite", sprite);
-    escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
 
 }

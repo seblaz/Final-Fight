@@ -11,6 +11,7 @@
 #include "../servidor/FabricaDeAnimacionesServidor.h"
 #include "RecibiendoGolpe.h"
 #include "../eventos/EventoPersonaje.h"
+#include "../modelo/serializables/IndiceSprite.h"
 
 template<typename T>
 EstadoDePersonajeServidor *crearEstado() { return new T; }
@@ -32,6 +33,7 @@ void EstadoDePersonajeServidor::cambiarEstado(Entidad *entidad, ESTADO_DE_PERSON
     enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
     auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, estado);
     entidad->agregarComportamiento("animacion servidor", animacion);
+    entidad->getEstado<IndiceSprite>("indice sprite")->setIndice(0);
 }
 
 void EstadoDePersonajeServidor::saltar(Entidad *entidad) {

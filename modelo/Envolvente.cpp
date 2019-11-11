@@ -49,13 +49,21 @@ bool Envolvente::colisionaArribaCon(Envolvente *envolvente) {
     envolvente->posicion->y - envolvente->profundidad > posicion->y);
 }
 
-void Envolvente::setXposicion(Posicion* nuevaPosicion, bool orientacion) {
+void Envolvente::setXposicion(Posicion *nuevaPosicion, bool orientacion) {
 
-    if ( orientacion ){
-        posicion->x = nuevaPosicion->x + int( ancho / 2 );
-    }else{
-        posicion->x = nuevaPosicion->x - int( ancho / 2 );
+    if (orientacion) {
+        posicion->x = nuevaPosicion->x + int(ancho / 2);
+    } else {
+        posicion->x = nuevaPosicion->x - int(ancho / 2);
     }
     posicion->y = nuevaPosicion->y;
 }
 
+bool Envolvente::colisionaCon(Envolvente *envolvente) {
+    return abs(posicion->y - envolvente->posicion->y) < profundidad + envolvente->profundidad &&
+           abs(posicion->x - envolvente->posicion->x) < ancho + envolvente->ancho;
+}
+
+bool Envolvente::colisionaEnXCon(Envolvente *envolvente) {
+    return false;
+}

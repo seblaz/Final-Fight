@@ -20,7 +20,7 @@ using IdEntidad = size_t;
 using IdColisionable = size_t;
 
 
-class Mapa : public Estado {
+class Mapa {
 
 private:
     static IdEntidad ultimoId;
@@ -41,7 +41,8 @@ public:
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);
     void guardarSerializado(stringstream &s);
-    void serializar(ostream& stream) override;
+    void serializar(ostream& stream);
+
 };
 
 #endif //FINAL_FIGHT_MAPA_H

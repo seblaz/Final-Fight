@@ -32,6 +32,7 @@ void EventoBuscarJugadores::resolver() {
             int num = 1 + rand() % (101 - 1);
             if( restaPosicion.y <= 10 && restaPosicion.y >= -10 && num > 50){
                 //estado->golpear(entidad);
+//                estado->recibirGolpe(entidad);
             }
         }
     }else{
