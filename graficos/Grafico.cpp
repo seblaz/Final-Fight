@@ -33,7 +33,10 @@ SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEn
     return posicionEnPantalla;
 }
 
-void Grafico::actualizar(Entidad *entidad) {
+
+Grafico::Grafico(Entidad *entidad) : Comportamiento(entidad) {}
+
+void Grafico::actualizar() {
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     int posicionDeEscenarioX = Locator::posicionEscenario()->x;
     int dif = posicion->x - posicionDeEscenarioX;
@@ -65,4 +68,3 @@ void Grafico::actualizar(Entidad *entidad) {
         }
     }
 }
-

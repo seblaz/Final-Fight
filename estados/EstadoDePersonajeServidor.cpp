@@ -13,10 +13,12 @@
 #include "../eventos/EventoPersonaje.h"
 #include "../modelo/serializables/IndiceSprite.h"
 
-template<typename T>
-EstadoDePersonajeServidor *crearEstado() { return new T; }
+EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
 
-map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> EstadoDePersonajeServidor::mapa = {
+template<typename T>
+EstadoDePersonajeServidor *crearEstado(Entidad *entidad) { return new T(entidad); }
+
+map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)(Entidad *entidad)> EstadoDePersonajeServidor::mapa = {
         {CAMINANDO,               &crearEstado<Caminando>},
         {AGACHADO,                &crearEstado<Agachado>},
         {REPOSANDO,               &crearEstado<Reposando>},
@@ -26,48 +28,46 @@ map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> EstadoDePersonajeServ
         {RECIBIENDO_GOLPE,        &crearEstado<RecibiendoGolpe>},
 };
 
-void EstadoDePersonajeServidor::cambiarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado) {
-    entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(estado));
-    entidad->agregarComportamiento("estado", mapa[estado]());
-
+void EstadoDePersonajeServidor::cambiarEstado(ESTADO_DE_PERSONAJE estado) {
     enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-    auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, estado);
+    auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(entidad, personaje, estado);
     entidad->agregarComportamiento("animacion servidor", animacion);
     entidad->getEstado<IndiceSprite>("indice sprite")->setIndice(0);
+
+    entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(estado));
+    entidad->agregarComportamiento("estado", mapa[estado](entidad));
 }
 
-void EstadoDePersonajeServidor::saltar(Entidad *entidad) {
+void EstadoDePersonajeServidor::saltar() {
     if (entidad->getEstado<Velocidad>("velocidad")->x == 0)
-        cambiarEstado(entidad, SALTANDO);
+        cambiarEstado(SALTANDO);
     else
-        cambiarEstado(entidad, SALTANDO_CON_MOVIMIENTO);
+        cambiarEstado(SALTANDO_CON_MOVIMIENTO);
 }
 
-void EstadoDePersonajeServidor::reposar(Entidad *entidad) {
-    cambiarEstado(entidad, REPOSANDO);
+void EstadoDePersonajeServidor::reposar() {
+    cambiarEstado(REPOSANDO);
 }
 
-void EstadoDePersonajeServidor::agachar(Entidad *entidad) {
-    cambiarEstado(entidad, AGACHADO);
+void EstadoDePersonajeServidor::agachar() {
+    cambiarEstado(AGACHADO);
 }
 
-void EstadoDePersonajeServidor::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
-    cambiarEstado(entidad, CAMINANDO);
-    entidad->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
+void EstadoDePersonajeServidor::caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
+    cambiarEstado(CAMINANDO);
 }
 
-void EstadoDePersonajeServidor::darGolpe(Entidad *entidad) {
-    cambiarEstado(entidad, DANDO_GOLPE);
+void EstadoDePersonajeServidor::darGolpe() {
+    cambiarEstado(DANDO_GOLPE);
 }
 
-void EstadoDePersonajeServidor::recibirGolpe(Entidad *entidad) {
-    cambiarEstado(entidad, RECIBIENDO_GOLPE);
+void EstadoDePersonajeServidor::recibirGolpe() {
+    cambiarEstado(RECIBIENDO_GOLPE);
 }
 
-void EstadoDePersonajeServidor::actualizar(Entidad * entidad) {
+void EstadoDePersonajeServidor::actualizar() {
     // Si quedó en este estado por más de un frame quiere decir que se desconectó el usuario.
     // Entonces lo paso a reposar.
-    frames++;
-    if(frames > 1)
+    if(frames++ > 1)
         Locator::eventos()->push(new Reposar(entidad));
 }

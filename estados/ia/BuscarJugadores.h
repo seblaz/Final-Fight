@@ -16,9 +16,9 @@ private:
     Jugadores *jugadores;
 
 public:
-    explicit BuscarJugadores(Jugadores* jugadores);
+    explicit BuscarJugadores(Entidad *entidad, Jugadores *jugadores);
 
-    void actualizar(Entidad *) override;
+    void actualizar() override;
 };
 
 class EventoBuscarJugadores : public EventoAProcesar {

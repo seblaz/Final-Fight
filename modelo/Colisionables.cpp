@@ -82,7 +82,7 @@ void Colisionables::calcularAtaques() {
     for (auto *jugador : jugadores) {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
-        if (estado->getEstado() == DANDO_GOLPE) {
+        if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
             Locator::logger()->log(DEBUG, "Busco golpes");
 
             auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
@@ -91,7 +91,7 @@ void Colisionables::calcularAtaques() {
 
                 if (envolventeAtaque->colisionaCon(envolvente_enemigo)) {
                     Locator::logger()->log(DEBUG, "golpeado!");
-                    enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpe(enemigo);
+                    enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpe();
                 }
             }
         }

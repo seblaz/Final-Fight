@@ -8,8 +8,8 @@
 #include "../servidor/NivelServidor.h"
 #include "../modelo/serializables/Nivel.h"
 
-FisicaDeEscenario::FisicaDeEscenario(int largo) :
-        largo(largo) {
+FisicaDeEscenario::FisicaDeEscenario(Entidad *entidad, int largo) :
+        Comportamiento(entidad), largo(largo) {
     Configuracion *config = Locator::configuracion();
     scrollIzquierdo = config->getIntValue("/scroll/izquierdo");
     scrollDerecho = config->getIntValue("/scroll/derecho");
@@ -18,7 +18,7 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
     xScrollDerecho = ancho - scrollDerecho;
 }
 
-void FisicaDeEscenario::actualizar(Entidad *entidad) {
+void FisicaDeEscenario::actualizar() {
     auto *mapa = Locator::mapa();
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
     auto* jugadores = mapa->getJugadores();

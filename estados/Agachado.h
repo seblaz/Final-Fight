@@ -13,11 +13,9 @@
 class Agachado : public EstadoDePersonajeServidor {
 
 public:
-    Agachado();
-    ~Agachado();
-
-    void agachar(Entidad *) override {};
-    void actualizar(Entidad *) override;
+    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+    void agachar() override {};
+    void actualizar() override;
 
 };
 

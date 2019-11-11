@@ -12,7 +12,7 @@
 
 class FisicaDeColisiones : public Comportamiento {
 
-    void actualizar(Entidad *) override;
+    void actualizar() override;
 };
 
 class EventoColisiones : public EventoAProcesar {

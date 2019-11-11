@@ -16,7 +16,7 @@ void VistaJuego::graficar(SDL_Renderer *renderer) {
 
     for (auto entidad : entidades) {
         for (auto *comportamiento : entidad->getComportamientos()) {
-            comportamiento->actualizar(entidad);
+            comportamiento->actualizar();
         }
     }
 }

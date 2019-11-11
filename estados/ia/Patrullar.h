@@ -18,9 +18,9 @@ private:
     bool adelante = true;
 
 public:
-    Patrullar();
+    Patrullar(Entidad *entidad);
     ~Patrullar();
-    void actualizar(Entidad *) override;
+    void actualizar() override;
 };
 
 

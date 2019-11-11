@@ -15,16 +15,15 @@ private:
     int faltante = duracion;
 
 public:
-    RecibiendoGolpe();
-    ~RecibiendoGolpe();
+    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
 
-    void actualizar(Entidad *) override;
-    void darGolpe(Entidad *) override {};
-    void saltar(Entidad *) override {};
-    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
-    void reposar(Entidad *) override {};
-    void agachar(Entidad *) override {};
-    void recibirGolpe(Entidad *) override {};
+    void actualizar() override;
+    void darGolpe() override {};
+    void saltar() override {};
+    void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
+    void reposar() override {};
+    void agachar() override {};
+    void recibirGolpe() override {};
 };
 
 

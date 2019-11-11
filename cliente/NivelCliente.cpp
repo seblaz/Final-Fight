@@ -67,8 +67,8 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
 
     auto *animacion = fabricaDeAnimaciones->getAnimacion("/reposando");
     auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpritePersonaje);
-    auto *grafico = new GraficoJugador();
-    auto *animador = new Animador();
+    auto *grafico = new GraficoJugador(jugador);
+    auto *animador = new Animador(jugador);
 
     jugador->agregarEstado("sprite", spriteJugador);
     jugador->agregarEstado("animacion", animacion);
@@ -116,7 +116,7 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     }
 
     float escalaHorizontal = (float) anchoNivel / (float) sprite->ancho();
-    auto *grafico = new GraficoDeEscenario(sprites, posicionesSprite, distanciasAlFondo, escalaHorizontal);
+    auto *grafico = new GraficoDeEscenario(escenario, sprites, posicionesSprite, distanciasAlFondo, escalaHorizontal);
 
     escenario->agregarEstado("sprite", sprite);
     escenario->agregarComportamiento("grafico", grafico);
@@ -126,7 +126,7 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
 void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
     Locator::logger()->log(DEBUG, "Se genera transicion");
 
-    auto *grafico = new GraficoDeTransicion();
+    auto *grafico = new GraficoDeTransicion(transicion);
 
     transicion->agregarComportamiento("grafico", grafico);
 }
@@ -137,9 +137,9 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
 
     auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc("assets/personajes/poison.png");
     auto *fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/poisson");
-    auto *graficoDeEnemigo = new Grafico();
+    auto *graficoDeEnemigo = new Grafico(enemigo);
     auto *animacion = fabricaDeEnemigo->getAnimacion(REPOSANDO);
-    auto *animador = new Animador();
+    auto *animador = new Animador(enemigo);
     enemigo->agregarEstado("sprite", spriteEnemigo);
     enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
     enemigo->agregarEstado("animacion", animacion);
@@ -180,7 +180,7 @@ void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
     }
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
-    auto *grafico = new Grafico();
+    auto *grafico = new Grafico(entidad);
 
     entidad->agregarEstado("sprite", sprite);
     entidad->agregarEstado("animacion", animacion);

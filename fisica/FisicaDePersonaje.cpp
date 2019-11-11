@@ -5,7 +5,10 @@
 #include "FisicaDePersonaje.h"
 #include "../modelo/serializables/Orientacion.h"
 
-void FisicaDePersonaje::actualizar(Entidad *entidad) {
+
+FisicaDePersonaje::FisicaDePersonaje(Entidad *entidad) : Comportamiento(entidad) {}
+
+void FisicaDePersonaje::actualizar() {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");
     auto* posicion = entidad->getEstado<Posicion>("posicion");
     auto* orientacion = entidad->getEstado<Orientacion>("orientacion");

@@ -9,17 +9,19 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../servicios/Locator.h"
 
-void GraficoJugador::actualizar(Entidad *jugador) {
-    Grafico::actualizar(jugador);
+GraficoJugador::GraficoJugador(Entidad *entidad) : Grafico(entidad) {}
+
+void GraficoJugador::actualizar() {
+    Grafico::actualizar();
     SDL_Renderer *renderer = Locator::renderer();
     int posicionDeEscenarioX = Locator::posicionEscenario()->x;
-    auto *posicion = jugador->getEstado<Posicion>("posicion");
-    auto *spriteIndicador = jugador->getEstado<Sprite>("spriteIndicador");
+    auto *posicion = entidad->getEstado<Posicion>("posicion");
+    auto *spriteIndicador = entidad->getEstado<Sprite>("spriteIndicador");
 
-    auto *animacion = jugador->getEstado<AnimacionCliente>("animacion");
+    auto *animacion = entidad->getEstado<AnimacionCliente>("animacion");
 
     Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
-    SDL_Rect posicionEnSprite = animacion->devolverPosicion(jugador);
+    SDL_Rect posicionEnSprite = animacion->devolverPosicion(entidad);
     SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
 
     SDL_Rect posicionEnSpriteIndicador = {0, 0, 45, 45};

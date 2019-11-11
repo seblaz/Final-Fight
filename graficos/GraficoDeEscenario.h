@@ -28,14 +28,13 @@ public:
      * @param distanciasAlFondo: float entre 0 y 1 que indica la distancia desde
      * la capa i hasta el fondo (capa que no se mueve). 0 = primera capa, 1 = fondo inamovible.
      */
-    explicit GraficoDeEscenario(vector<SDL_Texture *> sprites,
-                                vector<SDL_Rect> posicionesSprite,
-                                vector<float> distanciasAlFondo,
+    explicit GraficoDeEscenario(Entidad *entidad, vector<SDL_Texture *> sprites,
+                                vector<SDL_Rect> posicionesSprite, vector<float> distanciasAlFondo,
                                 float escalaHorizontal);
 
     ~GraficoDeEscenario() = default;
 
-    void actualizar(Entidad *) override;
+    void actualizar() override;
 };
 
 

@@ -5,19 +5,9 @@
 #include "Caminando.h"
 #include "../servicios/Locator.h"
 
-Caminando::Caminando(){
-    Logger *logger = Locator::logger();
-//    logger->log(DEBUG, "Se instancio un objeto de clase Caminando");
-}
-
-Caminando::~Caminando() {
-    Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se elimino un objeto de clase Caminando");
-}
-
 #define RAPIDEZ 4
 
-void Caminando::caminar(Entidad *entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
+void Caminando::caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
     float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego", 0);
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
 

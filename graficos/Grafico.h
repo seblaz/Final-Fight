@@ -13,7 +13,9 @@
 class Grafico : public Comportamiento {
 
 public:
-    void actualizar(Entidad*) override;
+    Grafico(Entidad *entidad);
+
+    void actualizar() override;
 };
 
 SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);

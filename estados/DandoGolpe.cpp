@@ -6,21 +6,11 @@
 #include "../modelo/envolventes/EnvolventeVolumen.h"
 #include "../modelo/serializables/Orientacion.h"
 
-DandoGolpe::DandoGolpe() {
-    Logger* logger = Locator::logger();
-//    logger -> log(DEBUG, "Se instancio un objeto de clase DandoGolpe");
-}
-
-DandoGolpe::~DandoGolpe() {
-    Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se elimino un objeto de clase DandoGolpe");
-}
-
-void DandoGolpe::actualizar(Entidad * entidad) {
+void DandoGolpe::actualizar() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
 
     velocidad->x = 0;
     velocidad->y = 0;
 
-    if ( frame++ == frames_totales ) entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor());
+    if ( frame++ == frames_totales ) entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
 }

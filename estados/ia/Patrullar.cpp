@@ -5,7 +5,7 @@
 #include "Patrullar.h"
 #include "../../servicios/Locator.h"
 
-Patrullar::Patrullar() {
+Patrullar::Patrullar(Entidad *entidad) : Comportamiento(entidad) {
     srand(time(nullptr));
     Logger *logger = Locator::logger();
     logger->log(DEBUG, "Se instancio un objeto de clase Patrullar");
@@ -18,18 +18,18 @@ Patrullar::~Patrullar() {
 
 #define RAPIDEZ 4
 
-void Patrullar::actualizar(Entidad *entidad) {
+void Patrullar::actualizar() {
 
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
 
     int num = 1 + rand() % (101 - 1);
 
-    estado->caminar(entidad, adelante, !adelante, 0, 0);
+    estado->caminar(adelante, !adelante, 0, 0);
 
     if (pasosTotales < contadorDePasos && num > 95) {
         adelante = !adelante;
         contadorDePasos = 0;
-        estado->saltar(entidad);
+        estado->saltar();
     }
     contadorDePasos++;
 }

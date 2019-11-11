@@ -11,28 +11,18 @@
 #include "../servidor/FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/Actividad.h"
 
-Saltando::Saltando() {
-    Logger *logger = Locator::logger();
-//    logger->log(DEBUG, "Se instancio un objeto de clase Saltando");
-}
-
-Saltando::~Saltando() {
-    Logger *logger = Locator::logger();
-    logger->log(DEBUG, "Se elimino un objeto de clase Saltando");
-}
-
-void Saltando::actualizar(Entidad *entidad) {
+void Saltando::actualizar() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
     velocidad->z = velocidadInicial + aceleracion * frames;
     if (velocidad->z <= -velocidadInicial) {
-        entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor());
+        entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
         velocidad->z = 0;
     }
     frames++;
 }
 
-void Saltando::darGolpe(Entidad *entidad) {
+void Saltando::darGolpe() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
 
     if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
@@ -40,7 +30,7 @@ void Saltando::darGolpe(Entidad *entidad) {
             pateando = true;
             entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(PATEANDO));
             enum PERSONAJE personaje = entidad->getEstado<Personaje>("personaje")->getPersonaje();
-            auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(personaje, "pateando");
+            auto *animacion = FabricaDeAnimacionesServidor::getAnimacion(entidad, personaje, "pateando");
             entidad->agregarComportamiento("animacion servidor", animacion);
         }
     }

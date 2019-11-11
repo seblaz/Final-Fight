@@ -18,7 +18,7 @@ void ActualizarYSerializarMapa::actualizar() {
     for (auto entidad : mapa->devolverEntidades()) {
         auto comportamientos = entidad->getComportamientos();
         for (auto *comportamiento : comportamientos) {
-            comportamiento->actualizar(entidad);
+            comportamiento->actualizar();
         }
     }
     auto *colisionables = Locator::colisionables();

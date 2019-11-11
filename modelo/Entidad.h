@@ -26,6 +26,7 @@ class Estado : protected Serializable {
 public:
     virtual void serializar(ostream& stream) {};
     virtual void deserializar(istream& stream) {};
+
 };
 
 /**
@@ -34,8 +35,12 @@ public:
  */
 class Comportamiento {
 
+protected:
+    Entidad *entidad;
+
 public:
-    virtual void actualizar(Entidad *) {};
+    explicit Comportamiento(Entidad *entidad);
+    virtual void actualizar() {};
 
 };
 

@@ -12,7 +12,9 @@
 class GraficoJugador : public Grafico {
 
 public:
-    void actualizar(Entidad*) override;
+    explicit GraficoJugador(Entidad *entidad);
+
+    void actualizar() override;
 
 };
 

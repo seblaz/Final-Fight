@@ -9,7 +9,6 @@
 #include "../fisica/FisicaDePersonaje.h"
 #include "../fisica/FisicaDeEscenario.h"
 #include "../modelo/serializables/Opacidad.h"
-#include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../fisica/FisicaDeTransicion.h"
 #include "../modelo/serializables/TipoElemento.h"
 #include "../modelo/serializables/Actividad.h"
@@ -18,7 +17,6 @@
 #include "../modelo/serializables/IndiceSprite.h"
 #include "../modelo/serializables/Energia.h"
 #include "../modelo/envolventes/EnvolventeVolumen.h"
-#include "../fisica/FisicaDeColisiones.h"
 #include "../estados/ia/BuscarJugadores.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
@@ -37,20 +35,20 @@ void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
 Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int contadorJugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
 
-    auto *estado = new Reposando();
+    auto *jugador = mapa->crearJugador();
+    auto *estado = new Reposando(jugador);
     auto *velocidad = new Velocidad();
     auto *orientacion = new Orientacion;
     auto *tipo = new Tipo(JUGADOR);
-    auto *jugador = mapa->crearJugador();
     auto *indiceSprite = new IndiceSprite;
-    auto *fisica = new FisicaDePersonaje();
+    auto *fisica = new FisicaDePersonaje(jugador);
     auto *actividad = new Actividad(true);
     auto *posicion = new Posicion(200, 100, 0);
     auto *numeroJugador = new NumeroJugador(contadorJugador);
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
-    auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
+    auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(jugador, personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
-    auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 30);
+    auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 15);
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
 
@@ -114,7 +112,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
     auto *posicion = new Posicion(0, profundidad, 0);
     auto *tipo = new Tipo(ESCENARIO);
     auto *nivelEstado = new Nivel(nivel);
-    auto *fisica = new FisicaDeEscenario(anchoNivel);
+    auto *fisica = new FisicaDeEscenario(escenario, anchoNivel);
 
 
     escenario->agregarComportamiento("fisica", fisica);
@@ -133,7 +131,7 @@ void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Jugadores
     int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     auto *posicion = new Posicion(0, 1, 0);
     auto *opacidad = new Opacidad();
-    auto *fisicaDeTransicion = new FisicaDeTransicion(anchoDeNivel);
+    auto *fisicaDeTransicion = new FisicaDeTransicion(transicion, anchoDeNivel);
 
     transicion->agregarEstado("posicion", posicion);
     transicion->agregarEstado("tipo", tipo);
@@ -172,15 +170,15 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         Entidad *enemigo = mapa->crearEntidad();
 
         auto *tipo = new Tipo(ENEMIGO);
-        auto *comportamiento = new BuscarJugadores(jugadores);
+        auto *comportamiento = new BuscarJugadores(enemigo, jugadores);
         auto *velocidadDeEnemigo = new Velocidad();
         auto *orientacionDeEnemigo = new Orientacion;
-        auto *fisicaDeEnemigo = new FisicaDePersonaje();
-        auto *estado = new Reposando();
+        auto *fisicaDeEnemigo = new FisicaDePersonaje(enemigo);
+        auto *estado = new Reposando(enemigo);
         auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
         auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
         auto *indiceSprite = new IndiceSprite;
-        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "reposando");
+        auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
         auto *energia = new Energia(100,1);
         auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 50, 30);
 

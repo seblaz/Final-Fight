@@ -13,14 +13,13 @@ private:
     int frame = 0;
     int frames_totales = 15;
 public:
-    DandoGolpe();
-    ~DandoGolpe();
+    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
 
-    void actualizar(Entidad *) override;
-    void darGolpe(Entidad *) override {}; // Agregar secuencia de Golpes
-    void saltar(Entidad *) override {};
-    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
-    void reposar(Entidad *) override {};
-    void agachar(Entidad *) override {};
+    void actualizar() override;
+    void darGolpe() override {}; // Agregar secuencia de Golpes
+    void saltar() override {};
+    void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
+    void reposar() override {};
+    void agachar() override {};
 };
 #endif //FINAL_FIGHT_DANDOGOLPE_H
