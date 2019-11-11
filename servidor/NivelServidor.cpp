@@ -46,11 +46,13 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *fisica = new FisicaDePersonaje();
     auto *actividad = new Actividad(true);
     auto *posicion = new Posicion(200, 100, 0);
+    auto *posicionAtaque = new Posicion(200, 100, 0);
     auto *numeroJugador = new NumeroJugador(contadorJugador);
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
     auto *envolvente = new Envolvente(posicion, 120,50, 10);
+    auto *envolventeDeAtaque = new Envolvente(posicionAtaque, 120,100, 10);
     auto* puntaje = new Puntaje();
 
     jugador->agregarEstado("tipo", tipo);
@@ -65,6 +67,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("energia", energia);
     jugador->agregarEstado("envolvente", envolvente);
     jugador->agregarEstado("puntaje", puntaje);
+    jugador->agregarEstado("envolvente ataque", envolventeDeAtaque);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);

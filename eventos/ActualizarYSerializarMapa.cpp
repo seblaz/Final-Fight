@@ -23,6 +23,7 @@ void ActualizarYSerializarMapa::actualizar() {
     }
     auto *colisionables = Locator::colisionables();
     colisionables->calcularPosiblesColisiones();
+    colisionables->calcularAtaques();
 }
 
 void ActualizarYSerializarMapa::serializar() {

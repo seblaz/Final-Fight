@@ -3,6 +3,8 @@
 //
 
 #include "Golpeando.h"
+#include "../modelo/Envolvente.h"
+#include "../modelo/serializables/Orientacion.h"
 
 Golpeando::Golpeando() {
     Logger* logger = Locator::logger();
@@ -16,8 +18,12 @@ Golpeando::~Golpeando() {
 
 void Golpeando::actualizar(Entidad * entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
+    auto *posicion = entidad->getEstado<Posicion>("posicion");
+    auto *envolventeDeAtaque = entidad->getEstado<Envolvente>("envolvente ataque");
+    auto orientacion = entidad->getEstado<Orientacion>("orientacion")->adelante;
     velocidad->x = 0;
     velocidad->y = 0;
+    envolventeDeAtaque->setXposicion(posicion, orientacion);
     if ( frame == frames_totales ){
         termine = true;
         //EstadoDePersonajeServidor::reposar(entidad);

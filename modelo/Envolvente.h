@@ -18,6 +18,7 @@ public:
 
     Posicion * posicion;
     explicit Envolvente(Posicion *posicion, int alto, int ancho, int profundidad);
+    void setXposicion(Posicion* nuevaPosicion, bool orientacion);
 
     bool colisionaPorIzquiedaCon(Envolvente * envolvente);
     bool colisionaPorDerechaCon(Envolvente * envolvente);
