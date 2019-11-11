@@ -17,10 +17,11 @@
 #include "FabricaDeAnimacionesServidor.h"
 #include "../modelo/serializables/IndiceSprite.h"
 #include "../modelo/serializables/Energia.h"
-#include "../modelo/Envolvente.h"
+#include "../modelo/envolventes/EnvolventeVolumen.h"
 #include "../fisica/FisicaDeColisiones.h"
 #include "../estados/ia/BuscarJugadores.h"
 #include "../modelo/serializables/Puntaje.h"
+#include "../modelo/envolventes/EnvolventeAtaque.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -45,13 +46,12 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *fisica = new FisicaDePersonaje();
     auto *actividad = new Actividad(true);
     auto *posicion = new Posicion(200, 100, 0);
-    auto *posicionAtaque = new Posicion(200, 100, 0);
     auto *numeroJugador = new NumeroJugador(contadorJugador);
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
-    auto *envolvente = new Envolvente(posicion, 120,50, 10);
-    auto *envolventeDeAtaque = new Envolvente(posicionAtaque, 120,100, 10);
+    auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 30);
+    auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
 
     jugador->agregarEstado("tipo", tipo);
@@ -182,7 +182,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *indiceSprite = new IndiceSprite;
         auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(POISSON, "reposando");
         auto *energia = new Energia(100,1);
-        auto *envolvente = new Envolvente(posicionEnemigoRandom, 120,50, 10);
+        auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 50, 30);
 
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
@@ -231,7 +231,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
-        auto *envolvente = new Envolvente(posicionElementoRandom, 120,75, 8);
+        auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 75, 8);
         auto *velocidad = new Velocidad();
         
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);

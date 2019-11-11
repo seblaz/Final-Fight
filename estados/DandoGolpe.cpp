@@ -3,7 +3,7 @@
 //
 
 #include "DandoGolpe.h"
-#include "../modelo/Envolvente.h"
+#include "../modelo/envolventes/EnvolventeVolumen.h"
 #include "../modelo/serializables/Orientacion.h"
 
 DandoGolpe::DandoGolpe() {
@@ -18,10 +18,6 @@ DandoGolpe::~DandoGolpe() {
 
 void DandoGolpe::actualizar(Entidad * entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
-    auto *posicion = entidad->getEstado<Posicion>("posicion");
-    auto *envolventeDeAtaque = entidad->getEstado<Envolvente>("envolvente ataque");
-    auto orientacion = entidad->getEstado<Orientacion>("orientacion")->adelante;
-    envolventeDeAtaque->setXposicion(posicion, orientacion);
 
     velocidad->x = 0;
     velocidad->y = 0;

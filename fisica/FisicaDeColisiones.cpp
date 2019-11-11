@@ -3,7 +3,7 @@
 //
 
 #include "FisicaDeColisiones.h"
-#include "../modelo/Envolvente.h"
+#include "../modelo/envolventes/EnvolventeVolumen.h"
 #include "../servicios/Locator.h"
 
 void FisicaDeColisiones::actualizar(Entidad * entidad) {
