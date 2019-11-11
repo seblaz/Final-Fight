@@ -145,10 +145,8 @@ void Juego::loop() {
     while (!exit) {
         int start = SDL_GetTicks();
 
-        SDL_Event *e = processInput();
-        manager.getActual()->enviar(e);
-        delete e;
-
+        exit = manager.getActual()->procesarEntrada();
+        
         int end = SDL_GetTicks();
         int sleepTime = MS_PER_FRAME + start - end;
         if (sleepTime > 0) SDL_Delay(sleepTime);

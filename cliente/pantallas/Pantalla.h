@@ -35,6 +35,7 @@ public:
     IdPantalla getId();
     void setManager(ManagerPantallas *manager);
 
+    bool procesarEntrada();
     virtual void interpretarModelo(stringstream &s);
     virtual void interpretarNombrePantalla(stringstream &s);
     virtual void graficar(SDL_Renderer *renderer);
