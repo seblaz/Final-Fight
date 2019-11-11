@@ -105,6 +105,8 @@ EventosAProcesar *Locator::eventos() {
     return eventos_;
 }
 
+
+
 void Locator::provide(EventosAProcesar *eventos) {
     eventos_ = eventos;
 }
@@ -162,9 +164,37 @@ Colisionables *Locator::colisionables() {
     return colisionables_;
 }
 
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 
     delete configuracion_;
     delete logger_;
+}
+
+
+/**
+ * Fabrica de Sonidos.
+ */
+FabricaDeSonidos *Locator::fabricaSonidos;
+
+FabricaDeSonidos *Locator::fabricaDeSonidos() {
+    return fabricaSonidos;
+}
+
+void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
+    fabricaSonidos = fabricaDeSonidos;
+}
+
+/**
+ * Fabrica de Musicas.
+ */
+FabricaDeMusicas *Locator::fabricaMusicas;
+
+FabricaDeMusicas *Locator::fabricaDeMusicas() {
+    return fabricaMusicas;
+}
+
+void Locator::provide(FabricaDeMusicas *_fabricaDeMusicas) {
+    fabricaMusicas = _fabricaDeMusicas;
 }

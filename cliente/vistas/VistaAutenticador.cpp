@@ -76,3 +76,11 @@ void VistaAutenticador::graficar(SDL_Renderer *renderer) {
     generarFormulario(renderer, autenticador->getUsuario(), autenticador->getPassword());
     if (autenticador->passwordIncorrecta()) generarMensajePasswordIncorrecta(renderer);
 }
+
+string VistaAutenticador::getConfigPathMusica() {
+    return "/pantallas/autenticacion/musica/src";
+}
+
+void VistaAutenticador::reproducir() {
+    Vista::reproducir();
+}

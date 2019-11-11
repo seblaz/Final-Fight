@@ -77,6 +77,9 @@
                     <src>assets/varios/botonEntrar.png</src>
                 </enter>
             </formulario>
+            <musica>
+                <src>assets/musicas/nombre.wav</src>
+            </musica>
         </autenticacion>
         <error>
             <usuarioYaConectado>
@@ -99,12 +102,29 @@
             <listo>
                 <src>assets/varios/personajeElegido.png</src>
             </listo>
+            <musica>
+                <src>assets/musicas/menu.wav</src>
+            </musica>
         </seleccion>
         <puntuacion>
             <fondo>
                 <src>assets/varios/puntuacion.png</src>
             </fondo>
+            <musica>
+                <src>assets/musicas/puntaje.wav</src>
+            </musica>
         </puntuacion>
+        <fin>
+            <src>assets/varios/fin.png</src>
+            <musica>
+                <src>assets/musicas/ending.wav</src>
+            </musica>
+        </fin>
+        <juego>
+            <musica>
+                <src>assets/musicas/nivel1.wav</src>
+            </musica>
+        </juego>
     </pantallas>
     <personajes>
         <cody>
@@ -134,6 +154,37 @@
             </jugador4>
         </indicadores>
     </personajes>
+    <sonidos>
+        <personaje>
+            <cody>
+                <golpeando>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </golpeando>
+                <golpeado>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </golpeado>
+                <saltando>
+                    <src>assets/sonidos/personajes/cody/saltocorto.wav</src>
+                </saltando>
+                <pateando>
+                    <src>assets/sonidos/personajes/cody/saltopatada.wav</src>
+                </pateando>
+                <saltandoAdelante>
+                    <src>assets/sonidos/personajes/cody/saltolargo.wav</src>
+                </saltandoAdelante>
+            </cody>
+        </personaje>
+        <enemigo>
+            <poison>
+                <golpeando>
+                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                </golpeando>
+                <pateando>
+                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                </pateando>
+            </poison>
+        </enemigo>
+    </sonidos>
     <niveles>
         <cantidad>2</cantidad>
         <nivel1>
@@ -707,10 +758,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>5</x>
-                        <y>0</y>
-                        <w>55</w>
-                        <h>95</h>
+                        <x>496</x>
+                        <y>486</y>
+                        <w>51</w>
+                        <h>105</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -721,34 +772,34 @@
                 <cantidad>5</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>5</x>
-                        <y>105</y>
-                        <w>35</w>
-                        <h>90</h>
+                        <x>115</x>
+                        <y>344</y>
+                        <w>74</w>
+                        <h>89</h>
                     </posicion0>
                     <posicion1>
-                        <x>40</x>
-                        <y>105</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>297</x>
+                        <y>345</y>
+                        <w>80</w>
+                        <h>88</h>
                     </posicion1>
                     <posicion2>
-                        <x>90</x>
-                        <y>105</y>
-                        <w>42</w>
-                        <h>90</h>
+                        <x>481</x>
+                        <y>346</y>
+                        <w>85</w>
+                        <h>87</h>
                     </posicion2>
                     <posicion3>
-                        <x>130</x>
-                        <y>105</y>
-                        <w>42</w>
-                        <h>90</h>
+                        <x>118</x>
+                        <y>502</y>
+                        <w>62</w>
+                        <h>89</h>
                     </posicion3>
                     <posicion4>
-                        <x>172</x>
-                        <y>105</y>
-                        <w>42</w>
-                        <h>90</h>
+                        <x>303</x>
+                        <y>504</y>
+                        <w>60</w>
+                        <h>87</h>
                     </posicion4>
                 </posiciones>
                 <escala>4.5</escala>
@@ -788,44 +839,50 @@
                 <total>60</total>
             </saltando>
             <saltandoAdelante>
-                <cantidad>6</cantidad>
+                <cantidad>7</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>5</x>
-                        <y>195</y>
-                        <w>50</w>
-                        <h>90</h>
+                        <x>7</x>
+                        <y>215</y>
+                        <w>45</w>
+                        <h>80</h>
                     </posicion0>
                     <posicion1>
-                        <x>55</x>
+                        <x>62</x>
                         <y>195</y>
-                        <w>50</w>
-                        <h>100</h>
+                        <w>34</w>
+                        <h>95</h>
                     </posicion1>
                     <posicion2>
-                        <x>105</x>
-                        <y>192</y>
-                        <w>60</w>
-                        <h>95</h>
+                        <x>106</x>
+                        <y>213</y>
+                        <w>61</w>
+                        <h>58</h>
                     </posicion2>
                     <posicion3>
-                        <x>165</x>
-                        <y>192</y>
-                        <w>48</w>
-                        <h>90</h>
+                        <x>171</x>
+                        <y>201</y>
+                        <w>35</w>
+                        <h>69</h>
                     </posicion3>
                     <posicion4>
-                        <x>210</x>
-                        <y>192</y>
-                        <w>65</w>
-                        <h>90</h>
+                        <x>214</x>
+                        <y>212</y>
+                        <w>62</w>
+                        <h>57</h>
                     </posicion4>
                     <posicion5>
-                        <x>280</x>
-                        <y>192</y>
-                        <w>65</w>
-                        <h>90</h>
+                        <x>277</x>
+                        <y>229</y>
+                        <w>68</w>
+                        <h>35</h>
                     </posicion5>
+                    <posicion6>
+                        <x>62</x>
+                        <y>195</y>
+                        <w>34</w>
+                        <h>95</h>
+                    </posicion6>
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1,1,1,1,1,1,1</duraciones>
@@ -835,10 +892,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>200</x>
-                        <y>500</y>
-                        <w>85</w>
-                        <h>80</h>
+                        <x>472</x>
+                        <y>882</y>
+                        <w>100</w>
+                        <h>55</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -849,22 +906,22 @@
                 <cantidad>3</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>60</x>
-                        <y>380</y>
-                        <w>65</w>
-                        <h>100</h>
+                        <x>113</x>
+                        <y>685</y>
+                        <w>76</w>
+                        <h>90</h>
                     </posicion0>
                     <posicion1>
-                        <x>122</x>
-                        <y>380</y>
-                        <w>63</w>
-                        <h>100</h>
+                        <x>295</x>
+                        <y>684</y>
+                        <w>80</w>
+                        <h>89</h>
                     </posicion1>
                     <posicion2>
-                        <x>185</x>
-                        <y>380</y>
-                        <w>70</w>
-                        <h>100</h>
+                        <x>467</x>
+                        <y>689</y>
+                        <w>129</w>
+                        <h>81</h>
                     </posicion2>
                 </posiciones>
                 <escala>4.5</escala>
@@ -875,10 +932,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>343</x>
-                        <y>670</y>
-                        <w>50</w>
-                        <h>90</h>
+                        <x>309</x>
+                        <y>880</y>
+                        <w>40</w>
+                        <h>60</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -905,10 +962,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>0</x>
-                        <y>0</y>
-                        <w>64</w>
-                        <h>104</h>
+                        <x>375</x>
+                        <y>113</y>
+                        <w>60</w>
+                        <h>92</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -920,40 +977,40 @@
                 <cantidad>6</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>0</x>
-                        <y>103</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>147</x>
+                        <y>244</y>
+                        <w>59</w>
+                        <h>97</h>
                     </posicion0>
                     <posicion1>
-                        <x>65</x>
-                        <y>103</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>372</x>
+                        <y>245</y>
+                        <w>59</w>
+                        <h>96</h>
                     </posicion1>
                     <posicion2>
-                        <x>135</x>
-                        <y>100</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>583</x>
+                        <y>245</y>
+                        <w>59</w>
+                        <h>97</h>
                     </posicion2>
                     <posicion3>
-                        <x>204</x>
-                        <y>103</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>145</x>
+                        <y>382</y>
+                        <w>59</w>
+                        <h>99</h>
                     </posicion3>
                     <posicion4>
-                        <x>275</x>
-                        <y>100</y>
+                        <x>368</x>
+                        <y>385</y>
                         <w>60</w>
-                        <h>104</h>
+                        <h>96</h>
                     </posicion4>
                     <posicion5>
-                        <x>340</x>
-                        <y>100</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>582</x>
+                        <y>382</y>
+                        <w>58</w>
+                        <h>99</h>
                     </posicion5>
                 </posiciones>
                 <escala>4.5</escala>
@@ -964,34 +1021,34 @@
                 <cantidad>5</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>5</x>
-                        <y>212</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>134</x>
+                        <y>689</y>
+                        <w>51</w>
+                        <h>82</h>
                     </posicion0>
                     <posicion1>
-                        <x>65</x>
-                        <y>212</y>
-                        <w>60</w>
-                        <h>140</h>
+                        <x>378</x>
+                        <y>666</y>
+                        <w>37</w>
+                        <h>104</h>
                     </posicion1>
                     <posicion2>
-                        <x>115</x>
-                        <y>205</y>
-                        <w>60</w>
-                        <h>140</h>
+                        <x>585</x>
+                        <y>659</y>
+                        <w>39</w>
+                        <h>111</h>
                     </posicion2>
                     <posicion3>
-                        <x>65</x>
-                        <y>212</y>
-                        <w>60</w>
-                        <h>140</h>
+                        <x>378</x>
+                        <y>666</y>
+                        <w>37</w>
+                        <h>104</h>
                     </posicion3>
                     <posicion4>
-                        <x>5</x>
-                        <y>212</y>
-                        <w>60</w>
-                        <h>140</h>
+                        <x>134</x>
+                        <y>689</y>
+                        <w>51</w>
+                        <h>82</h>
                     </posicion4>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1001,10 +1058,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>5</x>
-                        <y>212</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>134</x>
+                        <y>689</y>
+                        <w>51</w>
+                        <h>82</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1015,10 +1072,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>195</x>
-                        <y>540</y>
-                        <w>90</w>
-                        <h>65</h>
+                        <x>124</x>
+                        <y>128</y>
+                        <w>91</w>
+                        <h>53</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1026,45 +1083,39 @@
                 <total>1</total>
             </pateando>
             <golpeando>
-                <cantidad>4</cantidad>
+                <cantidad>3</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>10</x>
-                        <y>440</y>
-                        <w>48</w>
-                        <h>90</h>
+                        <x>137</x>
+                        <y>527</y>
+                        <w>49</w>
+                        <h>86</h>
                     </posicion0>
                     <posicion1>
-                        <x>113</x>
-                        <y>440</y>
-                        <w>97</w>
-                        <h>90</h>
+                        <x>357</x>
+                        <y>529</y>
+                        <w>85</w>
+                        <h>82</h>
                     </posicion1>
                     <posicion2>
-                        <x>260</x>
-                        <y>440</y>
-                        <w>60</w>
-                        <h>95</h>
+                        <x>553</x>
+                        <y>531</y>
+                        <w>136</w>
+                        <h>80</h>
                     </posicion2>
-                    <posicion3>
-                        <x>320</x>
-                        <y>440</y>
-                        <w>85</w>
-                        <h>90</h>
-                    </posicion3>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1,1,1,1</duraciones>
+                <duraciones>1,1,1</duraciones>
                 <total>16</total>
             </golpeando>
             <agachado>
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>360</x>
-                        <y>825</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>368</x>
+                        <y>814</y>
+                        <w>47</w>
+                        <h>68</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1075,10 +1126,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>360</x>
-                        <y>825</y>
-                        <w>60</w>
-                        <h>104</h>
+                        <x>129</x>
+                        <y>809</y>
+                        <w>43</w>
+                        <h>73</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1091,10 +1142,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>0</x>
-                        <y>0</y>
+                        <x>92</x>
+                        <y>95</y>
                         <w>45</w>
-                        <h>95</h>
+                        <h>94</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1105,34 +1156,34 @@
                 <cantidad>5</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>0</x>
-                        <y>105</y>
-                        <w>35</w>
-                        <h>90</h>
+                        <x>94</x>
+                        <y>228</y>
+                        <w>49</w>
+                        <h>93</h>
                     </posicion0>
                     <posicion1>
-                        <x>35</x>
-                        <y>105</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>276</x>
+                        <y>228</y>
+                        <w>48</w>
+                        <h>93</h>
                     </posicion1>
                     <posicion2>
-                        <x>80</x>
-                        <y>105</y>
-                        <w>35</w>
-                        <h>90</h>
+                        <x>435</x>
+                        <y>229</y>
+                        <w>51</w>
+                        <h>93</h>
                     </posicion2>
                     <posicion3>
-                        <x>115</x>
-                        <y>105</y>
-                        <w>28</w>
-                        <h>90</h>
+                        <x>96</x>
+                        <y>358</y>
+                        <w>51</w>
+                        <h>93</h>
                     </posicion3>
                     <posicion4>
-                        <x>140</x>
-                        <y>105</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>280</x>
+                        <y>359</y>
+                        <w>58</w>
+                        <h>92</h>
                     </posicion4>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1201,10 +1252,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>170</x>
-                        <y>400</y>
-                        <w>80</w>
-                        <h>80</h>
+                        <x>258</x>
+                        <y>621</y>
+                        <w>78</w>
+                        <h>61</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1215,28 +1266,28 @@
                 <cantidad>4</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>50</x>
-                        <y>200</y>
-                        <w>70</w>
-                        <h>90</h>
+                        <x>89</x>
+                        <y>475</y>
+                        <w>57</w>
+                        <h>87</h>
                     </posicion0>
                     <posicion1>
-                        <x>118</x>
-                        <y>200</y>
+                        <x>271</x>
+                        <y>475</y>
                         <w>55</w>
                         <h>90</h>
                     </posicion1>
                     <posicion2>
-                        <x>395</x>
-                        <y>180</y>
-                        <w>43</w>
-                        <h>110</h>
+                        <x>72</x>
+                        <y>596</y>
+                        <w>100</w>
+                        <h>106</h>
                     </posicion2>
                     <posicion3>
-                        <x>395</x>
-                        <y>180</y>
-                        <w>43</w>
-                        <h>110</h>
+                        <x>72</x>
+                        <y>596</y>
+                        <w>100</w>
+                        <h>106</h>
                     </posicion3>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1247,10 +1298,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>45</x>
-                        <y>6</y>
-                        <w>45</w>
-                        <h>90</h>
+                        <x>445</x>
+                        <y>621</y>
+                        <w>36</w>
+                        <h>61</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>

@@ -20,3 +20,7 @@ void VistaMenuSeleccion::graficar(SDL_Renderer *renderer) {
     Sprite *sprite = menu->listo() ? confirmacion : selector;
     SDL_RenderCopy(renderer, sprite->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantalla);
 }
+
+string VistaMenuSeleccion::getConfigPathMusica() {
+    return "/pantallas/seleccion/musica/src";
+}

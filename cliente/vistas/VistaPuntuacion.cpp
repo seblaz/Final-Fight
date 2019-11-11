@@ -87,3 +87,11 @@ void VistaPuntuacion::graficar(SDL_Renderer *renderer) {
     generarTitulo(renderer);
     generarPuntuaciones(renderer);
 }
+
+string VistaPuntuacion::getConfigPathMusica() {
+    return "/pantallas/puntuacion/musica/src";
+}
+
+int VistaPuntuacion::getLoops() {
+    return 1;
+}

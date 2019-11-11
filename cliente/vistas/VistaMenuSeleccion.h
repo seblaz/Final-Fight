@@ -12,17 +12,19 @@
 #include "../../servicios/Locator.h"
 #include "../modelos/MenuSeleccion.h"
 
+
 class VistaMenuSeleccion : public Vista {
 
 private:
     Sprite *fondo = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/fondo/src");
     Sprite *selector = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/selector/src");
-    Sprite *confirmacion = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/listo/src");;
+    Sprite *confirmacion = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallas/seleccion/listo/src");
     MenuSeleccion *menu;
 
 public:
     explicit VistaMenuSeleccion(MenuSeleccion *menu);
     void graficar(SDL_Renderer *renderer) override;
+    string getConfigPathMusica() override;
 
 };
 

@@ -20,3 +20,7 @@ void VistaJuego::graficar(SDL_Renderer *renderer) {
         }
     }
 }
+
+string VistaJuego::getConfigPathMusica() {
+    return "/pantallas/juego/musica/src";
+}

@@ -34,6 +34,10 @@ void Pantalla::graficar(SDL_Renderer *renderer) {
     vista->graficar(renderer);
 }
 
+void Pantalla::reproducir() {
+    vista->reproducir();
+}
+
 Accion *Pantalla::getAccion(SDL_Event *e) {
     return entradaUsuario->getAccion(e);
 }
@@ -61,4 +65,9 @@ void Pantalla::enviar(SDL_Event *e) {
 
 void Pantalla::iniciar() {
     Locator::mapa()->vaciarMapa();
+    vista->reproducir();
+}
+
+void Pantalla::finalizar() {
+    Mix_HaltMusic();
 }
