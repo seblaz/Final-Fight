@@ -32,7 +32,7 @@ void Saltando::actualizar(Entidad *entidad) {
     frames++;
 }
 
-void Saltando::golpear(Entidad *entidad) {
+void Saltando::darGolpe(Entidad *entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
 
     if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {

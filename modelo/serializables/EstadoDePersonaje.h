@@ -13,10 +13,10 @@ enum ESTADO_DE_PERSONAJE {
     SALTANDO,
     SALTANDO_CON_MOVIMIENTO,
     REPOSANDO,
-    GOLPEANDO,
+    DANDO_GOLPE,
+    RECIBIENDO_GOLPE,
     AGACHADO,
-    PATEANDO,
-    GOLPEADO
+    PATEANDO
 };
 
 class EstadoDePersonaje : public Estado {

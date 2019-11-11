@@ -25,8 +25,8 @@ public:
     virtual void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
     virtual void reposar(Entidad *);
     virtual void agachar(Entidad *);
-    virtual void golpear(Entidad *);
-    virtual void golpeado(Entidad *);
+    virtual void darGolpe(Entidad *entidad);
+    virtual void recibirGolpe(Entidad *entidad);
 
     void actualizar(Entidad * entidad) override;
 };

@@ -17,7 +17,7 @@ void Saltar::resolver() {
 }
 
 void Golpear::resolver() {
-    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->golpear(personaje);
+    personaje->getComportamiento<EstadoDePersonajeServidor>("estado")->darGolpe(personaje);
 }
 
 void Agachar::resolver() {

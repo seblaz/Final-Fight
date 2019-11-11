@@ -7,22 +7,22 @@
 #include "Saltando.h"
 #include "Caminando.h"
 #include "Agachado.h"
-#include "Golpeando.h"
+#include "DandoGolpe.h"
 #include "../servidor/FabricaDeAnimacionesServidor.h"
-#include "Golpeado.h"
+#include "RecibiendoGolpe.h"
 #include "../eventos/EventoPersonaje.h"
 
 template<typename T>
 EstadoDePersonajeServidor *crearEstado() { return new T; }
 
 map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> EstadoDePersonajeServidor::mapa = {
-        {CAMINANDO, &crearEstado<Caminando>},
-        {AGACHADO, &crearEstado<Agachado>},
-        {REPOSANDO, &crearEstado<Reposando>},
-        {SALTANDO, &crearEstado<Saltando>},
+        {CAMINANDO,               &crearEstado<Caminando>},
+        {AGACHADO,                &crearEstado<Agachado>},
+        {REPOSANDO,               &crearEstado<Reposando>},
+        {SALTANDO,                &crearEstado<Saltando>},
         {SALTANDO_CON_MOVIMIENTO, &crearEstado<Saltando>},
-        {GOLPEANDO, &crearEstado<Golpeando>},
-        {GOLPEADO, &crearEstado<Golpeado>},
+        {DANDO_GOLPE,             &crearEstado<DandoGolpe>},
+        {RECIBIENDO_GOLPE,        &crearEstado<RecibiendoGolpe>},
 };
 
 void EstadoDePersonajeServidor::cambiarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado) {
@@ -54,8 +54,12 @@ void EstadoDePersonajeServidor::caminar(Entidad *entidad, bool X_pos, bool X_neg
     entidad->getComportamiento<EstadoDePersonajeServidor>("estado")->caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
 }
 
-void EstadoDePersonajeServidor::golpear(Entidad *entidad) {
-    cambiarEstado(entidad, GOLPEANDO);
+void EstadoDePersonajeServidor::darGolpe(Entidad *entidad) {
+    cambiarEstado(entidad, DANDO_GOLPE);
+}
+
+void EstadoDePersonajeServidor::recibirGolpe(Entidad *entidad) {
+    cambiarEstado(entidad, RECIBIENDO_GOLPE);
 }
 
 void EstadoDePersonajeServidor::actualizar(Entidad * entidad) {
@@ -64,8 +68,4 @@ void EstadoDePersonajeServidor::actualizar(Entidad * entidad) {
     frames++;
     if(frames > 1)
         Locator::eventos()->push(new Reposar(entidad));
-}
-
-void EstadoDePersonajeServidor::golpeado(Entidad *entidad) {
-    cambiarEstado(entidad, GOLPEADO);
 }

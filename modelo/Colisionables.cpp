@@ -78,7 +78,7 @@ void Colisionables::calcularAtaques() {
         auto* envolvente = jugador->getEstado<Envolvente>("envolvente ataque");
         auto* estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
-        if (estado->getEstado() == GOLPEANDO ){
+        if (estado->getEstado() == DANDO_GOLPE ){
 
             for ( auto *enemigo : enemigos ){
                 auto* envolvente_enemigo= enemigo->getEstado<Envolvente>("envolvente");

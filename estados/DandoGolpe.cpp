@@ -2,21 +2,21 @@
 // Created by franco on 24/9/19.
 //
 
-#include "Golpeando.h"
+#include "DandoGolpe.h"
 #include "../modelo/Envolvente.h"
 #include "../modelo/serializables/Orientacion.h"
 
-Golpeando::Golpeando() {
+DandoGolpe::DandoGolpe() {
     Logger* logger = Locator::logger();
-//    logger -> log(DEBUG, "Se instancio un objeto de clase Golpeando");
+//    logger -> log(DEBUG, "Se instancio un objeto de clase DandoGolpe");
 }
 
-Golpeando::~Golpeando() {
+DandoGolpe::~DandoGolpe() {
     Logger* logger = Locator::logger();
-    logger -> log(DEBUG, "Se elimino un objeto de clase Golpeando");
+    logger -> log(DEBUG, "Se elimino un objeto de clase DandoGolpe");
 }
 
-void Golpeando::actualizar(Entidad * entidad) {
+void DandoGolpe::actualizar(Entidad * entidad) {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     auto *envolventeDeAtaque = entidad->getEstado<Envolvente>("envolvente ataque");
@@ -32,23 +32,23 @@ void Golpeando::actualizar(Entidad * entidad) {
     }
 }
 
-void Golpeando::reposar(Entidad * entidad) {
-    if ( Golpeando::termine )
+void DandoGolpe::reposar(Entidad * entidad) {
+    if ( DandoGolpe::termine )
         EstadoDePersonajeServidor::reposar(entidad);
 }
 
-void Golpeando::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
-    if ( Golpeando::termine )
+void DandoGolpe::caminar(Entidad * entidad, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) {
+    if ( DandoGolpe::termine )
         EstadoDePersonajeServidor::caminar(entidad, X_pos, X_neg, Y_pos, Y_neg);
 }
 
-void Golpeando::agachar(Entidad * entidad) {
-    if ( Golpeando::termine )
+void DandoGolpe::agachar(Entidad * entidad) {
+    if ( DandoGolpe::termine )
         EstadoDePersonajeServidor::agachar(entidad);
 }
 
-void Golpeando::saltar(Entidad *entidad) {
-    if ( Golpeando::termine )
+void DandoGolpe::saltar(Entidad *entidad) {
+    if ( DandoGolpe::termine )
         EstadoDePersonajeServidor::saltar(entidad);
 }
 
