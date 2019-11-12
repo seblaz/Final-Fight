@@ -28,6 +28,11 @@ private:
     Jugadores jugadores;
     stringstream serializadoMasReciente;
     mutex m;
+    vector<Entidad *> colisionables;
+    vector<Entidad *> personajes;
+    vector<Entidad *> enemigos;
+    vector<Entidad *> elementos;
+    vector<Entidad *> armas;
 
 public:
     Entidad *crearEntidad();
@@ -43,6 +48,16 @@ public:
     void guardarSerializado(stringstream &s);
     void serializar(ostream& stream);
 
+    void guardarJugador(Entidad *);
+    void guardarEnemigo(Entidad *);
+    void guardarElemento(Entidad *);
+    void guardarArma(Entidad *);
+
+    vector<Entidad *> getColisionables();
+    vector<Entidad *> getPersonajes();
+    vector<Entidad *> getEnemigos();
+    vector<Entidad *> getElementos();
+    vector<Entidad *> getArmas();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

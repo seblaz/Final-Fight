@@ -31,11 +31,18 @@ vector<Entidad *> Mapa::devolverEntidades() {
 
 void Mapa::vaciarMapa() {
     entidades.clear();
+    colisionables.clear();
+    personajes.clear();
+    enemigos.clear();
+    elementos.clear();
+    armas.clear();
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
     for (auto tupla : jugadores.getJugadores()) {
         entidades[tupla.first] = tupla.second;
+        personajes.insert(personajes.begin(), tupla.second);
+        colisionables.insert(colisionables.begin(), tupla.second);
         Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) +
-                                      " a las entidades.");
+                                      " a las entidades." );
     }
 }
 
@@ -76,4 +83,42 @@ void Mapa::serializar(ostream &stream) {
     stream << serializadoMasReciente.str();
 }
 
+void Mapa::guardarJugador(Entidad * jugador) {
+    personajes.insert(personajes.begin(), jugador);
+    colisionables.insert(colisionables.begin(), jugador);
+}
+
+void Mapa::guardarEnemigo(Entidad * enemigo) {
+    enemigos.insert(enemigos.begin(), enemigo);
+    colisionables.insert(colisionables.begin(), enemigo);
+}
+
+void Mapa::guardarElemento(Entidad * elemento) {
+    elementos.insert(elementos.begin(), elemento);
+    colisionables.insert(colisionables.begin(), elemento);
+}
+
+void Mapa::guardarArma(Entidad * arma) {
+    armas.insert(armas.begin(), arma);
+}
+
+vector<Entidad *> Mapa::getPersonajes() {
+    return this->personajes;
+}
+
+vector<Entidad *> Mapa::getEnemigos() {
+    return this->enemigos;
+}
+
+vector<Entidad *> Mapa::getElementos() {
+    return this->elementos;
+}
+
+vector<Entidad *> Mapa::getArmas() {
+    return this->armas;
+}
+
+vector<Entidad *> Mapa::getColisionables() {
+    return this->colisionables;
+}
 

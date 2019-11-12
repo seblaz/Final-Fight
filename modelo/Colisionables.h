@@ -13,20 +13,18 @@ class Colisionables : public Estado {
 
 private:
 
-    vector<Entidad *> colisionables;
-    vector<Entidad *> jugadores;
-    vector<Entidad *> enemigos;
     int limiteEnProfundidad = 0;
     int limiteFrontal = 0;
     int i = 0;
 
 public:
     explicit Colisionables() = default;
-    void add(Entidad *);
     void addLimitesDeEscenario(int profundidad, int frente);
 
     void calcularPosiblesColisiones();
-    void calcularAtaques();
+    void calcularAtaquesDeJugadoresAEnemigos();
+    void calcularAtaquesAelementos();
+    void calcularArmasAlcanzables();
 };
 
 

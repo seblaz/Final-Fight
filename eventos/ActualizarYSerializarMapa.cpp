@@ -23,7 +23,9 @@ void ActualizarYSerializarMapa::actualizar() {
     }
     auto *colisionables = Locator::colisionables();
     colisionables->calcularPosiblesColisiones();
-    colisionables->calcularAtaques();
+    colisionables->calcularAtaquesDeJugadoresAEnemigos();
+    colisionables->calcularAtaquesAelementos();
+    colisionables->calcularArmasAlcanzables();
 }
 
 void ActualizarYSerializarMapa::serializar() {
