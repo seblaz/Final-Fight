@@ -21,11 +21,12 @@
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
 #include "../modelo/serializables/Arma.h"
+#include "../modelo/GolpesSoportables.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
-    Entidad *pantalla = mapa->crearEntidad();
+    Entidad *pantalla = mapa->crearPantalla();
     auto *posicion = new Posicion(0, 10, 0);
     auto *tipo = new Tipo(PANTALLA_SELECCION);
     pantalla->agregarEstado("posicion", posicion);
@@ -72,9 +73,6 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);
 
-    auto *colisionables = Locator::colisionables();
-    colisionables->add(jugador);
-
     return jugador;
 }
 
@@ -111,7 +109,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
     Locator::logger()->log(DEBUG, "Se cargo profundidad para escenario: " + to_string(profundidad));
     Locator::logger()->log(DEBUG, "Se cargo ancho para escenario: " + to_string(anchoNivel));
 
-    Entidad *escenario = mapa->crearEntidad();
+    Entidad *escenario = mapa->crearEscenario();
     auto *posicion = new Posicion(0, profundidad, 0);
     auto *tipo = new Tipo(ESCENARIO);
     auto *nivelEstado = new Nivel(nivel);
@@ -129,7 +127,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 
 void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Jugadores *posicionDeJugadores) {
 
-    Entidad *transicion = mapa->crearEntidad();
+    Entidad *transicion = mapa->crearTransicion();
     auto *tipo = new Tipo(TRANSICION);
     int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     auto *posicion = new Posicion(0, 1, 0);
@@ -165,12 +163,12 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
     string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
     auto *personaje = new Personaje(POISSON);
-    auto *colisionables = Locator::colisionables();
+
 
     for (int i = 0; i < cantidad; i++) {
         Locator::logger()->log(INFO, "Se genera enemigo");
 
-        Entidad *enemigo = mapa->crearEntidad();
+        Entidad *enemigo = mapa->crearEnemigo();
 
         auto *tipo = new Tipo(ENEMIGO);
         auto *comportamiento = new BuscarJugadores(enemigo, jugadores);
@@ -199,25 +197,26 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
         enemigo->agregarComportamiento("comportamiento", comportamiento);
         enemigo->agregarComportamiento("animacion servidor", animacionServidor);
-
-        colisionables->add(enemigo);
     }
 }
 
 void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART) {
     Configuracion *config = Locator::configuracion();
-    auto* colisionables = Locator::colisionables();
+    int golpesMaximos;
 
     int cantidad;
     switch (ART) {
         case CAJA:
             cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/caja/cantidad");
+            golpesMaximos = 2;
             break;
         case NEUMATICO:
             cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/neumatico/cantidad");
+            golpesMaximos = 1;
             break;
         default:
             cantidad = 0;
+            golpesMaximos = 0;
     }
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
@@ -228,12 +227,13 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
     for (int i = 1; i <= cantidad; i++) {
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
-        auto elementoRandom = mapa->crearEntidad();
+        auto elementoRandom = mapa->crearElemento();
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
         auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 75, 8);
         auto *velocidad = new Velocidad();
+        auto* golpesSoportables = new GolpesSoportables(golpesMaximos);
         
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
@@ -241,9 +241,8 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         elementoRandom->agregarEstado("tipo elemento", tipoElemento);
         elementoRandom->agregarEstado("envolvente", envolvente);
         elementoRandom->agregarEstado("velocidad", velocidad);
+        elementoRandom->agregarEstado("golpes soportables", golpesSoportables);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
-
-        colisionables->add(elementoRandom);
     }
 
 }
@@ -270,15 +269,17 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
     for (int i = 1; i <= cantidad; i++) {
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
-        auto elementoRandom = mapa->crearEntidad();
+        auto armaRandom = mapa->crearArma();
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
+        auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 20, 8);
 
-        elementoRandom->agregarEstado("posicion", posicionElementoRandom);
-        elementoRandom->agregarEstado("tipo", tipo);
-        elementoRandom->agregarEstado("indice sprite", indiceSprite);
-        elementoRandom->agregarEstado("tipo elemento", tipoElemento);
-        elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        armaRandom->agregarEstado("posicion", posicionElementoRandom);
+        armaRandom->agregarEstado("tipo", tipo);
+        armaRandom->agregarEstado("indice sprite", indiceSprite);
+        armaRandom->agregarEstado("tipo elemento", tipoElemento);
+        armaRandom->agregarEstado("envolvente", envolvente);
+        armaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
     }
 }

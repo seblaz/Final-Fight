@@ -45,3 +45,8 @@ bool EnvolventeVolumen::colisionaArribaCon(EnvolventeVolumen *envolvente) {
             envolvente->posicion->y - envolvente->profundidad < posicion->y + profundidad &&
             envolvente->posicion->y - envolvente->profundidad > posicion->y);
 }
+
+bool EnvolventeVolumen::colisionaCon(EnvolventeVolumen *envolvente) {
+    return abs(posicion->x + ancho - envolvente->posicion->x) < (ancho + envolvente->ancho) &&
+           abs(posicion->y - envolvente->posicion->y) < (profundidad + envolvente->profundidad);
+}

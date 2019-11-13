@@ -19,6 +19,8 @@ public:
     bool colisionaAbajoCon(EnvolventeVolumen * envolvente);
     bool colisionaArribaCon(EnvolventeVolumen * envolvente);
 
+    bool colisionaCon(EnvolventeVolumen *envolvente);
+
 };
 
 
