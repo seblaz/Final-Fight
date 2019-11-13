@@ -13,9 +13,9 @@ int Opacidad::getOpacidad() {
 }
 
 void Opacidad::serializar(ostream &stream) {
-    Serializable::serializarEntero(stream, opacidad);
+    serializarEntero(stream, opacidad);
 }
 
 void Opacidad::deserializar(istream &stream) {
-    opacidad = Serializable::deserializarEntero(stream);
+    opacidad = deserializarEntero(stream);
 }

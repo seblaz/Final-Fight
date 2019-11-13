@@ -4,13 +4,15 @@
 
 #include <cmath>
 #include "Posicion.h"
+#include "../../servicios/Locator.h"
 
 Posicion::Posicion(int x, int y, int z): x(x), y(y), z(z) {}
 
 void Posicion::mover(Velocidad& velocidad) {
-    x = x + int(velocidad.x);
-    y = y + int(velocidad.y);
-    z = z + int(velocidad.z);
+    float velocidadRelativa = Locator::configuracion()->getFloatValue("/velocidad/juego", 1);
+    x = x + int(velocidad.x * velocidadRelativa);
+    y = y + int(velocidad.y * velocidadRelativa);
+    z = z + int(velocidad.z * velocidadRelativa);
 }
 
 int Posicion::getX() {

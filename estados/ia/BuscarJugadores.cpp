@@ -4,10 +4,10 @@
 
 #include "BuscarJugadores.h"
 
-BuscarJugadores::BuscarJugadores(Jugadores *jugadores) :
-        jugadores(jugadores) {}
+BuscarJugadores::BuscarJugadores(Entidad *entidad, Jugadores *jugadores) :
+        Comportamiento(entidad), jugadores(jugadores) {}
 
-void BuscarJugadores::actualizar(Entidad *entidad) {
+void BuscarJugadores::actualizar() {
     Locator::eventos()->push(new EventoBuscarJugadores(jugadores, entidad));
 }
 
@@ -25,16 +25,17 @@ void EventoBuscarJugadores::resolver() {
     float mod = restaPosicion.modulo();
     if ( mod <= 700 ) {
         if( mod >= 200 ) {
-            estado->caminar(entidad, restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
+            estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                             restaPosicion.y > 0);
         }else{
             //TODO atacar
             int num = 1 + rand() % (101 - 1);
             if( restaPosicion.y <= 10 && restaPosicion.y >= -10 && num > 50){
-                estado->golpear(entidad);
+                //estado->golpear(entidad);
+//                estado->recibirGolpe(entidad);
             }
         }
     }else{
-        estado->reposar(entidad);
+        estado->reposar();
     }
 }

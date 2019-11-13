@@ -112,3 +112,6 @@ Tipo::Tipo() : tipo_(PANTALLA_SELECCION) {}
 bool Tipo::operator==(const Tipo &otroTipo) {
     return tipo_ == otroTipo.tipo_;
 }
+
+Comportamiento::Comportamiento(Entidad *entidad) :
+        entidad(entidad){}

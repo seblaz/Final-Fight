@@ -10,7 +10,8 @@
 class FisicaDePersonaje : public Comportamiento {
 
 public:
-    void actualizar(Entidad *) override;
+    explicit FisicaDePersonaje(Entidad *entidad);
+    void actualizar() override;
 };
 
 

@@ -20,19 +20,19 @@ vector<int> split(string str, const string &token) {
     return result;
 }
 
-AnimacionServidor *FabricaDeAnimacionesServidor::getAnimacion(const string &ruta) {
+AnimacionServidor *FabricaDeAnimacionesServidor::getAnimacion(Entidad *entidad, const string &ruta) {
     Configuracion *config = Locator::configuracion();
     vector<int> duraciones = split(config->getValue("/animaciones" + ruta + "/duraciones"), ",");
-    return new AnimacionServidor(duraciones, config->getIntValue("/animaciones" + ruta + "/total"));
+    return new AnimacionServidor(entidad, duraciones, config->getIntValue("/animaciones" + ruta + "/total"));
 }
 
 AnimacionServidor *
-FabricaDeAnimacionesServidor::getAnimacion(enum PERSONAJE personajeSeleccionado, const string &estado) {
+FabricaDeAnimacionesServidor::getAnimacion(Entidad *entidad, enum PERSONAJE personajeSeleccionado, const string &estado) {
     string personaje = Personaje::PersonajeACadena(personajeSeleccionado);
-    return getAnimacion("/" + personaje + "/" + estado);
+    return getAnimacion(entidad, "/" + personaje + "/" + estado);
 }
 
 AnimacionServidor *
-FabricaDeAnimacionesServidor::getAnimacion(enum PERSONAJE personajeSeleccionado, enum ESTADO_DE_PERSONAJE estado) {
-    return getAnimacion(personajeSeleccionado, EstadoDePersonaje::estadoACadena(estado));
+FabricaDeAnimacionesServidor::getAnimacion(Entidad *entidad, enum PERSONAJE personajeSeleccionado, enum ESTADO_DE_PERSONAJE estado) {
+    return getAnimacion(entidad, personajeSeleccionado, EstadoDePersonaje::estadoACadena(estado));
 }

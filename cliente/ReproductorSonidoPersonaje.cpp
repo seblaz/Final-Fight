@@ -6,15 +6,17 @@
 #include "../estados/Caminando.h"
 #include "../modelo/serializables/NumeroJugador.h"
 
-ReproductorSonidoPersonaje::ReproductorSonidoPersonaje(string rutaBase) : rutaBase(std::move(rutaBase)) {}
+ReproductorSonidoPersonaje::ReproductorSonidoPersonaje(Entidad *entidad, string rutaBase) :
+        Comportamiento(entidad),
+        rutaBase(std::move(rutaBase)) {}
 
-void ReproductorSonidoPersonaje::actualizar(Entidad *entidad) {
+void ReproductorSonidoPersonaje::actualizar() {
 
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
     auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
     int canalAReproducir;
 
-    string pathSonidoABuscar = rutaBase + estado->estadoACadena(estado->getEstado()) + "/src";
+    string pathSonidoABuscar = rutaBase + EstadoDePersonaje::estadoACadena(estado->getEstado()) + "/src";
 
     if (numeroJugador == NULL) {
         canalAReproducir = 6;

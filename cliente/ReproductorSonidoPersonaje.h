@@ -13,8 +13,8 @@ private:
     string rutaBase;
 
 public:
-    explicit ReproductorSonidoPersonaje(string rutaBase);
-    void actualizar(Entidad *) override;
+    explicit ReproductorSonidoPersonaje(Entidad *entidad, string rutaBase);
+    void actualizar() override;
 };
 
 #endif // FINAL_FIGHT_REPRODUCTORSONIDOPERSONAJE_H

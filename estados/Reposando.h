@@ -13,10 +13,9 @@ class Reposando : public EstadoDePersonajeServidor {
 private:
 
 public:
-    Reposando();
-    ~Reposando();
-    void actualizar(Entidad *) override;
-    void reposar(Entidad *) override {};
+    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+    void actualizar() override;
+    void reposar() override {};
 };
 
 #endif //FINAL_FIGHT_REPOSANDO_H

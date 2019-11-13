@@ -21,6 +21,7 @@ private:
     void recibir();
     bool fin = false;
     semaphore finSemaforo;
+    semaphore disponible;
 
 public:
     ReceptorCliente();

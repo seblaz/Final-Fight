@@ -16,19 +16,21 @@
 class EstadoDePersonajeServidor : public Comportamiento {
 
 private:
-    static map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapa;
-    static void cambiarEstado(Entidad *entidad, ESTADO_DE_PERSONAJE estado);
+    static map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)(Entidad *entidad)> mapa;
+    void cambiarEstado(ESTADO_DE_PERSONAJE estado);
     int frames = 0;
 
 public:
-    virtual void saltar(Entidad *);
-    virtual void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
-    virtual void reposar(Entidad *);
-    virtual void agachar(Entidad *);
-    virtual void golpear(Entidad *);
-    virtual void golpeado(Entidad *);
+    explicit EstadoDePersonajeServidor(Entidad *entidad);
 
-    void actualizar(Entidad * entidad) override;
+    virtual void saltar();
+    virtual void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
+    virtual void reposar();
+    virtual void agachar();
+    virtual void darGolpe();
+    virtual void recibirGolpe();
+
+    void actualizar() override;
 };
 
 

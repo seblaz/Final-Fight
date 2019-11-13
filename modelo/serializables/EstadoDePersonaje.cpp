@@ -30,13 +30,14 @@ string EstadoDePersonaje::estadoACadena(ESTADO_DE_PERSONAJE e) {
             return "saltandoAdelante";
         case REPOSANDO:
             return "reposando";
-        case GOLPEANDO:
-            return "golpeando";
+        case DANDO_GOLPE:
+            return "dandoGolpe";
         case AGACHADO:
             return "agachado";
         case PATEANDO:
             return "pateando";
-        case GOLPEADO:
+        case RECIBIENDO_GOLPE:
+            return "recibiendoGolpe";
             return "golpeado";
     };
 }

@@ -20,7 +20,7 @@ using IdEntidad = size_t;
 using IdColisionable = size_t;
 
 
-class Mapa : public Estado {
+class Mapa {
 
 private:
     static IdEntidad ultimoId;
@@ -28,11 +28,15 @@ private:
     Jugadores jugadores;
     stringstream serializadoMasReciente;
     mutex m;
+    vector<Entidad *> colisionables;
+    vector<Entidad *> personajes;
+    vector<Entidad *> enemigos;
+    vector<Entidad *> elementos;
+    vector<Entidad *> armas;
+    Entidad *crearEntidad();
 
 public:
-    Entidad *crearEntidad();
     Entidad *crearEntidadConId(IdEntidad idEntidad);
-    Entidad *crearJugador();
     void agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador);
     vector<Entidad *> devolverEntidades();
     unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
@@ -41,7 +45,23 @@ public:
     Entidad *getEntidad(IdEntidad idEntidad);
     bool contiene(IdEntidad idEntidad);
     void guardarSerializado(stringstream &s);
-    void serializar(ostream& stream) override;
+    void serializar(ostream& stream);
+
+    Entidad *crearJugador();
+    Entidad *crearEnemigo();
+    Entidad *crearElemento();
+    Entidad *crearArma();
+    Entidad *crearEscenario();
+
+    vector<Entidad *> &getColisionables();
+    vector<Entidad *> &getPersonajes();
+    vector<Entidad *> &getEnemigos();
+    vector<Entidad *> &getElementos();
+    vector<Entidad *> &getArmas();
+
+    Entidad *crearPantalla();
+
+    Entidad *crearTransicion();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

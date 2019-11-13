@@ -16,8 +16,8 @@ private:
     int margenTransicionFinal;
 
 public:
-    explicit FisicaDeTransicion(int anchoDeEscenario);
-    void actualizar(Entidad *entidad) override;
+    explicit FisicaDeTransicion(Entidad *entidad, int anchoDeEscenario);
+    void actualizar() override;
 };
 
 #endif //FINAL_FIGHT_FISICADETRANSICION_H

@@ -18,8 +18,8 @@ private:
     int ancho;
 
 public:
-    explicit FisicaDeEscenario(int largo);
-    void actualizar(Entidad *) override;
+    explicit FisicaDeEscenario(Entidad *entidad, int largo);
+    void actualizar() override;
 };
 
 

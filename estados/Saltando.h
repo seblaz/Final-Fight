@@ -7,8 +7,6 @@
 
 #include "EstadoDePersonajeServidor.h"
 
-#define LIMITE 35 // Limite del salto en altura
-
 class Saltando : public EstadoDePersonajeServidor {
 
 private:
@@ -18,14 +16,13 @@ private:
     const float aceleracion = -1;
 
 public:
-    Saltando();
-    ~Saltando();
-    void actualizar(Entidad *) override;
-    void golpear(Entidad *) override;
-    void saltar(Entidad * entidad) override {};
-    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
-    void agachar(Entidad *) override {};
-    void reposar(Entidad *) override {};
+    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+    void actualizar() override;
+    void darGolpe() override;
+    void saltar() override {};
+    void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
+    void agachar() override {};
+    void reposar() override {};
 };
 
 

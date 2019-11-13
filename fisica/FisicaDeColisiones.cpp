@@ -3,10 +3,10 @@
 //
 
 #include "FisicaDeColisiones.h"
-#include "../modelo/Envolvente.h"
+#include "../modelo/envolventes/EnvolventeVolumen.h"
 #include "../servicios/Locator.h"
 
-void FisicaDeColisiones::actualizar(Entidad * entidad) {
+void FisicaDeColisiones::actualizar() {
     Locator::eventos()->push(new EventoColisiones(entidad));
 
 }

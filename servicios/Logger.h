@@ -29,7 +29,7 @@ private:
     static LEVEL stringToLevel(const string&);
 
 public:
-    explicit Logger();
+    explicit Logger(const string& prefijo);
     void log(LEVEL level_, const string& message);
     void setLevel(const string& level);
 };

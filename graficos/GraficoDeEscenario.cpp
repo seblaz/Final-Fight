@@ -9,15 +9,13 @@
 #include <utility>
 #include <cmath>
 
-GraficoDeEscenario::GraficoDeEscenario(vector<SDL_Texture *> sprites,
-                                       vector<SDL_Rect> posicionesSprite,
-                                       vector<float> distanciasAlFondo, float escalaHorizontal) :
-        sprites(std::move(sprites)),
-        escalaHorizontal(escalaHorizontal),
-        posicionesSprite(std::move(posicionesSprite)),
-        distanciasAlFondo(std::move(distanciasAlFondo)) {}
+GraficoDeEscenario::GraficoDeEscenario(Entidad *entidad, vector<SDL_Texture *> sprites,
+                                       vector<SDL_Rect> posicionesSprite, vector<float> distanciasAlFondo,
+                                       float escalaHorizontal) :
+        Comportamiento(entidad), sprites(std::move(sprites)), escalaHorizontal(escalaHorizontal),
+        posicionesSprite(std::move(posicionesSprite)), distanciasAlFondo(std::move(distanciasAlFondo)) {}
 
-void GraficoDeEscenario::actualizar(Entidad *entidad) {
+void GraficoDeEscenario::actualizar() {
     SDL_Renderer* renderer = Locator::renderer();
     int alto = Locator::configuracion()->getIntValue("/resolucion/alto");
     int ancho = Locator::configuracion()->getIntValue("/resolucion/ancho");

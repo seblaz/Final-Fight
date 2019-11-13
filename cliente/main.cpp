@@ -45,7 +45,7 @@ void configApplication(int argc, char *argv[]){
 
 //Client side
 int main(int argc, char *argv[]) {
-    auto *logger = new Logger();
+    auto *logger = new Logger("cliente");
     Locator::provide(logger);
 
     auto *fabrica = new FabricaDeSprites();

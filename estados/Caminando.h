@@ -12,10 +12,9 @@
 class Caminando : public EstadoDePersonajeServidor {
 
 public:
-    Caminando();
-    ~Caminando();
-    void caminar(Entidad *, bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
-    void actualizar(Entidad *) override {};
+    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+    void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override;
+    void actualizar() override {};
 
 };
 

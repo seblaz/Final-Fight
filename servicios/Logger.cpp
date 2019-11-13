@@ -41,9 +41,9 @@ public:
  * Actual Logger implementation.
  */
 
-Logger::Logger() :
-        level(stringToLevel("DEBUG")),
-        logFile(getLogFileName()),
+Logger::Logger(const string& prefijo) :
+        level(DEBUG),
+        logFile(prefijo + "-" +getLogFileName()),
         folder("logs") {
     FileManager::createFolderIfItDoesNotExist(folder);
     log(DEBUG, "Se inicia logger en nivel DEBUG.");

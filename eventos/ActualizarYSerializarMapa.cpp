@@ -18,11 +18,14 @@ void ActualizarYSerializarMapa::actualizar() {
     for (auto entidad : mapa->devolverEntidades()) {
         auto comportamientos = entidad->getComportamientos();
         for (auto *comportamiento : comportamientos) {
-            comportamiento->actualizar(entidad);
+            comportamiento->actualizar();
         }
     }
     auto *colisionables = Locator::colisionables();
     colisionables->calcularPosiblesColisiones();
+    colisionables->calcularAtaquesDeJugadoresAEnemigos();
+    colisionables->calcularAtaquesAelementos();
+    colisionables->calcularArmasAlcanzables();
 }
 
 void ActualizarYSerializarMapa::serializar() {

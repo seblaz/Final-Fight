@@ -71,3 +71,26 @@ void Pantalla::iniciar() {
 void Pantalla::finalizar() {
     Mix_HaltMusic();
 }
+
+bool Pantalla::procesarEntrada() {
+    auto *e = new SDL_Event;
+    if (SDL_PollEvent(e)) {
+
+        if (e->type == SDL_QUIT) {
+            stringstream s;
+            Accion(FIN).serializar(s);
+            Locator::socket()->enviar(s);
+            Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
+            return true;
+
+        } else if (e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_m) {
+            if (Mix_PausedMusic() == 1) { // Toggle music.
+                Mix_ResumeMusic();
+            } else {
+                Mix_PauseMusic();
+            }
+        }
+    }
+    enviar(e);
+    return false;
+}

@@ -8,7 +8,9 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../modelo/serializables/Opacidad.h"
 
-void GraficoDeTransicion::actualizar(Entidad *entidad) {
+GraficoDeTransicion::GraficoDeTransicion(Entidad *entidad) : Comportamiento(entidad) {}
+
+void GraficoDeTransicion::actualizar() {
     SDL_Renderer *renderer = Locator::renderer();
     Configuracion *config = Locator::configuracion();
     SDL_Rect rect = {0, 0, config->getIntValue("/resolucion/ancho"), config->getIntValue("/resolucion/alto")};

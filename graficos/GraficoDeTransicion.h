@@ -11,7 +11,9 @@
 class GraficoDeTransicion : public Comportamiento {
 
 public:
-    void actualizar(Entidad *) override;
+    GraficoDeTransicion(Entidad *entidad);
+
+    void actualizar() override;
 };
 
 
