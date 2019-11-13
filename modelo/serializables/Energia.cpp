@@ -3,6 +3,7 @@
 //
 
 #include "Energia.h"
+#include "../../servicios/Locator.h"
 
 Energia::Energia(int puntosDeEnergia, int vidas) {
     this -> puntosDeEnergia = puntosDeEnergia;
@@ -26,6 +27,7 @@ void Energia::deserializar(istream &stream) {
 }
 
 void Energia::restarEnergia(int energiaRestada) {
+    Locator::logger()->log(INFO, "Se resta puntos de vida: " + energiaRestada);
 
     if ( puntosDeEnergia - energiaRestada > 0 ){
         this -> puntosDeEnergia -= energiaRestada;

@@ -20,6 +20,7 @@
 #include "../estados/ia/BuscarJugadores.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
+#include "../modelo/serializables/Arma.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -51,6 +52,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 15);
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
+    auto* arma = new Arma();
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -65,6 +67,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("envolvente", envolvente);
     jugador->agregarEstado("puntaje", puntaje);
     jugador->agregarEstado("envolvente ataque", envolventeDeAtaque);
+    jugador->agregarEstado("arma", arma);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);

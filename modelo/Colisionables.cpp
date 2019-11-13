@@ -6,6 +6,9 @@
 #include "envolventes/EnvolventeVolumen.h"
 #include "../estados/EstadoDePersonajeServidor.h"
 #include "envolventes/EnvolventeAtaque.h"
+#include "serializables/Energia.h"
+#include "serializables/Puntaje.h"
+#include "serializables/Arma.h"
 #include <utility>
 
 
@@ -91,7 +94,15 @@ void Colisionables::calcularAtaques() {
 
                 if (envolventeAtaque->colisionaCon(envolvente_enemigo)) {
                     Locator::logger()->log(DEBUG, "golpeado!");
+
+                    auto arma = jugador->getEstado<Arma>("arma");
+
+                    int puntosDeDanio =  estado->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
+                    int puntosParaJugador = estado->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
+                    enemigo->getEstado<Energia>("energia")->restarEnergia(puntosDeDanio);
+                    jugador->getEstado<Puntaje>("puntaje")->agregarPuntos(puntosParaJugador);
                     enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpe();
+                    arma->restarUso();
                 }
             }
         }

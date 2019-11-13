@@ -6,8 +6,18 @@
 #define FINAL_FIGHT_ARMA_H
 
 
-class Arma {
+#include "../Entidad.h"
 
+class Arma : public Estado {
+    private:
+        int usosPendientes = -1;
+        int puntosParaPersonaje = 100;
+        int puntosDeDanio = 20;
+
+    public:
+        int getPuntosParaPersonaje();
+        int getPuntosDeDanio();
+        void restarUso();
 };
 
 
