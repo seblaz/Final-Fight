@@ -53,7 +53,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 15);
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
-    auto* arma = new Arma();
+    auto* arma = new ArmaPunios();
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
