@@ -7,8 +7,6 @@
 
 #include "EstadoDePersonajeServidor.h"
 
-#define LIMITE 35 // Limite del salto en altura
-
 class Saltando : public EstadoDePersonajeServidor {
 
 private:
