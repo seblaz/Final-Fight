@@ -174,21 +174,9 @@ void Juego::recibir() {
     Locator::logger()->log(DEBUG, "Se termina el hilo de recepción.");
 }
 
-SDL_Event *Juego::processInput() {
-    auto *e = new SDL_Event;
-    if (SDL_PollEvent(e) && (e->type == SDL_QUIT)) {
-        stringstream s;
-        Accion(FIN).serializar(s);
-        Locator::socket()->enviar(s);
-        Locator::logger()->log(INFO, "Se cierra la aplicación voluntariamente.");
-        exit = true;
-    }
-    return e;
-}
-
 void Juego::actualizarGraficos() {
     SDL_RenderPresent(renderer_); // Update screen
-    SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(renderer_, 0x0, 0x0, 0x0, 0x0);
     SDL_RenderClear(renderer_);
 }
 

@@ -25,7 +25,7 @@ private:
     pthread_t recibirEnHilo();
     void recibir();
     void inicializarGraficos();
-    SDL_Event *processInput();
+
     void actualizarGraficos();
     void agregarPantallas();
 
