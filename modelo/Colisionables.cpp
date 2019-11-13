@@ -88,13 +88,21 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
                     Locator::logger()->log(DEBUG, "golpeado!");
 
                     auto arma = jugador->getEstado<Arma>("arma");
+                    auto energiaEnemigo = enemigo->getEstado<Energia>("energia");
+                    auto puntajeJugador = jugador->getEstado<Puntaje>("puntaje");
 
                     int puntosDeDanio =  estado->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
                     int puntosParaJugador = estado->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
-                    enemigo->getEstado<Energia>("energia")->restarEnergia(puntosDeDanio);
-                    jugador->getEstado<Puntaje>("puntaje")->agregarPuntos(puntosParaJugador);
-                    enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpe();
+
+                    energiaEnemigo->restarEnergia(puntosDeDanio);
+                    puntajeJugador->agregarPuntos(puntosParaJugador);
                     arma->restarUso();
+
+                    enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpe();
+
+                    if(!energiaEnemigo->personajeVive()){
+                        puntajeJugador->agregarPuntos(500);
+                    }
                 }
             }
         }
