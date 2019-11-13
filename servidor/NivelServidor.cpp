@@ -25,7 +25,7 @@
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
 
-    Entidad *pantalla = mapa->crearEntidad();
+    Entidad *pantalla = mapa->crearPantalla();
     auto *posicion = new Posicion(0, 10, 0);
     auto *tipo = new Tipo(PANTALLA_SELECCION);
     pantalla->agregarEstado("posicion", posicion);
@@ -70,8 +70,6 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);
 
-    mapa->guardarJugador(jugador);
-
     return jugador;
 }
 
@@ -108,7 +106,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
     Locator::logger()->log(DEBUG, "Se cargo profundidad para escenario: " + to_string(profundidad));
     Locator::logger()->log(DEBUG, "Se cargo ancho para escenario: " + to_string(anchoNivel));
 
-    Entidad *escenario = mapa->crearEntidad();
+    Entidad *escenario = mapa->crearEscenario();
     auto *posicion = new Posicion(0, profundidad, 0);
     auto *tipo = new Tipo(ESCENARIO);
     auto *nivelEstado = new Nivel(nivel);
@@ -126,7 +124,7 @@ Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
 
 void NivelServidor::generarTransicion(const string &nivel, Mapa *mapa, Jugadores *posicionDeJugadores) {
 
-    Entidad *transicion = mapa->crearEntidad();
+    Entidad *transicion = mapa->crearTransicion();
     auto *tipo = new Tipo(TRANSICION);
     int anchoDeNivel = Locator::configuracion()->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     auto *posicion = new Posicion(0, 1, 0);
@@ -167,7 +165,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
     for (int i = 0; i < cantidad; i++) {
         Locator::logger()->log(INFO, "Se genera enemigo");
 
-        Entidad *enemigo = mapa->crearEntidad();
+        Entidad *enemigo = mapa->crearEnemigo();
 
         auto *tipo = new Tipo(ENEMIGO);
         auto *comportamiento = new BuscarJugadores(enemigo, jugadores);
@@ -196,8 +194,6 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
         enemigo->agregarComportamiento("comportamiento", comportamiento);
         enemigo->agregarComportamiento("animacion servidor", animacionServidor);
-
-        mapa->guardarEnemigo(enemigo);
     }
 }
 
@@ -228,7 +224,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
     for (int i = 1; i <= cantidad; i++) {
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
-        auto elementoRandom = mapa->crearEntidad();
+        auto elementoRandom = mapa->crearElemento();
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
@@ -244,8 +240,6 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         elementoRandom->agregarEstado("velocidad", velocidad);
         elementoRandom->agregarEstado("golpes soportables", golpesSoportables);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
-
-        mapa->guardarElemento(elementoRandom);
     }
 
 }
@@ -272,7 +266,7 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
     for (int i = 1; i <= cantidad; i++) {
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
-        auto armaRandom = mapa->crearEntidad();
+        auto armaRandom = mapa->crearArma();
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
@@ -284,7 +278,5 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         armaRandom->agregarEstado("tipo elemento", tipoElemento);
         armaRandom->agregarEstado("envolvente", envolvente);
         armaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
-
-        mapa->guardarArma(armaRandom);
     }
 }

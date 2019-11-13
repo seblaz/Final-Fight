@@ -24,7 +24,7 @@ void configApplication(int argc, const char*args[]){
         paramIsLoggerLevel = !defaultLogger;
     }
 
-    auto* logger = new Logger();
+    auto* logger = new Logger("servidor");
     Locator::provide(logger);
 
     Configuracion *config =

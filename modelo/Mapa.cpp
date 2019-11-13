@@ -46,12 +46,6 @@ void Mapa::vaciarMapa() {
     }
 }
 
-Entidad *Mapa::crearJugador() {
-    Entidad *jugador = crearEntidad();
-    jugadores.agregarJugador(ultimoId, jugador);
-    return jugador;
-}
-
 void Mapa::agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador) {
     jugadores.agregarJugador(idEntidad, jugador);
 }
@@ -83,42 +77,62 @@ void Mapa::serializar(ostream &stream) {
     stream << serializadoMasReciente.str();
 }
 
-void Mapa::guardarJugador(Entidad * jugador) {
-    personajes.insert(personajes.begin(), jugador);
-    colisionables.insert(colisionables.begin(), jugador);
+Entidad *Mapa::crearJugador() {
+    Entidad *jugador = crearEntidad();
+    jugadores.agregarJugador(ultimoId, jugador);
+    personajes.push_back(jugador);
+    colisionables.push_back(jugador);
+    return jugador;
 }
 
-void Mapa::guardarEnemigo(Entidad * enemigo) {
-    enemigos.insert(enemigos.begin(), enemigo);
-    colisionables.insert(colisionables.begin(), enemigo);
+Entidad *Mapa::crearEnemigo() {
+    auto *enemigo = crearEntidad();
+    enemigos.push_back(enemigo);
+    colisionables.push_back(enemigo);
+    return enemigo;
 }
 
-void Mapa::guardarElemento(Entidad * elemento) {
-    elementos.insert(elementos.begin(), elemento);
-    colisionables.insert(colisionables.begin(), elemento);
+Entidad *Mapa::crearElemento() {
+    auto *elemento = crearEntidad();
+    elementos.push_back(elemento);
+    colisionables.push_back(elemento);
+    return elemento;
 }
 
-void Mapa::guardarArma(Entidad * arma) {
-    armas.insert(armas.begin(), arma);
+Entidad *Mapa::crearArma() {
+    auto *arma = crearEntidad();
+    armas.push_back(arma);
+    return arma;
 }
 
-vector<Entidad *> Mapa::getPersonajes() {
-    return this->personajes;
+Entidad *Mapa::crearPantalla() {
+    return crearEntidad();
 }
 
-vector<Entidad *> Mapa::getEnemigos() {
-    return this->enemigos;
+Entidad *Mapa::crearEscenario() {
+    return crearEntidad();
 }
 
-vector<Entidad *> Mapa::getElementos() {
-    return this->elementos;
+Entidad *Mapa::crearTransicion() {
+    return crearEntidad();
 }
 
-vector<Entidad *> Mapa::getArmas() {
-    return this->armas;
+vector<Entidad *> &Mapa::getPersonajes() {
+    return personajes;
 }
 
-vector<Entidad *> Mapa::getColisionables() {
-    return this->colisionables;
+vector<Entidad *> &Mapa::getEnemigos() {
+    return enemigos;
 }
 
+vector<Entidad *> &Mapa::getElementos() {
+    return elementos;
+}
+
+vector<Entidad *> &Mapa::getArmas() {
+    return armas;
+}
+
+vector<Entidad *> &Mapa::getColisionables() {
+    return colisionables;
+}

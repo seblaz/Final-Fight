@@ -33,11 +33,10 @@ private:
     vector<Entidad *> enemigos;
     vector<Entidad *> elementos;
     vector<Entidad *> armas;
+    Entidad *crearEntidad();
 
 public:
-    Entidad *crearEntidad();
     Entidad *crearEntidadConId(IdEntidad idEntidad);
-    Entidad *crearJugador();
     void agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador);
     vector<Entidad *> devolverEntidades();
     unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
@@ -48,16 +47,21 @@ public:
     void guardarSerializado(stringstream &s);
     void serializar(ostream& stream);
 
-    void guardarJugador(Entidad *);
-    void guardarEnemigo(Entidad *);
-    void guardarElemento(Entidad *);
-    void guardarArma(Entidad *);
+    Entidad *crearJugador();
+    Entidad *crearEnemigo();
+    Entidad *crearElemento();
+    Entidad *crearArma();
+    Entidad *crearEscenario();
 
-    vector<Entidad *> getColisionables();
-    vector<Entidad *> getPersonajes();
-    vector<Entidad *> getEnemigos();
-    vector<Entidad *> getElementos();
-    vector<Entidad *> getArmas();
+    vector<Entidad *> &getColisionables();
+    vector<Entidad *> &getPersonajes();
+    vector<Entidad *> &getEnemigos();
+    vector<Entidad *> &getElementos();
+    vector<Entidad *> &getArmas();
+
+    Entidad *crearPantalla();
+
+    Entidad *crearTransicion();
 };
 
 #endif //FINAL_FIGHT_MAPA_H
