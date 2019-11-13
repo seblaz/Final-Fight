@@ -55,6 +55,23 @@
         <izquierdo>200</izquierdo>
         <derecho>400</derecho>
     </scroll>
+    <armas>
+        <cuchillo>
+            <danio>50</danio>
+            <puntos>150</puntos>
+            <usos>3</usos>
+        </cuchillo>
+        <tubo>
+            <danio>35</danio>
+            <puntos>200</puntos>
+            <usos>3</usos>
+        </tubo>
+        <punios>
+            <danio>20</danio>
+            <puntos>100</puntos>
+            <usos>999999</usos>
+        </punios>
+    </armas>
     <pantallas>
         <autenticacion>
             <fondo>

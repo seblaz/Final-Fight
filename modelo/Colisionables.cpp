@@ -96,7 +96,7 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
 
                     energiaEnemigo->restarEnergia(puntosDeDanio);
                     puntajeJugador->agregarPuntos(puntosParaJugador);
-                    arma->restarUso();
+                    arma->usar();
 
                     enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpe();
 

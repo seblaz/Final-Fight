@@ -53,7 +53,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 15);
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
-    auto* arma = new ArmaPunios();
+    auto* arma = new Arma(ARMA::PUNIOS);
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -182,7 +182,9 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
         auto *energia = new Energia(100,1);
         auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 50, 30);
+        auto* arma = new Arma(ARMA::PUNIOS);
 
+        enemigo->agregarEstado("arma", arma);
         enemigo->agregarEstado("tipo", tipo);
         enemigo->agregarEstado("personaje", personaje);
         enemigo->agregarEstado("indice sprite", indiceSprite);
