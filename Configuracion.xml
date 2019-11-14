@@ -391,6 +391,18 @@
                 </posiciones>
                 <escala>3</escala>
             </neumatico>
+            <eliminado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>0</x>
+                        <y>0</y>
+                        <w>0</w>
+                        <h>0</h>
+                    </posicion0>
+                </posiciones>
+                <escala>0</escala>
+            </eliminado>
         </objetos>
         <cody>
             <reposando>

@@ -22,6 +22,7 @@
 #include "../modelo/envolventes/EnvolventeAtaque.h"
 #include "../modelo/serializables/Arma.h"
 #include "../modelo/GolpesSoportables.h"
+#include "../modelo/serializables/Eliminado.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -276,12 +277,14 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
         auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 20, 8);
+        auto* eliminado = new Eliminado();
 
         armaRandom->agregarEstado("posicion", posicionElementoRandom);
         armaRandom->agregarEstado("tipo", tipo);
         armaRandom->agregarEstado("indice sprite", indiceSprite);
         armaRandom->agregarEstado("tipo elemento", tipoElemento);
         armaRandom->agregarEstado("envolvente", envolvente);
+        armaRandom->agregarEstado("eliminado", eliminado);
         armaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
     }
 }

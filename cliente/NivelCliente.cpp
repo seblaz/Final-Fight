@@ -15,6 +15,7 @@
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
 #include "ReproductorSonidoPersonaje.h"
+#include "AnimadorArmas.h"
 
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
@@ -185,5 +186,9 @@ void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
     entidad->agregarEstado("sprite", sprite);
     entidad->agregarEstado("animacion", animacion);
     entidad->agregarComportamiento("grafico", grafico);
+    if ( ART == TUBO || ART == CUCHILLO ){
+        auto *animadorArmas = new AnimadorArmas(entidad);
+        entidad->agregarComportamiento("animador", animadorArmas);
+    }
 
 }
