@@ -15,7 +15,7 @@
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
 #include "ReproductorSonidoPersonaje.h"
-#include "AnimadorArmas.h"
+#include "../graficos/GraficoEliminable.h"
 
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
@@ -181,14 +181,11 @@ void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
     }
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
-    auto *grafico = new Grafico(entidad);
+    auto *grafico = new GraficoEliminable(entidad);
 
     entidad->agregarEstado("sprite", sprite);
     entidad->agregarEstado("animacion", animacion);
     entidad->agregarComportamiento("grafico", grafico);
-    if ( ART == TUBO || ART == CUCHILLO ){
-        auto *animadorArmas = new AnimadorArmas(entidad);
-        entidad->agregarComportamiento("animador", animadorArmas);
-    }
+
 
 }

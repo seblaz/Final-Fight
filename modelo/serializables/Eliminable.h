@@ -2,19 +2,19 @@
 // Created by franco on 13/11/19.
 //
 
-#ifndef FINAL_FIGHT_ELIMINADO_H
-#define FINAL_FIGHT_ELIMINADO_H
+#ifndef FINAL_FIGHT_ELIMINABLE_H
+#define FINAL_FIGHT_ELIMINABLE_H
 
 
 #include "../Entidad.h"
 
-class Eliminado : public Estado {
+class Eliminable : public Estado {
 
 private:
     bool eliminado = false;
 
 public:
-    Eliminado() = default;
+    Eliminable() = default;
     void eliminar();
     bool status();
 
@@ -24,4 +24,4 @@ public:
 };
 
 
-#endif //FINAL_FIGHT_ELIMINADO_H
+#endif //FINAL_FIGHT_ELIMINABLE_H

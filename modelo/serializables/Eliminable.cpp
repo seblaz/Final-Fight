@@ -2,20 +2,20 @@
 // Created by franco on 13/11/19.
 //
 
-#include "Eliminado.h"
+#include "Eliminable.h"
 
-void Eliminado::eliminar() {
+void Eliminable::eliminar() {
     this->eliminado = true;
 }
 
-bool Eliminado::status() {
+bool Eliminable::status() {
     return this->eliminado;
 }
 
-void Eliminado::serializar(ostream &stream) {
+void Eliminable::serializar(ostream &stream) {
     Serializable::serializarBoolean(stream, this->eliminado);
 }
 
-void Eliminado::deserializar(istream &stream) {
+void Eliminable::deserializar(istream &stream) {
     this -> eliminado = Serializable::deserializarBoolean(stream);
 }
