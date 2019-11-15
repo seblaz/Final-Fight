@@ -22,6 +22,7 @@ public:
     explicit AnimacionCliente(vector<SDL_Rect> *posiciones, float escala = 1);
     SDL_Rect devolverPosicion(Entidad *entidad);
     float escala();
+
 };
 
 

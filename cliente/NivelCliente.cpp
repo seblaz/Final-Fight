@@ -8,6 +8,7 @@
 #include "../modelo/serializables/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
+#include "AnimadorElemento.h"
 #include "../modelo/serializables/Personaje.h"
 #include "../graficos/GraficoDeTransicion.h"
 #include "../modelo/serializables/Elemento.h"
@@ -15,7 +16,6 @@
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
 #include "ReproductorSonidoPersonaje.h"
-#include "../graficos/GraficoElementos.h"
 #include "../modelo/serializables/Arma.h"
 
 
@@ -157,16 +157,19 @@ void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
     Configuracion *config = Locator::configuracion();
     string tipoElemento =  Elemento::ElementoACadena(entidad->getEstado<Elemento>("elemento")->getElemento());
 
-    string srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/" + tipoElemento + "/sprite/src");
-    AnimacionCliente *animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/" + tipoElemento);
+    auto *fabrica = new FabricaDeAnimacionesCliente("/animaciones/objetos/" + tipoElemento);
+    AnimacionCliente *animacion = fabrica->getAnimacion("/sano");
 
+    string srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/" + tipoElemento + "/sprite/src");
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
-    auto *grafico = new GraficoElementos(entidad);
+    auto *grafico = new Grafico(entidad);
+    auto *animador = new AnimadorElemento(entidad);
 
     entidad->agregarEstado("sprite", sprite);
+    entidad->agregarEstado("fabrica de animaciones", fabrica);
     entidad->agregarEstado("animacion", animacion);
     entidad->agregarComportamiento("grafico", grafico);
-
+    entidad->agregarComportamiento("animador", animador);
 
 }
 
