@@ -8,14 +8,15 @@
 #include "../modelo/serializables/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
+#include "AnimadorElemento.h"
 #include "../modelo/serializables/Personaje.h"
 #include "../graficos/GraficoDeTransicion.h"
-#include "../modelo/serializables/TipoElemento.h"
+#include "../modelo/serializables/Elemento.h"
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/GraficoJugador.h"
 #include "../graficos/FabricaDeAnimacionesCliente.h"
 #include "ReproductorSonidoPersonaje.h"
-#include "../graficos/GraficoEliminable.h"
+#include "../modelo/serializables/Arma.h"
 
 
 void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
@@ -154,38 +155,35 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
 
 void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
     Configuracion *config = Locator::configuracion();
-    auto *tipoElemento = entidad->getEstado<TipoElemento>("tipo elemento");
-    string srcSprite;
-    AnimacionCliente *animacion;
-    int ART = tipoElemento->getElemento();
-    switch (ART) {
-        case CAJA:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/caja/sprite/src");
-            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/caja");
-            break;
-        case CUCHILLO:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/cuchillo/sprite/src");
-            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/cuchillo");
-            break;
-        case NEUMATICO:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/neumatico/sprite/src");
-            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/neumatico");
-            break;
-        case TUBO:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/tubo/sprite/src");
-            animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/tubo");
-            break;
-        default:
-            Locator::logger()->log(ERROR, "Se trata de crear un elemento inexistente.");
-            return;
-    }
+    string tipoElemento =  Elemento::ElementoACadena(entidad->getEstado<Elemento>("elemento")->getElemento());
 
+    auto *fabrica = new FabricaDeAnimacionesCliente("/animaciones/objetos/" + tipoElemento);
+    AnimacionCliente *animacion = fabrica->getAnimacion("/sano");
+
+    string srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/" + tipoElemento + "/sprite/src");
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
-    auto *grafico = new GraficoEliminable(entidad);
+    auto *grafico = new Grafico(entidad);
+    auto *animador = new AnimadorElemento(entidad);
 
     entidad->agregarEstado("sprite", sprite);
+    entidad->agregarEstado("fabrica de animaciones", fabrica);
     entidad->agregarEstado("animacion", animacion);
     entidad->agregarComportamiento("grafico", grafico);
+    entidad->agregarComportamiento("animador", animador);
 
+}
 
+void NivelCliente::generarArma(Mapa *mapa, Entidad *arma) {
+    Configuracion *config = Locator::configuracion();
+    string tipoArma = Arma::armaACadena(arma->getEstado<Arma>("arma")->getArma());
+
+    string srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/" + tipoArma + "/sprite/src");
+    AnimacionCliente *animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/" + tipoArma);
+
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
+    auto *grafico = new Grafico(arma);
+
+    arma->agregarEstado("sprite", sprite);
+    arma->agregarEstado("animacion", animacion);
+    arma->agregarComportamiento("grafico", grafico);
 }

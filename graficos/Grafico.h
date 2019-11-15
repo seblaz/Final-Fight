@@ -13,7 +13,7 @@
 class Grafico : public Comportamiento {
 
 public:
-    Grafico(Entidad *entidad);
+    explicit Grafico(Entidad *entidad);
 
     void actualizar() override;
 };
