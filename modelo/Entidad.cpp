@@ -9,13 +9,12 @@
 #include "serializables/Nivel.h"
 #include "serializables/EstadoDePersonaje.h"
 #include "serializables/Opacidad.h"
-#include "serializables/TipoElemento.h"
+#include "serializables/Elemento.h"
 #include "serializables/Actividad.h"
 #include "serializables/NumeroJugador.h"
 #include "serializables/IndiceSprite.h"
 #include "serializables/Energia.h"
 #include "serializables/Arma.h"
-#include "serializables/Eliminable.h"
 #include <algorithm>
 #include <iostream>
 
@@ -42,12 +41,11 @@ Entidad::Entidad() {
                 {"estado de personaje", &createInstance<EstadoDePersonaje>},
                 {"personaje",           &createInstance<Personaje>},
                 {"opacidad",            &createInstance<Opacidad>},
-                {"tipo elemento",       &createInstance<TipoElemento>},
+                {"elemento",            &createInstance<Elemento>},
                 {"actividad",           &createInstance<Actividad>},
                 {"numeroJugador",       &createInstance<NumeroJugador>},
                 {"indice sprite",       &createInstance<IndiceSprite>},
                 {"energia",             &createInstance<Energia>},
-                {"eliminado",             &createInstance<Eliminable>},
                 {"arma",                &createInstance<Arma>},
         };
     }
@@ -104,18 +102,18 @@ TIPO Tipo::tipo() {
 }
 
 void Tipo::serializar(ostream &stream) {
-    serializarEntero(stream, tipo_);
+    serializarEntero(stream, static_cast<int>(tipo_));
 }
 
 void Tipo::deserializar(istream &stream) {
     tipo_ = static_cast<TIPO>(deserializarEntero(stream));
 }
 
-Tipo::Tipo() : tipo_(PANTALLA_SELECCION) {}
+Tipo::Tipo() : tipo_(static_cast<TIPO>(0)) {}
 
 bool Tipo::operator==(const Tipo &otroTipo) {
     return tipo_ == otroTipo.tipo_;
 }
 
 Comportamiento::Comportamiento(Entidad *entidad) :
-        entidad(entidad){}
+        entidad(entidad) {}

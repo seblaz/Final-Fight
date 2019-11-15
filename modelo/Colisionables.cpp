@@ -9,8 +9,7 @@
 #include "serializables/Energia.h"
 #include "serializables/Puntaje.h"
 #include "serializables/Arma.h"
-#include "GolpesSoportables.h"
-#include "serializables/Eliminable.h"
+#include "serializables/Elemento.h"
 #include <utility>
 
 
@@ -124,7 +123,7 @@ void Colisionables::calcularAtaquesAelementos() {
 
                 if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
                     Locator::logger()->log(DEBUG, "golpeado!");
-                    elemento->getEstado<GolpesSoportables>("golpes soportables")->restarGolpe();
+                    elemento->getEstado<Elemento>("elemento")->golpear();
                 }
             }
         }
@@ -142,11 +141,11 @@ void Colisionables::calcularArmasAlcanzables() {
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
-                auto *arma_eliminada = arma->getEstado<Eliminable>("eliminado");
+//                auto *arma_eliminada = arma->getEstado<GolpesSoportables>("eliminado");
 
-                if (envolvente->colisionaCon(envolvente_arma) && ! arma_eliminada->status() ) {
+                if (envolvente->colisionaCon(envolvente_arma)) {
                     Locator::logger()->log(DEBUG, "toma el arma!");
-                    arma_eliminada->eliminar();
+                    arma->getEstado<Arma>("arma")->tomar();
                 }
             }
         }

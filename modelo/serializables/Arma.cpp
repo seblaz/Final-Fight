@@ -34,13 +34,23 @@ int Arma::getPuntosParaPersonaje() {
 }
 
 void Arma::serializar(ostream &stream) {
-    Serializable::serializarEntero(stream, int(arma));
+    serializarEntero(stream, int(arma));
+    serializarBoolean(stream, enSuelo);
 }
 
 void Arma::deserializar(istream &stream) {
-    arma = static_cast<ARMA>(Serializable::deserializarEntero(stream));
+    arma = static_cast<ARMA>(deserializarEntero(stream));
+    enSuelo = deserializarBoolean(stream);
 }
 
 void Arma::usar() {
     usosRestantes--;
+}
+
+void Arma::tomar() {
+    enSuelo = false;
+}
+
+ARMA Arma::getArma() {
+    return arma;
 }

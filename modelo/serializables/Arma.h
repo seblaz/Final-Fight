@@ -9,9 +9,9 @@
 #include "../Entidad.h"
 
 enum class ARMA {
-    PUNIOS,
+    TUBO,
     CUCHILLO,
-    TUBO
+    PUNIOS
 };
 
 
@@ -22,16 +22,21 @@ private:
     int danio;
     int usosRestantes;
     int puntosParaPersonaje;
+    bool enSuelo = true;
 
 public:
-    static string armaACadena(ARMA arma);
     Arma();
     explicit Arma(ARMA arma);
+    ARMA getArma();
+
     void usar();
+    void tomar();
     int getPuntosDeDanio();
     int getPuntosParaPersonaje();
+
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
+    static string armaACadena(ARMA arma);
 
 };
 
