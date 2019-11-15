@@ -108,7 +108,7 @@ void Colisionables::calcularAtaquesAelementos() {
 
                 if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
                     Locator::logger()->log(DEBUG, "golpeado!");
-                    elemento->getEstado<Elemento>("elemento")->golpear();
+                    elemento->getEstado<Elemento>("elemento")->recibirGolpeDe(jugador);
                 }
             }
         }
