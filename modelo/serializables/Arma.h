@@ -37,6 +37,7 @@ public:
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
+    bool tieneUsosRestantes();
     static string armaACadena(ARMA arma);
 
 };

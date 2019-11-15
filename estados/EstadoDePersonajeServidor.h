@@ -28,7 +28,7 @@ public:
     virtual void reposar();
     virtual void agachar();
     virtual void darGolpe();
-    virtual void recibirGolpe();
+    virtual void recibirGolpeDe(Entidad* golpeador);
 
     void actualizar() override;
 };

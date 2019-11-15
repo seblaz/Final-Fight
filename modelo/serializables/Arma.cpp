@@ -47,6 +47,9 @@ void Arma::usar() {
     usosRestantes--;
 }
 
+bool Arma::tieneUsosRestantes(){
+    return usosRestantes > 0;
+}
 void Arma::tomar() {
     enSuelo = false;
 }

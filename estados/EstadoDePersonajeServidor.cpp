@@ -12,6 +12,9 @@
 #include "RecibiendoGolpe.h"
 #include "../eventos/EventoPersonaje.h"
 #include "../modelo/serializables/IndiceSprite.h"
+#include "../modelo/serializables/Arma.h"
+#include "../modelo/serializables/Puntaje.h"
+#include "../modelo/serializables/Energia.h"
 
 EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
 
@@ -61,7 +64,28 @@ void EstadoDePersonajeServidor::darGolpe() {
     cambiarEstado(DANDO_GOLPE);
 }
 
-void EstadoDePersonajeServidor::recibirGolpe() {
+void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
+
+    auto energiaGolpeado = this->entidad->getEstado<Energia>("energia");
+    auto *estadoGolpeador = golpeador->getEstado<EstadoDePersonaje>("estado de personaje");
+    auto arma = golpeador->getEstado<Arma>("arma");
+    auto puntajeGolpeador = golpeador->getEstado<Puntaje>("puntaje");
+
+    int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
+    int puntosParaJugador = estadoGolpeador->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
+
+    energiaGolpeado->restarEnergia(puntosDeDanio);
+    puntajeGolpeador->agregarPuntos(puntosParaJugador);
+    arma->usar();
+
+    if (!arma->tieneUsosRestantes()){
+        golpeador->agregarEstado("arma", new Arma(ARMA::PUNIOS));
+    }
+
+    if(!energiaGolpeado->personajeVive()){
+        puntajeGolpeador->agregarPuntos(500);
+    }
+
     cambiarEstado(RECIBIENDO_GOLPE);
 }
 
