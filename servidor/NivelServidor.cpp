@@ -194,14 +194,17 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
 void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ELEMENTO objeto) {
     Configuracion *config = Locator::configuracion();
     int golpesMaximos;
+    int puntosParaJugadorPorRomper;
 
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/" + Elemento::ElementoACadena(objeto) + "/cantidad");
     switch (objeto) {
         case ELEMENTO::CAJA:
             golpesMaximos = 2;
+            puntosParaJugadorPorRomper = 200;
             break;
         case ELEMENTO::BARRIL:
             golpesMaximos = 1;
+            puntosParaJugadorPorRomper = 300;
             break;
         default:
             cantidad = 0;
@@ -217,7 +220,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
         auto elementoRandom = mapa->crearElemento();
-        auto *elemento = new Elemento(objeto, golpesMaximos);
+        auto *elemento = new Elemento(objeto, golpesMaximos, puntosParaJugadorPorRomper);
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);

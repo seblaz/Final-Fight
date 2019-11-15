@@ -18,13 +18,14 @@ class Elemento : public Estado {
 private:
     ELEMENTO elemento;
     int golpes;
+    int puntosParaJugadorPorRomper;
 
 public:
     Elemento();
-    Elemento(ELEMENTO elemento, int golpes);
+    Elemento(ELEMENTO elemento, int golpes, int puntosParaJugadorPorRomper);
 
     ELEMENTO getElemento();
-    void golpear();
+    void recibirGolpeDe(Entidad* golpeador);
     bool estaRoto();
 
     void serializar(ostream& stream) override;

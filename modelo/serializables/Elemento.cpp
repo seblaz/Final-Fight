@@ -3,21 +3,26 @@
 //
 
 #include "Elemento.h"
+#include "Puntaje.h"
 
 Elemento::Elemento() :
         golpes(0),
         elemento(static_cast<ELEMENTO>(0)) {}
 
-Elemento::Elemento(ELEMENTO elemento, int golpes) :
+Elemento::Elemento(ELEMENTO elemento, int golpes, int puntosParaJugadorPorRomper) :
         golpes(golpes),
-        elemento(elemento) {}
+        elemento(elemento),
+        puntosParaJugadorPorRomper(puntosParaJugadorPorRomper) {}
 
 ELEMENTO Elemento::getElemento() {
     return elemento;
 }
 
-void Elemento::golpear() {
+void Elemento::recibirGolpeDe(Entidad* golpeador) {
     golpes--;
+    if(golpes == 0){
+        golpeador->getEstado<Puntaje>("puntaje")->agregarPuntos(this->puntosParaJugadorPorRomper);
+    }
 }
 
 bool Elemento::estaRoto() {
