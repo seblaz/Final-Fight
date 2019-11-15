@@ -10,6 +10,7 @@
 #include "serializables/Puntaje.h"
 #include "serializables/Arma.h"
 #include "GolpesSoportables.h"
+#include "serializables/Eliminable.h"
 #include <utility>
 
 
@@ -141,10 +142,11 @@ void Colisionables::calcularArmasAlcanzables() {
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
+                auto *arma_eliminada = arma->getEstado<Eliminable>("eliminado");
 
-                if (envolvente->colisionaCon(envolvente_arma)) {
+                if (envolvente->colisionaCon(envolvente_arma) && ! arma_eliminada->status() ) {
                     Locator::logger()->log(DEBUG, "toma el arma!");
-
+                    arma_eliminada->eliminar();
                 }
             }
         }

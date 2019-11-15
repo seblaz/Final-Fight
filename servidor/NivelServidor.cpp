@@ -22,6 +22,7 @@
 #include "../modelo/envolventes/EnvolventeAtaque.h"
 #include "../modelo/serializables/Arma.h"
 #include "../modelo/GolpesSoportables.h"
+#include "../modelo/serializables/Eliminable.h"
 
 void NivelServidor::generarMenuSeleccion(Mapa *mapa) {
     Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
@@ -236,6 +237,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 75, 8);
         auto *velocidad = new Velocidad();
         auto* golpesSoportables = new GolpesSoportables(golpesMaximos);
+        auto* eliminado = new Eliminable();
         
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
         elementoRandom->agregarEstado("tipo", tipo);
@@ -243,6 +245,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         elementoRandom->agregarEstado("tipo elemento", tipoElemento);
         elementoRandom->agregarEstado("envolvente", envolvente);
         elementoRandom->agregarEstado("velocidad", velocidad);
+        elementoRandom->agregarEstado("eliminado", eliminado);
         elementoRandom->agregarEstado("golpes soportables", golpesSoportables);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
     }
@@ -276,12 +279,14 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
         auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 20, 8);
+        auto* eliminado = new Eliminable();
 
         armaRandom->agregarEstado("posicion", posicionElementoRandom);
         armaRandom->agregarEstado("tipo", tipo);
         armaRandom->agregarEstado("indice sprite", indiceSprite);
         armaRandom->agregarEstado("tipo elemento", tipoElemento);
         armaRandom->agregarEstado("envolvente", envolvente);
+        armaRandom->agregarEstado("eliminado", eliminado);
         armaRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
     }
 }
