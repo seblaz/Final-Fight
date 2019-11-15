@@ -101,14 +101,14 @@ public:
 /**
  * Tipo de entidad.
  */
-enum TIPO {
-    PANTALLA_SELECCION,
+enum class TIPO {
     PERSONAJE,
     ESCENARIO,
     JUGADOR,
     TRANSICION,
     ENEMIGO,
-    ELEMENTO
+    ELEMENTO_GOLPEABLE,
+    ARMA
 };
 
 class Tipo : public Estado {

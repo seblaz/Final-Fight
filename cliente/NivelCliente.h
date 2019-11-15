@@ -17,6 +17,8 @@ public:
     static void generarTransicion(Mapa *mapa, Entidad* entidad);
     static void generarEnemigo(Mapa *mapa, Entidad* entidad);
     static void generarElemento(Mapa *mapa, Entidad* entidad);
+
+    static void generarArma(Mapa *mapa, Entidad *arma);
 };
 
 

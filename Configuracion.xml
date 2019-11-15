@@ -251,12 +251,12 @@
                             <src>assets/objetos/caja.png</src>
                         </sprite>
                     </caja>
-                    <neumatico>
+                    <barril>
                         <cantidad>3</cantidad>
                         <sprite>
-                            <src>assets/objetos/neumaticos.png</src>
+                            <src>assets/objetos/barril.png</src>
                         </sprite>
-                    </neumatico>
+                    </barril>
                 </objetos>
                 <enemigos>
                     <cantidad>5</cantidad>
@@ -313,12 +313,12 @@
                             <src>assets/objetos/caja.png</src>
                         </sprite>
                     </caja>
-                    <neumatico>
+                    <barril>
                         <cantidad>1</cantidad>
                         <sprite>
-                            <src>assets/objetos/neumaticos.png</src>
+                            <src>assets/objetos/barril.png</src>
                         </sprite>
-                    </neumatico>
+                    </barril>
                 </objetos>
                 <enemigos>
                     <cantidad>3</cantidad>
@@ -379,7 +379,7 @@
                 </posiciones>
                 <escala>3</escala>
             </caja>
-            <neumatico>
+            <barril>
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
@@ -390,7 +390,7 @@
                     </posicion0>
                 </posiciones>
                 <escala>3</escala>
-            </neumatico>
+            </barril>
             <eliminado>
                 <cantidad>1</cantidad>
                 <posiciones>

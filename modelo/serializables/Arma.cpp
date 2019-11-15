@@ -16,6 +16,8 @@ string Arma::armaACadena(ARMA arma) {
     };
 }
 
+Arma::Arma() : Arma(ARMA::PUNIOS){}
+
 Arma::Arma(ARMA arma) : arma(arma) {
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
@@ -32,11 +34,13 @@ int Arma::getPuntosParaPersonaje() {
 }
 
 void Arma::serializar(ostream &stream) {
-    Serializable::serializarEntero(stream, int(arma));
+    serializarEntero(stream, int(arma));
+    serializarBoolean(stream, enSuelo);
 }
 
 void Arma::deserializar(istream &stream) {
-    arma = static_cast<ARMA>(Serializable::deserializarEntero(stream));
+    arma = static_cast<ARMA>(deserializarEntero(stream));
+    enSuelo = deserializarBoolean(stream);
 }
 
 void Arma::usar() {
@@ -45,4 +49,15 @@ void Arma::usar() {
 
 bool Arma::tieneUsosRestantes(){
     return usosRestantes > 0;
+}
+void Arma::tomar() {
+    enSuelo = false;
+}
+
+ARMA Arma::getArma() {
+    return arma;
+}
+
+bool Arma::enElSuelo() {
+    return enSuelo;
 }

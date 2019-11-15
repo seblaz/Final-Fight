@@ -11,7 +11,8 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../modelo/serializables/Orientacion.h"
 #include "../modelo/serializables/Personaje.h"
-#include "../modelo/serializables/TipoElemento.h"
+#include "../modelo/serializables/Elemento.h"
+#include "../modelo/serializables/Arma.h"
 
 
 class NivelServidor {
@@ -19,11 +20,10 @@ class NivelServidor {
 private:
     static void generarTransicion(const string &nivel,Mapa *mapa, Jugadores* posicionDeJugador);
     static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores);
-    static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
-    static void generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, elementos ART);
+    static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ELEMENTO objeto);
+    static void generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ARMA arma);
 
 public:
-    static void generarMenuSeleccion(Mapa *mapa);
     static Entidad *generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int numeroJugador);
 
     static void generarNivel(const string &nivel, Mapa *mapa);
