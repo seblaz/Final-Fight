@@ -31,6 +31,7 @@ public:
 
     void usar();
     void tomar();
+    bool enElSuelo();
     int getPuntosDeDanio();
     int getPuntosParaPersonaje();
 

@@ -54,3 +54,7 @@ void Arma::tomar() {
 ARMA Arma::getArma() {
     return arma;
 }
+
+bool Arma::enElSuelo() {
+    return enSuelo;
+}
