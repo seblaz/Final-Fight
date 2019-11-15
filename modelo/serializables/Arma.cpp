@@ -42,3 +42,7 @@ void Arma::deserializar(istream &stream) {
 void Arma::usar() {
     usosRestantes--;
 }
+
+bool Arma::tieneUsosRestantes(){
+    return usosRestantes > 0;
+}

@@ -31,7 +31,7 @@ public:
     int getPuntosParaPersonaje();
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
-
+    bool tieneUsosRestantes();
 };
 
 #endif //FINAL_FIGHT_ARMA_H
