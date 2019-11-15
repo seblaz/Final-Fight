@@ -10,6 +10,7 @@ void GolpesSoportables::restarGolpe() {
     Locator::logger()->log(DEBUG, to_string(maximoDeGolpes));
     if ( seRompio() ){
         Locator::logger()->log(DEBUG, "Elemento ROTO!");
+        
     }
 }
 

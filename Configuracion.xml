@@ -732,6 +732,36 @@
                 <total>45</total>
             </saltandoAdelante>
             <pateando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>49</x>
+                        <y>232</y>
+                        <w>77</w>
+                        <h>68</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>129</x>
+                        <y>215</y>
+                        <w>36</w>
+                        <h>70</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>169</x>
+                        <y>216</y>
+                        <w>60</w>
+                        <h>45</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1,1,1</duraciones>
+                <total>45</total>
             </pateando>
             <dandoGolpe>
                 <cantidad>2</cantidad>

@@ -23,41 +23,42 @@ void Colisionables::calcularPosiblesColisiones() {
         auto *velocidad = entidadCentral->getEstado<Velocidad>("velocidad");
         for (auto *entidad_colisionable : mapa->getColisionables()) {
 
-            auto *envolventeContrario = entidad_colisionable->getEstado<EnvolventeVolumen>("envolvente");
-            auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
-            if (entidad_colisionable != entidadCentral) {
 
-                auto *velocidadContrario = entidad_colisionable->getEstado<Velocidad>("velocidad");
+                auto *envolventeContrario = entidad_colisionable->getEstado<EnvolventeVolumen>("envolvente");
+                auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
+                if (entidad_colisionable != entidadCentral) {
 
-                if (velocidadContrario->y == 0 && velocidad->y != 0) {
-                    if (envolvente->colisionaAbajoCon(envolventeContrario)) {
-                        posicion->y = envolventeContrario->posicion->y + envolventeContrario->profundidad +
-                                      envolvente->profundidad;
-                    } else if (envolvente->colisionaArribaCon(envolventeContrario)) {
-                        posicion->y = envolventeContrario->posicion->y - envolventeContrario->profundidad -
-                                      envolvente->profundidad;
+                    auto *velocidadContrario = entidad_colisionable->getEstado<Velocidad>("velocidad");
+
+                    if (velocidadContrario->y == 0 && velocidad->y != 0) {
+                        if (envolvente->colisionaAbajoCon(envolventeContrario)) {
+                            posicion->y = envolventeContrario->posicion->y + envolventeContrario->profundidad +
+                                          envolvente->profundidad;
+                        } else if (envolvente->colisionaArribaCon(envolventeContrario)) {
+                            posicion->y = envolventeContrario->posicion->y - envolventeContrario->profundidad -
+                                          envolvente->profundidad;
+                        }
+                    } else if (velocidadContrario->y != 0 && velocidad->y != 0) {
+                        if (envolvente->colisionaAbajoCon(envolventeContrario) ||
+                            envolvente->colisionaArribaCon(envolventeContrario)) {
+                            posicion->y -= int(velocidad->y);
+                            posicionContrario->y -= int(velocidadContrario->y);
+                        }
                     }
-                } else if (velocidadContrario->y != 0 && velocidad->y != 0) {
-                    if (envolvente->colisionaAbajoCon(envolventeContrario) ||
-                        envolvente->colisionaArribaCon(envolventeContrario)) {
-                        posicion->y -= int(velocidad->y);
-                        posicionContrario->y -= int(velocidadContrario->y);
+                    if (velocidadContrario->x == 0 && velocidad->x != 0) {
+                        if (envolvente->colisionaPorIzquierdaCon(envolventeContrario)) {
+                            posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho - envolvente->ancho;
+                        } else if (envolvente->colisionaPorDerechaCon(envolventeContrario)) {
+                            posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho + envolvente->ancho;
+                        }
+                    } else if (velocidadContrario->x != 0 && velocidad->x != 0) {
+                        if (envolvente->colisionaPorIzquierdaCon(envolventeContrario) ||
+                            envolvente->colisionaPorDerechaCon(envolventeContrario)) {
+                            posicion->x -= int(velocidad->x);
+                            posicionContrario->x -= int(velocidadContrario->x);
+                        }
                     }
                 }
-                if (velocidadContrario->x == 0 && velocidad->x != 0) {
-                    if (envolvente->colisionaPorIzquierdaCon(envolventeContrario)) {
-                        posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho - envolvente->ancho;
-                    } else if (envolvente->colisionaPorDerechaCon(envolventeContrario)) {
-                        posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho + envolvente->ancho;
-                    }
-                } else if (velocidadContrario->x != 0 && velocidad->x != 0) {
-                    if (envolvente->colisionaPorIzquierdaCon(envolventeContrario) ||
-                        envolvente->colisionaPorDerechaCon(envolventeContrario)) {
-                        posicion->x -= int(velocidad->x);
-                        posicionContrario->x -= int(velocidadContrario->x);
-                    }
-                }
-            }
         }
 
         if (posicion->y >= limiteEnProfundidad) {
@@ -125,6 +126,7 @@ void Colisionables::calcularAtaquesAelementos() {
                 if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
                     Locator::logger()->log(DEBUG, "golpeado!");
                     elemento->getEstado<GolpesSoportables>("golpes soportables")->restarGolpe();
+
                 }
             }
         }
@@ -142,11 +144,11 @@ void Colisionables::calcularArmasAlcanzables() {
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
-                auto *arma_eliminada = arma->getEstado<Eliminable>("eliminado");
+                auto *arma_eliminable = arma->getEstado<Eliminable>("eliminado");
 
-                if (envolvente->colisionaCon(envolvente_arma) && ! arma_eliminada->status() ) {
+                if (envolvente->colisionaCon(envolvente_arma) && ! arma_eliminable->status() ) {
                     Locator::logger()->log(DEBUG, "toma el arma!");
-                    arma_eliminada->eliminar();
+                    arma_eliminable->eliminar();
                 }
             }
         }
