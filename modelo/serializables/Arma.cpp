@@ -16,6 +16,8 @@ string Arma::armaACadena(ARMA arma) {
     };
 }
 
+Arma::Arma() : Arma(ARMA::PUNIOS){}
+
 Arma::Arma(ARMA arma) : arma(arma) {
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");

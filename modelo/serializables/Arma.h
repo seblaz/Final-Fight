@@ -25,6 +25,7 @@ private:
 
 public:
     static string armaACadena(ARMA arma);
+    Arma();
     explicit Arma(ARMA arma);
     void usar();
     int getPuntosDeDanio();
