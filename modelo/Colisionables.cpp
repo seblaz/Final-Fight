@@ -108,7 +108,7 @@ void Colisionables::calcularAtaquesAelementos() {
 
                 if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
                     Locator::logger()->log(DEBUG, "golpeado!");
-                    elemento->getEstado<Elemento>("elemento")->golpear();
+                    elemento->getEstado<Elemento>("elemento")->recibirGolpeDe(jugador);
                 }
             }
         }
@@ -130,7 +130,11 @@ void Colisionables::calcularArmasAlcanzables() {
 
                 if (envolvente->colisionaCon(envolvente_arma)) {
                     Locator::logger()->log(DEBUG, "toma el arma!");
-                    arma->getEstado<Arma>("arma")->tomar();
+                    if(jugador->getEstado<Arma>("arma")->getArma() == ARMA::PUNIOS){
+                        auto armaEstado = arma->getEstado<Arma>("arma");
+                        armaEstado->tomar();
+                        jugador->agregarEstado("arma", armaEstado);
+                    }
                 }
             }
         }

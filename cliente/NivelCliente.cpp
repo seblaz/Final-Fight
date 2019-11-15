@@ -9,8 +9,8 @@
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
 #include "AnimadorElemento.h"
-#include "../modelo/serializables/Personaje.h"
 #include "../graficos/GraficoDeTransicion.h"
+#include "../graficos/GraficoArma.h"
 #include "../modelo/serializables/Elemento.h"
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/GraficoJugador.h"
@@ -181,7 +181,7 @@ void NivelCliente::generarArma(Mapa *mapa, Entidad *arma) {
     AnimacionCliente *animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/" + tipoArma);
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
-    auto *grafico = new Grafico(arma);
+    auto *grafico = new GraficoArma(arma);
 
     arma->agregarEstado("sprite", sprite);
     arma->agregarEstado("animacion", animacion);
