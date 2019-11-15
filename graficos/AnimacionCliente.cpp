@@ -9,8 +9,7 @@
 
 AnimacionCliente::AnimacionCliente(vector<SDL_Rect> *posiciones, float escala) :
         posiciones(posiciones),
-        escala_(escala) {
-}
+        escala_(escala) {}
 
 SDL_Rect AnimacionCliente::devolverPosicion(Entidad *entidad) {
     auto *indiceSprite = entidad->getEstado<IndiceSprite>("indice sprite");

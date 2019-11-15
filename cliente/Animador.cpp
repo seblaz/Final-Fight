@@ -9,7 +9,6 @@
 Animador::Animador(Entidad *entidad) : Comportamiento(entidad) {}
 
 void Animador::actualizar() {
-
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
     auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesCliente>("fabrica de animaciones");
     entidad->agregarEstado("animacion", fabricaDeAnimaciones->getAnimacion(estado->getEstado()));
