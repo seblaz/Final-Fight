@@ -124,7 +124,6 @@ void NivelCliente::generarEnemigo(Entidad *enemigo) {
     }
 
     auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc(spritePath);
-    //auto *fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/poisson");
     auto *graficoDeEnemigo = new Grafico(enemigo);
     auto *animacion = fabricaDeEnemigo->getAnimacion(REPOSANDO);
     auto *animador = new Animador(enemigo);

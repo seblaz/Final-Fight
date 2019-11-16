@@ -185,6 +185,11 @@
                 <src>assets/personajes/poison.png</src>
             </punios>
         </poisson>
+        <boss>
+            <punios>
+                <src>assets/personajes/DamndBoss2.png</src>
+            </punios>
+        </boss>
         <indicadores>
             <jugador1>
                 <src>assets/varios/indicador1.png</src>

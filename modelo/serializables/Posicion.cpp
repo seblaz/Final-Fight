@@ -71,4 +71,8 @@ float Posicion::moduloX() {
     return sqrt( (x*x));
 }
 
+float Posicion::moduloY() {
+    return sqrt( (y*y) );
+}
+
 

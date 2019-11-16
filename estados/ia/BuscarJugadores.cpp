@@ -26,6 +26,7 @@ void EventoBuscarJugadores::resolver() {
     Posicion restaPosicion = posicion->menos(&posicionMasCercana);
     float mod = restaPosicion.modulo();
     float modX = restaPosicion.moduloX();
+    float modY = restaPosicion.moduloY();
     int num = 1 + rand() % (101 - 1);
     if ( mod <= 700 ) {
         if( mod >= 200 ) {
@@ -38,20 +39,20 @@ void EventoBuscarJugadores::resolver() {
         }else{
             //TODO atacar
             if ( personaje->getPersonaje() == POISSON ){
-                if( num > 10 && modX >= 120){
+                if( num > 50 && modX >= 120){
                     estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                     restaPosicion.y > 0);
-                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120){
-                    estado->darGolpe();
+                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5){
+                    //estado->darGolpe();
                 }else{
                     estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,
                                     restaPosicion.y < 0);
                 }
             }else if ( personaje->getPersonaje() == BOSS ){
-                if( num > 10 && modX >= 200){
+                if( num > 50 && modX >= 200 ){
                     estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                     restaPosicion.y > 0);
-                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120){
+                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5){
                     estado->darGolpe();
                 }else{
                     estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,

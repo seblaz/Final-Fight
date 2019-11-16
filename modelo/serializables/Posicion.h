@@ -28,6 +28,7 @@ public:
     int distanciaEntrePuntos(Posicion *otraPosicion);
     float modulo();
     float moduloX();
+    float moduloY();
     Posicion menos(Posicion *);
 
     void serializar(ostream& stream) override;
