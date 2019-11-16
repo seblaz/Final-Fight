@@ -51,9 +51,6 @@ void Arma::usar() {
     if(usosRestantes-- == 0) inicializar(ARMA::PUNIOS);
 }
 
-bool Arma::tieneUsosRestantes(){
-    return usosRestantes > 0;
-}
 void Arma::tomar() {
     enSuelo = false;
 }
