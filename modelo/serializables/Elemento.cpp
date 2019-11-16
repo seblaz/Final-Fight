@@ -21,7 +21,7 @@ ELEMENTO Elemento::getElemento() {
     return elemento;
 }
 
-void Elemento::recibirGolpeDe(Entidad* golpeador) {
+void Elemento::recibirGolpeDe() {
     golpes--;
 }
 

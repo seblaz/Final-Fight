@@ -111,7 +111,6 @@ void Colisionables::calcularAtaquesAElementos() {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
         if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-//            Locator::logger()->log(DEBUG, "Busco golpes");
 
             auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
             for (auto *elemento : mapa->getElementos()) {

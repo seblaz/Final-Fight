@@ -11,7 +11,7 @@
 
 void Sano::recibirGolpeDe(Entidad *jugador) {
     auto *elemento = entidad->getEstado<Elemento>("elemento");
-    elemento->recibirGolpeDe(jugador);
+    elemento->recibirGolpeDe();
     if(elemento->estaRoto()) {
         Locator::logger()->log(INFO, "Elemento roto.");
         jugador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAElemento(elemento);

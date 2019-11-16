@@ -24,7 +24,7 @@ public:
     Elemento(ELEMENTO elemento);
 
     ELEMENTO getElemento();
-    void recibirGolpeDe(Entidad* golpeador);
+    void recibirGolpeDe();
     bool estaRoto();
 
     void serializar(ostream& stream) override;
