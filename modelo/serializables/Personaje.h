@@ -15,6 +15,7 @@ enum PERSONAJE {
     HAGGAR,
     MAKI,
     POISSON,
+    BOSS,
     NULO
 };
 

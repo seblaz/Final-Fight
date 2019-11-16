@@ -87,6 +87,9 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     generarArmas(nivel, mapa, posicionDeEscenario, ARMA::TUBO);
     generarEnemigo(nivel, mapa, posicionDeEscenario, jugadores);
     generarTransicion(nivel, mapa, jugadores);
+    if ( nivel == "nivel2" ){
+        generarJefeFinal(nivel, mapa, posicionDeEscenario, jugadores);
+    }
 }
 
 Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
@@ -264,4 +267,46 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         armaRandom->agregarEstado("posicion", posicionElementoRandom);
         armaRandom->agregarEstado("posicion de escenario", posicionDeEscenario); // TODO: revisar si es necesario.
     }
+}
+
+void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores) {
+    Configuracion *config = Locator::configuracion();
+    int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
+    int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
+    string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
+    auto *personaje = new Personaje(POISSON);
+
+    Locator::logger()->log(INFO, "Se genera al Jefe final");
+
+    Entidad *enemigo = mapa->crearEnemigo();
+
+    auto *tipo = new Tipo(TIPO::ENEMIGO);
+    auto *comportamiento = new BuscarJugadores(enemigo, jugadores);
+    auto *velocidadDeEnemigo = new Velocidad();
+    auto *orientacionDeEnemigo = new Orientacion;
+    auto *fisicaDeEnemigo = new FisicaDePersonaje(enemigo);
+    auto *estado = new Reposando(enemigo);
+    auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
+    auto *posicionEnemigoRandom = new Posicion(anchoNivel - 100, generarPosicionY(profundidadNivel), 0);
+    auto *indiceSprite = new IndiceSprite;
+    auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
+    auto *energia = new Energia(500,1);
+    auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 70, 30);
+    auto* arma = new Arma(ARMA::PUNIOS);
+
+    enemigo->agregarEstado("arma", arma);
+    enemigo->agregarEstado("tipo", tipo);
+    enemigo->agregarEstado("personaje", personaje);
+    enemigo->agregarEstado("indice sprite", indiceSprite);
+    enemigo->agregarEstado("velocidad", velocidadDeEnemigo);
+    enemigo->agregarEstado("posicion", posicionEnemigoRandom);
+    enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
+    enemigo->agregarEstado("estado de personaje", estadoDePersonaje);
+    enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
+    enemigo->agregarEstado("energia", energia);
+    enemigo->agregarEstado("envolvente", envolvente);
+    enemigo->agregarComportamiento("estado", estado);
+    enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
+    enemigo->agregarComportamiento("comportamiento", comportamiento);
+    enemigo->agregarComportamiento("animacion servidor", animacionServidor);
 }
