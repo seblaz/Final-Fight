@@ -78,6 +78,8 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
 
     golpeador->getComportamiento<NotificadorDeGolpes>("notificador")->notificarGolpeAPersonaje(this->entidad);
 
+    arma->usar();
+
     cambiarEstado(RECIBIENDO_GOLPE);
 }
 

@@ -23,6 +23,7 @@ private:
     int usosRestantes;
     int puntosParaPersonaje;
     bool enSuelo = true;
+    void inicializar(ARMA arma);
 
 public:
     Arma();

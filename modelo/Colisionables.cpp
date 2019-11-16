@@ -136,7 +136,6 @@ void Colisionables::calcularArmasAlcanzables() {
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
-//                auto *arma_eliminada = arma->getEstado<GolpesSoportables>("eliminado");
 
                 if (envolvente->colisionaCon(envolvente_arma)) {
                     Locator::logger()->log(DEBUG, "toma el arma!");

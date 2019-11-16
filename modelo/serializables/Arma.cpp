@@ -17,7 +17,12 @@ string Arma::armaACadena(ARMA arma) {
 
 Arma::Arma() : Arma(ARMA::PUNIOS){}
 
-Arma::Arma(ARMA arma) : arma(arma) {
+Arma::Arma(ARMA arma) {
+    inicializar(arma);
+}
+
+void Arma::inicializar(ARMA arma) {
+    this->arma = arma;
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
     usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
@@ -43,7 +48,7 @@ void Arma::deserializar(istream &stream) {
 }
 
 void Arma::usar() {
-    usosRestantes--;
+    if(usosRestantes-- == 0) inicializar(ARMA::PUNIOS);
 }
 
 bool Arma::tieneUsosRestantes(){

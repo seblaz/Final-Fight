@@ -11,19 +11,14 @@
 NotificadorDeGolpes::NotificadorDeGolpes(Entidad *entidad) : Comportamiento(entidad) {}
 
 void NotificadorDeGolpes::notificarGolpeAPersonaje(Entidad* personajeGolpeado){
-    auto estadoGolpeador = this->entidad->getEstado<EstadoDePersonaje>("estado de personaje");
-    auto puntajeGolpeador = this->entidad->getEstado<Puntaje>("puntaje");
-    auto arma = this->entidad->getEstado<Arma>("arma");
+    auto estadoGolpeador = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
+    auto puntajeGolpeador = entidad->getEstado<Puntaje>("puntaje");
+    auto arma = entidad->getEstado<Arma>("arma");
 
     int puntosParaJugador = estadoGolpeador->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
     puntajeGolpeador->agregarPuntos(puntosParaJugador);
 
     if(!personajeGolpeado->getEstado<Energia>("energia")->personajeVive()){
         puntajeGolpeador->agregarPuntos(500);
-    }
-
-    arma->usar();
-    if (!arma->tieneUsosRestantes()){
-        this->entidad->cambiarEstado("arma", new Arma(ARMA::PUNIOS));
     }
 }
