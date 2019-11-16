@@ -21,8 +21,8 @@ private:
     ARMA arma;
     int danio;
     int usosRestantes;
-    int puntosParaPersonaje;
     bool enSuelo = true;
+    void inicializar(ARMA arma);
 
 public:
     Arma();
@@ -33,11 +33,10 @@ public:
     void tomar();
     bool enElSuelo();
     int getPuntosDeDanio();
-    int getPuntosParaPersonaje();
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
-    bool tieneUsosRestantes();
+
     static string armaACadena(ARMA arma);
 
 };

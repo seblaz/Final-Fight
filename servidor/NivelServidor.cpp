@@ -21,7 +21,7 @@
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
 #include "../modelo/serializables/Arma.h"
-#include "../modelo/NotificadorDeGolpes.h"
+#include "notificadores/NotificadorDeGolpesJugador.h"
 
 
 Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int contadorJugador) {
@@ -44,7 +44,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
     auto* arma = new Arma(ARMA::PUNIOS);
-    auto* notificador = new NotificadorDeGolpes(jugador);
+    auto* notificador = new NotificadorDeGolpesJugador(jugador);
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);
@@ -60,10 +60,10 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     jugador->agregarEstado("puntaje", puntaje);
     jugador->agregarEstado("envolvente ataque", envolventeDeAtaque);
     jugador->agregarEstado("arma", arma);
+    jugador->agregarEstado("notificador", notificador);
     jugador->agregarComportamiento("estado", estado);
     jugador->agregarComportamiento("fisica", fisica);
     jugador->agregarComportamiento("animacion servidor", animacionServidor);
-    jugador->agregarComportamiento("notificador", notificador);
 
     return jugador;
 }
@@ -226,7 +226,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
         auto elementoRandom = mapa->crearElemento();
-        auto *elemento = new Elemento(objeto, golpesMaximos, puntosParaJugadorPorRomper);
+        auto *elemento = new Elemento(objeto);
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);

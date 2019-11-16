@@ -17,19 +17,20 @@ string Arma::armaACadena(ARMA arma) {
 
 Arma::Arma() : Arma(ARMA::PUNIOS){}
 
-Arma::Arma(ARMA arma) : arma(arma) {
+Arma::Arma(ARMA arma) {
+    inicializar(arma);
+}
+
+void Arma::inicializar(ARMA arma) {
+    this->arma = arma;
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
     usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
-    puntosParaPersonaje = Locator::configuracion()->getIntValue(base + "/puntos");
+    Locator::configuracion()->getIntValue(base + "/puntos");
 }
 
 int Arma::getPuntosDeDanio() {
     return danio;
-}
-
-int Arma::getPuntosParaPersonaje() {
-    return puntosParaPersonaje;
 }
 
 void Arma::serializar(ostream &stream) {
@@ -43,12 +44,9 @@ void Arma::deserializar(istream &stream) {
 }
 
 void Arma::usar() {
-    usosRestantes--;
+    if(usosRestantes-- == 0) inicializar(ARMA::PUNIOS);
 }
 
-bool Arma::tieneUsosRestantes(){
-    return usosRestantes > 0;
-}
 void Arma::tomar() {
     enSuelo = false;
 }

@@ -97,5 +97,5 @@ target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAG
 #[[
   Compilar el servidor.
 ]]
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources} modelo/NotificadorDeGolpes.cpp modelo/NotificadorDeGolpes.h)
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources} servidor/notificadores/NotificadorDeGolpesJugador.cpp servidor/notificadores/NotificadorDeGolpesJugador.h)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

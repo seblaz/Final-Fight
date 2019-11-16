@@ -8,7 +8,7 @@
 #include "envolventes/EnvolventeAtaque.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
-#include "NotificadorDeGolpes.h"
+#include "../servidor/notificadores/NotificadorDeGolpesJugador.h"
 #include <utility>
 
 void Colisionables::calcularInteracciones() {
@@ -136,7 +136,6 @@ void Colisionables::calcularArmasAlcanzables() {
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
-//                auto *arma_eliminada = arma->getEstado<GolpesSoportables>("eliminado");
 
                 if (envolvente->colisionaCon(envolvente_arma)) {
                     Locator::logger()->log(DEBUG, "toma el arma!");
