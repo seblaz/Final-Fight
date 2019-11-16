@@ -73,37 +73,44 @@ Configuracion::~Configuracion() {
 }
 
 string Configuracion::getValue(const string &xPath) {
-    lock_guard<mutex> lock(m);
-    XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
-
-    xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
-            tag,
-            parser->getDocument()->getDocumentElement(),
-            nullptr,
-            xercesc::DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
-            nullptr);
-
-    xercesc::XMLString::release(&tag);
-
-    if (!result->getNodeValue())
-        return "";
-
-    char* finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
-    result->release();
-
-    std::string returnValue(finalValue);
-    xercesc::XMLString::release(&finalValue);
-    return returnValue;
+    if(cacheStrings.find(xPath) == cacheStrings.end()){
+        lock_guard<mutex> lock(m);
+        XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
+    
+        xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
+                tag,
+                parser->getDocument()->getDocumentElement(),
+                nullptr,
+                xercesc::DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
+                nullptr);
+    
+        xercesc::XMLString::release(&tag);
+    
+        if (!result->getNodeValue())
+            return "";
+    
+        char* finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
+        result->release();
+    
+        std::string returnValue(finalValue);
+        xercesc::XMLString::release(&finalValue);
+        cacheStrings[xPath] = returnValue;
+    }
+    return cacheStrings[xPath];
 }
 
 int Configuracion::getIntValue(const string &xPath) {
-    string result = getValue(xPath);
-    return stoi(result);
+    if(cacheInts.find(xPath) == cacheInts.end()) {
+        cacheInts[xPath] = stoi(getValue(xPath));
+    }
+    return cacheInts[xPath];
 }
 
 float Configuracion::getFloatValue(const string &xPath) {
-    string result = getValue(xPath);
-    return stof(result);
+    if(cacheFloats.find(xPath) == cacheFloats.end()) {
+        cacheFloats[xPath] = stof(getValue(xPath));
+    }
+    return cacheFloats[xPath];
 }
 
 string Configuracion::getValue(const string &xPath, const string &defaultValue) {

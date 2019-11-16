@@ -209,6 +209,9 @@
             <punios>
                 <src>assets/personajes/DamndBoss2.png</src>
             </punios>
+            <patada>
+                <src>assets/personajes/DamndBoss2.png</src>
+            </patada>
         </boss>
         <indicadores>
             <jugador1>
