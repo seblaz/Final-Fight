@@ -8,7 +8,7 @@
 #include "envolventes/EnvolventeAtaque.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
-#include "NotificadorDeGolpes.h"
+#include "../servidor/notificadores/NotificadorDeGolpesJugador.h"
 #include <utility>
 
 void Colisionables::calcularInteracciones() {

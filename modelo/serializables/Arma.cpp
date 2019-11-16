@@ -26,15 +26,11 @@ void Arma::inicializar(ARMA arma) {
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
     usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
-    puntosParaPersonaje = Locator::configuracion()->getIntValue(base + "/puntos");
+    Locator::configuracion()->getIntValue(base + "/puntos");
 }
 
 int Arma::getPuntosDeDanio() {
     return danio;
-}
-
-int Arma::getPuntosParaPersonaje() {
-    return puntosParaPersonaje;
 }
 
 void Arma::serializar(ostream &stream) {

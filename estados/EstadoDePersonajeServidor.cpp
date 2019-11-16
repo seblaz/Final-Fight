@@ -15,7 +15,7 @@
 #include "../modelo/serializables/Arma.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/serializables/Energia.h"
-#include "../modelo/NotificadorDeGolpes.h"
+#include "../servidor/notificadores/NotificadorDeGolpesJugador.h"
 #include "Muerto.h"
 
 EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
@@ -76,7 +76,7 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
     int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
     energiaGolpeado->restarEnergia(puntosDeDanio);
 
-    golpeador->getComportamiento<NotificadorDeGolpes>("notificador")->notificarGolpeAPersonaje(this->entidad);
+    golpeador->getEstado<NotificadorDeGolpesJugador>("notificador")->notificarGolpeAPersonaje(this->entidad);
 
     arma->usar();
 
