@@ -23,6 +23,7 @@ public:
     void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
     void agachar() override {};
     void reposar() override {};
+    void recibirGolpeDe(Entidad* ) override {}
 };
 
 

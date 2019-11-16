@@ -62,6 +62,8 @@ public:
     Entidad *crearPantalla();
 
     Entidad *crearTransicion();
+
+    bool bloqueoEscenarioPorEnemigos();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

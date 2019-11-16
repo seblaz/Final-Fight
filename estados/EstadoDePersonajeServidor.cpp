@@ -15,6 +15,7 @@
 #include "../modelo/serializables/Arma.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/serializables/Energia.h"
+#include "Muerto.h"
 
 EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
 
@@ -29,6 +30,7 @@ map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)(Entidad *entidad)> Estad
         {SALTANDO_CON_MOVIMIENTO, &crearEstado<Saltando>},
         {DANDO_GOLPE,             &crearEstado<DandoGolpe>},
         {RECIBIENDO_GOLPE,        &crearEstado<RecibiendoGolpe>},
+        {MUERTO,                  &crearEstado<Muerto>},
 };
 
 void EstadoDePersonajeServidor::cambiarEstado(ESTADO_DE_PERSONAJE estado) {
@@ -96,4 +98,8 @@ void EstadoDePersonajeServidor::actualizar() {
     // Entonces lo paso a reposar.
     if(frames++ > 1)
         Locator::eventos()->push(new Reposar(entidad));
+}
+
+void EstadoDePersonajeServidor::morir() {
+    cambiarEstado(MUERTO);
 }

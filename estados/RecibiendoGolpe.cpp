@@ -3,9 +3,18 @@
 //
 
 #include "RecibiendoGolpe.h"
+#include "../modelo/serializables/Energia.h"
+#include "Muerto.h"
 
 void RecibiendoGolpe::actualizar() {
-    if (faltante-- <= 0) entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
+    if (faltante-- <= 0){
+        auto* energia = entidad->getEstado<Energia>("energia");
+        if( energia->personajeVive() ){
+            entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
+        }else{
+            entidad->getComportamiento<EstadoDePersonajeServidor>("estado")->morir();
+        }
+    }
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
     velocidad->x = 0;

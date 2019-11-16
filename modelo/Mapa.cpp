@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "Mapa.h"
 #include "../servicios/Locator.h"
+#include "serializables/EstadoDePersonaje.h"
 
 using namespace std;
 
@@ -135,4 +136,21 @@ vector<Entidad *> &Mapa::getArmas() {
 
 vector<Entidad *> &Mapa::getColisionables() {
     return colisionables;
+}
+
+bool Mapa::bloqueoEscenarioPorEnemigos() {
+    for (auto* enemigo : enemigos){
+        auto* estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
+        if ( estado->getEstado() == CAMINANDO){
+            return false;
+        } else if ( estado->getEstado() == SALTANDO_CON_MOVIMIENTO){
+            return false;
+        } else if ( estado->getEstado() == SALTANDO){
+            return false;
+        }else if ( estado->getEstado() == RECIBIENDO_GOLPE){
+            return false;
+        }else if ( estado->getEstado() == DANDO_GOLPE)
+            return false;
+    }
+    return true;
 }
