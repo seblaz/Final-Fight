@@ -21,9 +21,8 @@ ELEMENTO Elemento::getElemento() {
     return elemento;
 }
 
-void Elemento::recibirGolpeDe(Entidad* golpeador) {
+void Elemento::recibirGolpeDe() {
     golpes--;
-    golpeador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAElemento(this);
 }
 
 bool Elemento::estaRoto() {

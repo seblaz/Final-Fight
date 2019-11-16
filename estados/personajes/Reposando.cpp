@@ -3,7 +3,7 @@
 //
 
 #include "Reposando.h"
-#include "../servicios/Locator.h"
+#include "../../servicios/Locator.h"
 
 void Reposando::actualizar() {
     auto* velocidad = entidad->getEstado<Velocidad>("velocidad");

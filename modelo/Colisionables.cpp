@@ -4,7 +4,8 @@
 
 #include "Colisionables.h"
 #include "envolventes/EnvolventeVolumen.h"
-#include "../estados/EstadoDePersonajeServidor.h"
+#include "../estados/personajes/EstadoDePersonajeServidor.h"
+#include "../estados/elementos/EstadoDeElemento.h"
 #include "envolventes/EnvolventeAtaque.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
@@ -88,7 +89,7 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
         if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-            Locator::logger()->log(DEBUG, "Busco golpes");
+//            Locator::logger()->log(DEBUG, "Busco golpes");
 
             auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
             for (auto *enemigo : mapa->getEnemigos()) {
@@ -96,7 +97,7 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
                 auto *estadoEnemigo = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
 
                 if (envolventeAtaque->colisionaCon(envolvente_enemigo) && estadoEnemigo->getEstado() != MUERTO) {
-                    Locator::logger()->log(DEBUG, "golpeado!");
+                    Locator::logger()->log(DEBUG, "Enemigo golpeado.");
 
                     enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpeDe(jugador);
                 }
@@ -111,15 +112,14 @@ void Colisionables::calcularAtaquesAElementos() {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
         if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-            Locator::logger()->log(DEBUG, "Busco golpes");
 
             auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
             for (auto *elemento : mapa->getElementos()) {
                 auto *envolvente_elemento = elemento->getEstado<EnvolventeVolumen>("envolvente");
 
                 if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
-                    Locator::logger()->log(DEBUG, "golpeado!");
-                    elemento->getEstado<Elemento>("elemento")->recibirGolpeDe(jugador);
+                    Locator::logger()->log(DEBUG, "Elemento golpeado.");
+                    elemento->getComportamiento<EstadoDeElemento>("estado")->recibirGolpeDe(jugador);
                 }
             }
         }

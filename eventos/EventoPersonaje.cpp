@@ -3,7 +3,7 @@
 //
 
 #include "EventoPersonaje.h"
-#include "../estados/EstadoDePersonajeServidor.h"
+#include "../estados/personajes/EstadoDePersonajeServidor.h"
 #include "../modelo/serializables/Energia.h"
 
 EventoPersonaje::EventoPersonaje(Entidad *personaje) : personaje(personaje) {}

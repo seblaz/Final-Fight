@@ -8,7 +8,7 @@
 #include "EstadoDePersonajeServidor.h"
 #include <SDL_scancode.h>
 #include "Reposando.h"
-#include "../servicios/Logger.h"
+#include "../../servicios/Logger.h"
 
 class Agachado : public EstadoDePersonajeServidor {
 
