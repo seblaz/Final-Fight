@@ -4,15 +4,18 @@
 
 #include "Elemento.h"
 #include "Puntaje.h"
+#include "../../servidor/notificadores/NotificadorDeGolpes.h"
+#include "../../servicios/Locator.h"
 
 Elemento::Elemento() :
         golpes(0),
         elemento(static_cast<ELEMENTO>(0)) {}
 
-Elemento::Elemento(ELEMENTO elemento, int golpes, int puntosParaJugadorPorRomper) :
-        golpes(golpes),
-        elemento(elemento),
-        puntosParaJugadorPorRomper(puntosParaJugadorPorRomper) {}
+Elemento::Elemento(ELEMENTO elemento) :
+        elemento(elemento) {
+    string tipoElemento = ElementoACadena(elemento);
+    golpes = Locator::configuracion()->getIntValue("/elementos/" + tipoElemento + "/golpes");
+}
 
 ELEMENTO Elemento::getElemento() {
     return elemento;
@@ -20,9 +23,7 @@ ELEMENTO Elemento::getElemento() {
 
 void Elemento::recibirGolpeDe(Entidad* golpeador) {
     golpes--;
-    if(golpes == 0){
-        golpeador->getEstado<Puntaje>("puntaje")->agregarPuntos(this->puntosParaJugadorPorRomper);
-    }
+    golpeador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAElemento(this);
 }
 
 bool Elemento::estaRoto() {

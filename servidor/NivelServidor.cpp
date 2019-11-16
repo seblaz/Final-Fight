@@ -223,7 +223,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         Locator::logger()->log(INFO, "Se inicia la construccion del elemento random :" + to_string(i));
         auto *indiceSprite = new IndiceSprite;
         auto elementoRandom = mapa->crearElemento();
-        auto *elemento = new Elemento(objeto, golpesMaximos, puntosParaJugadorPorRomper);
+        auto *elemento = new Elemento(objeto);
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);

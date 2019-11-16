@@ -8,6 +8,7 @@
 #include "../../modelo/serializables/Arma.h"
 #include "../../modelo/serializables/Energia.h"
 #include "../../servicios/Locator.h"
+#include "../../modelo/serializables/Elemento.h"
 
 NotificadorDeGolpesJugador::NotificadorDeGolpesJugador(Entidad *jugador) : jugador(jugador) {}
 
@@ -27,6 +28,10 @@ void NotificadorDeGolpesJugador::notificarGolpeAPersonaje(Entidad* personajeGolp
     }
 }
 
-void NotificadorDeGolpesJugador::notificarGolpeAElemento(Entidad *elementoGolpeado) {
-//    NotificadorDeGolpes::notificarGolpeAElemento(elementoGolpeado);
+void NotificadorDeGolpesJugador::notificarGolpeAElemento(Elemento *elemento) {
+    if(elemento->estaRoto()){
+        string tipoElemento = Elemento::ElementoACadena(elemento->getElemento());
+        int puntos = Locator::configuracion()->getIntValue("/elementos/" + tipoElemento + "/puntos");
+        jugador->getEstado<Puntaje>("puntaje")->agregarPuntos(puntos);
+    }
 }

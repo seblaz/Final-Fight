@@ -76,7 +76,7 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
     int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
     energiaGolpeado->restarEnergia(puntosDeDanio);
 
-    golpeador->getEstado<NotificadorDeGolpesJugador>("notificador")->notificarGolpeAPersonaje(this->entidad);
+    golpeador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAPersonaje(this->entidad);
 
     arma->usar();
 

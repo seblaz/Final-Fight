@@ -72,6 +72,16 @@
             <usos>999999</usos>
         </punios>
     </armas>
+    <elementos>
+        <caja>
+            <puntos>200</puntos>
+            <golpes>2</golpes>
+        </caja>
+        <barril>
+            <puntos>300</puntos>
+            <golpes>1</golpes>
+        </barril>
+    </elementos>
     <pantallas>
         <autenticacion>
             <fondo>

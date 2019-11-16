@@ -16,8 +16,9 @@ private:
 
 public:
     explicit NotificadorDeGolpesJugador(Entidad *entidad);
+
     void notificarGolpeAPersonaje(Entidad *personajeGolpeado) override;
-    void notificarGolpeAElemento(Entidad *elementoGolpeado) override;
+    void notificarGolpeAElemento(Elemento *elementoGolpeado) override;
 
 };
 

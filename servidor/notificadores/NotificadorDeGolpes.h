@@ -6,12 +6,13 @@
 #define FINAL_FIGHT_NOTIFICADORDEGOLPES_H
 
 #include "../../modelo/Entidad.h"
+#include "../../modelo/serializables/Elemento.h"
 
 class NotificadorDeGolpes : public Estado {
 
 public:
     virtual void notificarGolpeAPersonaje(Entidad *personajeGolpeado) {};
-    virtual void notificarGolpeAElemento(Entidad *elementoGolpeado) {};
+    virtual void notificarGolpeAElemento(Elemento *elementoGolpeado) {};
 
 };
 

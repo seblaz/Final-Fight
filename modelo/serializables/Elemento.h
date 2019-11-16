@@ -18,11 +18,10 @@ class Elemento : public Estado {
 private:
     ELEMENTO elemento;
     int golpes;
-    int puntosParaJugadorPorRomper;
 
 public:
     Elemento();
-    Elemento(ELEMENTO elemento, int golpes, int puntosParaJugadorPorRomper);
+    Elemento(ELEMENTO elemento);
 
     ELEMENTO getElemento();
     void recibirGolpeDe(Entidad* golpeador);
