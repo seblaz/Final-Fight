@@ -20,6 +20,7 @@ private:
     void calcularAtaquesDeJugadoresAEnemigos();
     void calcularAtaquesAElementos();
     void calcularArmasAlcanzables();
+    void calcularAtaquesDeEnemigosAJugadores();
 
 public:
     explicit Colisionables() = default;

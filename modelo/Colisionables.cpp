@@ -16,6 +16,7 @@ void Colisionables::calcularInteracciones() {
     calcularAtaquesDeJugadoresAEnemigos();
     calcularAtaquesAElementos();
     calcularArmasAlcanzables();
+    calcularAtaquesDeEnemigosAJugadores();
 }
 
 void Colisionables::calcularPosiblesColisiones() {
@@ -144,6 +145,29 @@ void Colisionables::calcularArmasAlcanzables() {
                         armaEstado->tomar();
                         jugador->agregarEstado("arma", new Arma(armaEstado->getArma()));
                     }
+                }
+            }
+        }
+    }
+}
+
+void Colisionables::calcularAtaquesDeEnemigosAJugadores() {
+    auto* mapa = Locator::mapa();
+    for (auto *enemigo : mapa->getEnemigos()) {
+        auto *estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
+
+        if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
+            Locator::logger()->log(DEBUG, "Busco golpes");
+
+            auto *envolventeAtaque = enemigo->getEstado<EnvolventeAtaque>("envolvente ataque");
+            for (auto *jugador : mapa->getPersonajes()) {
+                auto *envolvente_jugador = jugador->getEstado<EnvolventeVolumen>("envolvente");
+                auto *estadoJugador = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
+
+                if (envolventeAtaque->colisionaCon(envolvente_jugador) && estadoJugador->getEstado() != MUERTO) {
+                    Locator::logger()->log(DEBUG, "golpeado!");
+
+                    jugador->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpeDe(enemigo);
                 }
             }
         }

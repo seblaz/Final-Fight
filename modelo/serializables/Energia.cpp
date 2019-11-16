@@ -32,6 +32,7 @@ void Energia::restarEnergia(int energiaRestada) {
     if ( puntosDeEnergia - energiaRestada > 0 ){
         this -> puntosDeEnergia -= energiaRestada;
     }else if(!modoTest){
+
         if ( vidas > 1 ){
             this -> vidas -= 1;
             this -> puntosDeEnergia = 100;
@@ -40,6 +41,8 @@ void Energia::restarEnergia(int energiaRestada) {
             this -> puntosDeEnergia = 0;
             this -> vivo = false;
         }
+        Locator::logger()->log(DEBUG, "Quedan vida/s: " + to_string(vidas));
+        Locator::logger()->log(DEBUG, "Quedan puntosDeEnergia: " + to_string(puntosDeEnergia));
     }
 }
 

@@ -177,7 +177,9 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
         auto *energia = new Energia(100,1);
         auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 50, 30);
+        auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 100, 30, orientacionDeEnemigo);
         auto* arma = new Arma(ARMA::PUNIOS);
+        auto* notificador = new NotificadorDeGolpes();
 
         enemigo->agregarEstado("arma", arma);
         enemigo->agregarEstado("tipo", tipo);
@@ -190,6 +192,8 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
         enemigo->agregarEstado("energia", energia);
         enemigo->agregarEstado("envolvente", envolvente);
+        enemigo->agregarEstado("envolvente ataque", envolventeDeAtaque);
+        enemigo->agregarEstado("notificador", notificador);
         enemigo->agregarComportamiento("estado", estado);
         enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
         enemigo->agregarComportamiento("comportamiento", comportamiento);
@@ -274,7 +278,7 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
     string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
-    auto *personaje = new Personaje(POISSON);
+    auto *personaje = new Personaje(BOSS);
 
     Locator::logger()->log(INFO, "Se genera al Jefe final");
 
@@ -289,10 +293,12 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *posicionEnemigoRandom = new Posicion(anchoNivel - 100, generarPosicionY(profundidadNivel), 0);
     auto *indiceSprite = new IndiceSprite;
-    auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
+    auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, BOSS, "reposando");
     auto *energia = new Energia(500,1);
     auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 70, 30);
     auto* arma = new Arma(ARMA::PUNIOS);
+    auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 100, 30, orientacionDeEnemigo);
+    auto* notificador = new NotificadorDeGolpes();
 
     enemigo->agregarEstado("arma", arma);
     enemigo->agregarEstado("tipo", tipo);
@@ -305,6 +311,8 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *
     enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
     enemigo->agregarEstado("energia", energia);
     enemigo->agregarEstado("envolvente", envolvente);
+    enemigo->agregarEstado("envolvente ataque", envolventeDeAtaque);
+    enemigo->agregarEstado("notificador", notificador);
     enemigo->agregarComportamiento("estado", estado);
     enemigo->agregarComportamiento("fisica", fisicaDeEnemigo);
     enemigo->agregarComportamiento("comportamiento", comportamiento);

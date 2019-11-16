@@ -24,7 +24,7 @@ void EventoBuscarJugadores::resolver() {
 
     Posicion restaPosicion = posicion->menos(&posicionMasCercana);
     float mod = restaPosicion.modulo();
-    if ( mod <= 700 ) {
+    if ( mod <= 1000 ) {
         if( mod >= 100 ) {
             int num = 1 + rand() % (101 - 1);
             if( num > 85){
@@ -36,11 +36,11 @@ void EventoBuscarJugadores::resolver() {
         }else{
             //TODO atacar
             int num = 1 + rand() % (101 - 1);
-            if( num > 70){
+            if( num > 5 && restaPosicion.x > 10){
                 estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                 restaPosicion.y > 0);
             }else{
-                estado->darGolpe();
+                //estado->darGolpe();
             }
         }
     }else{
