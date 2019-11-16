@@ -5,7 +5,8 @@
 #include <random>
 #include "NivelServidor.h"
 #include "../modelo/serializables/Nivel.h"
-#include "../estados/Reposando.h"
+#include "../estados/personajes/Reposando.h"
+#include "../estados/elementos/Sano.h"
 #include "../fisica/FisicaDePersonaje.h"
 #include "../fisica/FisicaDeEscenario.h"
 #include "../modelo/serializables/Opacidad.h"
@@ -199,24 +200,8 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
 
 void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ELEMENTO objeto) {
     Configuracion *config = Locator::configuracion();
-    int golpesMaximos;
-    int puntosParaJugadorPorRomper;
 
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/" + Elemento::ElementoACadena(objeto) + "/cantidad");
-    switch (objeto) {
-        case ELEMENTO::CAJA:
-            golpesMaximos = 2;
-            puntosParaJugadorPorRomper = 200;
-            break;
-        case ELEMENTO::BARRIL:
-            golpesMaximos = 1;
-            puntosParaJugadorPorRomper = 300;
-            break;
-        default:
-            cantidad = 0;
-            golpesMaximos = 0;
-    }
-
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
 
@@ -227,6 +212,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         auto *indiceSprite = new IndiceSprite;
         auto elementoRandom = mapa->crearElemento();
         auto *elemento = new Elemento(objeto);
+        auto *estadoElemento = new Sano(elementoRandom);
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
@@ -240,8 +226,8 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         elementoRandom->agregarEstado("envolvente", envolvente);
         elementoRandom->agregarEstado("velocidad", velocidad);
         elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
+        elementoRandom->agregarComportamiento("estado", estadoElemento);
     }
-
 }
 
 void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ARMA tipoArma) {

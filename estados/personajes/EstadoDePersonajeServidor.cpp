@@ -3,19 +3,19 @@
 //
 
 #include "EstadoDePersonajeServidor.h"
-#include "../servicios/Locator.h"
+#include "../../servicios/Locator.h"
 #include "Saltando.h"
 #include "Caminando.h"
 #include "Agachado.h"
 #include "DandoGolpe.h"
-#include "../servidor/FabricaDeAnimacionesServidor.h"
+#include "../../servidor/FabricaDeAnimacionesServidor.h"
 #include "RecibiendoGolpe.h"
-#include "../eventos/EventoPersonaje.h"
-#include "../modelo/serializables/IndiceSprite.h"
-#include "../modelo/serializables/Arma.h"
-#include "../modelo/serializables/Puntaje.h"
-#include "../modelo/serializables/Energia.h"
-#include "../servidor/notificadores/NotificadorDeGolpesJugador.h"
+#include "../../eventos/EventoPersonaje.h"
+#include "../../modelo/serializables/IndiceSprite.h"
+#include "../../modelo/serializables/Arma.h"
+#include "../../modelo/serializables/Puntaje.h"
+#include "../../modelo/serializables/Energia.h"
+#include "../../servidor/notificadores/NotificadorDeGolpesJugador.h"
 #include "Muerto.h"
 
 EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}

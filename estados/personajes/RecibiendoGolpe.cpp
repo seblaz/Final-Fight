@@ -3,7 +3,7 @@
 //
 
 #include "RecibiendoGolpe.h"
-#include "../modelo/serializables/Energia.h"
+#include "../../modelo/serializables/Energia.h"
 #include "Muerto.h"
 
 void RecibiendoGolpe::actualizar() {

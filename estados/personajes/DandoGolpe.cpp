@@ -3,8 +3,8 @@
 //
 
 #include "DandoGolpe.h"
-#include "../modelo/envolventes/EnvolventeVolumen.h"
-#include "../modelo/serializables/Orientacion.h"
+#include "../../modelo/envolventes/EnvolventeVolumen.h"
+#include "../../modelo/serializables/Orientacion.h"
 
 void DandoGolpe::actualizar() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");

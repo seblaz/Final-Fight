@@ -6,9 +6,9 @@
 #define FINAL_FIGHT_ESTADODEPERSONAJESERVIDOR_H
 
 
-#include "../modelo/Entidad.h"
-#include "../servicios/Locator.h"
-#include "../modelo/serializables/EstadoDePersonaje.h"
+#include "../../modelo/Entidad.h"
+#include "../../servicios/Locator.h"
+#include "../../modelo/serializables/EstadoDePersonaje.h"
 
 //class EstadoDePersonajeServidor;
 //typedef map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)()> mapaEstados;

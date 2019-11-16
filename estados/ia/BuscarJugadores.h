@@ -8,7 +8,7 @@
 
 #include "../../modelo/Entidad.h"
 #include "../../modelo/Jugadores.h"
-#include "../EstadoDePersonajeServidor.h"
+#include "../personajes/EstadoDePersonajeServidor.h"
 
 class BuscarJugadores : public Comportamiento {
 

@@ -3,8 +3,8 @@
 //
 
 #include "Agachado.h"
-#include "../servicios/Locator.h"
-#include "../modelo/Velocidad.h"
+#include "../../servicios/Locator.h"
+#include "../../modelo/Velocidad.h"
 #include "Saltando.h"
 
 void Agachado::actualizar() {

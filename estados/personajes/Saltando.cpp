@@ -3,13 +3,13 @@
 //
 
 #include "Saltando.h"
-#include "../servicios/Locator.h"
-#include "../modelo/Velocidad.h"
+#include "../../servicios/Locator.h"
+#include "../../modelo/Velocidad.h"
 #include "Caminando.h"
-#include "../modelo/serializables/EstadoDePersonaje.h"
-#include "../modelo/serializables/Personaje.h"
-#include "../servidor/FabricaDeAnimacionesServidor.h"
-#include "../modelo/serializables/Actividad.h"
+#include "../../modelo/serializables/EstadoDePersonaje.h"
+#include "../../modelo/serializables/Personaje.h"
+#include "../../servidor/FabricaDeAnimacionesServidor.h"
+#include "../../modelo/serializables/Actividad.h"
 
 void Saltando::actualizar() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");

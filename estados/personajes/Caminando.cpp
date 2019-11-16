@@ -3,7 +3,7 @@
 //
 
 #include "Caminando.h"
-#include "../servicios/Locator.h"
+#include "../../servicios/Locator.h"
 
 #define RAPIDEZ 4
 

@@ -3,7 +3,7 @@
 //
 
 #include "ReproductorSonidoPersonaje.h"
-#include "../estados/Caminando.h"
+#include "../estados/personajes/Caminando.h"
 #include "../modelo/serializables/NumeroJugador.h"
 
 ReproductorSonidoPersonaje::ReproductorSonidoPersonaje(Entidad *entidad, string rutaBase) :
