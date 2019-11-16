@@ -12,13 +12,13 @@
 class NivelCliente {
 
 public:
-    static void generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador);
-    static void generarEscenario(Mapa *mapa, Entidad *entidad);
-    static void generarTransicion(Mapa *mapa, Entidad* entidad);
-    static void generarEnemigo(Mapa *mapa, Entidad* entidad);
-    static void generarElemento(Mapa *mapa, Entidad* entidad);
+    static void generarJugador(Entidad *jugador);
+    static void generarEscenario(Entidad *escenario);
+    static void generarTransicion(Entidad *transicion);
+    static void generarEnemigo(Entidad *enemigo);
+    static void generarElemento(Entidad *entidad);
 
-    static void generarArma(Mapa *mapa, Entidad *arma);
+    static void generarArma(Entidad *arma);
 };
 
 

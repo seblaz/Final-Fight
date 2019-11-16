@@ -19,9 +19,8 @@
 #include "../modelo/serializables/Arma.h"
 
 
-void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
+void NivelCliente::generarJugador(Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
-    Configuracion *config = Locator::configuracion();
 
     auto *personaje = jugador->getEstado<Personaje>("personaje");
     auto *numeroJugador = jugador->getEstado<NumeroJugador>("numeroJugador");
@@ -35,40 +34,12 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
     jugador->agregarEstado("spriteIndicador", spriteIndicador);
     jugador->agregarEstado("animacionIndicador", animacionIndicador);
 
-    string srcSpritePersonaje;
-    FabricaDeAnimacionesCliente *fabricaDeAnimaciones;
-
-    ReproductorSonidoPersonaje *reproductorSonidoPersonaje;
-
-    switch (personaje->getPersonaje()) {
-        case HAGGAR:
-            srcSpritePersonaje = config->getValue("/personajes/haggar/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/haggar");
-  //          reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
-            break;
-        case CODY:
-            srcSpritePersonaje = config->getValue("/personajes/cody/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/cody");
-    //        reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
-            break;
-        case MAKI:
-            srcSpritePersonaje = config->getValue("/personajes/maki/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/maki");
-      //      reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
-            break;
-        case GUY:
-            srcSpritePersonaje = config->getValue("/personajes/guy/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/guy");
-    //        reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
-            break;
-        default:
-            Locator::logger()->log(ERROR, "Se trató de crear un jugador con un personaje incorrecto: " +
-                                          Personaje::PersonajeACadena(personaje->getPersonaje()) + ".");
-            return;
-    }
+    string nombrePersonaje = Personaje::PersonajeACadena(personaje->getPersonaje());
+    auto *fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/" + nombrePersonaje);
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(jugador, "/sonidos/personaje/" + nombrePersonaje);
 
     auto *animacion = fabricaDeAnimaciones->getAnimacion("/reposando");
-    auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpritePersonaje);
+    auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteConfigPath("/personajes/" + nombrePersonaje + "/punios/src");
     auto *grafico = new GraficoJugador(jugador);
     auto *animador = new Animador(jugador);
 
@@ -80,7 +51,7 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
    // jugador->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 }
 
-void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
+void NivelCliente::generarEscenario(Entidad *escenario) {
     Configuracion *config = Locator::configuracion();
 
     auto *nivelEstado = escenario->getEstado<Nivel>("nivel");
@@ -125,7 +96,7 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
 
 }
 
-void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
+void NivelCliente::generarTransicion(Entidad *transicion) {
     Locator::logger()->log(DEBUG, "Se genera transicion");
 
     auto *grafico = new GraficoDeTransicion(transicion);
@@ -133,7 +104,7 @@ void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
     transicion->agregarComportamiento("grafico", grafico);
 }
 
-void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
+void NivelCliente::generarEnemigo(Entidad *enemigo) {
     Locator::logger()->log(INFO, "Se genera enemigo");
 
     auto *personaje = enemigo->getEstado<Personaje>("personaje");
@@ -168,7 +139,7 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
 
 }
 
-void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
+void NivelCliente::generarElemento(Entidad *entidad) {
     Configuracion *config = Locator::configuracion();
     string tipoElemento =  Elemento::ElementoACadena(entidad->getEstado<Elemento>("elemento")->getElemento());
 
@@ -188,7 +159,7 @@ void NivelCliente::generarElemento(Mapa *mapa, Entidad *entidad) {
 
 }
 
-void NivelCliente::generarArma(Mapa *mapa, Entidad *arma) {
+void NivelCliente::generarArma(Entidad *arma) {
     Configuracion *config = Locator::configuracion();
     string tipoArma = Arma::armaACadena(arma->getEstado<Arma>("arma")->getArma());
 

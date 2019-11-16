@@ -20,24 +20,24 @@ void InterpreteJuegoCli::interpretar(stringstream &s) {
             switch (tipo->tipo()) {
                 case TIPO::JUGADOR:
                     mapa->agregarJugadorConId(idEntidad, entidad);
-                    NivelCliente::generarJugador(mapa, idEntidad, entidad);
+                    NivelCliente::generarJugador(entidad);
                     break;
                 case TIPO::ESCENARIO:
                     posicion = entidad->getEstado<Posicion>("posicion");
                     Locator::provide(posicion);
-                    NivelCliente::generarEscenario(mapa, entidad);
+                    NivelCliente::generarEscenario(entidad);
                     break;
                 case TIPO::TRANSICION:
-                    NivelCliente::generarTransicion(mapa, entidad);
+                    NivelCliente::generarTransicion(entidad);
                     break;
                 case TIPO::ENEMIGO:
-                    NivelCliente::generarEnemigo(mapa, entidad);
+                    NivelCliente::generarEnemigo(entidad);
                     break;
                 case TIPO::ELEMENTO_GOLPEABLE:
-                    NivelCliente::generarElemento(mapa, entidad);
+                    NivelCliente::generarElemento(entidad);
                     break;
                 case TIPO::ARMA:
-                    NivelCliente::generarArma(mapa, entidad);
+                    NivelCliente::generarArma(entidad);
                     break;
                 default:
                     Locator::logger()->log(ERROR, "Se recibió una entidad de tipo desconocida.");

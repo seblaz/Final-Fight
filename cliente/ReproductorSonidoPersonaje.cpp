@@ -16,7 +16,7 @@ void ReproductorSonidoPersonaje::actualizar() {
     auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
     int canalAReproducir;
 
-    string pathSonidoABuscar = rutaBase + EstadoDePersonaje::estadoACadena(estado->getEstado()) + "/src";
+    string pathSonidoABuscar = rutaBase + "/" + EstadoDePersonaje::estadoACadena(estado->getEstado()) + "/src";
 
     if (numeroJugador == NULL) {
         canalAReproducir = 6;

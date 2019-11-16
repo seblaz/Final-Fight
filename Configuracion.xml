@@ -155,17 +155,36 @@
     </pantallas>
     <personajes>
         <cody>
-            <src>assets/personajes/cody.png</src>
+            <punios>
+                <src>assets/personajes/cody.png</src>
+            </punios>
+            <cuchillo>
+                <src>assets/personajes/cody-cuchi.png</src>
+            </cuchillo>
+            <tubo>
+                <src>assets/personajes/cody-tubo.png</src>
+            </tubo>
         </cody>
         <guy>
-            <src>assets/personajes/guy.png</src>
+            <punios>
+                <src>assets/personajes/guy.png</src>
+            </punios>
         </guy>
         <maki>
-            <src>assets/personajes/maki.png</src>
+            <punios>
+                <src>assets/personajes/maki.png</src>
+            </punios>
         </maki>
         <haggar>
-            <src>assets/personajes/haggar.png</src>
+            <punios>
+                <src>assets/personajes/haggar.png</src>
+            </punios>
         </haggar>
+        <poisson>
+            <punios>
+                <src>assets/personajes/poison.png</src>
+            </punios>
+        </poisson>
         <indicadores>
             <jugador1>
                 <src>assets/varios/indicador1.png</src>
