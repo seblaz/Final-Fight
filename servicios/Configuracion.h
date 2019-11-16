@@ -22,7 +22,7 @@ class Configuracion {
 private:
     unordered_map<string, string> cacheStrings;
     unordered_map<string, int> cacheInts;
-    unordered_map<string, int> cacheFloats;
+    unordered_map<string, float> cacheFloats;
     string actualPath = "";
     string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;
