@@ -15,7 +15,8 @@
 #include "../modelo/serializables/Arma.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/serializables/Energia.h"
-#include "../modelo/NotificadorDePuntos.h"
+#include "../modelo/NotificadorDeGolpes.h"
+#include "Muerto.h"
 
 EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
 
@@ -30,6 +31,7 @@ map<ESTADO_DE_PERSONAJE, EstadoDePersonajeServidor *(*)(Entidad *entidad)> Estad
         {SALTANDO_CON_MOVIMIENTO, &crearEstado<Saltando>},
         {DANDO_GOLPE,             &crearEstado<DandoGolpe>},
         {RECIBIENDO_GOLPE,        &crearEstado<RecibiendoGolpe>},
+        {MUERTO,                  &crearEstado<Muerto>},
 };
 
 void EstadoDePersonajeServidor::cambiarEstado(ESTADO_DE_PERSONAJE estado) {
@@ -74,7 +76,7 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
     int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
     energiaGolpeado->restarEnergia(puntosDeDanio);
 
-    golpeador->getComportamiento<NotificadorDePuntos>("notificador")->notificarGolpeAPersonaje(this->entidad);
+    golpeador->getComportamiento<NotificadorDeGolpes>("notificador")->notificarGolpeAPersonaje(this->entidad);
 
     cambiarEstado(RECIBIENDO_GOLPE);
 }
@@ -84,4 +86,8 @@ void EstadoDePersonajeServidor::actualizar() {
     // Entonces lo paso a reposar.
     if(frames++ > 1)
         Locator::eventos()->push(new Reposar(entidad));
+}
+
+void EstadoDePersonajeServidor::morir() {
+    cambiarEstado(MUERTO);
 }

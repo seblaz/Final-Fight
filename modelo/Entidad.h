@@ -113,7 +113,7 @@ enum class TIPO {
     ENEMIGO,
     ELEMENTO_GOLPEABLE,
     ARMA
-};colisiona
+};
 
 class Tipo : public Estado {
 

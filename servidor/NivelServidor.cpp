@@ -21,7 +21,7 @@
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
 #include "../modelo/serializables/Arma.h"
-#include "../modelo/NotificadorDePuntos.h"
+#include "../modelo/NotificadorDeGolpes.h"
 
 
 Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int contadorJugador) {
@@ -44,7 +44,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
     auto* arma = new Arma(ARMA::PUNIOS);
-    auto* notificador = new NotificadorDePuntos();
+    auto* notificador = new NotificadorDeGolpes(jugador);
 
     jugador->agregarEstado("tipo", tipo);
     jugador->agregarEstado("posicion", posicion);

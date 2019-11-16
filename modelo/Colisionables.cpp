@@ -10,7 +10,7 @@
 #include "serializables/Puntaje.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
-#include "NotificadorDePuntos.h"
+#include "NotificadorDeGolpes.h"
 #include <utility>
 
 
@@ -84,8 +84,9 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
             auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
             for (auto *enemigo : mapa->getEnemigos()) {
                 auto *envolvente_enemigo = enemigo->getEstado<EnvolventeVolumen>("envolvente");
+                auto *estadoEnemigo = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
 
-                if (envolventeAtaque->colisionaCon(envolvente_enemigo)) {
+                if (envolventeAtaque->colisionaCon(envolvente_enemigo) && estadoEnemigo->getEstado() != MUERTO) {
                     Locator::logger()->log(DEBUG, "golpeado!");
 
                     enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpeDe(jugador);

@@ -17,6 +17,7 @@ EventoBuscarJugadores::EventoBuscarJugadores(Jugadores *jugadores, Entidad *enti
 
 void EventoBuscarJugadores::resolver() {
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
+    auto *estadoDePersonaje = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
 
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     auto posicionMasCercana = jugadores->posicionMasCercana(posicion);
@@ -24,15 +25,22 @@ void EventoBuscarJugadores::resolver() {
     Posicion restaPosicion = posicion->menos(&posicionMasCercana);
     float mod = restaPosicion.modulo();
     if ( mod <= 700 ) {
-        if( mod >= 200 ) {
-            estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
-                            restaPosicion.y > 0);
+        if( mod >= 100 ) {
+            int num = 1 + rand() % (101 - 1);
+            if( num > 85){
+                estado->saltar();
+            }else{
+                estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
+                                restaPosicion.y > 0);
+            }
         }else{
             //TODO atacar
             int num = 1 + rand() % (101 - 1);
-            if( restaPosicion.y <= 10 && restaPosicion.y >= -10 && num > 50){
-                //estado->golpear(entidad);
-//                estado->recibirGolpe(entidad);
+            if( num > 70){
+                estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
+                                restaPosicion.y > 0);
+            }else{
+                estado->darGolpe();
             }
         }
     }else{

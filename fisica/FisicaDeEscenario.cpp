@@ -27,7 +27,7 @@ void FisicaDeEscenario::actualizar() {
     int xEscenario = posicionEscenario->getX();
     xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo) {
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo && mapa->bloqueoEscenarioPorEnemigos()) {
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
             if ( xMayorPersonaje > xScrollDerecho )
