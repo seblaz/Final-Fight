@@ -44,7 +44,7 @@ void Arma::deserializar(istream &stream) {
 }
 
 void Arma::usar() {
-    if(usosRestantes-- == 0) inicializar(ARMA::PUNIOS);
+    if(--usosRestantes == 0) inicializar(ARMA::PUNIOS);
 }
 
 void Arma::tomar() {

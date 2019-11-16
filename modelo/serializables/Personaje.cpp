@@ -12,10 +12,6 @@ enum PERSONAJE Personaje::getPersonaje() {
     return personaje;
 }
 
-void Personaje::setPersonaje(enum PERSONAJE personaje_) {
-    personaje = personaje_;
-}
-
 void Personaje::serializar(ostream &stream) {
     serializarEntero(stream, static_cast<int>(personaje));
 }
