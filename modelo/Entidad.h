@@ -71,6 +71,10 @@ public:
         estados[s] = t;
     };
 
+    void cambiarEstado(const string &s, Estado *t) {
+        estados[s] = t;
+    };
+
     template<typename T>
     T *getEstado(const string &s) {
         return (T *) estados[s];

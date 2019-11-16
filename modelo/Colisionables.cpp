@@ -8,6 +8,8 @@
 #include "envolventes/EnvolventeAtaque.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
+#include "NotificadorDeGolpes.h"
+#include <utility>
 
 void Colisionables::calcularInteracciones() {
     calcularPosiblesColisiones();
