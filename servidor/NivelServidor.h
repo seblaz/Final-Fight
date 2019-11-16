@@ -22,6 +22,7 @@ private:
     static void generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores);
     static void generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ELEMENTO objeto);
     static void generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ARMA arma);
+    static void generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores);
 
 public:
     static Entidad *generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int numeroJugador);
