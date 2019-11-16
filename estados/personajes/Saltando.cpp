@@ -11,11 +11,18 @@
 #include "../../servidor/FabricaDeAnimacionesServidor.h"
 #include "../../modelo/serializables/Actividad.h"
 
+Saltando::Saltando(Entidad *entidad) :
+        EstadoDePersonajeServidor(entidad),
+        armaPrevia(entidad->getEstado<Arma>("arma")->getArma()) {
+    entidad->agregarEstado("arma", new Arma(ARMA::PATADA));
+}
+
 void Saltando::actualizar() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
     velocidad->y = 0;
     velocidad->z = velocidadInicial + aceleracion * frames;
     if (velocidad->z <= -velocidadInicial) {
+        entidad->agregarEstado("arma", new Arma(armaPrevia));
         entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
         velocidad->z = 0;
     }

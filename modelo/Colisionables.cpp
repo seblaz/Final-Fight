@@ -88,7 +88,6 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
         if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-//            Locator::logger()->log(DEBUG, "Busco golpes");
 
             auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
             for (auto *enemigo : mapa->getEnemigos()) {
@@ -96,8 +95,6 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
                 auto *estadoEnemigo = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
 
                 if (envolventeAtaque->colisionaCon(envolvente_enemigo) && estadoEnemigo->getEstado() != MUERTO) {
-                    Locator::logger()->log(DEBUG, "Enemigo golpeado.");
-
                     enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpeDe(jugador);
                 }
             }
@@ -117,7 +114,6 @@ void Colisionables::calcularAtaquesAElementos() {
                 auto *envolvente_elemento = elemento->getEstado<EnvolventeVolumen>("envolvente");
 
                 if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
-                    Locator::logger()->log(DEBUG, "Elemento golpeado.");
                     elemento->getComportamiento<EstadoDeElemento>("estado")->recibirGolpeDe(jugador);
                 }
             }
@@ -131,17 +127,15 @@ void Colisionables::calcularArmasAlcanzables() {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
         if (estado->getEstado() == AGACHADO ) {
-            Locator::logger()->log(DEBUG, "Busco armas en el suelo");
-
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
 
                 if (envolvente->colisionaCon(envolvente_arma)) {
-                    Locator::logger()->log(DEBUG, "toma el arma!");
+                    auto *armaEstado = arma->getEstado<Arma>("arma");
                     if(jugador->getEstado<Arma>("arma")->getArma() == ARMA::PUNIOS){
-                        auto armaEstado = arma->getEstado<Arma>("arma");
                         armaEstado->tomar();
+                        Locator::mapa()->quitarArma(arma);
                         jugador->agregarEstado("arma", new Arma(armaEstado->getArma()));
                     }
                 }

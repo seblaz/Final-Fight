@@ -68,18 +68,12 @@ void EstadoDePersonajeServidor::darGolpe() {
 }
 
 void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
-
+    Locator::logger()->log(INFO, "Un personaje recibió un golpe.");
     auto *energiaGolpeado = this->entidad->getEstado<Energia>("energia");
-    auto *estadoGolpeador = golpeador->getEstado<EstadoDePersonaje>("estado de personaje");
     auto *arma = golpeador->getEstado<Arma>("arma");
-
-    int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
-    energiaGolpeado->restarEnergia(puntosDeDanio);
-
+    energiaGolpeado->restarEnergia(arma->getPuntosDeDanio());
     golpeador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAPersonaje(this->entidad);
-
     arma->usar();
-
     cambiarEstado(RECIBIENDO_GOLPE);
 }
 
