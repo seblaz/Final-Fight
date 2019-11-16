@@ -13,8 +13,8 @@
 
 Saltando::Saltando(Entidad *entidad) :
         EstadoDePersonajeServidor(entidad),
-        armaPrevia(entidad->getEstado<Arma>("arma")->getArma()) {
-    entidad->agregarEstado("arma", new Arma(ARMA::PATADA));
+        armaPrevia(entidad->getEstado<Arma>("arma")) {
+    entidad->cambiarEstado("arma", new Arma(ARMA::PATADA));
 }
 
 void Saltando::actualizar() {
@@ -22,7 +22,7 @@ void Saltando::actualizar() {
     velocidad->y = 0;
     velocidad->z = velocidadInicial + aceleracion * frames;
     if (velocidad->z <= -velocidadInicial) {
-        entidad->agregarEstado("arma", new Arma(armaPrevia));
+        entidad->agregarEstado("arma", armaPrevia);
         entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
         velocidad->z = 0;
     }

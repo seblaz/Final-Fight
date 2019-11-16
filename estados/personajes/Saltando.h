@@ -11,7 +11,7 @@
 class Saltando : public EstadoDePersonajeServidor {
 
 private:
-    ARMA armaPrevia;
+    Arma *armaPrevia;
     bool pateando = false;
     float frames = 1;
     const float velocidadInicial = 25;

@@ -11,7 +11,7 @@
 #include "../../servicios/Locator.h"
 
 void Sano::recibirGolpeDe(Entidad *jugador) {
-    Locator::logger()->log(INFO, "Un personaje recibió un golpe.");
+    Locator::logger()->log(INFO, "Un elemento recibió un golpe.");
     auto *elemento = entidad->getEstado<Elemento>("elemento");
     elemento->recibirGolpeDe();
     jugador->getEstado<Arma>("arma")->usar();
