@@ -16,7 +16,8 @@ enum ESTADO_DE_PERSONAJE {
     DANDO_GOLPE,
     RECIBIENDO_GOLPE,
     AGACHADO,
-    PATEANDO
+    PATEANDO,
+    MUERTO
 };
 
 class EstadoDePersonaje : public Estado {

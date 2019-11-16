@@ -25,7 +25,7 @@ void EventoBuscarJugadores::resolver() {
     Posicion restaPosicion = posicion->menos(&posicionMasCercana);
     float mod = restaPosicion.modulo();
     if ( mod <= 700 ) {
-        if( mod >= 200 ) {
+        if( mod >= 100 ) {
             int num = 1 + rand() % (101 - 1);
             if( num > 85){
                 estado->saltar();

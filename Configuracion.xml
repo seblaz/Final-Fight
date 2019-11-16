@@ -827,6 +827,20 @@
                 <duraciones>1</duraciones>
                 <total>45</total>
             </recibiendoGolpe>
+            <muerto>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>210</x>
+                        <y>431</y>
+                        <w>95</w>
+                        <h>78</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </muerto>
         </poisson>
         <guy>
             <reposando>

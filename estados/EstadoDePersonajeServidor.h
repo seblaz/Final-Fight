@@ -29,6 +29,7 @@ public:
     virtual void agachar();
     virtual void darGolpe();
     virtual void recibirGolpeDe(Entidad* golpeador);
+    virtual void morir();
 
     void actualizar() override;
 };
