@@ -6,22 +6,29 @@
 #include "envolventes/EnvolventeVolumen.h"
 #include "../estados/EstadoDePersonajeServidor.h"
 #include "envolventes/EnvolventeAtaque.h"
-#include "serializables/Energia.h"
-#include "serializables/Puntaje.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
-#include <utility>
 
+void Colisionables::calcularInteracciones() {
+    calcularPosiblesColisiones();
+    calcularAtaquesDeJugadoresAEnemigos();
+    calcularAtaquesAElementos();
+    calcularArmasAlcanzables();
+}
 
 void Colisionables::calcularPosiblesColisiones() {
 
     auto* mapa = Locator::mapa();
-    for (auto *entidadCentral : mapa->getColisionables()) {
+    for(auto itEntidadCentral = mapa->getColisionables().begin(); itEntidadCentral!=mapa->getColisionables().end(); itEntidadCentral++){
+    auto* entidadCentral = *itEntidadCentral;
+//    for (auto *entidadCentral : mapa->getColisionables()) {
         auto *envolvente = entidadCentral->getEstado<EnvolventeVolumen>("envolvente");
         auto *posicion = entidadCentral->getEstado<Posicion>("posicion");
         auto *velocidad = entidadCentral->getEstado<Velocidad>("velocidad");
-        for (auto *entidad_colisionable : mapa->getColisionables()) {
 
+        for(auto itEntidad_colisionable = itEntidadCentral + 1; itEntidad_colisionable!=mapa->getColisionables().end(); itEntidad_colisionable++){
+//        for (auto *entidad_colisionable : mapa->getColisionables()) {
+            auto *entidad_colisionable = *itEntidad_colisionable;
             auto *envolventeContrario = entidad_colisionable->getEstado<EnvolventeVolumen>("envolvente");
             auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
             if (entidad_colisionable != entidadCentral) {
@@ -94,7 +101,7 @@ void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
     }
 }
 
-void Colisionables::calcularAtaquesAelementos() {
+void Colisionables::calcularAtaquesAElementos() {
     auto* mapa = Locator::mapa();
     for (auto *jugador : mapa->getPersonajes()) {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
@@ -133,11 +140,10 @@ void Colisionables::calcularArmasAlcanzables() {
                     if(jugador->getEstado<Arma>("arma")->getArma() == ARMA::PUNIOS){
                         auto armaEstado = arma->getEstado<Arma>("arma");
                         armaEstado->tomar();
-                        jugador->agregarEstado("arma", armaEstado);
+                        jugador->agregarEstado("arma", new Arma(armaEstado->getArma()));
                     }
                 }
             }
         }
     }
 }
-

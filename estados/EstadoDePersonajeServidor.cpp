@@ -73,15 +73,17 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
     int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
     energiaGolpeado->restarEnergia(puntosDeDanio);
 
+    // TODO: arreglar porque los enemigos no tienen puntos.
+    int puntosParaJugador = estadoGolpeador->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
+    auto puntajeGolpeador = golpeador->getEstado<Puntaje>("puntaje");
+    puntajeGolpeador->agregarPuntos(puntosParaJugador);
+
     arma->usar();
     if (!arma->tieneUsosRestantes()){
         golpeador->agregarEstado("arma", new Arma(ARMA::PUNIOS));
     }
 
     // TODO: arreglar porque los enemigos no tienen puntos.
-    auto puntajeGolpeador = golpeador->getEstado<Puntaje>("puntaje");
-    int puntosParaJugador = estadoGolpeador->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
-    puntajeGolpeador->agregarPuntos(puntosParaJugador);
     if(!energiaGolpeado->personajeVive()){
         puntajeGolpeador->agregarPuntos(500);
     }
