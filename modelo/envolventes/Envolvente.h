@@ -12,12 +12,11 @@
 class Envolvente : public Estado {
 
 public:
-    int alto;
     int ancho;
     int profundidad;
     Posicion *posicion;
 
-    explicit Envolvente(Posicion *posicion, int alto, int ancho, int profundidad);
+    explicit Envolvente(Posicion *posicion, int ancho, int profundidad);
 
 };
 

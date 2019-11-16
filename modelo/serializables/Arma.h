@@ -22,6 +22,7 @@ private:
     ARMA arma;
     int danio;
     int usosRestantes;
+    int ancho;
     bool enSuelo = true;
     void inicializar(ARMA arma);
 
@@ -32,8 +33,10 @@ public:
 
     void usar();
     void tomar();
+    int getAncho();
     bool enElSuelo();
     int getPuntosDeDanio();
+    void cambiarPor(ARMA arma);
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;

@@ -41,8 +41,8 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(jugador, personajeSeleccionado, "reposando");
     auto *energia = new Energia(100,3);
-    auto *envolvente = new EnvolventeVolumen(posicion, 120, 50, 15);
-    auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 120, 100, 30, orientacion);
+    auto *envolvente = new EnvolventeVolumen(posicion, 50, 15);
+    auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
     auto* arma = new Arma(ARMA::PUNIOS);
     auto* notificador = new NotificadorDeGolpesJugador(jugador);
@@ -177,8 +177,8 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         auto *indiceSprite = new IndiceSprite;
         auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
         auto *energia = new Energia(100,1);
-        auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 50, 30);
-        auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 100, 30, orientacionDeEnemigo);
+        auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 50, 30);
+        auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 100, 30, orientacionDeEnemigo);
         auto* arma = new Arma(ARMA::PUNIOS);
         auto* notificador = new NotificadorDeGolpes();
 
@@ -220,7 +220,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
 
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel),
                                                     0);
-        auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 75, 8);
+        auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 75, 8);
         auto *velocidad = new Velocidad();
 
         elementoRandom->agregarEstado("posicion", posicionElementoRandom);
@@ -246,7 +246,7 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         auto *indiceSprite = new IndiceSprite;
         auto *armaRandom = mapa->crearArma();
         auto *posicionElementoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
-        auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 120, 20, 8);
+        auto *envolvente = new EnvolventeVolumen(posicionElementoRandom, 20, 8);
         auto *arma = new Arma(tipoArma);
         auto *tipo = new Tipo(TIPO::ARMA);
 
@@ -281,9 +281,9 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *
     auto *indiceSprite = new IndiceSprite;
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, BOSS, "reposando");
     auto *energia = new Energia(500,1);
-    auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 120, 100, 30);
+    auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 100, 30);
     auto* arma = new Arma(ARMA::PUNIOS);
-    auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 120, 30, orientacionDeEnemigo);
+    auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 30, orientacionDeEnemigo);
     auto* notificador = new NotificadorDeGolpes();
 
     enemigo->agregarEstado("arma", arma);

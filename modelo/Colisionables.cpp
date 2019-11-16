@@ -8,30 +8,31 @@
 #include "../estados/elementos/EstadoDeElemento.h"
 #include "envolventes/EnvolventeAtaque.h"
 #include "serializables/Arma.h"
-#include "serializables/Elemento.h"
-#include "../servidor/notificadores/NotificadorDeGolpesJugador.h"
-#include <utility>
 
 void Colisionables::calcularInteracciones() {
+    auto *mapa = Locator::mapa();
     calcularPosiblesColisiones();
-    calcularAtaquesDeJugadoresAEnemigos();
-    calcularAtaquesAElementos();
     calcularArmasAlcanzables();
-    calcularAtaquesDeEnemigosAJugadores();
+
+    calcularAtaquesEntre(mapa->getPersonajes(), mapa->getElementos()); // Romper elementos.
+    calcularAtaquesEntre(mapa->getPersonajes(), mapa->getEnemigos()); // Jugadores atacan enemigos.
+    calcularAtaquesEntre(mapa->getEnemigos(), mapa->getPersonajes()); // Enemigos atacan jugadores.
 }
 
 void Colisionables::calcularPosiblesColisiones() {
 
-    auto* mapa = Locator::mapa();
-    for(auto itEntidadCentral = mapa->getColisionables().begin(); itEntidadCentral!=mapa->getColisionables().end(); itEntidadCentral++){
-    auto* entidadCentral = *itEntidadCentral;
-//    for (auto *entidadCentral : mapa->getColisionables()) {
+    auto *mapa = Locator::mapa();
+    for (auto itEntidadCentral = mapa->getColisionables().begin();
+         itEntidadCentral != mapa->getColisionables().end(); itEntidadCentral++) {
+        auto *entidadCentral = *itEntidadCentral;
+
         auto *envolvente = entidadCentral->getEstado<EnvolventeVolumen>("envolvente");
         auto *posicion = entidadCentral->getEstado<Posicion>("posicion");
         auto *velocidad = entidadCentral->getEstado<Velocidad>("velocidad");
 
-        for(auto itEntidad_colisionable = itEntidadCentral + 1; itEntidad_colisionable!=mapa->getColisionables().end(); itEntidad_colisionable++){
-//        for (auto *entidad_colisionable : mapa->getColisionables()) {
+        for (auto itEntidad_colisionable = itEntidadCentral + 1;
+             itEntidad_colisionable != mapa->getColisionables().end(); itEntidad_colisionable++) {
+
             auto *entidad_colisionable = *itEntidad_colisionable;
             auto *envolventeContrario = entidad_colisionable->getEstado<EnvolventeVolumen>("envolvente");
             auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
@@ -83,61 +84,23 @@ void Colisionables::addLimitesDeEscenario(int profundidad, int frente) {
     this->limiteFrontal = frente;
 }
 
-void Colisionables::calcularAtaquesDeJugadoresAEnemigos() {
-    auto* mapa = Locator::mapa();
-    for (auto *jugador : mapa->getPersonajes()) {
-        auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
-
-        if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-
-            auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
-            for (auto *enemigo : mapa->getEnemigos()) {
-                auto *envolvente_enemigo = enemigo->getEstado<EnvolventeVolumen>("envolvente");
-                auto *estadoEnemigo = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
-
-                if (envolventeAtaque->colisionaCon(envolvente_enemigo) && estadoEnemigo->getEstado() != MUERTO) {
-                    enemigo->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpeDe(jugador);
-                }
-            }
-        }
-    }
-}
-
-void Colisionables::calcularAtaquesAElementos() {
-    auto* mapa = Locator::mapa();
-    for (auto *jugador : mapa->getPersonajes()) {
-        auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
-
-        if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-
-            auto *envolventeAtaque = jugador->getEstado<EnvolventeAtaque>("envolvente ataque");
-            for (auto *elemento : mapa->getElementos()) {
-                auto *envolvente_elemento = elemento->getEstado<EnvolventeVolumen>("envolvente");
-
-                if (envolventeAtaque->colisionaCon(envolvente_elemento)) {
-                    elemento->getComportamiento<EstadoDeElemento>("estado")->recibirGolpeDe(jugador);
-                }
-            }
-        }
-    }
-}
-
 void Colisionables::calcularArmasAlcanzables() {
-    auto* mapa = Locator::mapa();
+    auto *mapa = Locator::mapa();
     for (auto *jugador : mapa->getPersonajes()) {
         auto *estado = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
 
-        if (estado->getEstado() == AGACHADO ) {
+        if (estado->getEstado() == AGACHADO) {
             auto *envolvente = jugador->getEstado<EnvolventeVolumen>("envolvente");
             for (auto *arma : mapa->getArmas()) {
                 auto *envolvente_arma = arma->getEstado<EnvolventeVolumen>("envolvente");
 
                 if (envolvente->colisionaCon(envolvente_arma)) {
-                    auto *armaEstado = arma->getEstado<Arma>("arma");
-                    if(jugador->getEstado<Arma>("arma")->getArma() == ARMA::PUNIOS){
-                        armaEstado->tomar();
+                    auto *armaSuelo = arma->getEstado<Arma>("arma");
+                    auto *armaJugador = jugador->getEstado<Arma>("arma");
+                    if (armaJugador->getArma() == ARMA::PUNIOS) {
+                        armaSuelo->tomar();
                         Locator::mapa()->quitarArma(arma);
-                        jugador->agregarEstado("arma", new Arma(armaEstado->getArma()));
+                        armaJugador->cambiarPor(armaSuelo->getArma());
                     }
                 }
             }
@@ -145,23 +108,20 @@ void Colisionables::calcularArmasAlcanzables() {
     }
 }
 
-void Colisionables::calcularAtaquesDeEnemigosAJugadores() {
-    auto* mapa = Locator::mapa();
-    for (auto *enemigo : mapa->getEnemigos()) {
-        auto *estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
+void Colisionables::calcularAtaquesEntre(vector<Entidad *> &atacantes, vector<Entidad *> &defensores) {
+    for (auto *atacante : atacantes) {
+        auto *estado = atacante->getEstado<EstadoDePersonaje>("estado de personaje");
 
         if (estado->getEstado() == DANDO_GOLPE || estado->getEstado() == PATEANDO) {
-            Locator::logger()->log(DEBUG, "Busco golpes");
 
-            auto *envolventeAtaque = enemigo->getEstado<EnvolventeAtaque>("envolvente ataque");
-            for (auto *jugador : mapa->getPersonajes()) {
-                auto *envolvente_jugador = jugador->getEstado<EnvolventeVolumen>("envolvente");
-                auto *estadoJugador = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
+            auto *envolventeAtaque = atacante->getEstado<EnvolventeAtaque>("envolvente ataque");
+            for (auto *defensor : defensores) {
+                auto *envolvente_defensor = defensor->getEstado<EnvolventeVolumen>("envolvente");
 
-                if (envolventeAtaque->colisionaCon(envolvente_jugador) && estadoJugador->getEstado() != MUERTO) {
+                if (envolventeAtaque->colisionaCon(envolvente_defensor, atacante->getEstado<Arma>("arma"))) {
                     Locator::logger()->log(DEBUG, "golpeado!");
 
-                    jugador->getComportamiento<EstadoDePersonajeServidor>("estado")->recibirGolpeDe(enemigo);
+                    defensor->getComportamiento<EstadoDeColisionable>("estado")->recibirGolpeDe(atacante);
                 }
             }
         }

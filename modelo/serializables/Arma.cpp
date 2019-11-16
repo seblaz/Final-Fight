@@ -28,7 +28,7 @@ void Arma::inicializar(ARMA arma_) {
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
     usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
-    Locator::configuracion()->getIntValue(base + "/puntos");
+    ancho = Locator::configuracion()->getIntValue(base + "/ancho");
 }
 
 int Arma::getPuntosDeDanio() {
@@ -59,4 +59,12 @@ ARMA Arma::getArma() {
 
 bool Arma::enElSuelo() {
     return enSuelo;
+}
+
+void Arma::cambiarPor(ARMA arma_) {
+    inicializar(arma_);
+}
+
+int Arma::getAncho() {
+    return ancho;
 }

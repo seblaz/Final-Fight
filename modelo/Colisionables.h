@@ -17,10 +17,9 @@ private:
     int limiteFrontal = 0;
     int i = 0;
     void calcularPosiblesColisiones();
-    void calcularAtaquesDeJugadoresAEnemigos();
-    void calcularAtaquesAElementos();
     void calcularArmasAlcanzables();
-    void calcularAtaquesDeEnemigosAJugadores();
+
+    void calcularAtaquesEntre(vector<Entidad *> &atacantes, vector<Entidad *> &defensores);
 
 public:
     explicit Colisionables() = default;

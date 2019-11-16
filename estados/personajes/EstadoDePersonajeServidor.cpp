@@ -18,8 +18,6 @@
 #include "../../servidor/notificadores/NotificadorDeGolpesJugador.h"
 #include "Muerto.h"
 
-EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
-
 template<typename T>
 EstadoDePersonajeServidor *crearEstado(Entidad *entidad) { return new T(entidad); }
 

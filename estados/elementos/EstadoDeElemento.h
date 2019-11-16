@@ -5,13 +5,13 @@
 #ifndef FINAL_FIGHT_ESTADODEELEMENTO_H
 #define FINAL_FIGHT_ESTADODEELEMENTO_H
 
-#include "../../modelo/Entidad.h"
+#include "../EstadoDeColisionable.h"
 
-class EstadoDeElemento : public Comportamiento {
+class EstadoDeElemento : public EstadoDeColisionable {
 
 public:
-    using Comportamiento::Comportamiento;
-    virtual void recibirGolpeDe(Entidad *jugador) = 0;
+    using EstadoDeColisionable::EstadoDeColisionable;
+    void recibirGolpeDe(Entidad *jugador) override = 0;
 
 };
 
