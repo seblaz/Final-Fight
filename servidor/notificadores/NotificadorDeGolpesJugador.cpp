@@ -13,15 +13,12 @@
 NotificadorDeGolpesJugador::NotificadorDeGolpesJugador(Entidad *jugador) : jugador(jugador) {}
 
 void NotificadorDeGolpesJugador::notificarGolpeAPersonaje(Entidad* personajeGolpeado){
-    auto estadoGolpeador = jugador->getEstado<EstadoDePersonaje>("estado de personaje");
     auto puntajeGolpeador = jugador->getEstado<Puntaje>("puntaje");
     auto arma = jugador->getEstado<Arma>("arma");
 
     string tipoArma = Arma::armaACadena(arma->getArma());
     int puntosArma = Locator::configuracion()->getIntValue("/armas/" + tipoArma + "/puntos");
-
-    int puntosParaJugador = estadoGolpeador->getEstado() == PATEANDO ? 400 : puntosArma;
-    puntajeGolpeador->agregarPuntos(puntosParaJugador);
+    puntajeGolpeador->agregarPuntos(puntosArma);
 
     if(!personajeGolpeado->getEstado<Energia>("energia")->personajeVive()){
         puntajeGolpeador->agregarPuntos(500);

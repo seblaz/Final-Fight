@@ -6,17 +6,19 @@
 #define FINAL_FIGHT_SALTANDO_H
 
 #include "EstadoDePersonajeServidor.h"
+#include "../../modelo/serializables/Arma.h"
 
 class Saltando : public EstadoDePersonajeServidor {
 
 private:
+    Arma *armaPrevia;
     bool pateando = false;
     float frames = 1;
     const float velocidadInicial = 25;
     const float aceleracion = -1;
 
 public:
-    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+    explicit Saltando(Entidad *entidad);
     void actualizar() override;
     void darGolpe() override;
     void saltar() override {};

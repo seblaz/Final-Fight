@@ -11,7 +11,8 @@
 enum class ARMA {
     TUBO,
     CUCHILLO,
-    PUNIOS
+    PUNIOS,
+    PATADA
 };
 
 

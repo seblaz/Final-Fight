@@ -12,6 +12,8 @@ string Arma::armaACadena(ARMA arma) {
             return "cuchillo";
         case ARMA::TUBO:
             return "tubo";
+        case ARMA::PATADA:
+            return "patada";
     };
 }
 
