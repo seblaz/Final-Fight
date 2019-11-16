@@ -15,6 +15,7 @@
 #include "../modelo/serializables/Arma.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/serializables/Energia.h"
+#include "../modelo/NotificadorDePuntos.h"
 
 EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : Comportamiento(entidad) {}
 
@@ -73,18 +74,7 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
     int puntosDeDanio =  estadoGolpeador->getEstado() == PATEANDO ? 75 : arma->getPuntosDeDanio();
     energiaGolpeado->restarEnergia(puntosDeDanio);
 
-    arma->usar();
-    if (!arma->tieneUsosRestantes()){
-        golpeador->agregarEstado("arma", new Arma(ARMA::PUNIOS));
-    }
-
-    // TODO: arreglar porque los enemigos no tienen puntos.
-    auto puntajeGolpeador = golpeador->getEstado<Puntaje>("puntaje");
-    int puntosParaJugador = estadoGolpeador->getEstado() == PATEANDO ? 400 : arma->getPuntosParaPersonaje();
-    puntajeGolpeador->agregarPuntos(puntosParaJugador);
-    if(!energiaGolpeado->personajeVive()){
-        puntajeGolpeador->agregarPuntos(500);
-    }
+    golpeador->getComportamiento<NotificadorDePuntos>("notificador")->notificarGolpeAPersonaje(this->entidad);
 
     cambiarEstado(RECIBIENDO_GOLPE);
 }

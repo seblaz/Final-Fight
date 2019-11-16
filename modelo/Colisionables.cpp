@@ -10,6 +10,7 @@
 #include "serializables/Puntaje.h"
 #include "serializables/Arma.h"
 #include "serializables/Elemento.h"
+#include "NotificadorDePuntos.h"
 #include <utility>
 
 

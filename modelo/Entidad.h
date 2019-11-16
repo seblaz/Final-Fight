@@ -71,6 +71,10 @@ public:
         estados[s] = t;
     };
 
+    void cambiarEstado(const string &s, Estado *t) {
+        estados[s] = t;
+    };
+
     template<typename T>
     T *getEstado(const string &s) {
         return (T *) estados[s];
@@ -109,7 +113,7 @@ enum class TIPO {
     ENEMIGO,
     ELEMENTO_GOLPEABLE,
     ARMA
-};
+};colisiona
 
 class Tipo : public Estado {
 
