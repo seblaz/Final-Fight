@@ -27,7 +27,10 @@ void FisicaDeEscenario::actualizar() {
     int xEscenario = posicionEscenario->getX();
     xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo && mapa->bloqueoEscenarioPorEnemigos()) {
+    int enemigosAtacando = mapa->enemigosAtacando();
+
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo &&
+            enemigosAtacando < 2) {
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
             if ( xMayorPersonaje > xScrollDerecho )
@@ -44,11 +47,14 @@ void FisicaDeEscenario::actualizar() {
         jugadores->bloquearMovimientos(xScrollIzquierdo, xScrollDerecho);
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
-    if (xMayorPersonaje > largo) {
-        auto *nivel = entidad->getEstado<Nivel>("nivel");
-        Locator::logger()->log(INFO, "Se llego al final del " + nivel->nivel() + " .");
-        mapa->vaciarMapa();
-        string proxEtapa = nivel->nivel() == "nivel1" ? "puntuacion1" : "puntuacion2";
-        Locator::clientes()->cambiarTodosA(proxEtapa);
-    }
+    if ( xMayorPersonaje > largo - 40 && enemigosAtacando < 1){
+        if (xMayorPersonaje > largo) {
+            auto *nivel = entidad->getEstado<Nivel>("nivel");
+            Locator::logger()->log(INFO, "Se llego al final del " + nivel->nivel() + " .");
+            mapa->vaciarMapa();
+            string proxEtapa = nivel->nivel() == "nivel1" ? "puntuacion1" : "puntuacion2";
+            Locator::clientes()->cambiarTodosA(proxEtapa);
+        }
+    }else
+        jugadores->bloquearMovimientos(xScrollIzquierdo, largo - 40);
 }
