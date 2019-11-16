@@ -138,19 +138,21 @@ vector<Entidad *> &Mapa::getColisionables() {
     return colisionables;
 }
 
-bool Mapa::bloqueoEscenarioPorEnemigos() {
+int Mapa::enemigosAtacando() {
+    int maximoDeAtacantes = 0;
     for (auto* enemigo : enemigos){
         auto* estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
         if ( estado->getEstado() == CAMINANDO){
-            return false;
+            maximoDeAtacantes++;
         } else if ( estado->getEstado() == SALTANDO_CON_MOVIMIENTO){
-            return false;
+            maximoDeAtacantes++;
         } else if ( estado->getEstado() == SALTANDO){
-            return false;
+            maximoDeAtacantes++;
         }else if ( estado->getEstado() == RECIBIENDO_GOLPE){
-            return false;
+            maximoDeAtacantes++;
         }else if ( estado->getEstado() == DANDO_GOLPE)
-            return false;
+            maximoDeAtacantes++;
+
     }
-    return true;
+    return maximoDeAtacantes;
 }

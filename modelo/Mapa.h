@@ -63,7 +63,7 @@ public:
 
     Entidad *crearTransicion();
 
-    bool bloqueoEscenarioPorEnemigos();
+    int enemigosAtacando();
 };
 
 #endif //FINAL_FIGHT_MAPA_H
