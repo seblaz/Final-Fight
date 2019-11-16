@@ -135,10 +135,25 @@ void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
 
 void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     Locator::logger()->log(INFO, "Se genera enemigo");
-    string spritePath = "assets/personajes/poison.png";
 
-    auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc("assets/personajes/poison.png");
-    auto *fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/poisson");
+    auto *personaje = enemigo->getEstado<Personaje>("personaje");
+
+    string spritePath;
+    FabricaDeAnimacionesCliente *fabricaDeEnemigo;
+
+    switch (personaje->getPersonaje()) {
+        case POISSON:
+            spritePath = "assets/personajes/poison.png";
+            fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/poisson");
+            break;
+        case BOSS:
+            spritePath = "assets/enemigos/DamndBoss2.png";
+            fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/boss");
+            break;
+    }
+
+    auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc(spritePath);
+    //auto *fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/poisson");
     auto *graficoDeEnemigo = new Grafico(enemigo);
     auto *animacion = fabricaDeEnemigo->getAnimacion(REPOSANDO);
     auto *animador = new Animador(enemigo);
