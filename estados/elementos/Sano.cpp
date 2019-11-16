@@ -16,6 +16,7 @@ void Sano::recibirGolpeDe(Entidad *jugador) {
         Locator::logger()->log(INFO, "Elemento roto.");
         jugador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAElemento(elemento);
         entidad->agregarComportamiento("estado", new Roto(entidad));
+        Locator::mapa()->quitarElemento(entidad);
     } else {
         entidad->agregarComportamiento("estado", new RecibiendoGolpeElemento(entidad));
     }
