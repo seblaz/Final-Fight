@@ -21,8 +21,8 @@ Arma::Arma(ARMA arma) {
     inicializar(arma);
 }
 
-void Arma::inicializar(ARMA arma) {
-    this->arma = arma;
+void Arma::inicializar(ARMA arma_) {
+    arma = arma_;
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
     usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
