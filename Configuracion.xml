@@ -66,7 +66,7 @@
             <danio>35</danio>
             <puntos>200</puntos>
             <usos>3</usos>
-            <ancho>50</ancho>
+            <ancho>60</ancho>
         </tubo>
         <punios>
             <danio>20</danio>
@@ -162,79 +162,109 @@
             </musica>
         </juego>
     </pantallas>
-    <personajes>
-        <cody>
-            <punios>
-                <src>assets/personajes/cody.png</src>
-            </punios>
-            <patada>
-                <src>assets/personajes/cody.png</src>
-            </patada>
+    <sprites>
+        <elementos>
+            <caja>
+                <cantidad>2</cantidad>
+                <sprite>
+                    <src>assets/objetos/caja.png</src>
+                </sprite>
+            </caja>
+            <barril>
+                <cantidad>1</cantidad>
+                <sprite>
+                    <src>assets/objetos/barril.png</src>
+                </sprite>
+            </barril>
+        </elementos>
+        <armas>
             <cuchillo>
-                <src>assets/personajes/cody-cuchi.png</src>
+                <cantidad>4</cantidad>
+                <sprite>
+                    <src>assets/objetos/cuchillo.png</src>
+                </sprite>
             </cuchillo>
             <tubo>
-                <src>assets/personajes/cody-tubo.png</src>
+                <cantidad>6</cantidad>
+                <sprite>
+                    <src>assets/objetos/tubo.png</src>
+                </sprite>
             </tubo>
-        </cody>
-        <guy>
-            <punios>
-                <src>assets/personajes/guy.png</src>
-            </punios>
-            <patada>
-                <src>assets/personajes/guy.png</src>
-            </patada>
-            <cuchillo>
-                <src>assets/personajes/guy-cuchi.png</src>
-            </cuchillo>
-            <tubo>
-                <src>assets/personajes/guy-tubo.png</src>
-            </tubo>
-        </guy>
-        <maki>
-            <punios>
-                <src>assets/personajes/maki.png</src>
-            </punios>
-            <patada>
-                <src>assets/personajes/maki.png</src>
-            </patada>
-            <cuchillo>
-                <src>assets/personajes/maki-cuchi.png</src>
-            </cuchillo>
-            <tubo>
-                <src>assets/personajes/maki-tubo.png</src>
-            </tubo>
-        </maki>
-        <haggar>
-            <punios>
-                <src>assets/personajes/haggar.png</src>
-            </punios>
-            <patada>
-                <src>assets/personajes/haggar.png</src>
-            </patada>
-            <cuchillo>
-                <src>assets/personajes/haggar-cuchi.png</src>
-            </cuchillo>
-            <tubo>
-                <src>assets/personajes/haggar-tubo.png</src>
-            </tubo>
-        </haggar>
-        <poisson>
-            <punios>
-                <src>assets/personajes/poison.png</src>
-            </punios>
-            <patada>
-                <src>assets/personajes/poison.png</src>
-            </patada>
-        </poisson>
-        <boss>
-            <punios>
-                <src>assets/personajes/DamndBoss2.png</src>
-            </punios>
-            <patada>
-                <src>assets/personajes/DamndBoss2.png</src>
-            </patada>
-        </boss>
+        </armas>
+        <personajes>
+            <cody>
+                <punios>
+                    <src>assets/personajes/cody.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/cody.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/cody-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/cody-tubo.png</src>
+                </tubo>
+            </cody>
+            <guy>
+                <punios>
+                    <src>assets/personajes/guy.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/guy.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/guy-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/guy-tubo.png</src>
+                </tubo>
+            </guy>
+            <maki>
+                <punios>
+                    <src>assets/personajes/maki.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/maki.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/maki-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/maki-tubo.png</src>
+                </tubo>
+            </maki>
+            <haggar>
+                <punios>
+                    <src>assets/personajes/haggar.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/haggar.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/haggar-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/haggar-tubo.png</src>
+                </tubo>
+            </haggar>
+            <poisson>
+                <punios>
+                    <src>assets/personajes/poison.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/poison.png</src>
+                </patada>
+            </poisson>
+            <boss>
+                <punios>
+                    <src>assets/personajes/DamndBoss2.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/DamndBoss2.png</src>
+                </patada>
+            </boss>
+        </personajes>
         <indicadores>
             <jugador1>
                 <src>assets/varios/indicador1.png</src>
@@ -249,7 +279,7 @@
                 <src>assets/varios/indicador4.png</src>
             </jugador4>
         </indicadores>
-    </personajes>
+    </sprites>
     <sonidos>
         <personaje>
             <cody>
@@ -311,37 +341,24 @@
                         </capa2>
                     </capas>
                 </sprite>
-                <objetos>
-                    <cuchillo>
-                        <cantidad>5</cantidad>
-                        <sprite>
-                            <src>assets/objetos/cuchillo.png</src>
-                        </sprite>
-                    </cuchillo>
-                    <tubo>
-                        <cantidad>5</cantidad>
-                        <sprite>
-                            <src>assets/objetos/tubo.png</src>
-                        </sprite>
-                    </tubo>
+                <elementos>
                     <caja>
                         <cantidad>3</cantidad>
-                        <sprite>
-                            <src>assets/objetos/caja.png</src>
-                        </sprite>
                     </caja>
                     <barril>
                         <cantidad>3</cantidad>
-                        <sprite>
-                            <src>assets/objetos/barril.png</src>
-                        </sprite>
                     </barril>
-                </objetos>
+                </elementos>
+                <armas>
+                    <cuchillo>
+                        <cantidad>5</cantidad>
+                    </cuchillo>
+                    <tubo>
+                        <cantidad>5</cantidad>
+                    </tubo>
+                </armas>
                 <enemigos>
                     <cantidad>5</cantidad>
-                    <sprite>
-                        <src>assets/personajes/poison.png</src>
-                    </sprite>
                 </enemigos>
             </escenario>
         </nivel1>
@@ -373,37 +390,24 @@
                         </capa2>
                     </capas>
                 </sprite>
-                <objetos>
-                    <cuchillo>
-                        <cantidad>4</cantidad>
-                        <sprite>
-                            <src>assets/objetos/cuchillo.png</src>
-                        </sprite>
-                    </cuchillo>
-                    <tubo>
-                        <cantidad>6</cantidad>
-                        <sprite>
-                            <src>assets/objetos/tubo.png</src>
-                        </sprite>
-                    </tubo>
+                <elementos>
                     <caja>
-                        <cantidad>2</cantidad>
-                        <sprite>
-                            <src>assets/objetos/caja.png</src>
-                        </sprite>
+                        <cantidad>3</cantidad>
                     </caja>
                     <barril>
-                        <cantidad>1</cantidad>
-                        <sprite>
-                            <src>assets/objetos/barril.png</src>
-                        </sprite>
+                        <cantidad>3</cantidad>
                     </barril>
-                </objetos>
+                </elementos>
+                <armas>
+                    <cuchillo>
+                        <cantidad>5</cantidad>
+                    </cuchillo>
+                    <tubo>
+                        <cantidad>5</cantidad>
+                    </tubo>
+                </armas>
                 <enemigos>
                     <cantidad>3</cantidad>
-                    <sprite>
-                        <src>assets/personajes/poison.png</src>
-                    </sprite>
                 </enemigos>
             </escenario>
         </nivel2>

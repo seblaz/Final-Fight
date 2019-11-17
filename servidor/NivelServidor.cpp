@@ -70,13 +70,11 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
 
 void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
-
-    Entidad *escenario = generarEscenario(nivel, mapa);
+    
     Jugadores *jugadores = mapa->getJugadores();
     jugadores->reiniciarPosiciones(200, 100);
-
-    auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
-
+    
+    generarEscenario(nivel, mapa);
     generarElementos(nivel, mapa, ELEMENTO::CAJA);
     generarElementos(nivel, mapa, ELEMENTO::BARRIL);
     generarArmas(nivel, mapa, ARMA::CUCHILLO);
@@ -151,7 +149,6 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Jugadores *j
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/enemigos/cantidad");
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
-    string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
     auto *personaje = new Personaje(POISSON);
 
 
@@ -198,7 +195,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Jugadores *j
 void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, ELEMENTO objeto) {
     Configuracion *config = Locator::configuracion();
 
-    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/" + Elemento::ElementoACadena(objeto) + "/cantidad");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/elementos/" + Elemento::ElementoACadena(objeto) + "/cantidad");
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
 
@@ -228,7 +225,7 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, ELEMENTO o
 
 void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, ARMA tipoArma) {
     Configuracion *config = Locator::configuracion();
-    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/" + Arma::armaACadena(tipoArma) + "/cantidad");
+    int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/armas/" + Arma::armaACadena(tipoArma) + "/cantidad");
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
 
@@ -254,7 +251,6 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Jugadores 
     Configuracion *config = Locator::configuracion();
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
-    string spritePath = config->getValue("/niveles/" + nivel + "/escenario/enemigos/sprite/src");
     auto *personaje = new Personaje(BOSS);
 
     Locator::logger()->log(INFO, "Se genera al Jefe final");

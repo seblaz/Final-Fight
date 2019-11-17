@@ -13,7 +13,7 @@ Animador::Animador(Entidad *entidad) : Comportamiento(entidad) {}
 void Animador::actualizar() {
     string nombrePersonaje = Personaje::PersonajeACadena(entidad->getEstado<Personaje>("personaje")->getPersonaje());
     string tipoArma = Arma::armaACadena(entidad->getEstado<Arma>("arma")->getArma());
-    auto *spritePersonaje = Locator::fabricaDeSprites()->getSpriteConfigPath("/personajes/" + nombrePersonaje + "/" + tipoArma + "/src");
+    auto *spritePersonaje = Locator::fabricaDeSprites()->getSpriteConfigPath("/sprites/personajes/" + nombrePersonaje + "/" + tipoArma + "/src");
     entidad->cambiarEstado("sprite", spritePersonaje);
 
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");

@@ -119,8 +119,6 @@ void Colisionables::calcularAtaquesEntre(vector<Entidad *> &atacantes, vector<En
                 auto *envolvente_defensor = defensor->getEstado<EnvolventeVolumen>("envolvente");
 
                 if (envolventeAtaque->colisionaCon(envolvente_defensor, atacante->getEstado<Arma>("arma"))) {
-                    Locator::logger()->log(DEBUG, "golpeado!");
-
                     defensor->getComportamiento<EstadoDeColisionable>("estado")->recibirGolpeDe(atacante);
                 }
             }
