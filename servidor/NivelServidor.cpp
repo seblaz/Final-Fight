@@ -21,7 +21,6 @@
 #include "../estados/ia/BuscarJugadores.h"
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
-#include "../modelo/serializables/Arma.h"
 #include "notificadores/NotificadorDeGolpesJugador.h"
 
 
@@ -73,24 +72,19 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     Locator::logger()->log(DEBUG, "Se genera " + nivel);
 
     Entidad *escenario = generarEscenario(nivel, mapa);
-
-    /**
-     * Dependencias.
-     */
     Jugadores *jugadores = mapa->getJugadores();
     jugadores->reiniciarPosiciones(200, 100);
 
     auto *posicionDeEscenario = escenario->getEstado<Posicion>("posicion");
 
-    generarElementos(nivel, mapa, posicionDeEscenario, ELEMENTO::CAJA);
-    generarElementos(nivel, mapa, posicionDeEscenario, ELEMENTO::BARRIL);
-    generarArmas(nivel, mapa, posicionDeEscenario, ARMA::CUCHILLO);
-    generarArmas(nivel, mapa, posicionDeEscenario, ARMA::TUBO);
-    generarEnemigo(nivel, mapa, posicionDeEscenario, jugadores);
+    generarElementos(nivel, mapa, ELEMENTO::CAJA);
+    generarElementos(nivel, mapa, ELEMENTO::BARRIL);
+    generarArmas(nivel, mapa, ARMA::CUCHILLO);
+    generarArmas(nivel, mapa, ARMA::TUBO);
+    generarEnemigo(nivel, mapa, jugadores);
     generarTransicion(nivel, mapa, jugadores);
-    if ( nivel == "nivel2" ){
-        generarJefeFinal(nivel, mapa, posicionDeEscenario, jugadores);
-    }
+
+    if ( nivel == "nivel2" ) generarJefeFinal(nivel, mapa, jugadores);
 }
 
 Entidad *NivelServidor::generarEscenario(const string &nivel, Mapa *mapa) {
@@ -151,7 +145,7 @@ int generarPosicionY(int frontera) {
     return dist(mt);
 }
 
-void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores) {
+void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Jugadores *jugadores) {
 
     Configuracion *config = Locator::configuracion();
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/enemigos/cantidad");
@@ -190,7 +184,6 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
         enemigo->agregarEstado("posicion", posicionEnemigoRandom);
         enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
         enemigo->agregarEstado("estado de personaje", estadoDePersonaje);
-        enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
         enemigo->agregarEstado("energia", energia);
         enemigo->agregarEstado("envolvente", envolvente);
         enemigo->agregarEstado("envolvente ataque", envolventeDeAtaque);
@@ -202,7 +195,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Posicion *po
     }
 }
 
-void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ELEMENTO objeto) {
+void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, ELEMENTO objeto) {
     Configuracion *config = Locator::configuracion();
 
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/" + Elemento::ElementoACadena(objeto) + "/cantidad");
@@ -229,12 +222,11 @@ void NivelServidor::generarElementos(const string &nivel, Mapa *mapa, Posicion *
         elementoRandom->agregarEstado("elemento", elemento);
         elementoRandom->agregarEstado("envolvente", envolvente);
         elementoRandom->agregarEstado("velocidad", velocidad);
-        elementoRandom->agregarEstado("posicion de escenario", posicionDeEscenario);
         elementoRandom->agregarComportamiento("estado", estadoElemento);
     }
 }
 
-void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, ARMA tipoArma) {
+void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, ARMA tipoArma) {
     Configuracion *config = Locator::configuracion();
     int cantidad = config->getIntValue("/niveles/" + nivel + "/escenario/objetos/" + Arma::armaACadena(tipoArma) + "/cantidad");
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
@@ -255,11 +247,10 @@ void NivelServidor::generarArmas(const string &nivel, Mapa *mapa, Posicion *posi
         armaRandom->agregarEstado("indice sprite", indiceSprite);
         armaRandom->agregarEstado("envolvente", envolvente);
         armaRandom->agregarEstado("posicion", posicionElementoRandom);
-        armaRandom->agregarEstado("posicion de escenario", posicionDeEscenario); // TODO: revisar si es necesario.
     }
 }
 
-void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *posicionDeEscenario, Jugadores* jugadores) {
+void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Jugadores *jugadores) {
     Configuracion *config = Locator::configuracion();
     int anchoNivel = config->getIntValue("/niveles/" + nivel + "/escenario/ancho");
     int profundidadNivel = config->getIntValue("/niveles/" + nivel + "/escenario/profundidad");
@@ -294,7 +285,6 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Posicion *
     enemigo->agregarEstado("posicion", posicionEnemigoRandom);
     enemigo->agregarEstado("orientacion", orientacionDeEnemigo);
     enemigo->agregarEstado("estado de personaje", estadoDePersonaje);
-    enemigo->agregarEstado("posicion de escenario", posicionDeEscenario);
     enemigo->agregarEstado("energia", energia);
     enemigo->agregarEstado("envolvente", envolvente);
     enemigo->agregarEstado("envolvente ataque", envolventeDeAtaque);
