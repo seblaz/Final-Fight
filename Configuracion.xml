@@ -184,6 +184,12 @@
             <patada>
                 <src>assets/personajes/guy.png</src>
             </patada>
+            <cuchillo>
+                <src>assets/personajes/guy-cuchi.png</src>
+            </cuchillo>
+            <tubo>
+                <src>assets/personajes/guy-tubo.png</src>
+            </tubo>
         </guy>
         <maki>
             <punios>
@@ -192,6 +198,12 @@
             <patada>
                 <src>assets/personajes/maki.png</src>
             </patada>
+            <cuchillo>
+                <src>assets/personajes/maki-cuchi.png</src>
+            </cuchillo>
+            <tubo>
+                <src>assets/personajes/maki-tubo.png</src>
+            </tubo>
         </maki>
         <haggar>
             <punios>
@@ -200,6 +212,12 @@
             <patada>
                 <src>assets/personajes/haggar.png</src>
             </patada>
+            <cuchillo>
+                <src>assets/personajes/haggar-cuchi.png</src>
+            </cuchillo>
+            <tubo>
+                <src>assets/personajes/haggar-tubo.png</src>
+            </tubo>
         </haggar>
         <poisson>
             <punios>

@@ -5,41 +5,37 @@
 #include "Energia.h"
 #include "../../servicios/Locator.h"
 
-Energia::Energia(int puntosDeEnergia, int vidas) {
-    this -> puntosDeEnergia = puntosDeEnergia;
-    this -> vidas = vidas;
-    this -> vivo = true;
-    this -> modoTest = false;
-}
+Energia::Energia(int puntosDeEnergia, int vidas) :
+        vidas(vidas),
+        modoTest(false),
+        puntosDeEnergia(puntosDeEnergia),
+        puntosDeEnergiaMaximos(puntosDeEnergia) {}
 
 void Energia::serializar(ostream &stream) {
-    Serializable::serializarEntero(stream, this->puntosDeEnergia);
-    Serializable::serializarEntero(stream, this->vidas);
-    Serializable::serializarBoolean(stream, this->vivo);
-    Serializable::serializarBoolean(stream, this->modoTest);
+    serializarEntero(stream, vidas);
+    serializarBoolean(stream, modoTest);
+    serializarEntero(stream, puntosDeEnergia);
+    serializarEntero(stream, puntosDeEnergiaMaximos);
 }
 
 void Energia::deserializar(istream &stream) {
-    this -> puntosDeEnergia = Serializable::deserializarEntero(stream);
-    this -> vidas = Serializable::deserializarEntero(stream);
-    this -> vivo = Serializable::deserializarBoolean(stream);
-    this -> modoTest = Serializable::deserializarBoolean(stream);
+    vidas = deserializarEntero(stream);
+    modoTest = deserializarBoolean(stream);
+    puntosDeEnergia = deserializarEntero(stream);
+    puntosDeEnergiaMaximos = deserializarEntero(stream);
 }
 
 void Energia::restarEnergia(int energiaRestada) {
     Locator::logger()->log(DEBUG, "Se resta puntos de vida: " + to_string(energiaRestada));
 
-    if ( puntosDeEnergia - energiaRestada > 0 ){
-        this -> puntosDeEnergia -= energiaRestada;
-    }else if(!modoTest){
-
-        if ( vidas > 1 ){
-            this -> vidas -= 1;
-            this -> puntosDeEnergia = 100;
-        }else{
-            this -> vidas = 0;
-            this -> puntosDeEnergia = 0;
-            this -> vivo = false;
+    if (puntosDeEnergia - energiaRestada > 0) {
+        puntosDeEnergia -= energiaRestada;
+    } else if (!modoTest) {
+        vidas--;
+        if (vidas > 1) {
+            this->puntosDeEnergia = puntosDeEnergiaMaximos;
+        } else {
+            this->puntosDeEnergia = 0;
         }
         Locator::logger()->log(DEBUG, "Quedan vida/s: " + to_string(vidas));
         Locator::logger()->log(DEBUG, "Quedan puntosDeEnergia: " + to_string(puntosDeEnergia));
@@ -47,15 +43,15 @@ void Energia::restarEnergia(int energiaRestada) {
 }
 
 bool Energia::personajeVive() {
-    return this->vivo;
+    return puntosDeEnergia > 0;
 }
 
 int Energia::getEnergia() {
-    return this->puntosDeEnergia;
+    return puntosDeEnergia;
 }
 
 int Energia::getVidas() {
-    return this->vidas;
+    return vidas;
 }
 
 void Energia::cambiarModoTest() {
