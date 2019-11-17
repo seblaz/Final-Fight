@@ -1,21 +1,23 @@
 //
-// Created by franco on 29/10/19.
+// Created by franco on 17/11/19.
 //
 
-#include "BuscarJugadores.h"
+#include "BossIA.h"
+#include "../../servicios/Locator.h"
+#include "../personajes/EstadoDePersonajeServidor.h"
 
-BuscarJugadores::BuscarJugadores(Entidad *entidad, Jugadores *jugadores) :
-        Comportamiento(entidad), jugadores(jugadores) {}
+BossIA::BossIA(Entidad *entidad, Jugadores *jugadores):
+    Comportamiento(entidad), jugadores(jugadores) {}
 
-void BuscarJugadores::actualizar() {
-    Locator::eventos()->push(new EventoBuscarJugadores(jugadores, entidad));
+void BossIA::actualizar() {
+    Locator::eventos()->push(new EventoBossIA(jugadores, entidad));
 }
 
-EventoBuscarJugadores::EventoBuscarJugadores(Jugadores *jugadores, Entidad *entidad) :
+EventoBossIA::EventoBossIA(Jugadores *jugadores, Entidad *entidad)  :
         entidad(entidad),
         jugadores(jugadores) {}
 
-void EventoBuscarJugadores::resolver() {
+void EventoBossIA::resolver() {
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
     auto *estadoDePersonaje = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
 
@@ -37,18 +39,19 @@ void EventoBuscarJugadores::resolver() {
             }
         }else{
             //TODO atacar
-
-                if( num > 50 && modX >= 120){
+                if( num > 50 && modX >= 200 ){
                     estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                     restaPosicion.y > 0);
                 }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5){
-                    //estado->darGolpe();
+                    estado->darGolpe();
                 }else{
                     estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,
                                     restaPosicion.y < 0);
                 }
+
         }
     }else{
         estado->reposar();
     }
+
 }

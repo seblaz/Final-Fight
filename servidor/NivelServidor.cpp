@@ -22,6 +22,7 @@
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/envolventes/EnvolventeAtaque.h"
 #include "notificadores/NotificadorDeGolpesJugador.h"
+#include "../estados/ia/BossIA.h"
 
 
 Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSeleccionado, int contadorJugador) {
@@ -258,7 +259,7 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Jugadores 
     Entidad *enemigo = mapa->crearEnemigo();
 
     auto *tipo = new Tipo(TIPO::ENEMIGO);
-    auto *comportamiento = new BuscarJugadores(enemigo, jugadores);
+    auto *comportamiento = new BossIA(enemigo, jugadores);
     auto *velocidadDeEnemigo = new Velocidad();
     auto *orientacionDeEnemigo = new Orientacion;
     auto *fisicaDeEnemigo = new FisicaDePersonaje(enemigo);
