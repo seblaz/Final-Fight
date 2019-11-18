@@ -29,8 +29,13 @@ void GraficoJugador::actualizar() {
                                     posicion->getZ() + posicionEnPantalla.h);
     SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla(nuevaPosicionIndicador, posicionEnSpriteIndicador,
                                                                       1.5);
+    renderizarVidaDeJugador();
+    SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
+}
 
+void GraficoJugador::renderizarVidaDeJugador() {
 
+    SDL_Renderer *renderer = Locator::renderer();
     auto *spriteVida = entidad->getEstado<Sprite>("sprite vida");
 
     auto *spriteVidaActual = entidad->getEstado<Sprite>("sprite vida actual");
@@ -42,10 +47,7 @@ void GraficoJugador::actualizar() {
     SDL_Rect posicionEnPantallaVidaActual = {59, 74, 82 * escalaVida, 9* escalaVida};
 
 
-
     SDL_RenderCopy(renderer, spriteVida->getTexture(), &posicionEnSpriteVidaLlena, &posicionEnPantallaVidaLlena);
 
     SDL_RenderCopy(renderer, spriteVidaActual->getTexture(), &posicionEnSpriteVidaActual, &posicionEnPantallaVidaActual);
-
-    SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
 }

@@ -8,6 +8,7 @@
 
 static const int escalaVida = 3;
 
+#include <SDL_render.h>
 #include "../modelo/Entidad.h"
 #include "Grafico.h"
 
@@ -18,6 +19,7 @@ public:
 
     void actualizar() override;
 
+    void renderizarVidaDeJugador();
 };
 
 
