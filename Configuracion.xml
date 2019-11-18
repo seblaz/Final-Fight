@@ -285,6 +285,9 @@
                 <src>assets/varios/indicador4.png</src>
             </jugador4>
         </indicadores>
+        <barrasVida>
+                <src>assets/varios/barras.png</src>
+        </barrasVida>
     </sprites>
     <sonidos>
         <personaje>

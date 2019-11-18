@@ -25,9 +25,20 @@ void GraficoJugador::actualizar() {
     SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
 
     SDL_Rect posicionEnSpriteIndicador = {0, 0, 45, 45};
-    Posicion nuevaPosicionIndicador(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ() + posicionEnPantalla.h);
+    Posicion nuevaPosicionIndicador(posicion->getX() - posicionDeEscenarioX, posicion->getY(),
+                                    posicion->getZ() + posicionEnPantalla.h);
     SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla(nuevaPosicionIndicador, posicionEnSpriteIndicador,
                                                                       1.5);
+
+
+    auto *spriteVida = entidad->getEstado<Sprite>("sprite vida");
+
+    SDL_Rect posicionEnSpriteVida = {3, 27, 100, 36};
+    Posicion nuevaPosicionVida(200, 450, 300);
+    SDL_Rect posicionEnPantallaVida = calcularPosicionEnPantalla(nuevaPosicionVida, posicionEnSpriteVida,
+                                                                 3);
+
+    SDL_RenderCopy(renderer, spriteVida->getTexture(), &posicionEnSpriteVida, &posicionEnPantallaVida);
 
     SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
 }

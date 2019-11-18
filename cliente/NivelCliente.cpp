@@ -49,6 +49,11 @@ void NivelCliente::generarJugador(Entidad *jugador) {
     jugador->agregarComportamiento("grafico", grafico);
     jugador->agregarComportamiento("animador", animador);
     // jugador->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
+
+    auto *spriteVida = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/barrasVida/src");
+
+    jugador->agregarEstado("sprite vida", spriteVida);
 }
 
 void NivelCliente::generarEscenario(Entidad *escenario) {
