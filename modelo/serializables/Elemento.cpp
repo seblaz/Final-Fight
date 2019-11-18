@@ -21,7 +21,7 @@ ELEMENTO Elemento::getElemento() {
     return elemento;
 }
 
-void Elemento::recibirGolpeDe() {
+void Elemento::recibirGolpe() {
     golpes--;
 }
 

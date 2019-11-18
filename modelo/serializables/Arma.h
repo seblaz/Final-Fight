@@ -24,6 +24,7 @@ private:
     int usosRestantes;
     int ancho;
     bool enSuelo = true;
+    bool enUso = false;
     void inicializar(ARMA arma);
 
 public:
@@ -31,7 +32,8 @@ public:
     explicit Arma(ARMA arma);
     ARMA getArma();
 
-    void usar();
+    void inicioUso();
+    void finUso();
     void tomar();
     int getAncho();
     bool enElSuelo();
