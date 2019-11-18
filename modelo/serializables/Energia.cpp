@@ -31,8 +31,7 @@ void Energia::restarEnergia(int energiaRestada) {
     if (puntosDeEnergia - energiaRestada > 0) {
         puntosDeEnergia -= energiaRestada;
     } else if (!modoTest) {
-        vidas--;
-        if (vidas > 1) {
+        if (vidas-- > 1) {
             this->puntosDeEnergia = puntosDeEnergiaMaximos;
         } else {
             this->puntosDeEnergia = 0;
