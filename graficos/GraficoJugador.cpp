@@ -36,8 +36,11 @@ void GraficoJugador::renderizarVidaDeJugador() {
     SDL_Renderer *renderer = Locator::renderer();
     auto *spriteVida = entidad->getEstado<Sprite>("sprite vida");
     auto *spriteVidaActual = entidad->getEstado<Sprite>("sprite vida actual");
+    auto *spriteCorazon = entidad->getEstado<Sprite>("sprite cantidad de vidas");
+
     auto *energia = entidad->getEstado<Energia>("energia");
     auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
+
 
     SDL_Rect posicionEnSpriteVidaLlena = {0, 0, 95, 17};
     SDL_Rect posicionEnPantallaVidaLlena = {20 + (numeroJugador->numeroJugador - 1  ) * 350 , 40, 95 * escalaVida, 17 * escalaVida};
@@ -46,6 +49,15 @@ void GraficoJugador::renderizarVidaDeJugador() {
 
     SDL_Rect posicionEnSpriteVidaActual = {0, 0, (82 * energia->getEnergia() / 100) , 9};
     SDL_Rect posicionEnPantallaVidaActual = {59 + (numeroJugador->numeroJugador - 1 ) * 350, 64, (82 * energia->getEnergia() / 100)  * escalaVida, 9* escalaVida};
-
     SDL_RenderCopy(renderer, spriteVidaActual->getTexture(), &posicionEnSpriteVidaActual, &posicionEnPantallaVidaActual);
+
+    int cantidadDeVidasActuales = energia->getVidas();
+    SDL_Rect posicionEnSpriteCorazon = {0, 0, 11, 11};
+    for(int i = 0; i < cantidadDeVidasActuales; i++)
+    {
+        SDL_Rect posicionEnPantallaCorazon = {200 + (i * 26) + (numeroJugador->numeroJugador - 1  ) * 350 , 40, 11 * 2, 11 * 2};
+        SDL_RenderCopy(renderer, spriteCorazon->getTexture(), &posicionEnSpriteCorazon, &posicionEnPantallaCorazon);
+    }
+
+
 }
