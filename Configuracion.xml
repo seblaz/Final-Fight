@@ -60,18 +60,37 @@
             <danio>50</danio>
             <puntos>150</puntos>
             <usos>3</usos>
+            <ancho>20</ancho>
         </cuchillo>
         <tubo>
             <danio>35</danio>
             <puntos>200</puntos>
             <usos>3</usos>
+            <ancho>60</ancho>
         </tubo>
         <punios>
             <danio>20</danio>
             <puntos>100</puntos>
             <usos>999999</usos>
+            <ancho>0</ancho>
         </punios>
+        <patada>
+            <danio>75</danio>
+            <puntos>400</puntos>
+            <usos>999999</usos>
+            <ancho>100</ancho>
+        </patada>
     </armas>
+    <elementos>
+        <caja>
+            <puntos>200</puntos>
+            <golpes>2</golpes>
+        </caja>
+        <barril>
+            <puntos>300</puntos>
+            <golpes>1</golpes>
+        </barril>
+    </elementos>
     <pantallas>
         <autenticacion>
             <fondo>
@@ -131,31 +150,127 @@
                 <src>assets/musicas/puntaje.wav</src>
             </musica>
         </puntuacion>
+        <juego>
+            <musica>
+                <src>assets/musicas/nivel1.wav</src>
+            </musica>
+        </juego>
         <fin>
             <src>assets/varios/fin.png</src>
             <musica>
                 <src>assets/musicas/ending.wav</src>
             </musica>
         </fin>
-        <juego>
+        <gameOver>
+            <src>assets/varios/game over.png</src>
             <musica>
-                <src>assets/musicas/nivel1.wav</src>
+                <src>assets/musicas/ending.wav</src>
             </musica>
-        </juego>
+        </gameOver>
     </pantallas>
-    <personajes>
-        <cody>
-            <src>assets/personajes/cody.png</src>
-        </cody>
-        <guy>
-            <src>assets/personajes/guy.png</src>
-        </guy>
-        <maki>
-            <src>assets/personajes/maki.png</src>
-        </maki>
-        <haggar>
-            <src>assets/personajes/haggar.png</src>
-        </haggar>
+    <sprites>
+        <elementos>
+            <caja>
+                <cantidad>2</cantidad>
+                <sprite>
+                    <src>assets/objetos/caja.png</src>
+                </sprite>
+            </caja>
+            <barril>
+                <cantidad>1</cantidad>
+                <sprite>
+                    <src>assets/objetos/barril.png</src>
+                </sprite>
+            </barril>
+        </elementos>
+        <armas>
+            <cuchillo>
+                <cantidad>4</cantidad>
+                <sprite>
+                    <src>assets/objetos/cuchillo.png</src>
+                </sprite>
+            </cuchillo>
+            <tubo>
+                <cantidad>6</cantidad>
+                <sprite>
+                    <src>assets/objetos/tubo.png</src>
+                </sprite>
+            </tubo>
+        </armas>
+        <personajes>
+            <cody>
+                <punios>
+                    <src>assets/personajes/cody.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/cody.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/cody-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/cody-tubo.png</src>
+                </tubo>
+            </cody>
+            <guy>
+                <punios>
+                    <src>assets/personajes/guy.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/guy.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/guy-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/guy-tubo.png</src>
+                </tubo>
+            </guy>
+            <maki>
+                <punios>
+                    <src>assets/personajes/maki.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/maki.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/maki-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/maki-tubo.png</src>
+                </tubo>
+            </maki>
+            <haggar>
+                <punios>
+                    <src>assets/personajes/haggar.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/haggar.png</src>
+                </patada>
+                <cuchillo>
+                    <src>assets/personajes/haggar-cuchi.png</src>
+                </cuchillo>
+                <tubo>
+                    <src>assets/personajes/haggar-tubo.png</src>
+                </tubo>
+            </haggar>
+            <poisson>
+                <punios>
+                    <src>assets/personajes/poison.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/poison.png</src>
+                </patada>
+            </poisson>
+            <boss>
+                <punios>
+                    <src>assets/personajes/DamndBoss2.png</src>
+                </punios>
+                <patada>
+                    <src>assets/personajes/DamndBoss2.png</src>
+                </patada>
+            </boss>
+        </personajes>
         <indicadores>
             <jugador1>
                 <src>assets/varios/indicador1.png</src>
@@ -170,7 +285,7 @@
                 <src>assets/varios/indicador4.png</src>
             </jugador4>
         </indicadores>
-    </personajes>
+    </sprites>
     <sonidos>
         <personaje>
             <cody>
@@ -232,37 +347,24 @@
                         </capa2>
                     </capas>
                 </sprite>
-                <objetos>
+                <elementos>
+                    <caja>
+                        <cantidad>3</cantidad>
+                    </caja>
+                    <barril>
+                        <cantidad>3</cantidad>
+                    </barril>
+                </elementos>
+                <armas>
                     <cuchillo>
                         <cantidad>5</cantidad>
-                        <sprite>
-                            <src>assets/objetos/cuchillo.png</src>
-                        </sprite>
                     </cuchillo>
                     <tubo>
                         <cantidad>5</cantidad>
-                        <sprite>
-                            <src>assets/objetos/tubo.png</src>
-                        </sprite>
                     </tubo>
-                    <caja>
-                        <cantidad>3</cantidad>
-                        <sprite>
-                            <src>assets/objetos/caja.png</src>
-                        </sprite>
-                    </caja>
-                    <neumatico>
-                        <cantidad>3</cantidad>
-                        <sprite>
-                            <src>assets/objetos/neumaticos.png</src>
-                        </sprite>
-                    </neumatico>
-                </objetos>
+                </armas>
                 <enemigos>
                     <cantidad>5</cantidad>
-                    <sprite>
-                        <src>assets/personajes/poison.png</src>
-                    </sprite>
                 </enemigos>
             </escenario>
         </nivel1>
@@ -294,37 +396,24 @@
                         </capa2>
                     </capas>
                 </sprite>
-                <objetos>
+                <elementos>
+                    <caja>
+                        <cantidad>3</cantidad>
+                    </caja>
+                    <barril>
+                        <cantidad>3</cantidad>
+                    </barril>
+                </elementos>
+                <armas>
                     <cuchillo>
-                        <cantidad>4</cantidad>
-                        <sprite>
-                            <src>assets/objetos/cuchillo.png</src>
-                        </sprite>
+                        <cantidad>5</cantidad>
                     </cuchillo>
                     <tubo>
-                        <cantidad>6</cantidad>
-                        <sprite>
-                            <src>assets/objetos/tubo.png</src>
-                        </sprite>
+                        <cantidad>5</cantidad>
                     </tubo>
-                    <caja>
-                        <cantidad>2</cantidad>
-                        <sprite>
-                            <src>assets/objetos/caja.png</src>
-                        </sprite>
-                    </caja>
-                    <neumatico>
-                        <cantidad>1</cantidad>
-                        <sprite>
-                            <src>assets/objetos/neumaticos.png</src>
-                        </sprite>
-                    </neumatico>
-                </objetos>
+                </armas>
                 <enemigos>
                     <cantidad>3</cantidad>
-                    <sprite>
-                        <src>assets/personajes/poison.png</src>
-                    </sprite>
                 </enemigos>
             </escenario>
         </nivel2>
@@ -368,29 +457,57 @@
                 <escala>3</escala>
             </tubo>
             <caja>
-                <cantidad>1</cantidad>
-                <posiciones>
-                    <posicion0>
-                        <x>8</x>
-                        <y>5</y>
-                        <w>70</w>
-                        <h>120</h>
-                    </posicion0>
-                </posiciones>
-                <escala>3</escala>
+                <sano>
+                    <cantidad>1</cantidad>
+                    <posiciones>
+                        <posicion0>
+                            <x>3</x>
+                            <y>2</y>
+                            <w>80</w>
+                            <h>137</h>
+                        </posicion0>
+                    </posiciones>
+                    <escala>2.5</escala>
+                </sano>
+                <roto>
+                    <cantidad>1</cantidad>
+                    <posiciones>
+                        <posicion0>
+                            <x>99</x>
+                            <y>79</y>
+                            <w>80</w>
+                            <h>60</h>
+                        </posicion0>
+                    </posiciones>
+                    <escala>2.5</escala>
+                </roto>
             </caja>
-            <neumatico>
-                <cantidad>1</cantidad>
-                <posiciones>
-                    <posicion0>
-                        <x>8</x>
-                        <y>0</y>
-                        <w>70</w>
-                        <h>116</h>
-                    </posicion0>
-                </posiciones>
-                <escala>3</escala>
-            </neumatico>
+            <barril>
+                <sano>
+                    <cantidad>1</cantidad>
+                    <posiciones>
+                        <posicion0>
+                            <x>6</x>
+                            <y>2</y>
+                            <w>58</w>
+                            <h>93</h>
+                        </posicion0>
+                    </posiciones>
+                    <escala>3</escala>
+                </sano>
+                <roto>
+                    <cantidad>1</cantidad>
+                    <posiciones>
+                        <posicion0>
+                            <x>80</x>
+                            <y>40</y>
+                            <w>61</w>
+                            <h>56</h>
+                        </posicion0>
+                    </posiciones>
+                    <escala>3</escala>
+                </roto>
+            </barril>
         </objetos>
         <cody>
             <reposando>
@@ -609,16 +726,30 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>350</x>
-                        <y>715</y>
-                        <w>39</w>
-                        <h>90</h>
+                        <x>452</x>
+                        <y>1328</y>
+                        <w>44</w>
+                        <h>91</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1</duraciones>
-                <total>1</total>
+                <total>16</total>
             </recibiendoGolpe>
+            <muerto>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>417</x>
+                        <y>245</y>
+                        <w>80</w>
+                        <h>35</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </muerto>
         </cody>
         <poisson>
             <reposando>
@@ -720,6 +851,36 @@
                 <total>45</total>
             </saltandoAdelante>
             <pateando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>49</x>
+                        <y>232</y>
+                        <w>77</w>
+                        <h>68</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>129</x>
+                        <y>215</y>
+                        <w>36</w>
+                        <h>70</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>169</x>
+                        <y>216</y>
+                        <w>60</w>
+                        <h>45</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1,1,1</duraciones>
+                <total>45</total>
             </pateando>
             <dandoGolpe>
                 <cantidad>2</cantidad>
@@ -739,7 +900,7 @@
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1,1</duraciones>
-                <total>45</total>
+                <total>16</total>
             </dandoGolpe>
             <agachado>
                 <cantidad>1</cantidad>
@@ -769,6 +930,20 @@
                 <duraciones>1</duraciones>
                 <total>45</total>
             </recibiendoGolpe>
+            <muerto>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>210</x>
+                        <y>431</y>
+                        <w>95</w>
+                        <h>78</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </muerto>
         </poisson>
         <guy>
             <reposando>
@@ -1340,5 +1515,199 @@
                 <total>1</total>
             </recibiendoGolpe>
         </maki>
+        <boss>
+            <reposando>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>73</x>
+                        <y>248</y>
+                        <w>92</w>
+                        <h>113</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </reposando>
+            <caminando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>75</x>
+                        <y>50</y>
+                        <w>90</w>
+                        <h>117</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>269</x>
+                        <y>49</y>8
+                        <w>90</w>
+                        <h>118</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>463</x>
+                        <y>49</y>
+                        <w>91</w>
+                        <h>119</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>269</x>
+                        <y>49</y>
+                        <w>90</w>
+                        <h>118</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>4,3,4,3</duraciones>
+                <total>55</total>
+            </caminando>
+            <saltando>
+                <cantidad>2</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>270</x>
+                        <y>250</y>
+                        <w>90</w>
+                        <h>88</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>461</x>
+                        <y>250</y>
+                        <w>89</w>
+                        <h>93</h>
+                    </posicion1>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1</duraciones>
+                <total>55</total>
+            </saltando>
+            <saltandoAdelante>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>270</x>
+                        <y>250</y>
+                        <w>90</w>
+                        <h>88</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>77</x>
+                        <y>440</y>
+                        <w>68</w>
+                        <h>72</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>266</x>
+                        <y>455</y>
+                        <w>92</w>
+                        <h>53</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>460</x>
+                        <y>456</y>
+                        <w>89</w>
+                        <h>51</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1,1,1</duraciones>
+                <total>45</total>
+            </saltandoAdelante>
+            <pateando>
+                <cantidad>4</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>49</x>
+                        <y>232</y>
+                        <w>77</w>
+                        <h>68</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>129</x>
+                        <y>215</y>
+                        <w>36</w>
+                        <h>70</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>169</x>
+                        <y>216</y>
+                        <w>60</w>
+                        <h>45</h>
+                    </posicion3>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1,1,1</duraciones>
+                <total>45</total>
+            </pateando>
+            <dandoGolpe>
+                <cantidad>2</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>62</x>
+                        <y>592</y>
+                        <w>99</w>
+                        <h>101</h>
+                    </posicion0>
+                    <posicion1>
+                        <x>268</x>
+                        <y>591</y>
+                        <w>123</w>
+                        <h>99</h>
+                    </posicion1>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1,1</duraciones>
+                <total>45</total>
+            </dandoGolpe>
+            <agachado>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>6</x>
+                        <y>257</y>
+                        <w>40</w>
+                        <h>67</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </agachado>
+            <recibiendoGolpe>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>455</x>
+                        <y>595</y>
+                        <w>83</w>
+                        <h>94</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </recibiendoGolpe>
+            <muerto>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>54</x>
+                        <y>764</y>
+                        <w>147</w>
+                        <h>45</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>45</total>
+            </muerto>
+        </boss>
     </animaciones>
 </configuracion>

@@ -3,7 +3,7 @@
 //
 
 #include "ReproductorSonidoPersonaje.h"
-#include "../estados/Caminando.h"
+#include "../estados/personajes/Caminando.h"
 #include "../modelo/serializables/NumeroJugador.h"
 
 ReproductorSonidoPersonaje::ReproductorSonidoPersonaje(Entidad *entidad, string rutaBase) :
@@ -16,7 +16,7 @@ void ReproductorSonidoPersonaje::actualizar() {
     auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
     int canalAReproducir;
 
-    string pathSonidoABuscar = rutaBase + EstadoDePersonaje::estadoACadena(estado->getEstado()) + "/src";
+    string pathSonidoABuscar = rutaBase + "/" + EstadoDePersonaje::estadoACadena(estado->getEstado()) + "/src";
 
     if (numeroJugador == NULL) {
         canalAReproducir = 6;

@@ -17,23 +17,36 @@ EventoBuscarJugadores::EventoBuscarJugadores(Jugadores *jugadores, Entidad *enti
 
 void EventoBuscarJugadores::resolver() {
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
+    auto *estadoDePersonaje = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
 
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     auto posicionMasCercana = jugadores->posicionMasCercana(posicion);
 
     Posicion restaPosicion = posicion->menos(&posicionMasCercana);
     float mod = restaPosicion.modulo();
+    float modX = restaPosicion.moduloX();
+    float modY = restaPosicion.moduloY();
+    int num = 1 + rand() % (101 - 1);
     if ( mod <= 700 ) {
         if( mod >= 200 ) {
-            estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
-                            restaPosicion.y > 0);
+            if( num > 85){
+                estado->saltar();
+            }else{
+                estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
+                                restaPosicion.y > 0);
+            }
         }else{
             //TODO atacar
-            int num = 1 + rand() % (101 - 1);
-            if( restaPosicion.y <= 10 && restaPosicion.y >= -10 && num > 50){
-                //estado->golpear(entidad);
-//                estado->recibirGolpe(entidad);
-            }
+
+                if( num > 50 && modX >= 120){
+                    estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
+                                    restaPosicion.y > 0);
+                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5){
+                    estado->darGolpe();
+                }else{
+                    estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,
+                                    restaPosicion.y < 0);
+                }
         }
     }else{
         estado->reposar();

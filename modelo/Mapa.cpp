@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "Mapa.h"
 #include "../servicios/Locator.h"
+#include "serializables/EstadoDePersonaje.h"
 
 using namespace std;
 
@@ -135,4 +136,38 @@ vector<Entidad *> &Mapa::getArmas() {
 
 vector<Entidad *> &Mapa::getColisionables() {
     return colisionables;
+}
+
+void Mapa::quitarEnemigo(Entidad *enemigo) {
+    colisionables.erase(remove(colisionables.begin(), colisionables.end(), enemigo), colisionables.end());
+    enemigos.erase(remove(enemigos.begin(), enemigos.end(), enemigo), enemigos.end());
+}
+
+void Mapa::quitarElemento(Entidad *elemento) {
+    colisionables.erase(remove(colisionables.begin(), colisionables.end(), elemento), colisionables.end());
+    elementos.erase(remove(elementos.begin(), elementos.end(), elemento), elementos.end());
+}
+
+void Mapa::quitarArma(Entidad *arma) {
+    colisionables.erase(remove(colisionables.begin(), colisionables.end(), arma), colisionables.end());
+    armas.erase(remove(armas.begin(), armas.end(), arma), armas.end());
+}
+
+int Mapa::enemigosAtacando() {
+    int maximoDeAtacantes = 0;
+    for (auto* enemigo : enemigos){
+        auto* estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
+        if ( estado->getEstado() == CAMINANDO){
+            maximoDeAtacantes++;
+        } else if ( estado->getEstado() == SALTANDO_CON_MOVIMIENTO){
+            maximoDeAtacantes++;
+        } else if ( estado->getEstado() == SALTANDO){
+            maximoDeAtacantes++;
+        }else if ( estado->getEstado() == RECIBIENDO_GOLPE){
+            maximoDeAtacantes++;
+        }else if ( estado->getEstado() == DANDO_GOLPE)
+            maximoDeAtacantes++;
+
+    }
+    return maximoDeAtacantes;
 }

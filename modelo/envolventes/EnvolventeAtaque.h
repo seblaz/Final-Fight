@@ -10,6 +10,7 @@
 #include "Envolvente.h"
 #include "../serializables/Orientacion.h"
 #include "EnvolventeVolumen.h"
+#include "../serializables/Arma.h"
 
 class EnvolventeAtaque : public Envolvente {
 
@@ -17,8 +18,8 @@ private:
     Orientacion *orientacion;
 
 public:
-    explicit EnvolventeAtaque(Posicion *posicion, int alto, int ancho, int profundidad, Orientacion *orientacion);
-    bool colisionaCon(EnvolventeVolumen *envolvente);
+    explicit EnvolventeAtaque(Posicion *posicion, int ancho, int profundidad, Orientacion *orientacion);
+    bool colisionaCon(EnvolventeVolumen *envolvente, Arma *longitudArma);
 
 };
 

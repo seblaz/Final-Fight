@@ -7,6 +7,7 @@
 #include <utility>
 #include "serializables/Posicion.h"
 #include "serializables/Actividad.h"
+#include "serializables/Energia.h"
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
     Jugadores::jugadores = std::move(jugadores);
@@ -85,4 +86,13 @@ Posicion Jugadores::posicionMasCercana(Posicion *posicion) {
         }
     }
     return posicionMasCercana;
+}
+
+bool Jugadores::vivos() {
+    if(jugadores.empty()) return true;
+    for(auto tuple: jugadores) {
+        if(tuple.second->getEstado<Actividad>("actividad")->activo && tuple.second->getEstado<Energia>("energia")->personajeVive())
+            return true;
+    }
+    return false;
 }

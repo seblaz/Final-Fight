@@ -14,6 +14,9 @@ class EnvolventeVolumen : public Envolvente {
 
 public:
     using Envolvente::Envolvente;
+
+    EnvolventeVolumen() : Envolvente(nullptr, 0, 0) {}
+
     bool colisionaPorIzquierdaCon(EnvolventeVolumen * envolvente);
     bool colisionaPorDerechaCon(EnvolventeVolumen * envolvente);
     bool colisionaAbajoCon(EnvolventeVolumen * envolvente);

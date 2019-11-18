@@ -38,6 +38,7 @@ string EstadoDePersonaje::estadoACadena(ESTADO_DE_PERSONAJE e) {
             return "pateando";
         case RECIBIENDO_GOLPE:
             return "recibiendoGolpe";
-            return "golpeado";
+        case MUERTO:
+            return "muerto";
     };
 }

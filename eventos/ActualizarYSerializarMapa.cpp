@@ -22,10 +22,8 @@ void ActualizarYSerializarMapa::actualizar() {
         }
     }
     auto *colisionables = Locator::colisionables();
-    colisionables->calcularPosiblesColisiones();
-    colisionables->calcularAtaquesDeJugadoresAEnemigos();
-    colisionables->calcularAtaquesAelementos();
-    colisionables->calcularArmasAlcanzables();
+    colisionables->calcularInteracciones();
+    if(!Locator::mapa()->getJugadores()->vivos()) Locator::clientes()->cambiarTodosA("game over");
 }
 
 void ActualizarYSerializarMapa::serializar() {

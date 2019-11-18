@@ -67,4 +67,12 @@ Posicion Posicion::menos(Posicion *otraPosicion) {
     return Posicion(x - otraPosicion->x, y - otraPosicion->y, z - otraPosicion->z);
 }
 
+float Posicion::moduloX() {
+    return sqrt( (x*x));
+}
+
+float Posicion::moduloY() {
+    return sqrt( (y*y) );
+}
+
 

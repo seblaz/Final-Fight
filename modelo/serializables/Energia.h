@@ -12,9 +12,9 @@
 class Energia : public Estado {
 
 private:
+    int puntosDeEnergiaMaximos;
     int puntosDeEnergia;
     int vidas;
-    bool vivo;
     bool modoTest;
 
 public:

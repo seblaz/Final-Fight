@@ -13,7 +13,7 @@
 #include "../interpretes/InterpreteJuegoServ.h"
 #include "../modelo/ModeloPuntuacion.h"
 #include "../interpretes/InterpretePuntuacionServ.h"
-#include "../interpretes/InterpreteFinServ.h"
+#include "../interpretes/InterpreteNulo.h"
 #include <unistd.h>
 #include <functional>
 
@@ -28,7 +28,8 @@ Cliente::Cliente(Socket *socket) :
     etapas.agregar(new Etapa("puntuacion1", new ModeloPuntuacion(), new InterpretePuntuacionServ(usuario, "nivel2")));
     etapas.agregar(new Etapa("nivel2", new ModeloJuego(), new InterpreteJuegoServ(usuario)));
     etapas.agregar(new Etapa("puntuacion2", new ModeloPuntuacion(), new InterpretePuntuacionServ(usuario, "fin")));
-    etapas.agregar(new Etapa("fin", new ModeloNulo(), new InterpreteFinServ(usuario)));
+    etapas.agregar(new Etapa("fin", new ModeloNulo(), new InterpreteNulo(usuario)));
+    etapas.agregar(new Etapa("game over", new ModeloNulo(), new InterpreteNulo(usuario)));
 
     lanzarHilo(bind(&Cliente::transmitirEnHilo, this));
     lanzarHilo(bind(&Cliente::recibirEnHilo, this));

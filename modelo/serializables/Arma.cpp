@@ -1,4 +1,3 @@
-//
 // Created by leo on 12/11/19.
 //
 
@@ -13,32 +12,59 @@ string Arma::armaACadena(ARMA arma) {
             return "cuchillo";
         case ARMA::TUBO:
             return "tubo";
+        case ARMA::PATADA:
+            return "patada";
     };
 }
 
-Arma::Arma(ARMA arma) : arma(arma) {
+Arma::Arma() : Arma(ARMA::PUNIOS){}
+
+Arma::Arma(ARMA arma) {
+    inicializar(arma);
+}
+
+void Arma::inicializar(ARMA arma_) {
+    arma = arma_;
     string base = "/armas/" + Arma::armaACadena(arma);
     danio = Locator::configuracion()->getIntValue(base + "/danio");
     usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
-    puntosParaPersonaje = Locator::configuracion()->getIntValue(base + "/puntos");
+    ancho = Locator::configuracion()->getIntValue(base + "/ancho");
 }
 
 int Arma::getPuntosDeDanio() {
     return danio;
 }
 
-int Arma::getPuntosParaPersonaje() {
-    return puntosParaPersonaje;
-}
-
 void Arma::serializar(ostream &stream) {
-    Serializable::serializarEntero(stream, int(arma));
+    serializarEntero(stream, int(arma));
+    serializarBoolean(stream, enSuelo);
 }
 
 void Arma::deserializar(istream &stream) {
-    arma = static_cast<ARMA>(Serializable::deserializarEntero(stream));
+    arma = static_cast<ARMA>(deserializarEntero(stream));
+    enSuelo = deserializarBoolean(stream);
 }
 
 void Arma::usar() {
-    usosRestantes--;
+    if(--usosRestantes == 0) inicializar(ARMA::PUNIOS);
+}
+
+void Arma::tomar() {
+    enSuelo = false;
+}
+
+ARMA Arma::getArma() {
+    return arma;
+}
+
+bool Arma::enElSuelo() {
+    return enSuelo;
+}
+
+void Arma::cambiarPor(ARMA arma_) {
+    inicializar(arma_);
+}
+
+int Arma::getAncho() {
+    return ancho;
 }

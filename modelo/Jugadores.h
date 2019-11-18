@@ -21,6 +21,7 @@ public:
 
     int getMayorX();
     int getMenorX();
+    bool vivos();
 
     void reiniciarPosiciones(int x, int y);
     void bloquearMovimientos(int scrollIzquierdo, int scrollDerecho);

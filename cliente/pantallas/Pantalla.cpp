@@ -34,10 +34,6 @@ void Pantalla::graficar(SDL_Renderer *renderer) {
     vista->graficar(renderer);
 }
 
-void Pantalla::reproducir() {
-    vista->reproducir();
-}
-
 Accion *Pantalla::getAccion(SDL_Event *e) {
     return entradaUsuario->getAccion(e);
 }

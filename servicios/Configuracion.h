@@ -13,12 +13,16 @@
 #include <map>
 #include <list>
 #include <mutex>
+#include <unordered_map>
 
 using namespace std;
 
 class Configuracion {
 
 private:
+    unordered_map<string, string> cacheStrings;
+    unordered_map<string, int> cacheInts;
+    unordered_map<string, float> cacheFloats;
     string actualPath = "";
     string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;

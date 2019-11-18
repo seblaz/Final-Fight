@@ -16,15 +16,15 @@ private:
     int limiteEnProfundidad = 0;
     int limiteFrontal = 0;
     int i = 0;
+    void calcularPosiblesColisiones();
+    void calcularArmasAlcanzables();
+
+    void calcularAtaquesEntre(vector<Entidad *> &atacantes, vector<Entidad *> &defensores);
 
 public:
     explicit Colisionables() = default;
     void addLimitesDeEscenario(int profundidad, int frente);
-
-    void calcularPosiblesColisiones();
-    void calcularAtaquesDeJugadoresAEnemigos();
-    void calcularAtaquesAelementos();
-    void calcularArmasAlcanzables();
+    void calcularInteracciones();
 };
 
 

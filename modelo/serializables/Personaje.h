@@ -15,6 +15,7 @@ enum PERSONAJE {
     HAGGAR,
     MAKI,
     POISSON,
+    BOSS,
     NULO
 };
 
@@ -27,7 +28,6 @@ public:
     Personaje();
     explicit Personaje(enum PERSONAJE personaje);
     enum PERSONAJE getPersonaje();
-    void setPersonaje(enum PERSONAJE personaje);
     static string PersonajeACadena(enum PERSONAJE);
 
     void serializar(ostream& stream) override;

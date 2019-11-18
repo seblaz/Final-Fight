@@ -53,6 +53,10 @@ public:
     Entidad *crearArma();
     Entidad *crearEscenario();
 
+    void quitarEnemigo(Entidad *enemigo);
+    void quitarElemento(Entidad *elemento);
+    void quitarArma(Entidad *arma);
+
     vector<Entidad *> &getColisionables();
     vector<Entidad *> &getPersonajes();
     vector<Entidad *> &getEnemigos();
@@ -62,6 +66,8 @@ public:
     Entidad *crearPantalla();
 
     Entidad *crearTransicion();
+
+    int enemigosAtacando();
 };
 
 #endif //FINAL_FIGHT_MAPA_H
