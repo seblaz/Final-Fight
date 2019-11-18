@@ -9,6 +9,7 @@
 #include "../modelo/serializables/Posicion.h"
 #include "../servicios/Locator.h"
 #include "../modelo/serializables/Energia.h"
+#include "../modelo/serializables/NumeroJugador.h"
 
 GraficoJugador::GraficoJugador(Entidad *entidad) : Grafico(entidad) {}
 
@@ -38,22 +39,18 @@ void GraficoJugador::actualizar() {
 void GraficoJugador::renderizarVidaDeJugador() {
 
     SDL_Renderer *renderer = Locator::renderer();
-
     auto *spriteVida = entidad->getEstado<Sprite>("sprite vida");
-
     auto *spriteVidaActual = entidad->getEstado<Sprite>("sprite vida actual");
-
     auto *energia = entidad->getEstado<Energia>("energia");
-
-    energia->getEnergia();
+    auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
 
     SDL_Rect posicionEnSpriteVidaLlena = {0, 0, 95, 17};
-    SDL_Rect posicionEnPantallaVidaLlena = {20, 40, 95 * escalaVida, 17 * escalaVida};
+    SDL_Rect posicionEnPantallaVidaLlena = {20 + (numeroJugador->numeroJugador - 1  ) * 350 , 40, 95 * escalaVida, 17 * escalaVida};
 
     SDL_RenderCopy(renderer, spriteVida->getTexture(), &posicionEnSpriteVidaLlena, &posicionEnPantallaVidaLlena);
 
     SDL_Rect posicionEnSpriteVidaActual = {0, 0, (82 * energia->getEnergia() / 100) , 9};
-    SDL_Rect posicionEnPantallaVidaActual = {59, 64, (82 * energia->getEnergia() / 100)  * escalaVida, 9* escalaVida};
+    SDL_Rect posicionEnPantallaVidaActual = {59 + (numeroJugador->numeroJugador - 1 ) * 350, 64, (82 * energia->getEnergia() / 100)  * escalaVida, 9* escalaVida};
 
     SDL_RenderCopy(renderer, spriteVidaActual->getTexture(), &posicionEnSpriteVidaActual, &posicionEnPantallaVidaActual);
 }
