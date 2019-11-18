@@ -20,6 +20,8 @@ public:
     void actualizar() override;
 
     void renderizarVidaDeJugador();
+
+    void renderizarIndicadorDeJuegador();
 };
 
 
