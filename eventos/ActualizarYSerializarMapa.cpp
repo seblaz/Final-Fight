@@ -10,8 +10,10 @@ ActualizarYSerializarMapa::ActualizarYSerializarMapa(Mapa *mapa) :
         mapa(mapa) {}
 
 void ActualizarYSerializarMapa::resolver() {
-    actualizar();
-    serializar();
+    if (Locator::clientes()->getEtapaActual() != "game over") {
+        actualizar();
+        serializar();
+    }
 }
 
 void ActualizarYSerializarMapa::actualizar() {
@@ -23,12 +25,12 @@ void ActualizarYSerializarMapa::actualizar() {
     }
     auto *colisionables = Locator::colisionables();
     colisionables->calcularInteracciones();
-    if(!Locator::mapa()->getJugadores()->vivos()) Locator::clientes()->cambiarTodosA("game over");
+    if (!Locator::mapa()->getJugadores()->vivos()) Locator::clientes()->cambiarTodosA("game over");
 }
 
 void ActualizarYSerializarMapa::serializar() {
     stringstream s;
-    for(auto tupla : mapa->devolverEntidadesConId()){
+    for (auto tupla : mapa->devolverEntidadesConId()) {
         Entidad::putIdInStream(s, tupla.first);
         tupla.second->serializar(s);
     }

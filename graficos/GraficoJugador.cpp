@@ -18,12 +18,7 @@ void GraficoJugador::actualizar() {
     auto *posicion = entidad->getEstado<Posicion>("posicion");
     auto *spriteIndicador = entidad->getEstado<Sprite>("spriteIndicador");
 
-    auto *animacion = entidad->getEstado<AnimacionCliente>("animacion");
-
     Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
-    SDL_Rect posicionEnSprite = animacion->devolverPosicion(entidad);
-    SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
-
     SDL_Rect posicionEnSpriteIndicador = {0, 0, 45, 45};
     Posicion nuevaPosicionIndicador(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ() + 450);
     SDL_Rect posicionEnPantallaIndicador = calcularPosicionEnPantalla(nuevaPosicionIndicador, posicionEnSpriteIndicador,
