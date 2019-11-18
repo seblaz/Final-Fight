@@ -12,5 +12,5 @@ void DandoGolpe::actualizar() {
     velocidad->x = 0;
     velocidad->y = 0;
 
-    if ( frame++ == frames_totales ) entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
+    if (framesFaltantes-- <= 0) entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
 }

@@ -9,11 +9,7 @@
 #include "EstadoDePersonajeServidor.h"
 
 class RecibiendoGolpe : public EstadoDePersonajeServidor{
-
-private:
-    int duracion = 20;
-    int faltante = duracion;
-
+    
 public:
     using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
 

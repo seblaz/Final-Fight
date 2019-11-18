@@ -7,7 +7,7 @@
 #include "Muerto.h"
 
 void RecibiendoGolpe::actualizar() {
-    if (faltante-- <= 0) {
+    if (framesFaltantes-- <= 0) {
         auto *energia = entidad->getEstado<Energia>("energia");
         if (energia->personajeVive()) {
             entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));

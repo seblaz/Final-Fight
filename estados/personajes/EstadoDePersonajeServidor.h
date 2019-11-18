@@ -20,9 +20,11 @@ private:
     void cambiarEstado(ESTADO_DE_PERSONAJE estado);
     int frames = 0;
 
-public:
-    using EstadoDeColisionable::EstadoDeColisionable;
+protected:
+    int framesFaltantes;
 
+public:
+    explicit EstadoDePersonajeServidor(Entidad *entidad);
     virtual void saltar();
     virtual void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg);
     virtual void reposar();

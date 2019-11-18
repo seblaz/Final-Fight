@@ -9,9 +9,6 @@
 
 class DandoGolpe : public EstadoDePersonajeServidor{
 
-private:
-    int frame = 0;
-    int frames_totales = 15;
 public:
     using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
 

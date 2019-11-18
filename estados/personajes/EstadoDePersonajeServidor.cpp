@@ -18,6 +18,14 @@
 #include "../../servidor/notificadores/NotificadorDeGolpesJugador.h"
 #include "Muerto.h"
 
+EstadoDePersonajeServidor::EstadoDePersonajeServidor(Entidad *entidad) : EstadoDeColisionable(entidad) {
+    auto *estadoDePersonaje = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
+    string estado = estadoDePersonaje ? EstadoDePersonaje::estadoACadena(estadoDePersonaje->getEstado()) : "reposando";
+    auto *personaje = entidad->getEstado<Personaje>("personaje");
+    string nombrePersonaje = estadoDePersonaje ? Personaje::PersonajeACadena(personaje->getPersonaje()) : "cody";
+    framesFaltantes = Locator::configuracion()->getIntValue("/animaciones/" + nombrePersonaje + "/" + estado + "/total");
+}
+
 template<typename T>
 EstadoDePersonajeServidor *crearEstado(Entidad *entidad) { return new T(entidad); }
 
