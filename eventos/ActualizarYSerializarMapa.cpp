@@ -23,6 +23,7 @@ void ActualizarYSerializarMapa::actualizar() {
     }
     auto *colisionables = Locator::colisionables();
     colisionables->calcularInteracciones();
+    if(!Locator::mapa()->getJugadores()->vivos()) Locator::clientes()->cambiarTodosA("game over");
 }
 
 void ActualizarYSerializarMapa::serializar() {

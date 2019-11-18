@@ -24,7 +24,7 @@
 #include "entradas/EntradaPuntuacion.h"
 #include "vistas/VistaPuntuacion.h"
 #include "entradas/EntradaNula.h"
-#include "vistas/VistaFin.h"
+#include "vistas/VistaPlana.h"
 
 Juego::Juego() {
     inicializarGraficos();
@@ -70,8 +70,7 @@ void Juego::inicializarGraficos() {
                 Locator::logger()->log(ERROR, "Fallo cargar la fuente SDL_ttf. Error: " + string(TTF_GetError()));
                 exit = true;
             }
-            if( Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
-            {
+            if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
                 Locator::logger()->log(ERROR, "Fallo cargar la SDL_Mixer. Error: " + string(Mix_GetError()));
                 exit = true;
             }
@@ -123,7 +122,12 @@ void Juego::agregarPantallas() {
     manager.agregarPantalla(new Pantalla("fin",
                                          new InterpreteNuloCli(),
                                          new EntradaNula(),
-                                         new VistaFin()));
+                                         new VistaPlana("/pantallas/fin/src", "/pantallas/fin/musica/src")));
+
+    manager.agregarPantalla(new Pantalla("game over",
+                                         new InterpreteNuloCli(),
+                                         new EntradaNula(),
+                                         new VistaPlana("/pantallas/gameOver/src", "/pantallas/gameOver/musica/src")));
 
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
     manager.agregarPantalla(new PantallaError("partida llena", "/pantallas/error/partidaLlena/src"));
@@ -146,7 +150,7 @@ void Juego::loop() {
         int start = SDL_GetTicks();
 
         exit = manager.getActual()->procesarEntrada();
-        
+
         int end = SDL_GetTicks();
         int sleepTime = MS_PER_FRAME + start - end;
         if (sleepTime > 0) SDL_Delay(sleepTime);

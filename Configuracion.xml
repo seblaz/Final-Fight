@@ -150,17 +150,23 @@
                 <src>assets/musicas/puntaje.wav</src>
             </musica>
         </puntuacion>
+        <juego>
+            <musica>
+                <src>assets/musicas/nivel1.wav</src>
+            </musica>
+        </juego>
         <fin>
             <src>assets/varios/fin.png</src>
             <musica>
                 <src>assets/musicas/ending.wav</src>
             </musica>
         </fin>
-        <juego>
+        <gameOver>
+            <src>assets/varios/game over.png</src>
             <musica>
-                <src>assets/musicas/nivel1.wav</src>
+                <src>assets/musicas/ending.wav</src>
             </musica>
-        </juego>
+        </gameOver>
     </pantallas>
     <sprites>
         <elementos>

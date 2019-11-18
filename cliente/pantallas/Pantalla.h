@@ -39,7 +39,7 @@ public:
     virtual void interpretarModelo(stringstream &s);
     virtual void interpretarNombrePantalla(stringstream &s);
     virtual void graficar(SDL_Renderer *renderer);
-    virtual void reproducir();
+
     virtual void enviar(SDL_Event *e);
     virtual Accion *getAccion(SDL_Event *e);
     virtual void recibir(stringstream &s);
