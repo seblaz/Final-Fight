@@ -42,22 +42,22 @@ void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *juga
         case HAGGAR:
             srcSpritePersonaje = config->getValue("/personajes/haggar/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/haggar");
-            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(jugador,"/sonidos/personaje/cody/");
             break;
         case CODY:
             srcSpritePersonaje = config->getValue("/personajes/cody/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/cody");
-            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(jugador,"/sonidos/personaje/cody/");
             break;
         case MAKI:
             srcSpritePersonaje = config->getValue("/personajes/maki/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/maki");
-            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(jugador,"/sonidos/personaje/cody/");
             break;
         case GUY:
             srcSpritePersonaje = config->getValue("/personajes/guy/src");
             fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/guy");
-            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/personaje/cody/");
+            reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(jugador,"/sonidos/personaje/cody/");
             break;
         default:
             Locator::logger()->log(ERROR, "Se trató de crear un jugador con un personaje incorrecto: " +
@@ -146,7 +146,7 @@ void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
     enemigo->agregarComportamiento("animador", animador);
 
-    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje("/sonidos/enemigo/poison/");
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(enemigo,"/sonidos/enemigo/poison/");
     enemigo->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 
 }
