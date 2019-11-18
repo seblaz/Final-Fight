@@ -32,7 +32,7 @@ void Saltando::actualizar() {
 void Saltando::darGolpe() {
     auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
 
-    if ((velocidad->z <= velocidadInicial) && (velocidad->z >= 0)) {
+    if (velocidad->z >= 0) {
         if (!pateando) {
             pateando = true;
             entidad->agregarEstado("estado de personaje", new EstadoDePersonaje(PATEANDO));

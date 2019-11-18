@@ -42,7 +42,7 @@ void EventoBuscarJugadores::resolver() {
                     estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                     restaPosicion.y > 0);
                 }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5){
-                    //estado->darGolpe();
+                    estado->darGolpe();
                 }else{
                     estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,
                                     restaPosicion.y < 0);

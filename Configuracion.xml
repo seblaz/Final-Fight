@@ -720,24 +720,24 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>445</x>
-                        <y>859</y>
-                        <w>40</w>
-                        <h>74</h>
+                        <x>452</x>
+                        <y>1328</y>
+                        <w>44</w>
+                        <h>91</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1</duraciones>
-                <total>1</total>
+                <total>16</total>
             </recibiendoGolpe>
             <muerto>
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>253</x>
-                        <y>227</y>
-                        <w>39</w>
-                        <h>54</h>
+                        <x>417</x>
+                        <y>245</y>
+                        <w>80</w>
+                        <h>35</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
