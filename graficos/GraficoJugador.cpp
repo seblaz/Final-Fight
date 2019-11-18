@@ -55,7 +55,7 @@ void GraficoJugador::renderizarVidaDeJugador() {
     SDL_Rect posicionEnSpriteCorazon = {0, 0, 11, 11};
     for(int i = 0; i < cantidadDeVidasActuales; i++)
     {
-        SDL_Rect posicionEnPantallaCorazon = {200 + (i * 26) + (numeroJugador->numeroJugador - 1  ) * 350 , 40, 11 * 2, 11 * 2};
+        SDL_Rect posicionEnPantallaCorazon = {220 + (i * 26) + (numeroJugador->numeroJugador - 1  ) * 350 , 40, 11 * 2, 11 * 2};
         SDL_RenderCopy(renderer, spriteCorazon->getTexture(), &posicionEnSpriteCorazon, &posicionEnPantallaCorazon);
     }
 
