@@ -20,7 +20,7 @@ void NotificadorDeGolpesJugador::notificarGolpeAPersonaje(Entidad* personajeGolp
     int puntosArma = Locator::configuracion()->getIntValue("/armas/" + tipoArma + "/puntos");
     puntajeGolpeador->agregarPuntos(puntosArma);
 
-    if(!personajeGolpeado->getEstado<Energia>("energia")->personajeVive()){
+    if(!personajeGolpeado->getEstado<Energia>("energia")->conEnergia()){
         puntajeGolpeador->agregarPuntos(500);
     }
 }

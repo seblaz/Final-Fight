@@ -16,6 +16,7 @@ void ReceptorCliente::recibir() {
         s.str(std::string());
         if (!Locator::socket()->recibir(s)) {
             Locator::logger()->log(ERROR, "Se detecta desconexión del servidor.");
+            Locator::socket()->finalizarConexion();
             disponible.post();
             break;
         }

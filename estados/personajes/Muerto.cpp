@@ -3,7 +3,10 @@
 //
 
 #include "Muerto.h"
+#include "../../modelo/serializables/Energia.h"
 
 void Muerto::actualizar() {
-    //EstadoDePersonajeServidor::actualizar();
+    if(framesFaltantes-- <= 0 && entidad->getEstado<Energia>("energia")->revivir()) {
+        EstadoDePersonajeServidor::reposar();
+    }
 }

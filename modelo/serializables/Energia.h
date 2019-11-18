@@ -15,7 +15,7 @@ private:
     int puntosDeEnergiaMaximos;
     int puntosDeEnergia;
     int vidas;
-    bool modoTest;
+    bool modoTest = false;
 
 public:
     Energia() = default;
@@ -24,7 +24,9 @@ public:
     void deserializar(istream& stream) override;
 
     void restarEnergia(int energiaRestada);
-    bool personajeVive();
+    bool conEnergia();
+    bool vivo();
+    bool revivir();
     int getEnergia();
     int getVidas();
 

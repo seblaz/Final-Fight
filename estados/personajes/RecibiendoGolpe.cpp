@@ -9,7 +9,7 @@
 void RecibiendoGolpe::actualizar() {
     if (framesFaltantes-- <= 0) {
         auto *energia = entidad->getEstado<Energia>("energia");
-        if (energia->personajeVive()) {
+        if (energia->conEnergia()) {
             entidad->agregarComportamiento("estado", new EstadoDePersonajeServidor(entidad));
         } else {
             entidad->getComportamiento<EstadoDePersonajeServidor>("estado")->morir();
