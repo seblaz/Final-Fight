@@ -170,8 +170,10 @@ void Juego::recibir() {
     while (!exit) {
         s.str(std::string());
         manager.getActual()->recibir(s);
-        manager.getActual()->interpretarNombrePantalla(s);
-        manager.getActual()->interpretarModelo(s);
+        if(!Locator::socket()->estaDesconectado()){
+            manager.getActual()->interpretarNombrePantalla(s);
+            manager.getActual()->interpretarModelo(s);
+        }
         manager.getActual()->graficar(renderer_);
         actualizarGraficos();
     }

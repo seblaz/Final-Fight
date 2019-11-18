@@ -45,8 +45,15 @@ void Arma::deserializar(istream &stream) {
     enSuelo = deserializarBoolean(stream);
 }
 
-void Arma::usar() {
-    if(--usosRestantes == 0) inicializar(ARMA::PUNIOS);
+void Arma::inicioUso() {
+    enUso = true;
+}
+
+void Arma::finUso() {
+    if(enUso) {
+        enUso = false;
+        if(--usosRestantes == 0) inicializar(ARMA::PUNIOS);
+    }
 }
 
 void Arma::tomar() {

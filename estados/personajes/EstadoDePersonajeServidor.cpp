@@ -79,7 +79,7 @@ void EstadoDePersonajeServidor::recibirGolpeDe(Entidad *golpeador) {
     auto *arma = golpeador->getEstado<Arma>("arma");
     energiaGolpeado->restarEnergia(arma->getPuntosDeDanio());
     golpeador->getEstado<NotificadorDeGolpes>("notificador")->notificarGolpeAPersonaje(this->entidad);
-    arma->usar();
+    arma->inicioUso();
     cambiarEstado(RECIBIENDO_GOLPE);
 }
 
