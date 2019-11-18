@@ -701,21 +701,21 @@
                 <cantidad>3</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>54</x>
+                        <x>38</x>
                         <y>670</y>
-                        <w>47</w>
+                        <w>73</w>
                         <h>105</h>
                     </posicion0>
                     <posicion1>
-                        <x>222</x>
+                        <x>175</x>
                         <y>692</y>
-                        <w>112</w>
+                        <w>184</w>
                         <h>85</h>
                     </posicion1>
                     <posicion2>
-                        <x>424</x>
+                        <x>398</x>
                         <y>692</y>
-                        <w>75</w>
+                        <w>123</w>
                         <h>85</h>
                     </posicion2>
                 </posiciones>
@@ -763,7 +763,7 @@
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1</duraciones>
-                <total>45</total>
+                <total>180</total>
             </muerto>
         </cody>
         <poisson>

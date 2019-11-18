@@ -91,7 +91,8 @@ Posicion Jugadores::posicionMasCercana(Posicion *posicion) {
 bool Jugadores::vivos() {
     if(jugadores.empty()) return true;
     for(auto tuple: jugadores) {
-        if(tuple.second->getEstado<Actividad>("actividad")->activo && tuple.second->getEstado<Energia>("energia")->personajeVive())
+        if(tuple.second->getEstado<Actividad>("actividad")->activo &&
+                tuple.second->getEstado<Energia>("energia")->vivo())
             return true;
     }
     return false;

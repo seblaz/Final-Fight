@@ -7,7 +7,6 @@
 
 Energia::Energia(int puntosDeEnergia, int vidas) :
         vidas(vidas),
-        modoTest(false),
         puntosDeEnergia(puntosDeEnergia),
         puntosDeEnergiaMaximos(puntosDeEnergia) {}
 
@@ -31,17 +30,15 @@ void Energia::restarEnergia(int energiaRestada) {
     if (puntosDeEnergia - energiaRestada > 0) {
         puntosDeEnergia -= energiaRestada;
     } else if (!modoTest) {
-        if (vidas-- > 1) {
-            this->puntosDeEnergia = puntosDeEnergiaMaximos;
-        } else {
-            this->puntosDeEnergia = 0;
-        }
-        Locator::logger()->log(DEBUG, "Quedan vida/s: " + to_string(vidas));
-        Locator::logger()->log(DEBUG, "Quedan puntosDeEnergia: " + to_string(puntosDeEnergia));
+        puntosDeEnergia = 0;
     }
 }
 
-bool Energia::personajeVive() {
+bool Energia::vivo() {
+    return puntosDeEnergia > 0 || vidas > 0;
+}
+
+bool Energia::conEnergia() {
     return puntosDeEnergia > 0;
 }
 
@@ -54,5 +51,15 @@ int Energia::getVidas() {
 }
 
 void Energia::cambiarModoTest() {
-    this->modoTest = !this->modoTest;
+    modoTest = !modoTest;
+}
+
+bool Energia::revivir() {
+    if (vidas-- > 1) {
+        puntosDeEnergia = puntosDeEnergiaMaximos;
+        Locator::logger()->log(DEBUG, "Quedan vida/s: " + to_string(vidas));
+        Locator::logger()->log(DEBUG, "Quedan puntosDeEnergia: " + to_string(puntosDeEnergia));
+        return true;
+    }
+    return false;
 }
