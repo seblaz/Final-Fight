@@ -11,10 +11,10 @@
 class RecibiendoGolpeElemento : public EstadoDeElemento {
 
 private:
-    int framesFaltantes = 15;
+    int framesFaltantes;
 
 public:
-    using EstadoDeElemento::EstadoDeElemento;
+    RecibiendoGolpeElemento(Entidad *entidad, int framesFaltantes);
     void actualizar() override;
     void recibirGolpeDe(Entidad *jugador) override {};
 
