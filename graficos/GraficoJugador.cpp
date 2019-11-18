@@ -33,12 +33,19 @@ void GraficoJugador::actualizar() {
 
     auto *spriteVida = entidad->getEstado<Sprite>("sprite vida");
 
-    SDL_Rect posicionEnSpriteVida = {3, 27, 100, 36};
-    Posicion nuevaPosicionVida(200, 450, 300);
-    SDL_Rect posicionEnPantallaVida = calcularPosicionEnPantalla(nuevaPosicionVida, posicionEnSpriteVida,
-                                                                 3);
+    auto *spriteVidaActual = entidad->getEstado<Sprite>("sprite vida actual");
 
-    SDL_RenderCopy(renderer, spriteVida->getTexture(), &posicionEnSpriteVida, &posicionEnPantallaVida);
+    SDL_Rect posicionEnSpriteVidaLlena = {0, 0, 95, 17};
+    SDL_Rect posicionEnPantallaVidaLlena = {20, 50, 95 * escalaVida, 17 * escalaVida};
+
+    SDL_Rect posicionEnSpriteVidaActual = {0, 0, 82, 9};
+    SDL_Rect posicionEnPantallaVidaActual = {59, 74, 82 * escalaVida, 9* escalaVida};
+
+
+
+    SDL_RenderCopy(renderer, spriteVida->getTexture(), &posicionEnSpriteVidaLlena, &posicionEnPantallaVidaLlena);
+
+    SDL_RenderCopy(renderer, spriteVidaActual->getTexture(), &posicionEnSpriteVidaActual, &posicionEnPantallaVidaActual);
 
     SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
 }

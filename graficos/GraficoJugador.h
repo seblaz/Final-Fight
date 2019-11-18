@@ -6,6 +6,8 @@
 #define FINAL_FIGHT_GRAFICOJUGADOR_H
 
 
+static const int escalaVida = 3;
+
 #include "../modelo/Entidad.h"
 #include "Grafico.h"
 

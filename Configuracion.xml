@@ -211,6 +211,9 @@
                 <tubo>
                     <src>assets/personajes/cody-tubo.png</src>
                 </tubo>
+                <vida>
+                    <src>assets/personajes/cody-vida.png</src>
+                </vida>
             </cody>
             <guy>
                 <punios>
@@ -225,6 +228,9 @@
                 <tubo>
                     <src>assets/personajes/guy-tubo.png</src>
                 </tubo>
+                <vida>
+                    <src>assets/personajes/guy-vida.png</src>
+                </vida>
             </guy>
             <maki>
                 <punios>
@@ -239,6 +245,9 @@
                 <tubo>
                     <src>assets/personajes/maki-tubo.png</src>
                 </tubo>
+                <vida>
+                    <src>assets/personajes/maki-vida.png</src>
+                </vida>
             </maki>
             <haggar>
                 <punios>
@@ -253,6 +262,9 @@
                 <tubo>
                     <src>assets/personajes/haggar-tubo.png</src>
                 </tubo>
+                <vida>
+                    <src>assets/personajes/haggar-vida.png</src>
+                </vida>
             </haggar>
             <poisson>
                 <punios>
@@ -284,10 +296,10 @@
             <jugador4>
                 <src>assets/varios/indicador4.png</src>
             </jugador4>
+            <vidaActual>
+                <src>assets/varios/barra-vida-actual.png</src>
+            </vidaActual>
         </indicadores>
-        <barrasVida>
-                <src>assets/varios/barras.png</src>
-        </barrasVida>
     </sprites>
     <sonidos>
         <personaje>
