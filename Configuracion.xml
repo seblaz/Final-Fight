@@ -1355,36 +1355,30 @@
                 <total>50</total>
             </pateando>
             <dandoGolpe>
-                <cantidad>4</cantidad>
+                <cantidad>3</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>137</x>
-                        <y>527</y>
-                        <w>49</w>
-                        <h>86</h>
+                        <x>324</x>
+                        <y>530</y>
+                        <w>120</w>
+                        <h>80</h>
                     </posicion0>
                     <posicion1>
-                        <x>357</x>
-                        <y>529</y>
-                        <w>85</w>
-                        <h>82</h>
+                        <x>503</x>
+                        <y>532</y>
+                        <w>185</w>
+                        <h>78</h>
                     </posicion1>
                     <posicion2>
-                        <x>553</x>
-                        <y>531</y>
-                        <w>136</w>
+                        <x>324</x>
+                        <y>530</y>
+                        <w>120</w>
                         <h>80</h>
                     </posicion2>
-                    <posicion3>
-                        <x>357</x>
-                        <y>529</y>
-                        <w>85</w>
-                        <h>82</h>
-                    </posicion3>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1,1,2,1</duraciones>
-                <total>16</total>
+                <duraciones>1,2,1</duraciones>
+                <total>20</total>
             </dandoGolpe>
             <agachado>
                 <cantidad>1</cantidad>
