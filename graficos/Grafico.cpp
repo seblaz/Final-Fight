@@ -5,12 +5,9 @@
 #include <SDL_rect.h>
 #include "Grafico.h"
 #include "../servicios/Locator.h"
-#include "../modelo/serializables/Posicion.h"
 #include "AnimacionCliente.h"
 #include "Sprite.h"
 #include "../modelo/serializables/Orientacion.h"
-#include "../modelo/serializables/Actividad.h"
-#include "../modelo/serializables/Personaje.h"
 
 SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion) {
     Configuracion *config = Locator::configuracion();
@@ -46,19 +43,10 @@ void Grafico::actualizar() {
         auto *animacion = entidad->getEstado<AnimacionCliente>("animacion");
         auto *sprite = entidad->getEstado<Sprite>("sprite");
         auto *orientacion = entidad->getEstado<Orientacion>("orientacion");
-        auto *actividad = entidad->getEstado<Actividad>("actividad");
 
         Posicion nuevaPosicion(posicion->getX() - posicionDeEscenarioX, posicion->getY(), posicion->getZ());
         SDL_Rect posicionEnSprite = animacion->devolverPosicion(entidad);
         SDL_Rect posicionEnPantalla = calcularPosicionEnPantalla(nuevaPosicion, posicionEnSprite, animacion->escala());
-
-        if ((actividad != nullptr)) {
-            if (!actividad->activo) {
-                SDL_SetTextureColorMod(sprite->getTexture(), 100, 100, 100);
-            } else {
-                SDL_SetTextureColorMod(sprite->getTexture(), 255, 255, 255);
-            }
-        }
 
         if ((orientacion != nullptr) && (!orientacion->adelante)) {
             SDL_RenderCopyEx(renderer, sprite->getTexture(), &posicionEnSprite, &posicionEnPantalla,
