@@ -3,8 +3,6 @@
 //
 
 #include "DandoGolpe.h"
-#include "../../modelo/envolventes/EnvolventeVolumen.h"
-#include "../../modelo/serializables/Orientacion.h"
 #include "../../modelo/serializables/Arma.h"
 
 void DandoGolpe::actualizar() {
