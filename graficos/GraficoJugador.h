@@ -14,14 +14,17 @@ static const int escalaVida = 3;
 
 class GraficoJugador : public Grafico {
 
+private:
+    int framesModulacion = 8;
+    bool claro = true;
+    void renderizarVidaDeJugador();
+    void renderizarIndicadorDeJugador();
+    void modularColor();
+
 public:
     explicit GraficoJugador(Entidad *entidad);
-
     void actualizar() override;
 
-    void renderizarVidaDeJugador();
-
-    void renderizarIndicadorDeJuegador();
 };
 
 

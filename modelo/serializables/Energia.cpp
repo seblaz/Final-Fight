@@ -35,7 +35,7 @@ void Energia::restarEnergia(int energiaRestada) {
 }
 
 bool Energia::vivo() {
-    return puntosDeEnergia > 0 || vidas >= 0;
+    return puntosDeEnergia > 0 || vidas > 0;
 }
 
 bool Energia::conEnergia() {
