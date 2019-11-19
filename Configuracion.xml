@@ -1259,7 +1259,6 @@
                 <total>60</total>
             </caminando>
             <saltando>
-                <duraciones>1,1,1,1,1</duraciones>
                 <cantidad>5</cantidad>
                 <posiciones>
                     <posicion0>
@@ -1293,11 +1292,12 @@
                         <h>82</h>
                     </posicion4>
                 </posiciones>
+                <duraciones>1,1,1,1,1</duraciones>
                 <escala>4.5</escala>
                 <total>60</total>
             </saltando>
             <saltandoAdelante>
-                <cantidad>1</cantidad>
+                <cantidad>5</cantidad>
                 <posiciones>
                     <posicion0>
                         <x>134</x>
@@ -1305,13 +1305,37 @@
                         <w>51</w>
                         <h>82</h>
                     </posicion0>
+                    <posicion1>
+                        <x>378</x>
+                        <y>666</y>
+                        <w>37</w>
+                        <h>104</h>
+                    </posicion1>
+                    <posicion2>
+                        <x>585</x>
+                        <y>659</y>
+                        <w>39</w>
+                        <h>111</h>
+                    </posicion2>
+                    <posicion3>
+                        <x>378</x>
+                        <y>666</y>
+                        <w>37</w>
+                        <h>104</h>
+                    </posicion3>
+                    <posicion4>
+                        <x>134</x>
+                        <y>689</y>
+                        <w>51</w>
+                        <h>82</h>
+                    </posicion4>
                 </posiciones>
+                <duraciones>1,1,1,1,1</duraciones>
                 <escala>4.5</escala>
-                <duraciones>1</duraciones>
-                <total>1</total>
+                <total>60</total>
             </saltandoAdelante>
             <pateando>
-                <cantidad>1</cantidad>
+                <cantidad>2</cantidad>
                 <posiciones>
                     <posicion0>
                         <x>124</x>
@@ -1319,13 +1343,19 @@
                         <w>91</w>
                         <h>53</h>
                     </posicion0>
+                    <posicion1>
+                        <x>134</x>
+                        <y>689</y>
+                        <w>51</w>
+                        <h>82</h>
+                    </posicion1>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1</duraciones>
-                <total>1</total>
+                <duraciones>3,1</duraciones>
+                <total>50</total>
             </pateando>
             <dandoGolpe>
-                <cantidad>3</cantidad>
+                <cantidad>4</cantidad>
                 <posiciones>
                     <posicion0>
                         <x>137</x>
@@ -1345,9 +1375,15 @@
                         <w>136</w>
                         <h>80</h>
                     </posicion2>
+                    <posicion3>
+                        <x>357</x>
+                        <y>529</y>
+                        <w>85</w>
+                        <h>82</h>
+                    </posicion3>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1,1,1</duraciones>
+                <duraciones>1,1,2,1</duraciones>
                 <total>16</total>
             </dandoGolpe>
             <agachado>
