@@ -1134,27 +1134,27 @@
                 <cantidad>3</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>290</x>
+                        <x>264</x>
                         <y>685</y>
-                        <w>85</w>
+                        <w>111</w>
                         <h>87</h>
                     </posicion0>
                     <posicion1>
-                        <x>458</x>
+                        <x>421</x>
                         <y>691</y>
-                        <w>138</w>
+                        <w>175</w>
                         <h>78</h>
                     </posicion1>
                     <posicion2>
-                        <x>290</x>
+                        <x>264</x>
                         <y>685</y>
-                        <w>85</w>
+                        <w>111</w>
                         <h>87</h>
                     </posicion2>
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1,2,1</duraciones>
-                <total>120</total>
+                <total>16</total>
             </dandoGolpe>
             <agachado>
                 <cantidad>1</cantidad>
