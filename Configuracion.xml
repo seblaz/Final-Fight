@@ -1398,16 +1398,30 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>129</x>
-                        <y>809</y>
-                        <w>43</w>
-                        <h>73</h>
+                        <x>131</x>
+                        <y>810</y>
+                        <w>45</w>
+                        <h>71</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1</duraciones>
-                <total>1</total>
+                <total>20</total>
             </recibiendoGolpe>
+            <muerto>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>540</x>
+                        <y>855</y>
+                        <w>108</w>
+                        <h>24</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>180</total>
+            </muerto>
         </haggar>
         <maki>
             <reposando>
