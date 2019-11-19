@@ -26,9 +26,9 @@ unordered_map<IdEntidad, Entidad *> &Jugadores::getJugadores() {
 int Jugadores::getMayorX() {
     int x = 0;
     for(auto tuple : jugadores){
-        if ( tuple.second->getEstado<Posicion>("posicion")->getX() > x &&
-             tuple.second->getEstado<Actividad>("actividad")->activo &&
-                tuple.second->getEstado<Energia>("energia")->vivo())
+        if ( tuple.second->getEstado<Energia>("energia")->vivo() &&
+             tuple.second->getEstado<Posicion>("posicion")->getX() > x &&
+             tuple.second->getEstado<Actividad>("actividad")->activo)
             x = tuple.second->getEstado<Posicion>("posicion")->getX();
     }
     return x;
@@ -37,9 +37,9 @@ int Jugadores::getMayorX() {
 int Jugadores::getMenorX() {
     int x = 99999999;
     for(auto tuple : jugadores){
-        if ( tuple.second->getEstado<Posicion>("posicion")->getX() < x &&
-             tuple.second->getEstado<Actividad>("actividad")->activo &&
-             tuple.second->getEstado<Energia>("energia")->vivo())
+        if ( tuple.second->getEstado<Energia>("energia")->vivo() &&
+             tuple.second->getEstado<Posicion>("posicion")->getX() < x &&
+             tuple.second->getEstado<Actividad>("actividad")->activo )
             x = tuple.second->getEstado<Posicion>("posicion")->getX();
     }
     return x;
@@ -54,19 +54,20 @@ void Jugadores::reiniciarPosiciones(int x, int y) {
 
 void Jugadores::bloquearMovimientos(int scrollIzquierdo, int scrollDerecho) {
     for(auto tuple : jugadores){
-        int x = tuple.second->getEstado<Posicion>("posicion")->getX();
-        if ( x >= scrollDerecho ){
-            tuple.second->getEstado<Posicion>("posicion")->x = scrollDerecho;
-        }else if ( x <= scrollIzquierdo ){
-            tuple.second->getEstado<Posicion>("posicion")->x = scrollIzquierdo;
+        if (tuple.second->getEstado<Energia>("energia")->vivo()){
+            int x = tuple.second->getEstado<Posicion>("posicion")->getX();
+            if ( x >= scrollDerecho ){
+                tuple.second->getEstado<Posicion>("posicion")->x = scrollDerecho;
+            }else if ( x <= scrollIzquierdo ){
+                tuple.second->getEstado<Posicion>("posicion")->x = scrollIzquierdo;
+            }
         }
     }
 }
 
 void Jugadores::arrastrarInactivos(int scrollIzquierdo, int scrollDerecho) {
     for(auto tuple : jugadores){
-        if (!tuple.second->getEstado<Actividad>("actividad")->activo ||
-             !tuple.second->getEstado<Energia>("energia")->vivo()){
+        if (!tuple.second->getEstado<Actividad>("actividad")->activo){
             int x = tuple.second->getEstado<Posicion>("posicion")->getX();
             if ( x >= scrollDerecho ){
                 tuple.second->getEstado<Posicion>("posicion")->x = scrollDerecho;
@@ -82,7 +83,8 @@ Posicion Jugadores::posicionMasCercana(Posicion *posicion) {
 
     for(auto tuple: jugadores){
         if (tuple.second->getEstado<Actividad>("actividad")->activo &&
-                tuple.second->getEstado<Energia>("energia")->vivo()){
+                tuple.second->getEstado<Energia>("energia")->vivo() &&
+                tuple.second->getEstado<Energia>("energia")->getEnergia() > 0){
             auto* posicionJugador = tuple.second->getEstado<Posicion>("posicion");
             int distJugadorYenemigo = posicionJugador->distanciaEntrePuntos(posicion);
             int distMasCercanaActual = posicionMasCercana.distanciaEntrePuntos(posicion);
