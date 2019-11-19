@@ -1,6 +1,6 @@
 <configuracion>
     <jugadores>
-        <cantidad>2</cantidad>
+        <cantidad>1</cantidad>
     </jugadores>
     <usuarios>
         <cantidad>5</cantidad>
@@ -1174,10 +1174,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>343</x>
-                        <y>670</y>
-                        <w>50</w>
-                        <h>90</h>
+                        <x>122</x>
+                        <y>870</y>
+                        <w>37</w>
+                        <h>80</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
