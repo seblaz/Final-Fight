@@ -33,17 +33,15 @@ void GraficoJugador::renderizarIndicadorDeJuegador() {
                                                                       1.5);
     SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
 
-    SDL_Rect rect;
-    rect.x = 10;
-    rect.y = 40;
-    rect.w = 20;
-    rect.h = 50;
+   // SDL_Rect rect;
+   // rect.x = 10;
+   // rect.y = 40;
+   // rect.w = 20;
+   // rect.h = 50;
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_RenderDrawRect(renderer, &rect);
-
-
+  //  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+  //  SDL_RenderFillRect(renderer, &rect);
+  //  SDL_RenderDrawRect(renderer, &rect);
 
 }
 
