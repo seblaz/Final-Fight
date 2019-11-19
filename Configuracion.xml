@@ -299,6 +299,9 @@
             <vidaActual>
                 <src>assets/varios/barra-vida-actual.png</src>
             </vidaActual>
+            <corazon>
+                <src>assets/varios/corazon.png</src>
+            </corazon>
         </indicadores>
     </sprites>
     <sonidos>

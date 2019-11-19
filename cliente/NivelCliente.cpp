@@ -57,8 +57,12 @@ void NivelCliente::generarJugador(Entidad *jugador) {
     auto *spriteVidaActual = Locator::fabricaDeSprites()->getSpriteConfigPath(
             "/sprites/indicadores/vidaActual/src");
 
+    auto *spriteCantidadDeVidas = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/indicadores/corazon/src");
+
     jugador->agregarEstado("sprite vida", spriteVida);
     jugador->agregarEstado("sprite vida actual", spriteVidaActual);
+    jugador->agregarEstado("sprite cantidad de vidas", spriteCantidadDeVidas);
 }
 
 void NivelCliente::generarEscenario(Entidad *escenario) {
