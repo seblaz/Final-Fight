@@ -11,6 +11,7 @@
 class ActualizarYSerializarMapa : public EventoAProcesar {
 
 private:
+    static int delayGameOver;
     Mapa *mapa;
     void serializar();
     void actualizar();

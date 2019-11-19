@@ -1164,8 +1164,22 @@
                 </posiciones>
                 <escala>4.5</escala>
                 <duraciones>1</duraciones>
-                <total>1</total>
+                <total>20</total>
             </recibiendoGolpe>
+            <muerto>
+                <cantidad>1</cantidad>
+                <posiciones>
+                    <posicion0>
+                        <x>471</x>
+                        <y>244</y>
+                        <w>91</w>
+                        <h>27</h>
+                    </posicion0>
+                </posiciones>
+                <escala>4.5</escala>
+                <duraciones>1</duraciones>
+                <total>180</total>
+            </muerto>
         </guy>
         <haggar>
             <reposando>

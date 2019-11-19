@@ -6,14 +6,14 @@
 #include "ActualizarYSerializarMapa.h"
 #include "../servicios/Locator.h"
 
+int ActualizarYSerializarMapa::delayGameOver = 180;
+
 ActualizarYSerializarMapa::ActualizarYSerializarMapa(Mapa *mapa) :
         mapa(mapa) {}
 
 void ActualizarYSerializarMapa::resolver() {
-    if (Locator::clientes()->getEtapaActual() != "game over") {
-        actualizar();
-        serializar();
-    }
+    actualizar();
+    serializar();
 }
 
 void ActualizarYSerializarMapa::actualizar() {
@@ -25,7 +25,8 @@ void ActualizarYSerializarMapa::actualizar() {
     }
     auto *colisionables = Locator::colisionables();
     colisionables->calcularInteracciones();
-    if (!Locator::mapa()->getJugadores()->vivos()) Locator::clientes()->cambiarTodosA("game over");
+    if (!Locator::mapa()->getJugadores()->vivos() && (delayGameOver-- == 0))
+        Locator::clientes()->cambiarTodosA("game over");
 }
 
 void ActualizarYSerializarMapa::serializar() {
