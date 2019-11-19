@@ -35,7 +35,7 @@ void Energia::restarEnergia(int energiaRestada) {
 }
 
 bool Energia::vivo() {
-    return puntosDeEnergia > 0 || vidas > 0;
+    return puntosDeEnergia > 0 || vidas >= 0;
 }
 
 bool Energia::conEnergia() {
@@ -55,7 +55,7 @@ void Energia::cambiarModoTest() {
 }
 
 bool Energia::revivir() {
-    if (vidas-- > 1) {
+    if (vidas-- > 0) {
         puntosDeEnergia = puntosDeEnergiaMaximos;
         Locator::logger()->log(DEBUG, "Quedan vida/s: " + to_string(vidas));
         Locator::logger()->log(DEBUG, "Quedan puntosDeEnergia: " + to_string(puntosDeEnergia));

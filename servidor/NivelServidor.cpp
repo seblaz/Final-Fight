@@ -40,7 +40,7 @@ Entidad *NivelServidor::generarJugador(Mapa *mapa, enum PERSONAJE personajeSelec
     auto *numeroJugador = new NumeroJugador(contadorJugador);
     auto *estadoDePersonaje = new EstadoDePersonaje(REPOSANDO);
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(jugador, personajeSeleccionado, "reposando");
-    auto *energia = new Energia(100,3);
+    auto *energia = new Energia(100, 2);
     auto *envolvente = new EnvolventeVolumen(posicion, 50, 15);
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicion, 100, 30, orientacion);
     auto* puntaje = new Puntaje();
@@ -168,7 +168,7 @@ void NivelServidor::generarEnemigo(const string &nivel, Mapa *mapa, Jugadores *j
         auto *posicionEnemigoRandom = new Posicion(generarPosicionX(anchoNivel), generarPosicionY(profundidadNivel), 0);
         auto *indiceSprite = new IndiceSprite;
         auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, POISSON, "reposando");
-        auto *energia = new Energia(100,1);
+        auto *energia = new Energia(100, 0);
         auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 50, 30);
         auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 100, 30, orientacionDeEnemigo);
         auto* arma = new Arma(ARMA::PUNIOS);
@@ -268,7 +268,7 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Jugadores 
     auto *posicionEnemigoRandom = new Posicion(anchoNivel - 100, generarPosicionY(profundidadNivel), 0);
     auto *indiceSprite = new IndiceSprite;
     auto *animacionServidor = FabricaDeAnimacionesServidor::getAnimacion(enemigo, BOSS, "reposando");
-    auto *energia = new Energia(500,1);
+    auto *energia = new Energia(500, 0);
     auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 100, 30);
     auto* arma = new Arma(ARMA::PUNIOS);
     auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 30, orientacionDeEnemigo);
