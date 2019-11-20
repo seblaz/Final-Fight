@@ -1,6 +1,6 @@
 <configuracion>
     <jugadores>
-        <cantidad>1</cantidad>
+        <cantidad>2</cantidad>
     </jugadores>
     <usuarios>
         <cantidad>5</cantidad>
@@ -322,6 +322,9 @@
                 <saltandoAdelante>
                     <src>assets/sonidos/personajes/cody/saltolargo.wav</src>
                 </saltandoAdelante>
+                <muerto>
+                    <src>assets/sonidos/personajes/cody/muerte.wav</src>
+                </muerto>
             </cody>
         </personaje>
         <enemigo>
