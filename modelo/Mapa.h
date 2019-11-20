@@ -53,7 +53,7 @@ public:
     Entidad *crearArma();
     Entidad *crearEscenario();
 
-    void quitarEnemigo(Entidad *enemigo);
+    void quitarPersonaje(Entidad *enemigo);
     void quitarElemento(Entidad *elemento);
     void quitarArma(Entidad *arma);
 

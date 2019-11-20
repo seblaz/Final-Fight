@@ -1428,10 +1428,10 @@
                 <cantidad>1</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>92</x>
-                        <y>95</y>
-                        <w>45</w>
-                        <h>94</h>
+                        <x>80</x>
+                        <y>97</y>
+                        <w>55</w>
+                        <h>91</h>
                     </posicion0>
                 </posiciones>
                 <escala>4.5</escala>
@@ -1439,68 +1439,74 @@
                 <total>1</total>
             </reposando>
             <caminando>
-                <cantidad>5</cantidad>
+                <cantidad>6</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>94</x>
-                        <y>228</y>
-                        <w>49</w>
-                        <h>93</h>
+                        <x>75</x>
+                        <y>229</y>
+                        <w>67</w>
+                        <h>91</h>
                     </posicion0>
                     <posicion1>
-                        <x>276</x>
-                        <y>228</y>
-                        <w>48</w>
-                        <h>93</h>
+                        <x>267</x>
+                        <y>230</y>
+                        <w>57</w>
+                        <h>90</h>
                     </posicion1>
                     <posicion2>
-                        <x>435</x>
-                        <y>229</y>
-                        <w>51</w>
-                        <h>93</h>
+                        <x>420</x>
+                        <y>230</y>
+                        <w>65</w>
+                        <h>91</h>
                     </posicion2>
                     <posicion3>
-                        <x>96</x>
-                        <y>358</y>
-                        <w>51</w>
-                        <h>93</h>
+                        <x>70</x>
+                        <y>359</y>
+                        <w>77</w>
+                        <h>91</h>
                     </posicion3>
                     <posicion4>
-                        <x>280</x>
-                        <y>359</y>
-                        <w>58</w>
-                        <h>92</h>
+                        <x>260</x>
+                        <y>360</y>
+                        <w>79</w>
+                        <h>90</h>
                     </posicion4>
+                    <posicion5>
+                        <x>70</x>
+                        <y>359</y>
+                        <w>77</w>
+                        <h>91</h>
+                    </posicion5>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1,1,1,1,1</duraciones>
+                <duraciones>1,1,1,1,1,1</duraciones>
                 <total>60</total>
             </caminando>
             <saltando>
                 <cantidad>3</cantidad>
                 <posiciones>
                     <posicion0>
-                        <x>318</x>
-                        <y>85</y>
-                        <w>46</w>
-                        <h>90</h>
+                        <x>259</x>
+                        <y>95</y>
+                        <w>59</w>
+                        <h>100</h>
                     </posicion0>
                     <posicion1>
-                        <x>318</x>
+                        <x>317</x>
                         <y>85</y>
-                        <w>46</w>
+                        <w>34</w>
                         <h>90</h>
                     </posicion1>
                     <posicion2>
-                        <x>272</x>
+                        <x>259</x>
                         <y>95</y>
-                        <w>46</w>
+                        <w>59</w>
                         <h>100</h>
                     </posicion2>
                 </posiciones>
                 <escala>4.5</escala>
-                <duraciones>1,1,1</duraciones>
-                <total>60</total>
+                <duraciones>1,2,1</duraciones>
+                <total>50</total>
             </saltando>
             <saltandoAdelante>
                 <cantidad>4</cantidad>

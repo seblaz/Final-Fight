@@ -91,6 +91,7 @@ void EstadoDePersonajeServidor::actualizar() {
 }
 
 void EstadoDePersonajeServidor::morir() {
-    Locator::mapa()->quitarEnemigo(entidad);
+    if(!entidad->getEstado<Energia>("energia")->vivo())
+        Locator::mapa()->quitarPersonaje(entidad);
     cambiarEstado(MUERTO);
 }

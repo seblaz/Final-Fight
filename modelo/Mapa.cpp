@@ -138,11 +138,10 @@ vector<Entidad *> &Mapa::getColisionables() {
     return colisionables;
 }
 
-void Mapa::quitarEnemigo(Entidad *enemigo) {
-    if(find(enemigos.begin(), enemigos.end(), enemigo) != enemigos.end()){
-        colisionables.erase(remove(colisionables.begin(), colisionables.end(), enemigo), colisionables.end());
-        enemigos.erase(remove(enemigos.begin(), enemigos.end(), enemigo), enemigos.end());
-    }
+void Mapa::quitarPersonaje(Entidad *enemigo) {
+    colisionables.erase(remove(colisionables.begin(), colisionables.end(), enemigo), colisionables.end());
+    enemigos.erase(remove(enemigos.begin(), enemigos.end(), enemigo), enemigos.end());
+    personajes.erase(remove(personajes.begin(), personajes.end(), enemigo), personajes.end());
 }
 
 void Mapa::quitarElemento(Entidad *elemento) {
