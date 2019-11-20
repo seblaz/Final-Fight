@@ -8,6 +8,7 @@
 #include "serializables/Posicion.h"
 #include "serializables/Actividad.h"
 #include "serializables/Energia.h"
+#include "serializables/EstadoDePersonaje.h"
 #include "../servicios/Locator.h"
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
@@ -16,10 +17,6 @@ Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
 
 void Jugadores::agregarJugador(IdEntidad id, Entidad *jugador) {
     jugadores[id] = jugador;
-}
-
-void Jugadores::quitarJugador(IdEntidad id) {
-    jugadores.erase(id);
 }
 
 unordered_map<IdEntidad, Entidad *> Jugadores::getJugadores() {
@@ -50,8 +47,13 @@ int Jugadores::getMenorX() {
 
 void Jugadores::reiniciarPosiciones(int x, int y) {
     for (auto tuple : jugadores) {
-        tuple.second->getEstado<Posicion>("posicion")->x = x;
-        tuple.second->getEstado<Posicion>("posicion")->y = y;
+        if (tuple.second->getEstado<Energia>("energia")->vivo()){
+            tuple.second->getEstado<Posicion>("posicion")->x = x;
+            tuple.second->getEstado<Posicion>("posicion")->y = y;
+        }else{
+            tuple.second->getEstado<Posicion>("posicion")->x = -200;
+            tuple.second->getEstado<Posicion>("posicion")->y = -200;
+        }
     }
 }
 

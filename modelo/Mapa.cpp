@@ -40,17 +40,11 @@ void Mapa::vaciarMapa() {
     armas.clear();
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
     for (auto tupla : jugadores.getJugadores()) {
-        if (tupla.second->getEstado<Energia>("energia")->vivo()) {
-            entidades[tupla.first] = tupla.second;
-            personajes.push_back(tupla.second);
-            colisionables.push_back(tupla.second);
-            Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) +
-                                          " a las entidades.");
-        } else {
-            Locator::logger()->log(DEBUG, "Se quita al jugador con id de entidad " + to_string(tupla.first) +
-                                          " de las entidades por estar muerto.");
-            jugadores.quitarJugador(tupla.first);
-        }
+        entidades[tupla.first] = tupla.second;
+        personajes.push_back(tupla.second);
+        colisionables.push_back(tupla.second);
+        Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) +
+                                      " a las entidades.");
     }
 }
 
