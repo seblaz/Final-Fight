@@ -8,14 +8,17 @@
 
 void VistaJuego::graficar(SDL_Renderer *renderer) {
 
-    auto entidades = Locator::mapa()->devolverEntidades();
-
-    sort(entidades.begin(), entidades.end(), [](Entidad *a, Entidad *b) {
-        return a->getEstado<Posicion>("posicion")->getY() > b->getEstado<Posicion>("posicion")->getY();
+    auto entidades = Locator::mapa()->devolverEntidadesConId();
+    std::vector<std::pair<IdEntidad, Entidad*>> sorted(entidades.begin(), entidades.end());
+    std::sort(sorted.begin(), sorted.end(), [](auto a, auto b) {
+        int yA = a.second->template getEstado<Posicion>("posicion")->getY();
+        int yB = b.second->template getEstado<Posicion>("posicion")->getY();
+        if(yA != yB) return yA > yB;
+        return a.first > b.first;
     });
 
-    for (auto entidad : entidades) {
-        for (auto *comportamiento : entidad->getComportamientos()) {
+    for (auto entidad : sorted) {
+        for (auto *comportamiento : entidad.second->getComportamientos()) {
             comportamiento->actualizar();
         }
     }
