@@ -47,8 +47,13 @@ int Jugadores::getMenorX() {
 
 void Jugadores::reiniciarPosiciones(int x, int y) {
     for (auto tuple : jugadores) {
-        tuple.second->getEstado<Posicion>("posicion")->x = x;
-        tuple.second->getEstado<Posicion>("posicion")->y = y;
+        if (tuple.second->getEstado<Energia>("energia")->vivo()){
+            tuple.second->getEstado<Posicion>("posicion")->x = x;
+            tuple.second->getEstado<Posicion>("posicion")->y = y;
+        }else{
+            tuple.second->getEstado<Posicion>("posicion")->x = -1;
+            tuple.second->getEstado<Posicion>("posicion")->y = -1;
+        }
     }
 }
 
