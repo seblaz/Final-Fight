@@ -8,7 +8,6 @@
 #include "serializables/Posicion.h"
 #include "serializables/Actividad.h"
 #include "serializables/Energia.h"
-#include "serializables/EstadoDePersonaje.h"
 #include "../servicios/Locator.h"
 
 Jugadores::Jugadores(unordered_map<IdEntidad, Entidad *> jugadores) {
@@ -19,7 +18,11 @@ void Jugadores::agregarJugador(IdEntidad id, Entidad *jugador) {
     jugadores[id] = jugador;
 }
 
-unordered_map<IdEntidad, Entidad *> &Jugadores::getJugadores() {
+void Jugadores::quitarJugador(IdEntidad id) {
+    jugadores.erase(id);
+}
+
+unordered_map<IdEntidad, Entidad *> Jugadores::getJugadores() {
     return jugadores;
 }
 
@@ -67,7 +70,7 @@ void Jugadores::bloquearMovimientos(int scrollIzquierdo, int scrollDerecho) {
 
 void Jugadores::arrastrarInactivos(int scrollIzquierdo, int scrollDerecho) {
     for (auto tuple : jugadores) {
-        if (!tuple.second->getEstado<Actividad>("actividad")->activo) {
+        if (!tuple.second->getEstado<Actividad>("actividad")->activo && tuple.second->getEstado<Energia>("energia")->vivo()) {
             int x = tuple.second->getEstado<Posicion>("posicion")->getX();
             if (x >= scrollDerecho) {
                 tuple.second->getEstado<Posicion>("posicion")->x = scrollDerecho;

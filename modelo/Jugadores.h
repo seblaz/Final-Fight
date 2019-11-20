@@ -17,7 +17,8 @@ public:
     Jugadores() = default;
     explicit Jugadores(unordered_map<IdEntidad, Entidad*> jugadores);
     void agregarJugador(IdEntidad id, Entidad *jugador);
-    unordered_map<IdEntidad, Entidad*>& getJugadores();
+    void quitarJugador(IdEntidad id);
+    unordered_map<IdEntidad, Entidad*> getJugadores();
 
     int getMayorX();
     int getMenorX();

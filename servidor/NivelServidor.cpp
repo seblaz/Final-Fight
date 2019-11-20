@@ -74,7 +74,7 @@ void NivelServidor::generarNivel(const string &nivel, Mapa *mapa) {
     
     Jugadores *jugadores = mapa->getJugadores();
     jugadores->reiniciarPosiciones(200, 100);
-    
+
     generarEscenario(nivel, mapa);
     generarElementos(nivel, mapa, ELEMENTO::CAJA);
     generarElementos(nivel, mapa, ELEMENTO::BARRIL);

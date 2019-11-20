@@ -5,7 +5,6 @@
 #include "Colisionables.h"
 #include "envolventes/EnvolventeVolumen.h"
 #include "../estados/personajes/EstadoDePersonajeServidor.h"
-#include "../estados/elementos/EstadoDeElemento.h"
 #include "envolventes/EnvolventeAtaque.h"
 #include "serializables/Arma.h"
 

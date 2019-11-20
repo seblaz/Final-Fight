@@ -6,6 +6,7 @@
 #include "Mapa.h"
 #include "../servicios/Locator.h"
 #include "serializables/EstadoDePersonaje.h"
+#include "serializables/Energia.h"
 
 using namespace std;
 
@@ -39,11 +40,17 @@ void Mapa::vaciarMapa() {
     armas.clear();
     Locator::logger()->log(DEBUG, "Se vació el vector de entidades.");
     for (auto tupla : jugadores.getJugadores()) {
-        entidades[tupla.first] = tupla.second;
-        personajes.insert(personajes.begin(), tupla.second);
-        colisionables.insert(colisionables.begin(), tupla.second);
-        Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) +
-                                      " a las entidades." );
+        if (tupla.second->getEstado<Energia>("energia")->vivo()) {
+            entidades[tupla.first] = tupla.second;
+            personajes.push_back(tupla.second);
+            colisionables.push_back(tupla.second);
+            Locator::logger()->log(DEBUG, "Se agregó al jugador con id de entidad " + to_string(tupla.first) +
+                                          " a las entidades.");
+        } else {
+            Locator::logger()->log(DEBUG, "Se quita al jugador con id de entidad " + to_string(tupla.first) +
+                                          " de las entidades por estar muerto.");
+            jugadores.quitarJugador(tupla.first);
+        }
     }
 }
 
@@ -64,7 +71,7 @@ unordered_map<IdEntidad, Entidad *> Mapa::devolverEntidadesConId() {
 }
 
 Jugadores *Mapa::getJugadores() {
-    return  &jugadores;
+    return &jugadores;
 }
 
 
@@ -104,10 +111,6 @@ Entidad *Mapa::crearArma() {
     auto *arma = crearEntidad();
     armas.push_back(arma);
     return arma;
-}
-
-Entidad *Mapa::crearPantalla() {
-    return crearEntidad();
 }
 
 Entidad *Mapa::crearEscenario() {
@@ -156,17 +159,17 @@ void Mapa::quitarArma(Entidad *arma) {
 
 int Mapa::enemigosAtacando() {
     int maximoDeAtacantes = 0;
-    for (auto* enemigo : enemigos){
-        auto* estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
-        if ( estado->getEstado() == CAMINANDO){
+    for (auto *enemigo : enemigos) {
+        auto *estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
+        if (estado->getEstado() == CAMINANDO) {
             maximoDeAtacantes++;
-        } else if ( estado->getEstado() == SALTANDO_CON_MOVIMIENTO){
+        } else if (estado->getEstado() == SALTANDO_CON_MOVIMIENTO) {
             maximoDeAtacantes++;
-        } else if ( estado->getEstado() == SALTANDO){
+        } else if (estado->getEstado() == SALTANDO) {
             maximoDeAtacantes++;
-        }else if ( estado->getEstado() == RECIBIENDO_GOLPE){
+        } else if (estado->getEstado() == RECIBIENDO_GOLPE) {
             maximoDeAtacantes++;
-        }else if ( estado->getEstado() == DANDO_GOLPE)
+        } else if (estado->getEstado() == DANDO_GOLPE)
             maximoDeAtacantes++;
 
     }

@@ -63,8 +63,6 @@ public:
     vector<Entidad *> &getElementos();
     vector<Entidad *> &getArmas();
 
-    Entidad *crearPantalla();
-
     Entidad *crearTransicion();
 
     int enemigosAtacando();
