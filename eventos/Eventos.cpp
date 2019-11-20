@@ -6,4 +6,4 @@
 
 
 EventosAProcesar::EventosAProcesar() :
-        cola(1000) {}
+        cola(10000) {}
