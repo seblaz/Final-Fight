@@ -34,10 +34,9 @@ void Colisionables::calcularPosiblesColisiones() {
              itEntidad_colisionable != mapa->getColisionables().end(); itEntidad_colisionable++) {
 
             auto *entidad_colisionable = *itEntidad_colisionable;
-            auto *envolventeContrario = entidad_colisionable->getEstado<EnvolventeVolumen>("envolvente");
             auto *posicionContrario = entidad_colisionable->getEstado<Posicion>("posicion");
-            if (entidad_colisionable != entidadCentral) {
-
+            if (entidad_colisionable != entidadCentral && abs(posicion->x - posicionContrario->x) < 100 ) {
+                auto *envolventeContrario = entidad_colisionable->getEstado<EnvolventeVolumen>("envolvente");
                 auto *velocidadContrario = entidad_colisionable->getEstado<Velocidad>("velocidad");
 
                 if (velocidadContrario->y == 0 && velocidad->y != 0) {
