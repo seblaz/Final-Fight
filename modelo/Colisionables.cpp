@@ -62,20 +62,15 @@ void Colisionables::calcularPosiblesColisiones() {
                     }
                 }
                 if (velocidadContrario->x == 0 && velocidad->x != 0) {
-                    if (envolvente->colisionaPorIzquierdaCon(envolventeContrario)) {
-                        posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho - envolvente->ancho;
-                    } else if (envolvente->colisionaPorDerechaCon(envolventeContrario)) {
-                        posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho + envolvente->ancho;
+                    if (envolvente->colisionaPorIzquierdaCon(envolventeContrario) || envolvente->colisionaPorDerechaCon(envolventeContrario)) {
+                        posicion->x -= int(velocidad->x);
                     }
                 }else if (velocidadContrario->x != 0 && velocidad->x == 0) {
-                    if (envolventeContrario->colisionaPorIzquierdaCon(envolvente)) {
-                        posicionContrario->x = envolvente->posicion->x - envolvente->ancho - envolventeContrario->ancho;
-                    } else if (envolventeContrario->colisionaPorDerechaCon(envolvente)) {
-                        posicionContrario->x = envolvente->posicion->x + envolvente->ancho + envolventeContrario->ancho;
+                    if (envolventeContrario->colisionaPorIzquierdaCon(envolvente) || envolventeContrario->colisionaPorDerechaCon(envolvente)) {
+                        posicionContrario->x -= int(velocidadContrario->x);
                     }
                 } else if (velocidadContrario->x != 0 && velocidad->x != 0) {
-                    if (envolvente->colisionaPorIzquierdaCon(envolventeContrario) ||
-                        envolvente->colisionaPorDerechaCon(envolventeContrario)) {
+                    if (envolvente->colisionaPorIzquierdaCon(envolventeContrario) || envolvente->colisionaPorDerechaCon(envolventeContrario)) {
                         posicion->x -= int(velocidad->x);
                         posicionContrario->x -= int(velocidadContrario->x);
                     }
