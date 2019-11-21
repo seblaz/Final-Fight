@@ -46,6 +46,14 @@ void Colisionables::calcularPosiblesColisiones() {
                         posicion->y = envolventeContrario->posicion->y - envolventeContrario->profundidad -
                                       envolvente->profundidad;
                     }
+                }else if (velocidadContrario->y != 0 && velocidad->y == 0) {
+                    if (envolventeContrario->colisionaAbajoCon(envolvente)) {
+                        posicionContrario->y = envolvente->posicion->y + envolvente->profundidad +
+                                      envolventeContrario->profundidad;
+                    } else if (envolventeContrario->colisionaArribaCon(envolvente)) {
+                        posicionContrario->y = envolvente->posicion->y - envolvente->profundidad -
+                                      envolventeContrario->profundidad;
+                    }
                 } else if (velocidadContrario->y != 0 && velocidad->y != 0) {
                     if (envolvente->colisionaAbajoCon(envolventeContrario) ||
                         envolvente->colisionaArribaCon(envolventeContrario)) {
@@ -58,6 +66,12 @@ void Colisionables::calcularPosiblesColisiones() {
                         posicion->x = envolventeContrario->posicion->x - envolventeContrario->ancho - envolvente->ancho;
                     } else if (envolvente->colisionaPorDerechaCon(envolventeContrario)) {
                         posicion->x = envolventeContrario->posicion->x + envolventeContrario->ancho + envolvente->ancho;
+                    }
+                }else if (velocidadContrario->x != 0 && velocidad->x == 0) {
+                    if (envolventeContrario->colisionaPorIzquierdaCon(envolvente)) {
+                        posicionContrario->x = envolvente->posicion->x - envolvente->ancho - envolventeContrario->ancho;
+                    } else if (envolventeContrario->colisionaPorDerechaCon(envolvente)) {
+                        posicionContrario->x = envolvente->posicion->x + envolvente->ancho + envolventeContrario->ancho;
                     }
                 } else if (velocidadContrario->x != 0 && velocidad->x != 0) {
                     if (envolvente->colisionaPorIzquierdaCon(envolventeContrario) ||
