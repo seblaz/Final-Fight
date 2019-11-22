@@ -106,7 +106,7 @@ void GraficoJugador::renderizarPuntosDeJugador(Puntaje *puntaje, NumeroJugador* 
 
     int cantidadDigitos = puntos.length();
 
-    SDL_Color colorDeFuente = {27, 255, 224};
+    SDL_Color colorDeFuente = {210, 209, 95};
     SDL_Surface *surfacePuntos = TTF_RenderText_Solid(Locator::fuente(),
                                                       puntos.c_str(), colorDeFuente);
     SDL_Texture *texturaPuntos = SDL_CreateTextureFromSurface(renderer, surfacePuntos);
