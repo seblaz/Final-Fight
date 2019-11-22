@@ -15,6 +15,7 @@
 #include "serializables/IndiceSprite.h"
 #include "serializables/Energia.h"
 #include "serializables/Arma.h"
+#include "serializables/Puntaje.h"
 #include <algorithm>
 #include <iostream>
 
@@ -47,6 +48,7 @@ Entidad::Entidad() {
                 {"indice sprite",       &createInstance<IndiceSprite>},
                 {"energia",             &createInstance<Energia>},
                 {"arma",                &createInstance<Arma>},
+                {"puntaje",             &createInstance<Puntaje>}
         };
     }
     if (estadosSerializables.empty()) {

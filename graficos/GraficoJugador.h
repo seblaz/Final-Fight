@@ -11,6 +11,8 @@ static const int escalaVida = 3;
 #include <SDL_render.h>
 #include "../modelo/Entidad.h"
 #include "Grafico.h"
+#include "../modelo/serializables/Puntaje.h"
+#include "../modelo/serializables/NumeroJugador.h"
 
 class GraficoJugador : public Grafico {
 
@@ -19,11 +21,13 @@ private:
     bool claro = true;
     void renderizarVidaDeJugador();
     void renderizarIndicadorDeJugador();
+    void renderizarPuntosDeJugador(Puntaje* puntaje, NumeroJugador* numeroJugador);
     void modularColor();
 
 public:
     explicit GraficoJugador(Entidad *entidad);
     void actualizar() override;
+
 
 };
 

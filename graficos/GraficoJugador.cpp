@@ -12,14 +12,21 @@
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../modelo/serializables/Actividad.h"
+#include "../modelo/serializables/Puntaje.h"
 
 GraficoJugador::GraficoJugador(Entidad *entidad) : Grafico(entidad) {}
 
 void GraficoJugador::actualizar() {
+
+    auto *puntaje = entidad->getEstado<Puntaje>("puntaje");
+    auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
+
     modularColor();
+
     Grafico::actualizar();
     renderizarIndicadorDeJugador();
     renderizarVidaDeJugador();
+    renderizarPuntosDeJugador(puntaje, numeroJugador);
 }
 
 void GraficoJugador::renderizarIndicadorDeJugador() {
@@ -39,7 +46,7 @@ void GraficoJugador::renderizarIndicadorDeJugador() {
 
     SDL_Rect rect = {5 + (numeroJugador->numeroJugador - 1) * 350, 40, 20, 50};
 
-    switch (numeroJugador->numeroJugador){
+    switch (numeroJugador->numeroJugador) {
         case 1:
             SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
             break;
@@ -54,7 +61,6 @@ void GraficoJugador::renderizarIndicadorDeJugador() {
             break;
     };
 
-    //SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderFillRect(renderer, &rect);
     SDL_RenderDrawRect(renderer, &rect);
 
@@ -91,8 +97,20 @@ void GraficoJugador::renderizarVidaDeJugador() {
                                               11 * 2};
         SDL_RenderCopy(renderer, spriteCorazon->getTexture(), &posicionEnSpriteCorazon, &posicionEnPantallaCorazon);
     }
+}
 
+void GraficoJugador::renderizarPuntosDeJugador(Puntaje *puntaje, NumeroJugador* numeroJugador) {
+    SDL_Renderer *renderer = Locator::renderer();
 
+    SDL_Color colorDeFuente = {255, 255, 255};
+    SDL_Surface *surfacePuntos = TTF_RenderText_Solid(Locator::fuente(),
+                                                      to_string(puntaje->obtenerPuntos()).c_str(), colorDeFuente);
+    SDL_Texture *texturaPuntos = SDL_CreateTextureFromSurface(renderer, surfacePuntos);
+    SDL_FreeSurface(surfacePuntos);
+
+    SDL_Rect posicionPuntos = {30 + (numeroJugador->numeroJugador - 1) * 350, 0, 100, 50};
+    SDL_RenderCopy(renderer, texturaPuntos, nullptr, &posicionPuntos);
+    SDL_DestroyTexture(texturaPuntos);
 }
 
 void GraficoJugador::modularColor() {
