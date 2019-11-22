@@ -102,13 +102,17 @@ void GraficoJugador::renderizarVidaDeJugador() {
 void GraficoJugador::renderizarPuntosDeJugador(Puntaje *puntaje, NumeroJugador* numeroJugador) {
     SDL_Renderer *renderer = Locator::renderer();
 
-    SDL_Color colorDeFuente = {255, 255, 255};
+    string puntos = to_string(puntaje->obtenerPuntos());
+
+    int cantidadDigitos = puntos.length();
+
+    SDL_Color colorDeFuente = {0, 0, 0};
     SDL_Surface *surfacePuntos = TTF_RenderText_Solid(Locator::fuente(),
-                                                      to_string(puntaje->obtenerPuntos()).c_str(), colorDeFuente);
+                                                      puntos.c_str(), colorDeFuente);
     SDL_Texture *texturaPuntos = SDL_CreateTextureFromSurface(renderer, surfacePuntos);
     SDL_FreeSurface(surfacePuntos);
 
-    SDL_Rect posicionPuntos = {30 + (numeroJugador->numeroJugador - 1) * 350, 0, 100, 50};
+    SDL_Rect posicionPuntos = {30 + (numeroJugador->numeroJugador - 1) * 350, 0, 30 * cantidadDigitos, 50};
     SDL_RenderCopy(renderer, texturaPuntos, nullptr, &posicionPuntos);
     SDL_DestroyTexture(texturaPuntos);
 }
