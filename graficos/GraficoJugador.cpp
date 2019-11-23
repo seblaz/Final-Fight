@@ -12,14 +12,21 @@
 #include "../modelo/serializables/NumeroJugador.h"
 #include "../modelo/serializables/EstadoDePersonaje.h"
 #include "../modelo/serializables/Actividad.h"
+#include "../modelo/serializables/Puntaje.h"
 
 GraficoJugador::GraficoJugador(Entidad *entidad) : Grafico(entidad) {}
 
 void GraficoJugador::actualizar() {
+
+    auto *puntaje = entidad->getEstado<Puntaje>("puntaje");
+    auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
+
     modularColor();
+
     Grafico::actualizar();
     renderizarIndicadorDeJugador();
     renderizarVidaDeJugador();
+    renderizarPuntosDeJugador(puntaje, numeroJugador);
 }
 
 void GraficoJugador::renderizarIndicadorDeJugador() {
@@ -36,15 +43,26 @@ void GraficoJugador::renderizarIndicadorDeJugador() {
                                                                       1.5);
     SDL_RenderCopy(renderer, spriteIndicador->getTexture(), &posicionEnSpriteIndicador, &posicionEnPantallaIndicador);
 
-    // SDL_Rect rect;
-    // rect.x = 10;
-    // rect.y = 40;
-    // rect.w = 20;
-    // rect.h = 50;
 
-    //  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    //  SDL_RenderFillRect(renderer, &rect);
-    //  SDL_RenderDrawRect(renderer, &rect);
+    SDL_Rect rect = {5 + (numeroJugador->numeroJugador - 1) * 350, 40, 20, 50};
+
+    switch (numeroJugador->numeroJugador) {
+        case 1:
+            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+            break;
+        case 2:
+            SDL_SetRenderDrawColor(renderer, 245, 255, 0, 255);
+            break;
+        case 3:
+            SDL_SetRenderDrawColor(renderer, 0, 194, 70, 255);
+            break;
+        case 4:
+            SDL_SetRenderDrawColor(renderer, 91, 0, 208, 255);
+            break;
+    };
+
+    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &rect);
 
 }
 
@@ -79,8 +97,24 @@ void GraficoJugador::renderizarVidaDeJugador() {
                                               11 * 2};
         SDL_RenderCopy(renderer, spriteCorazon->getTexture(), &posicionEnSpriteCorazon, &posicionEnPantallaCorazon);
     }
+}
 
+void GraficoJugador::renderizarPuntosDeJugador(Puntaje *puntaje, NumeroJugador* numeroJugador) {
+    SDL_Renderer *renderer = Locator::renderer();
 
+    string puntos = to_string(puntaje->obtenerPuntos());
+
+    int cantidadDigitos = puntos.length();
+
+    SDL_Color colorDeFuente = {210, 209, 95};
+    SDL_Surface *surfacePuntos = TTF_RenderText_Solid(Locator::fuente(),
+                                                      puntos.c_str(), colorDeFuente);
+    SDL_Texture *texturaPuntos = SDL_CreateTextureFromSurface(renderer, surfacePuntos);
+    SDL_FreeSurface(surfacePuntos);
+
+    SDL_Rect posicionPuntos = {40 + (numeroJugador->numeroJugador - 1) * 350, 0, 25 * cantidadDigitos, 45};
+    SDL_RenderCopy(renderer, texturaPuntos, nullptr, &posicionPuntos);
+    SDL_DestroyTexture(texturaPuntos);
 }
 
 void GraficoJugador::modularColor() {
@@ -100,7 +134,7 @@ void GraficoJugador::modularColor() {
     if (estado->getEstado() == MUERTO && energia->vivo()) {
         int mod = claro * 255 + !claro * 64;
         SDL_SetTextureColorMod(sprite->getTexture(), mod, mod, mod);
-        if(framesModulacion-- == 0){
+        if (framesModulacion-- == 0) {
             framesModulacion = 8;
             claro = !claro;
         }
