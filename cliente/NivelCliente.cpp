@@ -49,7 +49,7 @@ void NivelCliente::generarJugador(Entidad *jugador) {
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("grafico", grafico);
     jugador->agregarComportamiento("animador", animador);
- jugador->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
+    jugador->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 
     auto *spriteVida = Locator::fabricaDeSprites()->getSpriteConfigPath(
             "/sprites/personajes/" + nombrePersonaje + "/vida/src");
@@ -137,7 +137,7 @@ void NivelCliente::generarEnemigo(Entidad *enemigo) {
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
     enemigo->agregarComportamiento("animador", animador);
 
-   auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(enemigo, "/sonidos/enemigo/poison");
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(enemigo, "/sonidos/enemigo/poison");
     enemigo->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 
 }
