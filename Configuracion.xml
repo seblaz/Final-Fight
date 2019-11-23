@@ -366,11 +366,17 @@
         <enemigo>
             <poison>
                 <dandoGolpe>
-                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                    <src>assets/sonidos/enemigos/poison/golpe.wav</src>
                 </dandoGolpe>
                 <pateando>
-                    <src>assets/sonidos/enemigos/poison/patada.wav</src>
+                    <src>assets/sonidos/enemigos/poison/golpe.wav</src>
                 </pateando>
+                <recibiendoGolpe>
+                    <src>assets/sonidos/enemigos/poison/recibiendogolpe.wav</src>
+                </recibiendoGolpe>
+                <muerto>
+                    <src>assets/sonidos/enemigos/poison/muerte.wav</src>
+                </muerto>
             </poison>
         </enemigo>
     </sonidos>
