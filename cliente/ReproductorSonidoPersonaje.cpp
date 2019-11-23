@@ -5,7 +5,6 @@
 #include "ReproductorSonidoPersonaje.h"
 #include "../estados/personajes/Caminando.h"
 #include "../modelo/serializables/NumeroJugador.h"
-#include "../modelo/serializables/IndiceSprite.h"
 #include "../modelo/serializables/Energia.h"
 
 ReproductorSonidoPersonaje::ReproductorSonidoPersonaje(Entidad *entidad, string rutaBase) :

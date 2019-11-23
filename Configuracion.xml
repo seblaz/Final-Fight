@@ -1,6 +1,6 @@
 <configuracion>
     <jugadores>
-        <cantidad>2</cantidad>
+        <cantidad>1</cantidad>
     </jugadores>
     <usuarios>
         <cantidad>5</cantidad>
@@ -311,21 +311,57 @@
                     <src>assets/sonidos/personajes/cody/golpe.wav</src>
                 </dandoGolpe>
                 <recibiendoGolpe>
-                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                    <src>assets/sonidos/personajes/cody/recibiendogolpe.wav</src>
                 </recibiendoGolpe>
-                <saltando>
-                    <src>assets/sonidos/personajes/cody/saltocorto.wav</src>
-                </saltando>
                 <pateando>
                     <src>assets/sonidos/personajes/cody/saltopatada.wav</src>
                 </pateando>
-                <saltandoAdelante>
-                    <src>assets/sonidos/personajes/cody/saltolargo.wav</src>
-                </saltandoAdelante>
                 <muerto>
                     <src>assets/sonidos/personajes/cody/muerte.wav</src>
                 </muerto>
             </cody>
+            <maki>
+                <dandoGolpe>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </dandoGolpe>
+                <recibiendoGolpe>
+                    <src>assets/sonidos/personajes/maki/recibiendogolpe.wav</src>
+                </recibiendoGolpe>
+                <pateando>
+                    <src>assets/sonidos/personajes/maki/saltopatada.wav</src>
+                </pateando>
+                <muerto>
+                    <src>assets/sonidos/personajes/maki/muerte.wav</src>
+                </muerto>
+            </maki>
+            <guy>
+                <dandoGolpe>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </dandoGolpe>
+                <recibiendoGolpe>
+                    <src>assets/sonidos/personajes/cody/recibiendogolpe.wav</src>
+                </recibiendoGolpe>
+                <pateando>
+                    <src>assets/sonidos/personajes/guy/saltopatada.wav</src>
+                </pateando>
+                <muerto>
+                    <src>assets/sonidos/personajes/guy/muerte.wav</src>
+                </muerto>
+            </guy>
+            <haggar>
+                <dandoGolpe>
+                    <src>assets/sonidos/personajes/cody/golpe.wav</src>
+                </dandoGolpe>
+                <recibiendoGolpe>
+                    <src>assets/sonidos/personajes/cody/recibiendogolpe.wav</src>
+                </recibiendoGolpe>
+                <pateando>
+                    <src>assets/sonidos/personajes/haggar/saltopatada.wav</src>
+                </pateando>
+                <muerto>
+                    <src>assets/sonidos/personajes/haggar/muerte.wav</src>
+                </muerto>
+            </haggar>
         </personaje>
         <enemigo>
             <poison>
