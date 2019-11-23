@@ -137,7 +137,7 @@ void NivelCliente::generarEnemigo(Entidad *enemigo) {
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
     enemigo->agregarComportamiento("animador", animador);
 
-    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(enemigo, "/sonidos/enemigo/poison");
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(enemigo, "/sonidos/enemigo/"+ nombrePersonaje);
     enemigo->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 
 }

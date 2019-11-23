@@ -364,7 +364,7 @@
             </haggar>
         </personaje>
         <enemigo>
-            <poison>
+            <poisson>
                 <dandoGolpe>
                     <src>assets/sonidos/enemigos/poison/golpe.wav</src>
                 </dandoGolpe>
@@ -377,7 +377,21 @@
                 <muerto>
                     <src>assets/sonidos/enemigos/poison/muerte.wav</src>
                 </muerto>
-            </poison>
+            </poisson>
+            <boss>
+                <dandoGolpe>
+                    <src>assets/sonidos/enemigos/boss/golpe.wav</src>
+                </dandoGolpe>
+                <pateando>
+                    <src>assets/sonidos/enemigos/boss/golpe.wav</src>
+                </pateando>
+                <recibiendoGolpe>
+                    <src>assets/sonidos/enemigos/boss/recibiendogolpe.wav</src>
+                </recibiendoGolpe>
+                <muerto>
+                    <src>assets/sonidos/enemigos/boss/muerte.wav</src>
+                </muerto>
+            </boss>
         </enemigo>
     </sonidos>
     <niveles>
