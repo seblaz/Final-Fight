@@ -158,7 +158,6 @@ int Mapa::enemigosAtacando() {
 
         if ( estado->getEstado() != MUERTO  && estado->getEstado() != REPOSANDO){
             maximoDeAtacantes++;
-            Locator::logger()->log(DEBUG, "enemigo: " + to_string(estado->getEstado()));
         }
 
     }
