@@ -8,12 +8,17 @@ BuscarJugadores::BuscarJugadores(Entidad *entidad, Jugadores *jugadores) :
         Comportamiento(entidad), jugadores(jugadores) {}
 
 void BuscarJugadores::actualizar() {
-    Locator::eventos()->push(new EventoBuscarJugadores(jugadores, entidad));
+    if (ciclo > 100){
+        ciclo = 0;
+    }
+    ciclo++;
+    Locator::eventos()->push(new EventoBuscarJugadores(jugadores, entidad, ciclo));
 }
 
-EventoBuscarJugadores::EventoBuscarJugadores(Jugadores *jugadores, Entidad *entidad) :
+EventoBuscarJugadores::EventoBuscarJugadores(Jugadores *jugadores, Entidad *entidad, int ciclo) :
         entidad(entidad),
-        jugadores(jugadores) {}
+        jugadores(jugadores),
+        ciclo(ciclo){}
 
 void EventoBuscarJugadores::resolver() {
     auto *estado = entidad->getComportamiento<EstadoDePersonajeServidor>("estado");
@@ -26,22 +31,15 @@ void EventoBuscarJugadores::resolver() {
     float mod = restaPosicion.modulo();
     float modX = restaPosicion.moduloX();
     float modY = restaPosicion.moduloY();
-    int num = 1 + rand() % (101 - 1);
     if ( mod <= 700 ) {
         if( mod >= 200 ) {
-            if( num > 85){
-                estado->saltar();
-            }else{
                 estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                 restaPosicion.y > 0);
-            }
         }else{
-            //TODO atacar
-
-                if( num > 50 && modX >= 120){
+                if( ciclo < 50 && modX >= 120){
                     estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                     restaPosicion.y > 0);
-                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5){
+                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5 && ciclo < 55){
                     estado->darGolpe();
                 }else{
                     estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,

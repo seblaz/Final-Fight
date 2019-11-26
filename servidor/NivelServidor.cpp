@@ -271,7 +271,7 @@ void NivelServidor::generarJefeFinal(const string &nivel, Mapa *mapa, Jugadores 
     auto *energia = new Energia(500, 0);
     auto *envolvente = new EnvolventeVolumen(posicionEnemigoRandom, 100, 30);
     auto* arma = new Arma(ARMA::PUNIOS);
-    auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 120, 30, orientacionDeEnemigo);
+    auto *envolventeDeAtaque = new EnvolventeAtaque(posicionEnemigoRandom, 200, 30, orientacionDeEnemigo);
     auto* notificador = new NotificadorDeGolpes();
 
     enemigo->agregarEstado("arma", arma);

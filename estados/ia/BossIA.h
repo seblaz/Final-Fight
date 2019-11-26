@@ -14,6 +14,7 @@ class BossIA : public Comportamiento{
 
     private:
         Jugadores *jugadores;
+        int ciclo = 0;
 
     public:
         explicit BossIA(Entidad *entidad, Jugadores *jugadores);
@@ -26,9 +27,10 @@ class EventoBossIA : public EventoAProcesar {
     public:
         Jugadores *jugadores;
         Entidad *entidad;
+        int ciclo = 0;
 
     public:
-        explicit EventoBossIA(Jugadores* jugadores, Entidad *entidad);
+        explicit EventoBossIA(Jugadores* jugadores, Entidad *entidad, int ciclo);
         void resolver() override;
 
 

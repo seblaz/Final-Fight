@@ -47,7 +47,7 @@ void FisicaDeEscenario::actualizar() {
         jugadores->bloquearMovimientos(xScrollIzquierdo, xScrollDerecho);
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
-    if ( xMayorPersonaje > largo - 40 && enemigosAtacando < 1){
+    if ( xMayorPersonaje > largo - 100 && enemigosAtacando == 0){
         if (xMayorPersonaje > largo) {
             auto *nivel = entidad->getEstado<Nivel>("nivel");
             Locator::logger()->log(INFO, "Se llego al final del " + nivel->nivel() + " .");
@@ -56,5 +56,5 @@ void FisicaDeEscenario::actualizar() {
             Locator::clientes()->cambiarTodosA(proxEtapa);
         }
     }else
-        jugadores->bloquearMovimientos(xScrollIzquierdo, largo - 40);
+        jugadores->bloquearMovimientos(xScrollIzquierdo, largo - 100);
 }

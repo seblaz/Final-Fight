@@ -6,15 +6,11 @@
 #include "Sonido.h"
 #include "../servicios/Locator.h"
 
-Sonido::Sonido(const string &rutaSprite){
-    Locator::logger()->log(DEBUG,"Se va a buscar el sonido: " + rutaSprite);
-    chunk = Mix_LoadWAV( rutaSprite.c_str());
-    if( chunk == NULL )
-    {
-        Locator::logger()->log(DEBUG,"Fallo al cargar el sonido, se cargara uno por default: %s\n" + string(Mix_GetError()) );
-        //chunk =  Mix_LoadWAV( rutaSprite.c_str());
-    }
-
+Sonido::Sonido(const string &rutaSonido) {
+    Locator::logger()->log(DEBUG, "Se va a buscar el sonido: " + rutaSonido);
+    chunk = Mix_LoadWAV(rutaSonido.c_str());
+    if (!chunk)
+        Locator::logger()->log(DEBUG, "Fallo al cargar el sonido: %s\n" + string(Mix_GetError()));
 }
 
 Mix_Chunk *Sonido::getChunk() {
