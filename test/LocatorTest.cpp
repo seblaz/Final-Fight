@@ -7,7 +7,7 @@
 #include "../servicios/Locator.h"
 
 TEST(Locator, DespuesDeAgregarElServicioPuedoUsarloEnLocator){
-    auto *logger = new Logger();
+    auto *logger = new Logger("test");
     logger->setLevel("INFO");
     Locator::provide(logger);
 

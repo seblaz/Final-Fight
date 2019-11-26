@@ -18,7 +18,7 @@ private:
     Mix_Chunk *chunk;
 
 public:
-    explicit Sonido(const string& rutaSprite);
+    explicit Sonido(const string& rutaSonido);
 
     Mix_Chunk * getChunk();
 

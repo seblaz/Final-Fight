@@ -16,23 +16,13 @@ void ReproductorSonidoPersonaje::actualizar() {
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
     auto *numeroJugador = entidad->getEstado<NumeroJugador>("numeroJugador");
     auto *energia = entidad->getEstado<Energia>("energia");
-
-    int canalAReproducir;
-
+    
     string pathSonidoABuscar = rutaBase + "/" + EstadoDePersonaje::estadoACadena(estado->getEstado()) + "/src";
 
-    if (numeroJugador == NULL) {
-        canalAReproducir = 6;
-    } else {
-        canalAReproducir = numeroJugador->numeroJugador;
-    }
+    int canalAReproducir = numeroJugador ? numeroJugador->numeroJugador : 6;
+    
     Mix_Chunk *chunk = Locator::fabricaDeSonidos()->getSoundConfigPath(pathSonidoABuscar)->getChunk();
 
-    if (chunk != NULL) {
-        if (Mix_Playing(canalAReproducir) == 0) {
-            if (energia->getVidas() >= 0) {
-                Mix_PlayChannel(canalAReproducir, chunk, 0);
-            }
-        }
-    }
+    if (chunk && Mix_Playing(canalAReproducir) == 0 && energia->getVidas() >= 0)
+        Mix_PlayChannel(canalAReproducir, chunk, 0);
 }
