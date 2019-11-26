@@ -21,7 +21,7 @@
 #include "vistas/VistaJuego.h"
 #include "pantallas/PantallaJuego.h"
 #include "interpretes/InterpretePuntuacionCli.h"
-#include "entradas/EntradaPuntuacion.h"
+#include "entradas/EntradaConfirmacion.h"
 #include "vistas/VistaPuntuacion.h"
 #include "entradas/EntradaNula.h"
 #include "vistas/VistaPlana.h"
@@ -111,12 +111,12 @@ void Juego::agregarPantallas() {
     auto *puntuaciones = new PuntuacionJugadores();
     manager.agregarPantalla(new Pantalla("puntuacion1",
                                          new InterpretePuntuacionCli(puntuaciones),
-                                         new EntradaPuntuacion(),
+                                         new EntradaConfirmacion(),
                                          new VistaPuntuacion(puntuaciones)));
 
     manager.agregarPantalla(new Pantalla("puntuacion2",
                                          new InterpretePuntuacionCli(puntuaciones),
-                                         new EntradaPuntuacion(),
+                                         new EntradaConfirmacion(),
                                          new VistaPuntuacion(puntuaciones)));
 
     manager.agregarPantalla(new Pantalla("fin",
@@ -126,7 +126,7 @@ void Juego::agregarPantallas() {
 
     manager.agregarPantalla(new Pantalla("game over",
                                          new InterpreteNuloCli(),
-                                         new EntradaNula(),
+                                         new EntradaConfirmacion(),
                                          new VistaPlana("/pantallas/gameOver/src", "/pantallas/gameOver/musica/src")));
 
     manager.agregarPantalla(new PantallaError("usuario ya conectado", "/pantallas/error/usuarioYaConectado/src"));
