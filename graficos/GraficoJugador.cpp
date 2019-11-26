@@ -82,11 +82,18 @@ void GraficoJugador::renderizarVidaDeJugador() {
     SDL_Rect posicionEnPantallaVidaLlena = {30 + (numeroJugador->numeroJugador - 1) * 350, 40, 95 * escalaVida,
                                             17 * escalaVida};
 
+
     SDL_RenderCopy(renderer, spriteVida->getTexture(), &posicionEnSpriteVidaLlena, &posicionEnPantallaVidaLlena);
 
     SDL_Rect posicionEnSpriteVidaActual = {0, 0, (82 * energia->getEnergia() / 100), 9};
     SDL_Rect posicionEnPantallaVidaActual = {69 + (numeroJugador->numeroJugador - 1) * 350, 64,
                                              (82 * energia->getEnergia() / 100) * escalaVida, 9 * escalaVida};
+
+    if (energia->enModoTest())
+        SDL_SetTextureColorMod(spriteVidaActual->getTexture(), 0, 255, 0);
+    else
+        SDL_SetTextureColorMod(spriteVidaActual->getTexture(), 255, 255, 255);
+
     SDL_RenderCopy(renderer, spriteVidaActual->getTexture(), &posicionEnSpriteVidaActual,
                    &posicionEnPantallaVidaActual);
 
@@ -99,7 +106,7 @@ void GraficoJugador::renderizarVidaDeJugador() {
     }
 }
 
-void GraficoJugador::renderizarPuntosDeJugador(Puntaje *puntaje, NumeroJugador* numeroJugador) {
+void GraficoJugador::renderizarPuntosDeJugador(Puntaje *puntaje, NumeroJugador *numeroJugador) {
     SDL_Renderer *renderer = Locator::renderer();
 
     string puntos = to_string(puntaje->obtenerPuntos());

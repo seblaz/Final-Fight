@@ -30,7 +30,7 @@ Accion *EntradaJuego::getAccion(SDL_Event *e) {
         accion = CAM_ARRIBA;
     } else if (entrada[SDL_SCANCODE_DOWN]) {
         accion = CAM_ABAJO;
-    } else if (entrada[SDL_SCANCODE_T]) {
+    } else if (e && e->type == SDL_KEYDOWN && e->key.keysym.sym == SDLK_t) {
         accion = MODOTEST;
     } else {
         accion = REPOSAR;

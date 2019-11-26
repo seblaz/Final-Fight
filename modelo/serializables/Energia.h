@@ -31,6 +31,8 @@ public:
     int getVidas();
 
     void cambiarModoTest();
+    bool enModoTest();
+
 };
 
 

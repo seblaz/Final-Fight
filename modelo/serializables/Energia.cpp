@@ -63,3 +63,7 @@ bool Energia::revivir() {
     }
     return false;
 }
+
+bool Energia::enModoTest() {
+    return modoTest;
+}
