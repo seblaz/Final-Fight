@@ -155,16 +155,11 @@ int Mapa::enemigosAtacando() {
     int maximoDeAtacantes = 0;
     for (auto *enemigo : enemigos) {
         auto *estado = enemigo->getEstado<EstadoDePersonaje>("estado de personaje");
-        if (estado->getEstado() == CAMINANDO) {
+
+        if ( estado->getEstado() != MUERTO  && estado->getEstado() != REPOSANDO){
             maximoDeAtacantes++;
-        } else if (estado->getEstado() == SALTANDO_CON_MOVIMIENTO) {
-            maximoDeAtacantes++;
-        } else if (estado->getEstado() == SALTANDO) {
-            maximoDeAtacantes++;
-        } else if (estado->getEstado() == RECIBIENDO_GOLPE) {
-            maximoDeAtacantes++;
-        } else if (estado->getEstado() == DANDO_GOLPE)
-            maximoDeAtacantes++;
+            Locator::logger()->log(DEBUG, "enemigo: " + to_string(estado->getEstado()));
+        }
 
     }
     return maximoDeAtacantes;

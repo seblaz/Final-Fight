@@ -14,6 +14,7 @@ class BuscarJugadores : public Comportamiento {
 
 private:
     Jugadores *jugadores;
+    int ciclo = 0;
 
 public:
     explicit BuscarJugadores(Entidad *entidad, Jugadores *jugadores);
@@ -26,9 +27,10 @@ class EventoBuscarJugadores : public EventoAProcesar {
 public:
     Jugadores *jugadores;
     Entidad *entidad;
+    int ciclo = 0;
 
 public:
-    explicit EventoBuscarJugadores(Jugadores* jugadores, Entidad *entidad);
+    explicit EventoBuscarJugadores(Jugadores* jugadores, Entidad *entidad, int ciclo);
     void resolver() override;
     
 };

@@ -441,7 +441,7 @@
                     </tubo>
                 </armas>
                 <enemigos>
-                    <cantidad>2</cantidad>
+                    <cantidad>5</cantidad>
                 </enemigos>
             </escenario>
         </nivel1>
