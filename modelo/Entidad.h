@@ -92,7 +92,7 @@ public:
 
     template<typename T>
     T *getComportamiento(const string &s) {
-        return (T *) comportamientos[s];
+        return (T *) comportamientos.at(s);
     };
 
     vector<Comportamiento *> getComportamientos();

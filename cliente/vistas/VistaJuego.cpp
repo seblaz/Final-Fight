@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "VistaJuego.h"
 #include "../../servicios/Locator.h"
+#include "../Animador.h"
 
 void VistaJuego::graficar(SDL_Renderer *renderer) {
 
@@ -18,6 +19,10 @@ void VistaJuego::graficar(SDL_Renderer *renderer) {
     });
 
     for (auto entidad : sorted) {
+        try {
+            entidad.second->getComportamiento<Animador>("animador")->actualizar();
+        } catch ( const std::out_of_range& e ){ }
+
         for (auto *comportamiento : entidad.second->getComportamientos()) {
             comportamiento->actualizar();
         }
