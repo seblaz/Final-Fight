@@ -34,7 +34,7 @@ void EventoBossIA::resolver() {
     float modX = restaPosicion.moduloX();
     float modY = restaPosicion.moduloY();
     if ( mod <= 1000 ) {
-        if( mod >= 400 ) {
+        if( mod >= 600 ) {
             if( ciclo > 180){
                 estado->saltar();
             }else{

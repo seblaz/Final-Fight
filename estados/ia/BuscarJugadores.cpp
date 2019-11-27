@@ -31,15 +31,15 @@ void EventoBuscarJugadores::resolver() {
     float mod = restaPosicion.modulo();
     float modX = restaPosicion.moduloX();
     float modY = restaPosicion.moduloY();
-    if ( mod <= 700 ) {
-        if( mod >= 200 ) {
+    if ( mod <= 900 ) {
+        if( mod >= 600 ) {
                 estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                 restaPosicion.y > 0);
         }else{
-                if( ciclo < 50 && modX >= 120){
+                if( ciclo < 65 && modX >= 120){
                     estado->caminar(restaPosicion.x <= 0, restaPosicion.x > 0, restaPosicion.y < 0,
                                     restaPosicion.y > 0);
-                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5 && ciclo < 55){
+                }else if ( estadoDePersonaje->getEstado() == CAMINANDO && modX > 90 && modX < 120 && modY < 5 && ciclo < 70){
                     estado->darGolpe();
                 }else{
                     estado->caminar(restaPosicion.x > 0, restaPosicion.x <= 0, restaPosicion.y > 0,
