@@ -3,13 +3,13 @@
 //
 
 #include "FisicaDeTransicion.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include "../servicios/Locator.h"
 #include "../servicios/Configuracion.h"
-#include "../modelo/Opacidad.h"
+#include "../modelo/serializables/Opacidad.h"
 #include "../modelo/Jugadores.h"
 
-FisicaDeTransicion::FisicaDeTransicion(int anchoDeEscenario) {
+FisicaDeTransicion::FisicaDeTransicion(Entidad *entidad, int anchoDeEscenario) : Comportamiento(entidad) {
     this->anchoDeEscenario = anchoDeEscenario;
     Configuracion* config = Locator::configuracion();
     framesPorTransicionInicial = config->getIntValue("/transicion/inicial/frames");
@@ -17,7 +17,7 @@ FisicaDeTransicion::FisicaDeTransicion(int anchoDeEscenario) {
     margenTransicionFinal = config->getIntValue("/transicion/final/margen");
 };
 
-void FisicaDeTransicion::actualizar(Entidad* entidad) {
+void FisicaDeTransicion::actualizar() {
     Configuracion *config = Locator::configuracion();
     int posicionDeJugadorX = entidad->getEstado<Jugadores>("posicion de jugadoresMax")->getMayorX();
     auto* opacidad = entidad->getEstado<Opacidad>("opacidad");

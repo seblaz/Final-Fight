@@ -7,13 +7,15 @@
 
 
 #include "../modelo/Entidad.h"
-#include "../modelo/Posicion.h"
+#include "../modelo/serializables/Posicion.h"
 #include <SDL_rect.h>
 
 class Grafico : public Comportamiento {
 
 public:
-    void actualizar(Entidad*) override;
+    explicit Grafico(Entidad *entidad);
+
+    void actualizar() override;
 };
 
 SDL_Rect calcularPosicionEnPantalla(Posicion posicionEnMapa, SDL_Rect posicionEnSprite, float esacalaDeAnimacion);

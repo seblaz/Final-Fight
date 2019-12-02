@@ -13,19 +13,21 @@
 #include <map>
 #include <list>
 #include <mutex>
+#include <unordered_map>
 
 using namespace std;
 
 class Configuracion {
 
 private:
+    unordered_map<string, string> cacheStrings;
+    unordered_map<string, int> cacheInts;
+    unordered_map<string, float> cacheFloats;
     string actualPath = "";
     string defaultPath = "Configuracion.xml";
     xercesc::XercesDOMParser *parser;
     xercesc::ErrorHandler *errHandler;
     mutex m;
-    list<map<string, string>> usuariosCargados;
-    void cargarUsuarios();
 
 public:
     explicit Configuracion(const string &path = "Configuracion.xml");
@@ -38,7 +40,6 @@ public:
     int getIntValue(const string &xPath, int defaultValue);
     float getFloatValue(const string &xPath, float defaultValue);
     string getActualPath();
-    bool isUserOk(string user, string pass);
 };
 
 #endif //FINAL_FIGHT_CONFIGURACION_H

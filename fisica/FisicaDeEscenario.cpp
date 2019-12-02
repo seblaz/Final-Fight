@@ -6,9 +6,10 @@
 #include "../servicios/Locator.h"
 #include "../modelo/Mapa.h"
 #include "../servidor/NivelServidor.h"
+#include "../modelo/serializables/Nivel.h"
 
-FisicaDeEscenario::FisicaDeEscenario(int largo) :
-        largo(largo) {
+FisicaDeEscenario::FisicaDeEscenario(Entidad *entidad, int largo) :
+        Comportamiento(entidad), largo(largo) {
     Configuracion *config = Locator::configuracion();
     scrollIzquierdo = config->getIntValue("/scroll/izquierdo");
     scrollDerecho = config->getIntValue("/scroll/derecho");
@@ -17,8 +18,8 @@ FisicaDeEscenario::FisicaDeEscenario(int largo) :
     xScrollDerecho = ancho - scrollDerecho;
 }
 
-void FisicaDeEscenario::actualizar(Entidad *entidad) {
-    auto *mapa = entidad->getEstado<Mapa>("mapa");
+void FisicaDeEscenario::actualizar() {
+    auto *mapa = Locator::mapa();
     auto *posicionEscenario = entidad->getEstado<Posicion>("posicion");
     auto* jugadores = mapa->getJugadores();
     int xMayorPersonaje = jugadores->getMayorX();
@@ -26,7 +27,10 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
     int xEscenario = posicionEscenario->getX();
     xScrollIzquierdo = xEscenario + scrollIzquierdo;
 
-    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo) {
+    int enemigosAtacando = mapa->enemigosAtacando();
+
+    if ( xMayorPersonaje - xMenorPersonaje <= ancho - scrollDerecho - scrollIzquierdo && xMenorPersonaje >= xScrollIzquierdo &&
+            enemigosAtacando < 2) {
         if ((xMayorPersonaje - xEscenario > ancho - scrollDerecho) && (largo - xMayorPersonaje) > scrollDerecho) {
             posicionEscenario->setX(xMayorPersonaje + scrollDerecho - ancho);
             if ( xMayorPersonaje > xScrollDerecho )
@@ -38,15 +42,19 @@ void FisicaDeEscenario::actualizar(Entidad *entidad) {
                 xScrollDerecho = xEscenario + ancho - scrollDerecho;
         }
     }else if ( largo - ancho <= posicionEscenario->x + 10) {
-        //xScrollDerecho = xMayorPersonaje;
-        jugadores->bloquearMovientos(xScrollIzquierdo, largo + 1);
+        jugadores->bloquearMovimientos(xScrollIzquierdo, largo + 1);
     }else {
-        jugadores->bloquearMovientos(xScrollIzquierdo, xScrollDerecho);
+        jugadores->bloquearMovimientos(xScrollIzquierdo, xScrollDerecho);
     }
     jugadores->arrastrarInactivos(xScrollIzquierdo, xScrollDerecho);
-    if (xMayorPersonaje > largo) {
-        Locator::logger()->log(INFO, "Se llego al final del nivel.");
-        mapa->vaciarMapa();
-        NivelServidor::generarNivel("nivel2", mapa);
-    }
+    if ( xMayorPersonaje > largo - 100 && enemigosAtacando == 0){
+        if (xMayorPersonaje > largo) {
+            auto *nivel = entidad->getEstado<Nivel>("nivel");
+            Locator::logger()->log(INFO, "Se llego al final del " + nivel->nivel() + " .");
+            mapa->vaciarMapa();
+            string proxEtapa = nivel->nivel() == "nivel1" ? "puntuacion1" : "puntuacion2";
+            Locator::clientes()->cambiarTodosA(proxEtapa);
+        }
+    }else
+        jugadores->bloquearMovimientos(xScrollIzquierdo, largo - 100);
 }

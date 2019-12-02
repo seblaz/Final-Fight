@@ -6,10 +6,10 @@
 #define FINAL_FIGHT_USUARIO_H
 
 #include <string>
-#include "../serializar/Serializable.h"
+#include "../modelo/serializables/Serializable.h"
 #include "../modelo/Entidad.h"
-#include "../modelo/Socket.h"
-#include "../modelo/Personaje.h"
+#include "../utils/Socket.h"
+#include "../modelo/serializables/Personaje.h"
 
 using namespace std;
 
@@ -19,28 +19,26 @@ class Usuario : private Serializable {
 private:
     string usuario;
     string contrasenia;
-    Entidad *personaje{};
-    Socket *socket{};
-    bool valido_{};
-    enum PERSONAJE personajeSeleccionado = CODY;
+    Entidad *personaje {};
+    enum PERSONAJE personajeSeleccionado;
+    bool valido_ {};
+    bool conectado = true;
     bool desconectadoVoluntariamente = false;
+//    Socket *socket{};
 
 public:
-    Usuario() = default;
+    Usuario();
     ~Usuario() override = default;
     Usuario(string usuario, string contrasenia);
 
     string getUsuario();
     string getContrasenia();
 
-    void setUsuario(string usuario);
-    void setContrasenia(string usuario);
-
     void setPersonaje(Entidad *personaje);
     Entidad *getPersonaje();
 
-    void setSocket(Socket *socket);
-    Socket *getSocket();
+//    void setSocket(Socket *socket);
+//    Socket *getSocket();
 
     bool estaConectado();
     void desconectar();

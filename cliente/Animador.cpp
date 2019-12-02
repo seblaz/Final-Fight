@@ -3,34 +3,21 @@
 //
 
 #include "Animador.h"
-#include "../estados/Caminando.h"
-#include "../modelo/EstadoDePersonaje.h"
+#include "../modelo/serializables/EstadoDePersonaje.h"
+#include "../modelo/serializables/Arma.h"
+#include "../graficos/FabricaDeAnimacionesCliente.h"
+#include "../servicios/Locator.h"
 
-void Animador::actualizar(Entidad *entidad) {
+Animador::Animador(Entidad *entidad) : Comportamiento(entidad) {}
+
+void Animador::actualizar() {
+    string nombrePersonaje = Personaje::PersonajeACadena(entidad->getEstado<Personaje>("personaje")->getPersonaje());
+    string tipoArma = Arma::armaACadena(entidad->getEstado<Arma>("arma")->getArma());
+    auto *spritePersonaje = Locator::fabricaDeSprites()->getSpriteConfigPath("/sprites/personajes/" + nombrePersonaje + "/" + tipoArma + "/src");
+    entidad->cambiarEstado("sprite", spritePersonaje);
 
     auto *estado = entidad->getEstado<EstadoDePersonaje>("estado de personaje");
-    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesDePersonaje>("fabrica de animaciones");
-    switch (estado->getEstado()){
-        case CAMINANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->caminando());
-            break;
-        case SALTANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->saltando());
-            break;
-        case REPOSANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->reposando());
-            break;
-        case GOLPEANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->golpear());
-            break;
-        case AGACHADO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->agachado());
-            break;
-        case PATEANDO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->patadaBasica());
-            break;
-        case SALTANDO_CON_MOVIMIENTO:
-            entidad->agregarEstado("animacion", fabricaDeAnimaciones->saltandoAdelante());
-            break;
-    }
+    auto* fabricaDeAnimaciones = entidad->getEstado<FabricaDeAnimacionesCliente>("fabrica de animaciones");
+    entidad->agregarEstado("animacion", fabricaDeAnimaciones->getAnimacion(estado->getEstado()));
 }
+

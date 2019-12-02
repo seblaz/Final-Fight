@@ -5,9 +5,10 @@
 #include <numeric>
 #include <utility>
 #include "AnimacionServidor.h"
-#include "../modelo/IndiceSprite.h"
+#include "../modelo/serializables/IndiceSprite.h"
 
-AnimacionServidor::AnimacionServidor(vector<int> duracionesPorSprite, int duracionTotal) {
+AnimacionServidor::AnimacionServidor(Entidad *entidad, vector<int> duracionesPorSprite, int duracionTotal)
+        : Comportamiento(entidad) {
     this->duracionesPorSprite = std::move(duracionesPorSprite);
     this->duracionTotal = duracionTotal;
     this->spriteActual = 0;
@@ -20,7 +21,7 @@ int AnimacionServidor::calcularFramesFaltantes() {
     return int(float(duracionTotal) * duracionesPorSprite[spriteActual] / sumaDeDuracionesRelativas * (1 / velocidad));
 }
 
-void AnimacionServidor::actualizar(Entidad* entidad) {
+void AnimacionServidor::actualizar() {
     framesFaltantes--;
     if (framesFaltantes <= 0) {
         spriteActual = (int)((spriteActual + 1) % duracionesPorSprite.size());

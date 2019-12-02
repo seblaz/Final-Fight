@@ -6,28 +6,29 @@
 #define FINAL_FIGHT_RECEPTORCLIENTE_H
 
 #include <pthread.h>
-#include "ActualizadorCliente.h"
+#include <mutex>
+#include <sstream>
+#include "../eventos/semaphore.h"
+#include "../utils/Hilo.h"
 
-class ReceptorCliente {
+using namespace std;
+
+class ReceptorCliente : Hilo {
 
 private:
     std::mutex mutex;
-    Socket *socket;
-    bool nuevo = false;
-    semaphore disponible;
     stringstream ultimoStream;
     void recibir();
-    bool conexionActiva = true;
+    bool fin = false;
+    semaphore finSemaforo;
+    semaphore disponible;
 
 public:
-    explicit ReceptorCliente(Socket *socket);
+    ReceptorCliente();
     void devolverStreamMasReciente(stringstream &s);
     pthread_t recibirEnHilo();
-    bool conexionEstaActiva();
-
     void finalizar();
 
-    static std::chrono::time_point<std::chrono::system_clock> ultimaRecepcion;
 };
 
 

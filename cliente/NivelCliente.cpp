@@ -4,124 +4,68 @@
 
 #include "NivelCliente.h"
 #include "../servicios/Locator.h"
-#include "../graficos/Sprite.h"
-//#include "../graficos/GraficoDePantallaCompleta.h"
-#include "../modelo/Posicion.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCody.h"
 #include "../graficos/Grafico.h"
-#include "../modelo/Nivel.h"
+#include "../modelo/serializables/Nivel.h"
 #include "../graficos/GraficoDeEscenario.h"
 #include "Animador.h"
-#include "../modelo/Personaje.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeHaggar.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeMaki.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
+#include "AnimadorElemento.h"
 #include "../graficos/GraficoDeTransicion.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDePoison.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCaja.h"
-#include "../modelo/TipoElemento.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeCuchillo.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeNeumatico.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeTubo.h"
-#include "../modelo/NumeroJugador.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeIndicador.h"
-#include "../graficos/animaciones/FabricaDeAnimacionesDeGuy.h"
+#include "../graficos/GraficoArma.h"
+#include "../modelo/serializables/Elemento.h"
+#include "../modelo/serializables/NumeroJugador.h"
 #include "../graficos/GraficoJugador.h"
-#include "../graficos/GraficoMenuSeleccion.h"
+#include "../graficos/FabricaDeAnimacionesCliente.h"
+#include "ReproductorSonidoPersonaje.h"
+#include "../modelo/serializables/Arma.h"
 
-void NivelCliente::generarPantallaDeEspera(Mapa *mapa) {
-    Locator::logger()->log(INFO, "Se genera la pantalla de espera.");
 
-    Entidad *pantalla = mapa->crearEntidad();
-
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeEspera/sprite/src");
-    auto *posicion = new Posicion(0, 0, 0);
-//    auto *grafico = new GraficoMenuSeleccion();
-//    auto *entrada = new EntradaPantallaDeEspera();
-
-//    pantalla->agregarComportamiento("entrada", entrada);
-    pantalla->agregarEstado("posicion", posicion);
-    pantalla->agregarEstado("sprite", sprite);
-    pantalla->agregarEstado("mapa", mapa);
-//    pantalla->agregarComportamiento("grafico", grafico);
-}
-
-void NivelCliente::generarMenuSeleccion(Mapa *mapa, Entidad *pantalla) {
-    Locator::logger()->log(INFO, "Se genera el menu de seleccion.");
-    Configuracion *config = Locator::configuracion();
-
-    auto *sprite = Locator::fabricaDeSprites()->getSpriteConfigPath("/pantallaDeSeleccion/fondo/src");
-    auto *grafico = new GraficoMenuSeleccion();
-    auto *personaje = new Personaje(GUY);
-    auto *spriteSelector = Locator::fabricaDeSprites()->getSpriteBySrc("assets/varios/selectorMenu.png");
-
-    pantalla->agregarEstado("sprite", sprite);
-    pantalla->agregarEstado("sprite selector", spriteSelector);
-    pantalla->agregarEstado("mapa", mapa);
-    pantalla->agregarComportamiento("grafico", grafico);
-    pantalla->agregarEstado("personaje marcado", personaje);
-    pantalla->agregarComportamiento("grafico", grafico);
-}
-
-void NivelCliente::generarSelectorDePersonaje(Mapa *mapa, Entidad *entidad) {
-    Locator::logger()->log(INFO, "Se genera selector de personaje.");
-
-}
-
-void NivelCliente::generarJugador(Mapa *mapa, IdEntidad idEntidad, Entidad *jugador) {
+void NivelCliente::generarJugador(Entidad *jugador) {
     Locator::logger()->log(INFO, "Se genera jugador.");
-    Configuracion *config = Locator::configuracion();
 
     auto *personaje = jugador->getEstado<Personaje>("personaje");
     auto *numeroJugador = jugador->getEstado<NumeroJugador>("numeroJugador");
     Locator::logger()->log(INFO, "Se obtuvo personaje." + Personaje::PersonajeACadena(personaje->getPersonaje()));
     Locator::logger()->log(INFO, "Se obtuvo jugador numero" + to_string(numeroJugador->numeroJugador));
 
-    auto *spriteIndicador = Locator::fabricaDeSprites()->getSpriteConfigPath("/personajes/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
-    auto *animacionIndicador = FabricaDeAnimacionesDeIndicador::indicador();
+    auto *spriteIndicador = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/indicadores/jugador" + to_string(numeroJugador->numeroJugador) + "/src");
+    auto *animacionIndicador = FabricaDeAnimacionesCliente("/animaciones").getAnimacion("/indicador");
 
     jugador->agregarEstado("spriteIndicador", spriteIndicador);
     jugador->agregarEstado("animacionIndicador", animacionIndicador);
 
-    string srcSpritePersonaje;
-    FabricaDeAnimacionesDePersonaje *fabricaDeAnimaciones;
+    string nombrePersonaje = Personaje::PersonajeACadena(personaje->getPersonaje());
+    auto *fabricaDeAnimaciones = new FabricaDeAnimacionesCliente("/animaciones/" + nombrePersonaje);
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(jugador, "/sonidos/personaje/" + nombrePersonaje);
 
-    switch (personaje->getPersonaje()) {
-        case HAGGAR:
-            srcSpritePersonaje = config->getValue("/personajes/haggar/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeHaggar();
-            break;
-        case CODY:
-            srcSpritePersonaje = config->getValue("/personajes/cody/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeCody();
-            break;
-        case MAKI:
-            srcSpritePersonaje = config->getValue("/personajes/maki/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeMaki();
-            break;
-        case GUY:
-            srcSpritePersonaje = config->getValue("/personajes/guy/src");
-            fabricaDeAnimaciones = new FabricaDeAnimacionesDeGuy();
-            break;
-        default:
-            Locator::logger()->log(ERROR, "Se trató de crear un jugador con un personaje incorrecto: " +
-                                          Personaje::PersonajeACadena(personaje->getPersonaje()) + ".");
-            return;
-    }
-
-    auto *animacion = fabricaDeAnimaciones->reposando();
-    auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteBySrc(srcSpritePersonaje);
-    auto *grafico = new GraficoJugador();
-    auto *animador = new Animador();
+    auto *animacion = fabricaDeAnimaciones->getAnimacion("/reposando");
+    auto *spriteJugador = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/personajes/" + nombrePersonaje + "/punios/src");
+    auto *grafico = new GraficoJugador(jugador);
+    auto *animador = new Animador(jugador);
 
     jugador->agregarEstado("sprite", spriteJugador);
     jugador->agregarEstado("animacion", animacion);
     jugador->agregarEstado("fabrica de animaciones", fabricaDeAnimaciones);
     jugador->agregarComportamiento("grafico", grafico);
     jugador->agregarComportamiento("animador", animador);
+    jugador->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
+
+    auto *spriteVida = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/personajes/" + nombrePersonaje + "/vida/src");
+
+    auto *spriteVidaActual = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/indicadores/vidaActual/src");
+
+    auto *spriteCantidadDeVidas = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/indicadores/corazon/src");
+
+    jugador->agregarEstado("sprite vida", spriteVida);
+    jugador->agregarEstado("sprite vida actual", spriteVidaActual);
+    jugador->agregarEstado("sprite cantidad de vidas", spriteCantidadDeVidas);
 }
 
-void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
+void NivelCliente::generarEscenario(Entidad *escenario) {
     Configuracion *config = Locator::configuracion();
 
     auto *nivelEstado = escenario->getEstado<Nivel>("nivel");
@@ -159,69 +103,76 @@ void NivelCliente::generarEscenario(Mapa *mapa, Entidad *escenario) {
     }
 
     float escalaHorizontal = (float) anchoNivel / (float) sprite->ancho();
-    auto *grafico = new GraficoDeEscenario(sprites, posicionesSprite, distanciasAlFondo, escalaHorizontal);
+    auto *grafico = new GraficoDeEscenario(escenario, sprites, posicionesSprite, distanciasAlFondo, escalaHorizontal);
 
     escenario->agregarEstado("sprite", sprite);
-    escenario->agregarEstado("mapa", mapa);
     escenario->agregarComportamiento("grafico", grafico);
+
 }
 
-void NivelCliente::generarTransicion(Mapa *mapa, Entidad *transicion) {
+void NivelCliente::generarTransicion(Entidad *transicion) {
     Locator::logger()->log(DEBUG, "Se genera transicion");
 
-    auto *grafico = new GraficoDeTransicion();
+    auto *grafico = new GraficoDeTransicion(transicion);
 
     transicion->agregarComportamiento("grafico", grafico);
 }
 
-void NivelCliente::generarEnemigo(Mapa *mapa, Entidad *enemigo) {
+void NivelCliente::generarEnemigo(Entidad *enemigo) {
     Locator::logger()->log(INFO, "Se genera enemigo");
-    string spritePath = "assets/personajes/poison.png";
 
-    auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteBySrc("assets/personajes/poison.png");
-    auto *fabricaDeEnemigo = new FabricaDeAnimacionesDePoison();
-    auto *graficoDeEnemigo = new Grafico();
-    auto *animacion = fabricaDeEnemigo->caminando();
+    auto *personaje = enemigo->getEstado<Personaje>("personaje");
+
+    string nombrePersonaje = Personaje::PersonajeACadena(personaje->getPersonaje());
+    auto *spriteEnemigo = Locator::fabricaDeSprites()->getSpriteConfigPath(
+            "/sprites/personajes/" + nombrePersonaje + "/punios/src");
+    auto *fabricaDeEnemigo = new FabricaDeAnimacionesCliente("/animaciones/" + nombrePersonaje);
+    auto *graficoDeEnemigo = new Grafico(enemigo);
+    auto *animacion = fabricaDeEnemigo->getAnimacion(REPOSANDO);
+    auto *animador = new Animador(enemigo);
+
     enemigo->agregarEstado("sprite", spriteEnemigo);
     enemigo->agregarEstado("fabrica de animaciones", fabricaDeEnemigo);
     enemigo->agregarEstado("animacion", animacion);
     enemigo->agregarComportamiento("grafico", graficoDeEnemigo);
+    enemigo->agregarComportamiento("animador", animador);
+
+    auto *reproductorSonidoPersonaje = new ReproductorSonidoPersonaje(enemigo, "/sonidos/enemigo/"+ nombrePersonaje);
+    enemigo->agregarComportamiento("reproductor", reproductorSonidoPersonaje);
 
 }
 
-void NivelCliente::generarElementos(Mapa *mapa, Entidad *elemento) {
+void NivelCliente::generarElemento(Entidad *entidad) {
     Configuracion *config = Locator::configuracion();
-    auto *tipoElemento = elemento->getEstado<TipoElemento>("tipo elemento");
-    string srcSprite;
-    AnimacionCliente *animacion;
-    int ART = tipoElemento->getElemento();
-    switch (ART) {
-        case CAJA:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/caja/sprite/src");
-            animacion = FabricaDeAnimacionesDeCaja::standby();
-            break;
-        case CUCHILLO:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/cuchillo/sprite/src");
-            animacion = FabricaDeAnimacionesDeCuchillo::standby();
-            break;
-        case NEUMATICO:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/neumatico/sprite/src");
-            animacion = FabricaDeAnimacionesDeNeumatico::standby();
-            break;
-        case TUBO:
-            srcSprite = config->getValue("/niveles/nivel1/escenario/objetos/tubo/sprite/src");
-            animacion = FabricaDeAnimacionesDeTubo::standby();
-            break;
-        default:
-            Locator::logger()->log(ERROR, "Se trata de crear un elemento inexistente.");
-            return;
-    }
+    string tipoElemento = Elemento::ElementoACadena(entidad->getEstado<Elemento>("elemento")->getElemento());
+
+    auto *fabrica = new FabricaDeAnimacionesCliente("/animaciones/objetos/" + tipoElemento);
+    AnimacionCliente *animacion = fabrica->getAnimacion("/sano");
+
+    string srcSprite = config->getValue("/sprites/elementos/" + tipoElemento + "/sprite/src");
+    auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
+    auto *grafico = new Grafico(entidad);
+    auto *animador = new AnimadorElemento(entidad);
+
+    entidad->agregarEstado("sprite", sprite);
+    entidad->agregarEstado("fabrica de animaciones", fabrica);
+    entidad->agregarEstado("animacion", animacion);
+    entidad->agregarComportamiento("grafico", grafico);
+    entidad->agregarComportamiento("animador", animador);
+
+}
+
+void NivelCliente::generarArma(Entidad *arma) {
+    Configuracion *config = Locator::configuracion();
+    string tipoArma = Arma::armaACadena(arma->getEstado<Arma>("arma")->getArma());
+
+    string srcSprite = config->getValue("/sprites/armas/" + tipoArma + "/sprite/src");
+    AnimacionCliente *animacion = FabricaDeAnimacionesCliente("/animaciones/objetos").getAnimacion("/" + tipoArma);
 
     auto *sprite = Locator::fabricaDeSprites()->getSpriteBySrc(srcSprite);
-    auto *grafico = new Grafico();
+    auto *grafico = new GraficoArma(arma);
 
-    elemento->agregarEstado("sprite", sprite);
-    elemento->agregarEstado("animacion", animacion);
-    elemento->agregarComportamiento("grafico", grafico);
-
+    arma->agregarEstado("sprite", sprite);
+    arma->agregarEstado("animacion", animacion);
+    arma->agregarComportamiento("grafico", grafico);
 }

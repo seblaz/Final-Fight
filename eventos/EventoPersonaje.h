@@ -116,5 +116,12 @@ public:
 
 };
 
+class ModoTest : public EventoPersonaje {
+
+public:
+    using EventoPersonaje::EventoPersonaje;
+    void resolver() override;
+
+};
 
 #endif //FINAL_FIGHT_EVENTOPERSONAJE_H

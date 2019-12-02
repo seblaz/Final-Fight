@@ -6,7 +6,7 @@
 #define FINAL_FIGHT_JUGADORES_H
 
 #include "Entidad.h"
-#include "Posicion.h"
+#include "serializables/Posicion.h"
 
 class Jugadores : public Estado {
 
@@ -14,15 +14,21 @@ private:
     unordered_map<IdEntidad, Entidad*> jugadores;
 
 public:
+    Jugadores() = default;
     explicit Jugadores(unordered_map<IdEntidad, Entidad*> jugadores);
+    void agregarJugador(IdEntidad id, Entidad *jugador);
+    void quitarJugador(IdEntidad id);
+    unordered_map<IdEntidad, Entidad*> getJugadores();
 
     int getMayorX();
     int getMenorX();
+    bool vivos();
 
     void reiniciarPosiciones(int x, int y);
-
-    void bloquearMovientos(int scrollIzquierdo, int scrollDerecho);
+    void bloquearMovimientos(int scrollIzquierdo, int scrollDerecho);
     void arrastrarInactivos(int scrollIzquierdo, int scrollDerecho);
+
+    Posicion posicionMasCercana(Posicion *posicion);
 };
 
 

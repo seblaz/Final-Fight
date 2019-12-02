@@ -7,10 +7,12 @@
 
 #include "../modelo/Entidad.h"
 
-class Animador : public Comportamiento{
+class Animador : public Comportamiento {
 
 public:
-    void actualizar(Entidad *) override ;
+    explicit Animador(Entidad *entidad);
+
+    void actualizar() override ;
 };
 
 #endif //FINAL_FIGHT_ANIMADOR_H

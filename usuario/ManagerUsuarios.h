@@ -17,19 +17,21 @@ class ManagerUsuarios {
 private:
     int maximo;
     list<Usuario *> usuarios;
-
+    unordered_map<string, string> baseUsuarios;
+    void cargarUsuarios();
+    
 public:
     explicit ManagerUsuarios(int maximo);
 
     bool faltanJugadores();
     list<Usuario *> getUsuarios();
-    int cantidadJugadoresTotales();
     bool estaPresente(Usuario *usuario);
     void agregarUsuario(Usuario *usuario);
     void reemplazarUsuarioCon(Usuario *usuario);
     Usuario *getUsuarioAnterior(Usuario *usuario);
-    void desconectarJugadorVoluntariamente(Usuario *usuario);
     bool hayJugadoresConectados();
+    bool validarContrasenia(Usuario *usuario);
+
 };
 
 

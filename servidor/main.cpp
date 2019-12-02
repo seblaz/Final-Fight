@@ -5,14 +5,8 @@
 #include "ConexionServidor.h"
 #include "../servicios/Locator.h"
 #include "ConexionesClientes.h"
-#include "ContenedorHilos.h"
 #include "Procesamiento.h"
-#include "../eventos/Eventos.h"
-#include "Transmision.h"
-#include "../eventos/MostrarMenuSeleccion.h"
-#include "../eventos/ActualizarYTransmitir.h"
 #include "GameLoop.h"
-#include "../usuario/ManagerUsuarios.h"
 
 using namespace std;
 
@@ -30,7 +24,7 @@ void configApplication(int argc, const char*args[]){
         paramIsLoggerLevel = !defaultLogger;
     }
 
-    auto* logger = new Logger();
+    auto* logger = new Logger("servidor");
     Locator::provide(logger);
 
     Configuracion *config =
@@ -67,24 +61,19 @@ int main(int argc, const char **args) {
      * Conexion al servidor.
      */
     ConexionServidor conexion(5000);
-    int socketServidor = conexion.socket();
+    Socket *socketServidor = conexion.socket();
 
     /**
      * Crear el mapa.
      */
     Mapa mapa;
+    Locator::provide(&mapa);
 
     /**
-     * Lista de sockets
-     */
-     ListaSockets listaSockets;
-
-    /**
-     * Transmision.
-     */
-    Transmision transmision(&listaSockets);
-    auto *eventosATransmitir = transmision.devolverCola();
-    pthread_t hiloTransmision = transmision.transmitirEnHilo();
+    * Crear colisionables.
+    */
+    Colisionables colisionables;
+    Locator::provide(&colisionables);
 
     /**
      * Procesamiento.
@@ -92,56 +81,41 @@ int main(int argc, const char **args) {
     Procesamiento procesamiento;
     auto *eventosAProcesar = procesamiento.devolverCola();
     pthread_t hiloProcesamiento = procesamiento.procesarEnHilo();
+    Locator::provide(eventosAProcesar);
 
     /**
      * Manager de usuarios.
      */
-    int maximoJugadores = Locator::configuracion()->getIntValue("/usuarios/cantidad", 4);
+    int maximoJugadores = Locator::configuracion()->getIntValue("/jugadores/cantidad");
     ManagerUsuarios managerUsuarios(maximoJugadores);
+    Locator::provide(&managerUsuarios);
     Locator::logger()->log(INFO, "Esperando " + to_string(maximoJugadores) + " jugador(es).");
-
-    /**
-     * Selector de personajes.
-     */
-     SelectorPersonajes selector(maximoJugadores);
-
-    /**
-     * Contenedor de hilos.
-     */
-     ContenedorHilos contenedor(&mapa, eventosAProcesar, &managerUsuarios, &selector, &listaSockets);
 
     /**
      * Conexiones de clientes.
      */
-    ConexionesClientes conexiones(socketServidor, &listaSockets, &managerUsuarios, &contenedor);
+    ConexionesClientes conexiones(socketServidor);
     pthread_t hiloConexiones = conexiones.manejarConexionesEnHilo();
 
-    /**
-     * Game loop.
-     */
-    auto *comenzar = new MostrarMenuSeleccion(&mapa);
-    eventosAProcesar->push(comenzar);
+    GameLoop gameLoop;
+    try {
+        gameLoop.loop();
+    } catch (const std::exception& e) {
+        Locator::logger()->log(ERROR, "Ocurrió una excepción: " + string(e.what()) + ".");
+        exit(0);
+    } catch (...){
+        Locator::logger()->log(ERROR, "Ocurrió una excepción y se debió finalizar el programa.");
+        exit(0);
+    }
 
-    auto *actualizar = new ActualizarYTransmitir(&mapa, eventosATransmitir);
-    GameLoop gameLoop(eventosAProcesar, actualizar, &managerUsuarios);
-    gameLoop.loop();
 
     /**
      * Termino el procesamiento.
      */
-    auto *finProcesar = new EventoAProcesar("fin");
-    eventosAProcesar->push(finProcesar);
-    auto *finTransmitir = new EventoATransmitir("fin");
-    eventosATransmitir->push(finTransmitir);
-
+    procesamiento.finalizar();
     pthread_join(hiloProcesamiento, nullptr);
-    pthread_join(hiloTransmision, nullptr);
-
-    listaSockets.cerrarSockets();
-    contenedor.esperarFinDeHilos();
-
-    shutdown(socketServidor, SHUT_RDWR);
-    close(socketServidor);
+    
+    socketServidor->finalizarConexion();
     pthread_join(hiloConexiones, nullptr);
 
     Locator::logger()->log(INFO, "Fin del programa.");

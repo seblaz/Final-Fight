@@ -4,7 +4,12 @@
 cmake_minimum_required(VERSION 3.14)
 project(final_fight)
 set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_EXE_LINKER_FLAGS "-static-libstdc++")
+
+#[[
+  Para hacer profiling.
+]]
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 #[[
   Compilar la test suite de Google.
@@ -43,7 +48,7 @@ endif()
 
 # Se agrega los cmake de sdl2-image
 # https://github.com/trenki2/SDL2Test
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/vendor/cmake-sl2-image/" "${CMAKE_SOURCE_DIR}/vendor/cmake-sdl-mixer/")
 
 #[[
   Para que funcione pthread.
@@ -53,42 +58,34 @@ SET(CMAKE_CXX_FLAGS -pthread)
 #[[
   Definición de variables.
 ]]
-FILE(GLOB TestSources test/*.cpp)
-FILE(GLOB ModelSources modelo/*.cpp)
-FILE(GLOB ModelMapSources modelo/mapeables/*.cpp)
-FILE(GLOB MainSources main/*.cpp)
-FILE(GLOB PhysicsSources fisica/*.cpp)
-FILE(GLOB GraphicsSources graficos/*.cpp)
-FILE(GLOB InputSources comportamiento/*.cpp)
-FILE(GLOB IASources estados/ia/*.cpp)
-FILE(GLOB StatesSources estados/*.cpp)
-FILE(GLOB ServicesSources servicios/*.cpp)
-FILE(GLOB LevelSources niveles/*.cpp)
-FILE(GLOB Configurations *.xml)
-FILE(GLOB AnimationFactoriesSources graficos/animaciones/*.cpp)
+FILE(GLOB_RECURSE TestSources test/*.cpp)
+FILE(GLOB_RECURSE ModelSources modelo/*.cpp)
+FILE(GLOB_RECURSE PhysicsSources fisica/*.cpp)
+FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
+FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
+FILE(GLOB_RECURSE StatesSources estados/*.cpp)
+FILE(GLOB_RECURSE ServicesSources servicios/*.cpp)
+FILE(GLOB_RECURSE Configurations *.xml)
 FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
 FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
 FILE(GLOB_RECURSE EventSources eventos/*.cpp)
-FILE(GLOB_RECURSE SerializeSources serializar/*.cpp)
 FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
+FILE(GLOB_RECURSE UtilsSources utils/*.cpp)
+FILE(GLOB_RECURSE SoundSources sonidos/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
 find_package(SDL2_image REQUIRED) # Find SDL2-IMAGE libraries
 find_package(SDL2TTF REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+find_package(SDL2_mixer REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIR})
 
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${ModelMapSources}  ${InputSources} ${StatesSources} ${ServicesSources} ${SpriteSources} ${PhysicsSources} ${LevelSources} ${IASources} ${AnimationFactoriesSources} ${SerializeSources} ${SerializeSources} ${UsuarioSources})
+add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${IASources} ${UsuarioSources})
 target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
 add_test(NAME model_tests COMMAND model_tests)
-
-#[[
-  Compilar el juego.
-target_link_libraries(${CMAKE_PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
-]]
 
 #[[
   Copiar los assets
@@ -99,12 +96,11 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ServicesSources} ${ModelSources} ${GraphicsSources} ${SpriteSources} ${ModelMapSources} ${ServicesSources} ${AnimationFactoriesSources} main/Juego.cpp ${SerializeSources} ${UsuarioSources})
-target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY})
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} ${UsuarioSources} ${UtilsSources} ${SoundSources} modelo/serializables/Arma.cpp modelo/serializables/Arma.h)
+target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
-
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${IASources} ${SerializeSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources})
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources} servidor/notificadores/NotificadorDeGolpesJugador.cpp servidor/notificadores/NotificadorDeGolpesJugador.h)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

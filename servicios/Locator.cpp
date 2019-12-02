@@ -83,9 +83,118 @@ void Locator::provide(FabricaDeSprites *fabricaDeSprites) {
     fabrica = fabricaDeSprites;
 }
 
+/**
+ * Fuente.
+ */
+TTF_Font *Locator::fuente_;
+
+TTF_Font *Locator::fuente() {
+    return fuente_;
+}
+
+void Locator::provide(TTF_Font *fuente) {
+    fuente_ = fuente;
+}
+
+/**
+ * Eventos a procesar.
+ */
+EventosAProcesar *Locator::eventos_;
+
+EventosAProcesar *Locator::eventos() {
+    return eventos_;
+}
+
+
+
+void Locator::provide(EventosAProcesar *eventos) {
+    eventos_ = eventos;
+}
+
+/**
+ * Manager de usuarios.
+ */
+ManagerUsuarios *Locator::usuarios_;
+
+ManagerUsuarios *Locator::usuarios() {
+    return usuarios_;
+}
+
+void Locator::provide(ManagerUsuarios *usuarios) {
+    usuarios_ = usuarios;
+}
+
+/**
+ * Mapa.
+ */
+Mapa *Locator::mapa_;
+
+Mapa *Locator::mapa() {
+    return mapa_;
+}
+
+void Locator::provide(Mapa *mapa) {
+    mapa_ = mapa;
+}
+
+/**
+ * Manager de clientes.
+ */
+ManagerClientes *Locator::clientes_;
+
+ManagerClientes *Locator::clientes() {
+    return clientes_;
+}
+
+void Locator::provide(ManagerClientes *clientes) {
+    clientes_ = clientes;
+}
+
+/**
+ * Colisionables.
+ */
+
+Colisionables *Locator::colisionables_;
+
+void Locator::provide(Colisionables * colisionables) {
+    colisionables_ = colisionables;
+}
+
+Colisionables *Locator::colisionables() {
+    return colisionables_;
+}
+
+
 void Locator::clean() {
     logger_->log(DEBUG, "Se limpian configuracion y logger");
 
     delete configuracion_;
     delete logger_;
+}
+
+
+/**
+ * Fabrica de Sonidos.
+ */
+FabricaDeSonidos *Locator::fabricaSonidos;
+
+FabricaDeSonidos *Locator::fabricaDeSonidos() {
+    return fabricaSonidos;
+}
+
+void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
+    fabricaSonidos = fabricaDeSonidos;
+}
+
+/**
+ * Fabrica de Musicas.
+ */
+FabricaDeMusicas *Locator::fabricaMusicas;
+
+FabricaDeMusicas *Locator::fabricaDeMusicas() {
+    return fabricaMusicas;
+}
+
+void Locator::provide(FabricaDeMusicas *_fabricaDeMusicas) {
+    fabricaMusicas = _fabricaDeMusicas;
 }

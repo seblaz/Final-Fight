@@ -19,9 +19,10 @@ private:
     float sumaDeDuracionesRelativas;
 
     int calcularFramesFaltantes();
+    
 public:
-    AnimacionServidor(vector<int> duracionesPorSprite, int duracionTotal);
-    void actualizar(Entidad* entidad) override;
+    AnimacionServidor(Entidad *entidad, vector<int> duracionesPorSprite, int duracionTotal);
+    void actualizar() override;
 
 };
 

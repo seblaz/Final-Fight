@@ -15,13 +15,9 @@ using namespace std;
 
 class EventoAProcesar {
 
-private:
-    string msj_;
-
 public:
-    explicit EventoAProcesar(string msg = "");
-    virtual void resolver() {};
-    string msj();
+    virtual ~EventoAProcesar() = default;
+    virtual void resolver() = 0;
 
 };
 
@@ -31,37 +27,12 @@ private:
     blocking_queue<EventoAProcesar*> cola;
 
 public:
+    EventosAProcesar();
     void push(EventoAProcesar *elem) {
         cola.push(elem);
     }
 
     EventoAProcesar *pop() {
-        return cola.pop();
-    }
-};
-
-class EventoATransmitir {
-
-private:
-    string msj_;
-
-public:
-    explicit EventoATransmitir(string msg = "");
-    string msj();
-
-};
-
-class EventosATransmitir {
-
-private:
-    blocking_queue<EventoATransmitir*> cola;
-
-public:
-    void push(EventoATransmitir *elem) {
-        cola.push(elem);
-    }
-
-    EventoATransmitir *pop() {
         return cola.pop();
     }
 };

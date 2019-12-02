@@ -10,15 +10,10 @@
 
 class GraficoDeTransicion : public Comportamiento {
 
-private:
-    int anchoDeEscenario{};
-    int framesPorTransicionInicial{};
-    int framesFaltantesPorTranscionInicial{};
-    int margenTransicionFinal{};
-
 public:
-    explicit GraficoDeTransicion();
-    void actualizar(Entidad *) override;
+    GraficoDeTransicion(Entidad *entidad);
+
+    void actualizar() override;
 };
 
 

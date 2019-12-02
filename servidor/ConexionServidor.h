@@ -22,6 +22,7 @@
 #include <fcntl.h>
 #include <fstream>
 #include <vector>
+#include "../utils/Socket.h"
 
 using namespace std;
 
@@ -32,7 +33,8 @@ private:
 
 public:
     explicit ConexionServidor(int puerto);
-    int socket();
+    Socket *socket();
+
 };
 
 #endif //FINAL_FIGHT_CONEXIONSERVIDOR_H

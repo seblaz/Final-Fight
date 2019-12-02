@@ -5,12 +5,7 @@
 #include <string>
 #include "ConexionCliente.h"
 #include "../servicios/Locator.h"
-#include "../main/Juego.h"
-#include "ReceptorCliente.h"
-#include "ActualizadorCliente.h"
-#include "NivelCliente.h"
-#include "EntradaUsuario.h"
-#include "../usuario/Usuario.h"
+#include "Juego.h"
 
 using namespace std;
 
@@ -50,11 +45,18 @@ void configApplication(int argc, char *argv[]){
 
 //Client side
 int main(int argc, char *argv[]) {
-    auto *logger = new Logger();
+    auto *logger = new Logger("cliente");
     Locator::provide(logger);
 
     auto *fabrica = new FabricaDeSprites();
     Locator::provide(fabrica);
+
+    auto *fabricaMusicas = new FabricaDeMusicas();
+    Locator::provide(fabricaMusicas);
+
+    auto *fabricaSonidos = new FabricaDeSonidos();
+    Locator::provide(fabricaSonidos);
+
 
     string ipAddress;
     int port;
@@ -83,15 +85,19 @@ int main(int argc, char *argv[]) {
         ConexionCliente conexion(ipAddress, port);
         Socket socket = conexion.socket();
         Locator::provide(&socket);
-
+        
+        /**
+         * Mapa.
+         */
+         Mapa mapa;
+         Locator::provide(&mapa);
+         
         /**
          * Iniciar juego.
          */
         Juego juego;
         SDL_Renderer *renderer = juego.renderer();
         Locator::provide(renderer);
-        Mapa &mapa = juego.mapa();
-        NivelCliente::generarPantallaDeEspera(&mapa);
 
         juego.loop();
         juego.terminar();

@@ -4,16 +4,6 @@
 
 #include "Eventos.h"
 
-EventoAProcesar::EventoAProcesar(string msg) :
-        msj_(std::move(msg)) {}
 
-string EventoAProcesar::msj() {
-    return msj_;
-}
-
-EventoATransmitir::EventoATransmitir(string msg) :
-        msj_(std::move(msg)) {}
-
-string EventoATransmitir::msj() {
-    return msj_;
-}
+EventosAProcesar::EventosAProcesar() :
+        cola(10000) {}

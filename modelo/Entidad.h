@@ -6,8 +6,7 @@
 #define FINAL_FIGHT_ENTIDAD_H
 
 #include <unordered_map>
-#include "Iterator.cpp"
-#include "../serializar/Serializable.h"
+#include "serializables/Serializable.h"
 #include <cstddef>
 #include <vector>
 #include <map>
@@ -22,11 +21,12 @@ class Entidad;
 /**
  * Estado. Representa un estado de una entidad (solo datos sin comportamiento).
  */
-class Estado {
+class Estado : protected Serializable {
 
 public:
     virtual void serializar(ostream& stream) {};
     virtual void deserializar(istream& stream) {};
+
 };
 
 /**
@@ -35,8 +35,12 @@ public:
  */
 class Comportamiento {
 
+protected:
+    Entidad *entidad;
+
 public:
-    virtual void actualizar(Entidad *) {};
+    explicit Comportamiento(Entidad *entidad);
+    virtual void actualizar() {};
 
 };
 
@@ -45,22 +49,29 @@ public:
  */
 using IdEntidad = size_t;
 
+typedef map<string, Estado *(*)()> estadosMapType;
+
 class Entidad : public Serializable {
 
 private:
     unordered_map<string, Estado *> estados;
     unordered_map<string, Comportamiento *> comportamientos;
-    vector<string> estadosSerializables = { "posicion", "orientacion", "nivel", "estado de personaje" ,"personaje", "opacidad", "tipo elemento", "actividad", "numeroJugador", "indice sprite"};
-     const int fin = 999999999;
+    static vector<string> estadosSerializables;
+    static estadosMapType mapaEstados;
+    const int fin = -1;
 
 public:
+    Entidad();
     static void putIdInStream(ostream &in, IdEntidad idEntidad);
     static IdEntidad getIdFromStream(istream &stream);
 
-    template<typename T>
-    void agregarEstado(const string &s, T *t) {
-//        if (estados.find(s) != estados.end())
-//            delete estados[s];
+    void agregarEstado(const string &s, Estado *t) {
+        if ((estados.find(s) != estados.end()) && (estados[s] != t))
+            delete estados[s];
+        estados[s] = t;
+    };
+
+    void cambiarEstado(const string &s, Estado *t) {
         estados[s] = t;
     };
 
@@ -73,25 +84,18 @@ public:
         return estados.find(s) != estados.end();
     }
 
-    template<typename T>
-    void agregarComportamiento(const string &s, T *t) {
-//        if (comportamientos.find(s) != comportamientos.end())
-//            delete comportamientos[s];
+    void agregarComportamiento(const string &s, Comportamiento *t) {
+        if ((comportamientos.find(s) != comportamientos.end())  && (comportamientos[s] != t))
+            delete comportamientos[s];
         comportamientos[s] = t;
     };
 
     template<typename T>
     T *getComportamiento(const string &s) {
-        return (T *) comportamientos[s];
-    };
-
-    void quitarComportamiento(const string &s) {
-        comportamientos.erase(s);
+        return (T *) comportamientos.at(s);
     };
 
     vector<Comportamiento *> getComportamientos();
-
-    vector<Estado *> getEstados();
 
     void serializar(ostream& stream) override;
     void deserializar(istream& stream) override;
@@ -101,19 +105,17 @@ public:
 /**
  * Tipo de entidad.
  */
-enum TIPO {
-    PANTALLA_SELECCION,
-    PERSONAJE_SELECCION,
+enum class TIPO {
     PERSONAJE,
     ESCENARIO,
     JUGADOR,
     TRANSICION,
     ENEMIGO,
-    USUARIO,
-    ELEMENTO
+    ELEMENTO_GOLPEABLE,
+    ARMA
 };
 
-class Tipo : public Estado, Serializable {
+class Tipo : public Estado {
 
 private:
     TIPO tipo_;

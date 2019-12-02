@@ -5,7 +5,7 @@
 #ifndef FINAL_FIGHT_PATRULLAR_H
 #define FINAL_FIGHT_PATRULLAR_H
 
-#include "../EstadoDePersonajeServidor.h"
+#include "../personajes/EstadoDePersonajeServidor.h"
 #include<stdlib.h>
 #include<time.h>
 
@@ -18,9 +18,9 @@ private:
     bool adelante = true;
 
 public:
-    Patrullar();
+    Patrullar(Entidad *entidad);
     ~Patrullar();
-    void actualizar(Entidad *) override;
+    void actualizar() override;
 };
 
 
