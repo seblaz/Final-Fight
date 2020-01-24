@@ -1,4 +1,4 @@
-# Final Fight - Taller I
+# Final Fight
 
 Juego multijugador similar a [Final Fight](https://es.wikipedia.org/wiki/Final_Fight) creado por [Capcom](http://www.capcom.com/). El mismo fue desarrollado como una aplicación de tipo cliente-servidor para funcionar sobre Linux.
 
