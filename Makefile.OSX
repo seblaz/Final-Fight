@@ -1,0 +1,28 @@
+format:
+
+	find src/ -name "**.cpp' -exec indent {} \;
+	find src/ -name '**.c' -exec indent {} \;
+	find src/ -name '**.h' -exec indent {} \;
+
+sdl2:
+	brew install sdl2 sdl2_image sdl2_ttf sdl2_mixer indent
+    
+xerces:
+	cd /tmp && \
+	curl -sL http://ftp.cixug.es/apache//xerces/c/3/sources/xerces-c-3.2.2.tar.gz | tar xvz && \
+	cd xerces-c-3.2.2 && \
+	./configure && \
+	make && \
+	sudo make install && \
+	rm -rf xerces-c-3.2.2
+
+valgrind:
+	brew install valgrind
+
+dbg:
+#	brew install -f libstdc++6-8-dbg
+
+dep:	sdl2	xerces	dbg
+
+clean:
+	find . -type f -name "*~" -exec rm -f {} \;
