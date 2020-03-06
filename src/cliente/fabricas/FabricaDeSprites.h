@@ -10,14 +10,15 @@
 
 using namespace std;
 
-class FabricaDeSprites {
+class FabricaDeSprites
+{
 
 private:
-    unordered_map<string, Sprite *> sprites;
+  unordered_map < string, Sprite * >sprites;
 
 public:
-    Sprite *getSpriteBySrc(const string& src);
-    Sprite *getSpriteConfigPath(const string& path);
+  Sprite * getSpriteBySrc (const string & src);
+  Sprite *getSpriteConfigPath (const string & path);
 };
 
 

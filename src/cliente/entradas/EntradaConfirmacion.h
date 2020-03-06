@@ -8,10 +8,11 @@
 
 #include "EntradaUsuario.h"
 
-class EntradaConfirmacion : public EntradaUsuario {
+class EntradaConfirmacion:public EntradaUsuario
+{
 
 public:
-    Accion *getAccion(SDL_Event *e) override;
+  Accion * getAccion (SDL_Event * e) override;
 
 };
 

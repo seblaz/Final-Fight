@@ -7,11 +7,12 @@
 
 #include "../EstadoDeColisionable.h"
 
-class EstadoDeElemento : public EstadoDeColisionable {
+class EstadoDeElemento:public EstadoDeColisionable
+{
 
 public:
-    using EstadoDeColisionable::EstadoDeColisionable;
-    void recibirGolpeDe(Entidad *jugador) override = 0;
+  using EstadoDeColisionable::EstadoDeColisionable;
+  void recibirGolpeDe (Entidad * jugador) override = 0;
 
 };
 

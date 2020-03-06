@@ -10,14 +10,15 @@
 
 using namespace std;
 
-class Vista {
+class Vista
+{
 
 public:
-    virtual void graficar(SDL_Renderer *renderer) = 0;
-    virtual string getConfigPathMusica() = 0;
-    virtual int getLoops();
+  virtual void graficar (SDL_Renderer * renderer) = 0;
+  virtual string getConfigPathMusica () = 0;
+  virtual int getLoops ();
 
-    virtual void reproducir();
+  virtual void reproducir ();
 
 };
 

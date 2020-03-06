@@ -11,16 +11,17 @@
 
 using namespace std;
 
-class FabricaDeAnimacionesCliente : public Estado {
+class FabricaDeAnimacionesCliente:public Estado
+{
 
 private:
-    string rutaBase;
-    unordered_map<string, tuple<vector<SDL_Rect> *, float>> animaciones;
+  string rutaBase;
+  unordered_map < string, tuple < vector < SDL_Rect > *, float >>animaciones;
 
 public:
-    explicit FabricaDeAnimacionesCliente(string rutaBase);
-    AnimacionCliente *getAnimacion(const string& rutaFinal);
-    AnimacionCliente *getAnimacion(ESTADO_DE_PERSONAJE estado);
+    explicit FabricaDeAnimacionesCliente (string rutaBase);
+  AnimacionCliente *getAnimacion (const string & rutaFinal);
+  AnimacionCliente *getAnimacion (ESTADO_DE_PERSONAJE estado);
 
 };
 

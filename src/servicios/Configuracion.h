@@ -17,29 +17,30 @@
 
 using namespace std;
 
-class Configuracion {
+class Configuracion
+{
 
 private:
-    unordered_map<string, string> cacheStrings;
-    unordered_map<string, int> cacheInts;
-    unordered_map<string, float> cacheFloats;
-    string actualPath = "";
-    string defaultPath = "Configuracion.xml";
-    xercesc::XercesDOMParser *parser;
-    xercesc::ErrorHandler *errHandler;
-    mutex m;
+  unordered_map < string, string > cacheStrings;
+  unordered_map < string, int >cacheInts;
+    unordered_map < string, float >cacheFloats;
+  string actualPath = "";
+  string defaultPath = "Configuracion.xml";
+    xercesc::XercesDOMParser * parser;
+    xercesc::ErrorHandler * errHandler;
+  mutex m;
 
 public:
-    explicit Configuracion(const string &path = "Configuracion.xml");
-    ~Configuracion();
-    string getValue(const string &xPath);
-    int getIntValue(const string &xPath);
-    float getFloatValue(const string &xPath);
+    explicit Configuracion (const string & path = "Configuracion.xml");
+   ~Configuracion ();
+  string getValue (const string & xPath);
+  int getIntValue (const string & xPath);
+  float getFloatValue (const string & xPath);
 
-    string getValue(const string &xPath, const string &defaultValue);
-    int getIntValue(const string &xPath, int defaultValue);
-    float getFloatValue(const string &xPath, float defaultValue);
-    string getActualPath();
+  string getValue (const string & xPath, const string & defaultValue);
+  int getIntValue (const string & xPath, int defaultValue);
+  float getFloatValue (const string & xPath, float defaultValue);
+  string getActualPath ();
 };
 
 #endif //FINAL_FIGHT_CONFIGURACION_H

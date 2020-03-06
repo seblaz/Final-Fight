@@ -12,25 +12,26 @@
 
 using namespace std;
 
-class ManagerUsuarios {
+class ManagerUsuarios
+{
 
 private:
-    int maximo;
-    list<Usuario *> usuarios;
-    unordered_map<string, string> baseUsuarios;
-    void cargarUsuarios();
-    
-public:
-    explicit ManagerUsuarios(int maximo);
+  int maximo;
+    list < Usuario * >usuarios;
+    unordered_map < string, string > baseUsuarios;
+  void cargarUsuarios ();
 
-    bool faltanJugadores();
-    list<Usuario *> getUsuarios();
-    bool estaPresente(Usuario *usuario);
-    void agregarUsuario(Usuario *usuario);
-    void reemplazarUsuarioCon(Usuario *usuario);
-    Usuario *getUsuarioAnterior(Usuario *usuario);
-    bool hayJugadoresConectados();
-    bool validarContrasenia(Usuario *usuario);
+public:
+    explicit ManagerUsuarios (int maximo);
+
+  bool faltanJugadores ();
+    list < Usuario * >getUsuarios ();
+  bool estaPresente (Usuario * usuario);
+  void agregarUsuario (Usuario * usuario);
+  void reemplazarUsuarioCon (Usuario * usuario);
+  Usuario *getUsuarioAnterior (Usuario * usuario);
+  bool hayJugadoresConectados ();
+  bool validarContrasenia (Usuario * usuario);
 
 };
 

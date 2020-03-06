@@ -14,19 +14,21 @@ static const int escalaVida = 3;
 #include "../modelo/serializables/Puntaje.h"
 #include "../modelo/serializables/NumeroJugador.h"
 
-class GraficoJugador : public Grafico {
+class GraficoJugador:public Grafico
+{
 
 private:
-    int framesModulacion = 8;
-    bool claro = true;
-    void renderizarVidaDeJugador();
-    void renderizarIndicadorDeJugador();
-    void renderizarPuntosDeJugador(Puntaje* puntaje, NumeroJugador* numeroJugador);
-    void modularColor();
+  int framesModulacion = 8;
+  bool claro = true;
+  void renderizarVidaDeJugador ();
+  void renderizarIndicadorDeJugador ();
+  void renderizarPuntosDeJugador (Puntaje * puntaje,
+				  NumeroJugador * numeroJugador);
+  void modularColor ();
 
 public:
-    explicit GraficoJugador(Entidad *entidad);
-    void actualizar() override;
+    explicit GraficoJugador (Entidad * entidad);
+  void actualizar () override;
 
 
 };

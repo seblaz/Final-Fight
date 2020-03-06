@@ -4,18 +4,26 @@
 
 #include "Opacidad.h"
 
-void Opacidad::setOpacidad(int opacidad) {
-    this -> opacidad = opacidad;
+void
+Opacidad::setOpacidad (int opacidad)
+{
+  this->opacidad = opacidad;
 }
 
-int Opacidad::getOpacidad() {
-    return opacidad;
+int
+Opacidad::getOpacidad ()
+{
+  return opacidad;
 }
 
-void Opacidad::serializar(ostream &stream) {
-    serializarEntero(stream, opacidad);
+void
+Opacidad::serializar (ostream & stream)
+{
+  serializarEntero (stream, opacidad);
 }
 
-void Opacidad::deserializar(istream &stream) {
-    opacidad = deserializarEntero(stream);
+void
+Opacidad::deserializar (istream & stream)
+{
+  opacidad = deserializarEntero (stream);
 }

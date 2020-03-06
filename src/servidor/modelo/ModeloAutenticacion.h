@@ -14,17 +14,18 @@
 using namespace std;
 
 
-class ModeloAutenticacion : public Modelo {
+class ModeloAutenticacion:public Modelo
+{
 
 private:
-    EventoUsuario evento = EventoUsuario(EVENTO_USUARIO::NULO);
-    mutex m;
+  EventoUsuario evento = EventoUsuario (EVENTO_USUARIO::NULO);
+  mutex m;
 
 public:
-    void partidaCompleta();
-    void passwordIncorrecta();
-    void usuarioYaConectado();
-    void serializar(ostream& stream) override;
+  void partidaCompleta ();
+  void passwordIncorrecta ();
+  void usuarioYaConectado ();
+  void serializar (ostream & stream) override;
 
 };
 

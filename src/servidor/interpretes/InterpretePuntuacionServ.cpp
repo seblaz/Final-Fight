@@ -8,26 +8,40 @@
 #include "../NivelServidor.h"
 #include "../../modelo/serializables/Actividad.h"
 
-bool InterpretePuntuacionServ::interpretarAccion(ACCION accion, stringstream &s) {
-    if (accion == CONFIRMAR)
-        Locator::eventos()->push(new ConfirmarSeleccionPuntuacion(siguienteEtapa));
+bool
+InterpretePuntuacionServ::interpretarAccion (ACCION accion, stringstream & s)
+{
+  if (accion == CONFIRMAR)
+    Locator::eventos ()->
+      push (new ConfirmarSeleccionPuntuacion (siguienteEtapa));
 
-    return true;
+  return true;
 }
 
-InterpretePuntuacionServ::InterpretePuntuacionServ(Usuario *usuario, IdEtapa siguienteEtapa) :
-        InterpreteServidor(usuario), siguienteEtapa(siguienteEtapa) {}
-
-void InterpretePuntuacionServ::finalizarCliente() {
-    getUsuario()->desconectar();
-    getUsuario()->getPersonaje()->getEstado<Actividad>("actividad")->activo = false;
+InterpretePuntuacionServ::InterpretePuntuacionServ (Usuario * usuario, IdEtapa siguienteEtapa):
+InterpreteServidor (usuario),
+siguienteEtapa (siguienteEtapa)
+{
 }
 
-ConfirmarSeleccionPuntuacion::ConfirmarSeleccionPuntuacion(IdEtapa siguienteEtapa) :
-        siguienteEtapa(siguienteEtapa) {}
+void
+InterpretePuntuacionServ::finalizarCliente ()
+{
+  getUsuario ()->desconectar ();
+  getUsuario ()->getPersonaje ()->getEstado < Actividad >
+    ("actividad")->activo = false;
+}
 
-void ConfirmarSeleccionPuntuacion::resolver() {
-    if(siguienteEtapa == "nivel2")
-        NivelServidor::generarNivel("nivel2", Locator::mapa());
-    Locator::clientes()->cambiarTodosA(siguienteEtapa);
+ConfirmarSeleccionPuntuacion::ConfirmarSeleccionPuntuacion (IdEtapa siguienteEtapa):
+siguienteEtapa
+  (siguienteEtapa)
+{
+}
+
+void
+ConfirmarSeleccionPuntuacion::resolver ()
+{
+  if (siguienteEtapa == "nivel2")
+    NivelServidor::generarNivel ("nivel2", Locator::mapa ());
+  Locator::clientes ()->cambiarTodosA (siguienteEtapa);
 }

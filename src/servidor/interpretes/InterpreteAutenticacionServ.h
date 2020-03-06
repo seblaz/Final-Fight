@@ -10,29 +10,33 @@
 #include "../modelo/ModeloAutenticacion.h"
 #include "../etapas/ManagerEtapas.h"
 
-class InterpreteAutenticacionServ : public InterpreteServidor {
+class InterpreteAutenticacionServ:public InterpreteServidor
+{
 
 private:
-    bool validarContrasenia(Usuario *usuario);
-    ModeloAutenticacion *autenticacion;
-    semaphore usuarioAgregado;
+  bool validarContrasenia (Usuario * usuario);
+  ModeloAutenticacion *autenticacion;
+  semaphore usuarioAgregado;
 
 public:
-    InterpreteAutenticacionServ(Usuario *usuario, ModeloAutenticacion *autenticacion);
-    bool interpretarAccion(ACCION accion, stringstream &s) override;
+    InterpreteAutenticacionServ (Usuario * usuario,
+				 ModeloAutenticacion * autenticacion);
+  bool interpretarAccion (ACCION accion, stringstream & s) override;
 };
 
-class AgregarUsuario : public EventoAProcesar {
+class AgregarUsuario:public EventoAProcesar
+{
 
 private:
-    Usuario *usuario;
-    semaphore &usuarioAgregado;
-    ModeloAutenticacion *autenticacion;
-    ManagerEtapas *etapas;
+  Usuario * usuario;
+  semaphore & usuarioAgregado;
+  ModeloAutenticacion *autenticacion;
+  ManagerEtapas *etapas;
 
 public:
-    AgregarUsuario(Usuario *usuario, ModeloAutenticacion *autenticacion, semaphore &semaphore, ManagerEtapas *etapas);
-    void resolver() override;
+    AgregarUsuario (Usuario * usuario, ModeloAutenticacion * autenticacion,
+		    semaphore & semaphore, ManagerEtapas * etapas);
+  void resolver () override;
 
 };
 #endif //FINAL_FIGHT_INTERPRETEAUTENTICACIONSERV_H

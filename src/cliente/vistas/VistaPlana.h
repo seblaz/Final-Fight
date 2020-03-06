@@ -8,16 +8,17 @@
 
 #include "Vista.h"
 
-class VistaPlana : public Vista {
+class VistaPlana:public Vista
+{
 
 private:
-    string configFondo;
-    string configMusica;
+  string configFondo;
+  string configMusica;
 
 public:
-    VistaPlana(string configFondo, string configMusica);
-    void graficar(SDL_Renderer *renderer) override;
-    string getConfigPathMusica() override;
+    VistaPlana (string configFondo, string configMusica);
+  void graficar (SDL_Renderer * renderer) override;
+  string getConfigPathMusica () override;
 
 };
 

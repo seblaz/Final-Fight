@@ -8,13 +8,14 @@
 
 #include "InterpreteServidor.h"
 
-class InterpreteJuegoServ : public InterpreteServidor {
+class InterpreteJuegoServ:public InterpreteServidor
+{
 
 public:
-    using InterpreteServidor::InterpreteServidor;
-    bool interpretarAccion(ACCION accion, stringstream &s) override;
-    void iniciar() override;
-    void finalizarCliente() override;
+  using InterpreteServidor::InterpreteServidor;
+  bool interpretarAccion (ACCION accion, stringstream & s) override;
+  void iniciar () override;
+  void finalizarCliente () override;
 
 };
 

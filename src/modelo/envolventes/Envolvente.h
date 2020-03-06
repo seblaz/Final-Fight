@@ -9,14 +9,15 @@
 #include "../Entidad.h"
 #include "../serializables/Posicion.h"
 
-class Envolvente : public Estado {
+class Envolvente:public Estado
+{
 
 public:
-    int ancho;
-    int profundidad;
-    Posicion *posicion;
+  int ancho;
+  int profundidad;
+  Posicion *posicion;
 
-    explicit Envolvente(Posicion *posicion, int ancho, int profundidad);
+  explicit Envolvente (Posicion * posicion, int ancho, int profundidad);
 
 };
 

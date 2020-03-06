@@ -7,14 +7,15 @@
 
 #include "../modelo/Entidad.h"
 
-class ReproductorSonidoPersonaje : public Comportamiento {
+class ReproductorSonidoPersonaje:public Comportamiento
+{
 
 private:
-    string rutaBase;
+  string rutaBase;
 
 public:
-    explicit ReproductorSonidoPersonaje(Entidad *entidad, string rutaBase);
-    void actualizar() override;
+  explicit ReproductorSonidoPersonaje (Entidad * entidad, string rutaBase);
+  void actualizar () override;
 };
 
 #endif // FINAL_FIGHT_REPRODUCTORSONIDOPERSONAJE_H

@@ -11,23 +11,27 @@
 #include "../eventos/Eventos.h"
 #include "../utils/Hilo.h"
 
-class Procesamiento : Hilo {
+class Procesamiento:Hilo
+{
 
 private:
-    EventosAProcesar eventosAProcesar;
-    bool fin = false;
+  EventosAProcesar eventosAProcesar;
+  bool fin = false;
 
 public:
-    EventosAProcesar *devolverCola();
-    void procesar();
-    void finalizar();
-    pthread_t procesarEnHilo();
+    EventosAProcesar * devolverCola ();
+  void procesar ();
+  void finalizar ();
+  pthread_t procesarEnHilo ();
 };
 
-class EventoVacio : public EventoAProcesar {
+class EventoVacio:public EventoAProcesar
+{
 
 public:
-    void resolver() override {};
+  void resolver () override
+  {
+  };
 
 };
 

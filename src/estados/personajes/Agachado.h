@@ -10,12 +10,15 @@
 #include "Reposando.h"
 #include "../../servicios/Logger.h"
 
-class Agachado : public EstadoDePersonajeServidor {
+class Agachado:public EstadoDePersonajeServidor
+{
 
 public:
-    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
-    void agachar() override {};
-    void actualizar() override;
+  using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+  void agachar () override
+  {
+  };
+  void actualizar () override;
 
 };
 

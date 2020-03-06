@@ -8,10 +8,11 @@
 
 #include "InterpreteCliente.h"
 
-class InterpreteJuegoCli : public InterpreteCliente {
+class InterpreteJuegoCli:public InterpreteCliente
+{
 
 public:
-    void interpretar(stringstream &s) override;
+  void interpretar (stringstream & s) override;
 
 };
 

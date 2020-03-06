@@ -9,10 +9,13 @@
 #include "../../modelo/serializables/NombrePantalla.h"
 #include "Modelo.h"
 
-class ModeloNulo : public Modelo {
+class ModeloNulo:public Modelo
+{
 
 public:
-    void serializar(ostream &stream) override {};
+  void serializar (ostream & stream) override
+  {
+  };
 
 };
 

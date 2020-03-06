@@ -5,6 +5,8 @@
 #include "ModeloJuego.h"
 #include "../../servicios/Locator.h"
 
-void ModeloJuego::serializar(ostream &stream) {
-    Locator::mapa()->serializar(stream);
+void
+ModeloJuego::serializar (ostream & stream)
+{
+  Locator::mapa ()->serializar (stream);
 }

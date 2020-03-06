@@ -7,19 +7,20 @@
 
 #include "../modelo/Entidad.h"
 
-class FisicaDeEscenario : public Comportamiento {
+class FisicaDeEscenario:public Comportamiento
+{
 
 private:
-    int largo;
-    int scrollDerecho;
-    int scrollIzquierdo;
-    int xScrollIzquierdo;
-    int xScrollDerecho;
-    int ancho;
+  int largo;
+  int scrollDerecho;
+  int scrollIzquierdo;
+  int xScrollIzquierdo;
+  int xScrollDerecho;
+  int ancho;
 
 public:
-    explicit FisicaDeEscenario(Entidad *entidad, int largo);
-    void actualizar() override;
+    explicit FisicaDeEscenario (Entidad * entidad, int largo);
+  void actualizar () override;
 };
 
 

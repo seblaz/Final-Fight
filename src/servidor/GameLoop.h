@@ -9,10 +9,11 @@
 #include "../eventos/Eventos.h"
 #include "../usuario/ManagerUsuarios.h"
 
-class GameLoop {
+class GameLoop
+{
 
 public:
-    void loop();
+  void loop ();
 
 };
 

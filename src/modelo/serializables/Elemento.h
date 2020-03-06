@@ -7,30 +7,32 @@
 
 #include "../Entidad.h"
 
-enum class ELEMENTO{
-    CAJA,
-    BARRIL
+enum class ELEMENTO
+{
+  CAJA,
+  BARRIL
 };
 
 
-class Elemento : public Estado {
+class Elemento:public Estado
+{
 
 private:
-    ELEMENTO elemento;
-    int golpes;
+  ELEMENTO elemento;
+  int golpes;
 
 public:
-    Elemento();
-    Elemento(ELEMENTO elemento);
+    Elemento ();
+    Elemento (ELEMENTO elemento);
 
-    ELEMENTO getElemento();
-    void recibirGolpe();
-    bool estaRoto();
+  ELEMENTO getElemento ();
+  void recibirGolpe ();
+  bool estaRoto ();
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
-    static string ElementoACadena(ELEMENTO elemento);
+  static string ElementoACadena (ELEMENTO elemento);
 
 };
 

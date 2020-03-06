@@ -13,17 +13,18 @@ class Pantalla;
 
 using namespace std;
 
-class ManagerPantallas {
+class ManagerPantallas
+{
 
 private:
-    unordered_map<IdPantalla, Pantalla *> pantallas;
-    Pantalla *actual = nullptr;
-    mutex m;
+  unordered_map < IdPantalla, Pantalla * >pantallas;
+  Pantalla *actual = nullptr;
+  mutex m;
 
 public:
-    void agregarPantalla(Pantalla *pantalla);
-    void cambiarA(const IdPantalla& idPantalla);
-    Pantalla *getActual();
+  void agregarPantalla (Pantalla * pantalla);
+  void cambiarA (const IdPantalla & idPantalla);
+  Pantalla *getActual ();
 };
 
 

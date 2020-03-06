@@ -19,115 +19,156 @@
 
 using namespace std;
 
-Configuracion::Configuracion(const string &path) {
-    try {
-        xercesc::XMLPlatformUtils::Initialize();
+Configuracion::Configuracion (const string & path)
+{
+  try
+  {
+    xercesc::XMLPlatformUtils::Initialize ();
 
-        parser = new xercesc::XercesDOMParser();
-        errHandler = (xercesc::ErrorHandler *) new xercesc::HandlerBase();
-        parser->setIncludeIgnorableWhitespace(false);
-        parser->setErrorHandler(errHandler);
+    parser = new xercesc::XercesDOMParser ();
+    errHandler = (xercesc::ErrorHandler *) new xercesc::HandlerBase ();
+    parser->setIncludeIgnorableWhitespace (false);
+    parser->setErrorHandler (errHandler);
 
-        ifstream infile(path);
+    ifstream infile (path);
 
-        if(infile.good()){
-            bool empty = ( infile.get(), infile.eof() );
-            if(!empty){
-                parser->parse(path.c_str());
-                actualPath = path;
-            }else{
-                Locator::logger()->log(ERROR, "Archivo de configuracion vacio. Se abre archivo por default");
-                parser->parse(defaultPath.c_str());
-                actualPath = defaultPath;
-            }
-        }else{
-            Locator::logger()->log(ERROR, "Archivo de configuracion no encontrado. Se abre archivo por default");
-            parser->parse(defaultPath.c_str());
-            actualPath = defaultPath;
-        }
+    if (infile.good ())
+      {
+	bool empty = (infile.get (), infile.eof ());
+	if (!empty)
+	  {
+	    parser->parse (path.c_str ());
+	    actualPath = path;
+	  }
+	else
+	  {
+	    Locator::logger ()->log (ERROR,
+				     "Archivo de configuracion vacio. Se abre archivo por default");
+	    parser->parse (defaultPath.c_str ());
+	    actualPath = defaultPath;
+	  }
+      }
+    else
+      {
+	Locator::logger ()->log (ERROR,
+				 "Archivo de configuracion no encontrado. Se abre archivo por default");
+	parser->parse (defaultPath.c_str ());
+	actualPath = defaultPath;
+      }
+  }
+  catch (const xercesc::SAXException & toCatch)
+  {
+    char *message = xercesc::XMLString::transcode (toCatch.getMessage ());
+
+    string errorMsg (message);
+
+    Locator::logger ()->log (ERROR,
+			     "Error en archivo de configuracion. Mensaje: " +
+			     errorMsg + ". Se abre archivo por default.");
+    try
+    {
+      parser->parse (defaultPath.c_str ());
+    } catch (const xercesc::SAXException & toCatch)
+    {
+
+      Locator::logger ()->log (ERROR,
+			       "Error en archivo de configuracion por default. Mensaje: "
+			       + errorMsg + ". Se termina el programa.");
+      throw std::invalid_argument ("Xml por defecto invalido");
     }
-    catch (const xercesc::SAXException &toCatch) {
-        char *message = xercesc::XMLString::transcode(toCatch.getMessage());
+    actualPath = defaultPath;
+  }
+  catch ( ...)
+  {
+    Locator::logger ()->log (ERROR,
+			     "Error en archivo de configuracion por default. Se termina el programa.");
+    throw std::invalid_argument ("Xml por defecto invalido");
+  }
+}
 
-        string errorMsg(message);
+Configuracion::~Configuracion ()
+{
+  delete parser;
+  delete errHandler;
+}
 
-        Locator::logger()->log(ERROR, "Error en archivo de configuracion. Mensaje: " + errorMsg + ". Se abre archivo por default.");
-        try {
-            parser->parse(defaultPath.c_str());
-        } catch (const xercesc::SAXException &toCatch) {
+string
+Configuracion::getValue (const string & xPath)
+{
+  if (cacheStrings.find (xPath) == cacheStrings.end ())
+    {
+      lock_guard < mutex > lock (m);
+      XMLCh *tag =
+	xercesc::XMLString::transcode (("/configuracion" + xPath).c_str ());
 
-            Locator::logger()->log(ERROR, "Error en archivo de configuracion por default. Mensaje: " + errorMsg + ". Se termina el programa.");
-            throw std::invalid_argument( "Xml por defecto invalido" );
-        }
-        actualPath = defaultPath;
+      xercesc::DOMXPathResult * result =
+	parser->getDocument ()->evaluate (tag,
+					  parser->getDocument ()->
+					  getDocumentElement (), nullptr,
+					  xercesc::DOMXPathResult::
+					  ORDERED_NODE_SNAPSHOT_TYPE,
+					  nullptr);
+
+      xercesc::XMLString::release (&tag);
+
+      if (!result->getNodeValue ())
+	return "";
+
+      char *finalValue =
+	xercesc::XMLString::transcode (result->getNodeValue ()->
+				       getFirstChild ()->getNodeValue ());
+      result->release ();
+
+      std::string returnValue (finalValue);
+      xercesc::XMLString::release (&finalValue);
+      cacheStrings[xPath] = returnValue;
     }
-    catch (...) {
-        Locator::logger()->log(ERROR, "Error en archivo de configuracion por default. Se termina el programa.");
-        throw std::invalid_argument( "Xml por defecto invalido" );
+  return cacheStrings[xPath];
+}
+
+int
+Configuracion::getIntValue (const string & xPath)
+{
+  if (cacheInts.find (xPath) == cacheInts.end ())
+    {
+      cacheInts[xPath] = stoi (getValue (xPath));
     }
+  return cacheInts[xPath];
 }
 
-Configuracion::~Configuracion() {
-    delete parser;
-    delete errHandler;
-}
-
-string Configuracion::getValue(const string &xPath) {
-    if(cacheStrings.find(xPath) == cacheStrings.end()){
-        lock_guard<mutex> lock(m);
-        XMLCh *tag = xercesc::XMLString::transcode(("/configuracion" + xPath).c_str());
-    
-        xercesc::DOMXPathResult *result = parser->getDocument()->evaluate(
-                tag,
-                parser->getDocument()->getDocumentElement(),
-                nullptr,
-                xercesc::DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
-                nullptr);
-    
-        xercesc::XMLString::release(&tag);
-    
-        if (!result->getNodeValue())
-            return "";
-    
-        char* finalValue = xercesc::XMLString::transcode(result->getNodeValue()->getFirstChild()->getNodeValue());
-        result->release();
-    
-        std::string returnValue(finalValue);
-        xercesc::XMLString::release(&finalValue);
-        cacheStrings[xPath] = returnValue;
+float
+Configuracion::getFloatValue (const string & xPath)
+{
+  if (cacheFloats.find (xPath) == cacheFloats.end ())
+    {
+      cacheFloats[xPath] = stof (getValue (xPath));
     }
-    return cacheStrings[xPath];
+  return cacheFloats[xPath];
 }
 
-int Configuracion::getIntValue(const string &xPath) {
-    if(cacheInts.find(xPath) == cacheInts.end()) {
-        cacheInts[xPath] = stoi(getValue(xPath));
-    }
-    return cacheInts[xPath];
+string
+  Configuracion::getValue (const string & xPath, const string & defaultValue)
+{
+  string result = getValue (xPath);
+  return result.empty ()? defaultValue : result;
 }
 
-float Configuracion::getFloatValue(const string &xPath) {
-    if(cacheFloats.find(xPath) == cacheFloats.end()) {
-        cacheFloats[xPath] = stof(getValue(xPath));
-    }
-    return cacheFloats[xPath];
+int
+Configuracion::getIntValue (const string & xPath, int defaultValue)
+{
+  string result = getValue (xPath);
+  return result.empty ()? defaultValue : stoi (result);
 }
 
-string Configuracion::getValue(const string &xPath, const string &defaultValue) {
-    string result = getValue(xPath);
-    return result.empty() ? defaultValue : result;
+float
+Configuracion::getFloatValue (const string & xPath, float defaultValue)
+{
+  string result = getValue (xPath);
+  return result.empty ()? defaultValue : stof (result);
 }
 
-int Configuracion::getIntValue(const string &xPath, int defaultValue) {
-    string result = getValue(xPath);
-    return result.empty() ? defaultValue : stoi(result);
-}
-
-float Configuracion::getFloatValue(const string &xPath, float defaultValue) {
-    string result = getValue(xPath);
-    return result.empty() ? defaultValue : stof(result);
-}
-
-string Configuracion::getActualPath(){
-    return actualPath;
+string
+Configuracion::getActualPath ()
+{
+  return actualPath;
 }

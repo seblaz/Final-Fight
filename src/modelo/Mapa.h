@@ -20,52 +20,53 @@ using IdEntidad = size_t;
 using IdColisionable = size_t;
 
 
-class Mapa {
+class Mapa
+{
 
 private:
-    static IdEntidad ultimoId;
-    unordered_map<IdEntidad, Entidad*> entidades;
-    Jugadores jugadores;
-    stringstream serializadoMasReciente;
-    mutex m;
-    vector<Entidad *> colisionables;
-    vector<Entidad *> personajes;
-    vector<Entidad *> enemigos;
-    vector<Entidad *> elementos;
-    vector<Entidad *> armas;
-    Entidad *crearEntidad();
+  static IdEntidad ultimoId;
+    unordered_map < IdEntidad, Entidad * >entidades;
+  Jugadores jugadores;
+  stringstream serializadoMasReciente;
+  mutex m;
+    vector < Entidad * >colisionables;
+    vector < Entidad * >personajes;
+    vector < Entidad * >enemigos;
+    vector < Entidad * >elementos;
+    vector < Entidad * >armas;
+  Entidad *crearEntidad ();
 
 public:
-    Entidad *crearEntidadConId(IdEntidad idEntidad);
-    void agregarJugadorConId(IdEntidad idEntidad, Entidad *jugador);
-    vector<Entidad *> devolverEntidades();
-    unordered_map<IdEntidad, Entidad *> devolverEntidadesConId();
-    void vaciarMapa();
-    Jugadores* getJugadores();
-    Entidad *getEntidad(IdEntidad idEntidad);
-    bool contiene(IdEntidad idEntidad);
-    void guardarSerializado(stringstream &s);
-    void serializar(ostream& stream);
+    Entidad * crearEntidadConId (IdEntidad idEntidad);
+  void agregarJugadorConId (IdEntidad idEntidad, Entidad * jugador);
+    vector < Entidad * >devolverEntidades ();
+    unordered_map < IdEntidad, Entidad * >devolverEntidadesConId ();
+  void vaciarMapa ();
+  Jugadores *getJugadores ();
+  Entidad *getEntidad (IdEntidad idEntidad);
+  bool contiene (IdEntidad idEntidad);
+  void guardarSerializado (stringstream & s);
+  void serializar (ostream & stream);
 
-    Entidad *crearJugador();
-    Entidad *crearEnemigo();
-    Entidad *crearElemento();
-    Entidad *crearArma();
-    Entidad *crearEscenario();
+  Entidad *crearJugador ();
+  Entidad *crearEnemigo ();
+  Entidad *crearElemento ();
+  Entidad *crearArma ();
+  Entidad *crearEscenario ();
 
-    void quitarPersonaje(Entidad *enemigo);
-    void quitarElemento(Entidad *elemento);
-    void quitarArma(Entidad *arma);
+  void quitarPersonaje (Entidad * enemigo);
+  void quitarElemento (Entidad * elemento);
+  void quitarArma (Entidad * arma);
 
-    vector<Entidad *> &getColisionables();
-    vector<Entidad *> &getPersonajes();
-    vector<Entidad *> &getEnemigos();
-    vector<Entidad *> &getElementos();
-    vector<Entidad *> &getArmas();
+    vector < Entidad * >&getColisionables ();
+    vector < Entidad * >&getPersonajes ();
+    vector < Entidad * >&getEnemigos ();
+    vector < Entidad * >&getElementos ();
+    vector < Entidad * >&getArmas ();
 
-    Entidad *crearTransicion();
+  Entidad *crearTransicion ();
 
-    int enemigosAtacando();
+  int enemigosAtacando ();
 };
 
 #endif //FINAL_FIGHT_MAPA_H

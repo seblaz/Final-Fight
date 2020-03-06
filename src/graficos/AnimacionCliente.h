@@ -12,16 +12,18 @@
 
 using namespace std;
 
-class AnimacionCliente : public Estado {
+class AnimacionCliente:public Estado
+{
 
 private:
-    vector<SDL_Rect> *posiciones;
-    float escala_;
+  vector < SDL_Rect > *posiciones;
+  float escala_;
 
 public:
-    explicit AnimacionCliente(vector<SDL_Rect> *posiciones, float escala = 1);
-    SDL_Rect devolverPosicion(Entidad *entidad);
-    float escala();
+    explicit AnimacionCliente (vector < SDL_Rect > *posiciones, float escala =
+			       1);
+  SDL_Rect devolverPosicion (Entidad * entidad);
+  float escala ();
 
 };
 

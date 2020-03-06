@@ -10,18 +10,19 @@
 
 typedef string IdEtapa;
 
-class NombrePantalla : public Serializable {
+class NombrePantalla:public Serializable
+{
 
 private:
-    IdEtapa id;
+  IdEtapa id;
 
 public:
-    NombrePantalla();
-    explicit NombrePantalla(IdEtapa id);
-    void setId(IdEtapa id);
-    IdEtapa getId();
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  NombrePantalla ();
+  explicit NombrePantalla (IdEtapa id);
+  void setId (IdEtapa id);
+  IdEtapa getId ();
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
 };
 

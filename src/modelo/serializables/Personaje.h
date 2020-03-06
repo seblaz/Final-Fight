@@ -9,29 +9,31 @@
 #include "Serializable.h"
 #include "../Entidad.h"
 
-enum PERSONAJE {
-    GUY,
-    CODY,
-    HAGGAR,
-    MAKI,
-    POISSON,
-    BOSS,
-    NULO
+enum PERSONAJE
+{
+  GUY,
+  CODY,
+  HAGGAR,
+  MAKI,
+  POISSON,
+  BOSS,
+  NULO
 };
 
-class Personaje : public Estado {
+class Personaje:public Estado
+{
 
 private:
-    enum PERSONAJE personaje;
+  enum PERSONAJE personaje;
 
 public:
-    Personaje();
-    explicit Personaje(enum PERSONAJE personaje);
-    enum PERSONAJE getPersonaje();
-    static string PersonajeACadena(enum PERSONAJE);
+    Personaje ();
+  explicit Personaje (enum PERSONAJE personaje);
+  enum PERSONAJE getPersonaje ();
+  static string PersonajeACadena (enum PERSONAJE);
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 };
 
 

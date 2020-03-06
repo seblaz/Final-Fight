@@ -14,47 +14,52 @@
 using namespace std;
 
 
-class Usuario : private Serializable {
+class Usuario:private Serializable
+{
 
 private:
-    string usuario;
-    string contrasenia;
-    Entidad *personaje {};
-    enum PERSONAJE personajeSeleccionado;
-    bool valido_ {};
-    bool conectado = true;
-    bool desconectadoVoluntariamente = false;
+  string usuario;
+  string contrasenia;
+  Entidad *personaje
+  {
+  };
+  enum PERSONAJE personajeSeleccionado;
+  bool valido_
+  {
+  };
+  bool conectado = true;
+  bool desconectadoVoluntariamente = false;
 //    Socket *socket{};
 
 public:
-    Usuario();
-    ~Usuario() override = default;
-    Usuario(string usuario, string contrasenia);
+    Usuario ();
+   ~Usuario () override = default;
+    Usuario (string usuario, string contrasenia);
 
-    string getUsuario();
-    string getContrasenia();
+  string getUsuario ();
+  string getContrasenia ();
 
-    void setPersonaje(Entidad *personaje);
-    Entidad *getPersonaje();
+  void setPersonaje (Entidad * personaje);
+  Entidad *getPersonaje ();
 
 //    void setSocket(Socket *socket);
 //    Socket *getSocket();
 
-    bool estaConectado();
-    void desconectar();
+  bool estaConectado ();
+  void desconectar ();
 
-    void desconectarVoluntariamente();
-    bool estaDesconectadoVoluntariamente();
+  void desconectarVoluntariamente ();
+  bool estaDesconectadoVoluntariamente ();
 
-    void setValido(bool valido);
-    bool getValido();
+  void setValido (bool valido);
+  bool getValido ();
 
-    bool operator==(const Usuario &otroUsuario);
-    void serializar(ostream &stream) override;
-    void deserializar(istream &stream) override;
+  bool operator== (const Usuario & otroUsuario);
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
-    void setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado);
-    enum PERSONAJE getPersonajeSeleccionado();
+  void setPersonajeSeleccionado (enum PERSONAJE personajeSeleccionado);
+  enum PERSONAJE getPersonajeSeleccionado ();
 
 };
 

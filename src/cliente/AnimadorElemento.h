@@ -8,11 +8,12 @@
 
 #include "../modelo/Entidad.h"
 
-class AnimadorElemento : public Comportamiento {
+class AnimadorElemento:public Comportamiento
+{
 
 public:
-    using  Comportamiento::Comportamiento;
-    void actualizar() override;
+  using Comportamiento::Comportamiento;
+  void actualizar () override;
 
 };
 

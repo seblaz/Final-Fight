@@ -7,17 +7,18 @@
 
 #include "../Entidad.h"
 
-class Opacidad: public Estado {
+class Opacidad:public Estado
+{
 public:
-    int opacidad = 0;
+  int opacidad = 0;
 
-    explicit Opacidad() = default;
+  explicit Opacidad () = default;
 
-    void setOpacidad(int opacidad);
-    int getOpacidad();
+  void setOpacidad (int opacidad);
+  int getOpacidad ();
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
 };
 

@@ -11,14 +11,15 @@
 
 using namespace std;
 
-class InterpretePuntuacionCli : public InterpreteCliente {
+class InterpretePuntuacionCli:public InterpreteCliente
+{
 
 private:
-    PuntuacionJugadores *puntuacion;
+  PuntuacionJugadores * puntuacion;
 
 public:
-    explicit InterpretePuntuacionCli(PuntuacionJugadores *puntuacion);
-    void interpretar(stringstream &s) override;
+  explicit InterpretePuntuacionCli (PuntuacionJugadores * puntuacion);
+  void interpretar (stringstream & s) override;
 
 };
 

@@ -5,5 +5,7 @@
 #include "Eventos.h"
 
 
-EventosAProcesar::EventosAProcesar() :
-        cola(10000) {}
+EventosAProcesar::EventosAProcesar ():
+cola (10000)
+{
+}

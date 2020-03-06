@@ -7,11 +7,12 @@
 
 #include "../modelo/Entidad.h"
 
-class EstadoDeColisionable : public Comportamiento {
+class EstadoDeColisionable:public Comportamiento
+{
 
 public:
-    using Comportamiento::Comportamiento;
-    virtual void recibirGolpeDe(Entidad *jugador) = 0;
+  using Comportamiento::Comportamiento;
+  virtual void recibirGolpeDe (Entidad * jugador) = 0;
 
 };
 

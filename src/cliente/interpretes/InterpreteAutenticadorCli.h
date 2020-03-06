@@ -10,15 +10,17 @@
 #include "../vistas/VistaAutenticador.h"
 #include "../pantallas/ManagerPantallas.h"
 
-class InterpreteAutenticadorCli : public InterpreteCliente {
+class InterpreteAutenticadorCli:public InterpreteCliente
+{
 
 private:
-    Autenticador *autenticador;
-    ManagerPantallas *pantallas;
+  Autenticador * autenticador;
+  ManagerPantallas *pantallas;
 
 public:
-    explicit InterpreteAutenticadorCli(Autenticador *autenticador, ManagerPantallas *pantallas);
-    void interpretar(stringstream &s) override;
+    explicit InterpreteAutenticadorCli (Autenticador * autenticador,
+					ManagerPantallas * pantallas);
+  void interpretar (stringstream & s) override;
 
 };
 

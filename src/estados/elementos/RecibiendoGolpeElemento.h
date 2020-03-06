@@ -8,15 +8,18 @@
 
 #include "EstadoDeElemento.h"
 
-class RecibiendoGolpeElemento : public EstadoDeElemento {
+class RecibiendoGolpeElemento:public EstadoDeElemento
+{
 
 private:
-    int framesFaltantes;
+  int framesFaltantes;
 
 public:
-    RecibiendoGolpeElemento(Entidad *entidad, int framesFaltantes);
-    void actualizar() override;
-    void recibirGolpeDe(Entidad *jugador) override {};
+    RecibiendoGolpeElemento (Entidad * entidad, int framesFaltantes);
+  void actualizar () override;
+  void recibirGolpeDe (Entidad * jugador) override
+  {
+  };
 
 };
 

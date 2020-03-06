@@ -7,10 +7,11 @@
 
 #include "../../modelo/serializables/Serializable.h"
 
-class Modelo {
+class Modelo
+{
 
 public:
-    virtual void serializar(ostream &stream) = 0;
+  virtual void serializar (ostream & stream) = 0;
 
 };
 

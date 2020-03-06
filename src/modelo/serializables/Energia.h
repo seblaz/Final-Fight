@@ -9,29 +9,30 @@
 #include "Serializable.h"
 #include "../Entidad.h"
 
-class Energia : public Estado {
+class Energia:public Estado
+{
 
 private:
-    int puntosDeEnergiaMaximos;
-    int puntosDeEnergia;
-    int vidas;
-    bool modoTest = false;
+  int puntosDeEnergiaMaximos;
+  int puntosDeEnergia;
+  int vidas;
+  bool modoTest = false;
 
 public:
-    Energia() = default;
-    explicit Energia(int puntosDeEnergia, int vidas);
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+    Energia () = default;
+  explicit Energia (int puntosDeEnergia, int vidas);
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
-    void restarEnergia(int energiaRestada);
-    bool conEnergia();
-    bool vivo();
-    bool revivir();
-    int getEnergia();
-    int getVidas();
+  void restarEnergia (int energiaRestada);
+  bool conEnergia ();
+  bool vivo ();
+  bool revivir ();
+  int getEnergia ();
+  int getVidas ();
 
-    void cambiarModoTest();
-    bool enModoTest();
+  void cambiarModoTest ();
+  bool enModoTest ();
 
 };
 

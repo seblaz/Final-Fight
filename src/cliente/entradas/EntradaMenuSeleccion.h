@@ -9,16 +9,17 @@
 #include "EntradaUsuario.h"
 #include "../modelos/MenuSeleccion.h"
 
-class EntradaMenuSeleccion : public EntradaUsuario {
+class EntradaMenuSeleccion:public EntradaUsuario
+{
 
 private:
-    int framesPorAccion = 20;
-    int framesInactivo = 20;
-    MenuSeleccion *menu;
+  int framesPorAccion = 20;
+  int framesInactivo = 20;
+  MenuSeleccion *menu;
 
 public:
-    explicit EntradaMenuSeleccion(MenuSeleccion *menu);
-    Accion *getAccion(SDL_Event *e) override;
+    explicit EntradaMenuSeleccion (MenuSeleccion * menu);
+  Accion *getAccion (SDL_Event * e) override;
 
 };
 

@@ -8,18 +8,31 @@
 
 #include "EstadoDePersonajeServidor.h"
 
-class Muerto : public EstadoDePersonajeServidor {
+class Muerto:public EstadoDePersonajeServidor
+{
 
 public:
-    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+  using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
 
-    void actualizar() override;
-    void darGolpe() override {};
-    void saltar() override {};
-    void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
-    void reposar() override {};
-    void agachar() override {};
-    void recibirGolpeDe(Entidad* golpeador) override {};
+  void actualizar () override;
+  void darGolpe () override
+  {
+  };
+  void saltar () override
+  {
+  };
+  void caminar (bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override
+  {
+  };
+  void reposar () override
+  {
+  };
+  void agachar () override
+  {
+  };
+  void recibirGolpeDe (Entidad * golpeador) override
+  {
+  };
 };
 
 

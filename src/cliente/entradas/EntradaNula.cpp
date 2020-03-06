@@ -4,6 +4,8 @@
 
 #include "EntradaNula.h"
 
-Accion *EntradaNula::getAccion(SDL_Event *e) {
-    return new Accion(NULA);
+Accion *
+EntradaNula::getAccion (SDL_Event * e)
+{
+  return new Accion (NULA);
 }

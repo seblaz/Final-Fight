@@ -9,26 +9,29 @@
 #include "InterpreteServidor.h"
 #include "../etapas/Etapa.h"
 
-class InterpretePuntuacionServ : public InterpreteServidor {
+class InterpretePuntuacionServ:public InterpreteServidor
+{
 
 private:
-    IdEtapa siguienteEtapa;
+  IdEtapa siguienteEtapa;
 
 public:
-    explicit InterpretePuntuacionServ(Usuario *usuario, IdEtapa siguienteEtapa);
-    bool interpretarAccion(ACCION accion, stringstream &s) override;
-    void finalizarCliente() override;
+  explicit InterpretePuntuacionServ (Usuario * usuario,
+				     IdEtapa siguienteEtapa);
+  bool interpretarAccion (ACCION accion, stringstream & s) override;
+  void finalizarCliente () override;
 
 };
 
-class ConfirmarSeleccionPuntuacion : public EventoAProcesar {
+class ConfirmarSeleccionPuntuacion:public EventoAProcesar
+{
 
 private:
-    IdEtapa siguienteEtapa;
+  IdEtapa siguienteEtapa;
 
 public:
-    explicit ConfirmarSeleccionPuntuacion(IdEtapa siguienteEtapa);
-    void resolver() override;
+  explicit ConfirmarSeleccionPuntuacion (IdEtapa siguienteEtapa);
+  void resolver () override;
 
 };
 

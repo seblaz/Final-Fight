@@ -14,25 +14,27 @@
 
 using namespace std;
 
-enum LEVEL {ERROR, INFO, DEBUG};
+enum LEVEL
+{ ERROR, INFO, DEBUG };
 
-class Logger {
+class Logger
+{
 
 private:
-    LEVEL level;
-    string logFile;
-    string folder;
+  LEVEL level;
+  string logFile;
+  string folder;
 
-    static string getLogDateTime();
-    static string getLogFileName();
-    static string levelToString(LEVEL);
-    static LEVEL stringToLevel(const string&);
+  static string getLogDateTime ();
+  static string getLogFileName ();
+  static string levelToString (LEVEL);
+  static LEVEL stringToLevel (const string &);
 
 public:
-    Logger();
-    explicit Logger(const string& prefijo);
-    void log(LEVEL level_, const string& message);
-    void setLevel(const string& level);
+    Logger ();
+  explicit Logger (const string & prefijo);
+  void log (LEVEL level_, const string & message);
+  void setLevel (const string & level);
 };
 
 

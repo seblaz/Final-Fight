@@ -6,18 +6,25 @@
 
 #include <utility>
 
-Usuario::Usuario() : personajeSeleccionado(NULO){};
+Usuario::Usuario ():personajeSeleccionado (NULO)
+{
+};
 
-Usuario::Usuario(string usuario, string contrasenia) :
-        usuario(std::move(usuario)),
-        contrasenia(std::move(contrasenia)) {}
-
-string Usuario::getUsuario() {
-    return usuario;
+Usuario::Usuario (string usuario, string contrasenia):
+usuario (std::move (usuario)), contrasenia (std::move (contrasenia))
+{
 }
 
-string Usuario::getContrasenia() {
-    return contrasenia;
+string
+Usuario::getUsuario ()
+{
+  return usuario;
+}
+
+string
+Usuario::getContrasenia ()
+{
+  return contrasenia;
 }
 
 //void Usuario::setSocket(Socket *nuevoSocket) {
@@ -28,59 +35,85 @@ string Usuario::getContrasenia() {
 //    return socket;
 //}
 
-bool Usuario::estaConectado() {
+bool
+Usuario::estaConectado ()
+{
 //    return socket != nullptr;
-    return conectado;
+  return conectado;
 }
 
-void Usuario::desconectar() {
+void
+Usuario::desconectar ()
+{
 //    socket = nullptr;
-    conectado = false;
+  conectado = false;
 }
 
-void Usuario::setValido(bool valido) {
-    valido_ = valido;
+void
+Usuario::setValido (bool valido)
+{
+  valido_ = valido;
 }
 
-bool Usuario::getValido() {
-    return valido_;
+bool
+Usuario::getValido ()
+{
+  return valido_;
 }
 
-void Usuario::setPersonaje(Entidad *pEntidad) {
-    personaje = pEntidad;
+void
+Usuario::setPersonaje (Entidad * pEntidad)
+{
+  personaje = pEntidad;
 }
 
-Entidad *Usuario::getPersonaje() {
-    return personaje;
+Entidad *
+Usuario::getPersonaje ()
+{
+  return personaje;
 }
 
-void Usuario::setPersonajeSeleccionado(enum PERSONAJE personajeSeleccionado_) {
-    personajeSeleccionado = personajeSeleccionado_;
+void
+Usuario::setPersonajeSeleccionado (enum PERSONAJE personajeSeleccionado_)
+{
+  personajeSeleccionado = personajeSeleccionado_;
 };
 
-enum PERSONAJE Usuario::getPersonajeSeleccionado() {
-    return personajeSeleccionado;
+enum PERSONAJE
+Usuario::getPersonajeSeleccionado ()
+{
+  return personajeSeleccionado;
 }
 
-bool Usuario::operator==(const Usuario &obj) {
-    return usuario == obj.usuario;
+bool
+Usuario::operator== (const Usuario & obj)
+{
+  return usuario == obj.usuario;
 }
 
-void Usuario::serializar(ostream &stream) {
-    serializarString(stream, usuario);
-    serializarString(stream, contrasenia);
+void
+Usuario::serializar (ostream & stream)
+{
+  serializarString (stream, usuario);
+  serializarString (stream, contrasenia);
 }
 
-void Usuario::deserializar(istream &stream) {
-    usuario = deserializarString(stream);
-    contrasenia = deserializarString(stream);
+void
+Usuario::deserializar (istream & stream)
+{
+  usuario = deserializarString (stream);
+  contrasenia = deserializarString (stream);
 }
 
-void Usuario::desconectarVoluntariamente() {
-    desconectar();
-    desconectadoVoluntariamente = true;
+void
+Usuario::desconectarVoluntariamente ()
+{
+  desconectar ();
+  desconectadoVoluntariamente = true;
 }
 
-bool Usuario::estaDesconectadoVoluntariamente() {
-    return desconectadoVoluntariamente;
+bool
+Usuario::estaDesconectadoVoluntariamente ()
+{
+  return desconectadoVoluntariamente;
 }

@@ -11,18 +11,19 @@
 
 using namespace std;
 
-class Sonido  {
+class Sonido
+{
 
 private:
 
-    Mix_Chunk *chunk;
+  Mix_Chunk * chunk;
 
 public:
-    explicit Sonido(const string& rutaSonido);
+  explicit Sonido (const string & rutaSonido);
 
-    Mix_Chunk * getChunk();
+  Mix_Chunk *getChunk ();
 
-    int ancho();
+  int ancho ();
 
 };
 

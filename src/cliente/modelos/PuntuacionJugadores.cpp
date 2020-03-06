@@ -4,10 +4,14 @@
 
 #include "PuntuacionJugadores.h"
 
-void PuntuacionJugadores::setPuntuacion(string jugador, int puntuacion) {
-    puntuaciones[jugador] = puntuacion;
+void
+PuntuacionJugadores::setPuntuacion (string jugador, int puntuacion)
+{
+  puntuaciones[jugador] = puntuacion;
 }
 
-unordered_map<string, int> PuntuacionJugadores::getPuntuaciones() {
-    return puntuaciones;
+unordered_map < string, int >
+PuntuacionJugadores::getPuntuaciones ()
+{
+  return puntuaciones;
 }

@@ -7,194 +7,266 @@
 /**
  * Logger.
  */
-Logger *Locator::logger_;
+Logger *
+  Locator::logger_;
 
-Logger *Locator::logger() {
-    return logger_;
+Logger *
+Locator::logger ()
+{
+  return logger_;
 }
 
-void Locator::provide(Logger *logger) {
-    logger_ = logger;
+void
+Locator::provide (Logger * logger)
+{
+  logger_ = logger;
 }
 
 /**
  * Configuracion.
  */
-Configuracion *Locator::configuracion_;
+Configuracion *
+  Locator::configuracion_;
 
-Configuracion *Locator::configuracion() {
-    return configuracion_;
+Configuracion *
+Locator::configuracion ()
+{
+  return configuracion_;
 }
 
-void Locator::provide(Configuracion *configuracion) {
-    configuracion_ = configuracion;
+void
+Locator::provide (Configuracion * configuracion)
+{
+  configuracion_ = configuracion;
 }
 
 /**
  * Renderer.
  */
-SDL_Renderer *Locator::renderer_;
+SDL_Renderer *
+  Locator::renderer_;
 
-SDL_Renderer *Locator::renderer() {
-    return renderer_;
+SDL_Renderer *
+Locator::renderer ()
+{
+  return renderer_;
 }
 
-void Locator::provide(SDL_Renderer *renderer) {
-    renderer_ = renderer;
+void
+Locator::provide (SDL_Renderer * renderer)
+{
+  renderer_ = renderer;
 }
 
 /**
  * Socket.
  */
-Socket *Locator::socket_;
+Socket *
+  Locator::socket_;
 
-Socket *Locator::socket() {
-    return socket_;
+Socket *
+Locator::socket ()
+{
+  return socket_;
 }
 
-void Locator::provide(Socket *socket) {
-    socket_ = socket;
+void
+Locator::provide (Socket * socket)
+{
+  socket_ = socket;
 }
 
 
 /**
  * Posicion.
  */
-Posicion *Locator::posicion;
+Posicion *
+  Locator::posicion;
 
-Posicion *Locator::posicionEscenario() {
-    return posicion;
+Posicion *
+Locator::posicionEscenario ()
+{
+  return posicion;
 }
 
-void Locator::provide(Posicion *posicion_) {
-    posicion = posicion_;
+void
+Locator::provide (Posicion * posicion_)
+{
+  posicion = posicion_;
 }
 
 /**
  * Fabrica de sprites.
  */
-FabricaDeSprites *Locator::fabrica;
+FabricaDeSprites *
+  Locator::fabrica;
 
-FabricaDeSprites *Locator::fabricaDeSprites() {
-    return fabrica;
+FabricaDeSprites *
+Locator::fabricaDeSprites ()
+{
+  return fabrica;
 }
 
-void Locator::provide(FabricaDeSprites *fabricaDeSprites) {
-    fabrica = fabricaDeSprites;
+void
+Locator::provide (FabricaDeSprites * fabricaDeSprites)
+{
+  fabrica = fabricaDeSprites;
 }
 
 /**
  * Fuente.
  */
-TTF_Font *Locator::fuente_;
+TTF_Font *
+  Locator::fuente_;
 
-TTF_Font *Locator::fuente() {
-    return fuente_;
+TTF_Font *
+Locator::fuente ()
+{
+  return fuente_;
 }
 
-void Locator::provide(TTF_Font *fuente) {
-    fuente_ = fuente;
+void
+Locator::provide (TTF_Font * fuente)
+{
+  fuente_ = fuente;
 }
 
 /**
  * Eventos a procesar.
  */
-EventosAProcesar *Locator::eventos_;
+EventosAProcesar *
+  Locator::eventos_;
 
-EventosAProcesar *Locator::eventos() {
-    return eventos_;
+EventosAProcesar *
+Locator::eventos ()
+{
+  return eventos_;
 }
 
 
 
-void Locator::provide(EventosAProcesar *eventos) {
-    eventos_ = eventos;
+void
+Locator::provide (EventosAProcesar * eventos)
+{
+  eventos_ = eventos;
 }
 
 /**
  * Manager de usuarios.
  */
-ManagerUsuarios *Locator::usuarios_;
+ManagerUsuarios *
+  Locator::usuarios_;
 
-ManagerUsuarios *Locator::usuarios() {
-    return usuarios_;
+ManagerUsuarios *
+Locator::usuarios ()
+{
+  return usuarios_;
 }
 
-void Locator::provide(ManagerUsuarios *usuarios) {
-    usuarios_ = usuarios;
+void
+Locator::provide (ManagerUsuarios * usuarios)
+{
+  usuarios_ = usuarios;
 }
 
 /**
  * Mapa.
  */
-Mapa *Locator::mapa_;
+Mapa *
+  Locator::mapa_;
 
-Mapa *Locator::mapa() {
-    return mapa_;
+Mapa *
+Locator::mapa ()
+{
+  return mapa_;
 }
 
-void Locator::provide(Mapa *mapa) {
-    mapa_ = mapa;
+void
+Locator::provide (Mapa * mapa)
+{
+  mapa_ = mapa;
 }
 
 /**
  * Manager de clientes.
  */
-ManagerClientes *Locator::clientes_;
+ManagerClientes *
+  Locator::clientes_;
 
-ManagerClientes *Locator::clientes() {
-    return clientes_;
+ManagerClientes *
+Locator::clientes ()
+{
+  return clientes_;
 }
 
-void Locator::provide(ManagerClientes *clientes) {
-    clientes_ = clientes;
+void
+Locator::provide (ManagerClientes * clientes)
+{
+  clientes_ = clientes;
 }
 
 /**
  * Colisionables.
  */
 
-Colisionables *Locator::colisionables_;
+Colisionables *
+  Locator::colisionables_;
 
-void Locator::provide(Colisionables * colisionables) {
-    colisionables_ = colisionables;
+void
+Locator::provide (Colisionables * colisionables)
+{
+  colisionables_ = colisionables;
 }
 
-Colisionables *Locator::colisionables() {
-    return colisionables_;
+Colisionables *
+Locator::colisionables ()
+{
+  return colisionables_;
 }
 
 
-void Locator::clean() {
-    logger_->log(DEBUG, "Se limpian configuracion y logger");
+void
+Locator::clean ()
+{
+  logger_->log (DEBUG, "Se limpian configuracion y logger");
 
-    delete configuracion_;
-    delete logger_;
+  delete configuracion_;
+  delete logger_;
 }
 
 
 /**
  * Fabrica de Sonidos.
  */
-FabricaDeSonidos *Locator::fabricaSonidos;
+FabricaDeSonidos *
+  Locator::fabricaSonidos;
 
-FabricaDeSonidos *Locator::fabricaDeSonidos() {
-    return fabricaSonidos;
+FabricaDeSonidos *
+Locator::fabricaDeSonidos ()
+{
+  return fabricaSonidos;
 }
 
-void Locator::provide(FabricaDeSonidos *fabricaDeSonidos) {
-    fabricaSonidos = fabricaDeSonidos;
+void
+Locator::provide (FabricaDeSonidos * fabricaDeSonidos)
+{
+  fabricaSonidos = fabricaDeSonidos;
 }
 
 /**
  * Fabrica de Musicas.
  */
-FabricaDeMusicas *Locator::fabricaMusicas;
+FabricaDeMusicas *
+  Locator::fabricaMusicas;
 
-FabricaDeMusicas *Locator::fabricaDeMusicas() {
-    return fabricaMusicas;
+FabricaDeMusicas *
+Locator::fabricaDeMusicas ()
+{
+  return fabricaMusicas;
 }
 
-void Locator::provide(FabricaDeMusicas *_fabricaDeMusicas) {
-    fabricaMusicas = _fabricaDeMusicas;
+void
+Locator::provide (FabricaDeMusicas * _fabricaDeMusicas)
+{
+  fabricaMusicas = _fabricaDeMusicas;
 }

@@ -7,14 +7,15 @@
 
 using namespace std;
 
-class FabricaDeMusicas {
+class FabricaDeMusicas
+{
 
 private:
-    unordered_map<string, Musica *>  musicas;
+  unordered_map < string, Musica * >musicas;
 
 public:
-    Musica *getMusicBySrc(const string& src);
-    Musica *getMusicByConfigPath(const string& path);
+  Musica * getMusicBySrc (const string & src);
+  Musica *getMusicByConfigPath (const string & path);
 };
 
 

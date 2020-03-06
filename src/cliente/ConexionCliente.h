@@ -10,15 +10,16 @@
 
 using namespace std;
 
-class ConexionCliente {
+class ConexionCliente
+{
 
 private:
-    int descriptorSocket;
+  int descriptorSocket;
 
 public:
-    ConexionCliente(const string& ip, int puerto);
-    ~ConexionCliente();
-    Socket socket();
+    ConexionCliente (const string & ip, int puerto);
+   ~ConexionCliente ();
+  Socket socket ();
 };
 
 #endif //FINAL_FIGHT_CONEXIONCLIENTE_H

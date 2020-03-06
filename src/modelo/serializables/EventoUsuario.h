@@ -8,24 +8,26 @@
 
 #include "Serializable.h"
 
-enum class EVENTO_USUARIO {
-    CONTRASENIA_INCORRECTA,
-    USUARIO_YA_CONECTADO,
-    PARTIDA_LLENA,
-    NULO
+enum class EVENTO_USUARIO
+{
+  CONTRASENIA_INCORRECTA,
+  USUARIO_YA_CONECTADO,
+  PARTIDA_LLENA,
+  NULO
 };
 
-class EventoUsuario : public Serializable {
+class EventoUsuario:public Serializable
+{
 
 private:
-    EVENTO_USUARIO evento_;
+  EVENTO_USUARIO evento_;
 
 public:
-    EventoUsuario();
-    explicit EventoUsuario(enum EVENTO_USUARIO);
-    EVENTO_USUARIO evento();
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  EventoUsuario ();
+  explicit EventoUsuario (enum EVENTO_USUARIO);
+  EVENTO_USUARIO evento ();
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 };
 
 

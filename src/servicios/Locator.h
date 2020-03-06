@@ -20,68 +20,69 @@
 #include "../servidor/clientes/ManagerClientes.h"
 #include "../modelo/Colisionables.h"
 
-class Locator {
+class Locator
+{
 
 public:
-    static Logger *logger();
-    static void provide(Logger *logger);
+  static Logger *logger ();
+  static void provide (Logger * logger);
 
-    static Configuracion *configuracion();
-    static void provide(Configuracion *configuracion);
+  static Configuracion *configuracion ();
+  static void provide (Configuracion * configuracion);
 
-    static Socket *socket();
-    static void provide(Socket *socket);
+  static Socket *socket ();
+  static void provide (Socket * socket);
 
-    static SDL_Renderer *renderer();
-    static void provide(SDL_Renderer *);
+  static SDL_Renderer *renderer ();
+  static void provide (SDL_Renderer *);
 
-    static Posicion *posicionEscenario();
-    static void provide(Posicion *posicion);
+  static Posicion *posicionEscenario ();
+  static void provide (Posicion * posicion);
 
-    static FabricaDeSprites *fabricaDeSprites();
-    static void provide(FabricaDeSprites *fabricaDeSprites);
+  static FabricaDeSprites *fabricaDeSprites ();
+  static void provide (FabricaDeSprites * fabricaDeSprites);
 
-    static TTF_Font *fuente();
-    static void provide(TTF_Font *fuente);
+  static TTF_Font *fuente ();
+  static void provide (TTF_Font * fuente);
 
-    static EventosAProcesar *eventos();
-    static void provide(EventosAProcesar *);
+  static EventosAProcesar *eventos ();
+  static void provide (EventosAProcesar *);
 
-    static ManagerUsuarios *usuarios();
-    static void provide(ManagerUsuarios *);
+  static ManagerUsuarios *usuarios ();
+  static void provide (ManagerUsuarios *);
 
-    static Mapa *mapa();
-    static void provide(Mapa *);
+  static Mapa *mapa ();
+  static void provide (Mapa *);
 
-    static ManagerClientes *clientes();
-    static void provide(ManagerClientes *);
+  static ManagerClientes *clientes ();
+  static void provide (ManagerClientes *);
 
-    static Colisionables *colisionables();
-    static void provide(Colisionables *);
+  static Colisionables *colisionables ();
+  static void provide (Colisionables *);
 
-    static FabricaDeSonidos *fabricaDeSonidos();
-    static void provide(FabricaDeSonidos *fabricaDeSonidos);
+  static FabricaDeSonidos *fabricaDeSonidos ();
+  static void provide (FabricaDeSonidos * fabricaDeSonidos);
 
-    static FabricaDeMusicas *fabricaDeMusicas();
-    static void provide(FabricaDeMusicas *fabricaDeMusicas);
+  static FabricaDeMusicas *fabricaDeMusicas ();
+  static void provide (FabricaDeMusicas * fabricaDeMusicas);
 
-    static void clean();
+  static void clean ();
 
 private:
-    static Socket *socket_;
-    static Logger *logger_;
-    static Configuracion *configuracion_;
-    static SDL_Renderer *renderer_;
-    static Posicion *posicion;
-    static FabricaDeSprites *fabrica;
-    static TTF_Font *fuente_;
-    static EventosAProcesar *eventos_;
-    static ManagerUsuarios *usuarios_;
-    static Mapa *mapa_;
-    static ManagerClientes *clientes_;
-    static Colisionables *colisionables_;
-    static FabricaDeSonidos *fabricaSonidos;
-    static FabricaDeMusicas *fabricaMusicas;
+  static Socket *socket_;
+  static Logger *logger_;
+  static Configuracion *configuracion_;
+  static SDL_Renderer *renderer_;
+  static Posicion *posicion;
+  static FabricaDeSprites *fabrica;
+  static TTF_Font *fuente_;
+  static EventosAProcesar *eventos_;
+  static ManagerUsuarios *usuarios_;
+  static Mapa *mapa_;
+  static ManagerClientes *clientes_;
+  static Colisionables *colisionables_;
+  static FabricaDeSonidos *fabricaSonidos;
+  static FabricaDeMusicas *fabricaMusicas;
 
 };
 

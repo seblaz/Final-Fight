@@ -8,16 +8,17 @@
 
 #include "../Entidad.h"
 
-class Actividad : public Estado {
+class Actividad:public Estado
+{
 
 private:
 
 public:
-    Actividad()= default;
-    bool activo = true;
-    explicit Actividad(bool activo);
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  Actividad () = default;
+  bool activo = true;
+  explicit Actividad (bool activo);
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 };
 
 

@@ -5,16 +5,23 @@
 
 #include "NumeroJugador.h"
 
-NumeroJugador::NumeroJugador() : numeroJugador(1){}
-
-NumeroJugador::NumeroJugador(int numeroJugador) {
-    this->numeroJugador = numeroJugador;
+NumeroJugador::NumeroJugador ():numeroJugador (1)
+{
 }
 
-void NumeroJugador::serializar(ostream &stream) {
-    serializarEntero(stream, numeroJugador);
+NumeroJugador::NumeroJugador (int numeroJugador)
+{
+  this->numeroJugador = numeroJugador;
 }
 
-void NumeroJugador::deserializar(istream &stream) {
-    numeroJugador = deserializarEntero(stream);
+void
+NumeroJugador::serializar (ostream & stream)
+{
+  serializarEntero (stream, numeroJugador);
+}
+
+void
+NumeroJugador::deserializar (istream & stream)
+{
+  numeroJugador = deserializarEntero (stream);
 }

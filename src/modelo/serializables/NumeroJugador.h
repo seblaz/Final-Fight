@@ -11,14 +11,15 @@
 /**
  * Modela una direccion. A nivel de implementación es un vector unitario.
  */
-class NumeroJugador : public Estado {
+class NumeroJugador:public Estado
+{
 public:
-    int numeroJugador;
-    NumeroJugador();
-    explicit NumeroJugador(int numeroJugador);
+  int numeroJugador;
+    NumeroJugador ();
+  explicit NumeroJugador (int numeroJugador);
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 };
 
 

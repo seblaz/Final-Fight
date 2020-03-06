@@ -14,22 +14,25 @@
 #include "../modelos/Autenticador.h"
 #include "../../servicios/Locator.h"
 
-class VistaAutenticador : public Vista {
+class VistaAutenticador:public Vista
+{
 
 private:
-    TTF_Font *fuente;
-    Autenticador *autenticador;
+  TTF_Font * fuente;
+  Autenticador *autenticador;
 
-    void generarTexto(SDL_Renderer *renderer, const string& texto, SDL_Rect posicion);
-    void generarFormulario(SDL_Renderer *renderer, const string& usuario, const string& password);
-    static void generarFondo(SDL_Renderer *renderer);
-    static void generarMensajePasswordIncorrecta(SDL_Renderer *renderer);
+  void generarTexto (SDL_Renderer * renderer, const string & texto,
+		     SDL_Rect posicion);
+  void generarFormulario (SDL_Renderer * renderer, const string & usuario,
+			  const string & password);
+  static void generarFondo (SDL_Renderer * renderer);
+  static void generarMensajePasswordIncorrecta (SDL_Renderer * renderer);
 
 public:
-    explicit VistaAutenticador(Autenticador *autenticador);
-    void graficar(SDL_Renderer *renderer) override;
-    string getConfigPathMusica() override;
-    void reproducir() override;
+    explicit VistaAutenticador (Autenticador * autenticador);
+  void graficar (SDL_Renderer * renderer) override;
+  string getConfigPathMusica () override;
+  void reproducir () override;
 
 };
 

@@ -26,14 +26,17 @@
 
 using namespace std;
 
-class ConexionServidor {
+class ConexionServidor
+{
 
 private:
-    int descriptorSocket {};
+  int descriptorSocket
+  {
+  };
 
 public:
-    explicit ConexionServidor(int puerto);
-    Socket *socket();
+    explicit ConexionServidor (int puerto);
+  Socket *socket ();
 
 };
 

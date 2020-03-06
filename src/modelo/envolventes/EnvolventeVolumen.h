@@ -10,19 +10,22 @@
 #include "../serializables/Posicion.h"
 #include "Envolvente.h"
 
-class EnvolventeVolumen : public Envolvente {
+class EnvolventeVolumen:public Envolvente
+{
 
 public:
-    using Envolvente::Envolvente;
+  using Envolvente::Envolvente;
 
-    EnvolventeVolumen() : Envolvente(nullptr, 0, 0) {}
+  EnvolventeVolumen ():Envolvente (nullptr, 0, 0)
+  {
+  }
 
-    bool colisionaPorIzquierdaCon(EnvolventeVolumen * envolvente);
-    bool colisionaPorDerechaCon(EnvolventeVolumen * envolvente);
-    bool colisionaAbajoCon(EnvolventeVolumen * envolvente);
-    bool colisionaArribaCon(EnvolventeVolumen * envolvente);
+  bool colisionaPorIzquierdaCon (EnvolventeVolumen * envolvente);
+  bool colisionaPorDerechaCon (EnvolventeVolumen * envolvente);
+  bool colisionaAbajoCon (EnvolventeVolumen * envolvente);
+  bool colisionaArribaCon (EnvolventeVolumen * envolvente);
 
-    bool colisionaCon(EnvolventeVolumen *envolvente);
+  bool colisionaCon (EnvolventeVolumen * envolvente);
 
 };
 

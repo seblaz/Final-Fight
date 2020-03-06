@@ -8,12 +8,13 @@
 
 #include "../modelo/Entidad.h"
 
-class GraficoDeTransicion : public Comportamiento {
+class GraficoDeTransicion:public Comportamiento
+{
 
 public:
-    GraficoDeTransicion(Entidad *entidad);
+  GraficoDeTransicion (Entidad * entidad);
 
-    void actualizar() override;
+  void actualizar () override;
 };
 
 

@@ -14,33 +14,39 @@ using namespace std;
 
 class Etapa;
 
-class InterpreteServidor {
+class InterpreteServidor
+{
 
 private:
-    Usuario *usuario;
-    Etapa *etapa = nullptr;
-    void desconectarUsuarioVoluntariamente();
+  Usuario * usuario;
+  Etapa *etapa = nullptr;
+  void desconectarUsuarioVoluntariamente ();
 
 public:
-    explicit InterpreteServidor(Usuario *usuario);
-    Usuario *getUsuario();
-    Etapa *getEtapa();
-    void setEtapa(Etapa *etapa);
-    bool interpretarStream(stringstream &s);
-    virtual bool interpretarAccion(ACCION accion, stringstream &s) = 0;
-    virtual void iniciar() {};
-    virtual void finalizarCliente() {};
+    explicit InterpreteServidor (Usuario * usuario);
+  Usuario *getUsuario ();
+  Etapa *getEtapa ();
+  void setEtapa (Etapa * etapa);
+  bool interpretarStream (stringstream & s);
+  virtual bool interpretarAccion (ACCION accion, stringstream & s) = 0;
+  virtual void iniciar ()
+  {
+  };
+  virtual void finalizarCliente ()
+  {
+  };
 
 };
 
-class DesconectarVoluntariamente : public EventoAProcesar {
+class DesconectarVoluntariamente:public EventoAProcesar
+{
 
 private:
-    Usuario *usuario;
+  Usuario * usuario;
 
 public:
-    explicit DesconectarVoluntariamente(Usuario* usuario);
-    void resolver() override;
+  explicit DesconectarVoluntariamente (Usuario * usuario);
+  void resolver () override;
 };
 
 #endif //FINAL_FIGHT_INTERPRETESERVIDOR_H

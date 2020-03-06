@@ -12,19 +12,20 @@
 #include "../modelos/PuntuacionJugadores.h"
 #include "../../servicios/Locator.h"
 
-class VistaPuntuacion : public Vista {
+class VistaPuntuacion:public Vista
+{
 
 private:
-    PuntuacionJugadores *puntuaciones;
-    static void generarFondo(SDL_Renderer *renderer);
-    static void generarTitulo(SDL_Renderer *renderer);
-    void generarPuntuaciones(SDL_Renderer *renderer);
+  PuntuacionJugadores * puntuaciones;
+  static void generarFondo (SDL_Renderer * renderer);
+  static void generarTitulo (SDL_Renderer * renderer);
+  void generarPuntuaciones (SDL_Renderer * renderer);
 
 public:
-    explicit VistaPuntuacion(PuntuacionJugadores *puntuaciones);
-    void graficar(SDL_Renderer *renderer) override;
-    string getConfigPathMusica() override;
-    int getLoops() override;
+    explicit VistaPuntuacion (PuntuacionJugadores * puntuaciones);
+  void graficar (SDL_Renderer * renderer) override;
+  string getConfigPathMusica () override;
+  int getLoops () override;
 
 };
 

@@ -8,119 +8,133 @@
 
 #include "Eventos.h"
 
-class EventoPersonaje : public EventoAProcesar{
+class EventoPersonaje:public EventoAProcesar
+{
 
 protected:
-    Entidad *personaje;
+  Entidad * personaje;
 
 public:
-    explicit EventoPersonaje(Entidad *personaje);
+  explicit EventoPersonaje (Entidad * personaje);
 
 };
 
-class Reposar : public EventoPersonaje {
+class Reposar:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
-
-};
-
-
-class Saltar : public EventoPersonaje {
-
-public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
-
-};
-
-class Golpear : public EventoPersonaje {
-
-public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
-
-};
-
-class Agachar : public EventoPersonaje {
-
-public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
 
-class CaminarIzquierda : public EventoPersonaje {
+class Saltar:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarDerecha : public EventoPersonaje {
+class Golpear:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarArriba : public EventoPersonaje {
+class Agachar:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarAbajo : public EventoPersonaje {
+
+class CaminarIzquierda:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarIzquierdaArriba : public EventoPersonaje {
+class CaminarDerecha:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarIzquierdaAbajo : public EventoPersonaje {
+class CaminarArriba:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarDerechaArriba : public EventoPersonaje {
+class CaminarAbajo:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class CaminarDerechaAbajo : public EventoPersonaje {
+class CaminarIzquierdaArriba:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 
-class ModoTest : public EventoPersonaje {
+class CaminarIzquierdaAbajo:public EventoPersonaje
+{
 
 public:
-    using EventoPersonaje::EventoPersonaje;
-    void resolver() override;
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
+
+};
+
+class CaminarDerechaArriba:public EventoPersonaje
+{
+
+public:
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
+
+};
+
+class CaminarDerechaAbajo:public EventoPersonaje
+{
+
+public:
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
+
+};
+
+class ModoTest:public EventoPersonaje
+{
+
+public:
+  using EventoPersonaje::EventoPersonaje;
+  void resolver () override;
 
 };
 

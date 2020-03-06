@@ -9,22 +9,24 @@
 #include "Entidad.h"
 #include "Jugadores.h"
 
-class Colisionables : public Estado {
+class Colisionables:public Estado
+{
 
 private:
 
-    int limiteEnProfundidad = 0;
-    int limiteFrontal = 0;
-    int i = 0;
-    void calcularPosiblesColisiones();
-    void calcularArmasAlcanzables();
+  int limiteEnProfundidad = 0;
+  int limiteFrontal = 0;
+  int i = 0;
+  void calcularPosiblesColisiones ();
+  void calcularArmasAlcanzables ();
 
-    void calcularAtaquesEntre(vector<Entidad *> &atacantes, vector<Entidad *> &defensores);
+  void calcularAtaquesEntre (vector < Entidad * >&atacantes,
+			     vector < Entidad * >&defensores);
 
 public:
-    explicit Colisionables() = default;
-    void addLimitesDeEscenario(int profundidad, int frente);
-    void calcularInteracciones();
+    explicit Colisionables () = default;
+  void addLimitesDeEscenario (int profundidad, int frente);
+  void calcularInteracciones ();
 };
 
 

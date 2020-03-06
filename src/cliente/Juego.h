@@ -13,27 +13,28 @@
 #include "pantallas/ManagerPantallas.h"
 #include "../utils/Hilo.h"
 
-class Juego : Hilo {
+class Juego:Hilo
+{
 
 private:
-    SDL_Renderer *renderer_ = nullptr;
-    SDL_Window *window = nullptr;
-    TTF_Font *fuente = nullptr;
-    bool exit = false;
-    ManagerPantallas manager;
+  SDL_Renderer * renderer_ = nullptr;
+  SDL_Window *window = nullptr;
+  TTF_Font *fuente = nullptr;
+  bool exit = false;
+  ManagerPantallas manager;
 
-    pthread_t recibirEnHilo();
-    void recibir();
-    void inicializarGraficos();
+  pthread_t recibirEnHilo ();
+  void recibir ();
+  void inicializarGraficos ();
 
-    void actualizarGraficos();
-    void agregarPantallas();
+  void actualizarGraficos ();
+  void agregarPantallas ();
 
 public:
-    Juego();
-    void loop();
-    SDL_Renderer *renderer();
-    void terminar();
+    Juego ();
+  void loop ();
+  SDL_Renderer *renderer ();
+  void terminar ();
 
 };
 

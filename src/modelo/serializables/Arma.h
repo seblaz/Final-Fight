@@ -8,42 +8,44 @@
 
 #include "../Entidad.h"
 
-enum class ARMA {
-    TUBO,
-    CUCHILLO,
-    PUNIOS,
-    PATADA
+enum class ARMA
+{
+  TUBO,
+  CUCHILLO,
+  PUNIOS,
+  PATADA
 };
 
 
-class Arma : public Estado {
+class Arma:public Estado
+{
 
 private:
-    ARMA arma;
-    int danio;
-    int usosRestantes;
-    int ancho;
-    bool enSuelo = true;
-    bool enUso = false;
-    void inicializar(ARMA arma);
+  ARMA arma;
+  int danio;
+  int usosRestantes;
+  int ancho;
+  bool enSuelo = true;
+  bool enUso = false;
+  void inicializar (ARMA arma);
 
 public:
-    Arma();
-    explicit Arma(ARMA arma);
-    ARMA getArma();
+    Arma ();
+  explicit Arma (ARMA arma);
+  ARMA getArma ();
 
-    void inicioUso();
-    void finUso();
-    void tomar();
-    int getAncho();
-    bool enElSuelo();
-    int getPuntosDeDanio();
-    void cambiarPor(ARMA arma);
+  void inicioUso ();
+  void finUso ();
+  void tomar ();
+  int getAncho ();
+  bool enElSuelo ();
+  int getPuntosDeDanio ();
+  void cambiarPor (ARMA arma);
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
-    static string armaACadena(ARMA arma);
+  static string armaACadena (ARMA arma);
 
 };
 

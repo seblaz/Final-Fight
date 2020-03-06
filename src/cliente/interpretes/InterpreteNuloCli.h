@@ -8,10 +8,13 @@
 
 #include "InterpreteCliente.h"
 
-class InterpreteNuloCli : public InterpreteCliente {
+class InterpreteNuloCli:public InterpreteCliente
+{
 
 public:
-    void interpretar(stringstream &s) override {};
+  void interpretar (stringstream & s) override
+  {
+  };
 
 };
 

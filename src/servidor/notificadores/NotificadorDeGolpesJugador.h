@@ -9,16 +9,17 @@
 #include "../../modelo/Entidad.h"
 #include "NotificadorDeGolpes.h"
 
-class NotificadorDeGolpesJugador : public NotificadorDeGolpes {
+class NotificadorDeGolpesJugador:public NotificadorDeGolpes
+{
 
 private:
-    Entidad *jugador;
+  Entidad * jugador;
 
 public:
-    explicit NotificadorDeGolpesJugador(Entidad *entidad);
+  explicit NotificadorDeGolpesJugador (Entidad * entidad);
 
-    void notificarGolpeAPersonaje(Entidad *personajeGolpeado) override;
-    void notificarGolpeAElemento(Elemento *elementoGolpeado) override;
+  void notificarGolpeAPersonaje (Entidad * personajeGolpeado) override;
+  void notificarGolpeAElemento (Elemento * elementoGolpeado) override;
 
 };
 

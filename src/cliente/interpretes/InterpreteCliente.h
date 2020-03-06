@@ -10,10 +10,11 @@
 
 using namespace std;
 
-class InterpreteCliente {
+class InterpreteCliente
+{
 
 public:
-    virtual void interpretar(stringstream &s) = 0;
+  virtual void interpretar (stringstream & s) = 0;
 
 };
 

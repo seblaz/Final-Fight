@@ -13,28 +13,32 @@
 
 using namespace std;
 
-class EventoAProcesar {
+class EventoAProcesar
+{
 
 public:
-    virtual ~EventoAProcesar() = default;
-    virtual void resolver() = 0;
+  virtual ~ EventoAProcesar () = default;
+  virtual void resolver () = 0;
 
 };
 
-class EventosAProcesar {
+class EventosAProcesar
+{
 
 private:
-    blocking_queue<EventoAProcesar*> cola;
+  blocking_queue < EventoAProcesar * >cola;
 
 public:
-    EventosAProcesar();
-    void push(EventoAProcesar *elem) {
-        cola.push(elem);
-    }
+  EventosAProcesar ();
+  void push (EventoAProcesar * elem)
+  {
+    cola.push (elem);
+  }
 
-    EventoAProcesar *pop() {
-        return cola.pop();
-    }
+  EventoAProcesar *pop ()
+  {
+    return cola.pop ();
+  }
 };
 
 #endif //FINAL_FIGHT_EVENTOS_H

@@ -16,10 +16,11 @@
 /**
  * Lectura de input de usuario.
  */
-class EntradaUsuario {
+class EntradaUsuario
+{
 
 public:
-    virtual Accion *getAccion(SDL_Event *e) = 0;
+  virtual Accion * getAccion (SDL_Event * e) = 0;
 
 };
 

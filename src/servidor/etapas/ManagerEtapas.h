@@ -11,17 +11,18 @@
 
 using namespace std;
 
-class ManagerEtapas {
+class ManagerEtapas
+{
 
 private:
-    Etapa *actual = nullptr;
-    map<IdEtapa, Etapa *> etapas;
-    mutex m;
+  Etapa * actual = nullptr;
+  map < IdEtapa, Etapa * >etapas;
+  mutex m;
 
 public:
-    void agregar(Etapa *etapa);
-    Etapa *getActual();
-    void cambiarA(const IdEtapa& id);
+  void agregar (Etapa * etapa);
+  Etapa *getActual ();
+  void cambiarA (const IdEtapa & id);
 };
 
 

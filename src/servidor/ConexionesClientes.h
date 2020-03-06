@@ -13,16 +13,17 @@
 #include "../utils/Hilo.h"
 #include "clientes/ManagerClientes.h"
 
-class ConexionesClientes : public Hilo {
+class ConexionesClientes:public Hilo
+{
 
 private:
-    Socket *socketServidor;
-    ManagerClientes clientes;
-    void manejarConexiones();
+  Socket * socketServidor;
+  ManagerClientes clientes;
+  void manejarConexiones ();
 
 public:
-    explicit ConexionesClientes(Socket *socketServidor);
-    pthread_t manejarConexionesEnHilo();
+    explicit ConexionesClientes (Socket * socketServidor);
+  pthread_t manejarConexionesEnHilo ();
 
 };
 

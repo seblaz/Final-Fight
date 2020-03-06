@@ -8,21 +8,23 @@
 #include "../modelo/Entidad.h"
 #include "../servicios/Locator.h"
 
-class AnimacionServidor : public Comportamiento {
+class AnimacionServidor:public Comportamiento
+{
 
 private:
-    vector<int> duracionesPorSprite;
-    int duracionTotal;
+  vector < int >duracionesPorSprite;
+  int duracionTotal;
 
-    int framesFaltantes;
-    int spriteActual;
-    float sumaDeDuracionesRelativas;
+  int framesFaltantes;
+  int spriteActual;
+  float sumaDeDuracionesRelativas;
 
-    int calcularFramesFaltantes();
-    
+  int calcularFramesFaltantes ();
+
 public:
-    AnimacionServidor(Entidad *entidad, vector<int> duracionesPorSprite, int duracionTotal);
-    void actualizar() override;
+    AnimacionServidor (Entidad * entidad, vector < int >duracionesPorSprite,
+		       int duracionTotal);
+  void actualizar () override;
 
 };
 

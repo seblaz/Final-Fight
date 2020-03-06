@@ -10,14 +10,15 @@
 
 using namespace std;
 
-class PuntuacionJugadores {
+class PuntuacionJugadores
+{
 
 private:
-    unordered_map<string, int> puntuaciones;
+  unordered_map < string, int >puntuaciones;
 
 public:
-    void setPuntuacion(string jugador, int puntuacion);
-    unordered_map<string, int> getPuntuaciones();
+  void setPuntuacion (string jugador, int puntuacion);
+    unordered_map < string, int >getPuntuaciones ();
 
 };
 

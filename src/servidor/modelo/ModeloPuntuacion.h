@@ -8,10 +8,11 @@
 
 #include "Modelo.h"
 
-class ModeloPuntuacion : public Modelo {
+class ModeloPuntuacion:public Modelo
+{
 
 public:
-    void serializar(ostream &stream) override;
+  void serializar (ostream & stream) override;
 
 };
 

@@ -11,16 +11,17 @@
 
 using namespace std;
 
-class Musica  {
+class Musica
+{
 
 private:
 
-    Mix_Music *music;
+  Mix_Music * music;
 
 public:
-    explicit Musica(const string& rutaSprite);
+  explicit Musica (const string & rutaSprite);
 
-    Mix_Music * getMusic();
+  Mix_Music *getMusic ();
 
 };
 

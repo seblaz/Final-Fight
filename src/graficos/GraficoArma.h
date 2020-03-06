@@ -8,11 +8,12 @@
 
 #include "Grafico.h"
 
-class GraficoArma : public Grafico {
+class GraficoArma:public Grafico
+{
 
 public:
-    using Grafico::Grafico;
-    void actualizar() override;
+  using Grafico::Grafico;
+  void actualizar () override;
 
 };
 

@@ -7,18 +7,19 @@
 
 #include "../Entidad.h"
 
-class IndiceSprite : public Estado {
+class IndiceSprite:public Estado
+{
 
 private:
-    int indice = 0;
+  int indice = 0;
 
 public:
-    IndiceSprite() = default;
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+    IndiceSprite () = default;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 
-    void setIndice(int pos);
-    int getIndice();
+  void setIndice (int pos);
+  int getIndice ();
 };
 
 

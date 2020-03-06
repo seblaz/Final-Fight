@@ -11,23 +11,24 @@
 
 class ManagerClientes;
 
-class Cliente : public Hilo {
+class Cliente:public Hilo
+{
 
 private:
-    ManagerEtapas etapas;
-    Socket *socket;
-    Usuario *usuario = new Usuario;
-    bool fin = false;
-    ManagerClientes *manager = nullptr;
+  ManagerEtapas etapas;
+  Socket *socket;
+  Usuario *usuario = new Usuario;
+  bool fin = false;
+  ManagerClientes *manager = nullptr;
 
 protected:
-    void recibirEnHilo();
-    void transmitirEnHilo();
+  void recibirEnHilo ();
+  void transmitirEnHilo ();
 
 public:
-    explicit Cliente(Socket *socket);
-    void cambiarA(const IdEtapa& etapa);
-    void setManager(ManagerClientes *manager);
+    explicit Cliente (Socket * socket);
+  void cambiarA (const IdEtapa & etapa);
+  void setManager (ManagerClientes * manager);
 
 };
 

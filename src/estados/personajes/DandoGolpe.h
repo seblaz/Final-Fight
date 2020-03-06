@@ -7,16 +7,27 @@
 
 #include "EstadoDePersonajeServidor.h"
 
-class DandoGolpe : public EstadoDePersonajeServidor{
+class DandoGolpe:public EstadoDePersonajeServidor
+{
 
 public:
-    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+  using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
 
-    void actualizar() override;
-    void darGolpe() override {}; // Agregar secuencia de Golpes
-    void saltar() override {};
-    void caminar(bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override {};
-    void reposar() override {};
-    void agachar() override {};
+  void actualizar () override;
+  void darGolpe () override
+  {
+  };				// Agregar secuencia de Golpes
+  void saltar () override
+  {
+  };
+  void caminar (bool X_pos, bool X_neg, bool Y_pos, bool Y_neg) override
+  {
+  };
+  void reposar () override
+  {
+  };
+  void agachar () override
+  {
+  };
 };
 #endif //FINAL_FIGHT_DANDOGOLPE_H

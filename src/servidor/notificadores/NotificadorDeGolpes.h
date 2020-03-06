@@ -8,11 +8,16 @@
 #include "../../modelo/Entidad.h"
 #include "../../modelo/serializables/Elemento.h"
 
-class NotificadorDeGolpes : public Estado {
+class NotificadorDeGolpes:public Estado
+{
 
 public:
-    virtual void notificarGolpeAPersonaje(Entidad *personajeGolpeado) {};
-    virtual void notificarGolpeAElemento(Elemento *elementoGolpeado) {};
+  virtual void notificarGolpeAPersonaje (Entidad * personajeGolpeado)
+  {
+  };
+  virtual void notificarGolpeAElemento (Elemento * elementoGolpeado)
+  {
+  };
 
 };
 

@@ -9,16 +9,17 @@
 #include "../modelo/Mapa.h"
 #include "../modelo/serializables/Posicion.h"
 
-class NivelCliente {
+class NivelCliente
+{
 
 public:
-    static void generarJugador(Entidad *jugador);
-    static void generarEscenario(Entidad *escenario);
-    static void generarTransicion(Entidad *transicion);
-    static void generarEnemigo(Entidad *enemigo);
-    static void generarElemento(Entidad *entidad);
+  static void generarJugador (Entidad * jugador);
+  static void generarEscenario (Entidad * escenario);
+  static void generarTransicion (Entidad * transicion);
+  static void generarEnemigo (Entidad * enemigo);
+  static void generarElemento (Entidad * entidad);
 
-    static void generarArma(Entidad *arma);
+  static void generarArma (Entidad * arma);
 };
 
 

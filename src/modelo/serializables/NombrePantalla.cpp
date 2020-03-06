@@ -6,24 +6,36 @@
 
 #include <utility>
 
-NombrePantalla::NombrePantalla() : 
-        id(""){}
-
-NombrePantalla::NombrePantalla(IdEtapa id) :
-        id(id) {}
-
-void NombrePantalla::setId(IdEtapa id_) {
-    id = std::move(id_);
+NombrePantalla::NombrePantalla ():
+id ("")
+{
 }
 
-IdEtapa NombrePantalla::getId() {
-    return id;
+NombrePantalla::NombrePantalla (IdEtapa id):
+id (id)
+{
 }
 
-void NombrePantalla::serializar(ostream &stream) {
-    serializarString(stream, id);
+void
+NombrePantalla::setId (IdEtapa id_)
+{
+  id = std::move (id_);
 }
 
-void NombrePantalla::deserializar(istream &stream) {
-    id = deserializarString(stream);
+IdEtapa
+NombrePantalla::getId ()
+{
+  return id;
+}
+
+void
+NombrePantalla::serializar (ostream & stream)
+{
+  serializarString (stream, id);
+}
+
+void
+NombrePantalla::deserializar (istream & stream)
+{
+  id = deserializarString (stream);
 }

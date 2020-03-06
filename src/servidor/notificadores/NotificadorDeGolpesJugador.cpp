@@ -10,25 +10,39 @@
 #include "../../servicios/Locator.h"
 #include "../../modelo/serializables/Elemento.h"
 
-NotificadorDeGolpesJugador::NotificadorDeGolpesJugador(Entidad *jugador) : jugador(jugador) {}
+NotificadorDeGolpesJugador::NotificadorDeGolpesJugador (Entidad * jugador):jugador
+  (jugador)
+{
+}
 
-void NotificadorDeGolpesJugador::notificarGolpeAPersonaje(Entidad* personajeGolpeado){
-    auto puntajeGolpeador = jugador->getEstado<Puntaje>("puntaje");
-    auto arma = jugador->getEstado<Arma>("arma");
+void
+NotificadorDeGolpesJugador::notificarGolpeAPersonaje (Entidad *
+						      personajeGolpeado)
+{
+  auto puntajeGolpeador = jugador->getEstado < Puntaje > ("puntaje");
+  auto arma = jugador->getEstado < Arma > ("arma");
 
-    string tipoArma = Arma::armaACadena(arma->getArma());
-    int puntosArma = Locator::configuracion()->getIntValue("/armas/" + tipoArma + "/puntos");
-    puntajeGolpeador->agregarPuntos(puntosArma);
+  string tipoArma = Arma::armaACadena (arma->getArma ());
+  int puntosArma =
+    Locator::configuracion ()->getIntValue ("/armas/" + tipoArma + "/puntos");
+  puntajeGolpeador->agregarPuntos (puntosArma);
 
-    if(!personajeGolpeado->getEstado<Energia>("energia")->conEnergia()){
-        puntajeGolpeador->agregarPuntos(500);
+  if (!personajeGolpeado->getEstado < Energia > ("energia")->conEnergia ())
+    {
+      puntajeGolpeador->agregarPuntos (500);
     }
 }
 
-void NotificadorDeGolpesJugador::notificarGolpeAElemento(Elemento *elemento) {
-    if(elemento->estaRoto()){
-        string tipoElemento = Elemento::ElementoACadena(elemento->getElemento());
-        int puntos = Locator::configuracion()->getIntValue("/elementos/" + tipoElemento + "/puntos");
-        jugador->getEstado<Puntaje>("puntaje")->agregarPuntos(puntos);
+void
+NotificadorDeGolpesJugador::notificarGolpeAElemento (Elemento * elemento)
+{
+  if (elemento->estaRoto ())
+    {
+      string tipoElemento =
+	Elemento::ElementoACadena (elemento->getElemento ());
+      int puntos =
+	Locator::configuracion ()->getIntValue ("/elementos/" + tipoElemento +
+						"/puntos");
+      jugador->getEstado < Puntaje > ("puntaje")->agregarPuntos (puntos);
     }
 }

@@ -11,15 +11,16 @@
 
 using namespace std;
 
-class Hilo {
+class Hilo
+{
 
 protected:
-    function<void()> funcionAux;
-    semaphore hiloLanzado;
+  function < void () > funcionAux;
+  semaphore hiloLanzado;
 
 public:
-    Hilo();
-    pthread_t lanzarHilo(function<void()> fun);
+    Hilo ();
+  pthread_t lanzarHilo (function < void () > fun);
 
 };
 

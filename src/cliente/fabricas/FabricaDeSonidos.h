@@ -12,14 +12,15 @@
 
 using namespace std;
 
-class FabricaDeSonidos {
+class FabricaDeSonidos
+{
 
 private:
-    unordered_map<string, Sonido *> sonidos;
+  unordered_map < string, Sonido * >sonidos;
 
 public:
-    Sonido *getSoundBySrc(const string& src);
-    Sonido *getSoundConfigPath(const string& path);
+  Sonido * getSoundBySrc (const string & src);
+  Sonido *getSoundConfigPath (const string & path);
 };
 
 

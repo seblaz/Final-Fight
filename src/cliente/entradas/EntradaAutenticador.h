@@ -9,14 +9,15 @@
 #include "EntradaUsuario.h"
 #include "../modelos/Autenticador.h"
 
-class EntradaAutenticador : public EntradaUsuario {
+class EntradaAutenticador:public EntradaUsuario
+{
 
 private:
-    Autenticador *autenticador;
+  Autenticador * autenticador;
 
 public:
-    explicit EntradaAutenticador(Autenticador *autenticador);
-    Accion *getAccion(SDL_Event *e) override;
+  explicit EntradaAutenticador (Autenticador * autenticador);
+  Accion *getAccion (SDL_Event * e) override;
 
 };
 

@@ -7,21 +7,28 @@
 
 #include <utility>
 
-VistaPlana::VistaPlana(string configFondo, string configMusica) :
-        configFondo(std::move(configFondo)),
-        configMusica(std::move(configMusica)) {}
-
-void VistaPlana::graficar(SDL_Renderer *renderer) {
-    Configuracion *config = Locator::configuracion();
-    int ancho = config->getIntValue("/resolucion/ancho");
-    int alto = config->getIntValue("/resolucion/alto");
-
-    auto *fondo = Locator::fabricaDeSprites()->getSpriteConfigPath(configFondo);
-
-    SDL_Rect posicionEnPantallaCompleta = {0, 0, ancho, alto};
-    SDL_RenderCopy(renderer, fondo->getTexture(), nullptr, &posicionEnPantallaCompleta);
+VistaPlana::VistaPlana (string configFondo, string configMusica):
+configFondo (std::move (configFondo)), configMusica (std::move (configMusica))
+{
 }
 
-string VistaPlana::getConfigPathMusica() {
-    return configMusica;
+void
+VistaPlana::graficar (SDL_Renderer * renderer)
+{
+  Configuracion *config = Locator::configuracion ();
+  int ancho = config->getIntValue ("/resolucion/ancho");
+  int alto = config->getIntValue ("/resolucion/alto");
+
+  auto *fondo =
+    Locator::fabricaDeSprites ()->getSpriteConfigPath (configFondo);
+
+  SDL_Rect posicionEnPantallaCompleta = { 0, 0, ancho, alto };
+  SDL_RenderCopy (renderer, fondo->getTexture (), nullptr,
+		  &posicionEnPantallaCompleta);
+}
+
+string
+VistaPlana::getConfigPathMusica ()
+{
+  return configMusica;
 }

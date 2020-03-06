@@ -4,9 +4,12 @@
 
 #include "EntradaConfirmacion.h"
 
-Accion *EntradaConfirmacion::getAccion(SDL_Event *e) {
-    if (e->type == SDL_KEYDOWN && e->key.keysym.scancode == SDL_SCANCODE_RETURN) {
-        return new Accion(CONFIRMAR);
+Accion *
+EntradaConfirmacion::getAccion (SDL_Event * e)
+{
+  if (e->type == SDL_KEYDOWN && e->key.keysym.scancode == SDL_SCANCODE_RETURN)
+    {
+      return new Accion (CONFIRMAR);
     }
-    return new Accion(NULA);
+  return new Accion (NULA);
 }

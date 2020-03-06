@@ -8,18 +8,19 @@
 
 #include "../../modelo/serializables/Personaje.h"
 
-class MenuSeleccion {
+class MenuSeleccion
+{
 
 private:
-    enum PERSONAJE actual = CODY;
-    bool listo_ = false;
+  enum PERSONAJE actual = CODY;
+  bool listo_ = false;
 
 public:
-    enum PERSONAJE getPersonaje();
-    void siguiente();
-    void anterior();
-    void confirmar();
-    bool listo();
+  enum PERSONAJE getPersonaje ();
+  void siguiente ();
+  void anterior ();
+  void confirmar ();
+  bool listo ();
 
 };
 

@@ -8,11 +8,12 @@
 
 #include "EstadoDeElemento.h"
 
-class Sano : public EstadoDeElemento {
+class Sano:public EstadoDeElemento
+{
 
 public:
-    using EstadoDeElemento::EstadoDeElemento;
-    void recibirGolpeDe(Entidad *jugador) override;
+  using EstadoDeElemento::EstadoDeElemento;
+  void recibirGolpeDe (Entidad * jugador) override;
 
 };
 

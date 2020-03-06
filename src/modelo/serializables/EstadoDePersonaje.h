@@ -8,31 +8,33 @@
 
 #include "../Entidad.h"
 
-enum ESTADO_DE_PERSONAJE {
-    CAMINANDO,
-    SALTANDO,
-    SALTANDO_CON_MOVIMIENTO,
-    REPOSANDO,
-    DANDO_GOLPE,
-    RECIBIENDO_GOLPE,
-    AGACHADO,
-    PATEANDO,
-    MUERTO
+enum ESTADO_DE_PERSONAJE
+{
+  CAMINANDO,
+  SALTANDO,
+  SALTANDO_CON_MOVIMIENTO,
+  REPOSANDO,
+  DANDO_GOLPE,
+  RECIBIENDO_GOLPE,
+  AGACHADO,
+  PATEANDO,
+  MUERTO
 };
 
-class EstadoDePersonaje : public Estado {
+class EstadoDePersonaje:public Estado
+{
 
 private:
-    ESTADO_DE_PERSONAJE estado;
+  ESTADO_DE_PERSONAJE estado;
 
 public:
-    static string estadoACadena(ESTADO_DE_PERSONAJE e);
-    EstadoDePersonaje();
-    explicit EstadoDePersonaje(ESTADO_DE_PERSONAJE);
-    ESTADO_DE_PERSONAJE getEstado();
+  static string estadoACadena (ESTADO_DE_PERSONAJE e);
+    EstadoDePersonaje ();
+  explicit EstadoDePersonaje (ESTADO_DE_PERSONAJE);
+  ESTADO_DE_PERSONAJE getEstado ();
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 };
 
 

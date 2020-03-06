@@ -8,19 +8,20 @@
 
 #include "../Entidad.h"
 
-class Nivel : public Estado {
+class Nivel:public Estado
+{
 
 private:
-    string nivel_;
+  string nivel_;
 
 public:
-    Nivel();
-    explicit Nivel(string nivel);
+  Nivel ();
+  explicit Nivel (string nivel);
 
-    string nivel();
+  string nivel ();
 
-    void serializar(ostream& stream) override;
-    void deserializar(istream& stream) override;
+  void serializar (ostream & stream) override;
+  void deserializar (istream & stream) override;
 };
 
 

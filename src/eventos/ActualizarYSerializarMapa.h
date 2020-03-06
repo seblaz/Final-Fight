@@ -8,17 +8,18 @@
 
 #include "Eventos.h"
 
-class ActualizarYSerializarMapa : public EventoAProcesar {
+class ActualizarYSerializarMapa:public EventoAProcesar
+{
 
 private:
-    static int delayGameOver;
-    Mapa *mapa;
-    void serializar();
-    void actualizar();
+  static int delayGameOver;
+  Mapa *mapa;
+  void serializar ();
+  void actualizar ();
 
 public:
-    explicit ActualizarYSerializarMapa(Mapa *mapa);
-    void resolver() override;
+    explicit ActualizarYSerializarMapa (Mapa * mapa);
+  void resolver () override;
 };
 
 

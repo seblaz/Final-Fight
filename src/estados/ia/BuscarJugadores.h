@@ -10,29 +10,32 @@
 #include "../../modelo/Jugadores.h"
 #include "../personajes/EstadoDePersonajeServidor.h"
 
-class BuscarJugadores : public Comportamiento {
+class BuscarJugadores:public Comportamiento
+{
 
 private:
-    Jugadores *jugadores;
-    int ciclo = 0;
+  Jugadores * jugadores;
+  int ciclo = 0;
 
 public:
-    explicit BuscarJugadores(Entidad *entidad, Jugadores *jugadores);
+    explicit BuscarJugadores (Entidad * entidad, Jugadores * jugadores);
 
-    void actualizar() override;
+  void actualizar () override;
 };
 
-class EventoBuscarJugadores : public EventoAProcesar {
+class EventoBuscarJugadores:public EventoAProcesar
+{
 
 public:
-    Jugadores *jugadores;
-    Entidad *entidad;
-    int ciclo = 0;
+  Jugadores * jugadores;
+  Entidad *entidad;
+  int ciclo = 0;
 
 public:
-    explicit EventoBuscarJugadores(Jugadores* jugadores, Entidad *entidad, int ciclo);
-    void resolver() override;
-    
+    explicit EventoBuscarJugadores (Jugadores * jugadores, Entidad * entidad,
+				    int ciclo);
+  void resolver () override;
+
 };
 
 #endif //FINAL_FIGHT_BUSCARJUGADORES_H

@@ -19,33 +19,35 @@ typedef string IdPantalla;
 
 class ManagerPantallas;
 
-class Pantalla {
+class Pantalla
+{
 
 private:
-    IdPantalla id;
+  IdPantalla id;
 
 protected:
-    ManagerPantallas *manager = nullptr;
-    InterpreteCliente *interprete;
-    EntradaUsuario *entradaUsuario;
-    Vista *vista;
+  ManagerPantallas * manager = nullptr;
+  InterpreteCliente *interprete;
+  EntradaUsuario *entradaUsuario;
+  Vista *vista;
 
 public:
-    explicit Pantalla(IdPantalla id, InterpreteCliente *interprete, EntradaUsuario *entradaUsuario, Vista *vista);
-    IdPantalla getId();
-    void setManager(ManagerPantallas *manager);
+    explicit Pantalla (IdPantalla id, InterpreteCliente * interprete,
+		       EntradaUsuario * entradaUsuario, Vista * vista);
+  IdPantalla getId ();
+  void setManager (ManagerPantallas * manager);
 
-    bool procesarEntrada();
-    virtual void interpretarModelo(stringstream &s);
-    virtual void interpretarNombrePantalla(stringstream &s);
-    virtual void graficar(SDL_Renderer *renderer);
+  bool procesarEntrada ();
+  virtual void interpretarModelo (stringstream & s);
+  virtual void interpretarNombrePantalla (stringstream & s);
+  virtual void graficar (SDL_Renderer * renderer);
 
-    virtual void enviar(SDL_Event *e);
-    virtual Accion *getAccion(SDL_Event *e);
-    virtual void recibir(stringstream &s);
-    
-    virtual void iniciar();
-    virtual void finalizar();
+  virtual void enviar (SDL_Event * e);
+  virtual Accion *getAccion (SDL_Event * e);
+  virtual void recibir (stringstream & s);
+
+  virtual void iniciar ();
+  virtual void finalizar ();
 
 };
 

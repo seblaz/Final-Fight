@@ -8,11 +8,14 @@
 
 #include "EstadoDeElemento.h"
 
-class Roto : public EstadoDeElemento {
+class Roto:public EstadoDeElemento
+{
 
 public:
-    using EstadoDeElemento::EstadoDeElemento;
-    void recibirGolpeDe(Entidad *jugador) override {};
+  using EstadoDeElemento::EstadoDeElemento;
+  void recibirGolpeDe (Entidad * jugador) override
+  {
+  };
 
 };
 

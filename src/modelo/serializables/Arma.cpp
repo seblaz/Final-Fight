@@ -4,74 +4,104 @@
 #include "Arma.h"
 #include "../../servicios/Locator.h"
 
-string Arma::armaACadena(ARMA arma) {
-    switch (arma){
-        case ARMA::PUNIOS:
-            return "punios";
-        case ARMA::CUCHILLO:
-            return "cuchillo";
-        case ARMA::TUBO:
-            return "tubo";
-        case ARMA::PATADA:
-            return "patada";
+string
+Arma::armaACadena (ARMA arma)
+{
+  switch (arma)
+    {
+    case ARMA::PUNIOS:
+      return "punios";
+    case ARMA::CUCHILLO:
+      return "cuchillo";
+    case ARMA::TUBO:
+      return "tubo";
+    case ARMA::PATADA:
+      return "patada";
     };
 }
 
-Arma::Arma() : Arma(ARMA::PUNIOS){}
-
-Arma::Arma(ARMA arma) {
-    inicializar(arma);
+Arma::Arma ():Arma (ARMA::PUNIOS)
+{
 }
 
-void Arma::inicializar(ARMA arma_) {
-    arma = arma_;
-    string base = "/armas/" + Arma::armaACadena(arma);
-    danio = Locator::configuracion()->getIntValue(base + "/danio");
-    usosRestantes = Locator::configuracion()->getIntValue(base + "/usos");
-    ancho = Locator::configuracion()->getIntValue(base + "/ancho");
+Arma::Arma (ARMA arma)
+{
+  inicializar (arma);
 }
 
-int Arma::getPuntosDeDanio() {
-    return danio;
+void
+Arma::inicializar (ARMA arma_)
+{
+  arma = arma_;
+  string base = "/armas/" + Arma::armaACadena (arma);
+  danio = Locator::configuracion ()->getIntValue (base + "/danio");
+  usosRestantes = Locator::configuracion ()->getIntValue (base + "/usos");
+  ancho = Locator::configuracion ()->getIntValue (base + "/ancho");
 }
 
-void Arma::serializar(ostream &stream) {
-    serializarEntero(stream, int(arma));
-    serializarBoolean(stream, enSuelo);
+int
+Arma::getPuntosDeDanio ()
+{
+  return danio;
 }
 
-void Arma::deserializar(istream &stream) {
-    arma = static_cast<ARMA>(deserializarEntero(stream));
-    enSuelo = deserializarBoolean(stream);
+void
+Arma::serializar (ostream & stream)
+{
+  serializarEntero (stream, int (arma));
+  serializarBoolean (stream, enSuelo);
 }
 
-void Arma::inicioUso() {
-    enUso = true;
+void
+Arma::deserializar (istream & stream)
+{
+  arma = static_cast < ARMA > (deserializarEntero (stream));
+  enSuelo = deserializarBoolean (stream);
 }
 
-void Arma::finUso() {
-    if(enUso) {
-        enUso = false;
-        if(--usosRestantes == 0) inicializar(ARMA::PUNIOS);
+void
+Arma::inicioUso ()
+{
+  enUso = true;
+}
+
+void
+Arma::finUso ()
+{
+  if (enUso)
+    {
+      enUso = false;
+      if (--usosRestantes == 0)
+	inicializar (ARMA::PUNIOS);
     }
 }
 
-void Arma::tomar() {
-    enSuelo = false;
+void
+Arma::tomar ()
+{
+  enSuelo = false;
 }
 
-ARMA Arma::getArma() {
-    return arma;
+ARMA
+Arma::getArma ()
+{
+  return arma;
 }
 
-bool Arma::enElSuelo() {
-    return enSuelo;
+bool
+Arma::enElSuelo ()
+{
+  return enSuelo;
 }
 
-void Arma::cambiarPor(ARMA arma_) {
-    inicializar(arma_);
+void
+Arma::cambiarPor (ARMA arma_)
+{
+  inicializar (arma_);
 }
 
-int Arma::getAncho() {
-    return ancho;
+int
+Arma::getAncho ()
+{
+  return ancho;
 }

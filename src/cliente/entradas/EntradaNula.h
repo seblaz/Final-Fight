@@ -10,10 +10,11 @@
 #include "../../modelo/serializables/Accion.h"
 #include "EntradaUsuario.h"
 
-class EntradaNula : public EntradaUsuario {
+class EntradaNula:public EntradaUsuario
+{
 
 public:
-    Accion *getAccion(SDL_Event *e) override;
+  Accion * getAccion (SDL_Event * e) override;
 
 };
 

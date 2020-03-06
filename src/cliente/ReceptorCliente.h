@@ -13,21 +13,22 @@
 
 using namespace std;
 
-class ReceptorCliente : Hilo {
+class ReceptorCliente:Hilo
+{
 
 private:
-    std::mutex mutex;
-    stringstream ultimoStream;
-    void recibir();
-    bool fin = false;
-    semaphore finSemaforo;
-    semaphore disponible;
+  std::mutex mutex;
+  stringstream ultimoStream;
+  void recibir ();
+  bool fin = false;
+  semaphore finSemaforo;
+  semaphore disponible;
 
 public:
-    ReceptorCliente();
-    void devolverStreamMasReciente(stringstream &s);
-    pthread_t recibirEnHilo();
-    void finalizar();
+    ReceptorCliente ();
+  void devolverStreamMasReciente (stringstream & s);
+  pthread_t recibirEnHilo ();
+  void finalizar ();
 
 };
 

@@ -11,23 +11,25 @@
 
 using namespace std;
 
-class Socket {
+class Socket
+{
 
 private:
-    int socket;
-    int tamanoDigitos = 5;
-    bool enviarSinChequeo(stringstream &s);
-    bool recibirConCantidad(stringstream &s, size_t cantidad);
-    chrono::time_point<chrono::system_clock> ultimaRecepcion = chrono::high_resolution_clock::now();
-    const int milisegundosDesconexion = 1000;
+  int socket;
+  int tamanoDigitos = 5;
+  bool enviarSinChequeo (stringstream & s);
+  bool recibirConCantidad (stringstream & s, size_t cantidad);
+    chrono::time_point < chrono::system_clock > ultimaRecepcion =
+    chrono::high_resolution_clock::now ();
+  const int milisegundosDesconexion = 1000;
 
 public:
-    explicit Socket(int socket);
-    int getIntSocket();
-    bool enviar(stringstream &s);
-    bool recibir(stringstream &s);
-    bool estaDesconectado();
-    void finalizarConexion();
+    explicit Socket (int socket);
+  int getIntSocket ();
+  bool enviar (stringstream & s);
+  bool recibir (stringstream & s);
+  bool estaDesconectado ();
+  void finalizarConexion ();
 
 };
 

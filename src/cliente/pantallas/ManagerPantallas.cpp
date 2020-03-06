@@ -5,33 +5,43 @@
 #include "ManagerPantallas.h"
 #include "../../servicios/Locator.h"
 
-void ManagerPantallas::agregarPantalla(Pantalla *pantalla) {
-    if (pantallas.empty()) {
-        {
-            unique_lock<std::mutex> lock(m);
-            actual = pantalla;
-        }
+void
+ManagerPantallas::agregarPantalla (Pantalla * pantalla)
+{
+  if (pantallas.empty ())
+    {
+      {
+	unique_lock < std::mutex > lock (m);
+	actual = pantalla;
+      }
     }
-    pantallas[pantalla->getId()] = pantalla;
-    pantalla->setManager(this);
+  pantallas[pantalla->getId ()] = pantalla;
+  pantalla->setManager (this);
 }
 
-void ManagerPantallas::cambiarA(const IdPantalla &idPantalla) {
-    if (!idPantalla.empty()) {
-        {
-            unique_lock<std::mutex> lock(m);
-            if(actual->getId() != idPantalla){
-                actual->finalizar();
-                actual = pantallas[idPantalla];
-                actual->iniciar();
-                Locator::logger()->log(INFO, "Se cambia a la pantalla: " + idPantalla + ".");
-            }
-        }
+void
+ManagerPantallas::cambiarA (const IdPantalla & idPantalla)
+{
+  if (!idPantalla.empty ())
+    {
+      {
+	unique_lock < std::mutex > lock (m);
+	if (actual->getId () != idPantalla)
+	  {
+	    actual->finalizar ();
+	    actual = pantallas[idPantalla];
+	    actual->iniciar ();
+	    Locator::logger ()->log (INFO,
+				     "Se cambia a la pantalla: " +
+				     idPantalla + ".");
+	  }
+      }
     }
 }
 
-Pantalla *ManagerPantallas::getActual() {
-    unique_lock<std::mutex> lock(m);
-    return actual;
+Pantalla *
+ManagerPantallas::getActual ()
+{
+  unique_lock < std::mutex > lock (m);
+  return actual;
 }
-

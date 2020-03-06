@@ -10,17 +10,18 @@
 #include<time.h>
 
 
-class Patrullar : public Comportamiento {
+class Patrullar:public Comportamiento
+{
 
 private:
-    int contadorDePasos = 0;
-    int pasosTotales = 100;
-    bool adelante = true;
+  int contadorDePasos = 0;
+  int pasosTotales = 100;
+  bool adelante = true;
 
 public:
-    Patrullar(Entidad *entidad);
-    ~Patrullar();
-    void actualizar() override;
+    Patrullar (Entidad * entidad);
+   ~Patrullar ();
+  void actualizar () override;
 };
 
 

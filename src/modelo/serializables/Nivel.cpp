@@ -6,18 +6,28 @@
 
 #include <utility>
 
-Nivel::Nivel() : nivel_("nivel1") {}
-
-Nivel::Nivel(string nivel) : nivel_(std::move(nivel)){}
-
-string Nivel::nivel() {
-    return nivel_;
+Nivel::Nivel ():nivel_ ("nivel1")
+{
 }
 
-void Nivel::serializar(ostream &stream) {
-    serializarString(stream, nivel_);
+Nivel::Nivel (string nivel):nivel_ (std::move (nivel))
+{
 }
 
-void Nivel::deserializar(istream &stream) {
-    nivel_ = deserializarString(stream);
+string
+Nivel::nivel ()
+{
+  return nivel_;
+}
+
+void
+Nivel::serializar (ostream & stream)
+{
+  serializarString (stream, nivel_);
+}
+
+void
+Nivel::deserializar (istream & stream)
+{
+  nivel_ = deserializarString (stream);
 }

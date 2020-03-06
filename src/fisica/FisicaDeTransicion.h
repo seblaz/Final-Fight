@@ -7,17 +7,18 @@
 
 #include "../modelo/Entidad.h"
 
-class FisicaDeTransicion : public Comportamiento{
+class FisicaDeTransicion:public Comportamiento
+{
 
 private:
-    int anchoDeEscenario;
-    int framesPorTransicionInicial;
-    int framesFaltantesPorTranscionInicial;
-    int margenTransicionFinal;
+  int anchoDeEscenario;
+  int framesPorTransicionInicial;
+  int framesFaltantesPorTranscionInicial;
+  int margenTransicionFinal;
 
 public:
-    explicit FisicaDeTransicion(Entidad *entidad, int anchoDeEscenario);
-    void actualizar() override;
+    explicit FisicaDeTransicion (Entidad * entidad, int anchoDeEscenario);
+  void actualizar () override;
 };
 
 #endif //FINAL_FIGHT_FISICADETRANSICION_H

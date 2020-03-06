@@ -8,11 +8,12 @@
 
 #include "InterpreteServidor.h"
 
-class InterpreteNulo : public InterpreteServidor {
+class InterpreteNulo:public InterpreteServidor
+{
 
 public:
-    using InterpreteServidor::InterpreteServidor;
-    bool interpretarAccion(ACCION accion, stringstream &s) override;
+  using InterpreteServidor::InterpreteServidor;
+  bool interpretarAccion (ACCION accion, stringstream & s) override;
 
 };
 

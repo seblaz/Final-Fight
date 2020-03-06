@@ -4,6 +4,8 @@
 
 #include "InterpreteNulo.h"
 
-bool InterpreteNulo::interpretarAccion(ACCION accion, stringstream &s) {
-    return true;
+bool
+InterpreteNulo::interpretarAccion (ACCION accion, stringstream & s)
+{
+  return true;
 }

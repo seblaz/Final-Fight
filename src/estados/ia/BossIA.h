@@ -10,28 +10,31 @@
 #include "../../modelo/Jugadores.h"
 #include "../../eventos/Eventos.h"
 
-class BossIA : public Comportamiento{
+class BossIA:public Comportamiento
+{
 
-    private:
-        Jugadores *jugadores;
-        int ciclo = 0;
+private:
+  Jugadores * jugadores;
+  int ciclo = 0;
 
-    public:
-        explicit BossIA(Entidad *entidad, Jugadores *jugadores);
+public:
+    explicit BossIA (Entidad * entidad, Jugadores * jugadores);
 
-        void actualizar() override;
-    };
+  void actualizar () override;
+};
 
-class EventoBossIA : public EventoAProcesar {
+class EventoBossIA:public EventoAProcesar
+{
 
-    public:
-        Jugadores *jugadores;
-        Entidad *entidad;
-        int ciclo = 0;
+public:
+  Jugadores * jugadores;
+  Entidad *entidad;
+  int ciclo = 0;
 
-    public:
-        explicit EventoBossIA(Jugadores* jugadores, Entidad *entidad, int ciclo);
-        void resolver() override;
+public:
+    explicit EventoBossIA (Jugadores * jugadores, Entidad * entidad,
+			   int ciclo);
+  void resolver () override;
 
 
 

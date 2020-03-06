@@ -8,18 +8,20 @@
 
 #include "InterpreteServidor.h"
 
-class InterpreteGameOver : public InterpreteServidor {
+class InterpreteGameOver:public InterpreteServidor
+{
 
 public:
-    using InterpreteServidor::InterpreteServidor;
-    bool interpretarAccion(ACCION accion, stringstream &s) override;
+  using InterpreteServidor::InterpreteServidor;
+  bool interpretarAccion (ACCION accion, stringstream & s) override;
 
 };
 
-class ConfirmarSeleccionGameOver : public EventoAProcesar {
+class ConfirmarSeleccionGameOver:public EventoAProcesar
+{
 
 public:
-    void resolver() override;
+  void resolver () override;
 
 };
 

@@ -7,11 +7,12 @@
 
 #include "../modelo/serializables/Posicion.h"
 
-class FisicaDePersonaje : public Comportamiento {
+class FisicaDePersonaje:public Comportamiento
+{
 
 public:
-    explicit FisicaDePersonaje(Entidad *entidad);
-    void actualizar() override;
+  explicit FisicaDePersonaje (Entidad * entidad);
+  void actualizar () override;
 };
 
 

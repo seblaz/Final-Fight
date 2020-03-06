@@ -8,14 +8,17 @@
 
 #include "EstadoDePersonajeServidor.h"
 
-class Reposando : public EstadoDePersonajeServidor {
+class Reposando:public EstadoDePersonajeServidor
+{
 
 private:
 
 public:
-    using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
-    void actualizar() override;
-    void reposar() override {};
+  using EstadoDePersonajeServidor::EstadoDePersonajeServidor;
+  void actualizar () override;
+  void reposar () override
+  {
+  };
 };
 
 #endif //FINAL_FIGHT_REPOSANDO_H

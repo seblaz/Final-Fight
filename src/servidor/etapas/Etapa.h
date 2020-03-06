@@ -19,23 +19,25 @@ typedef string IdEtapa;
 
 class ManagerEtapas;
 
-class Etapa {
+class Etapa
+{
 
 private:
-    IdEtapa id;
-    Modelo *modelo;
-    InterpreteServidor *interprete;
-    ManagerEtapas *manager = nullptr;
+  IdEtapa id;
+  Modelo *modelo;
+  InterpreteServidor *interprete;
+  ManagerEtapas *manager = nullptr;
 
 public:
-    explicit Etapa(IdEtapa id, Modelo *modelo, InterpreteServidor *interprete);
-    IdEtapa getId();
-    void setManager(ManagerEtapas *manager);
-    ManagerEtapas *getManager();
-    InterpreteServidor *getInterprete();
-    void serializar(stringstream &s);
-    void iniciar();
-    void finalizarCliente();
+    explicit Etapa (IdEtapa id, Modelo * modelo,
+		    InterpreteServidor * interprete);
+  IdEtapa getId ();
+  void setManager (ManagerEtapas * manager);
+  ManagerEtapas *getManager ();
+  InterpreteServidor *getInterprete ();
+  void serializar (stringstream & s);
+  void iniciar ();
+  void finalizarCliente ();
 
 };
 

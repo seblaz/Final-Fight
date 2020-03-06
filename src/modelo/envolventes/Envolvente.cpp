@@ -4,7 +4,9 @@
 
 #include "Envolvente.h"
 
-Envolvente::Envolvente(Posicion *posicion, int ancho, int profundidad) :
-        ancho(ancho),
-        posicion(posicion),
-        profundidad(profundidad) {}
+Envolvente::Envolvente (Posicion * posicion, int ancho, int profundidad):
+ancho (ancho),
+posicion (posicion),
+profundidad (profundidad)
+{
+}

@@ -9,24 +9,25 @@
 #include "../../modelo/serializables/EventoUsuario.h"
 #include "../../utils/Socket.h"
 
-class Autenticador {
+class Autenticador
+{
 
 private:
-    string user = "";
-    string pass = "";
-    string* campoActivo = &user;
-    const int maxCaracteres = 13;
-    int framesFaltantesPasswordIncorrecta = 0;
-    int framesTotalesPasswordIncorrecta = 60;
+  string user = "";
+  string pass = "";
+  string *campoActivo = &user;
+  const int maxCaracteres = 13;
+  int framesFaltantesPasswordIncorrecta = 0;
+  int framesTotalesPasswordIncorrecta = 60;
 
 public:
-    void ingresar(char *i);
-    void borrar();
-    void cambiarCampo();
-    string getUsuario();
-    string getPassword();
-    void setPasswordIncorrecta();
-    bool passwordIncorrecta();
+  void ingresar (char *i);
+  void borrar ();
+  void cambiarCampo ();
+  string getUsuario ();
+  string getPassword ();
+  void setPasswordIncorrecta ();
+  bool passwordIncorrecta ();
 };
 
 

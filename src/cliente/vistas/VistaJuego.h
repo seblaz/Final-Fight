@@ -12,11 +12,12 @@
 
 using namespace std;
 
-class VistaJuego : public Vista {
+class VistaJuego:public Vista
+{
 
 public:
-    void graficar(SDL_Renderer *renderer) override;
-    string getConfigPathMusica() override;
+  void graficar (SDL_Renderer * renderer) override;
+  string getConfigPathMusica () override;
 
 };
 

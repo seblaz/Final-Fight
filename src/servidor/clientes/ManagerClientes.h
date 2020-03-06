@@ -12,17 +12,18 @@
 
 using namespace std;
 
-class ManagerClientes {
+class ManagerClientes
+{
 
 private:
-    list<Cliente *> clientes;
-    IdEtapa etapaActual = "menu de seleccion";
+  list < Cliente * >clientes;
+  IdEtapa etapaActual = "menu de seleccion";
 
 public:
-    void agregarCliente(Cliente *cliente);
-    void cambiarTodosA(const IdEtapa& idEtapa);
-    void quitarCliente(Cliente *cliente);
-    IdEtapa getEtapaActual();
+  void agregarCliente (Cliente * cliente);
+  void cambiarTodosA (const IdEtapa & idEtapa);
+  void quitarCliente (Cliente * cliente);
+  IdEtapa getEtapaActual ();
 
 };
 

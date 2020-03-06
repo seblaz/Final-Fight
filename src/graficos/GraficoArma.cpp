@@ -5,6 +5,9 @@
 #include "GraficoArma.h"
 #include "../modelo/serializables/Arma.h"
 
-void GraficoArma::actualizar() {
-    if(entidad->getEstado<Arma>("arma")->enElSuelo()) Grafico::actualizar();
+void
+GraficoArma::actualizar ()
+{
+  if (entidad->getEstado < Arma > ("arma")->enElSuelo ())
+    Grafico::actualizar ();
 }

@@ -10,10 +10,11 @@
 #include "../../modelo/Mapa.h"
 #include "Modelo.h"
 
-class ModeloJuego : public Modelo {
+class ModeloJuego:public Modelo
+{
 
 public:
-    void serializar(ostream &stream) override;
+  void serializar (ostream & stream) override;
 
 };
 

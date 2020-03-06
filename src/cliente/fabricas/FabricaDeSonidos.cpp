@@ -6,14 +6,19 @@
 #include "../../servicios/Locator.h"
 #include "../../sonidos/Sonido.h"
 
-Sonido* FabricaDeSonidos::getSoundBySrc(const string& src) {
-    if(sonidos.find(src) == sonidos.end()){
-        sonidos[src] = new Sonido(src);
+Sonido *
+FabricaDeSonidos::getSoundBySrc (const string & src)
+{
+  if (sonidos.find (src) == sonidos.end ())
+    {
+      sonidos[src] = new Sonido (src);
     }
-    return sonidos[src];
+  return sonidos[src];
 }
 
-Sonido* FabricaDeSonidos::getSoundConfigPath(const string& path){
-    string src = Locator::configuracion()->getValue(path);
-    return getSoundBySrc(src);
+Sonido *
+FabricaDeSonidos::getSoundConfigPath (const string & path)
+{
+  string src = Locator::configuracion ()->getValue (path);
+  return getSoundBySrc (src);
 }

@@ -7,8 +7,10 @@
 #include "../../modelo/Velocidad.h"
 #include "Saltando.h"
 
-void Agachado::actualizar() {
-    auto *velocidad = entidad->getEstado<Velocidad>("velocidad");
-    velocidad->x = 0;
-    velocidad->y = 0;
+void
+Agachado::actualizar ()
+{
+  auto *velocidad = entidad->getEstado < Velocidad > ("velocidad");
+  velocidad->x = 0;
+  velocidad->y = 0;
 }
