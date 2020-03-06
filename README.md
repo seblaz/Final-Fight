@@ -2,6 +2,8 @@
 
 Juego multijugador similar a [Final Fight](https://es.wikipedia.org/wiki/Final_Fight) creado por [Capcom](http://www.capcom.com/). El mismo fue desarrollado como una aplicación de tipo cliente-servidor para funcionar sobre Linux.
 
+Tested on Ubuntu 20.04 with gcc 9.2.1
+
 <p align="center">
     <img alt="caminando" src="assets/screenshots/caminando.png"/>
 </p>
@@ -57,4 +59,23 @@ Juego multijugador similar a [Final Fight](https://es.wikipedia.org/wiki/Final_F
  - Debug librería estándar (opcional):
  
         $ apt-get install libstdc++6-8-dbg
+
+# Build
+
+       mkdir build
+       cd build
+       cmake ..
+       make
+
+# Server
+
+       ./server
+
+# Client
+
+       ./client 127.0.0.1  5000
+
+# User/Pass
+
+[Configuration.xml](Configuration.xml)
 

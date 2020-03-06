@@ -4,7 +4,9 @@
 #include <utility>
 
 #include "gtest/gtest.h"
-#include "../serializar/Serializable.h"
+#include "../modelo/serializables/Serializable.h"
+
+#include "../modelo/Entidad.h"
 #include "../modelo/serializables/Posicion.h"
 #include "../modelo/serializables/Orientacion.h"
 #include "../usuario/Usuario.h"
@@ -93,7 +95,7 @@ TEST(Serializar, SerializarUnTipo) {
 
 TEST(Serializar, SerializarUnaEntidad) {
     Entidad entidad;
-    Tipo tipo(JUGADOR);
+    Tipo tipo(TIPO::JUGADOR);
     Posicion posicion(10, 42, 12);
     entidad.agregarEstado("tipo", &tipo);
     entidad.agregarEstado("posicion", &posicion);
@@ -113,7 +115,7 @@ TEST(Serializar, SerializarUnaEntidad) {
 
 TEST(Serializar, SerializarVariasEntidades) {
     Entidad entidad1;
-    Tipo tipo1(JUGADOR);
+    Tipo tipo1(TIPO::JUGADOR);
     Posicion posicion1(10, 42, 12);
     entidad1.agregarEstado("tipo", &tipo1);
     entidad1.agregarEstado("posicion", &posicion1);

@@ -59,19 +59,20 @@ SET(CMAKE_CXX_FLAGS -pthread)
   Definición de variables.
 ]]
 FILE(GLOB_RECURSE TestSources test/*.cpp)
-FILE(GLOB_RECURSE ModelSources modelo/*.cpp)
-FILE(GLOB_RECURSE PhysicsSources fisica/*.cpp)
-FILE(GLOB_RECURSE GraphicsSources graficos/*.cpp)
-FILE(GLOB_RECURSE InputSources comportamiento/*.cpp)
-FILE(GLOB_RECURSE StatesSources estados/*.cpp)
-FILE(GLOB_RECURSE ServicesSources servicios/*.cpp)
+
+FILE(GLOB_RECURSE ModelSources src/modelo/*.cpp)
+FILE(GLOB_RECURSE PhysicsSources src/fisica/*.cpp)
+FILE(GLOB_RECURSE GraphicsSources src/graficos/*.cpp)
+FILE(GLOB_RECURSE InputSources src/comportamiento/*.cpp)
+FILE(GLOB_RECURSE StatesSources src/estados/*.cpp)
+FILE(GLOB_RECURSE ServicesSources src/servicios/*.cpp)
 FILE(GLOB_RECURSE Configurations *.xml)
-FILE(GLOB_RECURSE ClientSources cliente/*.cpp)
-FILE(GLOB_RECURSE ServerSources servidor/*.cpp)
-FILE(GLOB_RECURSE EventSources eventos/*.cpp)
-FILE(GLOB_RECURSE UsuarioSources usuario/*.cpp)
-FILE(GLOB_RECURSE UtilsSources utils/*.cpp)
-FILE(GLOB_RECURSE SoundSources sonidos/*.cpp)
+FILE(GLOB_RECURSE ClientSources src/cliente/*.cpp)
+FILE(GLOB_RECURSE ServerSources src/servidor/*.cpp)
+FILE(GLOB_RECURSE EventSources src/eventos/*.cpp)
+FILE(GLOB_RECURSE UsuarioSources src/usuario/*.cpp)
+FILE(GLOB_RECURSE UtilsSources src/utils/*.cpp)
+FILE(GLOB_RECURSE SoundSources src/sonidos/*.cpp)
 
 find_package(SDL2 REQUIRED) # Find SDL2 libraries.
 find_package(XercesC REQUIRED) # Find Xerces
@@ -83,9 +84,9 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER
 #[[
   Compilar los tests.
 ]]
-add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${IASources} ${UsuarioSources})
-target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
-add_test(NAME model_tests COMMAND model_tests)
+#add_executable(tests ${TestSources} ${ModelSources} ${GraphicsSources} ${InputSources} ${StatesSources} ${ServicesSources} ${PhysicsSources} ${IASources} ${UsuarioSources})
+#target_link_libraries(tests gtest_main gmock_main ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${XercesC_LIBRARIES})
+#add_test(NAME model_tests COMMAND model_tests)
 
 #[[
   Copiar los assets
@@ -96,11 +97,11 @@ file(COPY ${Configurations} DESTINATION ${CMAKE_BINARY_DIR})
 #[[
   Compilar el cliente.
 ]]
-add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} ${UsuarioSources} ${UtilsSources} ${SoundSources} modelo/serializables/Arma.cpp modelo/serializables/Arma.h)
+add_executable(cliente ${ClientSources} ${ModelSources} ${GraphicsSources} ${ServicesSources} ${UsuarioSources} ${UtilsSources} ${SoundSources} src/modelo/serializables/Arma.cpp src/modelo/serializables/Arma.h)
 target_link_libraries(cliente ${XercesC_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
 
 #[[
   Compilar el servidor.
 ]]
-add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources} servidor/notificadores/NotificadorDeGolpesJugador.cpp servidor/notificadores/NotificadorDeGolpesJugador.h)
+add_executable(servidor ${ServerSources} ${ServicesSources} ${EventSources} ${ModelSources} ${StatesSources} ${PhysicsSources} ${UsuarioSources} ${UtilsSources} src/servidor/notificadores/NotificadorDeGolpesJugador.cpp src/servidor/notificadores/NotificadorDeGolpesJugador.h)
 target_link_libraries(servidor ${XercesC_LIBRARIES})

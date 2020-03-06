@@ -40,6 +40,7 @@ public:
 /**
  * Actual Logger implementation.
  */
+Logger::Logger(){}
 
 Logger::Logger(const string& prefijo) :
         level(DEBUG),
