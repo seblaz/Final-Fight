@@ -19,8 +19,8 @@ private:
   int tamanoDigitos = 5;
   bool enviarSinChequeo (stringstream & s);
   bool recibirConCantidad (stringstream & s, size_t cantidad);
-    chrono::time_point < chrono::system_clock > ultimaRecepcion =
-    chrono::high_resolution_clock::now ();
+    chrono::time_point <chrono::system_clock> ultimaRecepcion =
+    chrono::system_clock::now ();
   const int milisegundosDesconexion = 1000;
 
 public:

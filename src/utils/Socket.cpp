@@ -7,6 +7,7 @@
 #include "Socket.h"
 #include "../servicios/Locator.h"
 #include <unistd.h>
+#define MSG_NOSIGNAL 0x2000 /* don't raise SIGPIPE */
 
 Socket::Socket (int socket):
 socket (socket)
@@ -117,7 +118,7 @@ Socket::recibir (stringstream & s)
       return false;
     }
 
-  ultimaRecepcion = std::chrono::high_resolution_clock::now ();
+  ultimaRecepcion = std::chrono::system_clock::now ();
 //    Locator::logger()->log(DEBUG, "Mensaje recibido: " + s.str());
   return res2;
 }
@@ -127,7 +128,7 @@ Socket::estaDesconectado ()
 {
   return chrono::duration < double,
     milli >
-    (chrono::high_resolution_clock::now () - ultimaRecepcion).count () >
+    (chrono::system_clock::now () - ultimaRecepcion).count () >
     milisegundosDesconexion;
 }
 

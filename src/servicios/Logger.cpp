@@ -3,6 +3,7 @@
 //
 
 #include "Logger.h"
+#include <sstream>
 
 /**
  * File Manager helper funcitions.

@@ -31,7 +31,7 @@ ConexionServidor::ConexionServidor (int puerto)
       exit (0);
     }
 
-  int bindStatus = bind (descriptorSocket, (struct sockaddr *) &serverAddr,
+  int bindStatus = ::bind (descriptorSocket, (struct sockaddr *) &serverAddr,
 			 sizeof (serverAddr));
   if (bindStatus < 0)
     {

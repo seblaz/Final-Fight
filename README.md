@@ -2,7 +2,10 @@
 
 Juego multijugador similar a [Final Fight](https://es.wikipedia.org/wiki/Final_Fight) creado por [Capcom](http://www.capcom.com/). El mismo fue desarrollado como una aplicación de tipo cliente-servidor para funcionar sobre Linux.
 
-Tested on Ubuntu 20.04 with gcc 9.2.1
+Tested on
+
+- Ubuntu 20.04 with gcc 9.2.1
+- macOS Catalina with clang 11.0.0
 
 <p align="center">
     <img alt="caminando" src="assets/screenshots/caminando.png"/>
@@ -37,6 +40,10 @@ Tested on Ubuntu 20.04 with gcc 9.2.1
  - Debug librería estándar (opcional):
 
        $ make dep
+
+or
+
+        $ make -f Makefile.OSX dep
 
 # Build
 
